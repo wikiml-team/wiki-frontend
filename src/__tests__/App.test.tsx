@@ -1,9 +1,18 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import App from "../App";
+import { shallow, ShallowWrapper } from "enzyme";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import App from "App";
+import Routes from "routes";
+
+describe("<App />", () => {
+  let appWrapper: ShallowWrapper;
+
+  beforeAll(() => {
+    appWrapper = shallow(<App />);
+  });
+
+  it("renders <Routes />", () => {
+    const routes = appWrapper.find(Routes);
+    expect(routes).toHaveLength(1);
+  });
 });

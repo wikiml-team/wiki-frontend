@@ -1,16 +1,14 @@
-import React, { Suspense } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import App from "App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@fluentui/react";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
-      <Suspense fallback={<div>Loading...</div>}>
-        <App />
-      </Suspense>
+      <App />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
