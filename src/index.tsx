@@ -4,15 +4,20 @@ import "./index.css";
 import App from "App";
 import reportWebVitals from "./reportWebVitals";
 
-import defaultTheme from "themes/default";
 import { initializeIcons, loadTheme } from "@fluentui/react";
+import defaultTheme from "themes/default";
+
+import { Provider } from "react-redux";
+import store from "store";
 
 loadTheme(defaultTheme);
 initializeIcons();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

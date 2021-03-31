@@ -1,4 +1,5 @@
 import React from "react";
+import main from "views/main";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import WorkplaceLayout from "layouts/workplace";
@@ -8,7 +9,7 @@ export default function Routes() {
     <Router>
       <Switch>
         <Route path="/workplace" render={WorkplaceSwitcher} />
-        <Route path="/" />
+        <Route path="/" render={main} />
       </Switch>
     </Router>
   );
