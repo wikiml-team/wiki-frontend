@@ -4,6 +4,9 @@ import { CommandBar, ICommandBarStyles } from "@fluentui/react";
 import { mainItems } from "./mainitems";
 import { overflowItems, overflowProps } from "./overflowitems";
 import { farItems } from "./faritems";
+import defaultTheme from "themes/default";
+
+const palette = defaultTheme.palette;
 
 // ComandBar Styles
 const comandBarStyles: Partial<ICommandBarStyles> = {
@@ -12,7 +15,7 @@ const comandBarStyles: Partial<ICommandBarStyles> = {
     height: 36,
     paddingLeft: 0,
     zIndex: 100,
-    backgroundColor: "#2b579a",
+    backgroundColor: palette.themePrimary,
   },
 };
 

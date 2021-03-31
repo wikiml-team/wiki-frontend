@@ -4,10 +4,10 @@ import "./index.css";
 import App from "App";
 import reportWebVitals from "./reportWebVitals";
 
-import MainTheme from "themes/default";
+import defaultTheme from "themes/default";
 import { initializeIcons, loadTheme } from "@fluentui/react";
 
-loadTheme(MainTheme);
+loadTheme(defaultTheme);
 initializeIcons();
 
 ReactDOM.render(

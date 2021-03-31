@@ -7,12 +7,12 @@ import {
   whiteIconStyle,
 } from "./__styles__/commandstyles";
 
-interface farItemsHandlers {
+interface IFarItemsHandlers {
   OpenLanguagePanel: () => void;
   OpenSettingsPanel: () => void;
 }
 
-export const farItems = (handlers: farItemsHandlers) => {
+export const farItems = (handlers: IFarItemsHandlers) => {
   const { OpenLanguagePanel, OpenSettingsPanel } = handlers;
 
   return [

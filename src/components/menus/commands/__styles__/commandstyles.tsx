@@ -1,54 +1,78 @@
 import { IButtonStyles, IIconStyles } from "@fluentui/react";
+import defaultTheme from "themes/default";
+
+const palette = defaultTheme.palette;
 
 // Icons Styles
-export const whiteIconStyle: IIconStyles = { root: { color: "white" } };
-export const blackIconStyle: IIconStyles = { root: { color: "black" } };
+export const whiteIconStyle: IIconStyles = { root: { color: palette.white } };
+export const blackIconStyle: IIconStyles = { root: { color: palette.black } };
 
 // Button Styles
 export const blueButtonStyles: IButtonStyles = {
   root: {
-    backgroundColor: "#2b579a",
+    backgroundColor: palette.themePrimary,
   },
   rootHovered: {
-    backgroundColor: "#004173",
+    backgroundColor: palette.themeDark,
   },
   rootPressed: {
-    backgroundColor: "#00345c",
+    backgroundColor: palette.themeDarker,
   },
   iconHovered: {
-    color: "white",
+    color: palette.white,
   },
   iconPressed: {
-    color: "white",
+    color: palette.white,
+  },
+};
+
+export const overflowButtonStyles: IButtonStyles = {
+  root: {
+    backgroundColor: palette.themePrimary,
+  },
+  rootHovered: {
+    backgroundColor: palette.themeDark,
+  },
+  rootPressed: {
+    backgroundColor: palette.themeDarker,
+  },
+  rootExpanded: {
+    backgroundColor: palette.themeDarker,
+  },
+  rootExpandedHovered: {
+    backgroundColor: palette.themeDark,
+  },
+  menuIcon: {
+    color: palette.white + " !important",
   },
 };
 
 export const userButtonStyles: IButtonStyles = {
   root: {
-    borderLeft: "2px solid rgb(220, 220, 220, 0.4)",
+    borderLeft: "2px solid " + palette.neutralQuaternaryAlt,
     borderWidth: "thin",
-    backgroundColor: "#2b579a",
-    color: "white",
+    backgroundColor: palette.themePrimary,
+    color: palette.white,
   },
   rootHovered: {
-    background: "#2e599f",
+    background: palette.themeSecondary,
   },
   rootPressed: {
-    backgroundColor: "#2b579a",
+    backgroundColor: palette.themePrimary,
   },
   iconHovered: {
-    color: "white",
+    color: palette.white,
   },
   iconPressed: {
-    color: "#E8E8E8",
+    color: palette.neutralQuaternaryAlt,
   },
   labelHovered: {
-    color: "white",
+    color: palette.white,
   },
   label: {
     selectors: {
       ":active": {
-        color: "white",
+        color: palette.white,
       },
     },
   },
@@ -56,18 +80,18 @@ export const userButtonStyles: IButtonStyles = {
 
 export const farButtonStyles: IButtonStyles = {
   root: {
-    backgroundColor: "#2b579a",
+    backgroundColor: palette.themePrimary,
   },
   rootHovered: {
-    backgroundColor: "#2b579a",
+    backgroundColor: palette.themePrimary,
   },
   rootPressed: {
-    backgroundColor: "#2b579a",
+    backgroundColor: palette.themePrimary,
   },
   iconHovered: {
-    color: "white",
+    color: palette.white,
   },
   iconPressed: {
-    color: "#E8E8E8",
+    color: palette.neutralQuaternaryAlt,
   },
 };

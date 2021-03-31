@@ -1,10 +1,10 @@
-import {
-  IButtonProps,
-  ICommandBarItemProps,
-  IIconStyles,
-} from "@fluentui/react";
+import { IButtonProps, ICommandBarItemProps } from "@fluentui/react";
 
-import { blueButtonStyles, blackIconStyle } from "./__styles__/commandstyles";
+import {
+  blueButtonStyles,
+  blackIconStyle,
+  overflowButtonStyles,
+} from "./__styles__/commandstyles";
 
 export const overflowItems: ICommandBarItemProps[] = [
   {
@@ -50,24 +50,5 @@ export const overflowItems: ICommandBarItemProps[] = [
 // Buttons Props
 export const overflowProps: IButtonProps = {
   ariaLabel: "More commands",
-  styles: {
-    root: {
-      backgroundColor: "#2b579a",
-    },
-    rootHovered: {
-      backgroundColor: "#004173",
-    },
-    rootPressed: {
-      backgroundColor: "#00345c",
-    },
-    rootExpanded: {
-      backgroundColor: "#00345c",
-    },
-    rootExpandedHovered: {
-      backgroundColor: "#004173",
-    },
-    menuIcon: {
-      color: "white !important",
-    },
-  },
+  styles: overflowButtonStyles,
 };

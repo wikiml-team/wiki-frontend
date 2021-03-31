@@ -1,16 +1,16 @@
 import { createTheme } from "@fluentui/react";
 
-const MainTheme = createTheme({
+const defaultThemeCyan = createTheme({
   palette: {
-    themePrimary: "#8bb7d9",
-    themeLighterAlt: "#fafcfd",
-    themeLighter: "#ebf3f9",
-    themeLight: "#d9e8f4",
-    themeTertiary: "#b6d2e8",
-    themeSecondary: "#97bfdd",
-    themeDarkAlt: "#7da5c3",
-    themeDark: "#698ba5",
-    themeDarker: "#4e6679",
+    themePrimary: "#038387",
+    themeLighterAlt: "#f0fafa",
+    themeLighter: "#c7ebec",
+    themeLight: "#9bd9db",
+    themeTertiary: "#4bb4b7",
+    themeSecondary: "#159196",
+    themeDarkAlt: "#02767a",
+    themeDark: "#026367",
+    themeDarker: "#02494c",
     neutralLighterAlt: "#faf9f8",
     neutralLighter: "#f3f2f1",
     neutralLight: "#edebe9",
@@ -27,4 +27,85 @@ const MainTheme = createTheme({
   },
 });
 
-export default MainTheme;
+export const defaultThemeCyan2 = createTheme({
+  palette: {
+    themePrimary: "#005b70",
+    themeLighterAlt: "#eff7f9",
+    themeLighter: "#c3e1e8",
+    themeLight: "#95c8d4",
+    themeTertiary: "#4497a9",
+    themeSecondary: "#106c81",
+    themeDarkAlt: "#005265",
+    themeDark: "#004655",
+    themeDarker: "#00333f",
+    neutralLighterAlt: "#faf9f8",
+    neutralLighter: "#f3f2f1",
+    neutralLight: "#edebe9",
+    neutralQuaternaryAlt: "#e1dfdd",
+    neutralQuaternary: "#d0d0d0",
+    neutralTertiaryAlt: "#c8c6c4",
+    neutralTertiary: "#a19f9d",
+    neutralSecondary: "#605e5c",
+    neutralPrimaryAlt: "#3b3a39",
+    neutralPrimary: "#323130",
+    neutralDark: "#201f1e",
+    black: "#000000",
+    white: "#ffffff",
+  },
+});
+
+export const defaultThemeTeal = createTheme({
+  palette: {
+    themePrimary: "#008272",
+    themeLighterAlt: "#f0faf9",
+    themeLighter: "#c5ebe7",
+    themeLight: "#98dad2",
+    themeTertiary: "#48b4a7",
+    themeSecondary: "#119182",
+    themeDarkAlt: "#007567",
+    themeDark: "#006357",
+    themeDarker: "#004940",
+    neutralLighterAlt: "#faf9f8",
+    neutralLighter: "#f3f2f1",
+    neutralLight: "#edebe9",
+    neutralQuaternaryAlt: "#e1dfdd",
+    neutralQuaternary: "#d0d0d0",
+    neutralTertiaryAlt: "#c8c6c4",
+    neutralTertiary: "#a19f9d",
+    neutralSecondary: "#605e5c",
+    neutralPrimaryAlt: "#3b3a39",
+    neutralPrimary: "#323130",
+    neutralDark: "#201f1e",
+    black: "#000000",
+    white: "#ffffff",
+  },
+});
+
+export const defaultThemeRed = createTheme({
+  palette: {
+    themePrimary: "#a4262c",
+    themeLighterAlt: "#fbf4f4",
+    themeLighter: "#f0d3d4",
+    themeLight: "#e3afb2",
+    themeTertiary: "#c86c70",
+    themeSecondary: "#ae383e",
+    themeDarkAlt: "#932227",
+    themeDark: "#7c1d21",
+    themeDarker: "#5b1519",
+    neutralLighterAlt: "#faf9f8",
+    neutralLighter: "#f3f2f1",
+    neutralLight: "#edebe9",
+    neutralQuaternaryAlt: "#e1dfdd",
+    neutralQuaternary: "#d0d0d0",
+    neutralTertiaryAlt: "#c8c6c4",
+    neutralTertiary: "#a19f9d",
+    neutralSecondary: "#605e5c",
+    neutralPrimaryAlt: "#3b3a39",
+    neutralPrimary: "#323130",
+    neutralDark: "#201f1e",
+    black: "#000000",
+    white: "#ffffff",
+  },
+});
+
+export default defaultThemeRed;
