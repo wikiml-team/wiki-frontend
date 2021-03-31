@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "App";
 import reportWebVitals from "./reportWebVitals";
-import { ThemeProvider } from "@fluentui/react";
+
+import MainTheme from "themes/main";
+import { loadTheme } from "@fluentui/react";
+
+loadTheme(MainTheme);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
