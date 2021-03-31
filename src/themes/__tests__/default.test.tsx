@@ -1,6 +1,6 @@
 import { shallow, ShallowWrapper } from "enzyme";
 
-import MainTheme from "../main";
+import MainTheme from "../default";
 
 describe("<Main Theme/>", () => {
   let themeWrapper: ShallowWrapper;

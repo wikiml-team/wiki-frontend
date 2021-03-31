@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { mergeStyleSets } from "@fluentui/react";
 
-import CommandMenu from "components/menus/commandmenu";
+import CommandMenu from "components/menus/commands/";
 import MainMenu from "components/menus/mainmenu";
 
 const classes = mergeStyleSets({

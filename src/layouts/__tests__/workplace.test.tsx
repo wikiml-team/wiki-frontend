@@ -1,7 +1,7 @@
 import { shallow, ShallowWrapper } from "enzyme";
 
 import WorkplaceLayout from "layouts/workplace";
-import CommandMenu from "components/menus/commandmenu";
+import CommandMenu from "components/menus/commands/";
 import MainMenu from "components/menus/mainmenu";
 
 describe("Workplace Layout", () => {

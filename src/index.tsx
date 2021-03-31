@@ -4,10 +4,11 @@ import "./index.css";
 import App from "App";
 import reportWebVitals from "./reportWebVitals";
 
-import MainTheme from "themes/main";
-import { loadTheme } from "@fluentui/react";
+import MainTheme from "themes/default";
+import { initializeIcons, loadTheme } from "@fluentui/react";
 
 loadTheme(MainTheme);
+initializeIcons();
 
 ReactDOM.render(
   <React.StrictMode>
