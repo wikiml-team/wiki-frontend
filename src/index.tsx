@@ -5,12 +5,11 @@ import App from "App";
 import reportWebVitals from "./reportWebVitals";
 
 import { initializeIcons, loadTheme } from "@fluentui/react";
-import defaultTheme from "themes/default";
 
 import { Provider } from "react-redux";
 import store from "store";
 
-loadTheme(defaultTheme);
+loadTheme(store.getState().theme.value);
 initializeIcons();
 
 ReactDOM.render(

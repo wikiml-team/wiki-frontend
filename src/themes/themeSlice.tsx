@@ -1,20 +1,29 @@
+import { loadTheme } from "@fluentui/react";
 import { createSlice } from "@reduxjs/toolkit";
+import { themeExcel, themeWord, themePowerPoint, themeTeams } from "themes";
 import IState from "models/state";
 
 const themeSlice = createSlice({
   name: "theme",
   initialState: {
-    value: "default",
+    value: themeWord,
   },
   reducers: {
-    setRed: (state) => {
-      state.value = "red";
+    setWord: (state) => {
+      state.value = themeWord;
+      loadTheme(themeWord);
     },
-    setCyan: (state) => {
-      state.value = "cyan";
+    setExcel: (state) => {
+      state.value = themeExcel;
+      loadTheme(themeExcel);
     },
-    setDefault: (state) => {
-      state.value = "default";
+    setPowerPoint: (state) => {
+      state.value = themePowerPoint;
+      loadTheme(themePowerPoint);
+    },
+    setTeams: (state) => {
+      state.value = themeTeams;
+      loadTheme(themeTeams);
     },
   },
 });
