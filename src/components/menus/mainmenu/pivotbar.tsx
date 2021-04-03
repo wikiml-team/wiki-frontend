@@ -50,14 +50,8 @@ export default function PivotBar(props: PivotBarProps) {
     },
     linkIsSelected: {
       height: "inherit",
-      backgroundColor: palette.neutralLighter,
-      color: palette.black,
-      selectors: {
-        ":hover": {
-          backgroundColor: palette.neutralLighter,
-          color: palette.black,
-        },
-      },
+      backgroundColor: palette.neutralLighter + " !important",
+      color: palette.black + " !important",
     },
   };
 
