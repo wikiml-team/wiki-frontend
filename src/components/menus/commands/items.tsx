@@ -63,7 +63,6 @@ export const getItems = (palette: IPalette) => {
       key: "goback",
       iconProps: { iconName: "Undo", styles: whiteIconStyle },
       ariaLabel: "Undo",
-      styles: { root: { backgroundColor: "#2b579a" } },
       buttonStyles: blueButtonStyles,
     },
     {

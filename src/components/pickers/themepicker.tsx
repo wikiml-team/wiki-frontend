@@ -5,12 +5,11 @@ import { Circle } from "components/styled/shapes";
 type SwatchThemePickerProps = {
   colorCells: IColorCellProps[];
   size: string;
-  selectedId: string;
   handler: (id: string) => void;
 };
 
 export default function ThemePicker(props: SwatchThemePickerProps) {
-  const { colorCells, handler, selectedId, size } = props;
+  const { colorCells, handler, size } = props;
 
   // STYLES
   const palette = useTheme().palette;
