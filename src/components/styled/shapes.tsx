@@ -1,29 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-import { mergeStyleSets } from "@fluentui/react/lib/Styling";
-
-const classes = mergeStyleSets({
-  circle: {
-    selectors: {
-      ":hover": {
-        cursor: "pointer",
-      },
-    },
-  },
-});
-
 interface CircleProps {
+  ariaLabel?: string;
   size: string;
   color: string;
   border: string;
+  className?: string;
   onClick?: () => void;
 }
 
 export function Circle(props: CircleProps) {
   const StyledCircle = styled.div`
     height: ${props.size};
-    width: ${props.size}..
+    width: ${props.size};
     background-color: ${props.color};
     border: 4px solid ${props.border};
     border-radius: 50%;
@@ -32,5 +22,5 @@ export function Circle(props: CircleProps) {
     vertical-align: middle;
   `;
 
-  return <StyledCircle onClick={props.onClick} className={classes.circle} />;
+  return <StyledCircle onClick={props.onClick} className={props.className} />;
 }
