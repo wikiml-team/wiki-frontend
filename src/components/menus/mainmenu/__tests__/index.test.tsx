@@ -1,5 +1,5 @@
-import { ReactWrapper, shallow, ShallowWrapper } from "enzyme";
-import MainMenu from "../mainmenu";
+import { shallow, ShallowWrapper } from "enzyme";
+import MainMenu from "..";
 
 describe("<MainMenu />", () => {
   let mainMenuWrapper: ShallowWrapper;
