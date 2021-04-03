@@ -1,19 +1,72 @@
-import { ICommandBarItemProps } from "@fluentui/react";
+import {
+  IButtonStyles,
+  ICommandBarItemProps,
+  IIconStyles,
+  IPalette,
+} from "@fluentui/react";
 
 import { fullscreenToggler } from "components/fullscreentoogler";
-import {
-  farButtonStyles,
-  userButtonStyles,
-  whiteIconStyle,
-} from "./__styles__/commandstyles";
 
-interface IFarItemsHandlers {
+type FarItemsProps = {
   OpenLanguagePanel: () => void;
   OpenSettingsPanel: () => void;
-}
+  palette: IPalette;
+};
 
-export const farItems = (handlers: IFarItemsHandlers) => {
-  const { OpenLanguagePanel, OpenSettingsPanel } = handlers;
+export const getFarItems = (props: FarItemsProps) => {
+  const { OpenLanguagePanel, OpenSettingsPanel, palette } = props;
+
+  // Button & Inon Styles
+  const whiteIconStyle: IIconStyles = { root: { color: palette.white } };
+
+  const userButtonStyles: IButtonStyles = {
+    root: {
+      borderLeft: "2px solid " + palette.neutralQuaternaryAlt,
+      borderWidth: "thin",
+      backgroundColor: palette.themePrimary,
+      color: palette.white,
+    },
+    rootHovered: {
+      background: palette.themeSecondary,
+    },
+    rootPressed: {
+      backgroundColor: palette.themePrimary,
+    },
+    iconHovered: {
+      color: palette.white,
+    },
+    iconPressed: {
+      color: palette.neutralQuaternaryAlt,
+    },
+    labelHovered: {
+      color: palette.white,
+    },
+    label: {
+      selectors: {
+        ":active": {
+          color: palette.white,
+        },
+      },
+    },
+  };
+
+  const farButtonStyles: IButtonStyles = {
+    root: {
+      backgroundColor: palette.themePrimary,
+    },
+    rootHovered: {
+      backgroundColor: palette.themePrimary,
+    },
+    rootPressed: {
+      backgroundColor: palette.themePrimary,
+    },
+    iconHovered: {
+      color: palette.white,
+    },
+    iconPressed: {
+      color: palette.neutralQuaternaryAlt,
+    },
+  };
 
   return [
     {

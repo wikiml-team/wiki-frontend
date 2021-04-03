@@ -1,25 +1,26 @@
 import React, { useCallback, useState } from "react";
-import { CommandBar, ICommandBarStyles } from "@fluentui/react";
+import { CommandBar, ICommandBarStyles, useTheme } from "@fluentui/react";
 
-import { mainItems } from "./mainitems";
-import { overflowItems, overflowProps } from "./overflowitems";
-import { farItems } from "./faritems";
-import defaultTheme from "themes/default";
-
-const palette = defaultTheme.palette;
-
-// ComandBar Styles
-const comandBarStyles: Partial<ICommandBarStyles> = {
-  root: {
-    width: "100%",
-    height: 36,
-    paddingLeft: 0,
-    zIndex: 100,
-    backgroundColor: palette.themePrimary,
-  },
-};
+import { getItems } from "./items";
+import { getFarItems } from "./faritems";
+import SidePanel from "components/sidepanel";
+import LanguagePanel from "components/sidepanel/languagepanel";
+import SettingsPanel from "components/sidepanel/settingspanel";
 
 export default function CommandMenu() {
+  const palette = useTheme().palette;
+
+  // ComandBar Styles
+  const comandBarStyles: Partial<ICommandBarStyles> = {
+    root: {
+      width: "100%",
+      height: 36,
+      paddingLeft: 0,
+      zIndex: 100,
+      backgroundColor: palette.themePrimary,
+    },
+  };
+
   // Panel State
   const [languagePanelOpen, setLanguagePanelOpen] = useState(false);
   const [settingsPanelOpen, setSettingsPanelOpen] = useState(false);
@@ -36,15 +37,34 @@ export default function CommandMenu() {
   }, []);
   const CloseSettingsPanel = useCallback(() => setSettingsPanelOpen(false), []);
 
+  const { mainItems, overflowItems, overflowProps } = getItems(palette);
+  const farItems = getFarItems({
+    OpenLanguagePanel,
+    OpenSettingsPanel,
+    palette,
+  });
+
   return (
     <React.Fragment>
       <CommandBar
         items={mainItems}
         overflowItems={overflowItems}
         overflowButtonProps={overflowProps}
-        farItems={farItems({ OpenLanguagePanel, OpenSettingsPanel })}
+        farItems={farItems}
         ariaLabel="Use left and right arrow keys to navigate between commands"
         styles={comandBarStyles}
+      />
+      <SidePanel
+        headerText="Select Language"
+        content={<LanguagePanel />}
+        isOpen={languagePanelOpen}
+        handleClose={CloseLanguagePanel}
+      />
+      <SidePanel
+        headerText="Settings"
+        content={<SettingsPanel />}
+        isOpen={settingsPanelOpen}
+        handleClose={CloseSettingsPanel}
       />
     </React.Fragment>
   );
