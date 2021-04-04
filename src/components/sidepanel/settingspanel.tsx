@@ -64,7 +64,7 @@ export default function SettingsPanel() {
   const dispatch = useDispatch();
 
   return (
-    <Stack gap={15}>
+    <Stack tokens={{ childrenGap: 15 }}>
       <Separator {...separatorProps}>
         <Text variant="mediumPlus">
           <b>User</b>
@@ -112,7 +112,7 @@ export default function SettingsPanel() {
       </Stack.Item> */}
       <Stack.Item>
         <Label>{t("colortheme")}</Label>
-        <Stack horizontal gap={5}>
+        <Stack horizontal tokens={{ childrenGap: 5 }}>
           <ThemePicker
             colorCells={colorCells}
             size="30px"

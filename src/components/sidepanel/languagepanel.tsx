@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Dropdown, Stack } from "@fluentui/react";
+import { Dropdown, IStackTokens, Stack } from "@fluentui/react";
 
 import { setLanguage, selectLang } from "languages/languageSlice";
 
@@ -18,6 +18,8 @@ export default function LanguagePanel() {
     dispatch(setLanguage(item.key));
   };
 
+  const stackTokens: IStackTokens = { childrenGap: 20 };
+
   const suportedLangs = [
     { key: "en", text: t("lenguages:en") },
     { key: "es", text: t("lenguages:es") },
@@ -25,7 +27,7 @@ export default function LanguagePanel() {
   ];
 
   return (
-    <Stack gap={25}>
+    <Stack tokens={stackTokens}>
       <Dropdown
         label={t("langUI")}
         defaultSelectedKey={lang ? lang : undefined}
