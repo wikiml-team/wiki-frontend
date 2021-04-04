@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import classnames from "classnames";
+import { mergeStyleSets } from "@fluentui/react";
 
 interface CircleProps {
   ariaLabel?: string;
@@ -10,17 +12,27 @@ interface CircleProps {
   onClick?: () => void;
 }
 
-export function Circle(props: CircleProps) {
-  const StyledCircle = styled.div`
-    height: ${props.size};
-    width: ${props.size};
-    background-color: ${props.color};
-    border: 4px solid ${props.border};
-    border-radius: 50%;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-  `;
+const StyledCircle = styled.div`
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+`;
 
-  return <StyledCircle onClick={props.onClick} className={props.className} />;
+export function Circle(props: CircleProps) {
+  const classes = mergeStyleSets({
+    circleprops: {
+      height: props.size,
+      width: props.size,
+      backgroundColor: props.color,
+      border: "4px solid " + props.border,
+    },
+  });
+
+  return (
+    <StyledCircle
+      onClick={props.onClick}
+      className={classnames(props.className, classes.circleprops)}
+    />
+  );
 }

@@ -7,7 +7,6 @@ import { setLanguage, selectLang } from "languages/languageSlice";
 export default function LanguagePanel() {
   const { t } = useTranslation(["sidepanel", "lenguages"]);
   const lang = useSelector(selectLang);
-  console.log("current lang: ", lang);
 
   const dispatch = useDispatch();
 

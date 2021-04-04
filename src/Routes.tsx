@@ -1,5 +1,5 @@
 import React from "react";
-import main from "views/main";
+import main from "pages/main";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import WorkplaceLayout from "layouts/workplace";
