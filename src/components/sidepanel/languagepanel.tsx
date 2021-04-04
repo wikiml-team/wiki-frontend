@@ -1,36 +1,43 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import { Dropdown, Stack } from "@fluentui/react";
 
+import { setLanguage, selectLang } from "languages/languageSlice";
+
 export default function LanguagePanel() {
+  const { t } = useTranslation(["sidepanel", "lenguages"]);
+  const lang = useSelector(selectLang);
+  console.log("current lang: ", lang);
+
+  const dispatch = useDispatch();
+
+  const handleDataOnChange = (
+    event: React.FormEvent<HTMLDivElement>,
+    item: any
+  ) => {
+    dispatch(setLanguage(item.key));
+  };
+
+  const suportedLangs = [
+    { key: "en", text: t("lenguages:en") },
+    { key: "es", text: t("lenguages:es") },
+    { key: "de", text: t("lenguages:de") },
+  ];
+
   return (
     <Stack gap={25}>
       <Dropdown
-        placeholder="Select a Language"
-        label="Language for Data"
-        options={[
-          { key: "German", text: "German" },
-          { key: "Spanish", text: "Spanish" },
-          { key: "English", text: "English" },
-          { key: "Italian", text: "Italian" },
-          { key: "French", text: "French" },
-          { key: "Portuguese", text: "Portuguese" },
-          { key: "Chinise", text: "Chinise" },
-          { key: "Russian", text: "Russian" },
-        ]}
+        label={t("langUI")}
+        defaultSelectedKey={lang ? lang : undefined}
+        placeholder={t("selectlang")}
+        options={suportedLangs}
+        onChange={handleDataOnChange}
       />
-
       <Dropdown
-        placeholder="Select a Language"
-        label="Language for User Interface"
-        options={[
-          { key: "German", text: "German" },
-          { key: "Spanish", text: "Spanish" },
-          { key: "English", text: "English" },
-          { key: "Italian", text: "Italian" },
-          { key: "French", text: "French" },
-          { key: "Portuguese", text: "Portuguese" },
-          { key: "Chinise", text: "Chinise" },
-          { key: "Russian", text: "Russian" },
-        ]}
+        label={t("langdata")}
+        placeholder={t("selectlang")}
+        options={suportedLangs}
+        onChange={() => {}}
       />
     </Stack>
   );
