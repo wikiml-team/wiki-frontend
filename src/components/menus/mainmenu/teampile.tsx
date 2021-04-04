@@ -12,11 +12,6 @@ import {
 // OverflowButton Props
 const overflowButtonProps: Partial<IButtonProps> = {
   ariaLabel: "More users",
-  // styles: {
-  //   root: {
-  //     marginLeft: "20px",
-  //   },
-  // },
   onClick: (ev: React.MouseEvent<HTMLButtonElement>) =>
     alert("overflow icon clicked"),
 };

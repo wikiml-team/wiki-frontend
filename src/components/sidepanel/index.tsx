@@ -1,7 +1,7 @@
 import { Panel, IPanelStyles } from "@fluentui/react";
 
 type SidePanelProps = {
-  headerText: string;
+  header: string;
   content: JSX.Element;
   isOpen: boolean;
   handleClose: () => void;
@@ -20,7 +20,7 @@ export default function SidePanel(props: SidePanelProps) {
 
   return (
     <Panel
-      headerText={props.headerText}
+      headerText={props.header}
       isBlocking={false}
       isOpen={props.isOpen}
       onDismiss={props.handleClose}
