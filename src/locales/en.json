@@ -1,0 +1,26 @@
+{
+  "welcome" : "Welcome to WikiMl",
+  "wikiml" : "WikiML",
+  "commands" : {
+    "undo": "Undo",
+    "redo": "Redo",
+    "share": "Share",
+    "export": "Export to pdf",
+    "newproject": "New Project",
+    "openproject": "Open Project",
+    "destroyproject": "Destroy Project",
+    "duplicate": "Duplicate Project",
+    "print": "Print",
+    "fullscreen": "Fullscreen",
+    "language" : "Language",
+    "settings" : "Settings",
+    "notifications" : "Notifications"
+  },
+  "menu" : {
+    "project": "Project",
+    "methodology": "Methodology",
+    "licitations": "Licitations",
+    "database": "Database",
+    "more": "More"
+  }
+}

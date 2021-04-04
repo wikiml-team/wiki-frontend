@@ -1,0 +1,26 @@
+{
+  "welcome" : "Bienvenido a WikiML",
+  "wikiml" : "WikiML",
+  "commands" : {
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "share": "Compartir",
+    "export": "Exportar a pdf",
+    "newproject": "Nuevo Proyecto",
+    "openproject": "Abrir Proyecto",
+    "destroyproject": "Borrar Proyecto",
+    "duplicate": "Duplicar Proyecto",
+    "print": "Imprimir",
+    "fullscreen": "Pantalla Completa",
+    "language" : "Lenguaje",
+    "settings" : "Ajustes",
+    "notifications" : "Notificaciones"
+  },
+  "menu" : {
+    "project": "Proyecto",
+    "methodology": "Metodología",
+    "licitations": "Licitaciones",
+    "database": "Base de Datos",
+    "more": "Más"
+  }
+}
