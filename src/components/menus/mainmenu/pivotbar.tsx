@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   FontSizes,
   IPivotStyles,
@@ -58,6 +59,8 @@ export default function PivotBar(props: PivotBarProps) {
   // LOGIC
   const { tabs } = props;
 
+  const { t } = useTranslation("menu");
+
   return (
     <Pivot
       aria-label="Main menu tabs"
@@ -67,7 +70,11 @@ export default function PivotBar(props: PivotBarProps) {
     >
       {tabs.map((tab) => {
         return (
-          <PivotItem key={tab.id} headerText={tab.header} itemIcon={tab.icon}>
+          <PivotItem
+            key={tab.id}
+            headerText={t(tab.header)}
+            itemIcon={tab.icon}
+          >
             <Tab>{tab.render}</Tab>
           </PivotItem>
         );

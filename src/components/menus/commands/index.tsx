@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { CommandBar, ICommandBarStyles, useTheme } from "@fluentui/react";
 
 import { getItems } from "./items";
@@ -36,11 +37,13 @@ export default function CommandMenu() {
   }, []);
   const CloseSettingsPanel = useCallback(() => setSettingsPanelOpen(false), []);
 
-  const { mainItems, overflowItems, overflowProps } = getItems(palette);
+  const { t } = useTranslation("commands");
+  const { mainItems, overflowItems, overflowProps } = getItems({ palette, t });
   const farItems = getFarItems({
     OpenLanguagePanel,
     OpenSettingsPanel,
     palette,
+    t,
   });
 
   return (
@@ -54,13 +57,13 @@ export default function CommandMenu() {
         styles={comandBarStyles}
       />
       <SidePanel
-        headerText="Select Language"
+        header="Select Language"
         content={<LanguagePanel />}
         isOpen={languagePanelOpen}
         handleClose={CloseLanguagePanel}
       />
       <SidePanel
-        headerText="Settings"
+        header="Settings"
         content={<SettingsPanel />}
         isOpen={settingsPanelOpen}
         handleClose={CloseSettingsPanel}

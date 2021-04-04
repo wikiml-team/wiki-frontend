@@ -6,8 +6,15 @@ import {
   IPalette,
 } from "@fluentui/react";
 
+type getItemsProps = {
+  palette: IPalette;
+  t: Function;
+};
+
 // Items of the command bar
-export const getItems = (palette: IPalette) => {
+export const getItems = (props: getItemsProps) => {
+  const { palette, t } = props;
+
   // Icons Styles
   const whiteIconStyle: IIconStyles = { root: { color: palette.white } };
   const blackIconStyle: IIconStyles = { root: { color: palette.black } };
@@ -62,26 +69,30 @@ export const getItems = (palette: IPalette) => {
     {
       key: "goback",
       iconProps: { iconName: "Undo", styles: whiteIconStyle },
-      ariaLabel: "Undo",
+      text: t("undo"),
+      iconOnly: true,
       buttonStyles: blueButtonStyles,
     },
     {
       key: "goforward",
       iconProps: { iconName: "Redo", styles: whiteIconStyle },
-      ariaLabel: "Redo",
+      text: t("redo"),
+      iconOnly: true,
       buttonStyles: blueButtonStyles,
     },
     {
       key: "share",
       iconProps: { iconName: "Share", styles: whiteIconStyle },
-      ariaLabel: "Share with someone",
+      text: t("share"),
+      iconOnly: true,
       onClick: () => console.log("Share"),
       buttonStyles: blueButtonStyles,
     },
     {
       key: "export",
       iconProps: { iconName: "Export", styles: whiteIconStyle },
-      ariaLabel: "Export to pdf",
+      text: t("export"),
+      iconOnly: true,
       onClick: () => console.log("Export"),
       buttonStyles: blueButtonStyles,
     },
@@ -90,7 +101,7 @@ export const getItems = (palette: IPalette) => {
   const overflowItems: ICommandBarItemProps[] = [
     {
       key: "new",
-      text: "New project",
+      text: t("newproject"),
       onClick: () => console.log("Move to"),
       iconProps: {
         iconName: "Document",
@@ -100,28 +111,28 @@ export const getItems = (palette: IPalette) => {
     },
     {
       key: "open",
-      text: "Open project",
+      text: t("openproject"),
       onClick: () => console.log("Open Project"),
       iconProps: { iconName: "OpenFolderHorizontal", styles: blackIconStyle },
       buttonStyles: blueButtonStyles,
     },
     {
       key: "Destroy",
-      text: "Destroy project",
+      text: t("destroyproject"),
       onClick: () => console.log("Destroy project"),
       iconProps: { iconName: "PageRemove", styles: blackIconStyle },
       buttonStyles: blueButtonStyles,
     },
     {
       key: "Duplicate",
-      text: "Duplicate project",
+      text: t("duplicate"),
       onClick: () => console.log("Duplicate project"),
       iconProps: { iconName: "Documentation", styles: blackIconStyle },
       buttonStyles: blueButtonStyles,
     },
     {
       key: "Print",
-      text: "Print project",
+      text: t("print"),
       onClick: () => console.log("Print project"),
       iconProps: { iconName: "Print", styles: blackIconStyle },
       buttonStyles: blueButtonStyles,

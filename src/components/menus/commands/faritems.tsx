@@ -11,12 +11,14 @@ type FarItemsProps = {
   OpenLanguagePanel: () => void;
   OpenSettingsPanel: () => void;
   palette: IPalette;
+  t: Function;
 };
 
 export const getFarItems = (props: FarItemsProps) => {
-  const { OpenLanguagePanel, OpenSettingsPanel, palette } = props;
+  // STYLE
+  const { OpenLanguagePanel, OpenSettingsPanel, palette, t } = props;
 
-  // Button & Inon Styles
+  // Button & Icon Styles
   const whiteIconStyle: IIconStyles = { root: { color: palette.white } };
 
   const userButtonStyles: IButtonStyles = {
@@ -27,7 +29,7 @@ export const getFarItems = (props: FarItemsProps) => {
       color: palette.white,
     },
     rootHovered: {
-      background: palette.themeSecondary,
+      background: palette.themeDarkAlt,
     },
     rootPressed: {
       backgroundColor: palette.themePrimary,
@@ -68,11 +70,11 @@ export const getFarItems = (props: FarItemsProps) => {
     },
   };
 
+  // LOGIC
   return [
     {
       key: "fullscreen",
-      text: "Fullscreen",
-      // This needs an ariaLabel since it's icon-only
+      text: t("fullscreen"),
       ariaLabel: "Full Screen",
       iconOnly: true,
       iconProps: { iconName: "FullScreen", styles: whiteIconStyle },
@@ -81,8 +83,7 @@ export const getFarItems = (props: FarItemsProps) => {
     },
     {
       key: "language",
-      text: "Language",
-      // This needs an ariaLabel since it's icon-only
+      text: t("language"),
       ariaLabel: "Language",
       iconOnly: true,
       iconProps: { iconName: "LocaleLanguage", styles: whiteIconStyle },
@@ -91,8 +92,7 @@ export const getFarItems = (props: FarItemsProps) => {
     },
     {
       key: "settings",
-      text: "Settings",
-      // This needs an ariaLabel since it's icon-only
+      text: t("settings"),
       ariaLabel: "Change Settings",
       iconOnly: true,
       iconProps: { iconName: "Settings", styles: whiteIconStyle },
@@ -101,8 +101,7 @@ export const getFarItems = (props: FarItemsProps) => {
     },
     {
       key: "notifications",
-      text: "Notifications",
-      // This needs an ariaLabel since it's icon-only
+      text: t("notifications"),
       ariaLabel: "Change Notifications",
       iconOnly: true,
       iconProps: { iconName: "Ringer", styles: whiteIconStyle },
