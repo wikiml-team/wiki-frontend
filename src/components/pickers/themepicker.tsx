@@ -34,7 +34,7 @@ export default function ThemePicker(props: SwatchThemePickerProps) {
               size={size}
               color={cell.color}
               border={palette.neutralQuaternaryAlt}
-              onClick={() => handler(cell.id)}
+              onClick={() => handler(cell.label || "")}
               className={classes.circle}
             />
           </div>

@@ -1,6 +1,5 @@
 {
   "welcome" : "Welcome to WikiMl",
-  "wikiml" : "WikiML",
   "commands" : {
     "undo": "Undo",
     "redo": "Redo",
@@ -17,10 +16,29 @@
     "notifications" : "Notifications"
   },
   "menu" : {
+    "wikiml" : "WikiML",
     "project": "Project",
     "methodology": "Methodology",
     "licitations": "Licitations",
     "database": "Database",
     "more": "More"
+  },
+  "sidepanel" : {
+    "headerlang" : "Language",
+    "selectlang" : "Select a Language",
+    "langUI" : "Language for User Interface",
+    "langdata" : "Language for Data",
+    "headersettings" : "Settings",
+    "user" : "User",
+    "name" : "Name",
+    "nick" : "Nickname",
+    "coin" : "Coin",
+    "theme" : "Theme",
+    "colortheme" : "Color Theme"
+  },
+  "lenguages" : {
+    "en" : "English",
+    "es" : "Spanish",
+    "de" : "German"
   }
 }

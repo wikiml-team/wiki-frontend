@@ -10,7 +10,7 @@ import { initializeIcons, loadTheme } from "@fluentui/react";
 import { Provider } from "react-redux";
 import store from "store";
 
-loadTheme(store.getState().theme.value);
+loadTheme(store.getState().theme);
 initializeIcons();
 
 ReactDOM.render(

@@ -37,7 +37,7 @@ export default function CommandMenu() {
   }, []);
   const CloseSettingsPanel = useCallback(() => setSettingsPanelOpen(false), []);
 
-  const { t } = useTranslation("commands");
+  const { t } = useTranslation(["commands", "sidepanel"]);
   const { mainItems, overflowItems, overflowProps } = getItems({ palette, t });
   const farItems = getFarItems({
     OpenLanguagePanel,
@@ -57,13 +57,13 @@ export default function CommandMenu() {
         styles={comandBarStyles}
       />
       <SidePanel
-        header="Select Language"
+        header={t("sidepanel:headerlang")}
         content={<LanguagePanel />}
         isOpen={languagePanelOpen}
         handleClose={CloseLanguagePanel}
       />
       <SidePanel
-        header="Settings"
+        header={t("sidepanel:headersettings")}
         content={<SettingsPanel />}
         isOpen={settingsPanelOpen}
         handleClose={CloseSettingsPanel}

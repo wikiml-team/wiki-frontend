@@ -1,10 +1,8 @@
-import { ITheme, Theme } from "@fluentui/react";
+import { ITheme } from "@fluentui/react";
 
 export default interface IState {
-  // lang: string;
-  theme: {
-    value: ITheme;
-  };
+  language: string;
+  theme: ITheme;
   // authenticated: boolean;
   // notifications: Notification[];
   // navigation: JSX.Element;

@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 import {
   IColorCellProps,
   ISeparatorProps,
@@ -14,7 +15,7 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { themeActions } from "themes/themeSlice";
+import { setTheme } from "themes/themeSlice";
 import ThemePicker from "components/pickers/themepicker";
 
 const colorCells: IColorCellProps[] = [
@@ -59,26 +60,8 @@ export default function SettingsPanel() {
   };
 
   // LOGIC
+  const { t } = useTranslation(["sidepanel", "lenguages"]);
   const dispatch = useDispatch();
-
-  const handleChangeTheme = (id: string) => {
-    switch (id) {
-      case "1":
-        dispatch(themeActions.setWord());
-        break;
-      case "2":
-        dispatch(themeActions.setExcel());
-        break;
-      case "3":
-        dispatch(themeActions.setPowerPoint());
-        break;
-      case "4":
-        dispatch(themeActions.setTeams());
-        break;
-      default:
-        break;
-    }
-  };
 
   return (
     <Stack gap={15}>
@@ -90,7 +73,7 @@ export default function SettingsPanel() {
       {/* NAME */}
       <Stack.Item>
         <TextField
-          label="Change your name"
+          label={t("name")}
           defaultValue="Gabriela Rodríguez"
           styles={nameTextFieldStyles}
         ></TextField>
@@ -98,14 +81,14 @@ export default function SettingsPanel() {
       {/* NICKNAME */}
       <Stack.Item>
         <TextField
-          label="Change your nickname"
+          label={t("nick")}
           defaultValue="Gabi"
           styles={nameTextFieldStyles}
         ></TextField>
       </Stack.Item>
       {/* COIN */}
       <Stack.Item>
-        <Label>Change your picture</Label>
+        <Label>{t("coin")}</Label>
         <Persona
           text="Gabriela Rodríguez"
           size={PersonaSize.size40}
@@ -115,7 +98,7 @@ export default function SettingsPanel() {
       <br />
       <Separator {...separatorProps}>
         <Text variant="mediumPlus">
-          <b>Theme</b>
+          <b>{t("theme")}</b>
         </Text>
       </Separator>
       {/* <Stack.Item>
@@ -128,12 +111,12 @@ export default function SettingsPanel() {
         />
       </Stack.Item> */}
       <Stack.Item>
-        <Label>Select a color</Label>
+        <Label>{t("colortheme")}</Label>
         <Stack horizontal gap={5}>
           <ThemePicker
             colorCells={colorCells}
             size="30px"
-            handler={handleChangeTheme}
+            handler={(key) => dispatch(setTheme(key))}
           />
         </Stack>
       </Stack.Item>

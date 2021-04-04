@@ -1,34 +1,57 @@
-import { loadTheme } from "@fluentui/react";
+import { IPartialTheme, loadTheme } from "@fluentui/react";
 import { createSlice } from "@reduxjs/toolkit";
 import { themeExcel, themeWord, themePowerPoint, themeTeams } from "themes";
 import IState from "models/state";
 
 const themeSlice = createSlice({
   name: "theme",
-  initialState: {
-    value: themeWord,
-  },
+  initialState: themeWord,
   reducers: {
-    setWord: (state) => {
-      state.value = themeWord;
+    setTheme: (state, action) => {
+      const { payload } = action;
+
+      switch (payload) {
+        case "word":
+          state = themeWord;
+          break;
+        case "excel":
+          state = themeExcel;
+          break;
+        case "powerpoint":
+          state = themePowerPoint;
+          break;
+        case "teams":
+          state = themeTeams;
+          break;
+      }
+      loadTheme(state as IPartialTheme);
+    },
+    setThemeWord: (state) => {
+      state = themeWord;
       loadTheme(themeWord);
     },
-    setExcel: (state) => {
-      state.value = themeExcel;
+    setThemeExcel: (state) => {
+      state = themeExcel;
       loadTheme(themeExcel);
     },
-    setPowerPoint: (state) => {
-      state.value = themePowerPoint;
+    setThemePowerPoint: (state) => {
+      state = themePowerPoint;
       loadTheme(themePowerPoint);
     },
-    setTeams: (state) => {
-      state.value = themeTeams;
+    setThemeTeams: (state) => {
+      state = themeTeams;
       loadTheme(themeTeams);
     },
   },
 });
 
-export const theme = (state: IState) => state.theme.value;
-export const themeActions = themeSlice.actions;
+export const selectTheme = (state: IState) => state.theme;
+export const {
+  setTheme,
+  setThemeExcel,
+  setThemePowerPoint,
+  setThemeTeams,
+  setThemeWord,
+} = themeSlice.actions;
 
 export default themeSlice.reducer;
