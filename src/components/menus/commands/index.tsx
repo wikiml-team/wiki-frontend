@@ -13,9 +13,8 @@ export default function CommandMenu() {
   // ComandBar Styles
   const comandBarStyles: Partial<ICommandBarStyles> = {
     root: {
-      width: "100%",
       height: 36,
-      paddingLeft: 0,
+      padding: 0,
       zIndex: 100,
       backgroundColor: palette.themePrimary,
     },

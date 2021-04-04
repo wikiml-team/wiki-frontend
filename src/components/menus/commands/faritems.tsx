@@ -99,7 +99,16 @@ export const getFarItems = (props: FarItemsProps) => {
       onClick: OpenSettingsPanel,
       buttonStyles: farButtonStyles,
     },
-
+    {
+      key: "notifications",
+      text: "Notifications",
+      // This needs an ariaLabel since it's icon-only
+      ariaLabel: "Change Notifications",
+      iconOnly: true,
+      iconProps: { iconName: "Ringer", styles: whiteIconStyle },
+      // onClick: () => void,
+      buttonStyles: farButtonStyles,
+    },
     {
       key: "user",
       text: "Gabriela Rodríguez",

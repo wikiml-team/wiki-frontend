@@ -1,4 +1,4 @@
-import { Tab } from "../pivottab";
+import Tab from "../pivottab";
 
 describe("<Tab />", () => {
   it("passes", () => {

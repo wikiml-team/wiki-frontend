@@ -6,7 +6,6 @@ const Tab: FunctionComponent = (props) => {
   const palette = useTheme().palette;
   const classes = mergeStyleSets({
     root: {
-      width: "100%",
       height: 94,
       padding: "4px 10px 2px 10px",
       backgroundColor: palette.neutralLighter,
