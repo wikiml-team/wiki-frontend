@@ -1,6 +1,9 @@
-import { Label, Stack } from "@fluentui/react";
+import React from "react";
 import { Redirect } from "react-router-dom";
+import { Label } from "@fluentui/react";
+
 import PivotBar, { PivotTabsProps } from "components/menus/mainmenu/pivotbar";
+import TeamPile from "components/menus/mainmenu/teampile";
 
 const tabs: PivotTabsProps[] = [
   {
@@ -38,8 +41,9 @@ const tabs: PivotTabsProps[] = [
 
 export default function MainMenu() {
   return (
-    <Stack>
-      <PivotBar tabs={tabs}></PivotBar>
-    </Stack>
+    <React.Fragment>
+      <PivotBar tabs={tabs} />
+      <TeamPile />
+    </React.Fragment>
   );
 }
