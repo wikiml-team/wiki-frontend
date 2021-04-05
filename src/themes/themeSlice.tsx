@@ -1,6 +1,11 @@
 import { IPartialTheme, loadTheme } from "@fluentui/react";
 import { createSlice } from "@reduxjs/toolkit";
-import { themeExcel, themeWord, themePowerPoint, themeTeams } from "themes";
+import {
+  themeExcel,
+  themeWord,
+  themePowerPoint,
+  themeTeams,
+} from "themes/office";
 import IState from "models/state";
 
 const themeSlice = createSlice({
