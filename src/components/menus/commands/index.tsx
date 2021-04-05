@@ -1,6 +1,12 @@
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CommandBar, ICommandBarStyles, useTheme } from "@fluentui/react";
+import {
+  CommandBar,
+  ICommandBarStyles,
+  ITextStyles,
+  Text,
+  useTheme,
+} from "@fluentui/react";
 
 import { getItems } from "./items";
 import { getFarItems } from "./faritems";
@@ -21,6 +27,18 @@ export default function CommandMenu() {
     },
   };
 
+  // ComandBar Styles
+  const textStyles: Partial<ITextStyles> = {
+    root: {
+      position: "absolute",
+      top: 10,
+      left: "50%",
+      transform: "translateX(-50%)",
+      color: palette.themeLight,
+      zIndex: 999,
+    },
+  };
+
   // Panel State
   const [languagePanelOpen, setLanguagePanelOpen] = useState(false);
   const [settingsPanelOpen, setSettingsPanelOpen] = useState(false);
@@ -37,7 +55,7 @@ export default function CommandMenu() {
   }, []);
   const CloseSettingsPanel = useCallback(() => setSettingsPanelOpen(false), []);
 
-  const { t } = useTranslation(["commands", "sidepanel"]);
+  const { t } = useTranslation(["commands", "sidepanel", "methodologies"]);
   const { mainItems, overflowItems, overflowProps } = getItems({ palette, t });
   const farItems = getFarItems({
     OpenLanguagePanel,
@@ -48,6 +66,9 @@ export default function CommandMenu() {
 
   return (
     <React.Fragment>
+      <Text variant="small" styles={textStyles}>
+        Project 1 - {t("methodologies:canadian")}
+      </Text>
       <CommandBar
         items={mainItems}
         overflowItems={overflowItems}

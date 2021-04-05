@@ -1,10 +1,15 @@
 {
   "welcome" : "Bienvenido a WikiML",
+  "methodologies" : {
+    "canadian" : "Metodología Canadiense",
+    "german" : "Metodología Alemana",
+    "italian" : "Metodología Italian"
+  },
   "commands" : {
     "undo": "Deshacer",
     "redo": "Rehacer",
     "share": "Compartir",
-    "export": "Exportar a pdf",
+    "export": "Exportar",
     "newproject": "Nuevo",
     "openproject": "Abrir",
     "destroyproject": "Borrar",

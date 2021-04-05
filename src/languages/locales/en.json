@@ -1,10 +1,15 @@
 {
   "welcome" : "Welcome to WikiMl",
+  "methodologies" : {
+    "canadian" : "Canadian Methodology",
+    "german" : "German Methodology",
+    "italian" : "Italian Methodology"
+  },
   "commands" : {
     "undo": "Undo",
     "redo": "Redo",
     "share": "Share",
-    "export": "Export to pdf",
+    "export": "Export",
     "newproject": "New",
     "openproject": "Open",
     "destroyproject": "Destroy",
