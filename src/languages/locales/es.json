@@ -28,6 +28,15 @@
     "database": "Base de Datos",
     "more": "Más"
   },
+  "instruments" : {
+    "stakeholders" : "Partes Interesadas",
+    "logicmodel" : "Modelo Lógico",
+    "activitiesmatrix" : "Matriz de Actividades",
+    "performance" : "Medida de Rendimiento",
+    "risks" : "Riesgos",
+    "budget" : "Presupuesto",
+    "reports" : "Reportes"
+  },
   "sidepanel" : {
     "headerlang" : "Lenguaje",
     "selectlang" : "Selecciona un Languaje",
