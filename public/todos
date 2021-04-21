@@ -1,10 +1,14 @@
 - Pretty scroll
 - sort los team members por los que están conectados
 - Pages tab
+  - turn it into an overflow menu with resize group behaviour
+- Make axios calls with fake api
+  - pages for project, methodologies, licitations...
 - Responsive Programming
 
 
 DONE 
+- Create Pages tab
 - Change gap 
 - Tooltips over command items
 - Get rid of warnings
