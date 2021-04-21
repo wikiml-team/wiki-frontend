@@ -29,6 +29,7 @@
     "more": "Más"
   },
   "instruments" : {
+    "general" : "General",
     "stakeholders" : "Partes Interesadas",
     "logicmodel" : "Modelo Lógico",
     "activitiesmatrix" : "Matriz de Actividades",

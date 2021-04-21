@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import {
   FontSizes,
-  IconButton,
   IPivotStyles,
   IStackProps,
   Pivot,
@@ -10,18 +9,11 @@ import {
   useTheme,
 } from "@fluentui/react";
 import Tab from "./pivottab";
+import { PivotTabs } from "./maintabs";
 import PagesTabs from "../pagestabs";
 
-export type PivotTabsProps = {
-  id: number;
-  header: string;
-  icon: string;
-  render?: JSX.Element;
-  childtabs?: PivotTabsProps[];
-};
-
 type PivotBarProps = {
-  tabs: PivotTabsProps[];
+  tabs: PivotTabs[];
 };
 
 export default function PivotBar(props: PivotBarProps) {
@@ -65,6 +57,7 @@ export default function PivotBar(props: PivotBarProps) {
     horizontal: true,
     styles: {
       root: {
+        height: 34,
         position: "fixed",
         bottom: 0,
         zIndex: 999,
@@ -88,16 +81,10 @@ export default function PivotBar(props: PivotBarProps) {
     >
       {tabs.map((tab) => {
         return (
-          <PivotItem
-            key={tab.id}
-            headerText={t(tab.header)}
-            itemIcon={tab.icon}
-          >
+          <PivotItem key={tab.key} headerText={t(tab.name)} itemIcon={tab.icon}>
             <Tab>{tab.render}</Tab>
             <Stack {...stackProps}>
-              {console.log(tab.id, tab.childtabs)}
-              <PagesTabs tabs={tab.childtabs} />
-              <IconButton iconProps={{ iconName: "CircleAddition" }} />
+              <PagesTabs tabs={tab.childtabs} addButton={tab.addtabs} />
             </Stack>
             {/* Maybe here should go the body */}
           </PivotItem>
