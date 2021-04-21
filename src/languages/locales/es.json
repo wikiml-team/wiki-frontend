@@ -28,7 +28,7 @@
     "database": "Base de Datos",
     "more": "Más"
   },
-  "instruments" : {
+  "tabpages" : {
     "general" : "General",
     "stakeholders" : "Partes Interesadas",
     "logicmodel" : "Modelo Lógico",
@@ -36,7 +36,12 @@
     "performance" : "Medida de Rendimiento",
     "risks" : "Riesgos",
     "budget" : "Presupuesto",
-    "reports" : "Reportes"
+    "reports" : "Reportes",
+
+    "lot" : "Conformar Lote",
+    "specifications" : "Especificaciones Técnicas",
+    "tecoffer" : "Oferta Técnica",
+    "finoffer" : "Oferta Financiera"
   },
   "sidepanel" : {
     "headerlang" : "Lenguaje",

@@ -28,7 +28,7 @@
     "database": "Database",
     "more": "More"
   },
-  "instruments" : {
+  "pages" : {
     "general" : "General",
     "stakeholders" : "Stakeholders",
     "logicmodel" : "Logic Model",
@@ -36,7 +36,12 @@
     "performance" : "Performance Measure",
     "risks" : "Risks",
     "budget" : "Budget",
-    "reports" : "Reports"
+    "reports" : "Reports",
+
+    "lot" : "Conform Lot",
+    "specifications" : "Technical Specifications",
+    "tecoffer" : "Technical Offer",
+    "finoffer" : "Financial Offer"
   },
   "sidepanel" : {
     "headerlang" : "Language",
