@@ -22,7 +22,7 @@ const noOp = () => undefined;
 export default function PagesTabs(props: PagesTabProps) {
   const { tabs, addButton } = props;
 
-  const { t } = useTranslation("instruments");
+  const { t } = useTranslation("pages");
   const palette = useTheme().palette;
 
   const [items, setItems] = useState<PivotTabs[]>([]);
@@ -48,20 +48,22 @@ export default function PagesTabs(props: PagesTabProps) {
   };
 
   useEffect(() => {
-    const i = 5;
-    const initTabs = tabs?.slice(0, i) as PivotTabs[];
-    initTabs.forEach((tab) => {
-      tab.onClick = noOp;
-      tab.name = t(tab.name);
-    });
-    setItems(initTabs);
+    if (tabs !== undefined) {
+      const i = 5;
+      const initTabs = tabs?.slice(0, i) as PivotTabs[];
+      initTabs.forEach((tab) => {
+        tab.onClick = noOp;
+        tab.name = t(tab.name);
+      });
+      setItems(initTabs);
 
-    const initMenu = tabs?.slice(i) as PivotTabs[];
-    initMenu.forEach((tab) => {
-      tab.onClick = handleOverflowItemsOnClick;
-      tab.name = t(tab.name);
-    });
-    setOverflowItems(initMenu);
+      const initMenu = tabs?.slice(i) as PivotTabs[];
+      initMenu.forEach((tab) => {
+        tab.onClick = handleOverflowItemsOnClick;
+        tab.name = t(tab.name);
+      });
+      setOverflowItems(initMenu);
+    }
   }, []);
 
   const onRenderItem = (item: any): JSX.Element => {

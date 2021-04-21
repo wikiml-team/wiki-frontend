@@ -81,10 +81,10 @@ export const maintabs: PivotTabs[] = [
     icon: "Library",
     render: <Label>Pivot #3</Label>,
     childtabs: [
-      { key: "key1", name: "l1", icon: "Info" },
-      { key: "key2", name: "l2", icon: "Info" },
-      { key: "key3", name: "l3", icon: "Info" },
-      { key: "key4", name: "l4", icon: "Info" },
+      { key: "key1", name: "lot", icon: "OEM" },
+      { key: "key2", name: "specifications", icon: "PageList" },
+      { key: "key3", name: "tecoffer", icon: "PageListSolid" },
+      { key: "key4", name: "finoffer", icon: "FinancialSolid" },
     ],
   },
   {

@@ -1,14 +1,19 @@
 - Pretty scroll
-- sort los team members por los que están conectados
+- Sort los team members por los que están conectados
 - Pages tab
-  - turn it into an overflow menu with resize group behaviour
+  - Show a different sheet when click a tab
+  - make tabs dragable to change their position on the list
+  - dinamicaly choose size
 - Make axios calls with fake api
   - pages for project, methodologies, licitations...
 - Responsive Programming
+- Autentication
+- Upload project to github
 
 
 DONE 
 - Create Pages tab
+    - turn it into an overflow menu with resize group behaviour
 - Change gap 
 - Tooltips over command items
 - Get rid of warnings
