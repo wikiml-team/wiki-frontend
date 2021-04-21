@@ -2,9 +2,11 @@ import { useTranslation } from "react-i18next";
 import {
   FontSizes,
   IPivotStyles,
+  ISeparatorStyles,
   IStackProps,
   Pivot,
   PivotItem,
+  Separator,
   Stack,
   useTheme,
 } from "@fluentui/react";
@@ -31,19 +33,17 @@ export default function PivotBar(props: PivotBarProps) {
       backgroundColor: palette.themePrimary,
       color: palette.white,
       fontSize: FontSizes.small,
-      selectors: {
-        ":hover": {
-          backgroundColor: palette.themeDarkAlt,
-          color: palette.white,
-        },
-        ":active": {
-          backgroundColor: palette.themeDark,
-          color: palette.white,
-        },
-        ":focus": {
-          backgroundColor: palette.themePrimary,
-          color: palette.white,
-        },
+      ":hover": {
+        backgroundColor: palette.themeDarkAlt,
+        color: palette.white,
+      },
+      ":active": {
+        backgroundColor: palette.themeDark,
+        color: palette.white,
+      },
+      ":focus": {
+        backgroundColor: palette.themePrimary,
+        color: palette.white,
       },
     },
     linkIsSelected: {
@@ -67,6 +67,14 @@ export default function PivotBar(props: PivotBarProps) {
     },
   };
 
+  const separatorStyles: Partial<ISeparatorStyles> = {
+    root: {
+      "::after": {
+        backgroundColor: palette.neutralQuaternary,
+      },
+    },
+  };
+
   // LOGIC
   const { tabs } = props;
 
@@ -85,6 +93,8 @@ export default function PivotBar(props: PivotBarProps) {
             <Tab>{tab.render}</Tab>
             <Stack {...stackProps}>
               <PagesTabs tabs={tab.childtabs} addButton={tab.addtabs} />
+              <Separator vertical styles={separatorStyles} />
+              {/* Here goes the horizontal scrollbar when needed for the page */}
             </Stack>
             {/* Maybe here should go the body */}
           </PivotItem>

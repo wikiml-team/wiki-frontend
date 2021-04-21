@@ -33,13 +33,11 @@ export default function SettingsPanel() {
   const nameTextFieldStyles: Partial<ITextFieldStyles> = {
     fieldGroup: {
       borderColor: palette.neutralTertiary,
-      selectors: {
-        ":hover": {
-          borderColor: palette.neutralSecondary,
-        },
-        "::after": {
-          borderColor: palette.neutralPrimaryAlt,
-        },
+      ":hover": {
+        borderColor: palette.neutralSecondary,
+      },
+      "::after": {
+        borderColor: palette.neutralPrimaryAlt,
       },
     },
   };
@@ -49,11 +47,9 @@ export default function SettingsPanel() {
     alignContent: "end",
     styles: {
       root: {
-        selectors: {
-          "::before": {
-            background: palette.neutralTertiaryAlt,
-            height: 0.4,
-          },
+        "::before": {
+          background: palette.neutralTertiaryAlt,
+          height: 0.4,
         },
       },
     },

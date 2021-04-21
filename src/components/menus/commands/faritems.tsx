@@ -44,10 +44,8 @@ export const getFarItems = (props: FarItemsProps) => {
       color: palette.white,
     },
     label: {
-      selectors: {
-        ":active": {
-          color: palette.white,
-        },
+      ":active": {
+        color: palette.white,
       },
     },
   };

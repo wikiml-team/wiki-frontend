@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { mergeStyleSets, Stack } from "@fluentui/react";
+import { mergeStyleSets } from "@fluentui/react";
 
 import CommandMenu from "components/menus/commands/";
 import MainMenu from "components/menus/mainmenu";

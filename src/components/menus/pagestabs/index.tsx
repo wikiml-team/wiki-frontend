@@ -72,19 +72,17 @@ export default function PagesTabs(props: PagesTabProps) {
         alignSelf: "stretch",
         color: "black",
         fontSize: FontSizes.size12,
-        selectors: {
-          ":hover": {
-            backgroundColor: palette.neutralQuaternaryAlt,
-            color: palette.black,
-          },
-          ":active": {
-            backgroundColor: palette.neutralTertiaryAlt,
-            color: palette.black,
-          },
-          ":focus": {
-            backgroundColor: palette.neutralLight,
-            color: palette.black,
-          },
+        ":hover": {
+          backgroundColor: palette.neutralQuaternaryAlt,
+          color: palette.black,
+        },
+        ":active": {
+          backgroundColor: palette.neutralTertiaryAlt,
+          color: palette.black,
+        },
+        ":focus": {
+          backgroundColor: palette.neutralLight,
+          color: palette.black,
         },
       },
       rootHovered: {

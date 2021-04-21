@@ -15,11 +15,9 @@ export default function ThemePicker(props: SwatchThemePickerProps) {
   const palette = useTheme().palette;
   const classes = mergeStyleSets({
     circle: {
-      selectors: {
-        ":hover": {
-          cursor: "pointer",
-          border: "solid 4px " + palette.neutralLighter,
-        },
+      ":hover": {
+        cursor: "pointer",
+        border: "solid 4px " + palette.neutralLighter,
       },
     },
   });
