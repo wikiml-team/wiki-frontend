@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   FontSizes,
   IPivotStyles,
@@ -5,12 +6,10 @@ import {
   PivotItem,
   useTheme,
 } from "@fluentui/react";
-import { useTranslation } from "react-i18next";
 import { PivotTabsProps } from "../mainmenu/pivotbar";
 
 type PagesTabProps = {
-  tabs: PivotTabsProps[];
-  from: string;
+  tabs?: PivotTabsProps[];
 };
 
 export default function PagesTabs(props: PagesTabProps) {
@@ -49,7 +48,7 @@ export default function PagesTabs(props: PagesTabProps) {
     },
   };
 
-  const { tabs, from } = props;
+  const { tabs } = props;
   const { t } = useTranslation("instruments");
 
   return (
@@ -59,15 +58,16 @@ export default function PagesTabs(props: PagesTabProps) {
       defaultSelectedKey="1"
       styles={pivotStyles}
     >
-      {tabs.map((tab) => {
-        return (
-          <PivotItem
-            key={tab.id}
-            headerText={t(tab.header)}
-            itemIcon={tab.icon}
-          />
-        );
-      })}
+      {tabs &&
+        tabs.map((tab) => {
+          return (
+            <PivotItem
+              key={tab.id}
+              headerText={t(tab.header)}
+              itemIcon={tab.icon}
+            />
+          );
+        })}
     </Pivot>
   );
 }

@@ -4,8 +4,6 @@ import {
   IconButton,
   IPivotStyles,
   IStackProps,
-  IStackStyles,
-  mergeStyleSets,
   Pivot,
   PivotItem,
   Stack,
@@ -19,50 +17,12 @@ export type PivotTabsProps = {
   header: string;
   icon: string;
   render?: JSX.Element;
+  childtabs?: PivotTabsProps[];
 };
 
 type PivotBarProps = {
   tabs: PivotTabsProps[];
 };
-
-const childTabs: PivotTabsProps[] = [
-  { id: 1, header: "general", icon: "Info" },
-  {
-    id: 2,
-    header: "stakeholders",
-    icon: "Commitments",
-  },
-  {
-    id: 3,
-    header: "logicmodel",
-    icon: "LargeGrid",
-  },
-  {
-    id: 4,
-    header: "activitiesmatrix",
-    icon: "GripperDotsVertical",
-  },
-  {
-    id: 5,
-    header: "performance",
-    icon: "GripperDotsVertical",
-  },
-  {
-    id: 6,
-    header: "risks",
-    icon: "DoubleDownArrow",
-  },
-  {
-    id: 7,
-    header: "budget",
-    icon: "PaymentCard",
-  },
-  {
-    id: 8,
-    header: "reports",
-    icon: "BarChart4",
-  },
-];
 
 export default function PivotBar(props: PivotBarProps) {
   // STYLES
@@ -135,7 +95,8 @@ export default function PivotBar(props: PivotBarProps) {
           >
             <Tab>{tab.render}</Tab>
             <Stack {...stackProps}>
-              <PagesTabs tabs={childTabs} from={t(tab.header)} />
+              {console.log(tab.id, tab.childtabs)}
+              <PagesTabs tabs={tab.childtabs} />
               <IconButton iconProps={{ iconName: "CircleAddition" }} />
             </Stack>
             {/* Maybe here should go the body */}
