@@ -1,6 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Pivot, PivotItem, useTheme } from "@fluentui/react";
+import {
+  FontSizes,
+  FontWeights,
+  IPivotStyles,
+  Pivot,
+  PivotItem,
+  useTheme,
+} from "@fluentui/react";
 
 import { PivotTabs } from "../mainmenu/maintabs";
 import AddButton from "./addbutton";
@@ -25,11 +32,45 @@ export default function PagesTabs(props: PagesTabProps) {
   } = props;
 
   const { t } = useTranslation("pages");
+
+  // STYLES
   const palette = useTheme().palette;
+  const pivotStyles: Partial<IPivotStyles> = {
+    root: {
+      height: 34,
+      backgroundColor: palette.neutralLight,
+    },
+    link: {
+      height: "inherit",
+      backgroundColor: palette.neutralLight,
+      color: palette.black,
+      fontSize: FontSizes.small,
+      ":hover": {
+        backgroundColor: palette.neutralQuaternaryAlt,
+        color: palette.black,
+      },
+      ":active": {
+        backgroundColor: palette.neutralTertiaryAlt,
+        color: palette.black,
+      },
+      ":focus": {
+        backgroundColor: palette.neutralQuaternaryAlt,
+        color: palette.black,
+      },
+    },
+    linkIsSelected: {
+      height: "inherit",
+      backgroundColor: palette.neutralTertiaryAlt + " !important",
+      color: palette.black + " !important",
+      fontWeight: "500 !important",
+    },
+  };
 
   return (
     <React.Fragment>
       <Pivot
+        linkFormat="tabs"
+        styles={pivotStyles}
         aria-label="Pages Pivot"
         selectedKey={defaultKey}
         onLinkClick={(

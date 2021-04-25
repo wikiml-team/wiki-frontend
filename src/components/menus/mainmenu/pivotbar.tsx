@@ -9,7 +9,7 @@ import {
 } from "@fluentui/react";
 
 import { PivotTabs } from "./maintabs";
-import ToolBar from "./pivottab";
+import ToolBar from "./toolbar";
 import PagesBar from "../pagesbar";
 
 type Dic = {
@@ -64,6 +64,7 @@ export default function PivotBar(props: PivotBarProps) {
     key3: "key1",
     key4: "key1",
     key5: "key1",
+    key6: "key1",
   });
 
   const [currentPage, setCurrentPage] = useState("key1");
