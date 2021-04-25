@@ -1,18 +1,20 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FontSizes,
   IPivotStyles,
-  ISeparatorStyles,
-  IStackProps,
   Pivot,
   PivotItem,
-  Separator,
-  Stack,
   useTheme,
 } from "@fluentui/react";
-import Tab from "./pivottab";
+
 import { PivotTabs } from "./maintabs";
-import PagesTabs from "../pagestabs";
+import ToolBar from "./pivottab";
+import PagesBar from "../pagesbar";
+
+type Dic = {
+  [index: string]: string;
+};
 
 type PivotBarProps = {
   tabs: PivotTabs[];
@@ -22,7 +24,6 @@ export default function PivotBar(props: PivotBarProps) {
   // STYLES
   const palette = useTheme().palette;
 
-  // Pivot Styles
   const pivotStyles: Partial<IPivotStyles> = {
     root: {
       height: 34,
@@ -53,32 +54,32 @@ export default function PivotBar(props: PivotBarProps) {
     },
   };
 
-  const stackProps: Partial<IStackProps> = {
-    horizontal: true,
-    styles: {
-      root: {
-        height: 34,
-        position: "fixed",
-        bottom: 0,
-        zIndex: 999,
-        width: "100%",
-        backgroundColor: palette.neutralLight,
-      },
-    },
-  };
-
-  const separatorStyles: Partial<ISeparatorStyles> = {
-    root: {
-      "::after": {
-        backgroundColor: palette.neutralQuaternary,
-      },
-    },
-  };
-
   // LOGIC
   const { tabs } = props;
-
   const { t } = useTranslation("menu");
+
+  const [selectedPages, setSelectedPages] = useState<Dic>({
+    key1: "key1",
+    key2: "key1",
+    key3: "key1",
+    key4: "key1",
+    key5: "key1",
+  });
+
+  const [currentPage, setCurrentPage] = useState("key1");
+
+  const getTabId = (itemKey: string) => {
+    return `pivot_${itemKey}`;
+  };
+
+  const handlePageOnClick = (parentkey: string, item?: PivotItem) => {
+    if (item) {
+      let newState = selectedPages;
+      newState[parentkey] = item.props.itemKey!;
+      setSelectedPages(newState);
+      setCurrentPage(item.props.itemKey!);
+    }
+  };
 
   return (
     <Pivot
@@ -90,13 +91,18 @@ export default function PivotBar(props: PivotBarProps) {
       {tabs.map((tab) => {
         return (
           <PivotItem key={tab.key} headerText={t(tab.name)} itemIcon={tab.icon}>
-            <Tab>{tab.render}</Tab>
-            <Stack {...stackProps}>
-              <PagesTabs tabs={tab.childtabs} addButton={tab.addtabs} />
-              <Separator vertical styles={separatorStyles} />
-              {/* Here goes the horizontal scrollbar when needed for the page */}
-            </Stack>
-            {/* Maybe here should go the body */}
+            <ToolBar>{tab.render}</ToolBar>
+
+            <div aria-labelledby={getTabId(currentPage)} role="tabpanel">
+              {t(tab.name)} - {selectedPages[tab.key]}
+            </div>
+
+            <PagesBar
+              tab={tab}
+              defaultKey={selectedPages[tab.key]}
+              handleOnClick={handlePageOnClick}
+              getTabId={getTabId}
+            />
           </PivotItem>
         );
       })}

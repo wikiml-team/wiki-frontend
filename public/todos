@@ -1,9 +1,10 @@
 - Pretty scroll
 - Sort los team members por los que están conectados
-- Pages tab
-  - Show a different sheet when click a tab
-  - make tabs dragable to change their position on the list
-  - dinamicaly choose size
+- Pages Bar
+  - Style PagesBar
+  - Make tabs to overflow identical to excell
+  - Dinamicaly resize pagesTab
+  - Scrollbar
 - Make axios calls with fake api
   - pages for project, methodologies, licitations...
 - Responsive Programming
@@ -13,7 +14,8 @@
 
 DONE 
 - Create Pages tab
-    - turn it into an overflow menu with resize group behaviour
+  - Show a different sheet when click a tab
+  - Add new instruments when overflow
 - Change gap 
 - Tooltips over command items
 - Get rid of warnings

@@ -1,7 +1,7 @@
 import { mergeStyleSets, useTheme } from "@fluentui/react";
 import { FunctionComponent } from "react";
 
-const Tab: FunctionComponent = (props) => {
+const ToolBar: FunctionComponent = (props) => {
   // STYLES
   const palette = useTheme().palette;
   const classes = mergeStyleSets({
@@ -17,4 +17,4 @@ const Tab: FunctionComponent = (props) => {
   return <div className={classes.root}>{props.children}</div>;
 };
 
-export default Tab;
+export default ToolBar;
