@@ -28,7 +28,7 @@
     "database": "Base de Datos",
     "more": "Más"
   },
-  "tabpages" : {
+  "pages" : {
     "general" : "General",
     "stakeholders" : "Partes Interesadas",
     "logicmodel" : "Modelo Lógico",
