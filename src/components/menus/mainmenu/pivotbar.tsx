@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FontSizes,
@@ -13,8 +13,12 @@ import ToolBar from "./toolbar";
 import PagesBar from "../pagesbar";
 import GeneralForm from "pages/methodologies/canadian/generalform";
 
-type Dic = {
+type StringDic = {
   [index: string]: string;
+};
+
+type NodeDic = {
+  [index: string]: ReactNode;
 };
 
 type PivotBarProps = {
@@ -59,7 +63,7 @@ export default function PivotBar(props: PivotBarProps) {
   const { tabs } = props;
   const { t } = useTranslation("menu");
 
-  const [selectedPages, setSelectedPages] = useState<Dic>({
+  const [selectedPageTabs, setSelectedPageTabs] = useState<StringDic>({
     key1: "key1",
     key2: "key1",
     key3: "key1",
@@ -68,8 +72,16 @@ export default function PivotBar(props: PivotBarProps) {
     key6: "key1",
   });
 
+  const [lastFormsRendered, setLastFormsRendered] = useState<NodeDic>({
+    key1: <React.Fragment />,
+    key2: <GeneralForm />,
+    key3: "key1",
+    key4: "key1",
+    key5: "key1",
+    key6: "key1",
+  });
+
   const [currentPage, setCurrentPage] = useState("key1");
-  const [pageToRender, setPageToRender] = useState<ReactNode>(<GeneralForm />);
 
   const getTabId = (itemKey: string) => {
     return `pivot_${itemKey}`;
@@ -77,12 +89,14 @@ export default function PivotBar(props: PivotBarProps) {
 
   const handlePageTabOnClick = (parentkey: string, item?: PivotItem) => {
     if (item) {
-      let newState = selectedPages;
-      newState[parentkey] = item.props.itemKey!;
-      setSelectedPages(newState);
+      let newTabsState = selectedPageTabs;
+      newTabsState[parentkey] = item.props.itemKey!;
+      setSelectedPageTabs(newTabsState);
       setCurrentPage(item.props.itemKey!);
 
-      setPageToRender(item.props.children);
+      let newFormsRenderedState = lastFormsRendered;
+      newFormsRenderedState[parentkey] = item.props.children;
+      setLastFormsRendered(newFormsRenderedState);
     }
   };
 
@@ -99,12 +113,12 @@ export default function PivotBar(props: PivotBarProps) {
             <ToolBar>{tab.render}</ToolBar>
 
             <div aria-labelledby={getTabId(currentPage)} role="tabpanel">
-              {pageToRender}
+              {lastFormsRendered[tab.key]}
             </div>
 
             <PagesBar
               tab={tab}
-              defaultKey={selectedPages[tab.key]}
+              defaultKey={selectedPageTabs[tab.key]}
               handleOnClick={handlePageTabOnClick}
               getTabId={getTabId}
             />
