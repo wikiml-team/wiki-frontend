@@ -79,8 +79,8 @@ export default function PivotBar(props: PivotBarProps) {
     key2: <GeneralForm />,
     key3: <SpecificationsForm />,
     key4: <FormsTutorials />,
-    key5: "key1",
-    key6: "key1",
+    key5: <React.Fragment />,
+    key6: <React.Fragment />,
   });
 
   const [currentPage, setCurrentPage] = useState("key1");

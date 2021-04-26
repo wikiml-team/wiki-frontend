@@ -12,7 +12,7 @@ import { getItems } from "./items";
 import { getFarItems } from "./faritems";
 import SidePanel from "components/sidepanel";
 import LanguagePanel from "components/sidepanel/languagepanel";
-import SettingsPanel from "components/sidepanel/settingspanel";
+import SettingsPanel from "components/sidepanel/settings/settingspanel";
 
 export default function CommandMenu() {
   const palette = useTheme().palette;

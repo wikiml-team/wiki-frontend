@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Dropdown, IStackTokens, Stack } from "@fluentui/react";
 
-import { setLanguage, selectLang } from "languages/languageSlice";
+import { setLanguage, selectLang } from "languages/languageslice";
 
 export default function LanguagePanel() {
   const { t } = useTranslation(["sidepanel", "lenguages"]);

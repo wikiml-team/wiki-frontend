@@ -1,4 +1,4 @@
-import ThemeSlice from "../themeSlice";
+import ThemeSlice from "../themeslice";
 
 describe("ThemesSlice", () => {
   it("passes", () => {

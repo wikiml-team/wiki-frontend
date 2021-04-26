@@ -15,7 +15,7 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { setTheme } from "themes/themeSlice";
+import { setTheme } from "themes/themeslice";
 import ThemePicker from "components/pickers/themepicker";
 
 const colorCells: IColorCellProps[] = [
