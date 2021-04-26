@@ -80,18 +80,6 @@ export const maintabs: PivotTabs[] = [
   },
   {
     key: "key3",
-    name: "methodology",
-    icon: "StackIndicator",
-    render: <Label>Pivot #2</Label>,
-    childtabs: [
-      { key: "key1", name: "help", icon: "Info" },
-      { key: "key2", name: "tutorial", icon: "Info" },
-      { key: "key3", name: "info", icon: "Info" },
-      { key: "key4", name: "general", icon: "Info" },
-    ],
-  },
-  {
-    key: "key4",
     name: "licitations",
     icon: "Library",
     render: <Label>Pivot #3</Label>,
@@ -99,7 +87,21 @@ export const maintabs: PivotTabs[] = [
       { key: "key1", name: "lot", icon: "OEM" },
       { key: "key2", name: "specifications", icon: "PageList" },
       { key: "key3", name: "tecoffer", icon: "PageListSolid" },
-      { key: "key4", name: "finoffer", icon: "FinancialSolid" },
+      { key: "key4", name: "finoffer", icon: "Financial" },
+    ],
+  },
+  {
+    key: "key4",
+    name: "methodology",
+    icon: "StackIndicator",
+    render: <Label>Pivot #2</Label>,
+    childtabs: [
+      { key: "key1", name: "forms", icon: "PageData" },
+      { key: "key2", name: "sectors", icon: "Sections" },
+      { key: "key3", name: "guides", icon: "GUID" },
+      { key: "key4", name: "tutorials", icon: "Video" },
+      { key: "key5", name: "outcomes", icon: "ReportDocument" },
+      { key: "key6", name: "indicators", icon: "CRMReport" },
     ],
   },
   {
