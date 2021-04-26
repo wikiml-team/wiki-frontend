@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Dropdown, IStackTokens, Stack } from "@fluentui/react";
+import {
+  Dropdown,
+  IDropdownOption,
+  IStackTokens,
+  Stack,
+} from "@fluentui/react";
 
 import { setLanguage, selectLang } from "languages/languageslice";
 
@@ -12,9 +17,9 @@ export default function LanguagePanel() {
 
   const handleDataOnChange = (
     event: React.FormEvent<HTMLDivElement>,
-    item: any
+    item?: IDropdownOption<any>
   ) => {
-    dispatch(setLanguage(item.key));
+    if (item) dispatch(setLanguage(item.key));
   };
 
   const stackTokens: IStackTokens = { childrenGap: 20 };

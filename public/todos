@@ -1,19 +1,22 @@
 - Pretty scroll
 - Sort los team members por los que están conectados
 - Pages Bar
-  - Style PagesBar
   - Make tabs to overflow identical to excell
   - Dinamicaly resize pagesTab
   - Scrollbar
+- General Info FORM
 - Make axios calls with fake api
   - pages for project, methodologies, licitations...
 - Responsive Programming
 - Autentication
 - Upload project to github
+- HELP
+  - Tooltips when help enabled
 
 
 DONE 
 - Create Pages tab
+  - Style PagesBar
   - Show a different sheet when click a tab
   - Add new instruments when overflow
 - Change gap 
