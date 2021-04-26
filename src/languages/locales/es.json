@@ -41,7 +41,14 @@
     "lot" : "Conformar Lote",
     "specifications" : "Especificaciones Técnicas",
     "tecoffer" : "Oferta Técnica",
-    "finoffer" : "Oferta Financiera"
+    "finoffer" : "Oferta Financiera",
+
+    "forms" : "Formularios",
+    "sectors" : "Sectores",
+    "guides" : "Guías",
+    "tutorials" : "Tutoriales",
+    "outcomes" : "Resultados",
+    "indicators" : "Indicadores"
   },
   "sidepanel" : {
     "headerlang" : "Lenguaje",
