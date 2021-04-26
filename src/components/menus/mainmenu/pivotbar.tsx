@@ -11,7 +11,9 @@ import {
 import { PivotTabs } from "./maintabs";
 import ToolBar from "./toolbar";
 import PagesBar from "../pagesbar";
-import GeneralForm from "pages/methodologies/canadian/generalform";
+import GeneralForm from "pages/methodologies/canadian/projectforms/generalform";
+import SpecificationsForm from "pages/methodologies/canadian/licitationforms/specificationsform";
+import FormsTutorials from "pages/methodologies/canadian/tutorials/formstutorial";
 
 type StringDic = {
   [index: string]: string;
@@ -75,8 +77,8 @@ export default function PivotBar(props: PivotBarProps) {
   const [lastFormsRendered, setLastFormsRendered] = useState<NodeDic>({
     key1: <React.Fragment />,
     key2: <GeneralForm />,
-    key3: "key1",
-    key4: "key1",
+    key3: <SpecificationsForm />,
+    key4: <FormsTutorials />,
     key5: "key1",
     key6: "key1",
   });
