@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FontSizes,
@@ -11,6 +11,7 @@ import {
 import { PivotTabs } from "./maintabs";
 import ToolBar from "./toolbar";
 import PagesBar from "../pagesbar";
+import GeneralForm from "pages/methodologies/canadian/generalform";
 
 type Dic = {
   [index: string]: string;
@@ -68,17 +69,20 @@ export default function PivotBar(props: PivotBarProps) {
   });
 
   const [currentPage, setCurrentPage] = useState("key1");
+  const [pageToRender, setPageToRender] = useState<ReactNode>(<GeneralForm />);
 
   const getTabId = (itemKey: string) => {
     return `pivot_${itemKey}`;
   };
 
-  const handlePageOnClick = (parentkey: string, item?: PivotItem) => {
+  const handlePageTabOnClick = (parentkey: string, item?: PivotItem) => {
     if (item) {
       let newState = selectedPages;
       newState[parentkey] = item.props.itemKey!;
       setSelectedPages(newState);
       setCurrentPage(item.props.itemKey!);
+
+      setPageToRender(item.props.children);
     }
   };
 
@@ -95,13 +99,13 @@ export default function PivotBar(props: PivotBarProps) {
             <ToolBar>{tab.render}</ToolBar>
 
             <div aria-labelledby={getTabId(currentPage)} role="tabpanel">
-              {t(tab.name)} - {selectedPages[tab.key]}
+              {pageToRender}
             </div>
 
             <PagesBar
               tab={tab}
               defaultKey={selectedPages[tab.key]}
-              handleOnClick={handlePageOnClick}
+              handleOnClick={handlePageTabOnClick}
               getTabId={getTabId}
             />
           </PivotItem>

@@ -62,7 +62,7 @@ export default function PagesTabs(props: PagesTabProps) {
       height: "inherit",
       backgroundColor: palette.neutralTertiaryAlt + " !important",
       color: palette.black + " !important",
-      fontWeight: "500 !important",
+      fontWeight: FontWeights.semibold + " !important",
     },
   };
 
@@ -87,7 +87,10 @@ export default function PagesTabs(props: PagesTabProps) {
                 key={tab.key}
                 headerText={t(tab.name)}
                 itemKey={tab.key}
-              />
+                itemIcon={tab.icon}
+              >
+                {tab.render}
+              </PivotItem>
             );
           })}
       </Pivot>

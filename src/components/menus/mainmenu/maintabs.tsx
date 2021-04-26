@@ -1,5 +1,13 @@
 import { Redirect } from "react-router";
 import { Label } from "@fluentui/react";
+import GeneralForm from "pages/methodologies/canadian/generalform";
+import StakeholdersForm from "pages/methodologies/canadian/stakeholdersform";
+import LogicModelForm from "pages/methodologies/canadian/logicmodelform";
+import ActivitiesMatrixForm from "pages/methodologies/canadian/activitiesform";
+import PerformanceMeasureForm from "pages/methodologies/canadian/performanceform";
+import RisksForm from "pages/methodologies/canadian/risksform";
+import BudgetForm from "pages/methodologies/canadian/budgetform";
+import ReportsForm from "pages/methodologies/canadian/reportsform";
 
 export type PivotTabs = {
   key: string;
@@ -25,41 +33,48 @@ export const maintabs: PivotTabs[] = [
     render: <Label>Pivot #1</Label>,
     addtabs: true,
     childtabs: [
-      { key: "key1", name: "general", icon: "Info" },
+      { key: "key1", name: "general", icon: "Info", render: <GeneralForm /> },
       {
         key: "key2",
         name: "stakeholders",
         icon: "Commitments",
+        render: <StakeholdersForm />,
       },
       {
         key: "key3",
         name: "logicmodel",
         icon: "LargeGrid",
+        render: <LogicModelForm />,
       },
       {
         key: "key4",
         name: "activitiesmatrix",
         icon: "GripperDotsVertical",
+        render: <ActivitiesMatrixForm />,
       },
       {
         key: "key5",
         name: "performance",
         icon: "GripperDotsVertical",
+        render: <PerformanceMeasureForm />,
       },
       {
         key: "key6",
         name: "risks",
         icon: "DoubleDownArrow",
+        render: <RisksForm />,
       },
       {
         key: "key7",
         name: "budget",
         icon: "PaymentCard",
+        render: <BudgetForm />,
       },
       {
         key: "key8",
         name: "reports",
         icon: "BarChart4",
+        render: <ReportsForm />,
       },
     ],
   },

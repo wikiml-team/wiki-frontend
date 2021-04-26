@@ -56,6 +56,7 @@ export default function PagesBar(props: PagesBarProps) {
         getTabId={getTabId}
       />
       <Separator vertical styles={separatorStyles} />
+
       {/* Here goes the horizontal scrollbar when needed for the page */}
     </Stack>
   );
