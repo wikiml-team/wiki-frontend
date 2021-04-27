@@ -9,12 +9,12 @@
   - pages for project, methodologies, licitations...
 - Responsive Programming
 - Autentication
-- Upload project to github
 - HELP
   - Tooltips when help enabled
 
 
 DONE 
+- Upload project to github
 - Create Pages tab
   - Style PagesBar
   - Show a different sheet when click a tab

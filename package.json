@@ -22,6 +22,7 @@
     "i18next": "^20.1.0",
     "i18next-browser-languagedetector": "^6.1.0",
     "i18next-http-backend": "^1.2.1",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
@@ -60,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.6",
     "@types/react-beautiful-dnd": "^13.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
