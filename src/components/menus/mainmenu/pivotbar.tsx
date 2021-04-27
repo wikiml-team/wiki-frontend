@@ -14,6 +14,7 @@ import PagesBar from "../pagesbar";
 import GeneralForm from "pages/methodologies/canadian/projectforms/generalform";
 import SpecificationsForm from "pages/methodologies/canadian/licitationforms/specificationsform";
 import FormsTutorials from "pages/methodologies/canadian/tutorials/formstutorial";
+import { PageContainer } from "components/styled/pagecontainer";
 
 type StringDic = {
   [index: string]: string;
@@ -114,9 +115,12 @@ export default function PivotBar(props: PivotBarProps) {
           <PivotItem key={tab.key} headerText={t(tab.name)} itemIcon={tab.icon}>
             <ToolBar>{tab.render}</ToolBar>
 
-            <div aria-labelledby={getTabId(currentPage)} role="tabpanel">
+            <PageContainer
+              aria-labelledby={getTabId(currentPage)}
+              role="tabpanel"
+            >
               {lastFormsRendered[tab.key]}
-            </div>
+            </PageContainer>
 
             <PagesBar
               tab={tab}

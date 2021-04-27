@@ -1,5 +1,4 @@
-import React, { FunctionComponent } from "react";
-
+import React from "react";
 import styled from "styled-components";
 
 export const Centered = styled.div`
@@ -23,7 +22,7 @@ const Recipient = styled.div`
 interface CenteredHorizontalProps {
   className?: string;
 }
-export const CenteredHorizontal: FunctionComponent<CenteredHorizontalProps> = (
+export const CenteredHorizontal: React.FunctionComponent<CenteredHorizontalProps> = (
   props
 ) => (
   <Container className={props.className}>
