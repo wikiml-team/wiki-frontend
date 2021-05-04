@@ -50,7 +50,7 @@ const themeSlice = createSlice({
   },
 });
 
-export const selectTheme = (state: IState) => state.theme;
+export const selectCurrentTheme = (state: IState) => state.theme;
 export const {
   setTheme,
   setThemeExcel,

@@ -12,7 +12,7 @@ export default interface IProject {
   program: string;
   sector: Sector;
   doner: string;
-  lider: IUser;
+  leader: IUser;
   team: IUser[];
   currency: string;
   budget: string;
@@ -21,7 +21,7 @@ export default interface IProject {
   description: string;
 }
 
-enum Sector {
+export enum Sector {
   "Agriculture and Nutrition",
   "Economical Growth",
   "Human Rights",
