@@ -27,7 +27,7 @@ const colorCells: IColorCellProps[] = [
 
 export default function SettingsPanel() {
   // STYLES
-  const palette = useTheme().palette;
+  const { palette } = useTheme();
 
   // TextField Styles
   const nameTextFieldStyles: Partial<ITextFieldStyles> = {

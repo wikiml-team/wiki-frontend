@@ -21,7 +21,7 @@ export default function PagesBar(props: PagesBarProps) {
   const { tab, handleOnClick, getTabId, defaultKey } = props;
 
   // STYLES
-  const palette = useTheme().palette;
+  const { palette } = useTheme();
 
   const stackProps: Partial<IStackProps> = {
     horizontal: true,

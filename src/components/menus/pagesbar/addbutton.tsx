@@ -1,7 +1,7 @@
 import { IconButton, useTheme } from "@fluentui/react";
 
 export default function AddButton() {
-  const palette = useTheme().palette;
+  const { palette } = useTheme();
 
   return (
     <IconButton

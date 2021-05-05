@@ -12,7 +12,7 @@ export default function ThemePicker(props: SwatchThemePickerProps) {
   const { colorCells, handler, size } = props;
 
   // STYLES
-  const palette = useTheme().palette;
+  const { palette } = useTheme();
   const classes = mergeStyleSets({
     circle: {
       ":hover": {

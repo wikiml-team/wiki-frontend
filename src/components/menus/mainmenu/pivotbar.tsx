@@ -30,7 +30,7 @@ type PivotBarProps = {
 
 export default function PivotBar(props: PivotBarProps) {
   // STYLES
-  const palette = useTheme().palette;
+  const { palette } = useTheme();
 
   const pivotStyles: Partial<IPivotStyles> = {
     root: {

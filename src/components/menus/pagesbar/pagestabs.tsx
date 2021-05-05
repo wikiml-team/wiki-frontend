@@ -34,7 +34,7 @@ export default function PagesTabs(props: PagesTabProps) {
   const { t } = useTranslation("pages");
 
   // STYLES
-  const palette = useTheme().palette;
+  const { palette } = useTheme();
   const pivotStyles: Partial<IPivotStyles> = {
     root: {
       height: 34,

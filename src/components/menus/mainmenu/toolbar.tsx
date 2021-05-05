@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 
 const ToolBar: FunctionComponent = (props) => {
   // STYLES
-  const palette = useTheme().palette;
+  const { palette } = useTheme();
   const classes = mergeStyleSets({
     root: {
       height: 94,
