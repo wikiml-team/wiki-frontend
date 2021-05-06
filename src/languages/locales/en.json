@@ -63,9 +63,53 @@
     "theme" : "Theme",
     "colortheme" : "Color Theme"
   },
-  "lenguages" : {
+  "languages" : {
     "en" : "English",
     "es" : "Spanish",
     "de" : "German"
+  },
+  "forms" : {
+      "shortname-field" : "Project Name (short)",
+      "largename-field" : "Project Name (large)",
+      "description-field" : "Descriptive Resume",
+      "country-field" : "Aid Recipien Country",
+      "imporganization-field" : "Implementing Organization",
+      "intorganization-field" : "Intermediary Organization",
+      "budget-field" : "Budget",
+      "caulculated-field": "Calculated",
+      "solicited-field": "Solicited",
+      "budgetitems-field": "Per items",
+      "budgetact-field": "Per activities",
+      "program-field" : "Program",
+      "sector-field" : "Sector",
+      "duration-field" : "Duration",
+      "donor-field" : "Donor",
+      "approvebudget-field" : "Approved Budget",
+      "approvedate-field" : "Approved Date",
+      "initialdate-field" : "Initial date",
+      "finaldate-field" : "Final Date",
+
+      "shortname-error" : "Must be 20 characters or less",
+      "largename-error" : "Must be 20 characters or more",
+      "description-error" : "",
+      "country-error" : "Aid Recipien Country",
+      "imporganization-error" : "Implementing Organization",
+      "intorganization-error" : "Intermediary Organization",
+      "budget-error" : "Budget",
+      "caulculated-error": "Calculated",
+      "solicited-error": "Solicited",
+      "budgetitems-error": "Per items",
+      "budgetact-error": "Per activities",
+      "program-error" : "Program",
+      "sector-error" : "Sector",
+      "duration-error" : "Duration",
+      "donor-error" : "Donor",
+      "approvebudget-error" : "Approved Budget",
+      "approvedate-error" : "Approved Date",
+      "initialdate-error" : "Initial date",
+      "finaldate-error" : "Final Date",
+
+      "required" : "Required",
+      "email" : "Invalid email address"
   }
 }

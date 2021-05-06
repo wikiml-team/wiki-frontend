@@ -56,7 +56,7 @@ export default function SettingsPanel() {
   };
 
   // LOGIC
-  const { t } = useTranslation(["sidepanel", "lenguages"]);
+  const { t } = useTranslation(["sidepanel"]);
   const dispatch = useDispatch();
 
   return (

@@ -63,10 +63,36 @@
     "theme" : "Tema",
     "colortheme" : "Color"
   },
-  "lenguages" : {
+  "languages" : {
     "en" : "Inglés",
     "es" : "Español",
     "de" : "Alemán"
+  },
+  "forms" : {
+    "general" : {
+      "shortname-field" : "Nombre",
+      "largename-field" : "Nombre Largo",
+      "description-field" : "Resumen Descriptivo",
+      "country-field" : "País Destinatario",
+      "imporganization-field" : "Organización",
+      "intorganization-field" : "Organización Intermediaria",
+      "budget-field" : "Presupuesto",
+      "caulculated-field": "Calculado",
+      "solicited-field": "Solicitado",
+      "budgetitems-field": "Por artículos",
+      "budgetact-field": "Por actividades",
+      "program-field" : "Programa",
+      "sector-field" : "Sector",
+      "duration-field" : "Duración",
+      "donor-field" : "Donante",
+      "approvebudget-field" : "Presupuesto Aprovado",
+      "approvedate-field" : "Fecha Aprovada",
+      "initialdate-field" : "Fecha Inicial",
+      "finaldate-field" : "Fecha Final",
+
+      "required" : "Obligatorio",
+      "email" : "Dirección inválida de correo"
+    }
   }
 
 }
