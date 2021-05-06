@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/wikiml-team/wiki-frontend/static/css/main.fcd4c61a.chunk.css",
-    "main.js": "/wikiml-team/wiki-frontend/static/js/main.f402034f.chunk.js",
-    "main.js.map": "/wikiml-team/wiki-frontend/static/js/main.f402034f.chunk.js.map",
-    "runtime-main.js": "/wikiml-team/wiki-frontend/static/js/runtime-main.872100f0.js",
-    "runtime-main.js.map": "/wikiml-team/wiki-frontend/static/js/runtime-main.872100f0.js.map",
-    "static/js/2.d60a6432.chunk.js": "/wikiml-team/wiki-frontend/static/js/2.d60a6432.chunk.js",
-    "static/js/2.d60a6432.chunk.js.map": "/wikiml-team/wiki-frontend/static/js/2.d60a6432.chunk.js.map",
-    "static/js/3.8b77543e.chunk.js": "/wikiml-team/wiki-frontend/static/js/3.8b77543e.chunk.js",
-    "static/js/3.8b77543e.chunk.js.map": "/wikiml-team/wiki-frontend/static/js/3.8b77543e.chunk.js.map",
-    "index.html": "/wikiml-team/wiki-frontend/index.html",
-    "static/css/main.fcd4c61a.chunk.css.map": "/wikiml-team/wiki-frontend/static/css/main.fcd4c61a.chunk.css.map",
-    "static/js/2.d60a6432.chunk.js.LICENSE.txt": "/wikiml-team/wiki-frontend/static/js/2.d60a6432.chunk.js.LICENSE.txt"
+    "main.css": "/wiki-frontend/static/css/main.fcd4c61a.chunk.css",
+    "main.js": "/wiki-frontend/static/js/main.f402034f.chunk.js",
+    "main.js.map": "/wiki-frontend/static/js/main.f402034f.chunk.js.map",
+    "runtime-main.js": "/wiki-frontend/static/js/runtime-main.7b9274e9.js",
+    "runtime-main.js.map": "/wiki-frontend/static/js/runtime-main.7b9274e9.js.map",
+    "static/js/2.d407d82b.chunk.js": "/wiki-frontend/static/js/2.d407d82b.chunk.js",
+    "static/js/2.d407d82b.chunk.js.map": "/wiki-frontend/static/js/2.d407d82b.chunk.js.map",
+    "static/js/3.8b77543e.chunk.js": "/wiki-frontend/static/js/3.8b77543e.chunk.js",
+    "static/js/3.8b77543e.chunk.js.map": "/wiki-frontend/static/js/3.8b77543e.chunk.js.map",
+    "index.html": "/wiki-frontend/index.html",
+    "static/css/main.fcd4c61a.chunk.css.map": "/wiki-frontend/static/css/main.fcd4c61a.chunk.css.map",
+    "static/js/2.d407d82b.chunk.js.LICENSE.txt": "/wiki-frontend/static/js/2.d407d82b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.872100f0.js",
-    "static/js/2.d60a6432.chunk.js",
+    "static/js/runtime-main.7b9274e9.js",
+    "static/js/2.d407d82b.chunk.js",
     "static/css/main.fcd4c61a.chunk.css",
     "static/js/main.f402034f.chunk.js"
   ]
