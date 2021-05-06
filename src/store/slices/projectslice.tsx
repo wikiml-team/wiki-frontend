@@ -3,13 +3,15 @@ import IProject, { Sector } from "models/project";
 import IState from "models/state";
 
 const initialState: IProject = {
-  name: "Project Name Test",
-  shortname: "PN Test",
+  name: "Large Project Name Test",
+  shortname: "Short Project Name",
+  description: "Lorem ipsum dolre description asedore son lisiu tredo.",
   methodology: "Canadian Test",
   status: "pendant",
   wikicode: "X54S0",
   organization: "Organization Test",
-  duration: "Duration test",
+  intermediary: "Intermediary Organization Test",
+  duration: 34,
   country: "Country Test",
   program: "Program Test",
   sector: Sector.Energy,
@@ -20,10 +22,15 @@ const initialState: IProject = {
     { name: "team2", email: "team-test@gmal.com" },
   ],
   currency: "euro",
-  budget: "2",
-  budgetItems: "BudgetItem Test",
-  budgetAct: "Budget Act Test",
-  description: "Lorem ipsum dolre description asedore son lisiu tredo.",
+  budget: 2,
+  budgetItems: 22,
+  budgetAct: 33,
+  solicitedBudget: 44,
+  approvedBudget: 44,
+  approvedDate: new Date(),
+  finalDate: new Date(),
+  initialDate: new Date(),
+  donor: "Donor Test",
 };
 
 const projectSlice = createSlice({
@@ -33,10 +40,14 @@ const projectSlice = createSlice({
     setCurrentProject: (state, action) => {
       state = action.payload;
     },
+    updateProject: (state, action) => {
+      console.log("state: ", state);
+      console.log("action: ", action);
+    },
   },
 });
 
-export const selecCurrentProject = (state: IState) => state.currentProject;
+export const selectProject = (state: IState) => state.project;
 export const { setCurrentProject } = projectSlice.actions;
 
 export default projectSlice.reducer;

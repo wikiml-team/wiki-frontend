@@ -5,7 +5,7 @@ export default interface IState {
   language: string;
   theme: ITheme;
   helpTooltips: boolean;
-  currentProject: IProject;
+  project: IProject;
   // authenticated: boolean;
   // notifications: Notification[];
   // navigation: JSX.Element;

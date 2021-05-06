@@ -3,11 +3,13 @@ import IUser from "./user";
 export default interface IProject {
   name: string;
   shortname: string;
+  description: string;
   methodology: string;
   status: "pendant" | "aproved";
   wikicode: string;
   organization: string;
-  duration: string;
+  intermediary: string;
+  duration: number;
   country: string;
   program: string;
   sector: Sector;
@@ -15,10 +17,16 @@ export default interface IProject {
   leader: IUser;
   team: IUser[];
   currency: string;
-  budget: string;
-  budgetItems: string;
-  budgetAct: string;
-  description: string;
+  budget: number;
+  budgetItems: number;
+  budgetAct: number;
+  solicitedBudget: number;
+  // Esto no debería estar aquí sino cogerlo de bd cuando haga falta supongo
+  donor: string;
+  approvedBudget: number;
+  approvedDate: Date;
+  initialDate: Date;
+  finalDate: Date;
 }
 
 export enum Sector {
