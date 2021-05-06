@@ -7,7 +7,7 @@ import {
   Stack,
 } from "@fluentui/react";
 
-import { setLanguage, selectLang } from "languages/languageslice";
+import { setLanguage, selectLang } from "languages/languageSlice";
 
 export default function LanguagePanel() {
   const { t } = useTranslation(["sidepanel", "lenguages"]);
