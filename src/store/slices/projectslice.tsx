@@ -7,7 +7,7 @@ const initialState: IProject = {
   shortname: "Short Project Name",
   description: "Lorem ipsum dolre description asedore son lisiu tredo.",
   methodology: "Canadian Test",
-  status: "pendant",
+  status: "pending",
   wikicode: "X54S0",
   organization: "Organization Test",
   intermediary: "Intermediary Organization Test",
@@ -15,7 +15,7 @@ const initialState: IProject = {
   country: "Country Test",
   program: "Program Test",
   sector: Sector.Energy,
-  doner: "Doner Test",
+  donorcode: "2F8HT",
   leader: { name: "Leader Test", email: "test@gmail.com" },
   team: [
     { name: "team1", email: "team-test@gmal.com" },

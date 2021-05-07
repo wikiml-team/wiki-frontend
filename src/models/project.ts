@@ -5,7 +5,7 @@ export default interface IProject {
   shortname: string;
   description: string;
   methodology: string;
-  status: "pendant" | "aproved";
+  status: "pending" | "approved";
   wikicode: string;
   organization: string;
   intermediary: string;
@@ -13,7 +13,7 @@ export default interface IProject {
   country: string;
   program: string;
   sector: Sector;
-  doner: string;
+  donorcode: string;
   leader: IUser;
   team: IUser[];
   currency: string;
