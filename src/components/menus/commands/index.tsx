@@ -4,6 +4,7 @@ import {
   CommandBar,
   ICommandBarStyles,
   ITextStyles,
+  mergeStyleSets,
   Text,
   useTheme,
 } from "@fluentui/react";
@@ -16,6 +17,21 @@ import SettingsPanel from "components/sidepanel/settings/settingspanel";
 
 export default function CommandMenu() {
   const { palette } = useTheme();
+
+  const classes = mergeStyleSets({
+    topstickybar: {
+      width: "100%",
+      position: "fixed",
+      top: 0,
+      zIndex: 999,
+    },
+    bottomstickybar: {
+      // width: "100%",
+      position: "fixed",
+      bottom: 0,
+      zIndex: 999,
+    },
+  });
 
   // ComandBar Styles
   const comandBarStyles: Partial<ICommandBarStyles> = {

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   FontSizes,
   IPivotStyles,
+  mergeStyleSets,
   Pivot,
   PivotItem,
   useTheme,
@@ -31,6 +32,21 @@ type PivotBarProps = {
 export default function PivotBar(props: PivotBarProps) {
   // STYLES
   const { palette } = useTheme();
+
+  const classes = mergeStyleSets({
+    topstickybar: {
+      width: "100%",
+      position: "fixed",
+      top: 0,
+      zIndex: 999,
+    },
+    bottomstickybar: {
+      // width: "100%",
+      position: "fixed",
+      bottom: 0,
+      zIndex: 999,
+    },
+  });
 
   const pivotStyles: Partial<IPivotStyles> = {
     root: {

@@ -1,9 +1,4 @@
-import {
-  addMonths,
-  DatePicker,
-  IDatePickerStrings,
-  IDatePickerStyles,
-} from "@fluentui/react";
+import { addMonths, DatePicker, IDatePickerStrings } from "@fluentui/react";
 import { useTranslation } from "react-i18next";
 import { useConst } from "@fluentui/react-hooks";
 

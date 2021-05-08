@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { string, object, number } from "yup";
+import { string, object, number, setLocale } from "yup";
 import { Formik, Form, Field } from "formik";
 import {
   Stack,
-  useTheme,
   ITextFieldProps,
   IDropdownOption,
   IStackProps,
@@ -22,6 +21,7 @@ import { Sector } from "models/project";
 import DropdownFieldInput from "components/inputs/dropdown";
 import TextFieldInput from "components/inputs/text";
 import DateFieldInput from "components/inputs/datepicker";
+import { useEffect } from "react";
 
 type formValuesType = {
   shortName: string;
@@ -46,11 +46,9 @@ type formValuesType = {
 
 export default function GeneralForm() {
   // STYLE
-  const { palette } = useTheme();
-
   const classes = mergeStyleSets({
     root: {
-      padding: "0 5%",
+      padding: "0 5% 30px 5%",
     },
     circle: {
       height: 40,
@@ -90,7 +88,7 @@ export default function GeneralForm() {
 
   const stepStackStyles: Partial<IStackStyles> = {
     root: {
-      paddingTop: 20,
+      paddingTop: 10,
     },
   };
 
@@ -141,7 +139,7 @@ export default function GeneralForm() {
     finalDate: project.finalDate,
   };
 
-  const validationSchema = object({
+  const validationSchema = object().shape({
     shortName: string().max(20, t("shortname-error")).required(t("required")),
     largeName: string()
       .min(20, t("largename-error"))
@@ -164,6 +162,22 @@ export default function GeneralForm() {
     initialDate: string().required(t("required")),
     finalDate: string().required(t("required")),
   });
+
+  useEffect(() => {
+    setLocale({
+      // use constant translation keys for messages without values
+      mixed: {
+        default: "field_invalid",
+      },
+      // use functions to generate an error object that includes the value from the schema
+      string: {
+        default: "asi mismo",
+      },
+      number: {
+        default: "asimismo",
+      },
+    });
+  }, [validationSchema]);
 
   const handleOnSubmit = (values: formValuesType, { setSubmitting }: any) => {
     alert(values);

@@ -22,9 +22,10 @@ const classes = mergeStyleSets({
 const WorkplaceLayout: FunctionComponent = (props) => {
   return (
     <React.Fragment>
-      <CommandMenu />
-      <MainMenu />
-      {props.children}
+      <div className={classes.topstickybar}>
+        <CommandMenu />
+        <MainMenu />
+      </div>
     </React.Fragment>
   );
 };
