@@ -22,7 +22,7 @@ const classes = mergeStyleSets({
 const WorkplaceLayout: FunctionComponent = (props) => {
   return (
     <React.Fragment>
-      <div className={classes.topstickybar}>
+      <div>
         <CommandMenu />
         <MainMenu />
       </div>
