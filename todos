@@ -4,7 +4,13 @@
   - Make tabs to overflow identical to excell
   - Dinamicaly resize pagesTab
   - Scrollbar
-- General Info FORM
+- General Info FORM **
+  - SetLocale yup
+  - FinalDateInput dependant of Initial Date Input
+  - Set all Errors 
+  - Set errores whith parameters
+- List of countries
+- Sticky Top **
 - Make axios calls with fake api
   - pages for project, methodologies, licitations...
 - Responsive Programming
