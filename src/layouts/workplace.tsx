@@ -22,10 +22,8 @@ const classes = mergeStyleSets({
 const WorkplaceLayout: FunctionComponent = (props) => {
   return (
     <React.Fragment>
-      <div>
-        <CommandMenu />
-        <MainMenu />
-      </div>
+      <CommandMenu />
+      <MainMenu />
     </React.Fragment>
   );
 };

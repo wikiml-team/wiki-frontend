@@ -79,6 +79,7 @@
     "country-field" : "Aid Recipient Country",
     "imporganization-field" : "Implementing Organization",
     "intorganization-field" : "Intermediary Organization",
+    "currency-field" : "Currency",
     "budget-field" : "Budget",
     "budget-prefix" : "Solicited",
     "caulculated-field": "Calculated",
@@ -92,6 +93,9 @@
     "approvedate-field" : "Approved Date",
     "initialdate-field" : "Initial Date",
     "finaldate-field" : "Final Date",
+    "status-field" : "Status",
+    "wikicode-field" : "WikiCode",
+    "donorwikicode-field" : "Donor WikiCode",
 
     "shortname-error" : "Must be 20 characters or less",
     "largename-error" : "Must be more than 20 characters and less than 100",
