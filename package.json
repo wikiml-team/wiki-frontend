@@ -20,6 +20,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "cypress": "^6.8.0",
+    "fluentui-react-grid": "^1.0.0",
     "formik": "^2.2.6",
     "i18next": "^20.1.0",
     "i18next-browser-languagedetector": "^6.1.0",
