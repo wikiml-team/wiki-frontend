@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { string, object, number, setLocale } from "yup";
@@ -22,7 +23,6 @@ import { Sector } from "models/project";
 import DropdownFieldInput from "components/inputs/dropdown";
 import TextFieldInput from "components/inputs/text";
 import DateFieldInput from "components/inputs/datepicker";
-import { useEffect } from "react";
 
 type formValuesType = {
   shortName: string;
@@ -75,24 +75,6 @@ export default function GeneralForm() {
     },
   };
 
-  const horizontalStackProps: Partial<IStackProps> = {
-    tokens: { childrenGap: "m" },
-    padding: 2,
-    horizontal: true,
-    wrap: true,
-  };
-
-  const verticalStackProps: Partial<IStackProps> = {
-    tokens: { childrenGap: "m" },
-    padding: 2,
-  };
-
-  const stepStackStyles: Partial<IStackStyles> = {
-    root: {
-      paddingTop: 10,
-    },
-  };
-
   const headerStackProps: Partial<IStackProps> = {
     tokens: { childrenGap: "m" },
     horizontal: true,
@@ -113,6 +95,17 @@ export default function GeneralForm() {
   const project = useSelector(selectProject);
 
   const dispatch = useDispatch();
+
+  const [minDate, setMinDate] = useState(project.initialDate as Date | null | undefined)
+  const [approvedDate, setApprovedDate] = useState(project.approvedDate as Date | null | undefined)
+
+  const handleSelectInitialDate = (date: Date | null | undefined) => {
+    setMinDate(date);
+  }
+
+  const handleSelectApprovedDate = (date: Date | null | undefined) => {
+    setApprovedDate(date);
+  }
 
   const initValues: formValuesType = {
     shortName: project.shortname,
@@ -350,12 +343,15 @@ export default function GeneralForm() {
                   label={t("initialdate-field")}
                   name="initialDate"
                   component={DateFieldInput}
+                  minDate={approvedDate}
+                  onSelectDate={handleSelectInitialDate}
                   sizeLg={6}
                 />
                 <StandardField
                   label={t("finaldate-field")}
                   name="finalDate"
                   component={DateFieldInput}
+                  minDate={minDate}
                   sizeLg={6}
                 />
               </Row>
@@ -372,6 +368,7 @@ export default function GeneralForm() {
                   label={t("approvedate-field")}
                   name="approveDate"
                   component={DateFieldInput}
+                  onSelectDate={handleSelectApprovedDate}
                   sizeLg={6}
                 />
               </Row>
@@ -394,6 +391,7 @@ const StandardField = (props: any) => {
 };
 
 const TextField = ({ grow, ...props }: any) => {
+  console.log(props.minDate || "not minDate")
   return (
     <Col sizeSm={props.sizeSm || 2} sizeMd={props.sizeMd || 6} sizeLg={props.sizeLg || 3}>
       <Field {...props} />
