@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/wiki-frontend/static/css/main.46a11736.chunk.css",
-    "main.js": "/wiki-frontend/static/js/main.01dad086.chunk.js",
-    "main.js.map": "/wiki-frontend/static/js/main.01dad086.chunk.js.map",
+    "main.js": "/wiki-frontend/static/js/main.405bf13b.chunk.js",
+    "main.js.map": "/wiki-frontend/static/js/main.405bf13b.chunk.js.map",
     "runtime-main.js": "/wiki-frontend/static/js/runtime-main.559cf1c7.js",
     "runtime-main.js.map": "/wiki-frontend/static/js/runtime-main.559cf1c7.js.map",
     "static/js/2.19f29588.chunk.js": "/wiki-frontend/static/js/2.19f29588.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.559cf1c7.js",
     "static/js/2.19f29588.chunk.js",
     "static/css/main.46a11736.chunk.css",
-    "static/js/main.01dad086.chunk.js"
+    "static/js/main.405bf13b.chunk.js"
   ]
 }
