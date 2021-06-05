@@ -6,7 +6,6 @@
   - Scrollbar
 - General Info FORM **
   - SetLocale yup
-  - FinalDateInput dependant of Initial Date Input
   - Set all Errors 
   - Set errores whith parameters
 - List of countries and currencies.
@@ -21,6 +20,7 @@
 
 
 DONE 
+- FinalDateInput dependant of Initial Date Input
 - Upload project to github
 - Create Pages tab
   - Style PagesBar

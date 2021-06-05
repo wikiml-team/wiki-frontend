@@ -296,16 +296,18 @@ export default function GeneralForm() {
                   prefix={t("budget-prefix")}
                 />
                 <StandardField
-                  label={t("caulculated-field")}
+                  label={t("calculated-field")}
                   name="budgetPerItems"
                   component={TextFieldInput}
                   prefix={t("budgetitems-prefix")}
+                  readOnly
                 />
                 <StandardField
-                  label={t("caulculated-field")}
+                  label={t("calculated-field")}
                   name="budgetPerAct"
                   component={TextFieldInput}
                   prefix={t("budgetact-prefix")}
+                  readOnly
                 />
               </Row>
 
