@@ -15,7 +15,7 @@ import {
   Label,
   IStackStyles,
 } from "@fluentui/react";
-// import { Grid, Col, Row } from "fluentui-react-grid";
+import { Grid, Col, Row } from "fluentui-react-grid";
 
 import { selectProject } from "store/slices/projectslice";
 import { Sector } from "models/project";
@@ -106,11 +106,6 @@ export default function GeneralForm() {
 
   const separatorProps: Partial<ISeparatorProps> = {
     alignContent: "start",
-    styles: {
-      content: {
-        paddingLeft: 0,
-      },
-    },
   };
 
   // LOGIC
@@ -200,217 +195,209 @@ export default function GeneralForm() {
       onSubmit={handleOnSubmit}
     >
       <Form className={classes.root}>
-        <Stack {...horizontalStackProps}>
-          <TextField
-            grow={1}
-            required
-            label={t("shortname-field")}
-            name="shortName"
-            component={TextFieldInput}
-          />
+        <Grid dir="ltr">
+          {/* Names */}
+          <Row>
+            <TextField
+              required
+              label={t("shortname-field")}
+              name="shortName"
+              component={TextFieldInput}
+              sizeLg={3}
+            />
 
-          <TextField
-            grow={4}
-            required
-            label={t("largename-field")}
-            name="largeName"
-            component={TextFieldInput}
-          />
-        </Stack>
+            <TextField
+              required
+              label={t("largename-field")}
+              name="largeName"
+              component={TextFieldInput}
+              sizeLg={9}
+            />
+          </Row>
+          {/* Description */}
+          <Row>
+            <TextField
+              label={t("description-field")}
+              name="description"
+              component={TextFieldInput}
+              {...multilineTextFieldProps}
+              sizeLg={12}
 
-        <Stack {...horizontalStackProps}>
-          <TextField
-            grow
-            label={t("description-field")}
-            name="description"
-            component={TextFieldInput}
-            {...multilineTextFieldProps}
-          />
-        </Stack>
+            />
+          </Row>
+          <br />
 
-        <Stack {...horizontalStackProps}>
-          {/* 1. Project */}
-          <Stack {...verticalStackProps}>
-            <Stack styles={stepStackStyles}>
-              <Separator {...separatorProps}>
-                <PrimaryButton text="1" className={classes.circle} />
-              </Separator>
-            </Stack>
+          <Row>
+            {/* 1. Project */}
+            <Col sizeSm={12} sizeMd={8} sizeLg={8}>
+              <Row>
+                <Separator {...separatorProps}>
+                  <PrimaryButton text="1" className={classes.circle} />
+                </Separator>
+              </Row>
 
-            <Stack {...headerStackProps}>
-              <Stack.Item>
-                <Label>{t("status-field")}</Label>
-                {t(`status:${project.status}`)}
-              </Stack.Item>
-              <Stack.Item>
-                <Label>{t("wikicode-field")}</Label>
-                {project.wikicode}
-              </Stack.Item>
-            </Stack>
+              <Stack {...headerStackProps}>
+                <Stack.Item>
+                  <Label>{t("status-field")}</Label>
+                  {t(`status:${project.status}`)}
+                </Stack.Item>
+                <Stack.Item>
+                  <Label>{t("wikicode-field")}</Label>
+                  {project.wikicode}
+                </Stack.Item>
+              </Stack>
+              <br />
 
-            <Stack {...horizontalStackProps}>
-              <StandardField
-                label={t("country-field")}
-                name="country"
-                component={DropdownFieldInput}
-                options={countries}
-              />
-              <StandardField
-                label={t("imporganization-field")}
-                name="impOrganization"
-                component={DropdownFieldInput}
-                options={countries}
-              />
-              <StandardField
-                label={t("intorganization-field")}
-                name="intOrganization"
-                component={DropdownFieldInput}
-                options={countries}
-              />
-            </Stack>
+              <Row>
+                <StandardField
+                  label={t("country-field")}
+                  name="country"
+                  component={DropdownFieldInput}
+                  options={countries}
+                />
+                <StandardField
+                  label={t("imporganization-field")}
+                  name="impOrganization"
+                  component={DropdownFieldInput}
+                  options={countries}
+                />
+                <StandardField
+                  label={t("intorganization-field")}
+                  name="intOrganization"
+                  component={DropdownFieldInput}
+                  options={countries}
+                />
+              </Row>
 
-            <Stack {...horizontalStackProps}>
-              <StandardField
-                label={t("currency-field")}
-                name="currency"
-                component={DropdownFieldInput}
-              />
-              <StandardField
-                label={t("budget-field")}
-                name="budget"
-                component={TextFieldInput}
-                prefix={t("budget-prefix")}
-              />
-              <StandardField
-                label={t("caulculated-field")}
-                name="budgetPerItems"
-                component={TextFieldInput}
-                prefix={t("budgetitems-prefix")}
-              />
-              <StandardField
-                label={t("caulculated-field")}
-                name="budgetPerAct"
-                component={TextFieldInput}
-                prefix={t("budgetact-prefix")}
-              />
-            </Stack>
+              <Row>
+                <StandardField
+                  label={t("program-field")}
+                  name="program"
+                  component={DropdownFieldInput}
+                  options={countries}
+                />
+                <StandardField
+                  label={t("sector-field")}
+                  name="sector"
+                  component={DropdownFieldInput}
+                  options={countries}
+                />
+                <StandardField
+                  label={t("duration-field")}
+                  name="duration"
+                  component={TextFieldInput}
+                  suffix={t("duration-suffix")}
+                />
+              </Row>
 
-            <Stack {...horizontalStackProps}>
-              <StandardField
-                label={t("program-field")}
-                name="program"
-                component={DropdownFieldInput}
-                options={countries}
-              />
-              <StandardField
-                label={t("sector-field")}
-                name="sector"
-                component={DropdownFieldInput}
-                options={countries}
-              />
-              <StandardField
-                label={t("duration-field")}
-                name="duration"
-                component={TextFieldInput}
-              />
-            </Stack>
-          </Stack>
+              <Row>
+                <StandardField
+                  label={t("currency-field")}
+                  name="currency"
+                  component={DropdownFieldInput}
+                />
+                <StandardField
+                  label={t("budget-field")}
+                  name="budget"
+                  component={TextFieldInput}
+                  prefix={t("budget-prefix")}
+                />
+                <StandardField
+                  label={t("caulculated-field")}
+                  name="budgetPerItems"
+                  component={TextFieldInput}
+                  prefix={t("budgetitems-prefix")}
+                />
+                <StandardField
+                  label={t("caulculated-field")}
+                  name="budgetPerAct"
+                  component={TextFieldInput}
+                  prefix={t("budgetact-prefix")}
+                />
+              </Row>
 
-          {/* 2. Donor */}
-          <Stack {...verticalStackProps}>
-            <Stack styles={stepStackStyles}>
-              <Separator {...separatorProps}>
-                <PrimaryButton text="2" className={classes.circle} />
-              </Separator>
-            </Stack>
 
-            <Stack {...headerStackProps}>
-              <Stack.Item>
-                <Label>{t("donorwikicode-field")}</Label>
-                {project.donorcode}
-              </Stack.Item>
-            </Stack>
+            </Col>
 
-            <Stack {...horizontalStackProps}>
-              <StandardField
-                label={t("donor-field")}
-                name="donor"
-                component={DropdownFieldInput}
-                options={countries}
-              />
-            </Stack>
+            {/* 2. Donor */}
+            <Col sizeSm={12} sizeMd={4} sizeLg={4}>
+              <Row>
+                <Separator {...separatorProps}>
+                  <PrimaryButton text="2" className={classes.circle} />
+                </Separator>
+              </Row>
 
-            <Stack {...horizontalStackProps}>
-              <StandardField
-                label={t("approvebudget-field")}
-                name="approvedBudget"
-                component={TextFieldInput}
-                options={countries}
-              />
-              <StandardField
-                label={t("approvedate-field")}
-                name="approveDate"
-                component={DateFieldInput}
-              />
-            </Stack>
+              <Stack {...headerStackProps}>
+                <Stack.Item>
+                  <Label>{t("donorcode-field")}</Label>
+                  {project.donorcode}
+                </Stack.Item>
+              </Stack>
+              <br />
 
-            <Stack {...horizontalStackProps}>
-              <StandardField
-                label={t("initialdate-field")}
-                name="initialDate"
-                component={DateFieldInput}
-              />
-              <StandardField
-                label={t("finaldate-field")}
-                name="finalDate"
-                component={DateFieldInput}
-              />
-            </Stack>
-          </Stack>
-        </Stack>
+              <Row>
+                <StandardField
+                  label={t("donor-field")}
+                  name="donor"
+                  component={DropdownFieldInput}
+                  options={countries}
+                  sizeLg={6}
+                />
+              </Row>
 
-        {/* <Grid dir="ltr">
-          <Grid.Row>
-            <Grid.Col sizeSm={6} sizeMd={4} sizeLg={2}>
-              A
-            </Grid.Col>
+              <Row>
+                <StandardField
+                  label={t("initialdate-field")}
+                  name="initialDate"
+                  component={DateFieldInput}
+                  sizeLg={6}
+                />
+                <StandardField
+                  label={t("finaldate-field")}
+                  name="finalDate"
+                  component={DateFieldInput}
+                  sizeLg={6}
+                />
+              </Row>
 
-            <Grid.Col sizeSm={6} sizeMd={6} sizeLg={10}>
-              B
-            </Grid.Col>
-          </Grid.Row>
-        </Grid> */}
+              <Row>
+                <StandardField
+                  label={t("approvebudget-field")}
+                  name="approvedBudget"
+                  component={TextFieldInput}
+                  options={countries}
+                  sizeLg={6}
+                />
+                <StandardField
+                  label={t("approvedate-field")}
+                  name="approveDate"
+                  component={DateFieldInput}
+                  sizeLg={6}
+                />
+              </Row>
+
+
+            </Col>
+          </Row>
+        </Grid>
       </Form>
     </Formik>
   );
 }
 
 const StandardField = (props: any) => {
-  const stackItemStyles: Partial<IStackItemStyles> = {
-    root: {
-      // width: "25%",
-      // minWidth: 200,
-    },
-  };
-
   return (
-    <Stack.Item styles={stackItemStyles}>
+    <Col sizeSm={props.sizeSm || 2} sizeMd={props.sizeMd || 6} sizeLg={props.sizeLg || 3}>
       <Field {...props} />
-    </Stack.Item>
+    </Col>
   );
 };
 
 const TextField = ({ grow, ...props }: any) => {
-  const stackItemStyles: Partial<IStackItemStyles> = {
-    root: {
-      minWidth: 200,
-    },
-  };
-
   return (
-    <Stack.Item grow={grow} styles={stackItemStyles}>
+    <Col sizeSm={props.sizeSm || 2} sizeMd={props.sizeMd || 6} sizeLg={props.sizeLg || 3}>
       <Field {...props} />
-    </Stack.Item>
+    </Col>
   );
 };
 
