@@ -43,7 +43,7 @@ export default function SettingsPanel() {
   };
 
   // Horizontal Separators
-  const separatorProps: Partial<ISeparatorProps> = {
+  const separatorProps: ISeparatorProps = {
     alignContent: "end",
     styles: {
       root: {

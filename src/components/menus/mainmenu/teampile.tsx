@@ -10,7 +10,7 @@ import {
 } from "@fluentui/react";
 
 // OverflowButton Props
-const overflowButtonProps: Partial<IButtonProps> = {
+const overflowButtonProps: IButtonProps = {
   ariaLabel: "More users",
   onClick: (ev: React.MouseEvent<HTMLButtonElement>) =>
     alert("overflow icon clicked"),
@@ -36,7 +36,7 @@ const FacePileStyles: Partial<IFacepileStyles> = {
 };
 
 // Data
-const faces: Partial<IFacepilePersona>[] = [
+const faces: IFacepilePersona[] = [
   {
     personaName: "Gabriela Rodríguez",
     initialsColor: PersonaInitialsColor.gray,

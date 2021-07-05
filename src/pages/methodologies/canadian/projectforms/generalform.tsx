@@ -8,13 +8,11 @@ import {
   ITextFieldProps,
   IDropdownOption,
   IStackProps,
-  IStackItemStyles,
   mergeStyleSets,
   Separator,
   PrimaryButton,
   ISeparatorProps,
   Label,
-  IStackStyles,
 } from "@fluentui/react";
 import { Grid, Col, Row } from "fluentui-react-grid";
 
@@ -49,7 +47,7 @@ export default function GeneralForm() {
   // STYLE
   const classes = mergeStyleSets({
     root: {
-      padding: "0 5% 30px 5%",
+      padding: "0 5% 50px 5%",
     },
     circle: {
       height: 40,
@@ -60,7 +58,7 @@ export default function GeneralForm() {
     },
   });
 
-  const multilineTextFieldProps: Partial<ITextFieldProps> = {
+  const multilineTextFieldProps: ITextFieldProps = {
     required: true,
     multiline: true,
     autoAdjustHeight: true,
@@ -75,7 +73,7 @@ export default function GeneralForm() {
     },
   };
 
-  const headerStackProps: Partial<IStackProps> = {
+  const headerStackProps: IStackProps = {
     tokens: { childrenGap: "m" },
     horizontal: true,
     horizontalAlign: "space-between",
@@ -86,7 +84,7 @@ export default function GeneralForm() {
     },
   };
 
-  const separatorProps: Partial<ISeparatorProps> = {
+  const separatorProps: ISeparatorProps = {
     alignContent: "start",
   };
 
@@ -94,16 +92,14 @@ export default function GeneralForm() {
   const { t } = useTranslation(["general-form", "status"]);
   const project = useSelector(selectProject);
 
-  const dispatch = useDispatch();
+  const [minDate, setMinDate] = useState(project.initialDate as Date)
+  const [approvedDate, setApprovedDate] = useState(project.approvedDate as Date)
 
-  const [minDate, setMinDate] = useState(project.initialDate as Date | null | undefined)
-  const [approvedDate, setApprovedDate] = useState(project.approvedDate as Date | null | undefined)
-
-  const handleSelectInitialDate = (date: Date | null | undefined) => {
+  const handleSelectInitialDate = (date: Date) => {
     setMinDate(date);
   }
 
-  const handleSelectApprovedDate = (date: Date | null | undefined) => {
+  const handleSelectApprovedDate = (date: Date) => {
     setApprovedDate(date);
   }
 
@@ -364,6 +360,7 @@ export default function GeneralForm() {
                   name="approvedBudget"
                   component={TextFieldInput}
                   options={countries}
+                  suffix={project.currency}
                   sizeLg={6}
                 />
                 <StandardField

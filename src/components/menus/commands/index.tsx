@@ -34,7 +34,7 @@ export default function CommandMenu() {
   });
 
   // ComandBar Styles
-  const comandBarStyles: Partial<ICommandBarStyles> = {
+  const comandBarStyles: ICommandBarStyles = {
     root: {
       height: 36,
       padding: 0,
@@ -44,7 +44,7 @@ export default function CommandMenu() {
   };
 
   // ComandBar Styles
-  const textStyles: Partial<ITextStyles> = {
+  const textStyles: ITextStyles = {
     root: {
       position: "absolute",
       top: 10,

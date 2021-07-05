@@ -23,7 +23,7 @@ export default function PagesBar(props: PagesBarProps) {
   // STYLES
   const { palette } = useTheme();
 
-  const stackProps: Partial<IStackProps> = {
+  const stackProps: IStackProps = {
     horizontal: true,
     styles: {
       root: {
