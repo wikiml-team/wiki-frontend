@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useTransition, animated } from "react-spring"
 import {
   FontSizes,
   IPivotStyles,
@@ -7,6 +8,7 @@ import {
   Pivot,
   PivotItem,
   useTheme,
+  IconButton
 } from "@fluentui/react";
 
 import { PivotTabs } from "./maintabs";
@@ -82,6 +84,15 @@ export default function PivotBar(props: PivotBarProps) {
   const { tabs } = props;
   const { t } = useTranslation("menu");
 
+  const [fixToolBar, setFixToolBar] = useState(true)
+
+  const [showToolBar, setShowToolBar] = useState(true)
+  const toolBarTransition = useTransition(showToolBar, {
+    from: { x: 0, y: -10, opacity: 0 },
+    enter: { x: 0, y: 0, opacity: 1 },
+    leave: { x: 0, y: -10, opacity: 0 },
+  })
+
   const [selectedPageTabs, setSelectedPageTabs] = useState<StringDic>({
     key1: "key1",
     key2: "key1",
@@ -102,6 +113,7 @@ export default function PivotBar(props: PivotBarProps) {
 
   const [currentPage, setCurrentPage] = useState("key1");
 
+
   const getTabId = (itemKey: string) => {
     return `pivot_${itemKey}`;
   };
@@ -119,21 +131,34 @@ export default function PivotBar(props: PivotBarProps) {
     }
   };
 
+  const handleTollBarOnClose = (item: any) => {
+    setShowToolBar(false);
+    setFixToolBar(false);
+  }
+
+  const handleTollBarOnFixed = (item: any) => {
+    setFixToolBar(true);
+  }
+
   return (
     <Pivot
       aria-label="Main menu tabs"
       linkFormat="tabs"
       defaultSelectedKey="1"
       styles={pivotStyles}
+      onLinkClick={(item?: PivotItem, ev?: React.MouseEvent<HTMLElement>) => setShowToolBar(true)}
     >
       {tabs.map((tab) => {
         return (
           <PivotItem key={tab.key} headerText={t(tab.name)} itemIcon={tab.icon}>
-            <ToolBar>{tab.render}</ToolBar>
+
+            {toolBarTransition(
+              (style: any, item: any) => item &&
+                <animated.div style={style}><ToolBar isFixed={fixToolBar} handleOnClose={handleTollBarOnClose} handleOnFix={handleTollBarOnFixed}>{tab.render}</ToolBar></animated.div>
+            )}
 
             <PageContainer
               aria-labelledby={getTabId(currentPage)}
-              role="tabpanel"
             >
               {lastFormsRendered[tab.key]}
             </PageContainer>

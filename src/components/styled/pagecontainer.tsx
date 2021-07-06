@@ -7,7 +7,6 @@ const Container = styled.div`
 
 interface PagecontainerProps {
   className?: string;
-  role?: string;
 }
 export const PageContainer: React.FunctionComponent<PagecontainerProps> = (
   props
