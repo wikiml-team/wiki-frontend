@@ -1,9 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import IState, { WorkplaceConfiguration } from "models/state";
+import IState from "models/state";
+import IWorkplaceConfiguration from "models/workplace";
 
-const initialState: WorkplaceConfiguration = {
-    PivotTab: "key1",
-    PageTab: "key1",
+const initialState: IWorkplaceConfiguration = {
+    latestMenuTab: "key1",
+    latestForm: "key2",
+    tabsConfigurations: new Map([
+        ["key1", "key1"],
+        ["key2", "key1"],
+        ["key3", "key1"],
+        ["key4", "key1"],
+        ["key5", "key1"],
+        ["key6", "key1"],
+    ]),
 };
 
 const workplaceSlice = createSlice({
@@ -11,7 +20,9 @@ const workplaceSlice = createSlice({
     initialState,
     reducers: {
         setCurrentWorkplace: (state, action) => {
-            state = action.payload;
+            console.log("state: ", state)
+            console.log("action: ", action)
+            // state = action.payload;
         },
     },
 });
