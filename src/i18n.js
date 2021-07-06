@@ -13,11 +13,15 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "en",
+    keySeparator: false,
     // debug: true,
     resources: {
       en: English,
       es: Spanish,
     },
+    interpolation: {
+      escapeValue: false
+    }
   });
 
 export default i18n;
