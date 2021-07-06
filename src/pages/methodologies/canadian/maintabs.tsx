@@ -25,13 +25,20 @@ export type PivotTabs = {
   key: string;
   name: string;
   icon: string;
-  render?: JSX.Element;
+  render: JSX.Element;
   addtabs?: boolean;
-  childtabs?: PivotTabs[];
-  onClick?: Function;
+  childtabs?: FormTabs[];
+  url?: string;
 };
 
-export const maintabs: PivotTabs[] = [
+export type FormTabs = {
+  key: string;
+  name: string;
+  icon: string;
+  url?: string;
+};
+
+export const tabsConfiguration: PivotTabs[] = [
   {
     key: "key1",
     name: "wikiml",
@@ -45,48 +52,48 @@ export const maintabs: PivotTabs[] = [
     render: <Label>Pivot #1</Label>,
     addtabs: true,
     childtabs: [
-      { key: "key1", name: "general", icon: "Info", render: <GeneralForm /> },
+      { key: "key1", name: "general", icon: "Info", url: "/workplace/project/canadian/general" },
       {
         key: "key2",
         name: "stakeholders",
         icon: "Commitments",
-        render: <StakeholdersForm />,
+        url: "/workplace/project/canadian/stakeholdres"
       },
       {
         key: "key3",
         name: "logicmodel",
         icon: "LargeGrid",
-        render: <LogicModelForm />,
+        url: "/workplace/project/canadian/logicmodel"
       },
       {
         key: "key4",
         name: "activitiesmatrix",
         icon: "GripperDotsVertical",
-        render: <ActivitiesMatrixForm />,
+        url: "/workplace/project/canadian/activitiesmatrix"
       },
       {
         key: "key5",
         name: "performance",
         icon: "GripperDotsVertical",
-        render: <PerformanceMeasureForm />,
+        url: "/workplace/project/canadian/performance"
       },
       {
         key: "key6",
         name: "risks",
         icon: "DoubleDownArrow",
-        render: <RisksForm />,
+        url: "/workplace/project/canadian/risks"
       },
       {
         key: "key7",
         name: "budget",
         icon: "PaymentCard",
-        render: <BudgetForm />,
+        url: "/workplace/project/canadian/budget"
       },
       {
         key: "key8",
         name: "reports",
         icon: "BarChart4",
-        render: <ReportsForm />,
+        url: "/workplace/project/canadian/reports"
       },
     ],
   },
@@ -96,24 +103,24 @@ export const maintabs: PivotTabs[] = [
     icon: "Library",
     render: <Label>Pivot #2</Label>,
     childtabs: [
-      { key: "key1", name: "lot", icon: "OEM", render: <LotForm /> },
+      { key: "key1", name: "lot", icon: "OEM", url: "<LotForm /" },
       {
         key: "key2",
         name: "specifications",
         icon: "PageList",
-        render: <SpecificationsForm />,
+        url: "<SpecificationsForm />"
       },
       {
         key: "key3",
         name: "tecoffer",
         icon: "PageListSolid",
-        render: <TechnicalOfferForm />,
+        url: "<TechnicalOfferForm />"
       },
       {
         key: "key4",
         name: "finoffer",
         icon: "Financial",
-        render: <FinancialOfferForm />,
+        url: "<FinancialOfferForm />"
       },
     ],
   },
@@ -127,37 +134,37 @@ export const maintabs: PivotTabs[] = [
         key: "key1",
         name: "forms",
         icon: "PageData",
-        render: <FormsTutorials />,
+        url: "<FormsTutorials />"
       },
       {
         key: "key2",
         name: "sectors",
         icon: "Sections",
-        render: <SectorsTutorials />,
+        url: "<SectorsTutorials />"
       },
       {
         key: "key3",
         name: "guides",
         icon: "GUID",
-        render: <GuidesTutorials />,
+        url: "<GuidesTutorials />"
       },
       {
         key: "key4",
         name: "tutorials",
         icon: "Video",
-        render: <Tutorials />,
+        url: "<Tutorials />"
       },
       {
         key: "key5",
         name: "outcomes",
         icon: "ReportDocument",
-        render: <OutcomesTutorial />,
+        url: "<OutcomesTutorial />"
       },
       {
         key: "key6",
         name: "indicators",
         icon: "CRMReport",
-        render: <IndicatorsTutorial />,
+        url: "<IndicatorsTutorial />"
       },
     ],
   },
