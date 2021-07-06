@@ -1,5 +1,6 @@
 import i18n from "i18n"
 import {
+  FontWeights,
   ICommandBarItemProps,
   IPalette,
 } from "@fluentui/react";
@@ -70,7 +71,7 @@ export const overflowItems: ICommandBarItemProps[] = [
   },
 ];
 
-export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function, palette: IPalette) => {
+export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function) => {
   return [
     {
       key: "fullscreen",
@@ -111,12 +112,6 @@ export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Functio
       iconOnly: true,
       iconProps: { iconName: "Contact" },
       onClick: () => alert("Contact"),
-      buttonStyles: {
-        root: {
-          borderLeft: "2px solid " + palette.neutralQuaternaryAlt,
-          borderWidth: "thin",
-        },
-      },
     },
   ] as ICommandBarItemProps[];
 }

@@ -64,7 +64,7 @@ export default function CommandMenu() {
       <CommandBar
         buttonAs={CustomBarButton}
         items={items}
-        farItems={faritems(OpenLanguagePanel, OpenSettingsPanel, palette)}
+        farItems={faritems(OpenLanguagePanel, OpenSettingsPanel)}
         overflowItems={overflowItems}
         overflowButtonAs={CustomOverflowButton}
         overflowButtonProps={overflowProps(palette)}
