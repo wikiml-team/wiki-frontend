@@ -3,6 +3,7 @@ import themeReducer from "store/slices/themeslice";
 import languageReducer from "store/slices/languageslice";
 import helpReducer from "store/slices/settingslice";
 import projectReducer from "store/slices/projectslice";
+import workplaceReducer from "store/slices/workplaceslice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     language: languageReducer,
     help: helpReducer,
     project: projectReducer,
+    workplace: workplaceReducer,
   },
 });
 
