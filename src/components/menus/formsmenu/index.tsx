@@ -10,14 +10,14 @@ import {
 import { PivotTabs } from "../mainmenu/maintabs";
 import PagesTabs from "./pagestabs";
 
-type PagesBarProps = {
+type FormsMenuProps = {
   tab: PivotTabs;
   defaultKey?: string;
   getTabId: (itemKey: string, index: number) => string;
   handleOnClick: (parentkey: string, item?: PivotItem) => void;
 };
 
-export default function PagesBar(props: PagesBarProps) {
+export default function FormsMenu(props: FormsMenuProps) {
   const { tab, handleOnClick, getTabId, defaultKey } = props;
 
   // STYLES

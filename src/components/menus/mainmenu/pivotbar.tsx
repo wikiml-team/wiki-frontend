@@ -13,7 +13,7 @@ import {
 
 import { PivotTabs } from "./maintabs";
 import ToolBar from "./toolbar";
-import PagesBar from "../pagesbar";
+import FormsMenu from "../formsmenu";
 import GeneralForm from "pages/methodologies/canadian/projectforms/generalform";
 import SpecificationsForm from "pages/methodologies/canadian/licitationforms/specificationsform";
 import FormsTutorials from "pages/methodologies/canadian/tutorials/formstutorial";
@@ -163,7 +163,7 @@ export default function PivotBar(props: PivotBarProps) {
               {lastFormsRendered[tab.key]}
             </PageContainer>
 
-            <PagesBar
+            <FormsMenu
               tab={tab}
               defaultKey={selectedPageTabs[tab.key]}
               handleOnClick={handlePageTabOnClick}
