@@ -8,7 +8,6 @@ import {
 } from "@fluentui/react";
 
 import { PivotTabs } from "pages/methodologies/canadian/maintabs";
-import PagesTabs from "./pagestabs";
 import FormsTabs from "./formstabs";
 
 type FormsMenuProps = {
@@ -49,16 +48,12 @@ export default function FormsMenu(props: FormsMenuProps) {
 
   return (
     <Stack {...stackProps}>
-      <PagesTabs
+      <FormsTabs
         tabs={tab.childtabs}
-        addButton={tab.addtabs}
-        parentKey={tab.key}
-        defaultKey={defaultKey}
-        handleOnClick={handleOnClick}
-        getTabId={getTabId}
+        addbutton={tab.addtabs}
       />
 
-        <Separator vertical styles={separatorStyles} />
+      <Separator vertical styles={separatorStyles} />
 
       {/* Here goes the horizontal scrollbar when needed for the page */}
     </Stack>
