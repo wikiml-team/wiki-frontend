@@ -16,13 +16,24 @@ export default interface IWorkplaceConfiguration {
   configuration: FormRenderDictionary
 }
 
-// PivotTabs
-export type PivotTabs = {
+// tabSchema
+export type tabSchema = {
   key: string;
   name: string;
   icon: string;
   render?: JSX.Element;
   addtabs?: boolean;
-  childtabs?: PivotTabs[];
+  childtabs?: tabSchema[];
   onClick?: Function;
+};
+
+export const tabSchemaOperations = {
+  findkey(tabs: tabSchema[], key: string) {
+    return tabs.find(tab => tab.key === key)
+  },
+
+  findChildkey(tabs: tabSchema[], key: string, childkey: string) {
+    const parenttab = tabs.find(tab => tab.key === key) || {} as tabSchema
+    return parenttab.childtabs ? parenttab.childtabs.find(tab => tab.key == childkey) : undefined
+  }
 };

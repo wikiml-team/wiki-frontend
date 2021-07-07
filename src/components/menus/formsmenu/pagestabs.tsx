@@ -9,10 +9,10 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { PivotTabs } from "models/workplace";
+import { tabSchema } from "models/workplace";
 
 type PagesTabProps = {
-  tabs?: PivotTabs[];
+  tabs?: tabSchema[];
   defaultKey?: string;
   parentKey: string;
   getTabId: (itemKey: string, index: number) => string;
@@ -64,31 +64,31 @@ export default function PagesTabs(props: PagesTabProps) {
   };
 
   return (
-      <Pivot
-        linkFormat="tabs"
-        styles={pivotStyles}
-        aria-label="Pages Pivot"
-        selectedKey={defaultKey}
-        onLinkClick={(
-          item?: PivotItem,
-          ev?: React.MouseEvent<HTMLElement, MouseEvent>
-        ) => handleOnClick(parentKey, item)}
-        headersOnly={true}
-        getTabId={getTabId}
-      >
-        {tabs &&
-          tabs.map((tab) => {
-            return (
-              <PivotItem
-                key={tab.key}
-                headerText={t(tab.name)}
-                itemKey={tab.key}
-                itemIcon={tab.icon}
-              >
-                {tab.render}
-              </PivotItem>
-            );
-          })}
-      </Pivot>
+    <Pivot
+      linkFormat="tabs"
+      styles={pivotStyles}
+      aria-label="Pages Pivot"
+      selectedKey={defaultKey}
+      onLinkClick={(
+        item?: PivotItem,
+        ev?: React.MouseEvent<HTMLElement, MouseEvent>
+      ) => handleOnClick(parentKey, item)}
+      headersOnly={true}
+      getTabId={getTabId}
+    >
+      {tabs &&
+        tabs.map((tab) => {
+          return (
+            <PivotItem
+              key={tab.key}
+              headerText={t(tab.name)}
+              itemKey={tab.key}
+              itemIcon={tab.icon}
+            >
+              {tab.render}
+            </PivotItem>
+          );
+        })}
+    </Pivot>
   );
 }

@@ -13,11 +13,11 @@ import {
 import ToolBar from "./toolbar";
 import FormsMenu from "../formsmenu";
 import { PageContainer } from "components/styled/pagecontainer";
-import IWorkplaceConfiguration, { PivotTabs } from "models/workplace";
+import IWorkplaceConfiguration, { tabSchema } from "models/workplace";
 import { selectWorkplaceConfig, setLatestFormTab, setConfiguration } from "store/slices/workplaceslice";
 
 type PivotBarProps = {
-  tabs: PivotTabs[];
+  tabs: tabSchema[];
 };
 
 export default function PivotBar(props: PivotBarProps) {
@@ -81,7 +81,7 @@ export default function PivotBar(props: PivotBarProps) {
     }
   };
 
-  // Tollbar Animation Controls
+  // Tollbar Animation State & Controls
   const [fixToolBar, setFixToolBar] = useState(true)
 
   const [showToolBar, setShowToolBar] = useState(true)

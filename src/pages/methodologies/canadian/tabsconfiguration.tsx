@@ -20,9 +20,9 @@ import GuidesTutorials from "pages/methodologies/canadian/tutorials/guidestutori
 import Tutorials from "pages/methodologies/canadian/tutorials/methodologytutorials";
 import OutcomesTutorial from "pages/methodologies/canadian/tutorials/outcomestutorial";
 import IndicatorsTutorial from "pages/methodologies/canadian/tutorials/indicatorstutorial";
-import { PivotTabs } from "models/workplace";
+import { tabSchema } from "models/workplace";
 
-const tabsConfiguration: PivotTabs[] = [
+const tabsConfiguration: tabSchema[] = [
   {
     key: "key1",
     name: "wikiml",

@@ -9,10 +9,10 @@ import {
 
 import PagesTabs from "./pagestabs";
 import AddButton from "./addbutton";
-import { PivotTabs } from "models/workplace";
+import { tabSchema } from "models/workplace";
 
 type FormsMenuProps = {
-  tab: PivotTabs;
+  tab: tabSchema;
   defaultKey?: string;
   getTabId: (itemKey: string, index: number) => string;
   handleOnClick: (parentkey: string, item?: PivotItem) => void;
