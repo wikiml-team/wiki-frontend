@@ -31,7 +31,7 @@ export type PivotTabs = {
   onClick?: Function;
 };
 
-export const maintabs: PivotTabs[] = [
+const tabsConfiguration: PivotTabs[] = [
   {
     key: "key1",
     name: "wikiml",
@@ -174,3 +174,5 @@ export const maintabs: PivotTabs[] = [
     render: <Label>Pivot #5</Label>,
   },
 ];
+
+export default tabsConfiguration;

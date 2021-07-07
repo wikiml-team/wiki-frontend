@@ -1,5 +1,5 @@
-import { IPartialTheme, loadTheme } from "@fluentui/react";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IPartialTheme, ITheme, loadTheme } from "@fluentui/react";
 import {
   themeExcel,
   themeWord,
@@ -12,7 +12,7 @@ const themeSlice = createSlice({
   name: "theme",
   initialState: themeWord,
   reducers: {
-    setTheme: (state, action) => {
+    setTheme: (state: ITheme, action: PayloadAction<string>) => {
       const { payload } = action;
 
       switch (payload) {
@@ -31,19 +31,19 @@ const themeSlice = createSlice({
       }
       loadTheme(state as IPartialTheme);
     },
-    setThemeWord: (state) => {
+    setThemeWord: (state: ITheme) => {
       state = themeWord;
       loadTheme(themeWord);
     },
-    setThemeExcel: (state) => {
+    setThemeExcel: (state: ITheme) => {
       state = themeExcel;
       loadTheme(themeExcel);
     },
-    setThemePowerPoint: (state) => {
+    setThemePowerPoint: (state: ITheme) => {
       state = themePowerPoint;
       loadTheme(themePowerPoint);
     },
-    setThemeTeams: (state) => {
+    setThemeTeams: (state: ITheme) => {
       state = themeTeams;
       loadTheme(themeTeams);
     },

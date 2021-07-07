@@ -9,8 +9,7 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { PivotTabs } from "../mainmenu/maintabs";
-import AddButton from "./addbutton";
+import { PivotTabs } from "pages/methodologies/canadian/tabsconfiguration";
 
 type PagesTabProps = {
   tabs?: PivotTabs[];
@@ -94,7 +93,6 @@ export default function PagesTabs(props: PagesTabProps) {
             );
           })}
       </Pivot>
-      {addButton && <AddButton />}
     </React.Fragment>
   );
 }

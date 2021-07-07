@@ -1,22 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
-import IState, { WorkplaceConfiguration } from "models/state";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import IState from "models/state";
+import IWorkplaceConfiguration from "models/workplace";
 
-const initialState: WorkplaceConfiguration = {
-    PivotTab: "key1",
-    PageTab: "key1",
+const initialState: IWorkplaceConfiguration = {
+    latestMenuTab: "key1",
+    latestFormTab: "key1",
 };
 
 const workplaceSlice = createSlice({
     name: "workplace",
     initialState,
     reducers: {
-        setCurrentWorkplace: (state, action) => {
-            state = action.payload;
+        setLatestFormTab: (state: IWorkplaceConfiguration, action: PayloadAction<{ tab: string }>) => {
+            state.latestFormTab = action.payload.tab;
+            return state;
         },
     },
 });
 
 export const selectWorkplaceConfig = (state: IState) => state.workplace;
-export const { setCurrentWorkplace } = workplaceSlice.actions;
+export const { setLatestFormTab } = workplaceSlice.actions;
 
 export default workplaceSlice.reducer;

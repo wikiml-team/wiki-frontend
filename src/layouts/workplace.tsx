@@ -8,6 +8,8 @@ const WorkplaceLayout: FunctionComponent = (props) => {
     <React.Fragment>
       <CommandMenu />
       <MainMenu />
+      {/* children or PageContainer */}
+      {/* Footer */}
     </React.Fragment>
   );
 };

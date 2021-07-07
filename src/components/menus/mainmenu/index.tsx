@@ -2,9 +2,9 @@ import React from "react";
 
 import PivotBar from "components/menus/mainmenu/pivotbar";
 import TeamPile from "components/menus/mainmenu/teampile";
-import { maintabs } from "./maintabs";
+import tabsConfiguration from "pages/methodologies/canadian/tabsconfiguration";
 
-const tabs = maintabs;
+const tabs = tabsConfiguration;
 
 export default function MainMenu() {
   return (

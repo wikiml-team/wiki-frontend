@@ -1,4 +1,5 @@
 import React, { ReactNode, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useTransition, animated } from "react-spring"
 import {
@@ -9,13 +10,15 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { PivotTabs } from "./maintabs";
+import { PivotTabs } from "pages/methodologies/canadian/tabsconfiguration";
 import ToolBar from "./toolbar";
 import FormsMenu from "../formsmenu";
 import GeneralForm from "pages/methodologies/canadian/projectforms/generalform";
 import SpecificationsForm from "pages/methodologies/canadian/licitationforms/specificationsform";
 import FormsTutorials from "pages/methodologies/canadian/tutorials/formstutorial";
 import { PageContainer } from "components/styled/pagecontainer";
+import IWorkplaceConfiguration from "models/workplace";
+import { selectWorkplaceConfig, setLatestFormTab } from "store/slices/workplaceslice";
 
 type StringDic = {
   [index: string]: string;
@@ -30,6 +33,8 @@ type PivotBarProps = {
 };
 
 export default function PivotBar(props: PivotBarProps) {
+  const { tabs } = props;
+
   // STYLES
   const { palette } = useTheme();
 
@@ -64,17 +69,13 @@ export default function PivotBar(props: PivotBarProps) {
   };
 
   // LOGIC
-  const { tabs } = props;
   const { t } = useTranslation("menu");
 
-  const [fixToolBar, setFixToolBar] = useState(true)
 
-  const [showToolBar, setShowToolBar] = useState(true)
-  const toolBarTransition = useTransition(showToolBar, {
-    from: { x: 0, y: -10, opacity: 0 },
-    enter: { x: 0, y: 0, opacity: 1 },
-    leave: { x: 0, y: -10, opacity: 0 },
-  })
+  // Tabs State
+  const dispatch = useDispatch();
+
+  const { latestMenuTab, latestFormTab }: IWorkplaceConfiguration = useSelector(selectWorkplaceConfig);
 
   const [selectedPageTabs, setSelectedPageTabs] = useState<StringDic>({
     key1: "key1",
@@ -94,7 +95,6 @@ export default function PivotBar(props: PivotBarProps) {
     key6: <React.Fragment />,
   });
 
-  const [currentPage, setCurrentPage] = useState("key1");
 
 
   const getTabId = (itemKey: string) => {
@@ -103,10 +103,14 @@ export default function PivotBar(props: PivotBarProps) {
 
   const handlePageTabOnClick = (parentkey: string, item?: PivotItem) => {
     if (item) {
+      const itemkey = item.props.itemKey!;
+
       let newTabsState = selectedPageTabs;
       newTabsState[parentkey] = item.props.itemKey!;
       setSelectedPageTabs(newTabsState);
-      setCurrentPage(item.props.itemKey!);
+
+      // Update current page
+      dispatch(setLatestFormTab({ tab: itemkey }));
 
       let newFormsRenderedState = lastFormsRendered;
       newFormsRenderedState[parentkey] = item.props.children;
@@ -114,12 +118,22 @@ export default function PivotBar(props: PivotBarProps) {
     }
   };
 
-  const handleTollBarOnClose = (item: any) => {
+  // Tollbar Animation Controls
+  const [fixToolBar, setFixToolBar] = useState(true)
+
+  const [showToolBar, setShowToolBar] = useState(true)
+  const toolBarTransition = useTransition(showToolBar, {
+    from: { x: 0, y: -10, opacity: 0 },
+    enter: { x: 0, y: 0, opacity: 1 },
+    leave: { x: 0, y: -10, opacity: 0 },
+  })
+
+  const handleToolbarOnClose = (item: any) => {
     setShowToolBar(false);
     setFixToolBar(false);
   }
 
-  const handleTollBarOnFixed = (item: any) => {
+  const handleToolbarOnFix = (item: any) => {
     setFixToolBar(true);
   }
 
@@ -137,11 +151,11 @@ export default function PivotBar(props: PivotBarProps) {
 
             {toolBarTransition(
               (style: any, item: any) => item &&
-                <animated.div style={style}><ToolBar isFixed={fixToolBar} handleOnClose={handleTollBarOnClose} handleOnFix={handleTollBarOnFixed}>{tab.render}</ToolBar></animated.div>
+                <animated.div style={style}><ToolBar isFixed={fixToolBar} handleOnClose={handleToolbarOnClose} handleOnFix={handleToolbarOnFix}>{tab.render}</ToolBar></animated.div>
             )}
 
             <PageContainer
-              aria-labelledby={getTabId(currentPage)}
+              aria-labelledby={getTabId(latestFormTab)}
             >
               {lastFormsRendered[tab.key]}
             </PageContainer>
