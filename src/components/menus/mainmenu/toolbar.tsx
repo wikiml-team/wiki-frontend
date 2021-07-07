@@ -1,4 +1,11 @@
-import { mergeStyleSets, useTheme, IconButton, BaseButton, Stack, IStackItemStyles, IStackItemProps, IStackProps } from "@fluentui/react";
+import {
+  useTheme,
+  IconButton,
+  BaseButton,
+  Stack,
+  IStackItemProps,
+  IStackProps
+} from "@fluentui/react";
 import { FunctionComponent, MouseEventHandler } from "react";
 
 type ToolBarProps = {

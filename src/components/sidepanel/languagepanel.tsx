@@ -19,7 +19,7 @@ export default function LanguagePanel() {
     event: React.FormEvent<HTMLDivElement>,
     item?: IDropdownOption<any>
   ) => {
-    if (item) dispatch(setLanguage(item.key));
+    if (item) dispatch(setLanguage(item.key.toString()));
   };
 
   const stackTokens: IStackTokens = { childrenGap: 20 };
@@ -43,7 +43,7 @@ export default function LanguagePanel() {
         label={t("langdata")}
         placeholder={t("selectlang")}
         options={suportedLangs}
-        onChange={() => {}}
+        onChange={() => { }}
       />
     </Stack>
   );

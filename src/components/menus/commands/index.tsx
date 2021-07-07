@@ -64,14 +64,14 @@ export default function CommandMenu() {
       <CommandBar
         buttonAs={CustomBarButton}
         items={items}
-        farItems={faritems(OpenLanguagePanel, OpenSettingsPanel, palette)}
+        farItems={faritems(OpenLanguagePanel, OpenSettingsPanel)}
         overflowItems={overflowItems}
         overflowButtonAs={CustomOverflowButton}
         overflowButtonProps={overflowProps(palette)}
         ariaLabel="Use left and right arrow keys to navigate between commands"
         styles={comandBarStyles}
       />
-      
+
       <SidePanel
         header={t("sidepanel:headerlang")}
         content={<LanguagePanel />}
