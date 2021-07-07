@@ -20,16 +20,7 @@ import GuidesTutorials from "pages/methodologies/canadian/tutorials/guidestutori
 import Tutorials from "pages/methodologies/canadian/tutorials/methodologytutorials";
 import OutcomesTutorial from "pages/methodologies/canadian/tutorials/outcomestutorial";
 import IndicatorsTutorial from "pages/methodologies/canadian/tutorials/indicatorstutorial";
-
-export type PivotTabs = {
-  key: string;
-  name: string;
-  icon: string;
-  render?: JSX.Element;
-  addtabs?: boolean;
-  childtabs?: PivotTabs[];
-  onClick?: Function;
-};
+import { PivotTabs } from "models/workplace";
 
 const tabsConfiguration: PivotTabs[] = [
   {

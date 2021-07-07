@@ -9,11 +9,10 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { PivotTabs } from "pages/methodologies/canadian/tabsconfiguration";
+import { PivotTabs } from "models/workplace";
 
 type PagesTabProps = {
   tabs?: PivotTabs[];
-  addButton?: boolean;
   defaultKey?: string;
   parentKey: string;
   getTabId: (itemKey: string, index: number) => string;
@@ -23,7 +22,6 @@ type PagesTabProps = {
 export default function PagesTabs(props: PagesTabProps) {
   const {
     tabs,
-    addButton,
     handleOnClick,
     getTabId,
     parentKey,
@@ -66,7 +64,6 @@ export default function PagesTabs(props: PagesTabProps) {
   };
 
   return (
-    <React.Fragment>
       <Pivot
         linkFormat="tabs"
         styles={pivotStyles}
@@ -93,6 +90,5 @@ export default function PagesTabs(props: PagesTabProps) {
             );
           })}
       </Pivot>
-    </React.Fragment>
   );
 }

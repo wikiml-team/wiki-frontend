@@ -9,7 +9,7 @@ import {
 
 import PagesTabs from "./pagestabs";
 import AddButton from "./addbutton";
-import { PivotTabs } from "pages/methodologies/canadian/tabsconfiguration";
+import { PivotTabs } from "models/workplace";
 
 type FormsMenuProps = {
   tab: PivotTabs;
@@ -50,7 +50,6 @@ export default function FormsMenu(props: FormsMenuProps) {
     <Stack {...stackProps}>
       <PagesTabs
         tabs={tab.childtabs}
-        addButton={tab.addtabs}
         parentKey={tab.key}
         defaultKey={defaultKey}
         handleOnClick={handleOnClick}
