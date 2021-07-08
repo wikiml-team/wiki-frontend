@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { useTransition, animated } from "react-spring"
 import {
   FontSizes,
   IPivotStyles,
@@ -10,16 +9,16 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import ToolBar from "./toolbar";
 import { tabSchema } from "models/workplace";
 import { setLatestMenuTab } from "store/slices/workplaceslice";
 
 type PivotBarProps = {
   tabs: tabSchema[];
+  setShowToolBar: Function;
 };
 
 export default function PivotBar(props: PivotBarProps) {
-  const { tabs } = props;
+  const { tabs, setShowToolBar } = props;
 
   // STYLES
   const { palette } = useTheme();
@@ -70,25 +69,6 @@ export default function PivotBar(props: PivotBarProps) {
     }
   }
 
-  // Tollbar Animation State & Controls
-  const [fixToolBar, setFixToolBar] = useState(true)
-
-  const [showToolBar, setShowToolBar] = useState(true)
-  const toolBarTransition = useTransition(showToolBar, {
-    from: { x: 0, y: -10, opacity: 0 },
-    enter: { x: 0, y: 0, opacity: 1 },
-    leave: { x: 0, y: -10, opacity: 0 },
-  })
-
-  const handleToolbarOnClose = (item: any) => {
-    setShowToolBar(false);
-    setFixToolBar(false);
-  }
-
-  const handleToolbarOnFix = (item: any) => {
-    setFixToolBar(true);
-  }
-
   return (
     <Pivot
       linkFormat="tabs"
@@ -103,18 +83,7 @@ export default function PivotBar(props: PivotBarProps) {
             itemKey={tab.key}
             headerText={t(tab.name)}
             itemIcon={tab.icon}
-
-          >
-            {toolBarTransition(
-              (style: any, item: any) => item &&
-                <animated.div style={style}>
-                  <ToolBar isFixed={fixToolBar} handleOnClose={handleToolbarOnClose} handleOnFix={handleToolbarOnFix}>
-                    {/* {tab.render} */}
-                  </ToolBar>
-                </animated.div>
-            )}
-
-          </PivotItem>
+          />
         );
       })}
     </Pivot>
