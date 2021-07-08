@@ -15,21 +15,13 @@ type PagesTabProps = {
   tabs?: tabSchema[];
   defaultKey?: string;
   parentKey: string;
-  getTabId: (itemKey: string, index: number) => string;
   handleOnClick: (parentkey: string, item?: PivotItem) => void;
 };
 
 export default function PagesTabs(props: PagesTabProps) {
 
   // LOGIC
-
-  const {
-    tabs,
-    handleOnClick,
-    getTabId,
-    parentKey,
-    defaultKey,
-  } = props;
+  const { tabs, handleOnClick, parentKey, defaultKey, } = props;
 
   const { t } = useTranslation("pages");
 
@@ -76,7 +68,6 @@ export default function PagesTabs(props: PagesTabProps) {
       styles={pivotStyles}
       onLinkClick={handleMenuOnClick}
       headersOnly={true}
-      getTabId={getTabId}
       overflowBehavior="menu"
     >
       {tabs &&

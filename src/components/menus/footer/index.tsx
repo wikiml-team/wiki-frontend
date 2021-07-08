@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import {
   ISeparatorStyles,
   IStackProps,
@@ -10,19 +11,16 @@ import {
 import PagesTabs from "./pagestabs";
 import AddButton from "./addbutton";
 import { tabSchema } from "models/workplace";
+import { setConfiguration } from "store/slices/workplaceslice";
 
-type FormsMenuProps = {
+type FooterProps = {
   tab: tabSchema;
-  defaultKey?: string;
-  getTabId: (itemKey: string, index: number) => string;
-  handleOnClick: (parentkey: string, item?: PivotItem) => void;
+  selectedkey: string;
 };
 
-export default function FormsMenu(props: FormsMenuProps) {
-  const { tab, handleOnClick, getTabId, defaultKey } = props;
+export default function Footer(props: FooterProps) {
 
-  console.log("tab: ", tab)
-  console.log("defaultKey: ", defaultKey)
+  const { tab, selectedkey } = props;
 
   // STYLES
   const { palette } = useTheme();
@@ -49,18 +47,29 @@ export default function FormsMenu(props: FormsMenuProps) {
     },
   };
 
+  // LOGIC
+  const dispatch = useDispatch();
+
+  const handleTabOnClick = (parentkey: string, item?: PivotItem) => {
+    if (item) {
+      const itemkey = item.props.itemKey!;
+
+      // Update current configuration
+      dispatch(setConfiguration({ key: parentkey, formtab: itemkey, render: item.props.children }))
+    }
+  };
+
   return (
     <Stack {...stackProps}>
       <PagesTabs
         tabs={tab.childtabs}
         parentKey={tab.key}
-        defaultKey={defaultKey}
-        handleOnClick={handleOnClick}
-        getTabId={getTabId}
+        defaultKey={selectedkey}
+        handleOnClick={handleTabOnClick}
       />
-      {/* {tab.addtabs && <AddButton />} */}
+      {tab.addtabs && <AddButton />}
 
-      {/* <Separator vertical styles={separatorStyles} /> */}
+      <Separator vertical styles={separatorStyles} />
 
       {/* Here goes the horizontal scrollbar when needed for the page */}
     </Stack>
