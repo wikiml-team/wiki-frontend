@@ -21,6 +21,9 @@ type FormsMenuProps = {
 export default function FormsMenu(props: FormsMenuProps) {
   const { tab, handleOnClick, getTabId, defaultKey } = props;
 
+  console.log("tab: ", tab)
+  console.log("defaultKey: ", defaultKey)
+
   // STYLES
   const { palette } = useTheme();
 
@@ -55,9 +58,9 @@ export default function FormsMenu(props: FormsMenuProps) {
         handleOnClick={handleOnClick}
         getTabId={getTabId}
       />
-      {tab.addtabs && <AddButton />}
+      {/* {tab.addtabs && <AddButton />} */}
 
-      <Separator vertical styles={separatorStyles} />
+      {/* <Separator vertical styles={separatorStyles} /> */}
 
       {/* Here goes the horizontal scrollbar when needed for the page */}
     </Stack>

@@ -28,12 +28,17 @@ export type tabSchema = {
 };
 
 export const tabSchemaOperations = {
-  findkey(tabs: tabSchema[], key: string) {
-    return tabs.find(tab => tab.key === key)
+  findkey(tabs: tabSchema[], key: string): tabSchema {
+    return tabs.find(tab => tab.key === key) || {} as tabSchema
   },
 
-  findChildkey(tabs: tabSchema[], key: string, childkey: string) {
+  findChildkey(tabs: tabSchema[], key: string, childkey: string): tabSchema {
     const parenttab = tabs.find(tab => tab.key === key) || {} as tabSchema
-    return parenttab.childtabs ? parenttab.childtabs.find(tab => tab.key == childkey) : undefined
+    let child;
+
+    if (parenttab.childtabs) {
+      child = parenttab.childtabs.find(tab => tab.key === childkey)
+    }
+    return child || {} as tabSchema
   }
 };

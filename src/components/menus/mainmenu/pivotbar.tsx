@@ -13,8 +13,8 @@ import {
 import ToolBar from "./toolbar";
 import FormsMenu from "../formsmenu";
 import { PageContainer } from "components/styled/pagecontainer";
-import IWorkplaceConfiguration, { tabSchema } from "models/workplace";
-import { selectWorkplaceConfig, setLatestFormTab, setConfiguration } from "store/slices/workplaceslice";
+import IWorkplaceConfiguration, { tabSchema, tabSchemaOperations } from "models/workplace";
+import { selectWorkplaceConfig, setLatestMenuTab, setLatestFormTab, setConfiguration } from "store/slices/workplaceslice";
 
 type PivotBarProps = {
   tabs: tabSchema[];
@@ -81,6 +81,19 @@ export default function PivotBar(props: PivotBarProps) {
     }
   };
 
+  const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement>) => {
+    // Open toolbar
+    setShowToolBar(true)
+
+    if (item) {
+      console.log("ITEM: ", item)
+      // console.log("ITEM KEY: ", item.key)
+      const itemkey = item.props.itemKey!;
+      // Update current menu tab
+      dispatch(setLatestMenuTab({ tab: itemkey }));
+    }
+  }
+
   // Tollbar Animation State & Controls
   const [fixToolBar, setFixToolBar] = useState(true)
 
@@ -104,19 +117,26 @@ export default function PivotBar(props: PivotBarProps) {
     <React.Fragment>
 
       <Pivot
-        aria-label="Main menu tabs"
         linkFormat="tabs"
-        defaultSelectedKey="1"
+        defaultSelectedKey="2"
         styles={pivotStyles}
-        onLinkClick={(item?: PivotItem, ev?: React.MouseEvent<HTMLElement>) => setShowToolBar(true)}
+        onLinkClick={handleMenuOnClick}
       >
         {tabs.map((tab) => {
           return (
-            <PivotItem key={tab.key} headerText={t(tab.name)} itemIcon={tab.icon}>
-
+            <PivotItem
+              key={tab.key}
+              itemKey={tab.key}
+              headerText={t(tab.name)}
+              itemIcon={tab.icon}
+            >
               {toolBarTransition(
                 (style: any, item: any) => item &&
-                  <animated.div style={style}><ToolBar isFixed={fixToolBar} handleOnClose={handleToolbarOnClose} handleOnFix={handleToolbarOnFix}>{tab.render}</ToolBar></animated.div>
+                  <animated.div style={style}>
+                    <ToolBar isFixed={fixToolBar} handleOnClose={handleToolbarOnClose} handleOnFix={handleToolbarOnFix}>
+                      {/* {tab.render} */}
+                    </ToolBar>
+                  </animated.div>
               )}
 
               <PageContainer
@@ -124,16 +144,17 @@ export default function PivotBar(props: PivotBarProps) {
                 {configuration[tab.key].render}
               </PageContainer>
 
-              <FormsMenu
-                tab={tab}
-                defaultKey={configuration[tab.key].formtab}
-                handleOnClick={handlePageTabOnClick}
-                getTabId={getTabId}
-              />
+
             </PivotItem>
           );
         })}
       </Pivot>
+      <FormsMenu
+        tab={tabSchemaOperations.findkey(tabs, latestMenuTab)}
+        defaultKey={configuration[tabSchemaOperations.findkey(tabs, latestMenuTab).key].formtab}
+        handleOnClick={handlePageTabOnClick}
+        getTabId={getTabId}
+      />
     </React.Fragment>
   );
 }

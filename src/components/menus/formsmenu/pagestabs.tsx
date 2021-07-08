@@ -20,6 +20,9 @@ type PagesTabProps = {
 };
 
 export default function PagesTabs(props: PagesTabProps) {
+
+  // LOGIC
+
   const {
     tabs,
     handleOnClick,
@@ -30,8 +33,11 @@ export default function PagesTabs(props: PagesTabProps) {
 
   const { t } = useTranslation("pages");
 
+  const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement, MouseEvent>) => handleOnClick(parentKey, item)
+
   // STYLES
   const { palette } = useTheme();
+
   const pivotStyles: Partial<IPivotStyles> = {
     root: {
       height: 34,
@@ -66,23 +72,20 @@ export default function PagesTabs(props: PagesTabProps) {
   return (
     <Pivot
       linkFormat="tabs"
-      styles={pivotStyles}
-      aria-label="Pages Pivot"
       selectedKey={defaultKey}
-      onLinkClick={(
-        item?: PivotItem,
-        ev?: React.MouseEvent<HTMLElement, MouseEvent>
-      ) => handleOnClick(parentKey, item)}
+      styles={pivotStyles}
+      onLinkClick={handleMenuOnClick}
       headersOnly={true}
       getTabId={getTabId}
+      overflowBehavior="menu"
     >
       {tabs &&
         tabs.map((tab) => {
           return (
             <PivotItem
               key={tab.key}
-              headerText={t(tab.name)}
               itemKey={tab.key}
+              headerText={t(tab.name)}
               itemIcon={tab.icon}
             >
               {tab.render}

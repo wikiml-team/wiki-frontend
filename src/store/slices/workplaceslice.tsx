@@ -8,7 +8,7 @@ import SpecificationsForm from "pages/methodologies/canadian/licitationforms/spe
 import FormsTutorials from "pages/methodologies/canadian/tutorials/formstutorial";
 
 const initialState: IWorkplaceConfiguration = {
-    latestMenuTab: "key1",
+    latestMenuTab: "key2",
     latestFormTab: "key1",
     configuration: {
         key1: { formtab: "key1", render: <React.Fragment /> },
@@ -24,11 +24,11 @@ const workplaceSlice = createSlice({
     name: "workplace",
     initialState,
     reducers: {
-        setLatestFormTab: (state: IWorkplaceConfiguration, action: PayloadAction<{ tab: string }>) => {
-            state.latestFormTab = action.payload.tab;
-        },
         setLatestMenuTab: (state: IWorkplaceConfiguration, action: PayloadAction<{ tab: string }>) => {
             state.latestMenuTab = action.payload.tab;
+        },
+        setLatestFormTab: (state: IWorkplaceConfiguration, action: PayloadAction<{ tab: string }>) => {
+            state.latestFormTab = action.payload.tab;
         },
         setConfiguration: (state: IWorkplaceConfiguration, action: PayloadAction<{ key: string, formtab: string, render: ReactNode }>) => {
             const { key, formtab, render } = action.payload;
@@ -38,6 +38,6 @@ const workplaceSlice = createSlice({
 });
 
 export const selectWorkplaceConfig = (state: IState) => state.workplace;
-export const { setLatestFormTab, setConfiguration } = workplaceSlice.actions;
+export const { setLatestMenuTab, setLatestFormTab, setConfiguration } = workplaceSlice.actions;
 
 export default workplaceSlice.reducer;
