@@ -4,6 +4,7 @@ import { ReactNode } from "react"
 type FormRender = {
   formtab: string;
   render: ReactNode;
+  tools: ReactNode;
 }
 
 type FormRenderDictionary = {

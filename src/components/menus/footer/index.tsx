@@ -5,7 +5,6 @@ import {
   PivotItem,
   Separator,
   Stack,
-  Sticky,
   useTheme,
 } from "@fluentui/react";
 

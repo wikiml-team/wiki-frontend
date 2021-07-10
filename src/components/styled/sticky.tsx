@@ -13,9 +13,6 @@ type StickyProps = {
 }
 
 export const Sticky: React.FunctionComponent<StickyProps> = (props) => {
-
-    console.log(props)
-
     return (
         <Fixed direction={props.direction}>{props.children}</Fixed>
     )
