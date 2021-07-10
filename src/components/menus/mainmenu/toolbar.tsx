@@ -8,8 +8,6 @@ import {
 import { FunctionComponent, useEffect, useRef } from "react";
 import { animated } from "react-spring";
 
-
-
 type ToolBarProps = {
   isFixed: boolean;
   handleOnClose: () => void;
@@ -52,7 +50,6 @@ const ToolBar: FunctionComponent<ToolBarProps> = (props) => {
             handleOnClose();
         }
       }
-
 
       // Bind the event listener
       document.addEventListener("mousedown", handleClickOutside);

@@ -13,6 +13,7 @@ import MainMenu from "components/menus/mainmenu";
 import ToolBar from "components/menus/mainmenu/toolbar";
 import Footer from "components/menus/footer";
 
+
 const WorkplaceLayout: FunctionComponent = (props) => {
 
   const tabs = tabsConfiguration;
@@ -35,8 +36,10 @@ const WorkplaceLayout: FunctionComponent = (props) => {
   })
 
   const pageSpring = useSpring({
-    margin: showToolBar ? "180px 20px 0 20px" : "80px 20px 0 20px",
-    from: { margin: "180px 20px 0 20px" },
+    marginTop: showToolBar ? 180 : 80,
+    from: {
+      marginTop: 180,
+    },
   })
 
   const handleToolbarOnClose = () => {
@@ -58,9 +61,8 @@ const WorkplaceLayout: FunctionComponent = (props) => {
         </ToolBar>
       </Sticky>
 
-      <PageContainer spring={pageSpring}>
+      <PageContainer spring={pageSpring} scrollHeight={showToolBar ? "calc(100vh - 220px)" : "calc(100vh - 110px)"}>
         {page}
-        {/* render or children in case we decide to use URL */}
       </PageContainer>
 
       <Footer tab={footertab} selectedkey={selectedkey} />
