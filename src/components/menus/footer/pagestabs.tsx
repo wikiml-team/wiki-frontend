@@ -68,7 +68,6 @@ export default function PagesTabs(props: PagesTabProps) {
       styles={pivotStyles}
       onLinkClick={handleMenuOnClick}
       headersOnly={true}
-      overflowBehavior="menu"
     >
       {tabs &&
         tabs.map((tab) => {
