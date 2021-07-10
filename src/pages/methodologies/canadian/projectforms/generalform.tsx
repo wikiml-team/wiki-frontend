@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { string, object, number, setLocale } from "yup";
 import { Formik, Form, Field } from "formik";
@@ -38,17 +38,14 @@ type formValuesType = {
   duration: number;
   donor: string;
   approvedBudget: number;
-  approvedDate: Date;
-  initialDate: Date;
-  finalDate: Date;
+  approvedDate: Date | string;
+  initialDate: Date | string;
+  finalDate: Date | string;
 };
 
 export default function GeneralForm() {
   // STYLE
   const classes = mergeStyleSets({
-    root: {
-      padding: "0 5% 50px 5%",
-    },
     circle: {
       height: 40,
       width: 40,
@@ -92,11 +89,11 @@ export default function GeneralForm() {
   const { t } = useTranslation(["general-form", "status"]);
   const project = useSelector(selectProject);
 
-  const [minDate, setMinDate] = useState(project.initialDate as Date)
+  const [initialDate, setInitialDate] = useState(project.initialDate as Date)
   const [approvedDate, setApprovedDate] = useState(project.approvedDate as Date)
 
   const handleSelectInitialDate = (date: Date) => {
-    setMinDate(date);
+    setInitialDate(date);
   }
 
   const handleSelectApprovedDate = (date: Date) => {
@@ -183,7 +180,7 @@ export default function GeneralForm() {
       validationSchema={validationSchema}
       onSubmit={handleOnSubmit}
     >
-      <Form className={classes.root}>
+      <Form>
         <Grid dir="ltr">
           {/* Names */}
           <Row>
@@ -349,7 +346,7 @@ export default function GeneralForm() {
                   label={t("finaldate-field")}
                   name="finalDate"
                   component={DateFieldInput}
-                  minDate={minDate}
+                  minDate={initialDate}
                   sizeLg={6}
                 />
               </Row>
@@ -390,7 +387,6 @@ const StandardField = (props: any) => {
 };
 
 const TextField = ({ grow, ...props }: any) => {
-  console.log(props.minDate || "not minDate")
   return (
     <Col sizeSm={props.sizeSm || 2} sizeMd={props.sizeMd || 6} sizeLg={props.sizeLg || 3}>
       <Field {...props} />

@@ -20,25 +20,9 @@ import GuidesTutorials from "pages/methodologies/canadian/tutorials/guidestutori
 import Tutorials from "pages/methodologies/canadian/tutorials/methodologytutorials";
 import OutcomesTutorial from "pages/methodologies/canadian/tutorials/outcomestutorial";
 import IndicatorsTutorial from "pages/methodologies/canadian/tutorials/indicatorstutorial";
+import { tabSchema } from "models/workplace";
 
-export type PivotTabs = {
-  key: string;
-  name: string;
-  icon: string;
-  render: JSX.Element;
-  addtabs?: boolean;
-  childtabs?: FormTabs[];
-  url?: string;
-};
-
-export type FormTabs = {
-  key: string;
-  name: string;
-  icon: string;
-  url?: string;
-};
-
-export const tabsConfiguration: PivotTabs[] = [
+const tabsConfiguration: tabSchema[] = [
   {
     key: "key1",
     name: "wikiml",
@@ -52,48 +36,48 @@ export const tabsConfiguration: PivotTabs[] = [
     render: <Label>Pivot #1</Label>,
     addtabs: true,
     childtabs: [
-      { key: "key1", name: "general", icon: "Info", url: "/workplace/project/canadian/general" },
+      { key: "key1", name: "general", icon: "Info", render: <GeneralForm /> },
       {
         key: "key2",
         name: "stakeholders",
         icon: "Commitments",
-        url: "/workplace/project/canadian/stakeholdres"
+        render: <StakeholdersForm />,
       },
       {
         key: "key3",
         name: "logicmodel",
         icon: "LargeGrid",
-        url: "/workplace/project/canadian/logicmodel"
+        render: <LogicModelForm />,
       },
       {
         key: "key4",
         name: "activitiesmatrix",
         icon: "GripperDotsVertical",
-        url: "/workplace/project/canadian/activitiesmatrix"
+        render: <ActivitiesMatrixForm />,
       },
       {
         key: "key5",
         name: "performance",
         icon: "GripperDotsVertical",
-        url: "/workplace/project/canadian/performance"
+        render: <PerformanceMeasureForm />,
       },
       {
         key: "key6",
         name: "risks",
         icon: "DoubleDownArrow",
-        url: "/workplace/project/canadian/risks"
+        render: <RisksForm />,
       },
       {
         key: "key7",
         name: "budget",
         icon: "PaymentCard",
-        url: "/workplace/project/canadian/budget"
+        render: <BudgetForm />,
       },
       {
         key: "key8",
         name: "reports",
         icon: "BarChart4",
-        url: "/workplace/project/canadian/reports"
+        render: <ReportsForm />,
       },
     ],
   },
@@ -103,24 +87,24 @@ export const tabsConfiguration: PivotTabs[] = [
     icon: "Library",
     render: <Label>Pivot #2</Label>,
     childtabs: [
-      { key: "key1", name: "lot", icon: "OEM", url: "<LotForm /" },
+      { key: "key1", name: "lot", icon: "OEM", render: <LotForm /> },
       {
         key: "key2",
         name: "specifications",
         icon: "PageList",
-        url: "<SpecificationsForm />"
+        render: <SpecificationsForm />,
       },
       {
         key: "key3",
         name: "tecoffer",
         icon: "PageListSolid",
-        url: "<TechnicalOfferForm />"
+        render: <TechnicalOfferForm />,
       },
       {
         key: "key4",
         name: "finoffer",
         icon: "Financial",
-        url: "<FinancialOfferForm />"
+        render: <FinancialOfferForm />,
       },
     ],
   },
@@ -134,37 +118,37 @@ export const tabsConfiguration: PivotTabs[] = [
         key: "key1",
         name: "forms",
         icon: "PageData",
-        url: "<FormsTutorials />"
+        render: <FormsTutorials />,
       },
       {
         key: "key2",
         name: "sectors",
         icon: "Sections",
-        url: "<SectorsTutorials />"
+        render: <SectorsTutorials />,
       },
       {
         key: "key3",
         name: "guides",
         icon: "GUID",
-        url: "<GuidesTutorials />"
+        render: <GuidesTutorials />,
       },
       {
         key: "key4",
         name: "tutorials",
         icon: "Video",
-        url: "<Tutorials />"
+        render: <Tutorials />,
       },
       {
         key: "key5",
         name: "outcomes",
         icon: "ReportDocument",
-        url: "<OutcomesTutorial />"
+        render: <OutcomesTutorial />,
       },
       {
         key: "key6",
         name: "indicators",
         icon: "CRMReport",
-        url: "<IndicatorsTutorial />"
+        render: <IndicatorsTutorial />,
       },
     ],
   },
@@ -181,3 +165,5 @@ export const tabsConfiguration: PivotTabs[] = [
     render: <Label>Pivot #5</Label>,
   },
 ];
+
+export default tabsConfiguration;

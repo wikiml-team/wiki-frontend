@@ -1,37 +1,25 @@
-import React, { ReactNode, useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { useTransition, animated } from "react-spring"
 import {
   FontSizes,
   IPivotStyles,
-  mergeStyleSets,
   Pivot,
   PivotItem,
   useTheme,
-  IconButton
 } from "@fluentui/react";
 
-import { PivotTabs } from "pages/methodologies/canadian/maintabs";
-import ToolBar from "./toolbar";
-import FormsMenu from "../formsmenu";
-import GeneralForm from "pages/methodologies/canadian/projectforms/generalform";
-import SpecificationsForm from "pages/methodologies/canadian/licitationforms/specificationsform";
-import FormsTutorials from "pages/methodologies/canadian/tutorials/formstutorial";
-import { PageContainer } from "components/styled/pagecontainer";
-
-type StringDic = {
-  [index: string]: string;
-};
-
-type NodeDic = {
-  [index: string]: ReactNode;
-};
+import { tabSchema } from "models/workplace";
+import { setLatestMenuTab } from "store/slices/workplaceslice";
 
 type PivotBarProps = {
-  tabs: PivotTabs[];
+  tabs: tabSchema[];
+  setShowToolBar: Function;
 };
 
 export default function PivotBar(props: PivotBarProps) {
+  const { tabs, setShowToolBar } = props;
+
   // STYLES
   const { palette } = useTheme();
 
@@ -66,95 +54,36 @@ export default function PivotBar(props: PivotBarProps) {
   };
 
   // LOGIC
-  const { tabs } = props;
   const { t } = useTranslation("menu");
 
-  const [fixToolBar, setFixToolBar] = useState(true)
+  // Tabs State
+  const dispatch = useDispatch();
 
-  const [showToolBar, setShowToolBar] = useState(true)
-  const toolBarTransition = useTransition(showToolBar, {
-    from: { x: 0, y: -10, opacity: 0 },
-    enter: { x: 0, y: 0, opacity: 1 },
-    leave: { x: 0, y: -10, opacity: 0 },
-  })
+  const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement>) => {
+    setShowToolBar(true)
 
-  const [selectedPageTabs, setSelectedPageTabs] = useState<StringDic>({
-    key1: "key1",
-    key2: "key1",
-    key3: "key1",
-    key4: "key1",
-    key5: "key1",
-    key6: "key1",
-  });
-
-  const [lastFormsRendered, setLastFormsRendered] = useState<NodeDic>({
-    key1: <React.Fragment />,
-    key2: <GeneralForm />,
-    key3: <SpecificationsForm />,
-    key4: <FormsTutorials />,
-    key5: <React.Fragment />,
-    key6: <React.Fragment />,
-  });
-
-  const [currentPage, setCurrentPage] = useState("key1");
-
-
-  const getTabId = (itemKey: string) => {
-    return `pivot_${itemKey}`;
-  };
-
-  const handlePageTabOnClick = (parentkey: string, item?: PivotItem) => {
     if (item) {
-      let newTabsState = selectedPageTabs;
-      newTabsState[parentkey] = item.props.itemKey!;
-      setSelectedPageTabs(newTabsState);
-      setCurrentPage(item.props.itemKey!);
-
-      let newFormsRenderedState = lastFormsRendered;
-      newFormsRenderedState[parentkey] = item.props.children;
-      setLastFormsRendered(newFormsRenderedState);
+      const itemkey = item.props.itemKey!;
+      // Update current menu tab
+      dispatch(setLatestMenuTab({ tab: itemkey }));
     }
-  };
-
-  const handleTollBarOnClose = (item: any) => {
-    setShowToolBar(false);
-    setFixToolBar(false);
-  }
-
-  const handleTollBarOnFixed = (item: any) => {
-    setFixToolBar(true);
   }
 
   return (
     <Pivot
-      aria-label="Main menu tabs"
       linkFormat="tabs"
-      defaultSelectedKey="1"
+      defaultSelectedKey="key2"
       styles={pivotStyles}
-      onLinkClick={(item?: PivotItem, ev?: React.MouseEvent<HTMLElement>) => setShowToolBar(true)}
+      onLinkClick={handleMenuOnClick}
     >
       {tabs.map((tab) => {
         return (
-          <PivotItem key={tab.key} headerText={t(tab.name)} itemIcon={tab.icon}>
-
-            {toolBarTransition(
-              (style: any, item: any) => item &&
-                <animated.div style={style}><ToolBar isFixed={fixToolBar} handleOnClose={handleTollBarOnClose} handleOnFix={handleTollBarOnFixed}>{tab.render}</ToolBar></animated.div>
-            )}
-
-            <PageContainer
-              aria-labelledby={getTabId(currentPage)}
-            >
-                {lastFormsRendered[tab.key]}
-            </PageContainer>
-
-            <FormsMenu
-              tab={tab}
-              defaultKey={selectedPageTabs[tab.key]}
-              handleOnClick={handlePageTabOnClick}
-              getTabId={getTabId}
-            />
-          </PivotItem>
+          <PivotItem
+            key={tab.key}
+            itemKey={tab.key}
+            headerText={t(tab.name)}
+            itemIcon={tab.icon}
+          />
         );
       })}
     </Pivot>

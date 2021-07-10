@@ -1,8 +1,6 @@
 import i18n from "i18n"
 import {
-  FontWeights,
   ICommandBarItemProps,
-  IPalette,
 } from "@fluentui/react";
 
 import { fullscreenToggler } from "components/fullscreentoogler";
@@ -27,14 +25,14 @@ export const items: ICommandBarItemProps[] = [
     iconProps: { iconName: "Share" },
     text: i18n.t('commands:share'),
     iconOnly: true,
-    onClick: () => console.log("Share"),
+    onClick: () => alert("Share"),
   },
   {
     key: "export",
     iconProps: { iconName: "Export" },
     text: i18n.t('commands:export'),
     iconOnly: true,
-    onClick: () => console.log("Export"),
+    onClick: () => alert("Export"),
   },
 ];
 

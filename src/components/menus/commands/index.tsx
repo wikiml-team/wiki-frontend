@@ -23,7 +23,6 @@ export default function CommandMenu() {
     root: {
       height: 36,
       padding: 0,
-      zIndex: 100,
       backgroundColor: palette.themePrimary,
     },
   };
@@ -35,7 +34,6 @@ export default function CommandMenu() {
       left: "50%",
       transform: "translateX(-50%)",
       color: palette.themeLight,
-      zIndex: 999,
     },
   };
 
@@ -71,7 +69,7 @@ export default function CommandMenu() {
         ariaLabel="Use left and right arrow keys to navigate between commands"
         styles={comandBarStyles}
       />
-      
+
       <SidePanel
         header={t("sidepanel:headerlang")}
         content={<LanguagePanel />}

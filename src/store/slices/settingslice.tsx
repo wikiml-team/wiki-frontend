@@ -5,14 +5,14 @@ const HelpSlice = createSlice({
   name: "helpTooltips",
   initialState: true,
   reducers: {
-    toogleHelp: (state) => {
+    toogleHelp: (state: boolean) => {
       return !state;
     },
-    setHelp: (state) => {
-      return (state = true);
+    setHelp: (state: boolean) => {
+      return state = true;
     },
-    removeHelp: (state) => {
-      return (state = false);
+    removeHelp: (state: boolean) => {
+      return state = false;
     },
   },
 });

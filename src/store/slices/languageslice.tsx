@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import IState from "models/state";
 import i18n from "i18n";
 
@@ -6,22 +6,22 @@ const LanguageSlice = createSlice({
   name: "language",
   initialState: i18n.language,
   reducers: {
-    setLanguage: (state, action) => {
+    setLanguage: (state: string, action: PayloadAction<string>) => {
       const { payload } = action;
       i18n.changeLanguage(payload);
-      return (state = payload);
+      return state = payload;
     },
-    setEnglish: (state) => {
+    setEnglish: (state: string) => {
+      state = "en";
       i18n.changeLanguage(state);
-      return (state = "en");
     },
-    setSpanish: (state) => {
+    setSpanish: (state: string) => {
+      state = "es";
       i18n.changeLanguage(state);
-      return (state = "es");
     },
-    setGerman: (state) => {
+    setGerman: (state: string) => {
+      state = "de";
       i18n.changeLanguage(state);
-      return (state = "de");
     },
   },
 });

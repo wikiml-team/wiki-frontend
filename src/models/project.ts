@@ -24,9 +24,9 @@ export default interface IProject {
   // Esto no debería estar aquí sino cogerlo de bd cuando haga falta supongo
   donor: string;
   approvedBudget: number;
-  approvedDate: Date;
-  initialDate: Date;
-  finalDate: Date;
+  approvedDate: Date | string;
+  initialDate: Date | string;
+  finalDate: Date | string;
 }
 
 export enum Sector {
