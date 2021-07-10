@@ -14,7 +14,7 @@ export const PageContainer: React.FunctionComponent<PagecontainerProps> = (props
 
   const { className, spring } = props;
 
-  return <Container className={props.className} ><animated.div style={spring}>{props.children}</animated.div></Container>
+  return <Container className={className} ><animated.div style={spring}>{props.children}</animated.div></Container>
 };
 
 

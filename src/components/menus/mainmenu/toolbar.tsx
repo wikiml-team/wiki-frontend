@@ -1,18 +1,19 @@
 import {
   useTheme,
   IconButton,
-  BaseButton,
   Stack,
   IStackItemProps,
   IStackProps
 } from "@fluentui/react";
-import { FunctionComponent, MouseEventHandler } from "react";
+import { FunctionComponent, useEffect, useRef } from "react";
 import { animated } from "react-spring";
+
+
 
 type ToolBarProps = {
   isFixed: boolean;
-  handleOnClose: MouseEventHandler<BaseButton>;
-  handleOnFix: MouseEventHandler<BaseButton>;
+  handleOnClose: () => void;
+  handleOnFix: () => void;
   transition: Function;
 }
 
@@ -40,20 +41,47 @@ const ToolBar: FunctionComponent<ToolBarProps> = (props) => {
     align: "end"
   };
 
+  // LOGIC
+  function useOutsideAlerter(ref: any) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event: any) {
+        if (ref.current && !ref.current.contains(event.target) && !isFixed) {
+            handleOnClose();
+        }
+      }
+
+
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref, isFixed]);
+  }
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
+
   return transition((style: any, item: any) => item &&
     <animated.div style={style}>
-      <Stack {...stackProps}>
-        <Stack.Item >
-          {children}
-        </Stack.Item>
+      <div ref={wrapperRef}>
+        <Stack {...stackProps} >
+          <Stack.Item >
+            {children}
+          </Stack.Item>
 
-        <Stack.Item {...stackPinProps}>
-          {isFixed ?
-            <IconButton iconProps={{ iconName: 'ChevronUp' }} title="Cancel" ariaLabel="Cancel" onClick={handleOnClose} /> :
-            <IconButton iconProps={{ iconName: 'Pin' }} title="Pin" ariaLabel="Cancel" onClick={handleOnFix} />
-          }
-        </Stack.Item>
-      </Stack>
+          <Stack.Item {...stackPinProps}>
+            {isFixed ?
+              <IconButton iconProps={{ iconName: 'ChevronUp' }} title="Cancel" ariaLabel="Cancel" onClick={(item) => handleOnClose()} /> :
+              <IconButton iconProps={{ iconName: 'Pin' }} title="Pin" ariaLabel="Cancel" onClick={(item) => handleOnFix()} />
+            }
+          </Stack.Item>
+        </Stack>
+      </div>
     </animated.div>
   )
 };

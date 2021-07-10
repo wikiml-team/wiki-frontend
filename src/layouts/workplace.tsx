@@ -17,12 +17,14 @@ const WorkplaceLayout: FunctionComponent = (props) => {
 
   const tabs = tabsConfiguration;
 
-  // Global state variables for tabs configurations
+  // Global state variables
   const { latestMenuTab, configuration }: IWorkplaceConfiguration = useSelector(selectWorkplaceConfig);
+  const tools = configuration[latestMenuTab].tools;
+  const page = configuration[latestMenuTab].render;
   const footertab = tabSchemaOperations.findkey(tabs, latestMenuTab);
   const selectedkey = configuration[latestMenuTab].formtab;
 
-  // Tollbar Animation State & Controls
+  // Toolbar Animation State & Controls
   const [fixToolBar, setFixToolBar] = useState(true)
 
   const [showToolBar, setShowToolBar] = useState(true)
@@ -37,12 +39,12 @@ const WorkplaceLayout: FunctionComponent = (props) => {
     from: { margin: "180px 20px 0 20px" },
   })
 
-  const handleToolbarOnClose = (item: any) => {
+  const handleToolbarOnClose = () => {
     setShowToolBar(false);
     setFixToolBar(false);
   }
 
-  const handleToolbarOnFix = (item: any) => {
+  const handleToolbarOnFix = () => {
     setFixToolBar(true);
   }
 
@@ -52,12 +54,12 @@ const WorkplaceLayout: FunctionComponent = (props) => {
         <CommandMenu />
         <MainMenu tabs={tabs} setShowToolBar={setShowToolBar} />
         <ToolBar transition={toolBarTransition} isFixed={fixToolBar} handleOnClose={handleToolbarOnClose} handleOnFix={handleToolbarOnFix}>
-          {configuration[latestMenuTab].tools}
+          {tools}
         </ToolBar>
       </Sticky>
 
       <PageContainer spring={pageSpring}>
-        {configuration[latestMenuTab].render}
+        {page}
         {/* render or children in case we decide to use URL */}
       </PageContainer>
 
