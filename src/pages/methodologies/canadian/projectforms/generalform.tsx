@@ -46,9 +46,6 @@ type formValuesType = {
 export default function GeneralForm() {
   // STYLE
   const classes = mergeStyleSets({
-    root: {
-      padding: "0 5% 50px 5%",
-    },
     circle: {
       height: 40,
       width: 40,
@@ -183,7 +180,7 @@ export default function GeneralForm() {
       validationSchema={validationSchema}
       onSubmit={handleOnSubmit}
     >
-      <Form className={classes.root}>
+      <Form>
         <Grid dir="ltr">
           {/* Names */}
           <Row>

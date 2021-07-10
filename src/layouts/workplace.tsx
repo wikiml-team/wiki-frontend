@@ -1,31 +1,19 @@
 import React, { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
+import { mergeStyleSets } from "@fluentui/react";
 
 import tabsConfiguration from "pages/methodologies/canadian/tabsconfiguration";
 import IWorkplaceConfiguration, { tabSchemaOperations } from "models/workplace";
 import { selectWorkplaceConfig } from "store/slices/workplaceslice";
 import { PageContainer } from "components/styled/pagecontainer";
+import { Sticky } from "components/styled/sticky"
 
 import CommandMenu from "components/menus/commands/";
 import MainMenu from "components/menus/mainmenu";
 import Footer from "components/menus/footer";
-import { mergeStyleSets } from "@fluentui/react";
+
 
 const WorkplaceLayout: FunctionComponent = (props) => {
-
-  const classes = mergeStyleSets({
-    root: {
-      top: 0,
-      position: "fixed",
-      width: "100%",
-      overflow: "hidden",
-      zIndex: 1
-    },
-    container: {
-      marginTop: 150,
-      paddingTop: 20,
-    }
-  })
 
   const tabs = tabsConfiguration;
 
@@ -35,17 +23,15 @@ const WorkplaceLayout: FunctionComponent = (props) => {
 
   return (
     <React.Fragment>
-      <div className={classes.root}>
+      <Sticky direction="top">
         <CommandMenu />
         <MainMenu tabs={tabs} />
-      </div>
+      </Sticky>
 
-      <div className={classes.container}>
-        <PageContainer>
-          {configuration[latestMenuTab].render}
-          {/* render or children in case we decide to use URL */}
-        </PageContainer>
-      </div>
+      <PageContainer>
+        {configuration[latestMenuTab].render}
+        {/* render or children in case we decide to use URL */}
+      </PageContainer>
 
       <Footer tab={footertab} selectedkey={selectedkey} />
     </React.Fragment>
