@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
 import { useSelector } from "react-redux";
-import { useTransition } from "react-spring";
+import { useSpring, useTransition } from "react-spring";
 
 import tabsConfiguration from "pages/methodologies/canadian/tabsconfiguration";
 import IWorkplaceConfiguration, { tabSchemaOperations } from "models/workplace";
@@ -32,6 +32,11 @@ const WorkplaceLayout: FunctionComponent = (props) => {
     leave: { x: 0, y: -10, opacity: 0 },
   })
 
+  const pageSpring = useSpring({
+    margin: showToolBar ? "180px 20px 0 20px" : "80px 20px 0 20px",
+    from: { margin: "180px 20px 0 20px" },
+  })
+
   const handleToolbarOnClose = (item: any) => {
     setShowToolBar(false);
     setFixToolBar(false);
@@ -51,7 +56,7 @@ const WorkplaceLayout: FunctionComponent = (props) => {
         </ToolBar>
       </Sticky>
 
-      <PageContainer>
+      <PageContainer spring={pageSpring}>
         {configuration[latestMenuTab].render}
         {/* render or children in case we decide to use URL */}
       </PageContainer>
