@@ -9,8 +9,23 @@ import { PageContainer } from "components/styled/pagecontainer";
 import CommandMenu from "components/menus/commands/";
 import MainMenu from "components/menus/mainmenu";
 import Footer from "components/menus/footer";
+import { mergeStyleSets } from "@fluentui/react";
 
 const WorkplaceLayout: FunctionComponent = (props) => {
+
+  const classes = mergeStyleSets({
+    root: {
+      top: 0,
+      position: "fixed",
+      width: "100%",
+      overflow: "hidden",
+      zIndex: 1
+    },
+    container: {
+      marginTop: 150,
+      paddingTop: 20,
+    }
+  })
 
   const tabs = tabsConfiguration;
 
@@ -20,12 +35,17 @@ const WorkplaceLayout: FunctionComponent = (props) => {
 
   return (
     <React.Fragment>
-      <CommandMenu />
-      <MainMenu tabs={tabs} />
-      
-      <PageContainer>
-        {configuration[latestMenuTab].render}
-      </PageContainer>
+      <div className={classes.root}>
+        <CommandMenu />
+        <MainMenu tabs={tabs} />
+      </div>
+
+      <div className={classes.container}>
+        <PageContainer>
+          {configuration[latestMenuTab].render}
+          {/* render or children in case we decide to use URL */}
+        </PageContainer>
+      </div>
 
       <Footer tab={footertab} selectedkey={selectedkey} />
     </React.Fragment>

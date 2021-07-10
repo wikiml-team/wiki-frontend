@@ -5,6 +5,7 @@ import {
   PivotItem,
   Separator,
   Stack,
+  Sticky,
   useTheme,
 } from "@fluentui/react";
 
@@ -32,7 +33,6 @@ export default function Footer(props: FooterProps) {
         height: 34,
         position: "fixed",
         bottom: 0,
-        zIndex: 999,
         width: "100%",
         backgroundColor: palette.neutralLight,
       },
