@@ -3,14 +3,8 @@ import styled from "styled-components";
 import { animated } from "react-spring";
 import { Scrollbars } from "react-custom-scrollbars";
 
-import useWindowDimensions from "components/screendimension";
-
 const Container = styled.div`
   padding: 20px 5% 50px 5%;
-`;
-
-const Scroll = styled(Scrollbars)`
-  height: calc(100% - 50px);
 `;
 
 type PagecontainerProps = {
