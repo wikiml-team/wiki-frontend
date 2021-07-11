@@ -13,6 +13,8 @@ import MainMenu from "components/menus/mainmenu";
 import ToolBar from "components/menus/mainmenu/toolbar";
 import Footer from "components/menus/footer";
 
+import { RemoveScrollBar } from 'react-remove-scroll-bar';
+
 
 const WorkplaceLayout: FunctionComponent = (props) => {
 
@@ -53,6 +55,7 @@ const WorkplaceLayout: FunctionComponent = (props) => {
 
   return (
     <React.Fragment>
+      <RemoveScrollBar />
       <Sticky direction="top">
         <CommandMenu />
         <MainMenu tabs={tabs} setShowToolBar={setShowToolBar} />
