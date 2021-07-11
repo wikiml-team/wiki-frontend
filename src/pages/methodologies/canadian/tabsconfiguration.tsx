@@ -9,6 +9,7 @@ import PerformanceMeasureForm from "pages/methodologies/canadian/projectforms/pe
 import RisksForm from "pages/methodologies/canadian/projectforms/risksform";
 import BudgetForm from "pages/methodologies/canadian/projectforms/budgetform";
 import ReportsForm from "pages/methodologies/canadian/projectforms/reportsform";
+import ChangeNarrativeForm from "pages/methodologies/canadian/projectforms/changenarrativeform";
 
 import LotForm from "pages/methodologies/canadian/licitationforms/lotform";
 import SpecificationsForm from "pages/methodologies/canadian/licitationforms/specificationsform";
@@ -63,12 +64,18 @@ const tabsConfiguration: tabSchema[] = [
       },
       {
         key: "key6",
+        name: "changenarrative",
+        icon: "GripperDotsVertical",
+        render: <ChangeNarrativeForm />,
+      },
+      {
+        key: "key7",
         name: "risks",
         icon: "DoubleDownArrow",
         render: <RisksForm />,
       },
       {
-        key: "key7",
+        key: "key8",
         name: "budget",
         icon: "PaymentCard",
         render: <BudgetForm />,
