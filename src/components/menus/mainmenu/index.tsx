@@ -2,14 +2,20 @@ import React from "react";
 
 import PivotBar from "components/menus/mainmenu/pivotbar";
 import TeamPile from "components/menus/mainmenu/teampile";
-import { maintabs } from "./maintabs";
+import { tabSchema } from "models/workplace";
 
-const tabs = maintabs;
+type MenuProps = {
+  tabs: tabSchema[];
+  setShowToolBar: Function;
+}
 
-export default function MainMenu() {
+export default function MainMenu(props: MenuProps) {
+
+  const { setShowToolBar } = props;
+
   return (
     <React.Fragment>
-      <PivotBar tabs={tabs} />
+      <PivotBar tabs={props.tabs} setShowToolBar={setShowToolBar} />
       <TeamPile />
     </React.Fragment>
   );

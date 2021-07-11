@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { string, object, number, setLocale } from "yup";
 import { Formik, Form, Field } from "formik";
@@ -7,13 +8,11 @@ import {
   ITextFieldProps,
   IDropdownOption,
   IStackProps,
-  IStackItemStyles,
   mergeStyleSets,
   Separator,
   PrimaryButton,
   ISeparatorProps,
   Label,
-  IStackStyles,
 } from "@fluentui/react";
 import { Grid, Col, Row } from "fluentui-react-grid";
 
@@ -22,7 +21,6 @@ import { Sector } from "models/project";
 import DropdownFieldInput from "components/inputs/dropdown";
 import TextFieldInput from "components/inputs/text";
 import DateFieldInput from "components/inputs/datepicker";
-import { useEffect } from "react";
 
 type formValuesType = {
   shortName: string;
@@ -34,23 +32,21 @@ type formValuesType = {
   budget: number;
   budgetPerItems: number;
   budgetPerAct: number;
+  budgetFinanced: number;  
   budgetSolicited: number;
   program: string;
   sector: Sector;
   duration: number;
   donor: string;
   approvedBudget: number;
-  approvedDate: Date;
-  initialDate: Date;
-  finalDate: Date;
+  approvedDate: Date | string;
+  initialDate: Date | string;
+  finalDate: Date | string;
 };
 
 export default function GeneralForm() {
   // STYLE
   const classes = mergeStyleSets({
-    root: {
-      padding: "0 5% 30px 5%",
-    },
     circle: {
       height: 40,
       width: 40,
@@ -60,7 +56,7 @@ export default function GeneralForm() {
     },
   });
 
-  const multilineTextFieldProps: Partial<ITextFieldProps> = {
+  const multilineTextFieldProps: ITextFieldProps = {
     required: true,
     multiline: true,
     autoAdjustHeight: true,
@@ -75,25 +71,7 @@ export default function GeneralForm() {
     },
   };
 
-  const horizontalStackProps: Partial<IStackProps> = {
-    tokens: { childrenGap: "m" },
-    padding: 2,
-    horizontal: true,
-    wrap: true,
-  };
-
-  const verticalStackProps: Partial<IStackProps> = {
-    tokens: { childrenGap: "m" },
-    padding: 2,
-  };
-
-  const stepStackStyles: Partial<IStackStyles> = {
-    root: {
-      paddingTop: 10,
-    },
-  };
-
-  const headerStackProps: Partial<IStackProps> = {
+  const headerStackProps: IStackProps = {
     tokens: { childrenGap: "m" },
     horizontal: true,
     horizontalAlign: "space-between",
@@ -104,7 +82,7 @@ export default function GeneralForm() {
     },
   };
 
-  const separatorProps: Partial<ISeparatorProps> = {
+  const separatorProps: ISeparatorProps = {
     alignContent: "start",
   };
 
@@ -112,7 +90,16 @@ export default function GeneralForm() {
   const { t } = useTranslation(["general-form", "status"]);
   const project = useSelector(selectProject);
 
-  const dispatch = useDispatch();
+  const [initialDate, setInitialDate] = useState(project.initialDate as Date)
+  const [approvedDate, setApprovedDate] = useState(project.approvedDate as Date)
+
+  const handleSelectInitialDate = (date: Date) => {
+    setInitialDate(date);
+  }
+
+  const handleSelectApprovedDate = (date: Date) => {
+    setApprovedDate(date);
+  }
 
   const initValues: formValuesType = {
     shortName: project.shortname,
@@ -124,6 +111,7 @@ export default function GeneralForm() {
     budget: project.budget,
     budgetPerItems: project.budgetItems,
     budgetPerAct: project.budgetAct,
+    budgetFinanced: project.budgetFinanced,
     budgetSolicited: project.solicitedBudget,
     program: project.program,
     sector: project.sector,
@@ -149,6 +137,7 @@ export default function GeneralForm() {
     budget: number().required(t("required")),
     budgetPerItems: number().required(t("required")),
     budgetPerAct: number().required(t("required")),
+    budgetFinanced: number().required(t("required")),
     budgetSolicited: number().required(t("required")),
     program: string().required(t("required")),
     sector: string().required(t("required")),
@@ -194,7 +183,7 @@ export default function GeneralForm() {
       validationSchema={validationSchema}
       onSubmit={handleOnSubmit}
     >
-      <Form className={classes.root}>
+      <Form>
         <Grid dir="ltr">
           {/* Names */}
           <Row>
@@ -271,6 +260,11 @@ export default function GeneralForm() {
 
               <Row>
                 <StandardField
+                  label={t("currency-field")}
+                  name="currency"
+                  component={DropdownFieldInput}
+                />
+                <StandardField
                   label={t("program-field")}
                   name="program"
                   component={DropdownFieldInput}
@@ -291,11 +285,7 @@ export default function GeneralForm() {
               </Row>
 
               <Row>
-                <StandardField
-                  label={t("currency-field")}
-                  name="currency"
-                  component={DropdownFieldInput}
-                />
+
                 <StandardField
                   label={t("budget-field")}
                   name="budget"
@@ -303,16 +293,23 @@ export default function GeneralForm() {
                   prefix={t("budget-prefix")}
                 />
                 <StandardField
-                  label={t("caulculated-field")}
+                  label={t("calculated-field")}
                   name="budgetPerItems"
                   component={TextFieldInput}
                   prefix={t("budgetitems-prefix")}
+                  readOnly
                 />
                 <StandardField
-                  label={t("caulculated-field")}
+                  label={t("calculated-field")}
                   name="budgetPerAct"
                   component={TextFieldInput}
                   prefix={t("budgetact-prefix")}
+                  readOnly
+                />
+                <StandardField
+                  label={t("financed-field")}
+                  name="budgetFinanced"
+                  component={TextFieldInput}
                 />
               </Row>
 
@@ -350,12 +347,15 @@ export default function GeneralForm() {
                   label={t("initialdate-field")}
                   name="initialDate"
                   component={DateFieldInput}
+                  minDate={approvedDate}
+                  onSelectDate={handleSelectInitialDate}
                   sizeLg={6}
                 />
                 <StandardField
                   label={t("finaldate-field")}
                   name="finalDate"
                   component={DateFieldInput}
+                  minDate={initialDate}
                   sizeLg={6}
                 />
               </Row>
@@ -366,12 +366,14 @@ export default function GeneralForm() {
                   name="approvedBudget"
                   component={TextFieldInput}
                   options={countries}
+                  suffix={project.currency}
                   sizeLg={6}
                 />
                 <StandardField
                   label={t("approvedate-field")}
                   name="approveDate"
                   component={DateFieldInput}
+                  onSelectDate={handleSelectApprovedDate}
                   sizeLg={6}
                 />
               </Row>

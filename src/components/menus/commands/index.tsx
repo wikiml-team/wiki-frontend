@@ -4,54 +4,36 @@ import {
   CommandBar,
   ICommandBarStyles,
   ITextStyles,
-  mergeStyleSets,
   Text,
   useTheme,
 } from "@fluentui/react";
 
-import { getItems } from "./items";
-import { getFarItems } from "./faritems";
+import { faritems, items, overflowItems } from "./items";
 import SidePanel from "components/sidepanel";
 import LanguagePanel from "components/sidepanel/languagepanel";
 import SettingsPanel from "components/sidepanel/settings/settingspanel";
+import { CustomBarButton, CustomOverflowButton, overflowProps } from "./custombuttons";
 
 export default function CommandMenu() {
   const { palette } = useTheme();
+  const { t } = useTranslation("methodologies");
 
-  const classes = mergeStyleSets({
-    topstickybar: {
-      width: "100%",
-      position: "fixed",
-      top: 0,
-      zIndex: 999,
-    },
-    bottomstickybar: {
-      // width: "100%",
-      position: "fixed",
-      bottom: 0,
-      zIndex: 999,
-    },
-  });
-
-  // ComandBar Styles
-  const comandBarStyles: Partial<ICommandBarStyles> = {
+  // STYLES
+  const comandBarStyles: ICommandBarStyles = {
     root: {
       height: 36,
       padding: 0,
-      zIndex: 100,
       backgroundColor: palette.themePrimary,
     },
   };
 
-  // ComandBar Styles
-  const textStyles: Partial<ITextStyles> = {
+  const textStyles: ITextStyles = {
     root: {
       position: "absolute",
       top: 10,
       left: "50%",
       transform: "translateX(-50%)",
       color: palette.themeLight,
-      zIndex: 999,
     },
   };
 
@@ -71,28 +53,23 @@ export default function CommandMenu() {
   }, []);
   const CloseSettingsPanel = useCallback(() => setSettingsPanelOpen(false), []);
 
-  const { t } = useTranslation(["commands", "sidepanel", "methodologies"]);
-  const { mainItems, overflowItems, overflowProps } = getItems({ palette, t });
-  const farItems = getFarItems({
-    OpenLanguagePanel,
-    OpenSettingsPanel,
-    palette,
-    t,
-  });
-
   return (
     <React.Fragment>
       <Text variant="small" styles={textStyles}>
         Project 1 - {t("methodologies:canadian")}
       </Text>
+
       <CommandBar
-        items={mainItems}
+        buttonAs={CustomBarButton}
+        items={items}
+        farItems={faritems(OpenLanguagePanel, OpenSettingsPanel)}
         overflowItems={overflowItems}
-        overflowButtonProps={overflowProps}
-        farItems={farItems}
+        overflowButtonAs={CustomOverflowButton}
+        overflowButtonProps={overflowProps(palette)}
         ariaLabel="Use left and right arrow keys to navigate between commands"
         styles={comandBarStyles}
       />
+
       <SidePanel
         header={t("sidepanel:headerlang")}
         content={<LanguagePanel />}

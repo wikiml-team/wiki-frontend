@@ -1,14 +1,30 @@
 import React from "react";
 import styled from "styled-components";
+import { animated } from "react-spring";
+import { Scrollbars } from "react-custom-scrollbars";
 
 const Container = styled.div`
-  margin: 20px;
+  padding: 20px 5% 50px 5%;
 `;
 
-interface PagecontainerProps {
+type PagecontainerProps = {
   className?: string;
-  role?: string;
+  spring: any;
+  scrollHeight: string | number | undefined;
 }
-export const PageContainer: React.FunctionComponent<PagecontainerProps> = (
-  props
-) => <Container className={props.className}>{props.children}</Container>;
+export const PageContainer: React.FunctionComponent<PagecontainerProps> = (props) => {
+
+  const { className, spring, scrollHeight } = props;
+
+  return <animated.div style={spring}>
+    <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax={scrollHeight} >
+      <Container className={className} >
+        {props.children}
+      </Container>
+    </Scrollbars>
+  </animated.div>
+};
+
+
+
+

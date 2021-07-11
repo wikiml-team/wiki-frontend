@@ -9,6 +9,7 @@ import PerformanceMeasureForm from "pages/methodologies/canadian/projectforms/pe
 import RisksForm from "pages/methodologies/canadian/projectforms/risksform";
 import BudgetForm from "pages/methodologies/canadian/projectforms/budgetform";
 import ReportsForm from "pages/methodologies/canadian/projectforms/reportsform";
+import ChangeNarrativeForm from "pages/methodologies/canadian/projectforms/changenarrativeform";
 
 import LotForm from "pages/methodologies/canadian/licitationforms/lotform";
 import SpecificationsForm from "pages/methodologies/canadian/licitationforms/specificationsform";
@@ -20,18 +21,9 @@ import GuidesTutorials from "pages/methodologies/canadian/tutorials/guidestutori
 import Tutorials from "pages/methodologies/canadian/tutorials/methodologytutorials";
 import OutcomesTutorial from "pages/methodologies/canadian/tutorials/outcomestutorial";
 import IndicatorsTutorial from "pages/methodologies/canadian/tutorials/indicatorstutorial";
+import { tabSchema } from "models/workplace";
 
-export type PivotTabs = {
-  key: string;
-  name: string;
-  icon: string;
-  render?: JSX.Element;
-  addtabs?: boolean;
-  childtabs?: PivotTabs[];
-  onClick?: Function;
-};
-
-export const maintabs: PivotTabs[] = [
+const tabsConfiguration: tabSchema[] = [
   {
     key: "key1",
     name: "wikiml",
@@ -72,18 +64,24 @@ export const maintabs: PivotTabs[] = [
       },
       {
         key: "key6",
+        name: "changenarrative",
+        icon: "GripperDotsVertical",
+        render: <ChangeNarrativeForm />,
+      },
+      {
+        key: "key7",
         name: "risks",
         icon: "DoubleDownArrow",
         render: <RisksForm />,
       },
       {
-        key: "key7",
+        key: "key8",
         name: "budget",
         icon: "PaymentCard",
         render: <BudgetForm />,
       },
       {
-        key: "key8",
+        key: "key9",
         name: "reports",
         icon: "BarChart4",
         render: <ReportsForm />,
@@ -174,3 +172,5 @@ export const maintabs: PivotTabs[] = [
     render: <Label>Pivot #5</Label>,
   },
 ];
+
+export default tabsConfiguration;

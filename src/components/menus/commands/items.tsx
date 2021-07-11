@@ -1,143 +1,116 @@
+import i18n from "i18n"
 import {
-  IButtonProps,
-  IButtonStyles,
   ICommandBarItemProps,
-  IIconStyles,
-  IPalette,
 } from "@fluentui/react";
 
-type getItemsProps = {
-  palette: IPalette;
-  t: Function;
-};
+import { fullscreenToggler } from "components/fullscreentoogler";
 
-// Items of the command bar
-export const getItems = (props: getItemsProps) => {
-  const { palette, t } = props;
+i18n.loadNamespaces("commands");
 
-  // Icons Styles
-  const whiteIconStyle: IIconStyles = { root: { color: palette.white } };
-  const blackIconStyle: IIconStyles = { root: { color: palette.black } };
+export const items: ICommandBarItemProps[] = [
+  {
+    key: "goback",
+    iconProps: { iconName: "Undo" },
+    text: i18n.t('commands:undo'),
+    iconOnly: true,
+  },
+  {
+    key: "goforward",
+    iconProps: { iconName: "Redo" },
+    text: i18n.t('commands:redo'),
+    iconOnly: true,
+  },
+  {
+    key: "share",
+    iconProps: { iconName: "Share" },
+    text: i18n.t('commands:share'),
+    iconOnly: true,
+    onClick: () => alert("Share"),
+  },
+  {
+    key: "export",
+    iconProps: { iconName: "Export" },
+    text: i18n.t('commands:export'),
+    iconOnly: true,
+    onClick: () => alert("Export"),
+  },
+];
 
-  // Button Styles
-  const blueButtonStyles: IButtonStyles = {
-    root: {
-      backgroundColor: palette.themePrimary,
-    },
-    rootHovered: {
-      backgroundColor: palette.themeDark,
-    },
-    rootPressed: {
-      backgroundColor: palette.themeDarker,
-    },
-    iconHovered: {
-      color: palette.white,
-    },
-    iconPressed: {
-      color: palette.white,
-    },
-  };
+export const overflowItems: ICommandBarItemProps[] = [
+  {
+    key: "new",
+    text: i18n.t("commands:newproject"),
+    iconProps: { iconName: "Document" },
+    onClick: () => alert("Move to"),
+  },
+  {
+    key: "open",
+    text: i18n.t("commands:openproject"),
+    iconProps: { iconName: "OpenFolderHorizontal" },
+    onClick: () => alert("Open Project"),
+  },
+  {
+    key: "Destroy",
+    text: i18n.t("commands:destroyproject"),
+    iconProps: { iconName: "PageRemove" },
+    onClick: () => alert("Destroy project"),
+  },
+  {
+    key: "Duplicate",
+    text: i18n.t("commands:duplicate"),
+    iconProps: { iconName: "Documentation" },
+    onClick: () => alert("Duplicate project"),
+  },
+  {
+    key: "Print",
+    text: i18n.t("commands:print"),
+    iconProps: { iconName: "Print" },
+    onClick: () => alert("Print project"),
+  },
+];
 
-  const overflowButtonStyles: IButtonStyles = {
-    root: {
-      backgroundColor: palette.themePrimary,
-    },
-    rootHovered: {
-      backgroundColor: palette.themeDark,
-    },
-    rootPressed: {
-      backgroundColor: palette.themeDarker,
-    },
-    rootExpanded: {
-      backgroundColor: palette.themeDarker,
-    },
-    rootExpandedHovered: {
-      backgroundColor: palette.themeDark,
-    },
-    menuIcon: {
-      color: palette.white + " !important",
-    },
-  };
-
-  // Buttons Props
-  const overflowProps: IButtonProps = {
-    ariaLabel: "More commands",
-    styles: overflowButtonStyles,
-  };
-
-  const mainItems: ICommandBarItemProps[] = [
+export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function) => {
+  return [
     {
-      key: "goback",
-      iconProps: { iconName: "Undo", styles: whiteIconStyle },
-      text: t("undo"),
+      key: "fullscreen",
+      text: i18n.t("commands:fullscreen"),
+      ariaLabel: "Full Screen",
       iconOnly: true,
-      buttonStyles: blueButtonStyles,
-    },
-    {
-      key: "goforward",
-      iconProps: { iconName: "Redo", styles: whiteIconStyle },
-      text: t("redo"),
-      iconOnly: true,
-      buttonStyles: blueButtonStyles,
-    },
-    {
-      key: "share",
-      iconProps: { iconName: "Share", styles: whiteIconStyle },
-      text: t("share"),
-      iconOnly: true,
-      onClick: () => console.log("Share"),
-      buttonStyles: blueButtonStyles,
+      iconProps: { iconName: "FullScreen" },
+      onClick: fullscreenToggler,
     },
     {
-      key: "export",
-      iconProps: { iconName: "Export", styles: whiteIconStyle },
-      text: t("export"),
+      key: "language",
+      text: i18n.t("commands:language"),
+      ariaLabel: "Language",
       iconOnly: true,
-      onClick: () => console.log("Export"),
-      buttonStyles: blueButtonStyles,
+      iconProps: { iconName: "LocaleLanguage" },
+      onClick: OpenLanguagePanel,
+    },
+    {
+      key: "settings",
+      text: i18n.t("commands:settings"),
+      ariaLabel: "Change Settings",
+      iconOnly: true,
+      iconProps: { iconName: "Settings" },
+      onClick: OpenSettingsPanel,
+    },
+    {
+      key: "notifications",
+      text: i18n.t("commands:notifications"),
+      ariaLabel: "Change Notifications",
+      iconOnly: true,
+      iconProps: { iconName: "Ringer" },
+      onClick: () => alert("Notificactions"),
+    },
+    {
+      key: "user",
+      text: "Gabriela Rodríguez",
+      ariaLabel: "User name",
+      iconOnly: true,
+      iconProps: { iconName: "Contact" },
+      onClick: () => alert("Contact"),
     },
   ] as ICommandBarItemProps[];
+}
 
-  const overflowItems: ICommandBarItemProps[] = [
-    {
-      key: "new",
-      text: t("newproject"),
-      onClick: () => console.log("Move to"),
-      iconProps: {
-        iconName: "Document",
-        styles: blackIconStyle,
-      },
-      buttonStyles: blueButtonStyles,
-    },
-    {
-      key: "open",
-      text: t("openproject"),
-      onClick: () => console.log("Open Project"),
-      iconProps: { iconName: "OpenFolderHorizontal", styles: blackIconStyle },
-      buttonStyles: blueButtonStyles,
-    },
-    {
-      key: "Destroy",
-      text: t("destroyproject"),
-      onClick: () => console.log("Destroy project"),
-      iconProps: { iconName: "PageRemove", styles: blackIconStyle },
-      buttonStyles: blueButtonStyles,
-    },
-    {
-      key: "Duplicate",
-      text: t("duplicate"),
-      onClick: () => console.log("Duplicate project"),
-      iconProps: { iconName: "Documentation", styles: blackIconStyle },
-      buttonStyles: blueButtonStyles,
-    },
-    {
-      key: "Print",
-      text: t("print"),
-      onClick: () => console.log("Print project"),
-      iconProps: { iconName: "Print", styles: blackIconStyle },
-      buttonStyles: blueButtonStyles,
-    },
-  ];
-
-  return { mainItems, overflowItems, overflowProps };
-};

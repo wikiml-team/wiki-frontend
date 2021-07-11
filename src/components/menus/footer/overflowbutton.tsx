@@ -1,7 +1,7 @@
 import { FontSizes, IButtonStyles, IconButton } from "@fluentui/react";
 
 export default function OverflowButton(overflowItems: any[] | undefined) {
-  const buttonStyles: Partial<IButtonStyles> = {
+  const buttonStyles: IButtonStyles = {
     root: {
       minWidth: 20,
       padding: "0 4px",

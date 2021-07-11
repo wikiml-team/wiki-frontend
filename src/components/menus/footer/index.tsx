@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import {
   ISeparatorStyles,
   IStackProps,
@@ -7,30 +8,30 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { PivotTabs } from "../mainmenu/maintabs";
 import PagesTabs from "./pagestabs";
+import AddButton from "./addbutton";
+import { tabSchema } from "models/workplace";
+import { setConfiguration } from "store/slices/workplaceslice";
 
-type PagesBarProps = {
-  tab: PivotTabs;
-  defaultKey?: string;
-  getTabId: (itemKey: string, index: number) => string;
-  handleOnClick: (parentkey: string, item?: PivotItem) => void;
+type FooterProps = {
+  tab: tabSchema;
+  selectedkey: string;
 };
 
-export default function PagesBar(props: PagesBarProps) {
-  const { tab, handleOnClick, getTabId, defaultKey } = props;
+export default function Footer(props: FooterProps) {
+
+  const { tab, selectedkey } = props;
 
   // STYLES
   const { palette } = useTheme();
 
-  const stackProps: Partial<IStackProps> = {
+  const stackProps: IStackProps = {
     horizontal: true,
     styles: {
       root: {
         height: 34,
         position: "fixed",
         bottom: 0,
-        zIndex: 999,
         width: "100%",
         backgroundColor: palette.neutralLight,
       },
@@ -45,16 +46,28 @@ export default function PagesBar(props: PagesBarProps) {
     },
   };
 
+  // LOGIC
+  const dispatch = useDispatch();
+
+  const handleTabOnClick = (parentkey: string, item?: PivotItem) => {
+    if (item) {
+      const itemkey = item.props.itemKey!;
+
+      // Update current configuration
+      dispatch(setConfiguration({ key: parentkey, formtab: itemkey, render: item.props.children }))
+    }
+  };
+
   return (
     <Stack {...stackProps}>
       <PagesTabs
         tabs={tab.childtabs}
-        addButton={tab.addtabs}
         parentKey={tab.key}
-        defaultKey={defaultKey}
-        handleOnClick={handleOnClick}
-        getTabId={getTabId}
+        defaultKey={selectedkey}
+        handleOnClick={handleTabOnClick}
       />
+      {tab.addtabs && <AddButton />}
+
       <Separator vertical styles={separatorStyles} />
 
       {/* Here goes the horizontal scrollbar when needed for the page */}

@@ -86,13 +86,13 @@ const DateFieldInput = ({ field, form, ...props }: any) => {
   return (
     <DatePicker
       placeholder="Select a date..."
-      {...field}
-      {...props}
+      minDate={minDate}
       onGetErrorMessage={handleOnGetError}
       deferredValidationTime={500}
       strings={DayPickerStrings}
-      minDate={minDate}
       styles={datepickerStyles}
+      {...field}
+      {...props}
     />
   );
 };

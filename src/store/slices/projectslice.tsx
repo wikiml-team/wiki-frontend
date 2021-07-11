@@ -21,12 +21,13 @@ const initialState: IProject = {
     { name: "team1", email: "team-test@gmal.com" },
     { name: "team2", email: "team-test@gmal.com" },
   ],
-  currency: "euro",
-  budget: 2,
-  budgetItems: 22,
-  budgetAct: 33,
-  solicitedBudget: 44,
-  approvedBudget: 44,
+  currency: "Euro",
+  budget: 200.00,
+  budgetItems: 22.00,
+  budgetAct: 33.00,
+  budgetFinanced: 150.00,
+  solicitedBudget: 44.00,
+  approvedBudget: 44.00,
   approvedDate: new Date(),
   finalDate: new Date(),
   initialDate: new Date(),
@@ -39,10 +40,6 @@ const projectSlice = createSlice({
   reducers: {
     setCurrentProject: (state, action) => {
       state = action.payload;
-    },
-    updateProject: (state, action) => {
-      console.log("state: ", state);
-      console.log("action: ", action);
     },
   },
 });
