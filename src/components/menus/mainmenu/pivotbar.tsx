@@ -27,6 +27,7 @@ export default function PivotBar(props: PivotBarProps) {
     root: {
       height: 34,
       backgroundColor: palette.themePrimary,
+      zIndex: 10,
     },
     link: {
       height: "inherit",

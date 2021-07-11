@@ -81,7 +81,7 @@ const tabsConfiguration: tabSchema[] = [
         render: <BudgetForm />,
       },
       {
-        key: "key8",
+        key: "key9",
         name: "reports",
         icon: "BarChart4",
         render: <ReportsForm />,
