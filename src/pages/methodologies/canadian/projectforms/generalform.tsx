@@ -32,6 +32,7 @@ type formValuesType = {
   budget: number;
   budgetPerItems: number;
   budgetPerAct: number;
+  budgetFinanced: number;  
   budgetSolicited: number;
   program: string;
   sector: Sector;
@@ -110,6 +111,7 @@ export default function GeneralForm() {
     budget: project.budget,
     budgetPerItems: project.budgetItems,
     budgetPerAct: project.budgetAct,
+    budgetFinanced: project.budgetFinanced,
     budgetSolicited: project.solicitedBudget,
     program: project.program,
     sector: project.sector,
@@ -135,6 +137,7 @@ export default function GeneralForm() {
     budget: number().required(t("required")),
     budgetPerItems: number().required(t("required")),
     budgetPerAct: number().required(t("required")),
+    budgetFinanced: number().required(t("required")),
     budgetSolicited: number().required(t("required")),
     program: string().required(t("required")),
     sector: string().required(t("required")),
@@ -257,6 +260,11 @@ export default function GeneralForm() {
 
               <Row>
                 <StandardField
+                  label={t("currency-field")}
+                  name="currency"
+                  component={DropdownFieldInput}
+                />
+                <StandardField
                   label={t("program-field")}
                   name="program"
                   component={DropdownFieldInput}
@@ -277,11 +285,7 @@ export default function GeneralForm() {
               </Row>
 
               <Row>
-                <StandardField
-                  label={t("currency-field")}
-                  name="currency"
-                  component={DropdownFieldInput}
-                />
+
                 <StandardField
                   label={t("budget-field")}
                   name="budget"
@@ -301,6 +305,11 @@ export default function GeneralForm() {
                   component={TextFieldInput}
                   prefix={t("budgetact-prefix")}
                   readOnly
+                />
+                <StandardField
+                  label={t("financed-field")}
+                  name="budgetFinanced"
+                  component={TextFieldInput}
                 />
               </Row>
 

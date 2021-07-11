@@ -25,6 +25,7 @@ const initialState: IProject = {
   budget: 200.00,
   budgetItems: 22.00,
   budgetAct: 33.00,
+  budgetFinanced: 150.00,
   solicitedBudget: 44.00,
   approvedBudget: 44.00,
   approvedDate: new Date(),
