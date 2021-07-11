@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/wiki-frontend/static/css/main.46a11736.chunk.css",
-    "main.js": "/wiki-frontend/static/js/main.9f40f87b.chunk.js",
-    "main.js.map": "/wiki-frontend/static/js/main.9f40f87b.chunk.js.map",
+    "main.css": "/wiki-frontend/static/css/main.2fd61586.chunk.css",
+    "main.js": "/wiki-frontend/static/js/main.bc2f55b7.chunk.js",
+    "main.js.map": "/wiki-frontend/static/js/main.bc2f55b7.chunk.js.map",
     "runtime-main.js": "/wiki-frontend/static/js/runtime-main.8bcf2081.js",
     "runtime-main.js.map": "/wiki-frontend/static/js/runtime-main.8bcf2081.js.map",
     "static/js/2.15983538.chunk.js": "/wiki-frontend/static/js/2.15983538.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.de9bb633.chunk.js": "/wiki-frontend/static/js/3.de9bb633.chunk.js",
     "static/js/3.de9bb633.chunk.js.map": "/wiki-frontend/static/js/3.de9bb633.chunk.js.map",
     "index.html": "/wiki-frontend/index.html",
-    "static/css/main.46a11736.chunk.css.map": "/wiki-frontend/static/css/main.46a11736.chunk.css.map",
+    "static/css/main.2fd61586.chunk.css.map": "/wiki-frontend/static/css/main.2fd61586.chunk.css.map",
     "static/js/2.15983538.chunk.js.LICENSE.txt": "/wiki-frontend/static/js/2.15983538.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8bcf2081.js",
     "static/js/2.15983538.chunk.js",
-    "static/css/main.46a11736.chunk.css",
-    "static/js/main.9f40f87b.chunk.js"
+    "static/css/main.2fd61586.chunk.css",
+    "static/js/main.bc2f55b7.chunk.js"
   ]
 }
