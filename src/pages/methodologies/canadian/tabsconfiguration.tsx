@@ -21,9 +21,9 @@ import GuidesTutorials from "pages/methodologies/canadian/tutorials/guidestutori
 import Tutorials from "pages/methodologies/canadian/tutorials/methodologytutorials";
 import OutcomesTutorial from "pages/methodologies/canadian/tutorials/outcomestutorial";
 import IndicatorsTutorial from "pages/methodologies/canadian/tutorials/indicatorstutorial";
-import { tabSchema } from "models/workplace";
+import { TabScheema } from "models/workplace";
 
-const tabsConfiguration: tabSchema[] = [
+const tabsConfiguration = new TabScheema([
   {
     key: "key1",
     name: "wikiml",
@@ -171,6 +171,6 @@ const tabsConfiguration: tabSchema[] = [
     icon: "MoreVertical",
     render: <Label>Pivot #5</Label>,
   },
-];
+]);
 
 export default tabsConfiguration;
