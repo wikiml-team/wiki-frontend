@@ -172,5 +172,16 @@
     "prevYearAriaLabel": "Go to previous year",
     "nextYearAriaLabel": "Go to next year",
     "closeButtonAriaLabel": "Close date picker"
+  },
+  "logicmodel-form": {
+    "versionLabel": "Version:",
+    "versionPlaceholder": "Enter a version (v0.1)",
+    "ultimateOutcome": "Ultimate Outcomes",
+    "intermediateOutcome": "Intermediate Outcomes",
+    "inmediateOutcome": "Inmediate Outcomes",
+    "outputs": "Outputs",
+    "tooltipAddOutcome": "Add outcome",
+    "tooltipAddOutput": "Add output",
+    "tooltipDelete": "Delete"
   }
 }

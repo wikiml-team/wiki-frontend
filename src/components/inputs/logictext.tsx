@@ -17,6 +17,7 @@ import {
 } from '@fluentui/react';
 
 import { LogicmodelVertex, LogicmodelTree } from "models/logicmodel";
+import { useTranslation } from 'react-i18next';
 
 interface LogicTextFieldInputProps {
     vertex: LogicmodelVertex;
@@ -122,8 +123,11 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
 
 function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
 
+    // LOGIC
+    const { t } = useTranslation("logicmodel-form");
+
     const { vertex, canAdd, handleAddChild, canDelete, handleDelete } = props;
-    const { id } = vertex;
+    const { id, level } = vertex;
 
     // STYLES
 
@@ -163,7 +167,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
         </Stack.Item>
         <Stack.Item>
             {canAdd && (
-                <TooltipHost content="Add child">
+                <TooltipHost content={level !== 2 ? t("tooltipAddOutcome") : t("tooltipAddOutput")}>
                     <IconButton
                         iconProps={{ iconName: "Add" }}
                         styles={commandStyles}
@@ -172,7 +176,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                 </TooltipHost>
             )}
             {canDelete && (
-                <TooltipHost content="Delete this and children">
+                <TooltipHost content={t("tooltipDelete")}>
                     <IconButton
                         iconProps={{ iconName: "Cancel" }}
                         styles={commandStyles}
@@ -194,6 +198,8 @@ type InputInfo = {
 export function VersionFieldInput() {
 
     // LOGIC
+    const { t } = useTranslation("logicmodel-form");
+
     const [editionMode, setEditionMode] = useState(false);
     const [inputInfo, setInputInfo] = useState({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo);
 
@@ -236,7 +242,7 @@ export function VersionFieldInput() {
     };
 
     return <Stack {...infoStakProps}>
-        <TextField underlined label="Version:" {...versionTextFieldProps} readOnly={!editionMode} placeholder="Enter a version like v0.1" />
+        <TextField underlined label={t("versionLabel")} {...versionTextFieldProps} readOnly={!editionMode} placeholder={t("versionPlaceholder")} />
         <TooltipHost
             content={inputInfo.tooltip}
             id={tooltipId}

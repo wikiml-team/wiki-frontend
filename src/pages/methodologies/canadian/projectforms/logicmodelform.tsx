@@ -11,6 +11,7 @@ import {
 
 import LogicTextFieldInput, { VersionFieldInput } from "components/inputs/logictext";
 import { logicmodelGraphExample } from "models/logicmodel";
+import { useTranslation } from "react-i18next";
 
 export default function LogicModelForm() {
 
@@ -71,6 +72,10 @@ export default function LogicModelForm() {
 
 function LagicmodelLabels() {
 
+  // LOGIC
+  const { t } = useTranslation("logicmodel-form");
+
+  // STYLES
   const labelStackProps: Partial<IStackProps> = {
     verticalAlign: "space-between",
     styles: {
@@ -86,22 +91,22 @@ function LagicmodelLabels() {
   return <Stack {...labelStackProps}>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>Ultimate Outcome</b>
+        <b>{t("ultimateOutcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>Intermediate Outcome</b>
+        <b>{t("intermediateOutcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>Inmediate Outcome</b>
+        <b>{t("inmediateOutcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>Outputs</b>
+        <b>{t("outputs")}</b>
       </Text>
     </Stack.Item>
   </Stack>

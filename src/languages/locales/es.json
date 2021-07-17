@@ -172,5 +172,16 @@
     "prevYearAriaLabel": "Ir al año anterior",
     "nextYearAriaLabel": "Ir al año próximo",
     "closeButtonAriaLabel": "Cerrar el calendario"
+  },
+  "logicmodel-form": {
+    "versionLabel": "Versión:",
+    "versionPlaceholder": "Escribe una versión (v0.1)",
+    "ultimateOutcome": "Resultado Final",
+    "intermediateOutcome": "Resultados Intermedios",
+    "inmediateOutcome": "Resultados Inmediatos",
+    "outputs": "Productos",
+    "tooltipAddOutcome": "Añadir Resultado",
+    "tooltipAddOutput": "Añadir Producto",
+    "tooltipDelete": "Eliminar"
   }
 }
