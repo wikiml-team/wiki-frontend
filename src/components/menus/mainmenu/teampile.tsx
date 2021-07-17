@@ -28,6 +28,7 @@ const FacePileStyles: Partial<IFacepileStyles> = {
     position: "absolute",
     top: 38,
     right: 8,
+    zIndex: 10
   },
   itemButton: {
     margin: "0 -2px 0 -2px",

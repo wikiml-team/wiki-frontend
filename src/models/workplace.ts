@@ -18,28 +18,35 @@ export default interface IWorkplaceConfiguration {
 }
 
 // tabSchema
-export type tabSchema = {
+export type Tab = {
   key: string;
   name: string;
   icon: string;
   render?: JSX.Element;
   addtabs?: boolean;
-  childtabs?: tabSchema[];
+  childtabs?: Tab[];
   onClick?: Function;
 };
 
-export const tabSchemaOperations = {
-  findkey(tabs: tabSchema[], key: string): tabSchema {
-    return tabs.find(tab => tab.key === key) || {} as tabSchema
-  },
+export class TabScheema {
 
-  findChildkey(tabs: tabSchema[], key: string, childkey: string): tabSchema {
-    const parenttab = tabs.find(tab => tab.key === key) || {} as tabSchema
+  tabs: Tab[];
+
+  constructor(tabs: Tab[]) {
+    this.tabs = tabs
+  }
+
+  findByKey(key: string): Tab {
+    return this.tabs.find(tab => tab.key === key) || {} as Tab
+  }
+
+  findChildByKey(key: string, childkey: string): Tab {
+    const parenttab = this.tabs.find(tab => tab.key === key) || {} as Tab
     let child;
 
     if (parenttab.childtabs) {
       child = parenttab.childtabs.find(tab => tab.key === childkey)
     }
-    return child || {} as tabSchema
+    return child || {} as Tab
   }
 };

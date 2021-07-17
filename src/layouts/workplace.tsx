@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useSpring, useTransition } from "react-spring";
 
 import tabsConfiguration from "pages/methodologies/canadian/tabsconfiguration";
-import IWorkplaceConfiguration, { tabSchemaOperations } from "models/workplace";
+import IWorkplaceConfiguration from "models/workplace";
 import { selectWorkplaceConfig } from "store/slices/workplaceslice";
 import { PageContainer } from "components/styled/pagecontainer";
 import { Sticky } from "components/styled/sticky"
@@ -24,7 +24,7 @@ const WorkplaceLayout: FunctionComponent = (props) => {
   const { latestMenuTab, configuration }: IWorkplaceConfiguration = useSelector(selectWorkplaceConfig);
   const tools = configuration[latestMenuTab].tools;
   const page = configuration[latestMenuTab].render;
-  const footertab = tabSchemaOperations.findkey(tabs, latestMenuTab);
+  const footertab = tabs.findByKey(latestMenuTab);
   const selectedkey = configuration[latestMenuTab].formtab;
 
   // Toolbar Animation State & Controls
@@ -56,6 +56,7 @@ const WorkplaceLayout: FunctionComponent = (props) => {
   return (
     <React.Fragment>
       <RemoveScrollBar />
+
       <Sticky direction="top">
         <CommandMenu />
         <MainMenu tabs={tabs} setShowToolBar={setShowToolBar} />
@@ -69,6 +70,7 @@ const WorkplaceLayout: FunctionComponent = (props) => {
       </PageContainer>
 
       <Footer tab={footertab} selectedkey={selectedkey} />
+
     </React.Fragment>
   );
 };

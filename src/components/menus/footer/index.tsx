@@ -10,11 +10,11 @@ import {
 
 import PagesTabs from "./pagestabs";
 import AddButton from "./addbutton";
-import { tabSchema } from "models/workplace";
+import { Tab } from "models/workplace";
 import { setConfiguration } from "store/slices/workplaceslice";
 
 type FooterProps = {
-  tab: tabSchema;
+  tab: Tab;
   selectedkey: string;
 };
 

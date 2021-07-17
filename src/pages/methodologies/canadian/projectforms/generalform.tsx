@@ -32,7 +32,7 @@ type formValuesType = {
   budget: number;
   budgetPerItems: number;
   budgetPerAct: number;
-  budgetFinanced: number;  
+  budgetFinanced: number;
   budgetSolicited: number;
   program: string;
   sector: Sector;
@@ -42,6 +42,7 @@ type formValuesType = {
   approvedDate: Date | string;
   initialDate: Date | string;
   finalDate: Date | string;
+  contribution: number;
 };
 
 export default function GeneralForm() {
@@ -121,6 +122,7 @@ export default function GeneralForm() {
     approvedDate: project.approvedDate,
     initialDate: project.initialDate,
     finalDate: project.finalDate,
+    contribution: project.contribution
   };
 
   const validationSchema = object().shape({
@@ -340,6 +342,13 @@ export default function GeneralForm() {
                   options={countries}
                   sizeLg={6}
                 />
+                <StandardField
+                  label={t("approvedate-field")}
+                  name="approveDate"
+                  component={DateFieldInput}
+                  onSelectDate={handleSelectApprovedDate}
+                  sizeLg={6}
+                />
               </Row>
 
               <Row>
@@ -370,10 +379,9 @@ export default function GeneralForm() {
                   sizeLg={6}
                 />
                 <StandardField
-                  label={t("approvedate-field")}
-                  name="approveDate"
-                  component={DateFieldInput}
-                  onSelectDate={handleSelectApprovedDate}
+                  label={t("contribution-field")}
+                  name="contribution"
+                  component={TextFieldInput}
                   sizeLg={6}
                 />
               </Row>
