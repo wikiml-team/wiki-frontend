@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useId } from '@fluentui/react-hooks';
 import {
   Stack,
   TextField,
@@ -10,7 +9,7 @@ import {
   TooltipHost,
 } from "@fluentui/react";
 
-import LogicTextFieldInput from "components/inputs/logictext";
+import LogicTextFieldInput, { VersionFieldInput } from "components/inputs/logictext";
 import { logicmodelGraphExample } from "models/logicmodel";
 
 export default function LogicModelForm() {
@@ -68,74 +67,7 @@ export default function LogicModelForm() {
   </React.Fragment>
 }
 
-type InputInfo = {
-  tooltip: string,
-  icon: string,
-  arialabel: string,
-}
 
-function VersionFieldInput() {
-
-  // LOGIC
-  const [editionMode, setEditionMode] = useState(false);
-  const [inputInfo, setInputInfo] = useState({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo);
-
-  const toogleVersionEdition = () => {
-
-    console.log("editionMode: ", editionMode)
-
-    if (editionMode) {
-      setInputInfo({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo)
-    } else {
-      setInputInfo({ tooltip: "Save version", icon: "SkypeCheck", arialabel: "Submit" } as InputInfo)
-    }
-    console.log("inputInfo: ", inputInfo)
-
-    setEditionMode(val => !val);
-    console.log("inputInfo: ", editionMode)
-  }
-
-  // STYLES
-  const tooltipId = useId('tooltip');
-
-  const infoStakProps: Partial<IStackProps> = {
-    horizontal: true,
-    horizontalAlign: "end",
-    styles: {
-      root: {
-        marginBottom: 30,
-      },
-    },
-  };
-
-  const versionTextFieldProps: Partial<ITextFieldProps> = {
-    styles: {
-      fieldGroup: {
-        borderRadius: 4,
-        selectors: {
-          "::after": {
-            borderRadius: "inherit",
-            border: "2px solid #003a66",
-          },
-        },
-      },
-    },
-  };
-
-  return <Stack {...infoStakProps}>
-    <TextField underlined label="Version:" {...versionTextFieldProps} readOnly={!editionMode} />
-    <TooltipHost
-      content={inputInfo.tooltip}
-      id={tooltipId}
-    >
-      <IconButton iconProps={{ iconName: inputInfo.icon }}
-        title={inputInfo.arialabel}
-        ariaLabel={inputInfo.arialabel}
-        onClick={() => toogleVersionEdition()}
-      />
-    </TooltipHost>
-  </Stack>
-}
 
 function LagicmodelLabels() {
 

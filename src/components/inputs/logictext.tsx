@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useId } from '@fluentui/react-hooks';
 import {
     Stack,
     IStackItemProps,
@@ -104,7 +105,7 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                             <LogicTextFieldInput
                                 vertex={child.node}
                                 canDelete={child.children.length === 0}
-                                canAdd={child.children.length > 0 && child.children.length < 4}
+                                canAdd={child.node.level < 3 && child.children.length < 4}
                                 handleAddChild={handleAddChild}
                                 handleDelete={handleDelete}
                                 children={child.children}
@@ -180,5 +181,72 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                 </TooltipHost>
             )}
         </Stack.Item>
+    </Stack>
+}
+
+// EditVersionInputTextField
+type InputInfo = {
+    tooltip: string,
+    icon: string,
+    arialabel: string,
+}
+
+export function VersionFieldInput() {
+
+    // LOGIC
+    const [editionMode, setEditionMode] = useState(false);
+    const [inputInfo, setInputInfo] = useState({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo);
+
+    const toogleVersionEdition = () => {
+
+        if (editionMode) {
+            setInputInfo({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo)
+        } else {
+            setInputInfo({ tooltip: "Save version", icon: "SkypeCheck", arialabel: "Submit" } as InputInfo)
+        }
+
+        setEditionMode(val => !val);
+    }
+
+    // STYLES
+    const tooltipId = useId('tooltip');
+
+    const infoStakProps: Partial<IStackProps> = {
+        horizontal: true,
+        horizontalAlign: "end",
+        styles: {
+            root: {
+                marginBottom: 30,
+            },
+        },
+    };
+
+    const versionTextFieldProps: Partial<ITextFieldProps> = {
+        styles: {
+            fieldGroup: {
+                borderRadius: 4,
+                selectors: {
+                    "::after": {
+                        borderRadius: "inherit",
+                        border: "2px solid #003a66",
+                    },
+                },
+            },
+        },
+    };
+
+    return <Stack {...infoStakProps}>
+        <TextField underlined label="Version:" {...versionTextFieldProps} readOnly={!editionMode} placeholder="Enter a version like v0.1" />
+        <TooltipHost
+            content={inputInfo.tooltip}
+            id={tooltipId}
+        >
+            <IconButton iconProps={{ iconName: inputInfo.icon }}
+                title={inputInfo.arialabel}
+                ariaLabel={inputInfo.arialabel}
+                onClick={() => toogleVersionEdition()}
+
+            />
+        </TooltipHost>
     </Stack>
 }
