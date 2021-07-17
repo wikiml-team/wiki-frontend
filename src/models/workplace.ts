@@ -28,7 +28,7 @@ export type Tab = {
   onClick?: Function;
 };
 
-export class TabScheema {
+export class TabSchema {
 
   tabs: Tab[];
 

@@ -21,9 +21,9 @@ import GuidesTutorials from "pages/methodologies/canadian/tutorials/guidestutori
 import Tutorials from "pages/methodologies/canadian/tutorials/methodologytutorials";
 import OutcomesTutorial from "pages/methodologies/canadian/tutorials/outcomestutorial";
 import IndicatorsTutorial from "pages/methodologies/canadian/tutorials/indicatorstutorial";
-import { TabScheema } from "models/workplace";
+import { TabSchema } from "models/workplace";
 
-const tabsConfiguration = new TabScheema([
+const tabsConfiguration = new TabSchema([
   {
     key: "key1",
     name: "wikiml",

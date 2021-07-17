@@ -45,6 +45,7 @@ type formValuesType = {
   contribution: number;
 };
 
+
 export default function GeneralForm() {
   // STYLE
   const classes = mergeStyleSets({

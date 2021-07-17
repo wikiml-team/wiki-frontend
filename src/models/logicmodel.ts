@@ -1,8 +1,3 @@
-// changeToClass review Scheema or Schema
-export type LogicGraph = {
-    vertex: LogicmodelVertex[];
-    edges: LogicmodelEdge[];
-}
 
 export type LogicmodelVertex = {
     id: string;
@@ -22,20 +17,21 @@ export type LogicmodelTree = {
 
 export class LogicmodelGraph {
 
-    graph: LogicGraph = { vertex: [], edges: [] }
+    vertex: LogicmodelVertex[];
+    edges: LogicmodelEdge[];
 
     constructor(vertex: LogicmodelVertex[], edges: LogicmodelEdge[]) {
-        this.graph.vertex = vertex;
-        this.graph.edges = edges;
+        this.vertex = vertex;
+        this.edges = edges;
     };
 
     findNode(id: string) {
 
-        return this.graph.vertex.find(v => v.id === id);
+        return this.vertex.find(v => v.id === id);
     }
 
     findChildren(parentId: string) {
-        return this.graph.edges.filter(e => e.from === parentId).map(e => e.to);
+        return this.edges.filter(e => e.from === parentId).map(e => e.to);
     }
 
     generateId(parentId: string, level: number, num: number): string {
@@ -53,8 +49,8 @@ export class LogicmodelGraph {
         } as LogicmodelVertex
 
         // Add to graph
-        this.graph.vertex.push(newNode);
-        this.graph.edges.push({ from: parentNode.id, to: newNode.id } as LogicmodelEdge);
+        this.vertex.push(newNode);
+        this.edges.push({ from: parentNode.id, to: newNode.id } as LogicmodelEdge);
 
         return this
     }
@@ -62,12 +58,12 @@ export class LogicmodelGraph {
     removeNode(nodeId: string) {
         // console.log(`vertex: ${this.graph.vertex.map(a => a.id)}`)
         // Remove from graph
-        // this.graph.vertex = this.graph.vertex.filter(v => v.id !== nodeId);
-        // this.graph.edges = this.graph.edges.filter(e => e.from != nodeId);
+        this.vertex = this.vertex.filter(v => v.id !== nodeId);
+        this.edges = this.edges.filter(e => e.from != nodeId);
 
-        // console.log(`vert: ${this.graph.vertex.map(v => v.id)}`)
-        // console.log(`ed from: ${this.graph.edges.map(e => e.from)}`)
-        // console.log(`ed to: ${this.graph.edges.map(e => e.to)}`)
+        console.log(`vert: ${this.vertex.map(v => v.id)}`)
+        console.log(`ed from: ${this.edges.map(e => e.from)}`)
+        console.log(`ed to: ${this.edges.map(e => e.to)}`)
 
         return this;
     }
@@ -80,7 +76,7 @@ export class LogicmodelGraph {
 
     private buildTreeRec(tree: LogicmodelTree) {
 
-        const childVertex = this.graph.edges.filter(edge => edge.from === tree.node.id).map(edge => this.findNode(edge.to)!);
+        const childVertex = this.edges.filter(edge => edge.from === tree.node.id).map(edge => this.findNode(edge.to)!);
 
         tree.children = childVertex.map(child => ({ node: child, children: [] } as LogicmodelTree));
 
