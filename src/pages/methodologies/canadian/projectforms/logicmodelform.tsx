@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { string, object, number, setLocale, ObjectSchema } from "yup";
+import { ObjectShape } from "yup/lib/object";
+import { Formik, Form, Field } from "formik";
 import {
   Stack,
   TextField,
@@ -11,11 +15,11 @@ import {
 
 import LogicTextFieldInput, { VersionFieldInput } from "components/inputs/logictext";
 import { logicmodelGraphExample } from "models/logicmodel";
-import { useTranslation } from "react-i18next";
 
 export default function LogicModelForm() {
-
   // LOGIC
+  const { t } = useTranslation();
+
   const [graph, setGraph] = useState(logicmodelGraphExample)
   const [treeToRender, setTreeToRender] = useState(graph.buildTree())
 
@@ -30,6 +34,9 @@ export default function LogicModelForm() {
     setTreeToRender(graph.buildTree());
   }
 
+  var zipped = graph.vertex.map((v) => ({ [`textFiled${v.id}`]: string() }));
+  // const validationSchema = object().shape();
+
   // STYLES
   const outcomeStackProps: Partial<IStackProps> = {
     // horizontal: true,
@@ -42,7 +49,6 @@ export default function LogicModelForm() {
   };
 
   return <React.Fragment>
-
     <VersionFieldInput />
 
     <Stack horizontal tokens={{ childrenGap: 20 }}>

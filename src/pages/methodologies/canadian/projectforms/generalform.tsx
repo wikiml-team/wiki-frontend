@@ -150,7 +150,7 @@ export default function GeneralForm() {
     approvedDate: string().required(t("required")),
     initialDate: string().required(t("required")),
     finalDate: string().required(t("required")),
-  });
+  } as string);
 
   useEffect(() => {
     setLocale({

@@ -56,14 +56,9 @@ export class LogicmodelGraph {
     }
 
     removeNode(nodeId: string) {
-        // console.log(`vertex: ${this.graph.vertex.map(a => a.id)}`)
         // Remove from graph
         this.vertex = this.vertex.filter(v => v.id !== nodeId);
-        this.edges = this.edges.filter(e => e.from != nodeId);
-
-        console.log(`vert: ${this.vertex.map(v => v.id)}`)
-        console.log(`ed from: ${this.edges.map(e => e.from)}`)
-        console.log(`ed to: ${this.edges.map(e => e.to)}`)
+        this.edges = this.edges.filter(e => e.from !== nodeId && e.to !== nodeId);
 
         return this;
     }
