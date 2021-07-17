@@ -9,10 +9,10 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { tab } from "models/workplace";
+import { Tab } from "models/workplace";
 
 type PagesTabProps = {
-  tabs?: tab[];
+  tabs?: Tab[];
   defaultKey?: string;
   parentKey: string;
   handleOnClick: (parentkey: string, item?: PivotItem) => void;
