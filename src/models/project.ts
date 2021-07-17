@@ -27,6 +27,7 @@ export default interface IProject {
   approvedDate: Date | string;
   initialDate: Date | string;
   finalDate: Date | string;
+  contribution: number;
 }
 
 export enum Sector {

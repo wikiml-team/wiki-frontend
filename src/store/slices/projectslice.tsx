@@ -32,6 +32,7 @@ const initialState: IProject = {
   finalDate: new Date(),
   initialDate: new Date(),
   donor: "Donor Test",
+  contribution: 1000.00,
 };
 
 const projectSlice = createSlice({
