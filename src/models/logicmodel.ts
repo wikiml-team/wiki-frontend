@@ -30,6 +30,7 @@ export class LogicmodelGraph {
     };
 
     findNode(id: string) {
+
         return this.graph.vertex.find(v => v.id === id);
     }
 
@@ -38,10 +39,7 @@ export class LogicmodelGraph {
     }
 
     generateId(parentId: string, level: number, num: number): string {
-        let newId = parentId.slice(0, level + 1);
-
-        newId.concat((num + 1).toString()).padEnd(4, "0");
-
+        let newId = parentId.slice(0, level + 1).concat((num + 1).toString()).padEnd(4, "0");
         return newId;
     }
 
@@ -62,11 +60,16 @@ export class LogicmodelGraph {
     }
 
     removeNode(nodeId: string) {
+        // console.log(`vertex: ${this.graph.vertex.map(a => a.id)}`)
         // Remove from graph
-        this.graph.vertex = this.graph.vertex.filter(v => v.id !== nodeId);
-        this.graph.edges = this.graph.edges.filter(e => e.from !== nodeId || e.to !== nodeId);
+        // this.graph.vertex = this.graph.vertex.filter(v => v.id !== nodeId);
+        // this.graph.edges = this.graph.edges.filter(e => e.from != nodeId);
 
-        return this
+        // console.log(`vert: ${this.graph.vertex.map(v => v.id)}`)
+        // console.log(`ed from: ${this.graph.edges.map(e => e.from)}`)
+        // console.log(`ed to: ${this.graph.edges.map(e => e.to)}`)
+
+        return this;
     }
 
     buildTree() {

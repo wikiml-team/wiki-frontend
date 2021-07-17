@@ -100,14 +100,16 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
             <Stack.Item {...rootStackItemProps}>
                 <Stack {...childrenStackProps} >
                     {children && children.map(child =>
-                        <Stack.Item grow><LogicTextFieldInput
-                            vertex={child.node}
-                            canDelete={true}
-                            canAdd={true}
-                            handleAddChild={handleAddChild}
-                            handleDelete={handleDelete}
-                            children={child.children}
-                        /></Stack.Item>
+                        <Stack.Item key={child.node.id} grow>
+                            <LogicTextFieldInput
+                                vertex={child.node}
+                                canDelete={child.children.length === 0}
+                                canAdd={child.children.length > 0 && child.children.length < 4}
+                                handleAddChild={handleAddChild}
+                                handleDelete={handleDelete}
+                                children={child.children}
+                            />
+                        </Stack.Item>
                     )}
                 </Stack>
             </Stack.Item>

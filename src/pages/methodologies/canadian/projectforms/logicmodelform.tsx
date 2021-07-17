@@ -16,8 +16,19 @@ import { logicmodelGraphExample } from "models/logicmodel";
 export default function LogicModelForm() {
 
   // LOGIC
-  const graph = logicmodelGraphExample;
-  const treeToRender = graph.buildTree();
+  const [graph, setGraph] = useState(logicmodelGraphExample)
+  const [treeToRender, setTreeToRender] = useState(graph.buildTree())
+
+
+  const handleAddNode = (id: string) => {
+    setGraph(graph.addNode(id));
+    setTreeToRender(graph.buildTree());
+  }
+
+  const handleRemoveNode = (id: string) => {
+    setGraph(graph.removeNode(id));
+    setTreeToRender(graph.buildTree());
+  }
 
   // STYLES
   const outcomeStackProps: Partial<IStackProps> = {
@@ -47,8 +58,8 @@ export default function LogicModelForm() {
             vertex={treeToRender.node}
             canDelete={false}
             canAdd={true}
-            handleAddChild={graph.addNode}
-            handleDelete={graph.removeNode}
+            handleAddChild={handleAddNode}
+            handleDelete={handleRemoveNode}
             children={treeToRender.children}
           />
         </Stack>
