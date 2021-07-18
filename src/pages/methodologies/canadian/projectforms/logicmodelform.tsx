@@ -2,14 +2,24 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { string, object } from "yup";
 import { ObjectShape } from "yup/lib/object";
+import { Formik, Form, Field } from "formik";
+import { useId } from '@fluentui/react-hooks';
 import {
+  IconButton,
   Stack,
   Text,
   IStackProps,
+  ITextFieldProps,
+  TooltipHost,
 } from "@fluentui/react";
 
-import LogicTextFieldInput, { VersionFieldInput } from "components/inputs/logictext";
+import LogicTextFieldInput from "components/inputs/logictext";
 import { logicmodelGraphExample } from "models/logicmodel";
+import TextFieldInput from "components/inputs/text";
+
+type formValuesType = {
+  [key: string]: string;
+}
 
 export default function LogicModelForm() {
   // LOGIC
@@ -32,6 +42,11 @@ export default function LogicModelForm() {
     shape[`textFiled${v.id}`] = string();
   }
 
+  var initialValues: formValuesType = {};
+  for (let v of graph.vertex) {
+    initialValues[`textFiled${v.id}`] = v.text;
+  }
+
   const validationSchema = object().shape(shape);
 
   // STYLES
@@ -45,31 +60,36 @@ export default function LogicModelForm() {
     }
   };
 
-  return <React.Fragment>
-    <VersionFieldInput />
+  return <Formik
+    initialValues={initialValues!}
+    validationSchema={validationSchema}
+    onSubmit={(values) => alert(values)}
+  >
+    <Form>
+      <VersionFieldInput />
 
-    <Stack horizontal tokens={{ childrenGap: 20 }}>
-      {/* Labels */}
-      <Stack.Item>
-        <LagicmodelLabels />
-      </Stack.Item>
+      <Stack horizontal tokens={{ childrenGap: 20 }}>
+        {/* Labels */}
+        <Stack.Item>
+          <LagicmodelLabels />
+        </Stack.Item>
 
-      {/* Inputs */}
-      <Stack.Item style={{ width: "100%" }}>
-        <Stack {...outcomeStackProps}>
-          <LogicTextFieldInput
-            vertex={treeToRender.node}
-            canDelete={false}
-            canAdd={true}
-            handleAddChild={handleAddNode}
-            handleDelete={handleRemoveNode}
-            children={treeToRender.children}
-            validationSchema={validationSchema}
-          />
-        </Stack>
-      </Stack.Item>
-    </Stack>
-  </React.Fragment>
+        {/* Inputs */}
+        <Stack.Item style={{ width: "100%" }}>
+          <Stack {...outcomeStackProps}>
+            <LogicTextFieldInput
+              vertex={treeToRender.node}
+              canDelete={false}
+              canAdd={true}
+              handleAddChild={handleAddNode}
+              handleDelete={handleRemoveNode}
+              children={treeToRender.children}
+            />
+          </Stack>
+        </Stack.Item>
+      </Stack>
+    </Form>
+  </Formik>
 }
 
 function LagicmodelLabels() {
@@ -111,5 +131,82 @@ function LagicmodelLabels() {
         <b>{t("outputs")}</b>
       </Text>
     </Stack.Item>
+  </Stack>
+}
+
+// EditVersionInputTextField
+type InputInfo = {
+  tooltip: string,
+  icon: string,
+  arialabel: string,
+}
+
+export function VersionFieldInput() {
+
+  // LOGIC
+  const { t } = useTranslation("logicmodel-form");
+
+  const [editionMode, setEditionMode] = useState(false);
+  const [inputInfo, setInputInfo] = useState({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo);
+
+  const toogleVersionEdition = () => {
+
+    if (editionMode) {
+      setInputInfo({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo)
+    } else {
+      setInputInfo({ tooltip: "Save version", icon: "SkypeCheck", arialabel: "Submit" } as InputInfo)
+    }
+
+    setEditionMode(val => !val);
+  }
+
+  // STYLES
+  const tooltipId = useId('tooltip');
+
+  const infoStakProps: Partial<IStackProps> = {
+    horizontal: true,
+    horizontalAlign: "end",
+    styles: {
+      root: {
+        marginBottom: 30,
+      },
+    },
+  };
+
+  const versionTextFieldProps: Partial<ITextFieldProps> = {
+    styles: {
+      fieldGroup: {
+        borderRadius: 4,
+        selectors: {
+          "::after": {
+            borderRadius: "inherit",
+            border: "2px solid #003a66",
+          },
+        },
+      },
+    },
+  };
+
+  return <Stack {...infoStakProps}>
+    <Field
+      label={t("versionLabel")}
+      name="verionMode"
+      underlined
+      readOnly={!editionMode}
+      placeholder={t("versionPlaceholder")}
+      component={TextFieldInput}
+      {...versionTextFieldProps}
+    />
+    <TooltipHost
+      content={inputInfo.tooltip}
+      id={tooltipId}
+    >
+      <IconButton iconProps={{ iconName: inputInfo.icon }}
+        title={inputInfo.arialabel}
+        ariaLabel={inputInfo.arialabel}
+        onClick={() => toogleVersionEdition()}
+
+      />
+    </TooltipHost>
   </Stack>
 }

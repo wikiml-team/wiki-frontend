@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { ObjectSchema } from 'yup';
-import { useId } from '@fluentui/react-hooks';
+import { Field } from "formik";
 import {
     Stack,
     IStackItemProps,
@@ -9,15 +8,15 @@ import {
     IButtonStyles,
     Icon,
     IIconProps,
-    ITextFieldProps,
     ITextStyles,
     Text,
-    TextField,
     TooltipHost,
     IconButton,
     useTheme,
+    ITextFieldProps,
 } from '@fluentui/react';
 
+import TextFieldInput from "components/inputs/text";
 import { LogicmodelVertex, LogicmodelTree } from "models/logicmodel";
 
 type LogicTextFieldInputProps = {
@@ -27,7 +26,6 @@ type LogicTextFieldInputProps = {
     handleAddChild: (id: string) => void,
     handleDelete: (id: string) => void,
     children?: LogicmodelTree[],
-    validationSchema?: ObjectSchema<any>,
 }
 
 export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
@@ -40,7 +38,6 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         handleAddChild,
         handleDelete,
         children,
-        validationSchema
     } = props;
 
     // STYLES
@@ -91,7 +88,6 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
 
     return (
         <React.Fragment>
-
             <Stack.Item {...rootStackItemProps}>
                 {vertex.level > 0 && <Icon {...arrowProps} />}
                 <LogicTextFieldHeader vertex={vertex}
@@ -99,7 +95,11 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                     handleAddChild={handleAddChild}
                     canDelete={canDelete}
                     handleDelete={handleDelete} />
-                <TextField {...inputTextFieldProps} defaultValue={vertex.text} />
+                <Field
+                    name={`textFiled${vertex.id}`}
+                    component={TextFieldInput}
+                    {...inputTextFieldProps}
+                />
             </Stack.Item>
 
             <Stack.Item {...rootStackItemProps}>
@@ -113,13 +113,11 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                                 handleAddChild={handleAddChild}
                                 handleDelete={handleDelete}
                                 children={child.children}
-                                validationSchema={validationSchema}
                             />
                         </Stack.Item>
                     )}
                 </Stack>
             </Stack.Item>
-
         </React.Fragment>
 
     )
@@ -192,71 +190,3 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
     </Stack>
 }
 
-// EditVersionInputTextField
-type InputInfo = {
-    tooltip: string,
-    icon: string,
-    arialabel: string,
-}
-
-export function VersionFieldInput() {
-
-    // LOGIC
-    const { t } = useTranslation("logicmodel-form");
-
-    const [editionMode, setEditionMode] = useState(false);
-    const [inputInfo, setInputInfo] = useState({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo);
-
-    const toogleVersionEdition = () => {
-
-        if (editionMode) {
-            setInputInfo({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo)
-        } else {
-            setInputInfo({ tooltip: "Save version", icon: "SkypeCheck", arialabel: "Submit" } as InputInfo)
-        }
-
-        setEditionMode(val => !val);
-    }
-
-    // STYLES
-    const tooltipId = useId('tooltip');
-
-    const infoStakProps: Partial<IStackProps> = {
-        horizontal: true,
-        horizontalAlign: "end",
-        styles: {
-            root: {
-                marginBottom: 30,
-            },
-        },
-    };
-
-    const versionTextFieldProps: Partial<ITextFieldProps> = {
-        styles: {
-            fieldGroup: {
-                borderRadius: 4,
-                selectors: {
-                    "::after": {
-                        borderRadius: "inherit",
-                        border: "2px solid #003a66",
-                    },
-                },
-            },
-        },
-    };
-
-    return <Stack {...infoStakProps}>
-        <TextField underlined label={t("versionLabel")} {...versionTextFieldProps} readOnly={!editionMode} placeholder={t("versionPlaceholder")} />
-        <TooltipHost
-            content={inputInfo.tooltip}
-            id={tooltipId}
-        >
-            <IconButton iconProps={{ iconName: inputInfo.icon }}
-                title={inputInfo.arialabel}
-                ariaLabel={inputInfo.arialabel}
-                onClick={() => toogleVersionEdition()}
-
-            />
-        </TooltipHost>
-    </Stack>
-}

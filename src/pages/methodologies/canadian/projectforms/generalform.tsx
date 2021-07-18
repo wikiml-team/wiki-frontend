@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { string, object, number, setLocale } from "yup";
+import { Grid, Col, Row } from "fluentui-react-grid";
 import { Formik, Form, Field } from "formik";
 import {
   Stack,
@@ -14,7 +15,6 @@ import {
   ISeparatorProps,
   Label,
 } from "@fluentui/react";
-import { Grid, Col, Row } from "fluentui-react-grid";
 
 import { selectProject } from "store/slices/projectslice";
 import { Sector } from "models/project";
@@ -44,7 +44,6 @@ type formValuesType = {
   finalDate: Date | string;
   contribution: number;
 };
-
 
 export default function GeneralForm() {
   // STYLE
