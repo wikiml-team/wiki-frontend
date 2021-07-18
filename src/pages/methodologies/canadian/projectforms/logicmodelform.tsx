@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { string, object, number, setLocale, ObjectSchema } from "yup";
+import { string, object } from "yup";
 import { ObjectShape } from "yup/lib/object";
-import { Formik, Form, Field } from "formik";
 import {
   Stack,
-  TextField,
-  ITextFieldProps,
   Text,
   IStackProps,
-  IconButton,
-  TooltipHost,
 } from "@fluentui/react";
 
 import LogicTextFieldInput, { VersionFieldInput } from "components/inputs/logictext";
@@ -18,11 +13,8 @@ import { logicmodelGraphExample } from "models/logicmodel";
 
 export default function LogicModelForm() {
   // LOGIC
-  const { t } = useTranslation();
-
   const [graph, setGraph] = useState(logicmodelGraphExample)
   const [treeToRender, setTreeToRender] = useState(graph.buildTree())
-
 
   const handleAddNode = (id: string) => {
     setGraph(graph.addNode(id));
@@ -34,8 +26,13 @@ export default function LogicModelForm() {
     setTreeToRender(graph.buildTree());
   }
 
-  var zipped = graph.vertex.map((v) => ({ [`textFiled${v.id}`]: string() }));
-  // const validationSchema = object().shape();
+  // FORMIK
+  var shape: ObjectShape = {};
+  for (let v of graph.vertex) {
+    shape[`textFiled${v.id}`] = string();
+  }
+
+  const validationSchema = object().shape(shape);
 
   // STYLES
   const outcomeStackProps: Partial<IStackProps> = {
@@ -67,14 +64,13 @@ export default function LogicModelForm() {
             handleAddChild={handleAddNode}
             handleDelete={handleRemoveNode}
             children={treeToRender.children}
+            validationSchema={validationSchema}
           />
         </Stack>
       </Stack.Item>
     </Stack>
   </React.Fragment>
 }
-
-
 
 function LagicmodelLabels() {
 

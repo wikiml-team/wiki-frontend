@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
+import { ObjectSchema } from 'yup';
 import { useId } from '@fluentui/react-hooks';
 import {
     Stack,
@@ -17,15 +19,15 @@ import {
 } from '@fluentui/react';
 
 import { LogicmodelVertex, LogicmodelTree } from "models/logicmodel";
-import { useTranslation } from 'react-i18next';
 
-interface LogicTextFieldInputProps {
-    vertex: LogicmodelVertex;
-    canDelete?: boolean;
-    canAdd?: boolean;
-    handleAddChild: (id: string) => void;
-    handleDelete: (id: string) => void;
-    children?: LogicmodelTree[];
+type LogicTextFieldInputProps = {
+    vertex: LogicmodelVertex,
+    canDelete?: boolean,
+    canAdd?: boolean,
+    handleAddChild: (id: string) => void,
+    handleDelete: (id: string) => void,
+    children?: LogicmodelTree[],
+    validationSchema?: ObjectSchema<any>,
 }
 
 export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
@@ -37,7 +39,8 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         canAdd,
         handleAddChild,
         handleDelete,
-        children
+        children,
+        validationSchema
     } = props;
 
     // STYLES
@@ -110,6 +113,7 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                                 handleAddChild={handleAddChild}
                                 handleDelete={handleDelete}
                                 children={child.children}
+                                validationSchema={validationSchema}
                             />
                         </Stack.Item>
                     )}
