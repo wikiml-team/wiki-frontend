@@ -117,7 +117,8 @@
     "approvedate-error": "Approved Date",
     "initialdate-error": "Initial date",
     "finaldate-error": "Final Date",
-    "required": "Required"
+    "required": "Required",
+    "date-placeholder": "Select a date"
   },
   "months": {
     "january": "January",
@@ -174,14 +175,14 @@
     "closeButtonAriaLabel": "Close date picker"
   },
   "logicmodel-form": {
-    "versionLabel": "Version:",
-    "versionPlaceholder": "Enter a version (v0.1)",
-    "ultimateOutcome": "Ultimate Outcomes",
-    "intermediateOutcome": "Intermediate Outcomes",
-    "inmediateOutcome": "Inmediate Outcomes",
+    "version-label": "Version:",
+    "version-placeholder": "Enter a version (v0.1)",
+    "ultimate-outcome": "Ultimate Outcomes",
+    "intermediate-outcome": "Intermediate Outcomes",
+    "inmediate-outcome": "Inmediate Outcomes",
     "outputs": "Outputs",
-    "tooltipAddOutcome": "Add outcome",
-    "tooltipAddOutput": "Add output",
-    "tooltipDelete": "Delete"
+    "tooltip-addOutcome": "Add outcome",
+    "tooltip-addOutput": "Add output",
+    "tooltip-delete": "Delete"
   }
 }

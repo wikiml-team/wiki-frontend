@@ -113,17 +113,17 @@ function LagicmodelLabels() {
   return <Stack {...labelStackProps}>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>{t("ultimateOutcome")}</b>
+        <b>{t("ultimate-outcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>{t("intermediateOutcome")}</b>
+        <b>{t("intermediat-outcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>{t("inmediateOutcome")}</b>
+        <b>{t("inmediate-outcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
@@ -189,11 +189,11 @@ export function VersionFieldInput() {
 
   return <Stack {...infoStakProps}>
     <Field
-      label={t("versionLabel")}
+      label={t("versio-label")}
       name="verionMode"
       underlined
       readOnly={!editionMode}
-      placeholder={t("versionPlaceholder")}
+      placeholder={t("version-placeholder")}
       component={TextFieldInput}
       {...versionTextFieldProps}
     />

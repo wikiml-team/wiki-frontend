@@ -169,7 +169,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
         </Stack.Item>
         <Stack.Item>
             {canAdd && (
-                <TooltipHost content={level !== 2 ? t("tooltipAddOutcome") : t("tooltipAddOutput")}>
+                <TooltipHost content={level !== 2 ? t("tooltip-addOutcome") : t("tooltip-addOutput")}>
                     <IconButton
                         iconProps={{ iconName: "Add" }}
                         styles={commandStyles}
@@ -178,7 +178,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                 </TooltipHost>
             )}
             {canDelete && (
-                <TooltipHost content={t("tooltipDelete")}>
+                <TooltipHost content={t("tooltip-delete")}>
                     <IconButton
                         iconProps={{ iconName: "Cancel" }}
                         styles={commandStyles}

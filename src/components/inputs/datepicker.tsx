@@ -9,6 +9,7 @@ const DateFieldInput = ({ field, form, ...props }: any) => {
     "days",
     "shortDays",
     "calendar",
+    "general-form"
   ]);
 
   const DayPickerStrings: IDatePickerStrings = {
@@ -85,7 +86,7 @@ const DateFieldInput = ({ field, form, ...props }: any) => {
 
   return (
     <DatePicker
-      placeholder="Select a date..."
+      placeholder={t("general-form:date-placeholder")}
       minDate={minDate}
       onGetErrorMessage={handleOnGetError}
       deferredValidationTime={500}
