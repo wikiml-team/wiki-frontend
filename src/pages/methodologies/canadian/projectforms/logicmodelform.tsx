@@ -37,12 +37,12 @@ export default function LogicModelForm() {
   }
 
   // FORMIK
-  var shape: ObjectShape = {};
+  var shape: ObjectShape = { "verionMode": string() };
   for (let v of graph.vertex) {
     shape[`textFiled${v.id}`] = string();
   }
 
-  var initialValues: formValuesType = {};
+  var initialValues: formValuesType = { "verionMode": "" }; // Take init value from DB
   for (let v of graph.vertex) {
     initialValues[`textFiled${v.id}`] = v.text;
   }
@@ -78,12 +78,9 @@ export default function LogicModelForm() {
         <Stack.Item style={{ width: "100%" }}>
           <Stack {...outcomeStackProps}>
             <LogicTextFieldInput
-              vertex={treeToRender.node}
-              canDelete={false}
-              canAdd={true}
+              nodeTree={treeToRender}
               handleAddChild={handleAddNode}
               handleDelete={handleRemoveNode}
-              children={treeToRender.children}
             />
           </Stack>
         </Stack.Item>

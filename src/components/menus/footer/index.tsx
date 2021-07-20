@@ -54,7 +54,7 @@ export default function Footer(props: FooterProps) {
       const itemkey = item.props.itemKey!;
 
       // Update current configuration
-      dispatch(setConfiguration({ key: parentkey, formtab: itemkey, render: item.props.children }))
+      dispatch(setConfiguration({ key: parentkey, tab: itemkey, page: item.props.children }))
     }
   };
 

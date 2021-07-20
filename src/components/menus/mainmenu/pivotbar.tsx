@@ -67,7 +67,7 @@ export default function PivotBar(props: PivotBarProps) {
     if (item) {
       const itemkey = item.props.itemKey!;
       // Update current menu tab
-      dispatch(setLatestMenuTab({ tab: itemkey }));
+      dispatch(setLatestMenuTab({ tabKey: itemkey }));
     }
   }
 
