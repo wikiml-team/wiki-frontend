@@ -18,11 +18,12 @@ import {
 } from '@fluentui/react';
 
 import { selectWorkplaceConfig, setConfiguration } from "store/slices/workplaceslice";
-import { LogicmodelTree } from "models/logicmodel";
+import { Tree } from "models/tree";
+import { LogicmodelVertex } from "models/logicmodel";
 import TextFieldInput from "components/inputs/text";
 
 type LogicTextFieldInputProps = {
-    nodeTree: LogicmodelTree,
+    nodeTree: Tree<LogicmodelVertex>,
     handleAddChild: (id: string) => void,
     handleDelete: (id: string) => void,
 }
