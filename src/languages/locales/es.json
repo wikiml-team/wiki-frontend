@@ -183,6 +183,7 @@
     "outputs": "Productos",
     "tooltip-addOutcome": "Añadir Resultado",
     "tooltip-addOutput": "Añadir Producto",
-    "tooltip-delete": "Eliminar"
+    "tooltip-delete": "Eliminar",
+    "tooltip-redirectToAct": "Ir a actividades"
   }
 }

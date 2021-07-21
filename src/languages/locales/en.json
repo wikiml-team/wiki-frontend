@@ -183,6 +183,7 @@
     "outputs": "Outputs",
     "tooltip-addOutcome": "Add outcome",
     "tooltip-addOutput": "Add output",
-    "tooltip-delete": "Delete"
+    "tooltip-delete": "Delete",
+    "tooltip-redirectToAct": "Go to Activities"
   }
 }

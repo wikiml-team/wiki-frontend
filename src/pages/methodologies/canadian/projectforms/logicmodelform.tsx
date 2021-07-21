@@ -186,7 +186,7 @@ export function VersionFieldInput() {
 
   return <Stack {...infoStakProps}>
     <Field
-      label={t("versio-label")}
+      label={t("version-label")}
       name="verionMode"
       underlined
       readOnly={!editionMode}
