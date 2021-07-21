@@ -31,8 +31,8 @@ export default function LogicModelForm() {
     setTreeToRender(graph.buildTree());
   }
 
-  const handleRemoveNode = (id: string) => {
-    setGraph(graph.removeNode(id));
+  const handleDeleteNode = (id: string) => {
+    setGraph(graph.deleteNode(id));
     setTreeToRender(graph.buildTree());
   }
 
@@ -80,7 +80,7 @@ export default function LogicModelForm() {
             <LogicTextFieldInput
               nodeTree={treeToRender}
               handleAddChild={handleAddNode}
-              handleDelete={handleRemoveNode}
+              handleDelete={handleDeleteNode}
             />
           </Stack>
         </Stack.Item>
