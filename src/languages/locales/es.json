@@ -176,7 +176,7 @@
   },
   "logicmodel-form": {
     "version-label": "Versión:",
-    "version-placeholder": "Escribe una versión (v0.1)",
+    "version-placeholder": "ej: v0.1",
     "ultimate-outcome": "Resultado Final",
     "intermediate-outcome": "Resultados Intermedios",
     "inmediate-outcome": "Resultados Inmediatos",

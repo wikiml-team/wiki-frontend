@@ -41,7 +41,7 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
     // STYLES
     const { palette } = useTheme();
 
-    const rootStackItemProps: Partial<IStackItemProps> = {
+    const rootStackItemProps: IStackItemProps = {
         grow: 1,
         styles: {
             root: {
@@ -50,13 +50,13 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         },
     };
 
-    const childrenStackProps: Partial<IStackProps> = {
+    const childrenStackProps: IStackProps = {
         horizontal: true,
         horizontalAlign: "space-between",
         tokens: { childrenGap: 20 }
     };
 
-    const inputTextFieldProps: Partial<ITextFieldProps> = {
+    const inputTextFieldProps: ITextFieldProps = {
         multiline: true,
         rows: 3,
         resizable: false,
@@ -74,7 +74,7 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         },
     };
 
-    const arrowProps: Partial<IIconProps> = {
+    const arrowProps: IIconProps = {
         iconName: "SortUp",
         ariaLabel: "Belongs to",
         styles: {

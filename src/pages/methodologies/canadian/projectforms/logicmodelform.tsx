@@ -3,14 +3,11 @@ import { useTranslation } from "react-i18next";
 import { string, object } from "yup";
 import { ObjectShape } from "yup/lib/object";
 import { Formik, Form, Field } from "formik";
-import { useId } from '@fluentui/react-hooks';
 import {
-  IconButton,
   Stack,
   Text,
   IStackProps,
-  ITextFieldProps,
-  TooltipHost,
+  ITextFieldStyles,
 } from "@fluentui/react";
 
 import LogicTextFieldInput from "components/inputs/logictext";
@@ -50,7 +47,7 @@ export default function LogicModelForm() {
   const validationSchema = object().shape(shape);
 
   // STYLES
-  const outcomeStackProps: Partial<IStackProps> = {
+  const outcomeStackProps: IStackProps = {
     // horizontal: true,
     tokens: { childrenGap: 10 },
     styles: {
@@ -95,7 +92,7 @@ function LagicmodelLabels() {
   const { t } = useTranslation("logicmodel-form");
 
   // STYLES
-  const labelStackProps: Partial<IStackProps> = {
+  const labelStackProps: IStackProps = {
     verticalAlign: "space-between",
     styles: {
       root: {
@@ -131,36 +128,13 @@ function LagicmodelLabels() {
   </Stack>
 }
 
-// EditVersionInputTextField
-type InputInfo = {
-  tooltip: string,
-  icon: string,
-  arialabel: string,
-}
-
 export function VersionFieldInput() {
 
   // LOGIC
   const { t } = useTranslation("logicmodel-form");
 
-  const [editionMode, setEditionMode] = useState(false);
-  const [inputInfo, setInputInfo] = useState({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo);
-
-  const toogleVersionEdition = () => {
-
-    if (editionMode) {
-      setInputInfo({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo)
-    } else {
-      setInputInfo({ tooltip: "Save version", icon: "SkypeCheck", arialabel: "Submit" } as InputInfo)
-    }
-
-    setEditionMode(val => !val);
-  }
-
   // STYLES
-  const tooltipId = useId('tooltip');
-
-  const infoStakProps: Partial<IStackProps> = {
+  const infoStakProps: IStackProps = {
     horizontal: true,
     horizontalAlign: "end",
     styles: {
@@ -170,15 +144,16 @@ export function VersionFieldInput() {
     },
   };
 
-  const versionTextFieldProps: Partial<ITextFieldProps> = {
-    styles: {
-      fieldGroup: {
-        borderRadius: 4,
-        selectors: {
-          "::after": {
-            borderRadius: "inherit",
-            border: "2px solid #003a66",
-          },
+  const versionTextFieldStyles: Partial<ITextFieldStyles> = {
+    root: {
+      maxWidth: 200
+    },
+    fieldGroup: {
+      borderRadius: 4,
+      selectors: {
+        "::after": {
+          borderRadius: "inherit",
+          border: "2px solid #003a66",
         },
       },
     },
@@ -189,21 +164,10 @@ export function VersionFieldInput() {
       label={t("version-label")}
       name="verionMode"
       underlined
-      readOnly={!editionMode}
+      // readOnly={!userHasPermision} 
       placeholder={t("version-placeholder")}
       component={TextFieldInput}
-      {...versionTextFieldProps}
+      styles={versionTextFieldStyles}
     />
-    <TooltipHost
-      content={inputInfo.tooltip}
-      id={tooltipId}
-    >
-      <IconButton iconProps={{ iconName: inputInfo.icon }}
-        title={inputInfo.arialabel}
-        ariaLabel={inputInfo.arialabel}
-        onClick={() => toogleVersionEdition()}
-
-      />
-    </TooltipHost>
   </Stack>
 }
