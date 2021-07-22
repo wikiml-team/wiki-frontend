@@ -12,11 +12,20 @@ import { faritems, items, overflowItems } from "./items";
 import SidePanel from "components/sidepanel";
 import LanguagePanel from "components/sidepanel/languagepanel";
 import SettingsPanel from "components/sidepanel/settings/settingspanel";
-import { CustomBarButton, CustomOverflowButton, overflowProps } from "./custombuttons";
+import {
+  CustomBarButton,
+  CustomOverflowButton,
+  overflowProps,
+} from "./custombuttons";
+import { useKeycloak } from "@react-keycloak/web";
 
 export default function CommandMenu() {
   const { palette } = useTheme();
   const { t } = useTranslation("methodologies");
+
+  const { keycloak } = useKeycloak();
+  const username =
+    ((keycloak.tokenParsed as any) || {}).preferred_username || "anonymous";
 
   // STYLES
   const comandBarStyles: ICommandBarStyles = {
@@ -55,18 +64,18 @@ export default function CommandMenu() {
 
   return (
     <React.Fragment>
-      <Text variant="small" styles={textStyles}>
+      <Text variant='small' styles={textStyles}>
         Project 1 - {t("methodologies:canadian")}
       </Text>
 
       <CommandBar
         buttonAs={CustomBarButton}
         items={items}
-        farItems={faritems(OpenLanguagePanel, OpenSettingsPanel)}
+        farItems={faritems(OpenLanguagePanel, OpenSettingsPanel, username)}
         overflowItems={overflowItems}
         overflowButtonAs={CustomOverflowButton}
         overflowButtonProps={overflowProps(palette)}
-        ariaLabel="Use left and right arrow keys to navigate between commands"
+        ariaLabel='Use left and right arrow keys to navigate between commands'
         styles={comandBarStyles}
       />
 

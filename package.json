@@ -5,6 +5,8 @@
   "homepage": "https://wikiml-team.github.io/wiki-frontend",
   "dependencies": {
     "@fluentui/react": "^8.6.0",
+    "@react-keycloak/ssr": "^3.3.0",
+    "@react-keycloak/web": "^3.4.0",
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -26,6 +28,7 @@
     "i18next": "^20.1.0",
     "i18next-browser-languagedetector": "^6.1.0",
     "i18next-http-backend": "^1.2.1",
+    "keycloak-js": "^14.0.0",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",

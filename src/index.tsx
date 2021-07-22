@@ -10,14 +10,19 @@ import { initializeIcons, loadTheme } from "@fluentui/react";
 import { Provider } from "react-redux";
 import store from "store";
 
+import { ReactKeycloakProvider } from "@react-keycloak/web";
+import keycloak from "keycloak";
+
 loadTheme(store.getState().theme);
 initializeIcons();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ReactKeycloakProvider authClient={keycloak}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ReactKeycloakProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

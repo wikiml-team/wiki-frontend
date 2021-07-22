@@ -69,7 +69,7 @@ export const overflowItems: ICommandBarItemProps[] = [
   },
 ];
 
-export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function) => {
+export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function, username: string) => {
   return [
     {
       key: "fullscreen",
@@ -105,7 +105,7 @@ export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Functio
     },
     {
       key: "user",
-      text: "Gabriela Rodríguez",
+      text: username,
       ariaLabel: "User name",
       iconOnly: true,
       iconProps: { iconName: "Contact" },
