@@ -19,7 +19,7 @@ import {
 
 import { selectWorkplaceConfig, setConfiguration } from "store/slices/workplaceslice";
 import { Tree } from "models/tree";
-import { LogicmodelVertex } from "models/logicmodel";
+import { LogicmodelVertex } from "models/canadian/logicmodel";
 import TextFieldInput from "components/inputs/text";
 
 type LogicTextFieldInputProps = {
@@ -61,6 +61,9 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         rows: 3,
         resizable: false,
         styles: {
+            root: {
+                minWidth: 200,
+            },
             fieldGroup: {
                 borderRadius: "0 0 2px 2px",
                 border: `1px solid ${palette.neutralQuaternary}`,
@@ -91,7 +94,8 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                 <LogicTextFieldHeader
                     nodeTree={nodeTree}
                     handleAddChild={handleAddChild}
-                    handleDelete={handleDelete} />
+                    handleDelete={handleDelete}
+                />
                 <Field
                     name={`textFiled${node.id}`}
                     component={TextFieldInput}

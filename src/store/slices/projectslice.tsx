@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import IProject, { Sector } from "models/project";
-import IState from "models/state";
 
-const initialState: IProject = {
+import IState from "models/state";
+import { IProjectInfo } from "models/generalinfo";
+import { ECanadianSector } from "models/sector";
+import IProject from "models/project";
+import { CanadianMethodology } from "models/methodologies";
+import { logicmodelGraphExample } from "models/canadian/logicmodel";
+import { actmatrixGraphExample } from "models/canadian/actvitiesmatrix";
+
+const initialProjectInfoState: IProjectInfo<ECanadianSector> = {
   name: "Large Project Name Test",
   shortname: "Short Project Name",
   description: "Lorem ipsum dolre description asedore son lisiu tredo.",
@@ -14,7 +20,7 @@ const initialState: IProject = {
   duration: 34,
   country: "Country Test",
   program: "Program Test",
-  sector: Sector.Energy,
+  sector: ECanadianSector.Energy,
   donorcode: "2F8HT",
   leader: { name: "Leader Test", email: "test@gmail.com" },
   team: [
@@ -34,6 +40,10 @@ const initialState: IProject = {
   donor: "Donor Test",
   contribution: 1000.00,
 };
+
+const initialState: IProject = {
+  methodology: new CanadianMethodology(initialProjectInfoState, logicmodelGraphExample, actmatrixGraphExample)
+}
 
 const projectSlice = createSlice({
   name: "project",

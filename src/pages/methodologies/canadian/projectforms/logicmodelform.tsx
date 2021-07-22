@@ -11,7 +11,7 @@ import {
 } from "@fluentui/react";
 
 import LogicTextFieldInput from "components/inputs/logictext";
-import { logicmodelGraphExample } from "models/logicmodel";
+import { logicmodelGraphExample } from "models/canadian/logicmodel";
 import TextFieldInput from "components/inputs/text";
 
 type formValuesType = {
@@ -34,28 +34,17 @@ export default function LogicModelForm() {
   }
 
   // FORMIK
-  var shape: ObjectShape = { "verionMode": string() };
-  for (let v of graph.vertex) {
-    shape[`textFiled${v.id}`] = string();
-  }
-
   var initialValues: formValuesType = { "verionMode": "" }; // Take init value from DB
   for (let v of graph.vertex) {
     initialValues[`textFiled${v.id}`] = v.text;
   }
 
-  const validationSchema = object().shape(shape);
+  var shape: ObjectShape = { "verionMode": string() };
+  for (let v of graph.vertex) {
+    shape[`textFiled${v.id}`] = string();
+  }
 
-  // STYLES
-  const outcomeStackProps: IStackProps = {
-    // horizontal: true,
-    tokens: { childrenGap: 10 },
-    styles: {
-      root: {
-        width: "100%"
-      }
-    }
-  };
+  const validationSchema = object().shape(shape);
 
   return <Formik
     initialValues={initialValues!}
@@ -73,7 +62,7 @@ export default function LogicModelForm() {
 
         {/* Inputs */}
         <Stack.Item style={{ width: "100%" }}>
-          <Stack {...outcomeStackProps}>
+          <Stack tokens={{ childrenGap: 10 }} >
             <LogicTextFieldInput
               nodeTree={treeToRender}
               handleAddChild={handleAddNode}
@@ -112,7 +101,7 @@ function LagicmodelLabels() {
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>{t("intermediat-outcome")}</b>
+        <b>{t("intermediate-outcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>

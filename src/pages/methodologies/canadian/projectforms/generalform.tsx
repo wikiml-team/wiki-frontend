@@ -17,10 +17,11 @@ import {
 } from "@fluentui/react";
 
 import { selectProject } from "store/slices/projectslice";
-import { Sector } from "models/project";
+import { ECanadianSector } from "models/sector";
 import DropdownFieldInput from "components/inputs/dropdown";
 import TextFieldInput from "components/inputs/text";
 import DateFieldInput from "components/inputs/datepicker";
+import { IProjectInfo } from "models/generalinfo";
 
 type formValuesType = {
   shortName: string;
@@ -35,7 +36,7 @@ type formValuesType = {
   budgetFinanced: number;
   budgetSolicited: number;
   program: string;
-  sector: Sector;
+  sector: ECanadianSector;
   duration: number;
   donor: string;
   approvedBudget: number;
@@ -90,9 +91,10 @@ export default function GeneralForm() {
   // LOGIC
   const { t } = useTranslation(["general-form", "status"]);
   const project = useSelector(selectProject);
+  const generalInfo = project.methodology.instruments.generalInfo as IProjectInfo<ECanadianSector>;
 
-  const [initialDate, setInitialDate] = useState(project.initialDate as Date)
-  const [approvedDate, setApprovedDate] = useState(project.approvedDate as Date)
+  const [initialDate, setInitialDate] = useState(generalInfo.initialDate as Date)
+  const [approvedDate, setApprovedDate] = useState(generalInfo.approvedDate as Date)
 
   const handleSelectInitialDate = (date: Date) => {
     setInitialDate(date);
@@ -103,26 +105,26 @@ export default function GeneralForm() {
   }
 
   const initValues: formValuesType = {
-    shortName: project.shortname,
-    largeName: project.name,
-    description: project.description,
-    country: project.country,
-    impOrganization: project.organization,
-    intOrganization: project.intermediary,
-    budget: project.budget,
-    budgetPerItems: project.budgetItems,
-    budgetPerAct: project.budgetAct,
-    budgetFinanced: project.budgetFinanced,
-    budgetSolicited: project.solicitedBudget,
-    program: project.program,
-    sector: project.sector,
-    duration: project.duration,
-    donor: project.donor,
-    approvedBudget: project.approvedBudget,
-    approvedDate: project.approvedDate,
-    initialDate: project.initialDate,
-    finalDate: project.finalDate,
-    contribution: project.contribution
+    shortName: generalInfo.shortname,
+    largeName: generalInfo.name,
+    description: generalInfo.description,
+    country: generalInfo.country,
+    impOrganization: generalInfo.organization,
+    intOrganization: generalInfo.intermediary,
+    budget: generalInfo.budget,
+    budgetPerItems: generalInfo.budgetItems,
+    budgetPerAct: generalInfo.budgetAct,
+    budgetFinanced: generalInfo.budgetFinanced,
+    budgetSolicited: generalInfo.solicitedBudget,
+    program: generalInfo.program,
+    sector: generalInfo.sector,
+    duration: generalInfo.duration,
+    donor: generalInfo.donor,
+    approvedBudget: generalInfo.approvedBudget,
+    approvedDate: generalInfo.approvedDate,
+    initialDate: generalInfo.initialDate,
+    finalDate: generalInfo.finalDate,
+    contribution: generalInfo.contribution
   };
 
   const validationSchema = object().shape({
@@ -230,11 +232,11 @@ export default function GeneralForm() {
               <Stack {...headerStackProps}>
                 <Stack.Item>
                   <Label>{t("status-field")}</Label>
-                  {t(`status:${project.status}`)}
+                  {t(`status:${generalInfo.status}`)}
                 </Stack.Item>
                 <Stack.Item>
                   <Label>{t("wikicode-field")}</Label>
-                  {project.wikicode}
+                  {generalInfo.wikicode}
                 </Stack.Item>
               </Stack>
               <br />
@@ -329,7 +331,7 @@ export default function GeneralForm() {
               <Stack {...headerStackProps}>
                 <Stack.Item>
                   <Label>{t("donorcode-field")}</Label>
-                  {project.donorcode}
+                  {generalInfo.donorcode}
                 </Stack.Item>
               </Stack>
               <br />
@@ -375,7 +377,7 @@ export default function GeneralForm() {
                   name="approvedBudget"
                   component={TextFieldInput}
                   options={countries}
-                  suffix={project.currency}
+                  suffix={generalInfo.currency}
                   sizeLg={6}
                 />
                 <StandardField

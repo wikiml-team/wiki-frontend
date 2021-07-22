@@ -1,5 +1,9 @@
 import React from "react";
 
-export default function ActivitiesMatrixForm() {
+type ActivitiesMatrixFormProps = {
+
+}
+
+export default function ActivitiesMatrixForm(props: ActivitiesMatrixFormProps) {
   return <div>Activities Matrix Form</div>;
 }

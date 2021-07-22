@@ -1,4 +1,3 @@
-1- Pretty scroll
 - Sort los team members por los que están conectados
 - Pages Bar
   - Make tabs to overflow identical to excell
@@ -9,15 +8,19 @@
   - Set all Errors 
   - Set errores whith parameters
 - List of countries and currencies.
-2- Sticky Top **
 - Make axios calls with fake api
   - pages for project, methodologies, licitations...
 - Responsive Programming
 - Autentication
 - HELP
   - Tooltips when help enabled
-3- Hide toolBar
-  - unselecet current menu
+1- LOGIC MODEL FORM 
+  - Controlled text inputs with formik
+  - Collapse menu
+  - Children add siblings
+  - Cant delete a unique child
+2- ACTIVITIES MATRIX FORM 
+  - Controlled text inputs with formik
 
 
 DONE 
@@ -31,3 +34,6 @@ DONE
 - Tooltips over command items
 - Get rid of warnings
 - Title in the middle of commandBar (still doesnt support it)
+- Pretty scroll
+- Sticky Top **
+- Hide toolBar
