@@ -181,7 +181,8 @@
     "intermediate-outcome": "Resultados Intermedios",
     "inmediate-outcome": "Resultados Inmediatos",
     "outputs": "Productos",
-    "tooltip-addOutcome": "Añadir Resultado",
+    "tooltip-addInmOutcome": "Añadir resultado inmediado",
+    "tooltip-addIntOutcome": "Añadir resultado intermedio",
     "tooltip-addOutput": "Añadir Producto",
     "tooltip-delete": "Eliminar",
     "tooltip-redirectToAct": "Ir a actividades"

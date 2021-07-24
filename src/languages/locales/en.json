@@ -181,7 +181,8 @@
     "intermediate-outcome": "Intermediate Outcomes",
     "inmediate-outcome": "Inmediate Outcomes",
     "outputs": "Outputs",
-    "tooltip-addOutcome": "Add outcome",
+    "tooltip-addInmOutcome": "Add inmediate outcome",
+    "tooltip-addIntOutcome": "Add intermediate outcome",
     "tooltip-addOutput": "Add output",
     "tooltip-delete": "Delete",
     "tooltip-redirectToAct": "Go to Activities"

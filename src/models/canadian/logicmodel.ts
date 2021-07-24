@@ -1,3 +1,4 @@
+import { toNumber } from "lodash";
 import { Graph, Edge } from "../tree";
 
 export type LogicmodelVertex = {
@@ -22,8 +23,18 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
         return this;
     }
 
-    getNodeLevel(id: string) {
+    getNodeLevel(id: string): number {
         return 3 - id.split("").filter(c => c === "0").length;
+    }
+
+    getAllInmediateOutcomesIds() {
+        return this.vertex.filter(v => v.level === 2).sort((a, b) => toNumber(a.id) - toNumber(b.id)).map(v => v.id);
+    }
+
+    getInmediateTree(id: string) {
+        const outputs = this.edges.filter(e => e.from === id).map(e => this.findNode(e.to));
+
+        return { node: this.findNode(id), outputs: outputs };
     }
 
     generateParentId(id: string, level: number): string {
@@ -99,17 +110,17 @@ export const vertexExample: LogicmodelVertex[] = [
     },
     {
         id: "1111",
-        text: "",
+        text: "Lorem ipsum dolor sit amet. Et quaerat repellat ut deserunt excepturi in voluptatem error. Id quam quasi eos enim dolorum est omnis perspiciatis et accusantium eius id debitis voluptate non itaque dolor et voluptatem quos.",
         level: 3,
     },
     {
         id: "1120",
-        text: "",
+        text: "Aut consequuntur obcaecati aut soluta saepe ad doloribus praesentium. Et veniam impedit nam quidem aspernatur ea suscipit deserunt.",
         level: 2,
     },
     {
         id: "1121",
-        text: "",
+        text: "Sed dolorum sunt ea magnam nostrum qui voluptatibus vero sit corporis galisum et cumque eius non enim inventore. ",
         level: 3,
     },
     {
@@ -124,17 +135,17 @@ export const vertexExample: LogicmodelVertex[] = [
     },
     {
         id: "1211",
-        text: "",
+        text: "Ut illo voluptatibus aut unde exercitationem ex quam tempore ex quibusdam saepe aut nostrum esse cum alias laboriosam sed corporis mollitia. ",
         level: 3,
     },
     {
         id: "1220",
-        text: "",
+        text: "Et veniam impedit nam quidem aspernatur ea suscipit deserunt.",
         level: 2,
     },
     {
         id: "1221",
-        text: "",
+        text: "Ea amet soluta et veniam placeat est dolorum galisum et dolores vero non dolorem ducimus. Est earum itaque qui incidunt eum inventore voluptas id nesciunt dolorem.",
         level: 3,
     },
 ];

@@ -11,8 +11,10 @@ import {
 } from "@fluentui/react";
 
 import LogicTextFieldInput from "components/inputs/logictext";
-import { logicmodelGraphExample } from "models/canadian/logicmodel";
+import LogicmodelGraph, { logicmodelGraphExample } from "models/canadian/logicmodel";
 import TextFieldInput from "components/inputs/text";
+import { selectProject } from "store/slices/projectslice";
+import { useSelector } from "react-redux";
 
 type formValuesType = {
   [key: string]: string;
@@ -20,7 +22,11 @@ type formValuesType = {
 
 export default function LogicModelForm() {
   // LOGIC
-  const [graph, setGraph] = useState(logicmodelGraphExample)
+
+  const project = useSelector(selectProject);
+  const logicModelGraph = project.methodology.instruments.logicModel as LogicmodelGraph;
+
+  const [graph, setGraph] = useState(logicModelGraph)
   const [treeToRender, setTreeToRender] = useState(graph.buildTree())
 
   const handleAddNode = (id: string) => {
@@ -52,8 +58,6 @@ export default function LogicModelForm() {
     onSubmit={(values) => alert(values)}
   >
     <Form>
-      <VersionFieldInput />
-
       <Stack horizontal tokens={{ childrenGap: 20 }}>
         {/* Labels */}
         <Stack.Item>
@@ -114,49 +118,5 @@ function LagicmodelLabels() {
         <b>{t("outputs")}</b>
       </Text>
     </Stack.Item>
-  </Stack>
-}
-
-export function VersionFieldInput() {
-
-  // LOGIC
-  const { t } = useTranslation("logicmodel-form");
-
-  // STYLES
-  const infoStakProps: IStackProps = {
-    horizontal: true,
-    horizontalAlign: "end",
-    styles: {
-      root: {
-        marginBottom: 30,
-      },
-    },
-  };
-
-  const versionTextFieldStyles: Partial<ITextFieldStyles> = {
-    root: {
-      maxWidth: 200
-    },
-    fieldGroup: {
-      borderRadius: 4,
-      selectors: {
-        "::after": {
-          borderRadius: "inherit",
-          border: "2px solid #003a66",
-        },
-      },
-    },
-  };
-
-  return <Stack {...infoStakProps}>
-    <Field
-      label={t("version-label")}
-      name="verionMode"
-      underlined
-      // readOnly={!userHasPermision} 
-      placeholder={t("version-placeholder")}
-      component={TextFieldInput}
-      styles={versionTextFieldStyles}
-    />
   </Stack>
 }

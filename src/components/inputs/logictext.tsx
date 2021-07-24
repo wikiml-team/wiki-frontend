@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { Scrollbars } from "react-custom-scrollbars";
 import { Field } from "formik";
 import {
     Stack,
@@ -46,6 +47,7 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         styles: {
             root: {
                 textAlign: "center",
+                marginTop: "0px !important"
             },
         },
     };
@@ -57,8 +59,8 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
     };
 
     const inputTextFieldProps: ITextFieldProps = {
-        multiline: true,
         rows: 3,
+        multiline: true,
         resizable: false,
         styles: {
             root: {
@@ -82,7 +84,7 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         ariaLabel: "Belongs to",
         styles: {
             root: {
-                margin: "10px auto",
+                margin: "8px auto",
             },
         },
     };
@@ -100,6 +102,7 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                     name={`textFiled${node.id}`}
                     component={TextFieldInput}
                     {...inputTextFieldProps}
+                    scrollbars={Scrollbars}
                 />
             </Stack.Item>
 
@@ -126,13 +129,17 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
     const { nodeTree, handleAddChild, handleDelete } = props;
     const { node, children } = nodeTree;
 
-    const canAdd = node.level < 3 && children.length < 4;
-    const canDelete = children.length === 0;
-    const canRedirectOutput = node.level === 3;
-
     const { t } = useTranslation("logicmodel-form");
     const dispatch = useDispatch();
     const { tabsSchema, latestMenuTab, configuration } = useSelector(selectWorkplaceConfig);
+
+    const tooltipContent = node.level === 0 ?
+        t("tooltip-addIntOutcome") : node.level === 1 ?
+            t("tooltip-addInmOutcome") : t("tooltip-addOutput")
+
+    const canAdd = node.level < 3 && children.length < 4;
+    const canDelete = children.length === 0;
+    const canRedirectOutput = node.level === 3;
 
     const handleRedirectToActivity = (id: string) => {
         const formtabKey = tabsSchema.findChildByName("activitiesmatrix").key;
@@ -188,7 +195,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                 </TooltipHost>
             }
             {canAdd &&
-                <TooltipHost content={node.level !== 2 ? t("tooltip-addOutcome") : t("tooltip-addOutput")}>
+                <TooltipHost content={tooltipContent}>
                     <IconButton
                         iconProps={{ iconName: "Add" }}
                         styles={commandStyles}
