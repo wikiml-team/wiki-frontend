@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
-  IColorCellProps,
   ISeparatorProps,
   ITextFieldStyles,
   Label,
@@ -17,13 +16,7 @@ import {
 
 import { setTheme } from "store/slices/themeslice";
 import ThemePicker from "components/pickers/themepicker";
-
-const colorCells: IColorCellProps[] = [
-  { id: "1", label: "word", color: "#2b579a" },
-  { id: "2", label: "excel", color: "#217346" },
-  { id: "3", label: "powerpoint", color: "#a92b1a" },
-  { id: "4", label: "teams", color: "#6264a7" },
-];
+import { colorCells } from "themes/office";
 
 export default function SettingsPanel() {
   // STYLES
@@ -35,9 +28,6 @@ export default function SettingsPanel() {
       borderColor: palette.neutralTertiary,
       ":hover": {
         borderColor: palette.neutralSecondary,
-      },
-      "::after": {
-        borderColor: palette.neutralPrimaryAlt,
       },
     },
   };
