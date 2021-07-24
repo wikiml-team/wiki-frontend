@@ -15,12 +15,12 @@ export default class ActivitiesMatrixGraph {
         this.activities = activities;
     }
 
-    findActivities(outputId: string) {
+    findActivitiesByOutput(outputId: string) {
         return this.activities.filter(a => a.outputId === outputId);
     }
 
-    addActivity(outputId: string): ActivitiesMatrixGraph {
-        const activities = this.findActivities(outputId);
+    addActivityToOutput(outputId: string): ActivitiesMatrixGraph {
+        const activities = this.findActivitiesByOutput(outputId);
 
         const newActivity = {
             outputId: outputId,
@@ -35,7 +35,9 @@ export default class ActivitiesMatrixGraph {
 
     deleteActivity(outputId: string, id: string): ActivitiesMatrixGraph {
         // Delete from activities
-        this.activities = this.activities.filter(a => a.id !== id && a.outputId !== outputId);
+        this.activities = this.activities.filter(a => {
+            return !(a.id === id && a.outputId === outputId)
+        });
 
         // Update children ids
         const childrenActivities = this.activities.filter(a => a.outputId === outputId).sort();

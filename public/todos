@@ -2,7 +2,6 @@
 - Pages Bar
   - Make tabs to overflow identical to excell
   - Dinamicaly resize pagesTab
-  - Scrollbar
 - General Info FORM **
   - SetLocale yup
   - Set all Errors 
@@ -15,12 +14,17 @@
 - HELP
   - Tooltips when help enabled
 1- LOGIC MODEL FORM 
-  - Controlled text inputs with formik
   - Collapse menu
   - Children add siblings
   - Cant delete a unique child
+  - Ayudas sobre el input y sobre los outcomes
+  - Buscadores
+  - Estructura sintactica
+
 2- ACTIVITIES MATRIX FORM 
   - Controlled text inputs with formik
+  - Collapsable menu
+  - Buscador
 
 
 DONE 
@@ -37,3 +41,4 @@ DONE
 - Pretty scroll
 - Sticky Top **
 - Hide toolBar
+- Scrollbar

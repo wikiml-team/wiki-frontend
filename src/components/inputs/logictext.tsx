@@ -102,7 +102,6 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                     name={`textFiled${node.id}`}
                     component={TextFieldInput}
                     {...inputTextFieldProps}
-                    scrollbars={Scrollbars}
                 />
             </Stack.Item>
 
@@ -135,7 +134,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
 
     const tooltipContent = node.level === 0 ?
         t("tooltip-addIntOutcome") : node.level === 1 ?
-            t("tooltip-addInmOutcome") : t("tooltip-addOutput")
+            t("tooltip-addInmOutcome") : t("tooltip-addOutput");
 
     const canAdd = node.level < 3 && children.length < 4;
     const canDelete = children.length === 0;
@@ -145,11 +144,9 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
         const formtabKey = tabsSchema.findChildByName("activitiesmatrix").key;
         const renderPage = tabsSchema.findChildByKey(latestMenuTab, formtabKey).render;
         dispatch(setConfiguration({ key: latestMenuTab, tab: formtabKey, page: renderPage }));
-
     }
 
     // STYLES
-
     const { palette } = useTheme();
 
     const titleStyles: ITextStyles = {
