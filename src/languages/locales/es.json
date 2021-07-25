@@ -174,17 +174,18 @@
     "nextYearAriaLabel": "Ir al año próximo",
     "closeButtonAriaLabel": "Cerrar el calendario"
   },
-  "logicmodel-form": {
-    "version-label": "Versión:",
-    "version-placeholder": "ej: v0.1",
-    "ultimate-outcome": "Resultado Final",
-    "intermediate-outcome": "Resultados Intermedios",
-    "inmediate-outcome": "Resultados Inmediatos",
+  "logicmodel-activitymatrix-form": {
+    "ultimate-outcomes": "Resultado Final",
+    "intermediate-outcomes": "Resultados Intermedios",
+    "inmediate-outcomes": "Resultados Inmediatos",
     "outputs": "Productos",
+    "activity": "Actividades",
     "tooltip-addInmOutcome": "Añadir resultado inmediado",
     "tooltip-addIntOutcome": "Añadir resultado intermedio",
     "tooltip-addOutput": "Añadir Producto",
     "tooltip-delete": "Eliminar",
-    "tooltip-redirectToAct": "Ir a actividades"
+    "tooltip-redirectToAct": "Ir a actividades",
+    "tooltip-add-act": "Añadir actividad debajo",
+    "tooltip-delete-act": "Eliminar actividad"
   }
 }

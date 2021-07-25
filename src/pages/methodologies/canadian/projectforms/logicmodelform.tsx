@@ -82,7 +82,7 @@ export default function LogicModelForm() {
 function LagicmodelLabels() {
 
   // LOGIC
-  const { t } = useTranslation("logicmodel-form");
+  const { t } = useTranslation("logicmodel-activitymatrix-form");
 
   // STYLES
   const labelStackProps: IStackProps = {
@@ -100,17 +100,17 @@ function LagicmodelLabels() {
   return <Stack {...labelStackProps}>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>{t("ultimate-outcome")}</b>
+        <b>{t("ultimate-outcomes")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>{t("intermediate-outcome")}</b>
+        <b>{t("intermediate-outcomes")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>{t("inmediate-outcome")}</b>
+        <b>{t("inmediate-outcomes")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>

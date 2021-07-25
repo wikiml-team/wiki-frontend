@@ -66,7 +66,7 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
             // Push Inmediate Outcome
             items.push({
                 id: node.id,
-                name: "Inmediate Outcome",
+                name: "inmediate-outcomes",
                 level: 0,
                 description: node.text
             } as NodeInfo);
@@ -76,7 +76,7 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
                 // Push Output
                 items.push({
                     id: output.id,
-                    name: "Output",
+                    name: "outputs",
                     level: 1,
                     description: output.text
                 } as NodeInfo)
@@ -85,7 +85,7 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
                 this.findActivitiesByOutput(output.id).forEach(activity => {
                     items.push({
                         id: output.id + activity.id,
-                        name: "Activity",
+                        name: "activity",
                         level: 2,
                         description: activity.text
                     } as NodeInfo)

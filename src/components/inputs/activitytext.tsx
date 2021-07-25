@@ -46,7 +46,7 @@ export default function ActivityMatrixTextFieldInput(props: ActivityMatrixTextFi
 
     // LOGIC
     const { rowItems, groups, handleAddActivity, handleDeleteActivity } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation("logicmodel-activitymatrix-form");
 
     const columns: IColumn[] = [
         {
@@ -58,7 +58,7 @@ export default function ActivityMatrixTextFieldInput(props: ActivityMatrixTextFi
             minWidth: 10,
             maxWidth: 150,
             data: 'string',
-            onRender: (item: NodeInfo) => fieldRender(item)
+            onRender: (item: NodeInfo) => fieldRender(item, t)
         },
         {
             key: 'column2',
@@ -151,12 +151,12 @@ export default function ActivityMatrixTextFieldInput(props: ActivityMatrixTextFi
     )
 }
 
-const fieldRender = (item: NodeInfo) => {
+const fieldRender = (item: NodeInfo, t : Function) => {
 
     const variant = item.level === 0 ? "medium" : "small";
     return (
         <div style={{ textAlign: "end", color: "black" }}>
-            <Text variant={variant}><b>{item.name}</b></Text>
+            <Text variant={variant}><b>{t(item.name)}</b></Text>
         </div>
     )
 }

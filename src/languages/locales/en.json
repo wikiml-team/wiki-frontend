@@ -174,17 +174,18 @@
     "nextYearAriaLabel": "Go to next year",
     "closeButtonAriaLabel": "Close date picker"
   },
-  "logicmodel-form": {
-    "version-label": "Version:",
-    "version-placeholder": "ex: v0.1",
-    "ultimate-outcome": "Ultimate Outcomes",
-    "intermediate-outcome": "Intermediate Outcomes",
-    "inmediate-outcome": "Inmediate Outcomes",
+  "logicmodel-activitymatrix-form": {
+    "ultimate-outcomes": "Ultimate Outcomes",
+    "intermediate-outcomes": "Intermediate Outcomes",
+    "inmediate-outcomes": "Inmediate Outcomes",
     "outputs": "Outputs",
+    "activity": "Activity",
     "tooltip-addInmOutcome": "Add inmediate outcome",
     "tooltip-addIntOutcome": "Add intermediate outcome",
     "tooltip-addOutput": "Add output",
     "tooltip-delete": "Delete",
-    "tooltip-redirectToAct": "Go to Activities"
+    "tooltip-redirectToAct": "Go to Activities",
+    "tooltip-add-act": "Add activity below",
+    "tooltip-delete-act": "Delete activity"
   }
 }
