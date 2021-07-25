@@ -220,14 +220,14 @@ const operatorsRender = (item: NodeInfo, palette: IPalette, t: Function, handleA
 
     return (item.level === 2 ?
         <React.Fragment>
-            <TooltipHost content={t("tooltip-delete")}>
+            <TooltipHost content={t("tooltip-add-act")}>
                 <IconButton
                     iconProps={{ iconName: "Add" }}
                     styles={commandStyles}
                     onClick={() => handleAdd(item.id)}
                 />
             </TooltipHost>
-            <TooltipHost content={t("tooltip-delete")}>
+            <TooltipHost content={t("tooltip-delete-act")}>
                 <IconButton
                     iconProps={{ iconName: "Cancel" }}
                     styles={commandStyles}

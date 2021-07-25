@@ -6,6 +6,7 @@ import ActivitiesMatrixGraph from 'models/canadian/actvitiesmatrix';
 import LogicmodelGraph from 'models/canadian/logicmodel';
 import ActivityMatrixTextFieldInput from "components/inputs/activitytext"
 import { FontSizes, IGroup, mergeStyleSets, useTheme } from '@fluentui/react';
+import { toNumber } from 'lodash';
 
 export default function ActivitiesMatrixForm() {
 
@@ -21,13 +22,13 @@ export default function ActivitiesMatrixForm() {
     const outputId = itemId.slice(0, 4);
     const activityId = itemId[4];
 
-    setActivitiesMatrix(activitiesMatrix.addActivityToOutput(outputId));
+    setActivitiesMatrix(activitiesMatrix.addActivityToOutput(outputId, activityId));
     setItems(activitiesMatrix.buidOutputsActivityList());
   }
 
   const handleDeleteActivity = (itemId: string) => {
     const outputId = itemId.slice(0, 4);
-    const activityId = itemId[4];
+    const activityId = (toNumber(itemId[4]) + 1).toString();
 
     setActivitiesMatrix(activitiesMatrix.deleteActivity(outputId, activityId));
     setItems(activitiesMatrix.buidOutputsActivityList());

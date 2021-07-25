@@ -14,43 +14,43 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
 
     constructor(vertex: LogicmodelVertex[], edges: Edge[], activities: ActivityVertex[]) {
         super(vertex, edges);
-        this.activities = activities;
+        this.activities = activities.sort((a, b) => toNumber(a.id) - toNumber(b.id));
     }
 
     findActivitiesByOutput(outputId: string) {
         return this.activities.filter(a => a.outputId === outputId);
     }
 
-    addActivityToOutput(outputId: string): LogicModelActivitiesMatrix {
+    addActivityToOutput(outputId: string, id: string): LogicModelActivitiesMatrix {
+        // Find siblings activities
         const activities = this.findActivitiesByOutput(outputId);
 
+        let i = toNumber(id)
+        this.activities.filter(a => a.outputId === outputId && toNumber(a.id) >= i).sort().forEach((sibling, key) => {
+            sibling.id = (i + key + 1).toString();
+        })
+
+        // Create nwe activity
         const newActivity = {
             outputId: outputId,
-            id: activities.length.toString(),
+            id: id,
             text: "",
         } as ActivityVertex
 
         // Add to graph
         this.activities.push(newActivity);
+        this.activities = this.activities.sort((a, b) => toNumber(a.id) - toNumber(b.id));
         return this
     }
 
     deleteActivity(outputId: string, id: string): LogicModelActivitiesMatrix {
-        console.log("outputId: ", outputId)
-        console.log("id: ", id)
-        console.log("activities: ", this.activities)
-
         // Delete from activities
         this.activities = this.activities.filter(a => !(a.id === id && a.outputId === outputId));
 
-        console.log("activities: ", this.activities)
-
         // Update children ids
-        const childrenActivities = this.activities.filter(a => a.outputId === outputId).sort();
-
-        for (let i = 0; i < childrenActivities.length; i++) {
-            childrenActivities[i].id = i.toString();
-        }
+        this.activities.filter(a => a.outputId === outputId).sort().forEach((child, key) => {
+            child.id = key.toString();
+        });
 
         return this;
     }
