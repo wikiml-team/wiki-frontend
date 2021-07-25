@@ -1,4 +1,4 @@
-import ActivitiesMatrixGraph from "./canadian/actvitiesmatrix";
+import LogicModelActivitiesMatrix from "./canadian/actvitiesmatrix";
 import LogicmodelGraph from "./canadian/logicmodel";
 import { IProjectInfo } from "./generalinfo";
 import Instruments from "./instrument";
@@ -13,12 +13,12 @@ export class CanadianMethodology implements IMethodology {
     name: string;
     instruments: Instruments;
 
-    constructor(generalInfo: IProjectInfo<ECanadianSector>, logicModel: LogicmodelGraph, activitiesMatrix: ActivitiesMatrixGraph) {
+    constructor(generalInfo: IProjectInfo<ECanadianSector>, logicModel: LogicmodelGraph, activitiesMatrix: LogicModelActivitiesMatrix) {
         this.name = "Canadian Methodology";
         this.instruments = {
             ["generalInfo"]: generalInfo,
             ["logicModel"]: logicModel,
-            ["activitiesMatrix"]: activitiesMatrix
+            ["logicModelActivities"]: activitiesMatrix,
         }
     }
 }

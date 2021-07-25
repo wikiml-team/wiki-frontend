@@ -24,9 +24,8 @@ import {
     IButtonStyles
 } from '@fluentui/react';
 
-import ActivitiesMatrixGraph, { ActivityVertex } from 'models/canadian/actvitiesmatrix';
+import ActivitiesMatrixGraph, { ActivityVertex, NodeInfo } from 'models/canadian/actvitiesmatrix';
 import { LogicmodelVertex } from 'models/canadian/logicmodel';
-import { NodeInfo } from 'pages/methodologies/canadian/projectforms/activitiesform';
 import { useTranslation } from 'react-i18next';
 
 type ActivityMatrixTextFieldInputProps = {
@@ -48,8 +47,6 @@ export default function ActivityMatrixTextFieldInput(props: ActivityMatrixTextFi
     // LOGIC
     const { rowItems, groups, handleAddActivity, handleDeleteActivity } = props;
     const { t } = useTranslation();
-
-    const [items, setItems] = useState(rowItems);
 
     const columns: IColumn[] = [
         {
@@ -144,7 +141,7 @@ export default function ActivityMatrixTextFieldInput(props: ActivityMatrixTextFi
 
     return (
         <DetailsList
-            items={items}
+            items={rowItems}
             columns={columns}
             groups={groups}
             onRenderRow={onRenderRow}

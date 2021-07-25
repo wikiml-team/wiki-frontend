@@ -1,4 +1,3 @@
-import { toNumber } from "lodash";
 import { Graph, Edge } from "../tree";
 
 export type LogicmodelVertex = {
@@ -25,10 +24,6 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
 
     getNodeLevel(id: string): number {
         return 3 - id.split("").filter(c => c === "0").length;
-    }
-
-    getAllInmediateOutcomesIds() {
-        return this.vertex.filter(v => v.level === 2).sort((a, b) => toNumber(a.id) - toNumber(b.id)).map(v => v.id);
     }
 
     getInmediateTree(id: string) {

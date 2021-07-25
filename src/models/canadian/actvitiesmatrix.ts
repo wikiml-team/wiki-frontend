@@ -1,5 +1,6 @@
+import { toNumber } from "lodash";
 import { Graph, Edge } from "../tree";
-import { LogicmodelVertex, edgesExample, vertexExample } from "./logicmodel"
+import LogicmodelGraph, { LogicmodelVertex, edgesExample, vertexExample } from "./logicmodel"
 
 export type ActivityVertex = {
     outputId: string;
@@ -7,11 +8,12 @@ export type ActivityVertex = {
     text: string;
 }
 
-export default class ActivitiesMatrixGraph {
+export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
 
     activities: ActivityVertex[];
 
-    constructor(activities: ActivityVertex[]) {
+    constructor(vertex: LogicmodelVertex[], edges: Edge[], activities: ActivityVertex[]) {
+        super(vertex, edges);
         this.activities = activities;
     }
 
@@ -19,7 +21,7 @@ export default class ActivitiesMatrixGraph {
         return this.activities.filter(a => a.outputId === outputId);
     }
 
-    addActivityToOutput(outputId: string): ActivitiesMatrixGraph {
+    addActivityToOutput(outputId: string): LogicModelActivitiesMatrix {
         const activities = this.findActivitiesByOutput(outputId);
 
         const newActivity = {
@@ -33,11 +35,15 @@ export default class ActivitiesMatrixGraph {
         return this
     }
 
-    deleteActivity(outputId: string, id: string): ActivitiesMatrixGraph {
+    deleteActivity(outputId: string, id: string): LogicModelActivitiesMatrix {
+        console.log("outputId: ", outputId)
+        console.log("id: ", id)
+        console.log("activities: ", this.activities)
+
         // Delete from activities
-        this.activities = this.activities.filter(a => {
-            return !(a.id === id && a.outputId === outputId)
-        });
+        this.activities = this.activities.filter(a => !(a.id === id && a.outputId === outputId));
+
+        console.log("activities: ", this.activities)
 
         // Update children ids
         const childrenActivities = this.activities.filter(a => a.outputId === outputId).sort();
@@ -48,6 +54,54 @@ export default class ActivitiesMatrixGraph {
 
         return this;
     }
+
+    buidOutputsActivityList() {
+        // get all Inmediate Outcomes Ids
+        const inmediatesIds = this.vertex.filter(v => v.level === 2).sort((a, b) => toNumber(a.id) - toNumber(b.id)).map(v => v.id);
+        const items: NodeInfo[] = [];
+
+        inmediatesIds.forEach(id => {
+            const { node, outputs } = this.getInmediateTree(id);
+
+            // Push Inmediate Outcome
+            items.push({
+                id: node.id,
+                name: "Inmediate Outcome",
+                level: 0,
+                description: node.text
+            } as NodeInfo);
+
+            // Push Outputs & Activities
+            outputs.forEach(output => {
+                // Push Output
+                items.push({
+                    id: output.id,
+                    name: "Output",
+                    level: 1,
+                    description: output.text
+                } as NodeInfo)
+
+                // Push Activities
+                this.findActivitiesByOutput(output.id).forEach(activity => {
+                    items.push({
+                        id: output.id + activity.id,
+                        name: "Activity",
+                        level: 2,
+                        description: activity.text
+                    } as NodeInfo)
+                })
+            })
+        })
+
+        return items;
+    }
+}
+
+export type NodeInfo = {
+    id: string;
+    name: string;
+    level: number;
+    description: string;
 }
 
 // Examples
@@ -93,5 +147,3 @@ const actvitiesExamples: ActivityVertex[] = [
         text: ""
     },
 ]
-
-export const actmatrixGraphExample = new ActivitiesMatrixGraph(actvitiesExamples);
