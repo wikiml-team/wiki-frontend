@@ -1,6 +1,6 @@
 import { toNumber } from "lodash";
-import { Graph, Edge } from "../tree";
-import LogicmodelGraph, { LogicmodelVertex, edgesExample, vertexExample } from "./logicmodel"
+import { Edge } from "../tree";
+import LogicmodelGraph, { LogicmodelVertex } from "./logicmodel"
 
 export type ActivityVertex = {
     outputId: string;
@@ -22,9 +22,7 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
     }
 
     addActivityToOutput(outputId: string, id: string): LogicModelActivitiesMatrix {
-        // Find siblings activities
-        const activities = this.findActivitiesByOutput(outputId);
-
+        // Update siblingsIds below
         let i = toNumber(id)
         this.activities.filter(a => a.outputId === outputId && toNumber(a.id) >= i).sort().forEach((sibling, key) => {
             sibling.id = (i + key + 1).toString();
@@ -103,47 +101,3 @@ export type NodeInfo = {
     level: number;
     description: string;
 }
-
-// Examples
-const actvitiesExamples: ActivityVertex[] = [
-    {
-        outputId: "1111",
-        id: "1",
-        text: ""
-    },
-    {
-        outputId: "1111",
-        id: "2",
-        text: ""
-    },
-    {
-        outputId: "1111",
-        id: "3",
-        text: ""
-    },
-    {
-        outputId: "1121",
-        id: "1",
-        text: ""
-    },
-    {
-        outputId: "1121",
-        id: "2",
-        text: ""
-    },
-    {
-        outputId: "1211",
-        id: "1",
-        text: ""
-    },
-    {
-        outputId: "1211",
-        id: "2",
-        text: ""
-    },
-    {
-        outputId: "1211",
-        id: "3",
-        text: ""
-    },
-]

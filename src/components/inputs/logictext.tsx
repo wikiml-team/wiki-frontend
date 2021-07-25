@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Scrollbars } from "react-custom-scrollbars";
 import { Field } from "formik";
 import {
     Stack,
@@ -130,7 +129,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
 
     const { t } = useTranslation("logicmodel-form");
     const dispatch = useDispatch();
-    const { tabsSchema, latestMenuTab, configuration } = useSelector(selectWorkplaceConfig);
+    const { tabsSchema, latestMenuTab } = useSelector(selectWorkplaceConfig);
 
     const tooltipContent = node.level === 0 ?
         t("tooltip-addIntOutcome") : node.level === 1 ?

@@ -18,7 +18,7 @@ const TextFieldInput = ({ field, form, ...props }: any) => {
 
 export default TextFieldInput;
 
-const MultilineTextFieldInput = ({ field, form, ...props }: any) => {
+export const MultilineTextFieldInput = ({ field, form, ...props }: any) => {
 
   const [multiline, { toggle: toggleMultiline }] = useBoolean(false);
   const onChange = (ev: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newText: string): void => {

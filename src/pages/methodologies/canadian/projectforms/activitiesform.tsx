@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { toNumber } from 'lodash';
 
 import { selectProject } from 'store/slices/projectslice';
 import ActivitiesMatrixGraph from 'models/canadian/actvitiesmatrix';
-import LogicmodelGraph from 'models/canadian/logicmodel';
 import ActivityMatrixTextFieldInput from "components/inputs/activitytext"
-import { FontSizes, IGroup, mergeStyleSets, useTheme } from '@fluentui/react';
-import { toNumber } from 'lodash';
 
 export default function ActivitiesMatrixForm() {
 

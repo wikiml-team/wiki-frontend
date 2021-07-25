@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link } from '@fluentui/react/lib/Link';
+import React from 'react'
+import { useTranslation } from 'react-i18next';
 import {
     DetailsList,
     IGroup,
@@ -11,32 +11,22 @@ import {
     IColumn,
     TooltipHost,
     FontSizes,
-    IStyle,
-    IRawStyle,
     TextField,
     ITextFieldProps,
     IPalette,
-    IDetailsGroupRenderProps,
     Text,
-    Stack,
     IconButton,
     IGroupDividerProps,
     IButtonStyles
 } from '@fluentui/react';
 
-import ActivitiesMatrixGraph, { ActivityVertex, NodeInfo } from 'models/canadian/actvitiesmatrix';
-import { LogicmodelVertex } from 'models/canadian/logicmodel';
-import { useTranslation } from 'react-i18next';
+import { NodeInfo } from 'models/canadian/actvitiesmatrix';
 
 type ActivityMatrixTextFieldInputProps = {
     rowItems: NodeInfo[];
     groups?: IGroup[];
     handleAddActivity: (outputId: string, itemId: string) => void;
     handleDeleteActivity: (outputId: string, itemId: string) => void;
-}
-
-function generateGroupId(id: string) {
-    return `group${id}`;
 }
 
 export default function ActivityMatrixTextFieldInput(props: ActivityMatrixTextFieldInputProps) {
@@ -133,6 +123,7 @@ export default function ActivityMatrixTextFieldInput(props: ActivityMatrixTextFi
         return null;
     };
 
+    // Collapse behaviour
     const onToggleCollapseRow = (props: IGroupDividerProps) => {
         return () => {
             props!.onToggleCollapse!(props!.group!);
@@ -151,7 +142,7 @@ export default function ActivityMatrixTextFieldInput(props: ActivityMatrixTextFi
     )
 }
 
-const fieldRender = (item: NodeInfo, t : Function) => {
+const fieldRender = (item: NodeInfo, t: Function) => {
 
     const variant = item.level === 0 ? "medium" : "small";
     return (

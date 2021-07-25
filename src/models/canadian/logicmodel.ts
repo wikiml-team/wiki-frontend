@@ -8,10 +8,6 @@ export type LogicmodelVertex = {
 
 export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
 
-    constructor(vertex: LogicmodelVertex[], edges: Edge[]) {
-        super(vertex, edges);
-    }
-
     setNodeText(id: string, char: string): LogicmodelGraph {
         const node = this.vertex.find(v => v.id === id);
 

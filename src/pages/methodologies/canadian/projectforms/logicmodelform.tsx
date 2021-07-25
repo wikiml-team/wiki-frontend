@@ -2,17 +2,15 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { string, object } from "yup";
 import { ObjectShape } from "yup/lib/object";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import {
   Stack,
   Text,
   IStackProps,
-  ITextFieldStyles,
 } from "@fluentui/react";
 
 import LogicTextFieldInput from "components/inputs/logictext";
-import LogicmodelGraph, { logicmodelGraphExample } from "models/canadian/logicmodel";
-import TextFieldInput from "components/inputs/text";
+import LogicmodelGraph from "models/canadian/logicmodel";
 import { selectProject } from "store/slices/projectslice";
 import { useSelector } from "react-redux";
 

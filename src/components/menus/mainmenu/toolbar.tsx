@@ -42,12 +42,9 @@ const ToolBar: FunctionComponent<ToolBarProps> = (props) => {
   // LOGIC
   function useOutsideAlerter(ref: any) {
     useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
       function handleClickOutside(event: any) {
         if (ref.current && !ref.current.contains(event.target) && !isFixed) {
-            handleOnClose();
+          handleOnClose();
         }
       }
 
