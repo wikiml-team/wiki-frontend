@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
+import { ObjectSchema } from 'yup';
+import { useId } from '@fluentui/react-hooks';
 import {
     Stack,
     IStackItemProps,
@@ -17,13 +20,14 @@ import {
 
 import { LogicmodelVertex, LogicmodelTree } from "models/logicmodel";
 
-interface LogicTextFieldInputProps {
-    vertex: LogicmodelVertex;
-    canDelete?: boolean;
-    canAdd?: boolean;
-    handleAddChild: (id: string) => void;
-    handleDelete: (id: string) => void;
-    children?: LogicmodelTree[];
+type LogicTextFieldInputProps = {
+    vertex: LogicmodelVertex,
+    canDelete?: boolean,
+    canAdd?: boolean,
+    handleAddChild: (id: string) => void,
+    handleDelete: (id: string) => void,
+    children?: LogicmodelTree[],
+    validationSchema?: ObjectSchema<any>,
 }
 
 export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
@@ -35,7 +39,8 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         canAdd,
         handleAddChild,
         handleDelete,
-        children
+        children,
+        validationSchema
     } = props;
 
     // STYLES
@@ -104,10 +109,11 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                             <LogicTextFieldInput
                                 vertex={child.node}
                                 canDelete={child.children.length === 0}
-                                canAdd={child.children.length > 0 && child.children.length < 4}
+                                canAdd={child.node.level < 3 && child.children.length < 4}
                                 handleAddChild={handleAddChild}
                                 handleDelete={handleDelete}
                                 children={child.children}
+                                validationSchema={validationSchema}
                             />
                         </Stack.Item>
                     )}
@@ -121,8 +127,11 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
 
 function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
 
+    // LOGIC
+    const { t } = useTranslation("logicmodel-form");
+
     const { vertex, canAdd, handleAddChild, canDelete, handleDelete } = props;
-    const { id } = vertex;
+    const { id, level } = vertex;
 
     // STYLES
 
@@ -162,7 +171,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
         </Stack.Item>
         <Stack.Item>
             {canAdd && (
-                <TooltipHost content="Add child">
+                <TooltipHost content={level !== 2 ? t("tooltipAddOutcome") : t("tooltipAddOutput")}>
                     <IconButton
                         iconProps={{ iconName: "Add" }}
                         styles={commandStyles}
@@ -171,7 +180,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                 </TooltipHost>
             )}
             {canDelete && (
-                <TooltipHost content="Delete this and children">
+                <TooltipHost content={t("tooltipDelete")}>
                     <IconButton
                         iconProps={{ iconName: "Cancel" }}
                         styles={commandStyles}
@@ -180,5 +189,74 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                 </TooltipHost>
             )}
         </Stack.Item>
+    </Stack>
+}
+
+// EditVersionInputTextField
+type InputInfo = {
+    tooltip: string,
+    icon: string,
+    arialabel: string,
+}
+
+export function VersionFieldInput() {
+
+    // LOGIC
+    const { t } = useTranslation("logicmodel-form");
+
+    const [editionMode, setEditionMode] = useState(false);
+    const [inputInfo, setInputInfo] = useState({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo);
+
+    const toogleVersionEdition = () => {
+
+        if (editionMode) {
+            setInputInfo({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo)
+        } else {
+            setInputInfo({ tooltip: "Save version", icon: "SkypeCheck", arialabel: "Submit" } as InputInfo)
+        }
+
+        setEditionMode(val => !val);
+    }
+
+    // STYLES
+    const tooltipId = useId('tooltip');
+
+    const infoStakProps: Partial<IStackProps> = {
+        horizontal: true,
+        horizontalAlign: "end",
+        styles: {
+            root: {
+                marginBottom: 30,
+            },
+        },
+    };
+
+    const versionTextFieldProps: Partial<ITextFieldProps> = {
+        styles: {
+            fieldGroup: {
+                borderRadius: 4,
+                selectors: {
+                    "::after": {
+                        borderRadius: "inherit",
+                        border: "2px solid #003a66",
+                    },
+                },
+            },
+        },
+    };
+
+    return <Stack {...infoStakProps}>
+        <TextField underlined label={t("versionLabel")} {...versionTextFieldProps} readOnly={!editionMode} placeholder={t("versionPlaceholder")} />
+        <TooltipHost
+            content={inputInfo.tooltip}
+            id={tooltipId}
+        >
+            <IconButton iconProps={{ iconName: inputInfo.icon }}
+                title={inputInfo.arialabel}
+                ariaLabel={inputInfo.arialabel}
+                onClick={() => toogleVersionEdition()}
+
+            />
+        </TooltipHost>
     </Stack>
 }

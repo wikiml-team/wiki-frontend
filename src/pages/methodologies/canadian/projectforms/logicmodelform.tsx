@@ -1,24 +1,20 @@
 import React, { useState } from "react";
-import { useId } from '@fluentui/react-hooks';
+import { useTranslation } from "react-i18next";
+import { string, object } from "yup";
+import { ObjectShape } from "yup/lib/object";
 import {
   Stack,
-  TextField,
-  ITextFieldProps,
   Text,
   IStackProps,
-  IconButton,
-  TooltipHost,
 } from "@fluentui/react";
 
-import LogicTextFieldInput from "components/inputs/logictext";
+import LogicTextFieldInput, { VersionFieldInput } from "components/inputs/logictext";
 import { logicmodelGraphExample } from "models/logicmodel";
 
 export default function LogicModelForm() {
-
   // LOGIC
   const [graph, setGraph] = useState(logicmodelGraphExample)
   const [treeToRender, setTreeToRender] = useState(graph.buildTree())
-
 
   const handleAddNode = (id: string) => {
     setGraph(graph.addNode(id));
@@ -29,6 +25,14 @@ export default function LogicModelForm() {
     setGraph(graph.removeNode(id));
     setTreeToRender(graph.buildTree());
   }
+
+  // FORMIK
+  var shape: ObjectShape = {};
+  for (let v of graph.vertex) {
+    shape[`textFiled${v.id}`] = string();
+  }
+
+  const validationSchema = object().shape(shape);
 
   // STYLES
   const outcomeStackProps: Partial<IStackProps> = {
@@ -42,7 +46,6 @@ export default function LogicModelForm() {
   };
 
   return <React.Fragment>
-
     <VersionFieldInput />
 
     <Stack horizontal tokens={{ childrenGap: 20 }}>
@@ -61,6 +64,7 @@ export default function LogicModelForm() {
             handleAddChild={handleAddNode}
             handleDelete={handleRemoveNode}
             children={treeToRender.children}
+            validationSchema={validationSchema}
           />
         </Stack>
       </Stack.Item>
@@ -68,77 +72,12 @@ export default function LogicModelForm() {
   </React.Fragment>
 }
 
-type InputInfo = {
-  tooltip: string,
-  icon: string,
-  arialabel: string,
-}
-
-function VersionFieldInput() {
-
-  // LOGIC
-  const [editionMode, setEditionMode] = useState(false);
-  const [inputInfo, setInputInfo] = useState({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo);
-
-  const toogleVersionEdition = () => {
-
-    console.log("editionMode: ", editionMode)
-
-    if (editionMode) {
-      setInputInfo({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo)
-    } else {
-      setInputInfo({ tooltip: "Save version", icon: "SkypeCheck", arialabel: "Submit" } as InputInfo)
-    }
-    console.log("inputInfo: ", inputInfo)
-
-    setEditionMode(val => !val);
-    console.log("inputInfo: ", editionMode)
-  }
-
-  // STYLES
-  const tooltipId = useId('tooltip');
-
-  const infoStakProps: Partial<IStackProps> = {
-    horizontal: true,
-    horizontalAlign: "end",
-    styles: {
-      root: {
-        marginBottom: 30,
-      },
-    },
-  };
-
-  const versionTextFieldProps: Partial<ITextFieldProps> = {
-    styles: {
-      fieldGroup: {
-        borderRadius: 4,
-        selectors: {
-          "::after": {
-            borderRadius: "inherit",
-            border: "2px solid #003a66",
-          },
-        },
-      },
-    },
-  };
-
-  return <Stack {...infoStakProps}>
-    <TextField underlined label="Version:" {...versionTextFieldProps} readOnly={!editionMode} />
-    <TooltipHost
-      content={inputInfo.tooltip}
-      id={tooltipId}
-    >
-      <IconButton iconProps={{ iconName: inputInfo.icon }}
-        title={inputInfo.arialabel}
-        ariaLabel={inputInfo.arialabel}
-        onClick={() => toogleVersionEdition()}
-      />
-    </TooltipHost>
-  </Stack>
-}
-
 function LagicmodelLabels() {
 
+  // LOGIC
+  const { t } = useTranslation("logicmodel-form");
+
+  // STYLES
   const labelStackProps: Partial<IStackProps> = {
     verticalAlign: "space-between",
     styles: {
@@ -154,22 +93,22 @@ function LagicmodelLabels() {
   return <Stack {...labelStackProps}>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>Ultimate Outcome</b>
+        <b>{t("ultimateOutcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>Intermediate Outcome</b>
+        <b>{t("intermediateOutcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>Inmediate Outcome</b>
+        <b>{t("inmediateOutcome")}</b>
       </Text>
     </Stack.Item>
     <Stack.Item>
       <Text variant="mediumPlus">
-        <b>Outputs</b>
+        <b>{t("outputs")}</b>
       </Text>
     </Stack.Item>
   </Stack>

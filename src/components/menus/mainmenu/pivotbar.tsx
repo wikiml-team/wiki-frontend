@@ -9,17 +9,17 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { TabScheema } from "models/workplace";
+import { TabSchema } from "models/workplace";
 import { setLatestMenuTab } from "store/slices/workplaceslice";
 
 type PivotBarProps = {
-  scheema: TabScheema;
+  schema: TabSchema;
   setShowToolBar: Function;
 };
 
 export default function PivotBar(props: PivotBarProps) {
-  const { scheema, setShowToolBar } = props;
-  const { tabs } = scheema;
+  const { schema, setShowToolBar } = props;
+  const { tabs } = schema;
 
   // STYLES
   const { palette } = useTheme();
