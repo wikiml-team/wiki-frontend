@@ -71,7 +71,7 @@ const DateFieldInput = ({ field, form, ...props }: any) => {
     closeButtonAriaLabel: t("calendar:closeButtonAriaLabel"),
   };
 
-  const handleOnGetError = (value: string) => {
+  const handleGetError = (value: string) => {
     return form.touched && form.errors ? form.errors[field.name] : "";
   };
 
@@ -88,7 +88,7 @@ const DateFieldInput = ({ field, form, ...props }: any) => {
     <DatePicker
       placeholder={t("general-form:date-placeholder")}
       minDate={minDate}
-      onGetErrorMessage={handleOnGetError}
+      onGetErrorMessage={handleGetError}
       deferredValidationTime={500}
       strings={DayPickerStrings}
       styles={datepickerStyles}

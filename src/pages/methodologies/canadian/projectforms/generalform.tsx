@@ -169,8 +169,10 @@ export default function GeneralForm() {
     });
   }, [validationSchema]);
 
-  const handleOnSubmit = (values: formValuesType, { setSubmitting }: any) => {
+  const handleSubmit = (values: formValuesType, { setSubmitting }: any) => {
     alert(values);
+    console.log("values");
+    console.log(values);
   };
 
   const countries: IDropdownOption[] = [
@@ -185,7 +187,7 @@ export default function GeneralForm() {
     <Formik
       initialValues={initValues}
       validationSchema={validationSchema}
-      onSubmit={handleOnSubmit}
+      onSubmit={handleSubmit}
     >
       <Form>
         <Grid dir="ltr">
@@ -392,6 +394,7 @@ export default function GeneralForm() {
             </Col>
           </Row>
         </Grid>
+        <button type="submit">Submit</button>
       </Form>
     </Formik>
   );

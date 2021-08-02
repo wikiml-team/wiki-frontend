@@ -64,7 +64,7 @@ export default function Footer(props: FooterProps) {
         tabs={tab.childtabs}
         parentKey={tab.key}
         defaultKey={selectedkey}
-        handleOnClick={handleTabOnClick}
+        onClick={handleTabOnClick}
       />
       {tab.addtabs && <AddButton />}
 

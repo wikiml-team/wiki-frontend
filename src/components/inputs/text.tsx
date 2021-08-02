@@ -2,7 +2,7 @@ import { TextField } from "@fluentui/react";
 import { useBoolean } from "@fluentui/react-hooks";
 
 const TextFieldInput = ({ field, form, ...props }: any) => {
-  const handleOnGetError = (value: string) => {
+  const handleGetError = (value: string) => {
     return form.touched && form.errors ? form.errors[field.name] : "";
   };
 
@@ -10,7 +10,7 @@ const TextFieldInput = ({ field, form, ...props }: any) => {
     <TextField
       {...field}
       {...props}
-      onGetErrorMessage={handleOnGetError}
+      onGetErrorMessage={handleGetError}
       deferredValidationTime={500}
     />
   );
@@ -28,7 +28,7 @@ export const MultilineTextFieldInput = ({ field, form, ...props }: any) => {
     }
   };
 
-  const handleOnGetError = (value: string) => {
+  const handleGetError = (value: string) => {
     return form.touched && form.errors ? form.errors[field.name] : "";
   };
 
@@ -38,7 +38,7 @@ export const MultilineTextFieldInput = ({ field, form, ...props }: any) => {
       onChange={onChange}
       {...field}
       {...props}
-      onGetErrorMessage={handleOnGetError}
+      onGetErrorMessage={handleGetError}
       deferredValidationTime={500}
     />
   );

@@ -38,12 +38,12 @@ const WorkplaceLayout: FunctionComponent = (props) => {
     },
   })
 
-  const handleToolbarOnClose = () => {
+  const handleToolbarClose = () => {
     setShowToolBar(false);
     setFixToolBar(false);
   }
 
-  const handleToolbarOnFix = () => {
+  const handleToolbarFix = () => {
     setFixToolBar(true);
   }
 
@@ -54,7 +54,7 @@ const WorkplaceLayout: FunctionComponent = (props) => {
       <Sticky direction="top">
         <CommandMenu />
         <MainMenu tabs={tabsSchema} setShowToolBar={setShowToolBar} />
-        <ToolBar transition={toolBarTransition} isFixed={fixToolBar} handleOnClose={handleToolbarOnClose} handleOnFix={handleToolbarOnFix}>
+        <ToolBar transition={toolBarTransition} isFixed={fixToolBar} handleClose={handleToolbarClose} handleFix={handleToolbarFix}>
           {tools}
         </ToolBar>
       </Sticky>
