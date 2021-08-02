@@ -170,7 +170,6 @@ const actvitiesExamples: ActivityVertex[] = [
 ]
 
 const actmatrixGraphExample = new LogicModelActivitiesMatrix(vertexExample, edgesExample, actvitiesExamples);
-console.log("Activities Matrix Graph", actmatrixGraphExample);
 
 const initialState: IProject = {
     methodology: new CanadianMethodology(initialProjectInfoState, logicmodelGraphExample, actmatrixGraphExample)

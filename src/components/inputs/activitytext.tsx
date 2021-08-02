@@ -209,7 +209,7 @@ const operatorsRender = (item: NodeInfo, palette: IPalette, t: Function, handleA
         },
     };
 
-    return (item.level === 2 ?
+    return (item.level === 2 &&
         <React.Fragment>
             <TooltipHost content={t("tooltip-add-act")}>
                 <IconButton
@@ -218,13 +218,15 @@ const operatorsRender = (item: NodeInfo, palette: IPalette, t: Function, handleA
                     onClick={() => handleAdd(item.id)}
                 />
             </TooltipHost>
-            <TooltipHost content={t("tooltip-delete-act")}>
-                <IconButton
-                    iconProps={{ iconName: "Cancel" }}
-                    styles={commandStyles}
-                    onClick={() => handleDelete(item.id)}
-                />
-            </TooltipHost>
-        </React.Fragment> : null
+            {item.hasSiblings &&
+                <TooltipHost content={t("tooltip-delete-act")}>
+                    <IconButton
+                        iconProps={{ iconName: "Cancel" }}
+                        styles={commandStyles}
+                        onClick={() => handleDelete(item.id)}
+                    />
+                </TooltipHost>
+            }
+        </React.Fragment>
     )
 }

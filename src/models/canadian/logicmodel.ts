@@ -1,3 +1,4 @@
+import { toNumber } from "lodash";
 import { Graph, Edge } from "../tree";
 
 export type LogicmodelVertex = {
@@ -18,17 +19,13 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
         return this;
     }
 
-    getNodeLevel(id: string): number {
-        return 3 - id.split("").filter(c => c === "0").length;
-    }
-
     getInmediateTree(id: string) {
         const outputs = this.edges.filter(e => e.from === id).map(e => this.findNode(e.to));
 
         return { node: this.findNode(id), outputs: outputs };
     }
 
-    generateParentId(id: string, level: number): string {
+    getParentId(id: string, level: number): string {
         return id.slice(0, level).padEnd(4, "0");
     }
 
@@ -36,7 +33,7 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
         const parentNode = this.findNode(parentId)!;
 
         const newNode = {
-            id: this.generateId(parentId, parentNode.level, this.findChildrenId(parentId).length),
+            id: this.generateId(parentId, parentNode.level, this.findChildrenIds(parentId).length),
             text: "",
             level: parentNode.level + 1
         } as LogicmodelVertex
@@ -45,6 +42,65 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
         this.vertex.push(newNode);
         this.edges.push({ from: parentNode.id, to: newNode.id } as Edge);
 
+        return this
+    }
+
+    addSibling(siblingId: string) {
+
+        const { id, level, order } = this.generateSiblingId(siblingId);
+
+        const newNode = {
+            id: id,
+            text: "added node " + id,
+            level: level
+        } as LogicmodelVertex
+
+        // Fix siblings ids
+        const parentId = this.getParentId(id.toString(), level);
+        const siblingsIds = this.findChildrenIds(parentId).sort();
+
+        // Updating siblings vertex and edges and its descendant's
+        for (let i = order - 1; i < siblingsIds.length; i++) {
+            const oldId = siblingsIds[i];
+
+            // Find sibling
+            const childNode = this.findNode(oldId);
+
+            if (childNode) {
+                // Update sibling vertex & edges
+                const newInfo = this.generateSiblingId(oldId);
+                childNode.id = newInfo.id;
+
+                this.edges = this.edges.map(e => ({
+                    from: e.from === oldId ? newInfo.id : e.from,
+                    to: e.to === oldId ? newInfo.id : e.to
+                } as Edge));
+
+                // Update descendants
+                const commonRoot = id.substr(0, level + 1);
+
+                const descendants = this.findAllDescendants(oldId);
+
+                descendants.forEach(desc => {
+                    // update vertex id
+                    const n = toNumber(desc.id.charAt(desc.level));
+                    const oldDescId = desc.id;
+                    desc.id = this.generateId(childNode.id, desc.level, n);
+
+                    // update
+                    this.edges = this.edges.map(e => ({
+                        from: e.from === oldDescId ? desc.id : e.from,
+                        to: e.to === oldDescId ? desc.id : e.to
+                    } as Edge));
+                })
+            }
+        }
+
+        // Add new sibling to graph
+        this.vertex.push(newNode);
+        this.edges.push({ from: parentId, to: newNode.id } as Edge);
+
+        this.vertex = this.vertex.sort((a, b) => toNumber(a.id) - toNumber(b.id));
         return this
     }
 
@@ -57,13 +113,12 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
             this.edges = this.edges.filter(e => e.from !== nodeId && e.to !== nodeId);
 
             // Update children ids
-            const parentId = this.generateParentId(nodeId, node.level);
-            const children = this.findChildrenId(parentId).sort();
-            console.log("children ", children)
+            const parentId = this.getParentId(nodeId, node.level);
+            const childrenIds = this.findChildrenIds(parentId).sort();
 
             // Updating vertex and edges
-            for (let i = 0; i < children.length; i++) {
-                const oldId = children[i];
+            for (let i = 0; i < childrenIds.length; i++) {
+                const oldId = childrenIds[i];
 
                 const childNode = this.findNode(oldId);
                 if (childNode) {
@@ -71,8 +126,8 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
                     childNode.id = newId;
 
                     this.edges = this.edges.map(e => ({
-                        to: e.to === oldId ? newId : e.to,
-                        from: e.from === oldId ? newId : e.from
+                        from: e.from === oldId ? newId : e.from,
+                        to: e.to === oldId ? newId : e.to
                     } as Edge));
                 }
             }

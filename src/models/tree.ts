@@ -1,3 +1,4 @@
+import { toNumber } from "lodash";
 import { ActivityVertex } from "models/canadian/actvitiesmatrix";
 import { LogicmodelVertex } from "models/canadian/logicmodel";
 
@@ -34,12 +35,35 @@ export class Graph<T extends Vertex | LogicmodelVertex | ActivityVertex> impleme
         return this.vertex.find(v => v.id === id) || {} as T;
     }
 
-    findChildrenId(parentId: string): string[] {
+    getNodeLevel(id: string): number {
+        return 3 - id.split("").filter(c => c === "0").length;
+    }
+
+    findChildrenIds(parentId: string): string[] {
         return this.edges.filter(e => e.from === parentId).map(e => e.to);
     }
 
     generateId(parentId: string, level: number, num: number): string {
         return parentId.slice(0, level + 1).concat((num + 1).toString()).padEnd(4, "0");
+    }
+
+    generateSiblingId(siblingId: string, num?: number) {
+        // Get level
+        const level = this.getNodeLevel(siblingId);
+
+        // Generate new id
+        let id = siblingId.slice(0, level);
+        const order = num ? num : toNumber(siblingId[level]) + 1;
+        id += order.toString();
+        id = id.padEnd(4, "0");
+        return { id: id.toString(), level: level, order };
+    }
+
+    findAllDescendants(id: string) {
+        const level = this.getNodeLevel(id);
+        const commonRoot = id.substr(0, level + 1);
+
+        return this.vertex.filter(v => v.id.substr(0, level + 1) === commonRoot);
     }
 
     buildTree(): Tree<T> {

@@ -27,8 +27,10 @@ export default function LogicModelForm() {
   const [graph, setGraph] = useState(logicModelGraph)
   const [treeToRender, setTreeToRender] = useState(graph.buildTree())
 
-  const handleAddNode = (id: string) => {
-    setGraph(graph.addNode(id));
+
+
+  const handleAddNode = (siblingId: string) => {
+    setGraph(graph.addNode(siblingId));
     setTreeToRender(graph.buildTree());
   }
 

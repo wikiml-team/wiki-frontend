@@ -80,12 +80,14 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
                 } as NodeInfo)
 
                 // Push Activities
-                this.findActivitiesByOutput(output.id).forEach(activity => {
+                const siblings = this.findActivitiesByOutput(output.id);
+                siblings.forEach(activity => {
                     items.push({
                         id: output.id + activity.id,
                         name: "activity",
                         level: 2,
-                        description: activity.text
+                        description: activity.text,
+                        hasSiblings: siblings.length > 1 
                     } as NodeInfo)
                 })
             })
@@ -100,4 +102,5 @@ export type NodeInfo = {
     name: string;
     level: number;
     description: string;
+    hasSiblings?: boolean;
 }

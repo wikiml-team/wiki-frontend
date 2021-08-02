@@ -127,15 +127,15 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
     const { nodeTree, handleAddChild, handleDelete } = props;
     const { node, children } = nodeTree;
 
-    const { t } = useTranslation("logicmodel-form");
+    const { t } = useTranslation("logicmodel-activitymatrix-form");
     const dispatch = useDispatch();
     const { tabsSchema, latestMenuTab } = useSelector(selectWorkplaceConfig);
 
     const tooltipContent = node.level === 0 ?
-        t("tooltip-addIntOutcome") : node.level === 1 ?
-            t("tooltip-addInmOutcome") : t("tooltip-addOutput");
+        "tooltip-addIntOutcome" : node.level === 1 ?
+            "tooltip-addInmOutcome" : "tooltip-addOutput";
 
-    const canAdd = node.level < 3 && children.length < 4;
+    const canAdd = node.level !== 3;
     const canDelete = children.length === 0;
     const canRedirectOutput = node.level === 3;
 
@@ -191,7 +191,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                 </TooltipHost>
             }
             {canAdd &&
-                <TooltipHost content={tooltipContent}>
+                <TooltipHost content={t(tooltipContent)}>
                     <IconButton
                         iconProps={{ iconName: "Add" }}
                         styles={commandStyles}
