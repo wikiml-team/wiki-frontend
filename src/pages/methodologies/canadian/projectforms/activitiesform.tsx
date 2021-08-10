@@ -10,7 +10,7 @@ export default function ActivitiesMatrixForm() {
 
   // LOGIC
   const project = useSelector(selectProject);
-  const logicModelActivitiesMatrix = project.methodology.instruments.logicModelActivities as ActivitiesMatrixGraph;
+  const logicModelActivitiesMatrix = project.methodology.instruments.logicActivitiesModel as ActivitiesMatrixGraph;
 
   const initialItems = logicModelActivitiesMatrix.buidOutputsActivityList();
 

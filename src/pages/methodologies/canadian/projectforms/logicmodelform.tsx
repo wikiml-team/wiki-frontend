@@ -22,7 +22,7 @@ export default function LogicModelForm() {
   // LOGIC
 
   const project = useSelector(selectProject);
-  const logicModelGraph = project.methodology.instruments.logicModel as LogicmodelGraph;
+  const logicModelGraph = project.methodology.instruments.logicActivitiesModel as LogicmodelGraph;
 
   const [graph, setGraph] = useState(logicModelGraph)
   const [treeToRender, setTreeToRender] = useState(graph.buildTree())

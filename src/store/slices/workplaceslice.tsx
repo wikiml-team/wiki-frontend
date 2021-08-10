@@ -14,12 +14,12 @@ const initialState: IWorkplaceConfiguration = {
     tabsSchema: tabsConfiguration,
     latestMenuTab: "key2",
     configuration: { // menuTabKey : { toolBarComponentToRender, latestFormTab, pageComponentToRender}
-        key1: { tools: <Label>Pivot #1</Label>, tab: "key1", page: <React.Fragment /> },
-        key2: { tools: <Label>Pivot #2</Label>, tab: "key1", page: <GeneralForm /> },
-        key3: { tools: <Label>Pivot #3</Label>, tab: "key1", page: <SpecificationsForm /> },
-        key4: { tools: <Label>Pivot #4</Label>, tab: "key1", page: <FormsTutorials /> },
-        key5: { tools: <Label>Pivot #5</Label>, tab: "key1", page: <React.Fragment /> },
-        key6: { tools: <Label>Pivot #6</Label>, tab: "key1", page: <React.Fragment /> },
+        key1: { tools: <Label>ToolBar #1</Label>, tab: "key1", page: <React.Fragment /> },
+        key2: { tools: <Label>ToolBar #2</Label>, tab: "key1", page: <GeneralForm /> },
+        key3: { tools: <Label>ToolBar #3</Label>, tab: "key1", page: <SpecificationsForm /> },
+        key4: { tools: <Label>ToolBar #4</Label>, tab: "key1", page: <FormsTutorials /> },
+        key5: { tools: <Label>ToolBar #5</Label>, tab: "key1", page: <React.Fragment /> },
+        key6: { tools: <Label>ToolBar #6</Label>, tab: "key1", page: <React.Fragment /> },
     }
 };
 

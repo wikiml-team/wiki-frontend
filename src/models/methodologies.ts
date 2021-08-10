@@ -13,12 +13,11 @@ export class CanadianMethodology implements IMethodology {
     name: string;
     instruments: Instruments;
 
-    constructor(generalInfo: IProjectInfo<ECanadianSector>, logicModel: LogicmodelGraph, activitiesMatrix: LogicModelActivitiesMatrix) {
+    constructor(generalInfo: IProjectInfo<ECanadianSector>, logicActivitiesModel: LogicModelActivitiesMatrix) {
         this.name = "Canadian Methodology";
         this.instruments = {
             ["generalInfo"]: generalInfo,
-            ["logicModel"]: logicModel,
-            ["logicModelActivities"]: activitiesMatrix,
+            ["logicActivitiesModel"]: logicActivitiesModel,
         }
     }
 }

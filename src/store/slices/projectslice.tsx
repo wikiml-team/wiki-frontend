@@ -172,7 +172,7 @@ const actvitiesExamples: ActivityVertex[] = [
 const actmatrixGraphExample = new LogicModelActivitiesMatrix(vertexExample, edgesExample, actvitiesExamples);
 
 const initialState: IProject = {
-    methodology: new CanadianMethodology(initialProjectInfoState, logicmodelGraphExample, actmatrixGraphExample)
+    methodology: new CanadianMethodology(initialProjectInfoState, actmatrixGraphExample)
 }
 
 const projectSlice = createSlice({
