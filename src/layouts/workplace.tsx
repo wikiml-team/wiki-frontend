@@ -1,9 +1,8 @@
 import React, { FunctionComponent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useSpring, useTransition } from "react-spring";
+import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
-import tabsConfiguration from "pages/methodologies/canadian/tabsconfiguration";
-import IWorkplaceConfiguration from "models/workplace";
 import { selectWorkplaceConfig } from "store/slices/workplaceslice";
 import { PageContainer } from "components/styled/pagecontainer";
 import { Sticky } from "components/styled/sticky";
@@ -13,19 +12,14 @@ import MainMenu from "components/menus/mainmenu";
 import ToolBar from "components/menus/mainmenu/toolbar";
 import Footer from "components/menus/footer";
 
-import { RemoveScrollBar } from "react-remove-scroll-bar";
-
 const WorkplaceLayout: FunctionComponent = (props) => {
-  const tabs = tabsConfiguration;
 
   // Global state variables
-  const { latestMenuTab, configuration }: IWorkplaceConfiguration = useSelector(
-    selectWorkplaceConfig
-  );
-  const tools = configuration[latestMenuTab].tools;
-  const page = configuration[latestMenuTab].render;
-  const footertab = tabs.findByKey(latestMenuTab);
-  const selectedkey = configuration[latestMenuTab].formtab;
+  const { latestMenuTab, configuration, tabsSchema } = useSelector(selectWorkplaceConfig);
+  const { tools } = configuration[latestMenuTab];
+  const { page } = configuration[latestMenuTab];
+  const footertab = tabsSchema.findByKey(latestMenuTab);
+  const selectedkey = configuration[latestMenuTab].tab;
 
   // Toolbar Animation State & Controls
   const [fixToolBar, setFixToolBar] = useState(true);
@@ -44,12 +38,12 @@ const WorkplaceLayout: FunctionComponent = (props) => {
     },
   });
 
-  const handleToolbarOnClose = () => {
+  const handleToolbarClose = () => {
     setShowToolBar(false);
     setFixToolBar(false);
   };
 
-  const handleToolbarOnFix = () => {
+  const handleToolbarFix = () => {
     setFixToolBar(true);
   };
 
@@ -59,13 +53,8 @@ const WorkplaceLayout: FunctionComponent = (props) => {
 
       <Sticky direction='top'>
         <CommandMenu />
-        <MainMenu tabs={tabs} setShowToolBar={setShowToolBar} />
-        <ToolBar
-          transition={toolBarTransition}
-          isFixed={fixToolBar}
-          handleOnClose={handleToolbarOnClose}
-          handleOnFix={handleToolbarOnFix}
-        >
+        <MainMenu tabs={tabsSchema} setShowToolBar={setShowToolBar} />
+        <ToolBar transition={toolBarTransition} isFixed={fixToolBar} handleClose={handleToolbarClose} handleFix={handleToolbarFix}>
           {tools}
         </ToolBar>
       </Sticky>

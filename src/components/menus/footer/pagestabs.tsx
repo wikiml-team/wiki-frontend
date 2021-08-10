@@ -15,17 +15,17 @@ type PagesTabProps = {
   tabs?: Tab[];
   defaultKey?: string;
   parentKey: string;
-  handleOnClick: (parentkey: string, item?: PivotItem) => void;
+  onClick: (parentkey: string, item?: PivotItem) => void;
 };
 
 export default function PagesTabs(props: PagesTabProps) {
 
   // LOGIC
-  const { tabs, handleOnClick, parentKey, defaultKey, } = props;
+  const { tabs, onClick, parentKey, defaultKey, } = props;
 
   const { t } = useTranslation("pages");
 
-  const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement, MouseEvent>) => handleOnClick(parentKey, item)
+  const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement, MouseEvent>) => onClick(parentKey, item)
 
   // STYLES
   const { palette } = useTheme();

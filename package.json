@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://wikiml-team.github.io/wiki-frontend",
   "dependencies": {
+    "@fluentui/example-data": "^8.2.4",
     "@fluentui/react": "^8.6.0",
     "@react-keycloak/ssr": "^3.3.0",
     "@react-keycloak/web": "^3.4.0",

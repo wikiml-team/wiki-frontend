@@ -5,7 +5,7 @@ export function CustomBarButton(props: IButtonProps) {
 
     const { palette } = useTheme();
 
-    const itemStyles: Partial<IContextualMenuItemStyles> = {
+    const itemStyles: IContextualMenuItemStyles = {
         root: {
             backgroundColor: palette.themePrimary
         },
@@ -40,7 +40,7 @@ export function CustomOverflowButton(props: IButtonProps) {
 
     const { palette } = useTheme();
 
-    const itemStyles: Partial<IContextualMenuItemStyles> = {
+    const itemStyles: IContextualMenuItemStyles = {
         root: {
             backgroundColor: palette.themePrimary,
 

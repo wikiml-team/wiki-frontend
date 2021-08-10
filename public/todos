@@ -1,23 +1,40 @@
-1- Pretty scroll
 - Sort los team members por los que están conectados
 - Pages Bar
   - Make tabs to overflow identical to excell
   - Dinamicaly resize pagesTab
-  - Scrollbar
 - General Info FORM **
   - SetLocale yup
   - Set all Errors 
   - Set errores whith parameters
 - List of countries and currencies.
-2- Sticky Top **
 - Make axios calls with fake api
   - pages for project, methodologies, licitations...
 - Responsive Programming
 - Autentication
 - HELP
   - Tooltips when help enabled
-3- Hide toolBar
-  - unselecet current menu
+1- LOGIC MODEL FORM 
+  - Collapse menu
+  - Children add siblings
+  - Cant delete a unique child
+  - Ayudas sobre el input y sobre los outcomes
+  - Buscadores
+  - Estructura sintactica
+
+2- ACTIVITIES MATRIX FORM 
+  - Controlled text inputs with formik
+  - Collapsable menu
+  - Buscador
+  - drag and drop
+
+3- Conectar con la api
+  - Datos iniciales reales
+
+4- Autenticacion
+
+5- Stakeholders
+
+6- Main
 
 
 DONE 
@@ -31,3 +48,7 @@ DONE
 - Tooltips over command items
 - Get rid of warnings
 - Title in the middle of commandBar (still doesnt support it)
+- Pretty scroll
+- Sticky Top **
+- Hide toolBar
+- Scrollbar

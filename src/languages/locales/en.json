@@ -37,6 +37,7 @@
     "risks": "Risks",
     "changenarrative": "Change Narrative",
     "budget": "Budget",
+    "financing": "Financing",
     "reports": "Reports",
     "lot": "Conform Lot",
     "specifications": "Technical Specifications",
@@ -117,7 +118,8 @@
     "approvedate-error": "Approved Date",
     "initialdate-error": "Initial date",
     "finaldate-error": "Final Date",
-    "required": "Required"
+    "required": "Required",
+    "date-placeholder": "Select a date"
   },
   "months": {
     "january": "January",
@@ -173,15 +175,18 @@
     "nextYearAriaLabel": "Go to next year",
     "closeButtonAriaLabel": "Close date picker"
   },
-  "logicmodel-form": {
-    "versionLabel": "Version:",
-    "versionPlaceholder": "Enter a version (v0.1)",
-    "ultimateOutcome": "Ultimate Outcomes",
-    "intermediateOutcome": "Intermediate Outcomes",
-    "inmediateOutcome": "Inmediate Outcomes",
+  "logicmodel-activitymatrix-form": {
+    "ultimate-outcomes": "Ultimate Outcomes",
+    "intermediate-outcomes": "Intermediate Outcomes",
+    "inmediate-outcomes": "Inmediate Outcomes",
     "outputs": "Outputs",
-    "tooltipAddOutcome": "Add outcome",
-    "tooltipAddOutput": "Add output",
-    "tooltipDelete": "Delete"
+    "activity": "Activity",
+    "tooltip-addInmOutcome": "Add inmediate outcome",
+    "tooltip-addIntOutcome": "Add intermediate outcome",
+    "tooltip-addOutput": "Add output",
+    "tooltip-delete": "Delete",
+    "tooltip-redirectToAct": "Go to Activities",
+    "tooltip-add-act": "Add activity below",
+    "tooltip-delete-act": "Delete activity"
   }
 }

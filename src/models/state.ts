@@ -1,6 +1,6 @@
 import { ITheme } from "@fluentui/react";
-
 import IProject from "./project";
+
 import IWorkplaceConfiguration from "./workplace";
 
 export default interface IState {
