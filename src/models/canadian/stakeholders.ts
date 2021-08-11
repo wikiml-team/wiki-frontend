@@ -81,8 +81,6 @@ export default class Stakeholders {
         const node = this.list.find(sh => sh.id === id);
 
         if (node) {
-            this.list = this.list.filter(sh => sh.id !== id).sort((a, b) => a.id - b.id);
-
             // Fix rest of orders
             this.getStakeholdersByCategory(node.category).forEach(sibling => {
                 if (sibling.orderInGroup >= node.orderInGroup) {
@@ -92,8 +90,11 @@ export default class Stakeholders {
 
             // if the removed node was the main stakeholder, then asign other stakeholder
             if (node.main) {
-                this.getStakeholdersByCategory(node.category)[0].main = true;
+                this.getStakeholdersByCategory(node.category).find(sh => sh.orderInGroup === 0)!.main = true;
             }
+
+            // Remove node
+            this.list = this.list.filter(sh => sh.id !== id).sort((a, b) => a.id - b.id);
         }
         return this;
     }
