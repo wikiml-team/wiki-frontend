@@ -1,14 +1,30 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { toNumber } from 'lodash';
+import {
+  FontSizes,
+  IconButton,
+  IColumn,
+  IDetailsListProps,
+  IDetailsRowStyles,
+  DetailsRow,
+  useTheme,
+  Text,
+  IButtonStyles,
+  ITextFieldProps,
+  TextField,
+  TooltipHost
+} from '@fluentui/react';
 
 import { selectProject } from 'store/slices/projectslice';
-import ActivitiesMatrixGraph from 'models/canadian/actvitiesmatrix';
-import ActivityMatrixTextFieldInput from "components/inputs/activitytext"
+import ActivitiesMatrixGraph, { NodeInfo } from 'models/canadian/actvitiesmatrix';
+import ListFieldInput from "components/inputs/list"
 
 export default function ActivitiesMatrixForm() {
 
   // LOGIC
+  // State
   const project = useSelector(selectProject);
   const logicModelActivitiesMatrix = project.methodology.instruments.logicActivitiesModel as ActivitiesMatrixGraph;
 
@@ -17,6 +33,57 @@ export default function ActivitiesMatrixForm() {
   const [items, setItems] = useState(initialItems);
   const [activitiesMatrix, setActivitiesMatrix] = useState(logicModelActivitiesMatrix);
 
+  const { t } = useTranslation("logicmodel-activitymatrix-form");
+
+  const columns: IColumn[] = [
+    {
+      key: 'column1',
+      name: 'Field',
+      styles: { root: { textAlign: "right", fontSize: 40 } },
+      ariaLabel: 'Outcomes, Outputs and Activities',
+      fieldName: 'field',
+      minWidth: 10,
+      maxWidth: 150,
+      data: 'string',
+      onRender: (item: NodeInfo) => fieldRender(item)
+    },
+    {
+      key: 'column2',
+      name: 'Code',
+      fieldName: 'code',
+      ariaLabel: "Code",
+      minWidth: 0,
+      maxWidth: 350,
+      isRowHeader: true,
+      data: 'number',
+      onRender: (item: NodeInfo) => codeRender(item),
+    },
+    {
+      key: 'column3',
+      name: 'Description',
+      fieldName: 'description',
+      minWidth: 70,
+      data: 'string',
+      isResizable: true,
+      isPadded: true,
+      isMultiline: true,
+      // isFiltered: true,
+      onRender: (item: NodeInfo) => descriptionRender(item),
+    },
+    {
+      key: 'column4',
+      name: '',
+      fieldName: 'operators',
+      minWidth: 70,
+      data: 'string',
+      isResizable: true,
+      isPadded: true,
+      // isFiltered: true,
+      onRender: (item: NodeInfo) => operatorsRender(item),
+    },
+  ]
+
+  // Handlers
   const handleAddActivity = (itemId: string) => {
     const outputId = itemId.slice(0, 4);
     const activityId = itemId[4];
@@ -33,11 +100,141 @@ export default function ActivitiesMatrixForm() {
     setItems(activitiesMatrix.buidOutputsActivityList());
   }
 
-  return <ActivityMatrixTextFieldInput
+  // STYLES
+  const { palette } = useTheme();
+
+  const onRenderRow: IDetailsListProps['onRenderRow'] = props => {
+    const customStyles: Partial<IDetailsRowStyles> = {};
+
+    if (props) {
+      const { item } = props;
+      switch (item.level) {
+        case 0:
+          customStyles.root = {
+            backgroundColor: palette.themeLighter,
+            fontSize: FontSizes.medium,
+            ":hover": {
+              backgroundColor: palette.themeLighter,
+            }
+          }
+          break;
+        case 1:
+          customStyles.root = {
+            backgroundColor: palette.themeLighterAlt,
+            ":hover": {
+              backgroundColor: palette.themeLighterAlt,
+            }
+          }
+          break;
+        case 2:
+          customStyles.root = {
+            ":hover": {
+              backgroundColor: palette.white,
+            }
+          }
+          break;
+      }
+
+      return <DetailsRow {...props} styles={customStyles} />;
+    }
+    return null;
+  };
+
+  const fieldRender = (item: NodeInfo) => {
+    const variant = item.level === 0 ? "medium" : "small";
+    return (
+      <div style={{ textAlign: "end", color: "black" }}>
+        <Text variant={variant}><b>{t(item.name)}</b></Text>
+      </div>
+    )
+  }
+
+  const codeRender = (item: NodeInfo) => {
+    return item.id
+  }
+
+  const descriptionRender = (item: NodeInfo) => {
+
+    const textFieldProps: ITextFieldProps = {
+      rows: 1,
+      multiline: true,
+      resizable: false,
+      defaultValue: item.description,
+      styles: {
+        root: {
+          minWidth: 200,
+        },
+        fieldGroup: {
+          borderRadius: "0 0 2px 2px",
+          border: `1px solid ${palette.neutralLighter}`,
+          selectors: {
+            ":hover": {
+              border: `1px solid ${palette.neutralTertiary}`,
+
+            },
+          },
+        },
+      },
+    }
+
+    let html;
+    switch (item.level) {
+      case 2:
+        html = <TextField {...textFieldProps}>
+          {item.description}
+        </TextField>
+        break;
+      default:
+        html = <span>{item.description}</span>
+        break;
+    }
+
+    return html
+  }
+
+  const operatorsRender = (item: NodeInfo) => {
+    const commandStyles: Partial<IButtonStyles> = {
+      root: {
+        height: 25,
+      },
+      rootHovered: {
+        backgroundColor: palette.neutralLighter,
+      },
+      icon: {
+        fontSize: 13,
+        color: palette.black,
+      },
+    };
+
+    return (item.level === 2 &&
+      <React.Fragment>
+        <TooltipHost content={t("tooltip-add-act")}>
+          <IconButton
+            iconProps={{ iconName: "Add" }}
+            styles={commandStyles}
+            onClick={() => handleAddActivity(item.id)}
+          />
+        </TooltipHost>
+        {item.hasSiblings &&
+          <TooltipHost content={t("tooltip-delete-act")}>
+            <IconButton
+              iconProps={{ iconName: "Cancel" }}
+              styles={commandStyles}
+              onClick={() => handleDeleteActivity(item.id)}
+            />
+          </TooltipHost>
+        }
+      </React.Fragment>
+    )
+  }
+
+  return <ListFieldInput
     rowItems={items}
-    handleAddActivity={handleAddActivity}
-    handleDeleteActivity={handleDeleteActivity}
+    columns={columns}
+    onRenderRow={onRenderRow}
   />
 }
+
+
 
 

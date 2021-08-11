@@ -5,7 +5,7 @@ import { IProjectInfo } from "models/generalinfo";
 import { ECanadianSector } from "models/sector";
 import IProject from "models/project";
 import { CanadianMethodology } from "models/methodologies";
-import { logicmodelGraphExample, LogicmodelVertex } from "models/canadian/logicmodel";
+import { LogicmodelVertex } from "models/canadian/logicmodel";
 import LogicModelActivitiesMatrix, { ActivityVertex } from "models/canadian/actvitiesmatrix";
 import { Edge } from "models/tree";
 

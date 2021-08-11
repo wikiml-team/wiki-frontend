@@ -63,6 +63,9 @@ export class TabSchema {
     }
 
     return {} as Tab;
-
   }
+
+  // getInitialConfiguration() : FormRenderDictionary {
+  //   this.tabs.map()
+  // } 
 };

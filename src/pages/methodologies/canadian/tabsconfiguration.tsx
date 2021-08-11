@@ -29,6 +29,7 @@ const tabsConfiguration = new TabSchema([
     name: "wikiml",
     icon: "WebComponents",
     render: <Redirect to="/" />,
+    // toolBar: 
   },
   {
     key: "key2",
@@ -37,7 +38,12 @@ const tabsConfiguration = new TabSchema([
     render: <Label>ToolBar #1</Label>,
     addtabs: true,
     childtabs: [
-      { key: "key1", name: "general", icon: "Info", render: <GeneralForm /> },
+      {
+        key: "key1",
+        name: "general",
+        icon: "Info",
+        render: <GeneralForm />
+      },
       {
         key: "key2",
         name: "stakeholders",

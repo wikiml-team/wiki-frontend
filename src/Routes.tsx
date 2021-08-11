@@ -41,13 +41,13 @@ const ProjectSwitcher = () => (
   /* Projects */
   // After having users account and project id the url's format should be /workplace/#project_id/project/canadian/general
   <Switch>
-    <Route path="/workplace/project/canadian/general" component={GeneralForm} />
-    <Route path="/workplace/project/canadian/stakeholdres" component={StakeholdersForm} />
-    <Route path="/workplace/project/canadian/logicmodel" component={LogicModelForm} />
-    <Route path="/workplace/project/canadian/activitiesmatrix" component={ActivitiesMatrixForm} />
-    <Route path="/workplace/project/canadian/performance" component={PerformanceMeasureForm} />
-    <Route path="/workplace/project/canadian/risks" component={RisksForm} />
-    <Route path="/workplace/project/canadian/budget" component={BudgetForm} />
-    <Route path="/workplace/project/canadian/reports" component={ReportsForm} />
+    <Route path="/workplace/project/general" component={GeneralForm} />
+    <Route path="/workplace/project/stakeholdres" component={StakeholdersForm} />
+    <Route path="/workplace/project/logicmodel" component={LogicModelForm} />
+    <Route path="/workplace/project/activitiesmatrix" component={ActivitiesMatrixForm} />
+    <Route path="/workplace/project/performance" component={PerformanceMeasureForm} />
+    <Route path="/workplace/project/risks" component={RisksForm} />
+    <Route path="/workplace/project/budget" component={BudgetForm} />
+    <Route path="/workplace/project/reports" component={ReportsForm} />
   </Switch>
 );

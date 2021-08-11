@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Label } from "@fluentui/react";
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import IState from "models/state";
 import IWorkplaceConfiguration, { TabSchema } from "models/workplace";
 import tabsConfiguration from "pages/methodologies/canadian/tabsconfiguration";
