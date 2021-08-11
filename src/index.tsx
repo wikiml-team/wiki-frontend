@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "App";
+import Routes from "App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
 
@@ -10,18 +10,29 @@ import { initializeIcons, loadTheme } from "@fluentui/react";
 import { Provider } from "react-redux";
 import store from "store";
 
-import { ReactKeycloakProvider } from "@react-keycloak/web";
+import { ReactKeycloakProvider, useKeycloak } from "@react-keycloak/web";
 import keycloak from "keycloak";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "apollo";
 
 loadTheme(store.getState().theme);
 initializeIcons();
 
+const App = () => {
+  const { keycloak } = useKeycloak();
+  return (
+    <ApolloProvider client={client(keycloak.token)}>
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    </ApolloProvider>
+  );
+};
+
 ReactDOM.render(
   <React.StrictMode>
     <ReactKeycloakProvider authClient={keycloak}>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <App />
     </ReactKeycloakProvider>
   </React.StrictMode>,
   document.getElementById("root")
