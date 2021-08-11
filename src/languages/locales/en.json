@@ -207,6 +207,9 @@
     "tooltip-change-main-stakeholder-3": "Select as main donor",
     "tooltip-add-stakeholder-DB": "Create stakeholder in database",
     "name-field": "Stakeholder Name",
-    "roll-field": "Roll"
+    "roll-field": "Roll",
+    "panel-header": "Create stakeholder",
+    "panel-explanation": "Add to database a stakeholder you need in your project.",
+    "panel-warning": "Check the stakeholder isn´t already in database before adding it in order to avoid duplicated data."
   }
 }

@@ -84,11 +84,16 @@ export default class Stakeholders {
             this.list = this.list.filter(sh => sh.id !== id).sort((a, b) => a.id - b.id);
 
             // Fix rest of orders
-            const siblings = this.getStakeholdersByCategory(node.category).forEach(sibling => {
+            this.getStakeholdersByCategory(node.category).forEach(sibling => {
                 if (sibling.orderInGroup >= node.orderInGroup) {
                     sibling.orderInGroup -= 1;
                 }
             })
+
+            // if the removed node was the main stakeholder, then asign other stakeholder
+            if (node.main) {
+                this.getStakeholdersByCategory(node.category)[0].main = true;
+            }
         }
         return this;
     }

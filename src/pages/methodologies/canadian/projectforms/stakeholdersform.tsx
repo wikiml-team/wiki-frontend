@@ -16,12 +16,17 @@ import {
   IDropdownOption,
   DropdownMenuItemType,
   IDropdownStyles,
-  Stack
+  Stack,
+  Panel,
+  TextField,
+  PrimaryButton,
+  DefaultButton
 } from "@fluentui/react";
+import { useBoolean } from '@fluentui/react-hooks';
 
-import ListFieldInput from "components/inputs/list"
 import { selectProject } from "store/slices/projectslice";
 import Stakeholders, { Category, IStakeholder, IStakholderInfo } from "models/canadian/stakeholders";
+import ListFieldInput from "components/inputs/list"
 
 export default function StakeholdersForm() {
   // LOGIC
@@ -38,6 +43,7 @@ export default function StakeholdersForm() {
   const [items, setItems] = useState(initialItems);
   const [stakeholders, setStakeholders] = useState(stakeholdersModel);
 
+  const [panelIsOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
 
   const columns: IColumn[] = [
     {
@@ -145,7 +151,7 @@ export default function StakeholdersForm() {
           <IconButton
             iconProps={{ iconName: "AddFriend" }}
             styles={commandStyles}
-            onClick={() => alert("He;llooo")}
+            onClick={openPanel}
           />
         </TooltipHost>
 
@@ -231,10 +237,40 @@ export default function StakeholdersForm() {
     </React.Fragment>
   }
 
-  return <ListFieldInput
-    rowItems={items}
-    columns={columns}
-    groups={groups}
-    isHeaderVisible={true}
-  />
+  const onRenderFooterContent = React.useCallback(
+    () => (
+      <div>
+        <PrimaryButton onClick={dismissPanel} styles={{ root: { marginRight: 8 } }}>
+          Save
+        </PrimaryButton>
+        <DefaultButton onClick={dismissPanel}>Cancel</DefaultButton>
+      </div>
+    ),
+    [dismissPanel],
+  );
+
+  return <React.Fragment>
+    <ListFieldInput
+      rowItems={items}
+      columns={columns}
+      groups={groups}
+      isHeaderVisible={true}
+    />
+    <Panel
+      isOpen={panelIsOpen}
+      closeButtonAriaLabel="Close"
+      isHiddenOnDismiss={true}
+      headerText={t("panel-header")}
+      onDismiss={dismissPanel}
+      isFooterAtBottom={true}
+      onRenderFooterContent={onRenderFooterContent}
+    >
+      <div>
+        {t("panel-explanation")}
+        <br />
+        <br />
+        <TextField ariaLabel={"contentExplanation"} />
+      </div>
+    </Panel>
+  </React.Fragment>
 }

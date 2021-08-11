@@ -203,6 +203,9 @@
     "tooltip-delete-stakeholder": "Eliminar parte interesada",
     "tooltip-add-stakeholder-DB": "Crear entidad en base de datos",
     "name-field": "Nombre de Entidad",
-    "roll-field": "Principal"
+    "roll-field": "Principal",
+    "panel-header": "Crear parte interesada",
+    "panel-explanation": "Añade a base de datos una parte interesada que necesites en tu proyecto.",
+    "panel-warning": "Revisar que no exista la parte interesada previamente en base datos para evitar datos repetidos."
   }
 }
