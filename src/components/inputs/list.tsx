@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next';
 import {
     DetailsList,
     IGroup,
@@ -9,19 +8,20 @@ import {
     IGroupDividerProps,
 } from '@fluentui/react';
 
-import { NodeInfo } from 'models/canadian/actvitiesmatrix';
+import INodeInfo from 'models/nodeinfo';
 
 type ListFieldInputFieldInputProps = {
-    rowItems: NodeInfo[];
+    rowItems: INodeInfo[];
     groups?: IGroup[];
     columns: IColumn[];
-    onRenderRow: IDetailsListProps['onRenderRow']
+    onRenderRow?: IDetailsListProps['onRenderRow'];
+    isHeaderVisible?: boolean
 }
 
 export default function ListFieldInput(props: ListFieldInputFieldInputProps) {
 
     // LOGIC
-    const { rowItems, groups, columns, onRenderRow } = props;
+    const { rowItems, groups, columns, onRenderRow, isHeaderVisible } = props;
 
     // Collapse behaviour
     const onToggleCollapseRow = (props: IGroupDividerProps) => {
@@ -37,7 +37,7 @@ export default function ListFieldInput(props: ListFieldInputFieldInputProps) {
             groups={groups}
             onRenderRow={onRenderRow}
             selectionMode={SelectionMode.none}
-            isHeaderVisible={false}
+            isHeaderVisible={isHeaderVisible}
         />
     )
 }

@@ -1,4 +1,5 @@
 import { toNumber } from "lodash";
+import INodeInfo from "models/nodeinfo";
 import { Edge } from "../tree";
 import LogicmodelGraph, { LogicmodelVertex } from "./logicmodel"
 
@@ -56,7 +57,7 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
     buidOutputsActivityList() {
         // get all Inmediate Outcomes Ids
         const inmediatesIds = this.vertex.filter(v => v.level === 2).sort((a, b) => toNumber(a.id) - toNumber(b.id)).map(v => v.id);
-        const items: NodeInfo[] = [];
+        const items: IActivityInfo[] = [];
 
         inmediatesIds.forEach(id => {
             const { node, outputs } = this.getInmediateTree(id);
@@ -67,7 +68,7 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
                 name: "inmediate-outcomes",
                 level: 0,
                 description: node.text
-            } as NodeInfo);
+            } as IActivityInfo);
 
             // Push Outputs & Activities
             outputs.forEach(output => {
@@ -77,7 +78,7 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
                     name: "outputs",
                     level: 1,
                     description: output.text
-                } as NodeInfo)
+                } as IActivityInfo)
 
                 // Push Activities
                 const siblings = this.findActivitiesByOutput(output.id);
@@ -87,8 +88,8 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
                         name: "activity",
                         level: 2,
                         description: activity.text,
-                        hasSiblings: siblings.length > 1 
-                    } as NodeInfo)
+                        hasSiblings: siblings.length > 1
+                    } as IActivityInfo)
                 })
             })
         })
@@ -97,7 +98,7 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
     }
 }
 
-export type NodeInfo = {
+export interface IActivityInfo extends INodeInfo {
     id: string;
     name: string;
     level: number;

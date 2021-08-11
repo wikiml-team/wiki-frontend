@@ -14,11 +14,12 @@ import {
   IButtonStyles,
   ITextFieldProps,
   TextField,
-  TooltipHost
+  TooltipHost,
+  ITextStyles
 } from '@fluentui/react';
 
 import { selectProject } from 'store/slices/projectslice';
-import ActivitiesMatrixGraph, { NodeInfo } from 'models/canadian/actvitiesmatrix';
+import ActivitiesMatrixGraph, { IActivityInfo } from 'models/canadian/actvitiesmatrix';
 import ListFieldInput from "components/inputs/list"
 
 export default function ActivitiesMatrixForm() {
@@ -26,7 +27,8 @@ export default function ActivitiesMatrixForm() {
   // LOGIC
   // State
   const project = useSelector(selectProject);
-  const logicModelActivitiesMatrix = project.methodology.instruments.logicActivitiesModel as ActivitiesMatrixGraph;
+  const currentForm = project.forms.find(form => form.name === "logicModelActivities")!;
+  const logicModelActivitiesMatrix = currentForm.structure as ActivitiesMatrixGraph;
 
   const initialItems = logicModelActivitiesMatrix.buidOutputsActivityList();
 
@@ -45,7 +47,7 @@ export default function ActivitiesMatrixForm() {
       minWidth: 10,
       maxWidth: 150,
       data: 'string',
-      onRender: (item: NodeInfo) => fieldRender(item)
+      onRender: (item: IActivityInfo) => fieldRender(item)
     },
     {
       key: 'column2',
@@ -56,7 +58,7 @@ export default function ActivitiesMatrixForm() {
       maxWidth: 350,
       isRowHeader: true,
       data: 'number',
-      onRender: (item: NodeInfo) => codeRender(item),
+      onRender: (item: IActivityInfo) => codeRender(item),
     },
     {
       key: 'column3',
@@ -68,7 +70,7 @@ export default function ActivitiesMatrixForm() {
       isPadded: true,
       isMultiline: true,
       // isFiltered: true,
-      onRender: (item: NodeInfo) => descriptionRender(item),
+      onRender: (item: IActivityInfo) => descriptionRender(item),
     },
     {
       key: 'column4',
@@ -76,10 +78,8 @@ export default function ActivitiesMatrixForm() {
       fieldName: 'operators',
       minWidth: 70,
       data: 'string',
-      isResizable: true,
       isPadded: true,
-      // isFiltered: true,
-      onRender: (item: NodeInfo) => operatorsRender(item),
+      onRender: (item: IActivityInfo) => operatorsRender(item),
     },
   ]
 
@@ -140,20 +140,26 @@ export default function ActivitiesMatrixForm() {
     return null;
   };
 
-  const fieldRender = (item: NodeInfo) => {
-    const variant = item.level === 0 ? "medium" : "small";
+  const fieldRender = (item: IActivityInfo) => {
+    const textStyles: ITextStyles = {
+      root: {
+        fontWeight: 600
+      }
+    }
+    const variant = item.level === 0 ? "mediumPlus" : item.level === 1? "medium" : "small";
+
     return (
       <div style={{ textAlign: "end", color: "black" }}>
-        <Text variant={variant}><b>{t(item.name)}</b></Text>
+        <Text variant={variant} styles={textStyles}>{t(item.name)}</Text>
       </div>
     )
   }
 
-  const codeRender = (item: NodeInfo) => {
+  const codeRender = (item: IActivityInfo) => {
     return item.id
   }
 
-  const descriptionRender = (item: NodeInfo) => {
+  const descriptionRender = (item: IActivityInfo) => {
 
     const textFieldProps: ITextFieldProps = {
       rows: 1,
@@ -192,7 +198,7 @@ export default function ActivitiesMatrixForm() {
     return html
   }
 
-  const operatorsRender = (item: NodeInfo) => {
+  const operatorsRender = (item: IActivityInfo) => {
     const commandStyles: Partial<IButtonStyles> = {
       root: {
         height: 25,
@@ -232,6 +238,7 @@ export default function ActivitiesMatrixForm() {
     rowItems={items}
     columns={columns}
     onRenderRow={onRenderRow}
+    isHeaderVisible={false}
   />
 }
 

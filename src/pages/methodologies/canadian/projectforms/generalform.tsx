@@ -21,7 +21,7 @@ import { ECanadianSector } from "models/sector";
 import DropdownFieldInput from "components/inputs/dropdown";
 import TextFieldInput from "components/inputs/text";
 import DateFieldInput from "components/inputs/datepicker";
-import { IProjectInfo } from "models/generalinfo";
+import { IProjectInfo } from "models/project";
 
 type formValuesType = {
   shortName: string;
@@ -91,7 +91,7 @@ export default function GeneralForm() {
   // LOGIC
   const { t } = useTranslation(["general-form", "status"]);
   const project = useSelector(selectProject);
-  const generalInfo = project.methodology.instruments.generalInfo as IProjectInfo<ECanadianSector>;
+  const generalInfo = project.info as IProjectInfo<ECanadianSector>;
 
   const [initialDate, setInitialDate] = useState(generalInfo.initialDate as Date)
   const [approvedDate, setApprovedDate] = useState(generalInfo.approvedDate as Date)
