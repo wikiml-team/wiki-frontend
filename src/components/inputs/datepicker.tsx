@@ -9,6 +9,7 @@ const DateFieldInput = ({ field, form, ...props }: any) => {
     "days",
     "shortDays",
     "calendar",
+    "general-form"
   ]);
 
   const DayPickerStrings: IDatePickerStrings = {
@@ -70,7 +71,7 @@ const DateFieldInput = ({ field, form, ...props }: any) => {
     closeButtonAriaLabel: t("calendar:closeButtonAriaLabel"),
   };
 
-  const handleOnGetError = (value: string) => {
+  const handleGetError = (value: string) => {
     return form.touched && form.errors ? form.errors[field.name] : "";
   };
 
@@ -85,9 +86,9 @@ const DateFieldInput = ({ field, form, ...props }: any) => {
 
   return (
     <DatePicker
-      placeholder="Select a date..."
+      placeholder={t("general-form:date-placeholder")}
       minDate={minDate}
-      onGetErrorMessage={handleOnGetError}
+      onGetErrorMessage={handleGetError}
       deferredValidationTime={500}
       strings={DayPickerStrings}
       styles={datepickerStyles}

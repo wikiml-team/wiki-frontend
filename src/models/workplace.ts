@@ -2,8 +2,8 @@ import { ReactNode } from "react"
 
 // Workplace Configuration
 type FormRender = {
-  formtab: string;
-  render: ReactNode;
+  tab: string;
+  page: ReactNode;
   tools: ReactNode;
 }
 
@@ -12,8 +12,8 @@ type FormRenderDictionary = {
 }
 
 export default interface IWorkplaceConfiguration {
+  tabsSchema: TabSchema,
   latestMenuTab: string,
-  latestFormTab: string,
   configuration: FormRenderDictionary
 }
 
@@ -48,5 +48,21 @@ export class TabSchema {
       child = parenttab.childtabs.find(tab => tab.key === childkey)
     }
     return child || {} as Tab
+  }
+
+  findByName(name: string): Tab {
+    return this.tabs.find(tab => tab.name === name) || {} as Tab
+  }
+
+  findChildByName(name: string): Tab {
+    for (let tab of this.tabs) {
+      if (tab.childtabs) {
+        const tabFound = tab.childtabs.find(childTab => childTab.name === name) || {} as Tab
+        if (tabFound) return tabFound;
+      }
+    }
+
+    return {} as Tab;
+
   }
 };

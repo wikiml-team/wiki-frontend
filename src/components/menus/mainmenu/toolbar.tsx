@@ -10,13 +10,13 @@ import { animated } from "react-spring";
 
 type ToolBarProps = {
   isFixed: boolean;
-  handleOnClose: () => void;
-  handleOnFix: () => void;
+  handleClose: () => void;
+  handleFix: () => void;
   transition: Function;
 }
 
 const ToolBar: FunctionComponent<ToolBarProps> = (props) => {
-  const { children, isFixed, handleOnClose, handleOnFix, transition } = props;
+  const { children, isFixed, handleClose, handleFix, transition } = props;
 
   // STYLES
   const { palette } = useTheme();
@@ -42,12 +42,9 @@ const ToolBar: FunctionComponent<ToolBarProps> = (props) => {
   // LOGIC
   function useOutsideAlerter(ref: any) {
     useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
       function handleClickOutside(event: any) {
         if (ref.current && !ref.current.contains(event.target) && !isFixed) {
-            handleOnClose();
+          handleClose();
         }
       }
 
@@ -73,8 +70,8 @@ const ToolBar: FunctionComponent<ToolBarProps> = (props) => {
 
           <Stack.Item {...stackPinProps}>
             {isFixed ?
-              <IconButton iconProps={{ iconName: 'ChevronUp' }} title="Cancel" ariaLabel="Cancel" onClick={(item) => handleOnClose()} /> :
-              <IconButton iconProps={{ iconName: 'Pin' }} title="Pin" ariaLabel="Cancel" onClick={(item) => handleOnFix()} />
+              <IconButton iconProps={{ iconName: 'ChevronUp' }} title="Cancel" ariaLabel="Cancel" onClick={(item) => handleClose()} /> :
+              <IconButton iconProps={{ iconName: 'Pin' }} title="Pin" ariaLabel="Cancel" onClick={(item) => handleFix()} />
             }
           </Stack.Item>
         </Stack>

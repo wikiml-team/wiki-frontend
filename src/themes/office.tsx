@@ -1,4 +1,4 @@
-import { createTheme } from "@fluentui/react";
+import { createTheme, IColorCellProps } from "@fluentui/react";
 
 export const themeWord = createTheme({
   palette: {
@@ -109,3 +109,10 @@ export const themeTeams = createTheme({
 });
 
 export default themeWord;
+
+export const colorCells: IColorCellProps[] = [
+  { id: "1", label: "word", color: "#2b579a" },
+  { id: "2", label: "excel", color: "#217346" },
+  { id: "3", label: "powerpoint", color: "#a92b1a" },
+  { id: "4", label: "teams", color: "#6264a7" },
+];

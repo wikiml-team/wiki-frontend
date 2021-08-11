@@ -118,7 +118,8 @@
     "approvedate-error": "Approved Date",
     "initialdate-error": "Initial date",
     "finaldate-error": "Final Date",
-    "required": "Requerido"
+    "required": "Requerido",
+    "date-placeholder": "Selecciona una fecha..."
   },
   "months": {
     "january": "Enero",
@@ -174,15 +175,18 @@
     "nextYearAriaLabel": "Ir al año próximo",
     "closeButtonAriaLabel": "Cerrar el calendario"
   },
-  "logicmodel-form": {
-    "versionLabel": "Versión:",
-    "versionPlaceholder": "Escribe una versión (v0.1)",
-    "ultimateOutcome": "Resultado Final",
-    "intermediateOutcome": "Resultados Intermedios",
-    "inmediateOutcome": "Resultados Inmediatos",
+  "logicmodel-activitymatrix-form": {
+    "ultimate-outcomes": "Resultado Final",
+    "intermediate-outcomes": "Resultados Intermedios",
+    "inmediate-outcomes": "Resultados Inmediatos",
     "outputs": "Productos",
-    "tooltipAddOutcome": "Añadir Resultado",
-    "tooltipAddOutput": "Añadir Producto",
-    "tooltipDelete": "Eliminar"
+    "activity": "Actividades",
+    "tooltip-addInmOutcome": "Añadir resultado inmediado",
+    "tooltip-addIntOutcome": "Añadir resultado intermedio",
+    "tooltip-addOutput": "Añadir Producto",
+    "tooltip-delete": "Eliminar",
+    "tooltip-redirectToAct": "Ir a actividades",
+    "tooltip-add-act": "Añadir actividad debajo",
+    "tooltip-delete-act": "Eliminar actividad"
   }
 }

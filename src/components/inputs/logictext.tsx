@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { ObjectSchema } from 'yup';
-import { useId } from '@fluentui/react-hooks';
+import { Field } from "formik";
 import {
     Stack,
     IStackItemProps,
@@ -9,63 +9,62 @@ import {
     IButtonStyles,
     Icon,
     IIconProps,
-    ITextFieldProps,
     ITextStyles,
     Text,
-    TextField,
     TooltipHost,
     IconButton,
     useTheme,
+    ITextFieldProps,
 } from '@fluentui/react';
 
-import { LogicmodelVertex, LogicmodelTree } from "models/logicmodel";
+import { selectWorkplaceConfig, setConfiguration } from "store/slices/workplaceslice";
+import { Tree } from "models/tree";
+import { LogicmodelVertex } from "models/canadian/logicmodel";
+import TextFieldInput from "components/inputs/text";
 
 type LogicTextFieldInputProps = {
-    vertex: LogicmodelVertex,
-    canDelete?: boolean,
-    canAdd?: boolean,
+    nodeTree: Tree<LogicmodelVertex>,
     handleAddChild: (id: string) => void,
     handleDelete: (id: string) => void,
-    children?: LogicmodelTree[],
-    validationSchema?: ObjectSchema<any>,
 }
 
 export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
 
     // LOGIC
     const {
-        vertex,
-        canDelete,
-        canAdd,
+        nodeTree,
         handleAddChild,
         handleDelete,
-        children,
-        validationSchema
     } = props;
+    const { node, children } = nodeTree;
 
     // STYLES
     const { palette } = useTheme();
 
-    const rootStackItemProps: Partial<IStackItemProps> = {
+    const rootStackItemProps: IStackItemProps = {
         grow: 1,
         styles: {
             root: {
                 textAlign: "center",
+                marginTop: "0px !important"
             },
         },
     };
 
-    const childrenStackProps: Partial<IStackProps> = {
+    const childrenStackProps: IStackProps = {
         horizontal: true,
         horizontalAlign: "space-between",
         tokens: { childrenGap: 20 }
     };
 
-    const inputTextFieldProps: Partial<ITextFieldProps> = {
-        multiline: true,
+    const inputTextFieldProps: ITextFieldProps = {
         rows: 3,
+        multiline: true,
         resizable: false,
         styles: {
+            root: {
+                minWidth: 200,
+            },
             fieldGroup: {
                 borderRadius: "0 0 2px 2px",
                 border: `1px solid ${palette.neutralQuaternary}`,
@@ -79,27 +78,30 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         },
     };
 
-    const arrowProps: Partial<IIconProps> = {
+    const arrowProps: IIconProps = {
         iconName: "SortUp",
         ariaLabel: "Belongs to",
         styles: {
             root: {
-                margin: "10px auto",
+                margin: "8px auto",
             },
         },
     };
 
     return (
         <React.Fragment>
-
             <Stack.Item {...rootStackItemProps}>
-                {vertex.level > 0 && <Icon {...arrowProps} />}
-                <LogicTextFieldHeader vertex={vertex}
-                    canAdd={canAdd}
+                {node.level > 0 && <Icon {...arrowProps} />}
+                <LogicTextFieldHeader
+                    nodeTree={nodeTree}
                     handleAddChild={handleAddChild}
-                    canDelete={canDelete}
-                    handleDelete={handleDelete} />
-                <TextField {...inputTextFieldProps} defaultValue={vertex.text} />
+                    handleDelete={handleDelete}
+                />
+                <Field
+                    name={`textFiled${node.id}`}
+                    component={TextFieldInput}
+                    {...inputTextFieldProps}
+                />
             </Stack.Item>
 
             <Stack.Item {...rootStackItemProps}>
@@ -107,37 +109,46 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                     {children && children.map(child =>
                         <Stack.Item key={child.node.id} grow>
                             <LogicTextFieldInput
-                                vertex={child.node}
-                                canDelete={child.children.length === 0}
-                                canAdd={child.node.level < 3 && child.children.length < 4}
+                                nodeTree={child}
                                 handleAddChild={handleAddChild}
                                 handleDelete={handleDelete}
-                                children={child.children}
-                                validationSchema={validationSchema}
                             />
                         </Stack.Item>
                     )}
                 </Stack>
             </Stack.Item>
-
         </React.Fragment>
-
     )
 }
 
 function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
 
     // LOGIC
-    const { t } = useTranslation("logicmodel-form");
+    const { nodeTree, handleAddChild, handleDelete } = props;
+    const { node, children } = nodeTree;
 
-    const { vertex, canAdd, handleAddChild, canDelete, handleDelete } = props;
-    const { id, level } = vertex;
+    const { t } = useTranslation("logicmodel-activitymatrix-form");
+    const dispatch = useDispatch();
+    const { tabsSchema, latestMenuTab } = useSelector(selectWorkplaceConfig);
+
+    const tooltipContent = node.level === 0 ?
+        "tooltip-addIntOutcome" : node.level === 1 ?
+            "tooltip-addInmOutcome" : "tooltip-addOutput";
+
+    const canAdd = node.level !== 3;
+    const canDelete = children.length === 0;
+    const canRedirectOutput = node.level === 3;
+
+    const handleRedirectToActivity = (id: string) => {
+        const formtabKey = tabsSchema.findChildByName("activitiesmatrix").key;
+        const renderPage = tabsSchema.findChildByKey(latestMenuTab, formtabKey).render;
+        dispatch(setConfiguration({ key: latestMenuTab, tab: formtabKey, page: renderPage }));
+    }
 
     // STYLES
-
     const { palette } = useTheme();
 
-    const titleStyles: Partial<ITextStyles> = {
+    const titleStyles: ITextStyles = {
         root: {
             padding: 4,
             textAlign: "left",
@@ -167,96 +178,37 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
         horizontalAlign="space-between"
     >
         <Stack.Item>
-            <Text variant="medium">{id}</Text>
+            <Text variant="medium">{node.id}</Text>
         </Stack.Item>
         <Stack.Item>
-            {canAdd && (
-                <TooltipHost content={level !== 2 ? t("tooltipAddOutcome") : t("tooltipAddOutput")}>
+            {canRedirectOutput &&
+                <TooltipHost content={t("tooltip-redirectToAct")}>
+                    <IconButton
+                        iconProps={{ iconName: "MultiSelect" }}
+                        styles={commandStyles}
+                        onClick={() => handleRedirectToActivity(node.id)}
+                    />
+                </TooltipHost>
+            }
+            {canAdd &&
+                <TooltipHost content={t(tooltipContent)}>
                     <IconButton
                         iconProps={{ iconName: "Add" }}
                         styles={commandStyles}
-                        onClick={() => handleAddChild(id)}
+                        onClick={() => handleAddChild(node.id)}
                     />
                 </TooltipHost>
-            )}
-            {canDelete && (
-                <TooltipHost content={t("tooltipDelete")}>
+            }
+            {canDelete &&
+                <TooltipHost content={t("tooltip-delete")}>
                     <IconButton
                         iconProps={{ iconName: "Cancel" }}
                         styles={commandStyles}
-                        onClick={() => handleDelete(id)}
+                        onClick={() => handleDelete(node.id)}
                     />
                 </TooltipHost>
-            )}
+            }
         </Stack.Item>
     </Stack>
 }
 
-// EditVersionInputTextField
-type InputInfo = {
-    tooltip: string,
-    icon: string,
-    arialabel: string,
-}
-
-export function VersionFieldInput() {
-
-    // LOGIC
-    const { t } = useTranslation("logicmodel-form");
-
-    const [editionMode, setEditionMode] = useState(false);
-    const [inputInfo, setInputInfo] = useState({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo);
-
-    const toogleVersionEdition = () => {
-
-        if (editionMode) {
-            setInputInfo({ tooltip: "Edit version", icon: "EditSolid12", arialabel: "Edit" } as InputInfo)
-        } else {
-            setInputInfo({ tooltip: "Save version", icon: "SkypeCheck", arialabel: "Submit" } as InputInfo)
-        }
-
-        setEditionMode(val => !val);
-    }
-
-    // STYLES
-    const tooltipId = useId('tooltip');
-
-    const infoStakProps: Partial<IStackProps> = {
-        horizontal: true,
-        horizontalAlign: "end",
-        styles: {
-            root: {
-                marginBottom: 30,
-            },
-        },
-    };
-
-    const versionTextFieldProps: Partial<ITextFieldProps> = {
-        styles: {
-            fieldGroup: {
-                borderRadius: 4,
-                selectors: {
-                    "::after": {
-                        borderRadius: "inherit",
-                        border: "2px solid #003a66",
-                    },
-                },
-            },
-        },
-    };
-
-    return <Stack {...infoStakProps}>
-        <TextField underlined label={t("versionLabel")} {...versionTextFieldProps} readOnly={!editionMode} placeholder={t("versionPlaceholder")} />
-        <TooltipHost
-            content={inputInfo.tooltip}
-            id={tooltipId}
-        >
-            <IconButton iconProps={{ iconName: inputInfo.icon }}
-                title={inputInfo.arialabel}
-                ariaLabel={inputInfo.arialabel}
-                onClick={() => toogleVersionEdition()}
-
-            />
-        </TooltipHost>
-    </Stack>
-}
