@@ -183,10 +183,26 @@
     "activity": "Actividades",
     "tooltip-addInmOutcome": "Añadir resultado inmediado",
     "tooltip-addIntOutcome": "Añadir resultado intermedio",
-    "tooltip-addOutput": "Añadir Producto",
+    "tooltip-addOutput": "Añadir producto",
     "tooltip-delete": "Eliminar",
     "tooltip-redirectToAct": "Ir a actividades",
     "tooltip-add-act": "Añadir actividad debajo",
     "tooltip-delete-act": "Eliminar actividad"
+  },
+  "stakeholders-form": {
+    "beneficiary": "Beneficiario",
+    "intermediary": "Intermediario",
+    "implementer": "Implementador",
+    "donor": "Donante",
+    "other": "Otros Interesados",
+    "tooltip-main-stakeholder-0": "Beneficiario principal",
+    "tooltip-main-stakeholder-1": "Intermediario principal",
+    "tooltip-main-stakeholder-2": "Implementador principal",
+    "tooltip-main-stakeholder-3": "Donante principal",
+    "tooltip-add-stakeholder": "Añadir parte interesada",
+    "tooltip-delete-stakeholder": "Eliminar parte interesada",
+    "tooltip-add-stakeholder-DB": "Crear entidad en base de datos",
+    "name-field": "Nombre de Entidad",
+    "roll-field": "Principal"
   }
 }
