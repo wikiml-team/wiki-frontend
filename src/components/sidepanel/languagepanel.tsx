@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   Dropdown,
   IDropdownOption,
-  IStackTokens,
+  IStackProps,
   Stack,
 } from "@fluentui/react";
 
@@ -22,7 +22,16 @@ export default function LanguagePanel() {
     if (item) dispatch(setLanguage(item.key.toString()));
   };
 
-  const stackTokens: IStackTokens = { childrenGap: 20 };
+  const stackProps: IStackProps = {
+    tokens: {
+      childrenGap: 15
+    },
+    styles: {
+      root: {
+        marginTop: 40
+      }
+    }
+  }
 
   const suportedLangs = [
     { key: "en", text: t("languages:en") },
@@ -31,20 +40,24 @@ export default function LanguagePanel() {
   ];
 
   return (
-    <Stack tokens={stackTokens}>
-      <Dropdown
-        label={t("langUI")}
-        defaultSelectedKey={lang ? lang : undefined}
-        placeholder={t("selectlang")}
-        options={suportedLangs}
-        onChange={handleDataOnChange}
-      />
-      <Dropdown
-        label={t("langdata")}
-        placeholder={t("selectlang")}
-        options={suportedLangs}
-        onChange={() => { }}
-      />
+    <Stack {...stackProps}>
+      <Stack.Item>
+        <Dropdown
+          label={t("langUI")}
+          defaultSelectedKey={lang ? lang : undefined}
+          placeholder={t("selectlang")}
+          options={suportedLangs}
+          onChange={handleDataOnChange}
+        />
+      </Stack.Item>
+      <Stack.Item>
+        <Dropdown
+          label={t("langdata")}
+          placeholder={t("selectlang")}
+          options={suportedLangs}
+          onChange={() => { }}
+        />
+      </Stack.Item>
     </Stack>
   );
 }

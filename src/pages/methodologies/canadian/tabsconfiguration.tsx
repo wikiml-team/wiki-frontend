@@ -29,15 +29,21 @@ const tabsConfiguration = new TabSchema([
     name: "wikiml",
     icon: "WebComponents",
     render: <Redirect to="/" />,
+    // toolBar: 
   },
   {
     key: "key2",
     name: "project",
     icon: "Page",
-    render: <Label>Pivot #1</Label>,
+    render: <Label>ToolBar #1</Label>,
     addtabs: true,
     childtabs: [
-      { key: "key1", name: "general", icon: "Info", render: <GeneralForm /> },
+      {
+        key: "key1",
+        name: "general",
+        icon: "Info",
+        render: <GeneralForm />
+      },
       {
         key: "key2",
         name: "stakeholders",
@@ -92,7 +98,7 @@ const tabsConfiguration = new TabSchema([
     key: "key3",
     name: "licitations",
     icon: "Library",
-    render: <Label>Pivot #2</Label>,
+    render: <Label>ToolBar #2</Label>,
     childtabs: [
       { key: "key1", name: "lot", icon: "OEM", render: <LotForm /> },
       {
@@ -119,7 +125,7 @@ const tabsConfiguration = new TabSchema([
     key: "key4",
     name: "methodology",
     icon: "StackIndicator",
-    render: <Label>Pivot #3</Label>,
+    render: <Label>ToolBar #3</Label>,
     childtabs: [
       {
         key: "key1",
@@ -163,13 +169,13 @@ const tabsConfiguration = new TabSchema([
     key: "key5",
     name: "database",
     icon: "Database",
-    render: <Label>Pivot #4</Label>,
+    render: <Label>ToolBar #4</Label>,
   },
   {
     key: "key6",
     name: "more",
     icon: "MoreVertical",
-    render: <Label>Pivot #5</Label>,
+    render: <Label>ToolBar #5</Label>,
   },
 ]);
 

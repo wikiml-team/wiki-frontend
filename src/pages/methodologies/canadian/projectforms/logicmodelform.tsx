@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   IStackProps,
+  ITextStyles,
 } from "@fluentui/react";
 
 import LogicTextFieldInput from "components/inputs/logictext";
@@ -19,15 +20,14 @@ type formValuesType = {
 }
 
 export default function LogicModelForm() {
-  // LOGIC
 
+  // LOGIC
   const project = useSelector(selectProject);
-  const logicModelGraph = project.methodology.instruments.logicModel as LogicmodelGraph;
+  const currentForm = project.forms.find(form => form.name === "logicModelActivities")!;
+  const logicModelGraph = currentForm.structure as LogicmodelGraph;
 
   const [graph, setGraph] = useState(logicModelGraph)
   const [treeToRender, setTreeToRender] = useState(graph.buildTree())
-
-
 
   const handleAddNode = (siblingId: string) => {
     setGraph(graph.addNode(siblingId));
@@ -97,26 +97,24 @@ function LagicmodelLabels() {
     },
   };
 
+  const textStyles: ITextStyles = {
+    root: {
+      fontWeight: 600
+    }
+  }
+
+  const TextMediumPlus = (props: { label: string }) => {
+    return <Stack.Item>
+      <Text variant="mediumPlus" styles={textStyles}>
+        {t(props.label)}
+      </Text>
+    </Stack.Item>
+  }
+
   return <Stack {...labelStackProps}>
-    <Stack.Item>
-      <Text variant="mediumPlus">
-        <b>{t("ultimate-outcomes")}</b>
-      </Text>
-    </Stack.Item>
-    <Stack.Item>
-      <Text variant="mediumPlus">
-        <b>{t("intermediate-outcomes")}</b>
-      </Text>
-    </Stack.Item>
-    <Stack.Item>
-      <Text variant="mediumPlus">
-        <b>{t("inmediate-outcomes")}</b>
-      </Text>
-    </Stack.Item>
-    <Stack.Item>
-      <Text variant="mediumPlus">
-        <b>{t("outputs")}</b>
-      </Text>
-    </Stack.Item>
+    <TextMediumPlus label="ultimate-outcomes" />
+    <TextMediumPlus label="intermediate-outcomes" />
+    <TextMediumPlus label="intermediate-outcomes" />
+    <TextMediumPlus label="outputs" />
   </Stack>
 }

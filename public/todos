@@ -20,12 +20,14 @@
   - Ayudas sobre el input y sobre los outcomes
   - Buscadores
   - Estructura sintactica
+  - Cuando se crea un output anadirle una activitie.
 
 2- ACTIVITIES MATRIX FORM 
   - Controlled text inputs with formik
   - Collapsable menu
   - Buscador
   - drag and drop
+  - Es el unico form con una entrada con motion, igualar los demas formularios
 
 3- Conectar con la api
   - Datos iniciales reales

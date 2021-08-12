@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import IState from "models/state";
-import { IProjectInfo } from "models/generalinfo";
+import { IProjectInfo } from "models/project";
 import { ECanadianSector } from "models/sector";
 import IProject from "models/project";
-import { CanadianMethodology } from "models/methodologies";
-import { logicmodelGraphExample, LogicmodelVertex } from "models/canadian/logicmodel";
+import { LogicmodelVertex } from "models/canadian/logicmodel";
 import LogicModelActivitiesMatrix, { ActivityVertex } from "models/canadian/actvitiesmatrix";
 import { Edge } from "models/tree";
+import Stakeholders, { Category } from "models/canadian/stakeholders";
 
-// Example
+// Examples - Set initial in blank
 const initialProjectInfoState: IProjectInfo<ECanadianSector> = {
     name: "Large Project Name Test",
     shortname: "Short Project Name",
@@ -171,8 +171,72 @@ const actvitiesExamples: ActivityVertex[] = [
 
 const actmatrixGraphExample = new LogicModelActivitiesMatrix(vertexExample, edgesExample, actvitiesExamples);
 
+const stakeholders = new Stakeholders([
+    {
+        id: 0,
+        name: "Stakeholder1 Ben",
+        category: Category.beneficiary,
+        main: true,
+        orderInGroup: 0
+    },
+    {
+        id: 1,
+        name: "Stakeholder2 Ben",
+        category: Category.beneficiary,
+        main: false,
+        orderInGroup: 1
+    },
+    {
+        id: 2,
+        name: "Stakeholder3 Ben",
+        category: Category.beneficiary,
+        main: false,
+        orderInGroup: 2
+    },
+    {
+        id: 3,
+        name: "Stakeholder4 Don",
+        category: Category.donor,
+        main: true,
+        orderInGroup: 0
+    },
+    {
+        id: 4,
+        name: "Stakeholder5 Imp",
+        category: Category.implementer,
+        main: true,
+        orderInGroup: 0
+    },
+    {
+        id: 5,
+        name: "Stakeholder6 Int",
+        category: Category.intermediary,
+        main: true,
+        orderInGroup: 0
+    },
+    {
+        id: 6,
+        name: "Stakeholder7 Int",
+        category: Category.intermediary,
+        main: false,
+        orderInGroup: 1
+    },
+    {
+        id: 7,
+        name: "Stakeholder8 Other",
+        category: Category.other,
+        main: false,
+        orderInGroup: 0
+    },
+])
+
 const initialState: IProject = {
-    methodology: new CanadianMethodology(initialProjectInfoState, logicmodelGraphExample, actmatrixGraphExample)
+    info: initialProjectInfoState,
+    methodology: "canadian",
+    forms: [
+        { name: "logicModelActivities", structure: actmatrixGraphExample },
+        { name: "stakeholders", structure: stakeholders },
+    ],
 }
 
 const projectSlice = createSlice({
