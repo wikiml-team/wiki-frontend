@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { string, object } from "yup";
 import { ObjectShape } from "yup/lib/object";
@@ -103,18 +103,18 @@ function LagicmodelLabels() {
     }
   }
 
-  const TextMediumPlus = (label: string) => {
+  const TextMediumPlus = (props: { label: string }) => {
     return <Stack.Item>
       <Text variant="mediumPlus" styles={textStyles}>
-        {t(label)}
+        {t(props.label)}
       </Text>
     </Stack.Item>
   }
 
   return <Stack {...labelStackProps}>
-    {TextMediumPlus("ultimate-outcomes")}
-    {TextMediumPlus("intermediate-outcomes")}
-    {TextMediumPlus("inmediate-outcomes")}
-    {TextMediumPlus("outputs")}
+    <TextMediumPlus label="ultimate-outcomes" />
+    <TextMediumPlus label="intermediate-outcomes" />
+    <TextMediumPlus label="intermediate-outcomes" />
+    <TextMediumPlus label="outputs" />
   </Stack>
 }
