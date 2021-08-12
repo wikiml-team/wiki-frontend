@@ -12,7 +12,7 @@
     "export": "Export",
     "newproject": "New",
     "openproject": "Open",
-    "destroyproject": "Destroy",
+    "destroyproject": "Delete",
     "duplicate": "Duplicate",
     "print": "Print",
     "fullscreen": "Fullscreen",
