@@ -205,6 +205,7 @@
     "tooltip-add-stakeholder-DB": "Crear entidad en base de datos",
     "name-field": "Nombre de Entidad",
     "roll-field": "Principal",
+    "select-stakeholder-placeholder": "Selecciona entidad o persona",
     "panel-header": "Crear parte interesada",
     "panel-explanation": "Añada a la base de datos una nueva parte interesada.",
     "panel-warning": "Revisar que no exista la parte interesada previamente en base datos para evitar datos repetidos.",

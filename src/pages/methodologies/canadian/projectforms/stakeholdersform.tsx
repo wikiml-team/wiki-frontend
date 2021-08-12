@@ -52,7 +52,7 @@ export default function StakeholdersForm() {
       key: 'column1',
       name: t('roll-field'),
       fieldName: 'roll',
-      minWidth: 10,
+      minWidth: 100,
       maxWidth: 100,
       data: 'string',
       onRender: (item: IStakholderInfo) => mainStakeholderRender(item),
@@ -63,7 +63,7 @@ export default function StakeholdersForm() {
       styles: { root: { fontSize: 40 } },
       ariaLabel: 'Stakehoder',
       fieldName: 'name',
-      minWidth: 10,
+      minWidth: 500,
       isResizable: true,
       data: 'string',
       isPadded: true,
@@ -105,26 +105,34 @@ export default function StakeholdersForm() {
 
   const fieldRender = (item: IStakholderInfo) => {
     const options: IDropdownOption[] = [
-      { key: 'fruitsHeader', text: 'Fruits', itemType: DropdownMenuItemType.Header },
-      { key: 'apple', text: 'Apple' },
-      { key: 'banana', text: 'Banana' },
-      { key: 'orange', text: 'Orange', disabled: true },
-      { key: 'grape', text: 'Grape' },
-      { key: 'divider_1', text: '-', itemType: DropdownMenuItemType.Divider },
-      { key: 'vegetablesHeader', text: 'Vegetables', itemType: DropdownMenuItemType.Header },
-      { key: 'broccoli', text: 'Broccoli' },
-      { key: 'carrot', text: 'Carrot' },
-      { key: 'lettuce', text: 'Lettuce' },
+      { key: '0', text: 'Stakeholder0' },
+      { key: '1', text: 'Stakeholder1' },
+      { key: '2', text: 'Stakeholder2' },
+      { key: '3', text: 'Stakeholder3' },
+      { key: '4', text: 'Stakeholder4' },
+      { key: '5', text: 'Stakeholder5' },
+      { key: '6', text: 'Stakeholder6' },
+      { key: '7', text: 'Stakeholder7' },
+      { key: '8', text: 'Stakeholder8' },
+      { key: '9', text: 'Stakeholder9' },
     ];
 
     const dropdownStyles: Partial<IDropdownStyles> = {
+      root: {
+        width: "50%",
+      },
       dropdown: {
-        width: 300,
+        minWidth: 300,
       },
       title: {
         borderRadius: "0 0 2px 2px",
         border: `1px solid ${palette.neutralLighter}`,
-      }
+        selectors: {
+          "::after": {
+            border: `1px solid ${palette.red}`,
+          },
+        },
+      },
     }
 
     const commandStyles: Partial<IButtonStyles> = {
@@ -141,10 +149,10 @@ export default function StakeholdersForm() {
     };
 
     return (
-      <Stack horizontal>
+      <Stack horizontal styles={{ root: { minWidth: 800 } }}>
         <Dropdown
-          placeholder="Select a stakeholder"
-          // defaultValue={t(item.name) || ""}
+          placeholder={t("select-stakeholder-placeholder")}
+          defaultSelectedKey={item.id.toString()}
           options={options}
           styles={dropdownStyles}
         />
@@ -156,7 +164,6 @@ export default function StakeholdersForm() {
             onClick={openPanel}
           />
         </TooltipHost>
-
       </Stack>
     )
   }

@@ -209,6 +209,7 @@
     "tooltip-add-stakeholder-DB": "Create stakeholder in database",
     "name-field": "Stakeholder Name",
     "roll-field": "Roll",
+    "select-stakeholder-placeholder": "Select a stakeholder",
     "panel-header": "Create stakeholder",
     "panel-explanation": "Add a new stakeholder to database.",
     "panel-warning": "Check the stakeholder isn´t already in database before adding it in order to avoid duplicated data.",
