@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
   ISeparatorProps,
+  IStackProps,
   ITextFieldStyles,
   Label,
   Persona,
@@ -21,6 +22,18 @@ import { colorCells } from "themes/office";
 export default function SettingsPanel() {
   // STYLES
   const { palette } = useTheme();
+
+  // Stack Props
+  const stackProps: IStackProps = {
+    tokens: {
+      childrenGap: 15
+    },
+    styles: {
+      root: {
+        marginTop: 40
+      }
+    }
+  }
 
   // TextField Styles
   const nameTextFieldStyles: Partial<ITextFieldStyles> = {
@@ -50,10 +63,10 @@ export default function SettingsPanel() {
   const dispatch = useDispatch();
 
   return (
-    <Stack tokens={{ childrenGap: 15 }}>
+    <Stack {...stackProps}>
       <Separator {...separatorProps}>
         <Text variant="mediumPlus">
-          <b>User</b>
+          <b>{t("user")}</b>
         </Text>
       </Separator>
       {/* NAME */}

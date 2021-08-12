@@ -6,19 +6,20 @@ import {
   ITextStyles,
   Text,
   useTheme,
+  Panel
 } from "@fluentui/react";
+import { useBoolean } from '@fluentui/react-hooks';
 
 import { faritems, items, overflowItems } from "./items";
-import SidePanel from "components/sidepanel";
 import LanguagePanel from "components/sidepanel/languagepanel";
-import SettingsPanel from "components/sidepanel/settings/settingspanel";
+import SettingsPanel from "components/sidepanel/settingspanel";
 import { CustomBarButton, CustomOverflowButton, overflowProps } from "./custombuttons";
 
 export default function CommandMenu() {
-  const { palette } = useTheme();
-  const { t } = useTranslation("methodologies");
 
   // STYLES
+  const { palette } = useTheme();
+
   const comandBarStyles: ICommandBarStyles = {
     root: {
       height: 36,
@@ -38,20 +39,10 @@ export default function CommandMenu() {
   };
 
   // Panel State
-  const [languagePanelOpen, setLanguagePanelOpen] = useState(false);
-  const [settingsPanelOpen, setSettingsPanelOpen] = useState(false);
+  const { t } = useTranslation("methodologies");
 
-  const OpenLanguagePanel = useCallback(() => {
-    setLanguagePanelOpen(true);
-    setSettingsPanelOpen(false);
-  }, []);
-  const CloseLanguagePanel = useCallback(() => setLanguagePanelOpen(false), []);
-
-  const OpenSettingsPanel = useCallback(() => {
-    setSettingsPanelOpen(true);
-    setLanguagePanelOpen(false);
-  }, []);
-  const CloseSettingsPanel = useCallback(() => setSettingsPanelOpen(false), []);
+  const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
+  const [settingsPanelOpen, { setTrue: openSettingsPanel, setFalse: dismissSettingsPanel }] = useBoolean(false);
 
   return (
     <React.Fragment>
@@ -62,7 +53,7 @@ export default function CommandMenu() {
       <CommandBar
         buttonAs={CustomBarButton}
         items={items}
-        farItems={faritems(OpenLanguagePanel, OpenSettingsPanel)}
+        farItems={faritems(openLanguagePanel, openSettingsPanel)}
         overflowItems={overflowItems}
         overflowButtonAs={CustomOverflowButton}
         overflowButtonProps={overflowProps(palette)}
@@ -70,18 +61,23 @@ export default function CommandMenu() {
         styles={comandBarStyles}
       />
 
-      <SidePanel
-        header={t("sidepanel:headerlang")}
-        content={<LanguagePanel />}
+      <Panel
         isOpen={languagePanelOpen}
-        handleClose={CloseLanguagePanel}
-      />
-      <SidePanel
-        header={t("sidepanel:headersettings")}
-        content={<SettingsPanel />}
+        closeButtonAriaLabel="Close"
+        isHiddenOnDismiss={true}
+        headerText={t("sidepanel:headerlang")}
+        onDismiss={dismissLanguagePanel}>
+        <LanguagePanel />
+      </Panel>
+
+      <Panel
         isOpen={settingsPanelOpen}
-        handleClose={CloseSettingsPanel}
-      />
+        closeButtonAriaLabel="Close"
+        isHiddenOnDismiss={true}
+        headerText={t("sidepanel:headersettings")}
+        onDismiss={dismissSettingsPanel}>
+        <SettingsPanel />
+      </Panel>
     </React.Fragment>
   );
 }

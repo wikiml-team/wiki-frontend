@@ -199,13 +199,16 @@
     "tooltip-main-stakeholder-1": "Intermediario principal",
     "tooltip-main-stakeholder-2": "Implementador principal",
     "tooltip-main-stakeholder-3": "Donante principal",
+    "tooltip-change-main-stakeholder-4": "Otro stakeholder",
     "tooltip-add-stakeholder": "Añadir parte interesada",
     "tooltip-delete-stakeholder": "Eliminar parte interesada",
     "tooltip-add-stakeholder-DB": "Crear entidad en base de datos",
     "name-field": "Nombre de Entidad",
     "roll-field": "Principal",
     "panel-header": "Crear parte interesada",
-    "panel-explanation": "Añade a base de datos una parte interesada que necesites en tu proyecto.",
-    "panel-warning": "Revisar que no exista la parte interesada previamente en base datos para evitar datos repetidos."
+    "panel-explanation": "Añada a la base de datos una nueva parte interesada.",
+    "panel-warning": "Revisar que no exista la parte interesada previamente en base datos para evitar datos repetidos.",
+    "stakeholder-label": "Nombre",
+    "country-label": "País"
   }
 }

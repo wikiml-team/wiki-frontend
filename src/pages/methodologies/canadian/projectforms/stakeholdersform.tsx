@@ -27,9 +27,11 @@ import { useBoolean } from '@fluentui/react-hooks';
 import { selectProject } from "store/slices/projectslice";
 import Stakeholders, { Category, IStakeholder, IStakholderInfo } from "models/canadian/stakeholders";
 import ListFieldInput from "components/inputs/list"
+import { StakehoderFormPanel } from "components/sidepanel/formcontents"
 
 export default function StakeholdersForm() {
   // LOGIC
+
   // State
   const { t } = useTranslation("stakeholders-form");
 
@@ -51,7 +53,7 @@ export default function StakeholdersForm() {
       name: t('roll-field'),
       fieldName: 'roll',
       minWidth: 10,
-      maxWidth: 50,
+      maxWidth: 100,
       data: 'string',
       onRender: (item: IStakholderInfo) => mainStakeholderRender(item),
     },
@@ -62,17 +64,17 @@ export default function StakeholdersForm() {
       ariaLabel: 'Stakehoder',
       fieldName: 'name',
       minWidth: 10,
+      isResizable: true,
       data: 'string',
       isPadded: true,
       onRender: (item: IStakholderInfo) => fieldRender(item)
     },
     {
       key: 'column3',
-      name: '',
+      name: 'Add/Remove',
       fieldName: 'operators',
       minWidth: 70,
       data: 'string',
-      // isResizable: true,
       isPadded: true,
       // isFiltered: true,
       onRender: (item: IStakholderInfo) => operatorsRender(item),
@@ -265,12 +267,7 @@ export default function StakeholdersForm() {
       isFooterAtBottom={true}
       onRenderFooterContent={onRenderFooterContent}
     >
-      <div>
-        {t("panel-explanation")}
-        <br />
-        <br />
-        <TextField ariaLabel={"contentExplanation"} />
-      </div>
+      <StakehoderFormPanel />
     </Panel>
   </React.Fragment>
 }
