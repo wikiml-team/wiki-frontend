@@ -394,7 +394,6 @@ export default function GeneralForm() {
             </Col>
           </Row>
         </Grid>
-        <button type="submit">Submit</button>
       </Form>
     </Formik>
   );

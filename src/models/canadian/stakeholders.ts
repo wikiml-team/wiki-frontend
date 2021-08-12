@@ -64,7 +64,7 @@ export default class Stakeholders {
         } as IStakeholder;
 
         // Fix rest of orders
-        const siblings = this.getStakeholdersByCategory(category).forEach(sibling => {
+        this.getStakeholdersByCategory(category).forEach(sibling => {
             if (sibling.orderInGroup >= newSh.orderInGroup) {
                 sibling.orderInGroup += 1;
             }

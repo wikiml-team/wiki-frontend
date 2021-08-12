@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { string, object } from "yup";
 import { ObjectShape } from "yup/lib/object";

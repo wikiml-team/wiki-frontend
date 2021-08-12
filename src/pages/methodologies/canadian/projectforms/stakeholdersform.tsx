@@ -2,30 +2,24 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
-  FontSizes,
-  DetailsRow,
   Dropdown,
   IColumn,
-  IDetailsListProps,
-  IDetailsRowStyles,
   IconButton,
   useTheme,
   TooltipHost,
   IButtonStyles,
   FontWeights,
   IDropdownOption,
-  DropdownMenuItemType,
   IDropdownStyles,
   Stack,
   Panel,
-  TextField,
   PrimaryButton,
   DefaultButton
 } from "@fluentui/react";
 import { useBoolean } from '@fluentui/react-hooks';
 
 import { selectProject } from "store/slices/projectslice";
-import Stakeholders, { Category, IStakeholder, IStakholderInfo } from "models/canadian/stakeholders";
+import Stakeholders, { IStakholderInfo } from "models/canadian/stakeholders";
 import ListFieldInput from "components/inputs/list"
 import { StakehoderFormPanel } from "components/sidepanel/formcontents"
 

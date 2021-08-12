@@ -4,7 +4,6 @@ import {
   Dropdown,
   IDropdownOption,
   IStackProps,
-  IStackTokens,
   Stack,
 } from "@fluentui/react";
 
