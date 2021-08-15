@@ -4,7 +4,7 @@ import { useSpring, useTransition } from "react-spring";
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
 import { selectWorkplaceConfig } from "store/slices/workplaceslice";
-import { PageContainer } from "components/styled/pagecontainer";
+import PageContainer from "components/styled/pagecontainer";
 import { Sticky } from "components/styled/sticky"
 
 import CommandMenu from "components/menus/commands/";

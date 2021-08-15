@@ -12,18 +12,20 @@ type PagecontainerProps = {
   spring: any;
   scrollHeight: string | number | undefined;
 }
-export const PageContainer: React.FunctionComponent<PagecontainerProps> = (props) => {
+const PageContainer: React.FunctionComponent<PagecontainerProps> = (props) => {
 
-  const { className, spring, scrollHeight } = props;
+  const { className, spring, scrollHeight, children } = props;
 
   return <animated.div style={spring}>
     <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax={scrollHeight} >
       <Container className={className} >
-        {props.children}
+        {children}
       </Container>
     </Scrollbars>
   </animated.div>
 };
+
+export default PageContainer
 
 
 

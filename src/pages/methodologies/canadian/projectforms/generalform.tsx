@@ -389,8 +389,6 @@ export default function GeneralForm() {
                   sizeLg={6}
                 />
               </Row>
-
-
             </Col>
           </Row>
         </Grid>
