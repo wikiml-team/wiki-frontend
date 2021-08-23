@@ -7,7 +7,7 @@ import IProject from "models/project";
 import { LogicmodelVertex } from "models/canadian/logicmodel";
 import LogicModelActivitiesMatrix, { ActivityVertex } from "models/canadian/actvitiesmatrix";
 import { Edge } from "models/tree";
-import Stakeholders, { Category } from "models/canadian/stakeholders";
+import Stakeholders, { categories } from "models/canadian/stakeholders";
 
 // Examples - Set initial in blank
 const initialProjectInfoState: IProjectInfo<ECanadianSector> = {
@@ -129,6 +129,11 @@ const edgesExample: Edge[] = [
 const actvitiesExamples: ActivityVertex[] = [
     {
         outputId: "1111",
+        id: "0",
+        text: ""
+    },
+    {
+        outputId: "1111",
         id: "1",
         text: ""
     },
@@ -138,8 +143,8 @@ const actvitiesExamples: ActivityVertex[] = [
         text: ""
     },
     {
-        outputId: "1111",
-        id: "3",
+        outputId: "1121",
+        id: "0",
         text: ""
     },
     {
@@ -148,8 +153,8 @@ const actvitiesExamples: ActivityVertex[] = [
         text: ""
     },
     {
-        outputId: "1121",
-        id: "2",
+        outputId: "1211",
+        id: "0",
         text: ""
     },
     {
@@ -160,11 +165,6 @@ const actvitiesExamples: ActivityVertex[] = [
     {
         outputId: "1211",
         id: "2",
-        text: ""
-    },
-    {
-        outputId: "1211",
-        id: "3",
         text: ""
     },
 ]
@@ -175,56 +175,56 @@ const stakeholders = new Stakeholders([
     {
         id: 0,
         name: "Stakeholder1 Ben",
-        category: Category.beneficiary,
+        category: categories.beneficiary,
         main: true,
         orderInGroup: 0
     },
     {
         id: 1,
         name: "Stakeholder2 Ben",
-        category: Category.beneficiary,
+        category: categories.beneficiary,
         main: false,
         orderInGroup: 1
     },
     {
         id: 2,
         name: "Stakeholder3 Ben",
-        category: Category.beneficiary,
+        category: categories.beneficiary,
         main: false,
         orderInGroup: 2
     },
     {
         id: 3,
         name: "Stakeholder4 Don",
-        category: Category.donor,
+        category: categories.donor,
         main: true,
         orderInGroup: 0
     },
     {
         id: 4,
         name: "Stakeholder5 Imp",
-        category: Category.implementer,
+        category: categories.implementer,
         main: true,
         orderInGroup: 0
     },
     {
         id: 5,
         name: "Stakeholder6 Int",
-        category: Category.intermediary,
+        category: categories.intermediary,
         main: true,
         orderInGroup: 0
     },
     {
         id: 6,
         name: "Stakeholder7 Int",
-        category: Category.intermediary,
+        category: categories.intermediary,
         main: false,
         orderInGroup: 1
     },
     {
         id: 7,
         name: "Stakeholder8 Other",
-        category: Category.other,
+        category: categories.other,
         main: false,
         orderInGroup: 0
     },

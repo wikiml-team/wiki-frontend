@@ -99,7 +99,7 @@ export default function StakeholdersForm() {
 
   const fieldRender = (item: IStakholderInfo) => {
     const options: IDropdownOption[] = [
-      { key: '0', text: 'Stakeholder0' },
+      { key: '0', text: '--None--' },
       { key: '1', text: 'Stakeholder1' },
       { key: '2', text: 'Stakeholder2' },
       { key: '3', text: 'Stakeholder3' },

@@ -1,7 +1,20 @@
 import { IGroup } from '@fluentui/react';
 import INodeInfo from 'models/nodeinfo';
 
-export enum Category { "beneficiary", "intermediary", "implementer", "donor", "other" }
+export enum CategoryName { "beneficiary", "intermediary", "implementer", "donor", "other" }
+
+export interface Category {
+    name: CategoryName,
+    minMain: number,
+}
+
+export const categories = {
+    beneficiary: { name: 0, minMain: 0 } as Category,
+    intermediary: { name: 1, minMain: 1 } as Category,
+    implementer: { name: 2, minMain: 1 } as Category,
+    donor: { name: 3, minMain: 1 } as Category,
+    other: { name: 4, minMain: 0 } as Category,
+}
 
 export interface IStakeholder {
     id: number;
@@ -18,7 +31,7 @@ export default class Stakeholders {
         this.list = list;
     }
 
-    getStakeholdersByCategory(category: Category): IStakeholder[] {
+    getStakeholdersByCategory(category: CategoryName): IStakeholder[] {
         switch (category) {
             case 0:
                 return this.getBeneficaries();
@@ -34,37 +47,37 @@ export default class Stakeholders {
     }
 
     getBeneficaries(): IStakeholder[] {
-        return this.list.filter(sh => sh.category === 0);
+        return this.list.filter(sh => sh.category.name === 0);
     }
 
     getIntermediaries(): IStakeholder[] {
-        return this.list.filter(sh => sh.category === 1);
+        return this.list.filter(sh => sh.category.name === 1);
     }
 
     getImplementors(): IStakeholder[] {
-        return this.list.filter(sh => sh.category === 2);
+        return this.list.filter(sh => sh.category.name === 2);
     }
 
     getDonors(): IStakeholder[] {
-        return this.list.filter(sh => sh.category === 3);
+        return this.list.filter(sh => sh.category.name === 3);
     }
 
     getOthers(): IStakeholder[] {
-        return this.list.filter(sh => sh.category === 4);
+        return this.list.filter(sh => sh.category.name === 4);
     }
 
     addStakeholder(order: number, category: Category): Stakeholders {
         // new Stakeholder
         const newSh = {
             id: this.list.length,
-            name: "new name",
+            name: "",
             category: category,
             main: false,
             orderInGroup: order + 1
         } as IStakeholder;
 
         // Fix rest of orders
-        this.getStakeholdersByCategory(category).forEach(sibling => {
+        this.getStakeholdersByCategory(category.name).forEach(sibling => {
             if (sibling.orderInGroup >= newSh.orderInGroup) {
                 sibling.orderInGroup += 1;
             }
@@ -82,15 +95,15 @@ export default class Stakeholders {
 
         if (node) {
             // Fix rest of orders
-            this.getStakeholdersByCategory(node.category).forEach(sibling => {
+            this.getStakeholdersByCategory(node.category.name).forEach(sibling => {
                 if (sibling.orderInGroup >= node.orderInGroup) {
                     sibling.orderInGroup -= 1;
                 }
             })
 
             // if the removed node was the main stakeholder, then asign other stakeholder
-            if (node.main) {
-                this.getStakeholdersByCategory(node.category).find(sh => sh.orderInGroup === 0)!.main = true;
+            if (node.main && node.category.minMain !== 0) {
+                this.getStakeholdersByCategory(node.category.name).find(sh => sh.orderInGroup === 0)!.main = true;
             }
 
             // Remove node
@@ -101,7 +114,7 @@ export default class Stakeholders {
 
     setMainStakeholder(id: number): Stakeholders {
         const newMain = this.list.find(sh => sh.id === id)!;
-        const previousMain = this.getStakeholdersByCategory(newMain.category).find(sh => sh.main === true)!
+        const previousMain = this.getStakeholdersByCategory(newMain.category.name).find(sh => sh.main === true)!
 
         // Unset previous main
         previousMain.main = false;
@@ -113,13 +126,13 @@ export default class Stakeholders {
 
     buidStakeholdersList(): IStakholderInfo[] {
         // Sort items by category and then by id
-        return this.list.sort((a, b) => a.category - b.category || a.orderInGroup - b.orderInGroup).map(sh => {
+        return this.list.sort((a, b) => a.category.name - b.category.name || a.orderInGroup - b.orderInGroup).map(sh => {
             return {
                 id: sh.id,
                 name: sh.name,
                 category: sh.category,
                 main: sh.main,
-                hasSiblings: this.getStakeholdersByCategory(sh.category).length > 1,
+                hasSiblings: this.getStakeholdersByCategory(sh.category.name).length > 1,
                 orderInGroup: sh.orderInGroup
             } as IStakholderInfo
         });
@@ -137,10 +150,10 @@ export default class Stakeholders {
 
         let groups = [] as IGroup[];
 
-        for (var key in Category) {
-            if (Category[key]) {
+        for (var key in CategoryName) {
+            if (CategoryName[key]) {
                 groups.push({
-                    key: `stakeholder${key}`, name: translator(Category[key]), startIndex: index, count: counts[key]
+                    key: `stakeholder${key}`, name: translator(CategoryName[key]), startIndex: index, count: counts[key]
                 })
                 index += counts[key];
             }
