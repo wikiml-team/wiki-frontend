@@ -60,10 +60,12 @@ const AutoSaveFormik: FunctionComponent<AutoSaveFormikProps> = (props) => {
                 <h1>
                     AutoSavingForm{' '}
                     <small style={{ color: 'gray', fontSize: 11 }}>
-                        <AutoSave debounceMs={3000} />
+                        <AutoSave debounceMs={1000} />
                     </small>
                 </h1>
                 {children}
+
+                <Debug />
             </Form>
         </Formik>
     )
