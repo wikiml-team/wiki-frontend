@@ -20,6 +20,7 @@ import LogicTextFieldInput from "components/inputs/logictext";
 import LogicmodelGraph from "models/canadian/logicmodel";
 import { selectProject } from "store/slices/projectslice";
 import { LogicModelOutcomeFormPanel, LogicModelOutputFormPanel } from "components/sidepanel/formcontents"
+import ContextualHelpContent from "components/help/contextualhelp"
 
 type formValuesType = {
   [key: string]: string;
@@ -47,32 +48,11 @@ export default function LogicModelForm() {
     setTreeToRender(graph.buildTree());
   }
 
-  // panel
+  // Panels
   const [outputPanelIsOpen, { setTrue: openOutputPanel, setFalse: dismissOutputPanel }] = useBoolean(false);
   const [outcomePanelIsOpen, { setTrue: openOutcomePanel, setFalse: dismissOutcomePanel }] = useBoolean(false);
-
-  const handleDismissPanel = () => {
-    dismissOutputPanel();
-    dismissOutcomePanel();
-  }
-
-  const onRenderFooterContent = React.useCallback(
-    () => (
-      <div>
-        <TooltipHost content={t("tooltip-panel-concat")}>
-          <PrimaryButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
-            {t("concat-button-label")}
-          </PrimaryButton>
-        </TooltipHost>
-        <TooltipHost content={t("tooltip-panel-save")}>
-          <DefaultButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
-            {t("sidepanel:save")}
-          </DefaultButton>
-        </TooltipHost>
-      </div>
-    ),
-    [dismissOutputPanel, dismissOutcomePanel],
-  );
+  const [outcomeHelpPanelIsOpen, { setTrue: openOutcomeHelpPanel, setFalse: dismissOutcomeHelpPanel }] = useBoolean(false);
+  const [outputHelpPanelIsOpen, { setTrue: openOutputHelpPanel, setFalse: dismissOutputHelpPanel }] = useBoolean(false);
 
   // FORMIK
   var initialValues: formValuesType = { "verionMode": "" }; // Take init value from DB
@@ -97,7 +77,7 @@ export default function LogicModelForm() {
         <Stack horizontal tokens={{ childrenGap: 20 }}>
           {/* Labels */}
           <Stack.Item>
-            <LagicmodelLabels />
+            <LogicmodelLabels />
           </Stack.Item>
 
           {/* Inputs */}
@@ -109,6 +89,8 @@ export default function LogicModelForm() {
                 handleDelete={handleDeleteNode}
                 hanldeOpenOutputPanel={openOutputPanel}
                 hanldeOpenOutcomePanel={openOutcomePanel}
+                handleOutcomeHelpPanel={openOutcomeHelpPanel}
+                handleOutputHelpPanel={openOutputHelpPanel}
               />
             </Stack>
           </Stack.Item>
@@ -116,6 +98,70 @@ export default function LogicModelForm() {
       </Form>
     </Formik>
 
+    <PanelsRender
+      outcomePanelIsOpen={outcomePanelIsOpen}
+      dismissOutcomePanel={dismissOutcomePanel}
+      outputPanelIsOpen={outputPanelIsOpen}
+      dismissOutputPanel={dismissOutputPanel}
+      outcomeHelpPanelIsOpen={outcomeHelpPanelIsOpen}
+      dismissOutcomeHelpPanel={dismissOutcomeHelpPanel}
+      outputHelpPanelIsOpen={outputHelpPanelIsOpen}
+      dismissOutputHelpPanel={dismissOutputHelpPanel}
+    />
+  </React.Fragment>
+}
+
+type PanelsRenderPros = {
+  outcomePanelIsOpen: boolean,
+  dismissOutcomePanel: () => void,
+  outputPanelIsOpen: boolean,
+  dismissOutputPanel: () => void,
+  outcomeHelpPanelIsOpen: boolean,
+  dismissOutcomeHelpPanel: () => void,
+  outputHelpPanelIsOpen: boolean,
+  dismissOutputHelpPanel: () => void,
+}
+
+function PanelsRender(props: PanelsRenderPros) {
+
+  // LOGIC
+  const { outcomePanelIsOpen,
+    dismissOutcomePanel,
+    outputPanelIsOpen,
+    dismissOutputPanel,
+    outcomeHelpPanelIsOpen,
+    dismissOutcomeHelpPanel,
+    outputHelpPanelIsOpen,
+    dismissOutputHelpPanel,
+  } = props;
+  const { t } = useTranslation(["logicmodel-activitymatrix-form", "contextual-help"]);
+
+
+  const handleDismissPanel = () => {
+    dismissOutputPanel();
+    dismissOutcomePanel();
+  }
+
+  // RENDER
+  const onRenderFooterContent = React.useCallback(
+    () => (
+      <div>
+        <TooltipHost content={t("tooltip-panel-concat")}>
+          <PrimaryButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
+            {t("concat-button-label")}
+          </PrimaryButton>
+        </TooltipHost>
+        <TooltipHost content={t("tooltip-panel-save")}>
+          <DefaultButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
+            {t("sidepanel:save")}
+          </DefaultButton>
+        </TooltipHost>
+      </div>
+    ),
+    [dismissOutputPanel, dismissOutcomePanel],
+  );
+
+  return <React.Fragment>
     {/* Outcome Panel */}
     <Panel
       isOpen={outcomePanelIsOpen}
@@ -141,10 +187,44 @@ export default function LogicModelForm() {
     >
       <LogicModelOutputFormPanel />
     </Panel>
-  </React.Fragment>
+
+    {/* Outcome Help Panel */}
+    <Panel
+      isOpen={outcomeHelpPanelIsOpen}
+      closeButtonAriaLabel="Close"
+      isHiddenOnDismiss={true}
+      headerText={t("contextual-help:help-panel-header")}
+      onDismiss={dismissOutcomeHelpPanel}
+      isFooterAtBottom={true}
+    >
+      <ContextualHelpContent
+        definition="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        example="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        format="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        guide="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        tips="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. " />
+    </Panel>
+
+    {/* Output Help Panel */}
+    <Panel
+      isOpen={outputHelpPanelIsOpen}
+      closeButtonAriaLabel="Close"
+      isHiddenOnDismiss={true}
+      headerText={t("contextual-help:help-panel-header")}
+      onDismiss={dismissOutputHelpPanel}
+      isFooterAtBottom={true}
+    >
+      <ContextualHelpContent
+        definition="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        example="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        format="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        guide="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        tips="Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. " />
+    </Panel>
+  </React.Fragment >
 }
 
-function LagicmodelLabels() {
+function LogicmodelLabels() {
 
   // LOGIC
   const { t } = useTranslation("logicmodel-activitymatrix-form");

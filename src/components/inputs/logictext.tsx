@@ -28,6 +28,8 @@ type LogicTextFieldInputProps = {
     handleDelete: (id: string) => void,
     hanldeOpenOutputPanel: () => void,
     hanldeOpenOutcomePanel: () => void,
+    handleOutcomeHelpPanel: () => void
+    handleOutputHelpPanel: () => void
 }
 
 export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
@@ -38,7 +40,9 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         handleAddChild,
         handleDelete,
         hanldeOpenOutputPanel,
-        hanldeOpenOutcomePanel
+        hanldeOpenOutcomePanel,
+        handleOutcomeHelpPanel,
+        handleOutputHelpPanel
     } = props;
     const { node, children } = nodeTree;
 
@@ -102,6 +106,8 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                     handleDelete={handleDelete}
                     hanldeOpenOutputPanel={hanldeOpenOutputPanel}
                     hanldeOpenOutcomePanel={hanldeOpenOutcomePanel}
+                    handleOutcomeHelpPanel={handleOutcomeHelpPanel}
+                    handleOutputHelpPanel={handleOutputHelpPanel}
                 />
                 <Field
                     name={`textFiled${node.id}`}
@@ -120,6 +126,8 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                                 handleDelete={handleDelete}
                                 hanldeOpenOutputPanel={hanldeOpenOutputPanel}
                                 hanldeOpenOutcomePanel={hanldeOpenOutcomePanel}
+                                handleOutcomeHelpPanel={handleOutcomeHelpPanel}
+                                handleOutputHelpPanel={handleOutputHelpPanel}
                             />
                         </Stack.Item>
                     )}
@@ -132,7 +140,13 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
 function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
 
     // LOGIC
-    const { nodeTree, handleAddChild, handleDelete, hanldeOpenOutputPanel, hanldeOpenOutcomePanel } = props;
+    const { nodeTree,
+        handleAddChild,
+        handleDelete,
+        hanldeOpenOutputPanel,
+        hanldeOpenOutcomePanel,
+        handleOutcomeHelpPanel,
+        handleOutputHelpPanel } = props;
     const { node, children } = nodeTree;
 
     const { t } = useTranslation("logicmodel-activitymatrix-form");
@@ -192,27 +206,43 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
         <Stack.Item>
 
             {isAnOputut ?
-                <><TooltipHost content={t("tooltip-see-activities")}>
-                    <IconButton
-                        iconProps={{ iconName: "SnapToGrid" }}
-                        styles={commandStyles}
-                        onClick={() => handleRedirectToActivity(node.id)}
-                    />
-                </TooltipHost>
+                <>
+                    <TooltipHost content={t("tooltip-see-activities")}>
+                        <IconButton
+                            iconProps={{ iconName: "SnapToGrid" }}
+                            styles={commandStyles}
+                            onClick={() => handleRedirectToActivity(node.id)}
+                        />
+                    </TooltipHost>
                     <TooltipHost content={t("tooltip-sintactic-struct")}>
                         <IconButton
                             iconProps={{ iconName: "ShowResults" }}
                             styles={commandStyles}
                             onClick={() => hanldeOpenOutputPanel()}
                         />
-                    </TooltipHost></> :
-                <TooltipHost content={t("tooltip-sintactic-struct")}>
-                    <IconButton
-                        iconProps={{ iconName: "ShowResults" }}
-                        styles={commandStyles}
-                        onClick={() => hanldeOpenOutcomePanel()}
-                    />
-                </TooltipHost>
+                    </TooltipHost>
+                    <TooltipHost content={t("tooltip-contextual-help")}>
+                        <IconButton
+                            iconProps={{ iconName: "Help" }}
+                            styles={commandStyles}
+                            onClick={() => handleOutputHelpPanel()}
+                        />
+                    </TooltipHost>
+                </> : <>
+                    <TooltipHost content={t("tooltip-sintactic-struct")}>
+                        <IconButton
+                            iconProps={{ iconName: "ShowResults" }}
+                            styles={commandStyles}
+                            onClick={() => hanldeOpenOutcomePanel()}
+                        />
+                    </TooltipHost>
+                    <TooltipHost content={t("tooltip-contextual-help")}>
+                        <IconButton
+                            iconProps={{ iconName: "Help" }}
+                            styles={commandStyles}
+                            onClick={() => handleOutcomeHelpPanel()}
+                        />
+                    </TooltipHost></>
             }
             {canAdd &&
                 <TooltipHost content={t(tooltipContent)}>
