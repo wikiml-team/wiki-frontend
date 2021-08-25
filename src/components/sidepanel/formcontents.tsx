@@ -18,7 +18,6 @@ export function StakehoderFormPanel() {
 
             <Stack.Item>
                 <TextField
-                    ariaLabel={"contentExplanation"}
                     label={t("stakeholder-label")}
                 />
             </Stack.Item>
@@ -26,8 +25,82 @@ export function StakehoderFormPanel() {
             <Stack.Item>
                 <Dropdown
                     options={[]}
-                    ariaLabel={"contentExplanation"}
                     label={t("country-label")}
+                />
+            </Stack.Item>
+        </Stack>
+    )
+}
+
+export function LogicModelOutputFormPanel() {
+    const { t } = useTranslation("logicmodel-activitymatrix-form");
+
+    return (
+        <Stack tokens={{ childrenGap: 16 }}>
+            <Stack.Item>
+                {t("output-panel-explanation")}
+                <br /><br />
+            </Stack.Item>
+
+            <Stack.Item>
+                <TextField
+                    label={t("panel-what-label")}
+                />
+            </Stack.Item>
+
+            <Stack.Item>
+                <TextField
+                    label={t("panel-topic-label")}
+                />
+            </Stack.Item>
+
+            <Stack.Item>
+                <TextField
+                    label={t("panel-verb-label")}
+                />
+            </Stack.Item>
+
+            <Stack.Item>
+                <TextField
+                    label={t("panel-to-whom-label")}
+                />
+            </Stack.Item>
+        </Stack>
+    )
+}
+
+export function LogicModelOutcomeFormPanel() {
+    const { t } = useTranslation("logicmodel-activitymatrix-form");
+
+    return (
+        <Stack tokens={{ childrenGap: 16 }}>
+            <Stack.Item>
+                {t("outcome-panel-explanation")}
+                <br /><br />
+            </Stack.Item>
+
+            <Stack.Item>
+                <Dropdown
+                    options={[]}
+                    label={t("panel-direction-label")}
+                />
+            </Stack.Item>
+
+            <Stack.Item>
+                <TextField
+                    label={t("panel-what-label")}
+                />
+            </Stack.Item>
+
+            <Stack.Item>
+                <TextField
+                    label={t("panel-by-whom-label")}
+                />
+            </Stack.Item>
+
+            <Stack.Item>
+                <TextField
+                    label={t("panel-where-label")}
                 />
             </Stack.Item>
         </Stack>

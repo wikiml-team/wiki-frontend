@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { string, object } from "yup";
 import { ObjectShape } from "yup/lib/object";
 import { Formik, Form } from "formik";
@@ -8,12 +9,17 @@ import {
   Text,
   IStackProps,
   ITextStyles,
+  PrimaryButton,
+  DefaultButton,
+  Panel,
+  TooltipHost,
 } from "@fluentui/react";
+import { useBoolean } from '@fluentui/react-hooks';
 
 import LogicTextFieldInput from "components/inputs/logictext";
 import LogicmodelGraph from "models/canadian/logicmodel";
 import { selectProject } from "store/slices/projectslice";
-import { useSelector } from "react-redux";
+import { LogicModelOutcomeFormPanel, LogicModelOutputFormPanel } from "components/sidepanel/formcontents"
 
 type formValuesType = {
   [key: string]: string;
@@ -22,6 +28,8 @@ type formValuesType = {
 export default function LogicModelForm() {
 
   // LOGIC
+  const { t } = useTranslation(["logicmodel-activitymatrix-form", "sidepanel"]);
+
   const project = useSelector(selectProject);
   const currentForm = project.forms.find(form => form.name === "logicModelActivities")!;
   const logicModelGraph = currentForm.structure as LogicmodelGraph;
@@ -39,6 +47,33 @@ export default function LogicModelForm() {
     setTreeToRender(graph.buildTree());
   }
 
+  // panel
+  const [outputPanelIsOpen, { setTrue: openOutputPanel, setFalse: dismissOutputPanel }] = useBoolean(false);
+  const [outcomePanelIsOpen, { setTrue: openOutcomePanel, setFalse: dismissOutcomePanel }] = useBoolean(false);
+
+  const handleDismissPanel = () => {
+    dismissOutputPanel();
+    dismissOutcomePanel();
+  }
+
+  const onRenderFooterContent = React.useCallback(
+    () => (
+      <div>
+        <TooltipHost content={t("tooltip-panel-concat")}>
+          <PrimaryButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
+            {t("concat-button-label")}
+          </PrimaryButton>
+        </TooltipHost>
+        <TooltipHost content={t("tooltip-panel-save")}>
+          <DefaultButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
+            {t("sidepanel:save")}
+          </DefaultButton>
+        </TooltipHost>
+      </div>
+    ),
+    [dismissOutputPanel, dismissOutcomePanel],
+  );
+
   // FORMIK
   var initialValues: formValuesType = { "verionMode": "" }; // Take init value from DB
   for (let v of graph.vertex) {
@@ -52,31 +87,61 @@ export default function LogicModelForm() {
 
   const validationSchema = object().shape(shape);
 
-  return <Formik
-    initialValues={initialValues!}
-    validationSchema={validationSchema}
-    onSubmit={(values) => alert(values)}
-  >
-    <Form>
-      <Stack horizontal tokens={{ childrenGap: 20 }}>
-        {/* Labels */}
-        <Stack.Item>
-          <LagicmodelLabels />
-        </Stack.Item>
+  return <React.Fragment>
+    <Formik
+      initialValues={initialValues!}
+      validationSchema={validationSchema}
+      onSubmit={(values) => alert(values)}
+    >
+      <Form>
+        <Stack horizontal tokens={{ childrenGap: 20 }}>
+          {/* Labels */}
+          <Stack.Item>
+            <LagicmodelLabels />
+          </Stack.Item>
 
-        {/* Inputs */}
-        <Stack.Item style={{ width: "100%" }}>
-          <Stack tokens={{ childrenGap: 10 }} >
-            <LogicTextFieldInput
-              nodeTree={treeToRender}
-              handleAddChild={handleAddNode}
-              handleDelete={handleDeleteNode}
-            />
-          </Stack>
-        </Stack.Item>
-      </Stack>
-    </Form>
-  </Formik>
+          {/* Inputs */}
+          <Stack.Item style={{ width: "100%" }}>
+            <Stack tokens={{ childrenGap: 10 }} >
+              <LogicTextFieldInput
+                nodeTree={treeToRender}
+                handleAddChild={handleAddNode}
+                handleDelete={handleDeleteNode}
+                hanldeOpenOutputPanel={openOutputPanel}
+                hanldeOpenOutcomePanel={openOutcomePanel}
+              />
+            </Stack>
+          </Stack.Item>
+        </Stack>
+      </Form>
+    </Formik>
+
+    {/* Outcome Panel */}
+    <Panel
+      isOpen={outcomePanelIsOpen}
+      closeButtonAriaLabel="Close"
+      isHiddenOnDismiss={true}
+      headerText={t("outcome-panel-header")}
+      onDismiss={dismissOutcomePanel}
+      isFooterAtBottom={true}
+      onRenderFooterContent={onRenderFooterContent}
+    >
+      <LogicModelOutcomeFormPanel />
+    </Panel>
+
+    {/* Output Panel */}
+    <Panel
+      isOpen={outputPanelIsOpen}
+      closeButtonAriaLabel="Close"
+      isHiddenOnDismiss={true}
+      headerText={t("output-panel-header")}
+      onDismiss={dismissOutputPanel}
+      isFooterAtBottom={true}
+      onRenderFooterContent={onRenderFooterContent}
+    >
+      <LogicModelOutputFormPanel />
+    </Panel>
+  </React.Fragment>
 }
 
 function LagicmodelLabels() {

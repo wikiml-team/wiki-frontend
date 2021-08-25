@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { string, object, number, setLocale } from "yup";
 import { Grid, Col, Row } from "fluentui-react-grid";
-import { Formik, Form, Field } from "formik";
+import { Field, FormikValues } from "formik";
 import {
   Stack,
   ITextFieldProps,
@@ -18,12 +18,14 @@ import {
 
 import { selectProject } from "store/slices/projectslice";
 import { ECanadianSector } from "models/sector";
+import { IProjectInfo } from "models/project";
 import DropdownFieldInput from "components/inputs/dropdown";
 import TextFieldInput from "components/inputs/text";
 import DateFieldInput from "components/inputs/datepicker";
-import { IProjectInfo } from "models/project";
+import AutoSaveFormik from "components/form/autosaveform";
 
-type formValuesType = {
+
+type formValuesType = FormikValues | {
   shortName: string;
   largeName: string;
   description: string;
@@ -184,12 +186,12 @@ export default function GeneralForm() {
   ];
 
   return (
-    <Formik
+    <AutoSaveFormik
       initialValues={initValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form>
+      <>
         <Grid dir="ltr">
           {/* Names */}
           <Row>
@@ -392,8 +394,8 @@ export default function GeneralForm() {
             </Col>
           </Row>
         </Grid>
-      </Form>
-    </Formik>
+      </>
+    </AutoSaveFormik>
   );
 }
 

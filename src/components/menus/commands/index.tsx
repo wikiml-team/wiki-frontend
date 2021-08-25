@@ -65,7 +65,7 @@ export default function CommandMenu() {
         isOpen={languagePanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
-        headerText={t("sidepanel:headerlang")}
+        headerText={t("sidepanel:language-header")}
         onDismiss={dismissLanguagePanel}>
         <LanguagePanel />
       </Panel>
@@ -74,7 +74,7 @@ export default function CommandMenu() {
         isOpen={settingsPanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
-        headerText={t("sidepanel:headersettings")}
+        headerText={t("sidepanel:header-settings")}
         onDismiss={dismissSettingsPanel}>
         <SettingsPanel />
       </Panel>

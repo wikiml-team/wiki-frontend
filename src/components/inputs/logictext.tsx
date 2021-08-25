@@ -26,6 +26,8 @@ type LogicTextFieldInputProps = {
     nodeTree: Tree<LogicmodelVertex>,
     handleAddChild: (id: string) => void,
     handleDelete: (id: string) => void,
+    hanldeOpenOutputPanel: () => void,
+    hanldeOpenOutcomePanel: () => void,
 }
 
 export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
@@ -35,6 +37,8 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
         nodeTree,
         handleAddChild,
         handleDelete,
+        hanldeOpenOutputPanel,
+        hanldeOpenOutcomePanel
     } = props;
     const { node, children } = nodeTree;
 
@@ -96,6 +100,8 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                     nodeTree={nodeTree}
                     handleAddChild={handleAddChild}
                     handleDelete={handleDelete}
+                    hanldeOpenOutputPanel={hanldeOpenOutputPanel}
+                    hanldeOpenOutcomePanel={hanldeOpenOutcomePanel}
                 />
                 <Field
                     name={`textFiled${node.id}`}
@@ -112,6 +118,8 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
                                 nodeTree={child}
                                 handleAddChild={handleAddChild}
                                 handleDelete={handleDelete}
+                                hanldeOpenOutputPanel={hanldeOpenOutputPanel}
+                                hanldeOpenOutcomePanel={hanldeOpenOutcomePanel}
                             />
                         </Stack.Item>
                     )}
@@ -124,20 +132,21 @@ export default function LogicTextFieldInput(props: LogicTextFieldInputProps) {
 function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
 
     // LOGIC
-    const { nodeTree, handleAddChild, handleDelete } = props;
+    const { nodeTree, handleAddChild, handleDelete, hanldeOpenOutputPanel, hanldeOpenOutcomePanel } = props;
     const { node, children } = nodeTree;
 
     const { t } = useTranslation("logicmodel-activitymatrix-form");
     const dispatch = useDispatch();
     const { tabsSchema, latestMenuTab } = useSelector(selectWorkplaceConfig);
 
+    // tooltips and buttons
     const tooltipContent = node.level === 0 ?
-        "tooltip-addIntOutcome" : node.level === 1 ?
-            "tooltip-addInmOutcome" : "tooltip-addOutput";
+        "tooltip-add-inmediate-outcome" : node.level === 1 ?
+            "tooltip-add-intermediate-outcome" : "tooltip-add-output";
 
     const canAdd = node.level !== 3;
     const canDelete = children.length === 0;
-    const canRedirectOutput = node.level === 3;
+    const isAnOputut = node.level === 3;
 
     const handleRedirectToActivity = (id: string) => {
         const formtabKey = tabsSchema.findChildByName("activitiesmatrix").key;
@@ -181,12 +190,27 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
             <Text variant="medium">{node.id}</Text>
         </Stack.Item>
         <Stack.Item>
-            {canRedirectOutput &&
-                <TooltipHost content={t("tooltip-redirectToAct")}>
+
+            {isAnOputut ?
+                <><TooltipHost content={t("tooltip-see-activities")}>
                     <IconButton
-                        iconProps={{ iconName: "MultiSelect" }}
+                        iconProps={{ iconName: "SnapToGrid" }}
                         styles={commandStyles}
                         onClick={() => handleRedirectToActivity(node.id)}
+                    />
+                </TooltipHost>
+                    <TooltipHost content={t("tooltip-sintactic-struct")}>
+                        <IconButton
+                            iconProps={{ iconName: "ShowResults" }}
+                            styles={commandStyles}
+                            onClick={() => hanldeOpenOutputPanel()}
+                        />
+                    </TooltipHost></> :
+                <TooltipHost content={t("tooltip-sintactic-struct")}>
+                    <IconButton
+                        iconProps={{ iconName: "ShowResults" }}
+                        styles={commandStyles}
+                        onClick={() => hanldeOpenOutcomePanel()}
                     />
                 </TooltipHost>
             }

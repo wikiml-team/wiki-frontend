@@ -110,7 +110,7 @@ export default function SettingsPanel() {
         />
       </Stack.Item> */}
       <Stack.Item>
-        <Label>{t("colortheme")}</Label>
+        <Label>{t("color-theme")}</Label>
         <Stack horizontal tokens={{ childrenGap: 5 }}>
           <ThemePicker
             colorCells={colorCells}

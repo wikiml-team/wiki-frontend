@@ -43,17 +43,17 @@ export default function LanguagePanel() {
     <Stack {...stackProps}>
       <Stack.Item>
         <Dropdown
-          label={t("langUI")}
+          label={t("language-ui")}
           defaultSelectedKey={lang ? lang : undefined}
-          placeholder={t("selectlang")}
+          placeholder={t("language-select")}
           options={suportedLangs}
           onChange={handleDataOnChange}
         />
       </Stack.Item>
       <Stack.Item>
         <Dropdown
-          label={t("langdata")}
-          placeholder={t("selectlang")}
+          label={t("language-data")}
+          placeholder={t("language-select")}
           options={suportedLangs}
           onChange={() => { }}
         />
