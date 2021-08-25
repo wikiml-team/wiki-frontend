@@ -188,6 +188,7 @@
     "tooltip-add-output": "Añadir producto",
     "tooltip-delete": "Eliminar",
     "tooltip-see-activities": "Ver actividades",
+    "tooltip-contextual-help": "Ayuda contextual",
     "tooltip-sintactic-struct": "Ver estructura sintáctica",
     "tooltip-add-act": "Añadir actividad debajo",
     "tooltip-delete-act": "Eliminar actividad",
@@ -232,5 +233,14 @@
     "panel-warning": "Revisar que no exista la parte interesada previamente en base datos para evitar datos repetidos.",
     "stakeholder-label": "Nombre",
     "country-label": "País"
+  },
+  "contextual-help": {
+    "help-panel-header": "Ayuda contextual",
+    "collapse-all": "Collapsar todo",
+    "definition-label": "Definión",
+    "example-label": "Ejemplo",
+    "format-label": "Formato",
+    "guide-label": "Guía",
+    "tips-label": "Consejos"
   }
 }

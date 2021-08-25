@@ -187,8 +187,9 @@
     "tooltip-add-intermediate-outcome": "Add intermediate outcome",
     "tooltip-add-output": "Add output",
     "tooltip-delete": "Delete",
-    "tooltip-see-activities": "See activities",
-    "tooltip-sintactic-struct": "See sintactic structure",
+    "tooltip-see-activities": "View activities",
+    "tooltip-contextual-help": "Contextual help",
+    "tooltip-sintactic-struct": "View sintactic structure",
     "tooltip-add-act": "Add activity below",
     "tooltip-delete-act": "Delete activity",
     "outcome-panel-header": "Outcome sintax",
@@ -232,5 +233,14 @@
     "panel-warning": "Check the stakeholder isn´t already in database before adding it in order to avoid duplicated data.",
     "stakeholder-label": "Stakeholder Name",
     "country-label": "Stakeholder Country"
+  },
+  "contextual-help": {
+    "help-panel-header": "Contextual help",
+    "collapse-all": "Collapse all",
+    "definition-label": "Definition",
+    "example-label": "Example",
+    "format-label": "Format",
+    "guide-label": "Guide",
+    "tips-label": "Tips"
   }
 }
