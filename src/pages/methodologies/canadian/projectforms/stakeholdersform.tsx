@@ -14,13 +14,14 @@ import {
   Stack,
   Panel,
   PrimaryButton,
-  DefaultButton
+  DefaultButton,
+  SelectionMode,
+  DetailsList
 } from "@fluentui/react";
 import { useBoolean } from '@fluentui/react-hooks';
 
 import { selectProject } from "store/slices/projectslice";
 import Stakeholders, { IStakholderInfo } from "models/canadian/stakeholders";
-import ListFieldInput from "components/inputs/list"
 import { StakehoderFormPanel } from "components/sidepanel/formcontents"
 
 export default function StakeholdersForm() {
@@ -253,12 +254,15 @@ export default function StakeholdersForm() {
   );
 
   return <React.Fragment>
-    <ListFieldInput
-      rowItems={items}
+
+    <DetailsList
+      items={items}
       columns={columns}
       groups={groups}
+      selectionMode={SelectionMode.none}
       isHeaderVisible={true}
     />
+
     <Panel
       isOpen={panelIsOpen}
       closeButtonAriaLabel="Close"
@@ -270,5 +274,6 @@ export default function StakeholdersForm() {
     >
       <StakehoderFormPanel />
     </Panel>
+
   </React.Fragment>
 }

@@ -15,12 +15,13 @@ import {
   ITextFieldProps,
   TextField,
   TooltipHost,
-  ITextStyles
+  ITextStyles,
+  SelectionMode,
+  DetailsList
 } from '@fluentui/react';
 
 import { selectProject } from 'store/slices/projectslice';
 import ActivitiesMatrixGraph, { IActivityInfo } from 'models/canadian/actvitiesmatrix';
-import ListFieldInput from "components/inputs/list"
 
 export default function ActivitiesMatrixForm() {
 
@@ -146,7 +147,7 @@ export default function ActivitiesMatrixForm() {
         fontWeight: 600
       }
     }
-    const variant = item.level === 0 ? "mediumPlus" : item.level === 1? "medium" : "small";
+    const variant = item.level === 0 ? "mediumPlus" : item.level === 1 ? "medium" : "small";
 
     return (
       <div style={{ textAlign: "end", color: "black" }}>
@@ -234,12 +235,14 @@ export default function ActivitiesMatrixForm() {
     )
   }
 
-  return <ListFieldInput
-    rowItems={items}
+  return <DetailsList
+    items={items}
     columns={columns}
     onRenderRow={onRenderRow}
+    selectionMode={SelectionMode.none}
     isHeaderVisible={false}
   />
+
 }
 
 
