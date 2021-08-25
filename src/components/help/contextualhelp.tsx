@@ -1,4 +1,5 @@
 import React from 'react'
+import { Scrollbars } from "react-custom-scrollbars";
 
 import { IColumn, IGroup, DetailsList, SelectionMode } from '@fluentui/react'
 
@@ -38,12 +39,14 @@ export default function ContextualHelpContent(content: IContextualHelpContent) {
         })
     }
 
-    return <DetailsList
-        items={items}
-        columns={columns}
-        groups={groups}
-        // onRenderRow={onRenderRow}
-        selectionMode={SelectionMode.none}
-        isHeaderVisible={true}
-    />
+    return <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
+        <DetailsList
+            items={items}
+            columns={columns}
+            groups={groups}
+            // onRenderRow={onRenderRow}
+            selectionMode={SelectionMode.none}
+            isHeaderVisible={true}
+        />
+    </Scrollbars>
 }
