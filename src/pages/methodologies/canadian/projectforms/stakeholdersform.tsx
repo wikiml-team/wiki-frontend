@@ -192,13 +192,13 @@ export default function StakeholdersForm() {
     };
 
     return item.main ?
-      <TooltipHost content={t(`tooltip-main-stakeholder-${item.category}`)}>
+      <TooltipHost content={t(`tooltip-main-stakeholder-${item.category.name}`)}>
         <IconButton
           iconProps={{ iconName: "PartyLeader" }}
           styles={bossIconStyles}
         />
       </TooltipHost> :
-      <TooltipHost content={t(`tooltip-change-main-stakeholder-${item.category}`)}>
+      <TooltipHost content={t(`tooltip-change-main-stakeholder-${item.category.name}`)}>
         <IconButton
           iconProps={{ iconName: "Contact" }}
           styles={iconStyles}
