@@ -188,7 +188,6 @@
     "tooltip-add-output": "Add output",
     "tooltip-delete": "Delete",
     "tooltip-see-activities": "View activities",
-    "tooltip-contextual-help": "Contextual help",
     "tooltip-sintactic-struct": "View sintactic structure",
     "tooltip-add-act": "Add activity below",
     "tooltip-delete-act": "Delete activity",
@@ -235,6 +234,7 @@
     "country-label": "Stakeholder Country"
   },
   "contextual-help": {
+    "tooltip-contextual-help": "Contextual help",
     "help-panel-header": "Contextual help",
     "collapse-all": "Collapse all",
     "definition-label": "Definition",
