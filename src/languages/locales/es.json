@@ -235,6 +235,7 @@
     "country-label": "País"
   },
   "contextual-help": {
+    "tooltip-contextual-help": "Ayuda contextual",
     "help-panel-header": "Ayuda contextual",
     "collapse-all": "Abrir/Cerrarr todo",
     "definition-label": "Definión",

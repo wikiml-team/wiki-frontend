@@ -237,7 +237,7 @@
   "contextual-help": {
     "tooltip-contextual-help": "Contextual help",
     "help-panel-header": "Contextual help",
-    "collapse-all": "Collapse all",
+    "collapse-all": "Open/Close all",
     "definition-label": "Definition",
     "example-label": "Example",
     "format-label": "Format",
