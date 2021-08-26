@@ -194,8 +194,8 @@
     "tooltip-delete-act": "Delete activity",
     "outcome-panel-header": "Outcome sintax",
     "output-panel-header": "Output sintax",
-    "output-panel-explanation": "Complete the form in order to create an ouput whit good sintactic structure",
-    "outcome-panel-explanation": "Complete the form in order to create an ouput whit good sintactic structure",
+    "output-panel-explanation": "Fill in the form to describe the output with quality",
+    "outcome-panel-explanation": "Fill in the form to describe the outcome with quality",
     "panel-direction-label": "Direction",
     "panel-what-label": "What",
     "panel-by-whom-label": "Who",
@@ -235,6 +235,7 @@
     "country-label": "Stakeholder Country"
   },
   "contextual-help": {
+    "tooltip-contextual-help": "Contextual help",
     "help-panel-header": "Contextual help",
     "collapse-all": "Collapse all",
     "definition-label": "Definition",

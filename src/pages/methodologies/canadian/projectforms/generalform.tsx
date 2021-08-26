@@ -173,8 +173,6 @@ export default function GeneralForm() {
 
   const handleSubmit = (values: formValuesType, { setSubmitting }: any) => {
     alert(values);
-    console.log("values");
-    console.log(values);
   };
 
   const countries: IDropdownOption[] = [

@@ -61,7 +61,8 @@ export function LogicModelOutputFormPanel() {
             </Stack.Item>
 
             <Stack.Item>
-                <TextField
+                <Dropdown
+                    options={[]}
                     label={t("panel-to-whom-label")}
                 />
             </Stack.Item>
@@ -93,7 +94,8 @@ export function LogicModelOutcomeFormPanel() {
             </Stack.Item>
 
             <Stack.Item>
-                <TextField
+                <Dropdown
+                    options={[]}
                     label={t("panel-by-whom-label")}
                 />
             </Stack.Item>

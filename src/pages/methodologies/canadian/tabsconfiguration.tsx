@@ -21,6 +21,7 @@ import GuidesTutorials from "pages/methodologies/canadian/tutorials/guidestutori
 import Tutorials from "pages/methodologies/canadian/tutorials/methodologytutorials";
 import OutcomesTutorial from "pages/methodologies/canadian/tutorials/outcomestutorial";
 import IndicatorsTutorial from "pages/methodologies/canadian/tutorials/indicatorstutorial";
+import FinancingForm from "pages/methodologies/canadian/tutorials/indicatorstutorial";
 import { TabSchema } from "models/workplace";
 
 const tabsConfiguration = new TabSchema([
@@ -88,6 +89,12 @@ const tabsConfiguration = new TabSchema([
       },
       {
         key: "key9",
+        name: "financing",
+        icon: "StackColumnChart",
+        render: <FinancingForm />,
+      },
+      {
+        key: "key10",
         name: "reports",
         icon: "BarChart4",
         render: <ReportsForm />,

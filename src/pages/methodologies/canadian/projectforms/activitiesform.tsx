@@ -17,11 +17,14 @@ import {
   TooltipHost,
   ITextStyles,
   SelectionMode,
-  DetailsList
+  DetailsList,
+  Panel
 } from '@fluentui/react';
+import { useBoolean } from '@fluentui/react-hooks';
 
 import { selectProject } from 'store/slices/projectslice';
 import ActivitiesMatrixGraph, { IActivityInfo } from 'models/canadian/actvitiesmatrix';
+import ContextualHelpContent from "components/help/contextualhelp"
 
 export default function ActivitiesMatrixForm() {
 
@@ -36,7 +39,7 @@ export default function ActivitiesMatrixForm() {
   const [items, setItems] = useState(initialItems);
   const [activitiesMatrix, setActivitiesMatrix] = useState(logicModelActivitiesMatrix);
 
-  const { t } = useTranslation("logicmodel-activitymatrix-form");
+  const { t } = useTranslation(["logicmodel-activitymatrix-form", "contextual-help"]);
 
   const columns: IColumn[] = [
     {
@@ -46,7 +49,7 @@ export default function ActivitiesMatrixForm() {
       ariaLabel: 'Outcomes, Outputs and Activities',
       fieldName: 'field',
       minWidth: 10,
-      maxWidth: 150,
+      maxWidth: 200,
       data: 'string',
       onRender: (item: IActivityInfo) => fieldRender(item)
     },
@@ -77,7 +80,7 @@ export default function ActivitiesMatrixForm() {
       key: 'column4',
       name: '',
       fieldName: 'operators',
-      minWidth: 70,
+      minWidth: 100,
       data: 'string',
       isPadded: true,
       onRender: (item: IActivityInfo) => operatorsRender(item),
@@ -100,6 +103,10 @@ export default function ActivitiesMatrixForm() {
     setActivitiesMatrix(activitiesMatrix.deleteActivity(outputId, activityId));
     setItems(activitiesMatrix.buidOutputsActivityList());
   }
+
+  // Panels
+  const [helpPanelIsOpen, { setTrue: openHelpPanel, setFalse: dismissHelpPanel }] = useBoolean(false);
+
 
   // STYLES
   const { palette } = useTheme();
@@ -215,6 +222,13 @@ export default function ActivitiesMatrixForm() {
 
     return (item.level === 2 &&
       <React.Fragment>
+        <TooltipHost content={t("contextual-help:tooltip-contextual-help")}>
+          <IconButton
+            iconProps={{ iconName: "Help" }}
+            styles={commandStyles}
+            onClick={() => openHelpPanel()}
+          />
+        </TooltipHost>
         <TooltipHost content={t("tooltip-add-act")}>
           <IconButton
             iconProps={{ iconName: "Add" }}
@@ -235,13 +249,30 @@ export default function ActivitiesMatrixForm() {
     )
   }
 
-  return <DetailsList
-    items={items}
-    columns={columns}
-    onRenderRow={onRenderRow}
-    selectionMode={SelectionMode.none}
-    isHeaderVisible={false}
-  />
+  return <React.Fragment>
+    <DetailsList
+      items={items}
+      columns={columns}
+      onRenderRow={onRenderRow}
+      selectionMode={SelectionMode.none}
+      isHeaderVisible={false}
+    />
+    <Panel
+      isOpen={helpPanelIsOpen}
+      closeButtonAriaLabel="Close"
+      isHiddenOnDismiss={true}
+      headerText={t("contextual-help:help-panel-header")}
+      onDismiss={dismissHelpPanel}
+      isFooterAtBottom={true}
+    >
+      <ContextualHelpContent
+        definition="Def Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        example=""
+        format="Cosi se me face le buc torbellini de sua me. "
+        guide="Guide Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+        tips="Tips Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. " />
+    </Panel>
+  </React.Fragment>
 
 }
 
