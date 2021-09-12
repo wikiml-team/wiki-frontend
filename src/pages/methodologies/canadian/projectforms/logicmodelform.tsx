@@ -29,8 +29,6 @@ type formValuesType = {
 export default function LogicModelForm() {
 
   // LOGIC
-  const { t } = useTranslation(["logicmodel-activitymatrix-form", "sidepanel"]);
-
   const project = useSelector(selectProject);
   const currentForm = project.forms.find(form => form.name === "logicModelActivities")!;
   const logicModelGraph = currentForm.structure as LogicmodelGraph;
@@ -158,7 +156,7 @@ function PanelsRender(props: PanelsRenderPros) {
         </TooltipHost>
       </div>
     ),
-    [dismissOutputPanel, dismissOutcomePanel],
+    [handleDismissPanel],
   );
 
   return <React.Fragment>

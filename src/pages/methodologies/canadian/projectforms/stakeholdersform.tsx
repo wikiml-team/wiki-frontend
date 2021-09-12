@@ -16,7 +16,7 @@ import {
   PrimaryButton,
   DefaultButton,
   SelectionMode,
-  DetailsList
+  DetailsList,
 } from "@fluentui/react";
 import { useBoolean } from '@fluentui/react-hooks';
 
@@ -90,9 +90,14 @@ export default function StakeholdersForm() {
   }
 
   const handleChangeMainStakeholder = (item: IStakholderInfo) => {
-    setStakeholders(stakeholders.setMainStakeholder(item.id));
-    setItems(stakeholders.buidStakeholdersList());
-    groups = stakeholdersModel.buildStakeholdersGroups(t);
+    if (!item.category.hasNoMain) {
+      console.log("start")
+      setStakeholders(stakeholders.setMainStakeholder(item.id));
+      console.log("end")
+
+      setItems(stakeholders.buidStakeholdersList());
+      groups = stakeholdersModel.buildStakeholdersGroups(t);
+    }
   }
 
   // STYLES

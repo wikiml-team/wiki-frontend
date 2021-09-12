@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AutoSavingForm, { AutoSavingForm2 } from "./autosave"
+import { AutoSavingForm2 } from "./autosave"
 
 export default function Main() {
   return (

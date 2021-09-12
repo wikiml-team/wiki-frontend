@@ -5,7 +5,8 @@ export enum CategoryName { "beneficiary", "intermediary", "implementer", "donor"
 
 export interface Category {
     name: CategoryName,
-    minMain: number,
+    minMain?: number,
+    hasNoMain?: boolean
 }
 
 export const categories = {
@@ -13,7 +14,7 @@ export const categories = {
     intermediary: { name: 1, minMain: 1 } as Category,
     implementer: { name: 2, minMain: 1 } as Category,
     donor: { name: 3, minMain: 1 } as Category,
-    other: { name: 4, minMain: 0 } as Category,
+    other: { name: 4, hasNoMain: true } as Category,
 }
 
 export interface IStakeholder {
@@ -116,8 +117,9 @@ export default class Stakeholders {
         const newMain = this.list.find(sh => sh.id === id)!;
         const previousMain = this.getStakeholdersByCategory(newMain.category.name).find(sh => sh.main === true)!
 
-        // Unset previous main
-        previousMain.main = false;
+        // Unset previous main if there is one
+        if(previousMain) previousMain.main = false;
+
         // Set new main
         newMain.main = true;
 

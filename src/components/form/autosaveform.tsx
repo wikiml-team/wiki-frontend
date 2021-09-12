@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
 import { useFormikContext, Formik, Field, Form, FormikValues } from 'formik';
 import { ObjectSchema } from "yup";
 import debounce from 'just-debounce-it';
@@ -11,8 +11,8 @@ type AutoSaveProps = {
 
 const AutoSave = ({ debounceMs = 3000 }: AutoSaveProps) => {
     const formik = useFormikContext();
-    const [lastSaved, setLastSaved] = React.useState("");
-    const debouncedSubmit = React.useCallback(
+    const [lastSaved, setLastSaved] = useState("");
+    const debouncedSubmit = useCallback(
         debounce(
             () =>
                 formik.submitForm().then(() => setLastSaved(new Date().toISOString())),
@@ -21,7 +21,7 @@ const AutoSave = ({ debounceMs = 3000 }: AutoSaveProps) => {
         [debounceMs, formik.submitForm]
     );
 
-    React.useEffect(() => {
+    useEffect(() => {
         debouncedSubmit();
     }, [debouncedSubmit, formik.values]);
 
