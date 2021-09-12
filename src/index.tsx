@@ -10,13 +10,31 @@ import { initializeIcons, loadTheme } from "@fluentui/react";
 import { Provider } from "react-redux";
 import store from "store";
 
+// Apollo
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql
+} from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: 'http://80.209.237.197:3000/graphql',
+  cache: new InMemoryCache()
+});
+
+// Styling
 loadTheme(store.getState().theme);
 initializeIcons();
 
+// Render
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://wikiml-team.github.io/wiki-frontend",
   "dependencies": {
+    "@apollo/client": "^3.4.11",
     "@fluentui/example-data": "^8.2.4",
     "@fluentui/react": "^8.6.0",
     "@reduxjs/toolkit": "^1.5.1",
@@ -24,6 +25,7 @@
     "cypress": "^6.8.0",
     "fluentui-react-grid": "^1.0.0",
     "formik": "^2.2.6",
+    "graphql": "^15.5.3",
     "i18next": "^20.1.0",
     "i18next-browser-languagedetector": "^6.1.0",
     "i18next-http-backend": "^1.2.1",
