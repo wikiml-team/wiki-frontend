@@ -50,6 +50,7 @@
     "outcomes": "Ergebnisse",
     "indicators": "Indikaoren",
     "activities": "",
+    "assumptions": "",
     "budgets": "",
     "categories": "",
     "coins": "",
@@ -63,7 +64,6 @@
     "projectgoals": "",
     "projects": "",
     "sources": "",
-    "supuestos": "",
     "users": ""
   },
   "sidepanel": {

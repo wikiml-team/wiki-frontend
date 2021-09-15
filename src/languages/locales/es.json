@@ -52,6 +52,7 @@
     "outcomes": "Resultados",
     "indicators": "Indicadores",
     "activities": "Actividades",
+    "assumptions": "Supuestos",
     "budgets": "Presupuestos",
     "categories": "Categorías",
     "coins": "Monedas",
@@ -65,7 +66,6 @@
     "projectgoals": "Objetivos de Proyectos",
     "projects": "Projectos",
     "sources": "Fuentes de verificación",
-    "supuestos": "Supuestos",
     "users": "Usarios"
   },
   "sidepanel": {
