@@ -83,6 +83,13 @@
     "save": "Guardar",
     "dismiss": "Cancelar"
   },
+  "dialog": {
+    "default-options-title" : "Seleccione",
+    "default-accept" : "Aceptar",
+    "export-title" : "Exportar Proyecto",
+    "export-accept-label" : "Exportar",
+    "export-options-title" : "Seleccione el tipo de archivo a exportar:"
+  },
   "languages": {
     "en": "Inglés",
     "es": "Español",

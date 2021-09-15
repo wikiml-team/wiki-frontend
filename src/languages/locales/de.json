@@ -28,7 +28,7 @@
     "database": "Datenbank",
     "more": "Mehr"
   },
-  "Seiten": {
+  "pages": {
     "general": "Allgemein",
     "Stakeholder": "Stakeholder",
     "logicmodel": "Logikmodell",
@@ -79,7 +79,14 @@
     "theme": "Thema",
     "colortheme": "Farbgebung"
   },
-  "Sprachen": {
+  "dialog": {
+    "default-options-title" : "",
+    "default-accept" : "",
+    "export-title" : "",
+    "export-accept-label" : "",
+    "export-options-title" : ""
+  },
+  "languages": {
     "en": "Englisch",
     "es": "Spanisch",
     "de": "Deutsch"
