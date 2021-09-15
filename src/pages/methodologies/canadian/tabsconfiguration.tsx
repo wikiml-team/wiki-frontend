@@ -51,6 +51,8 @@ import AssumptionsData from "./database/assumptionsdata";
 import UsersData from "./database/usersdata";
 
 import { TabSchema } from "models/workplace";
+import EvaluationForm from "./projectforms/evaluationform";
+import ApplicationForm from "./projectforms/applicationform";
 
 const tabsConfiguration = new TabSchema([
   {
@@ -118,14 +120,26 @@ const tabsConfiguration = new TabSchema([
       {
         key: "key9",
         name: "financing",
-        icon: "StackColumnChart",
+        icon: "People",
         render: <FinancingForm />,
       },
       {
         key: "key10",
+        name: "application",
+        icon: "GripperDotsVertical",
+        render: <ApplicationForm />,
+      },
+      {
+        key: "key11",
         name: "reports",
-        icon: "BarChart4",
+        icon: "ChartSeries",
         render: <ReportsForm />,
+      },
+      {
+        key: "key12",
+        name: "evaluations",
+        icon: "AreaChart",
+        render: <EvaluationForm />,
       },
     ],
   },
