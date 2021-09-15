@@ -14,6 +14,7 @@ import { faritems, items, overflowItems } from "./items";
 import LanguagePanel from "components/sidepanel/languagepanel";
 import SettingsPanel from "components/sidepanel/settingspanel";
 import { CustomBarButton, CustomOverflowButton, overflowProps } from "./custombuttons";
+import ExportDialog from "components/dialog/exportDialog";
 
 export default function CommandMenu() {
 
@@ -38,11 +39,14 @@ export default function CommandMenu() {
     },
   };
 
-  // Panel State
+  // Panels State
   const { t } = useTranslation("methodologies");
 
   const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
   const [settingsPanelOpen, { setTrue: openSettingsPanel, setFalse: dismissSettingsPanel }] = useBoolean(false);
+
+  // Dialog State
+  const [hideDialog, { toggle: toggleHideDialog }] = useBoolean(true);
 
   return (
     <React.Fragment>
@@ -52,7 +56,7 @@ export default function CommandMenu() {
 
       <CommandBar
         buttonAs={CustomBarButton}
-        items={items}
+        items={items(toggleHideDialog)}
         farItems={faritems(openLanguagePanel, openSettingsPanel)}
         overflowItems={overflowItems}
         overflowButtonAs={CustomOverflowButton}
@@ -78,6 +82,11 @@ export default function CommandMenu() {
         onDismiss={dismissSettingsPanel}>
         <SettingsPanel />
       </Panel>
+
+      <ExportDialog
+        hideDialog={hideDialog}
+        toggleHideDialog={toggleHideDialog}
+      />
     </React.Fragment>
   );
 }
