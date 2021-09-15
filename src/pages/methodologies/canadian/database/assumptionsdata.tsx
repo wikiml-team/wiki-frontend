@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Supuestos() {
+export default function AssumptionsData() {
     return (
         <div>
             

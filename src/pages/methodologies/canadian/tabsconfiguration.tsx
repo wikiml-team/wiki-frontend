@@ -47,7 +47,7 @@ import ProjectsData from "./database/projectsdata";
 import SectorsData from "./database/sectorsdata";
 import SourcesData from "./database/sourcesdata";
 import StakeholdersData from "./database/stakeholdersdata";
-import Supuestos from "./database/supuestos";
+import AssumptionsData from "./database/assumptionsdata";
 import UsersData from "./database/usersdata";
 
 import { TabSchema } from "models/workplace";
@@ -316,9 +316,9 @@ const tabsConfiguration = new TabSchema([
       },
       {
         key: "key19",
-        name: "supuestos",
+        name: "assumptions",
         icon: "Database",
-        render: <Supuestos/>,
+        render: <AssumptionsData/>,
       },
       {
         key: "key20",
