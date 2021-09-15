@@ -3,38 +3,40 @@ import {
   ICommandBarItemProps,
 } from "@fluentui/react";
 
-import { fullscreenToggler } from "components/fullscreentoogler";
+import { fullscreenToggler } from "components/fullscreentoggler";
 
 i18n.loadNamespaces("commands");
 
-export const items: ICommandBarItemProps[] = [
-  {
-    key: "goback",
-    iconProps: { iconName: "Undo" },
-    text: i18n.t('commands:undo'),
-    iconOnly: true,
-  },
-  {
-    key: "goforward",
-    iconProps: { iconName: "Redo" },
-    text: i18n.t('commands:redo'),
-    iconOnly: true,
-  },
-  {
-    key: "share",
-    iconProps: { iconName: "Share" },
-    text: i18n.t('commands:share'),
-    iconOnly: true,
-    onClick: () => alert("Share"),
-  },
-  {
-    key: "export",
-    iconProps: { iconName: "Export" },
-    text: i18n.t('commands:export'),
-    iconOnly: true,
-    onClick: () => alert("Export"),
-  },
-];
+export const items = (toggleHideDialog: Function) => {
+  return [
+    {
+      key: "goback",
+      iconProps: { iconName: "Undo" },
+      text: i18n.t('commands:undo'),
+      iconOnly: true,
+    },
+    {
+      key: "goforward",
+      iconProps: { iconName: "Redo" },
+      text: i18n.t('commands:redo'),
+      iconOnly: true,
+    },
+    {
+      key: "share",
+      iconProps: { iconName: "Share" },
+      text: i18n.t('commands:share'),
+      iconOnly: true,
+      onClick: () => alert("Share"),
+    },
+    {
+      key: "export",
+      iconProps: { iconName: "Export" },
+      text: i18n.t('commands:export'),
+      iconOnly: true,
+      onClick: toggleHideDialog,
+    },
+  ] as ICommandBarItemProps[]
+}
 
 export const overflowItems: ICommandBarItemProps[] = [
   {

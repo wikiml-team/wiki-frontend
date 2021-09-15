@@ -5,7 +5,7 @@ const HelpSlice = createSlice({
   name: "helpTooltips",
   initialState: true,
   reducers: {
-    toogleHelp: (state: boolean) => {
+    toggleHelp: (state: boolean) => {
       return !state;
     },
     setHelp: (state: boolean) => {
@@ -18,6 +18,6 @@ const HelpSlice = createSlice({
 });
 
 export const help = (state: IState) => state.helpTooltips;
-export const { toogleHelp, setHelp, removeHelp } = HelpSlice.actions;
+export const { toggleHelp, setHelp, removeHelp } = HelpSlice.actions;
 
 export default HelpSlice.reducer;
