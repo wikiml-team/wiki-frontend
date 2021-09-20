@@ -20,6 +20,19 @@
     "settings": "Ajustes",
     "notifications": "Notificaciones"
   },
+  "navbar" : {
+    "home" : "Inicio", 
+    "new" : "Nuevo", 
+    "open" : "Abrir",
+    "info" : "Info",
+    "export" : "Exportar",
+    "print" : "Imprimir",
+    "share" : "Compartir",
+    "about" : "Acerca de",
+    "account" : "Cuenta",
+    "feedback" : "Retroalimentación",
+    "options" : "Opciones"
+  },
   "menu": {
     "wikiml": "WikiML",
     "project": "Proyecto",
