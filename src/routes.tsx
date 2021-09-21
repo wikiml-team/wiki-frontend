@@ -11,6 +11,7 @@ import AboutPage from "pages/home/about";
 import SharePage from "pages/home/share";
 import PrintPage from "pages/home/print";
 import ExportPage from "pages/home/export";
+import Main from "pages/main";
 
 // Canaidan Methodology - Project Tab
 const GeneralForm = lazy(() => import("pages/methodologies/canadian/projectforms/generalform"));
@@ -27,6 +28,7 @@ export default function Routes() {
     <Router>
       <Switch>
         <Route path="/workplace" render={WorkplaceSwitcher} />
+        <Route path="/main" component={Main} />
         <Route path="/" component={MainSwitcher} />
       </Switch>
     </Router>
