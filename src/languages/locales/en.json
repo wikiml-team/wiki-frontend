@@ -31,7 +31,8 @@
     "about" : "About",
     "account" : "Account",
     "feedback" : "Feedback",
-    "options" : "Options"
+    "options" : "Options",
+    "return" : "Return"
   },
   "menu": {
     "wikiml": "WikiML",

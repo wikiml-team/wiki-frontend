@@ -28,10 +28,11 @@
     "export" : "",
     "print" : "",
     "share" : "",
-    "about" : " de",
+    "about" : "",
     "account" : "",
     "feedback" : "",
-    "options" : ""
+    "options" : "",
+    "return" : ""
   },
   "menu": {
     "wikiml": "WikiML",
