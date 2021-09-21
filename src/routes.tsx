@@ -1,8 +1,16 @@
 import { lazy } from "react";
-import main from "pages/main";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import WorkplaceLayout from "layouts/workplace";
+import HomePage from "pages/home/home";
+import MainLayout from "layouts/main";
+import NewPage from "pages/home/new";
+import OpenPage from "pages/home/open";
+import InfoPage from "pages/home/info";
+import AboutPage from "pages/home/about";
+import SharePage from "pages/home/share";
+import PrintPage from "pages/home/print";
+import ExportPage from "pages/home/export";
 
 // Canaidan Methodology - Project Tab
 const GeneralForm = lazy(() => import("pages/methodologies/canadian/projectforms/generalform"));
@@ -19,12 +27,13 @@ export default function Routes() {
     <Router>
       <Switch>
         <Route path="/workplace" render={WorkplaceSwitcher} />
-        <Route path="/" render={main} />
+        <Route path="/" component={MainSwitcher} />
       </Switch>
     </Router>
   );
 }
 
+// WORKPLACE
 const WorkplaceSwitcher = () => (
   /* Projects, Methodologies, Licitaciones, Bases de Datos */
   <WorkplaceLayout>
@@ -37,17 +46,44 @@ const WorkplaceSwitcher = () => (
   </WorkplaceLayout>
 );
 
+// PROJECT
 const ProjectSwitcher = () => (
-  /* Projects */
-  // After having users account and project id the url's format should be /workplace/#project_id/project/canadian/general
+  // After having users account and project id the url's format should be /workplace/#project_id/general
   <Switch>
-    <Route path="/workplace/project/general" component={GeneralForm} />
-    <Route path="/workplace/project/stakeholdres" component={StakeholdersForm} />
-    <Route path="/workplace/project/logicmodel" component={LogicModelForm} />
-    <Route path="/workplace/project/activitiesmatrix" component={ActivitiesMatrixForm} />
-    <Route path="/workplace/project/performance" component={PerformanceMeasureForm} />
-    <Route path="/workplace/project/risks" component={RisksForm} />
-    <Route path="/workplace/project/budget" component={BudgetForm} />
-    <Route path="/workplace/project/reports" component={ReportsForm} />
+    <Route path="/workplace/{p_id}/general" component={GeneralForm} />
+    <Route path="/workplace/{p_id}/stakeholdres" component={StakeholdersForm} />
+    <Route path="/workplace/{p_id}/logicmodel" component={LogicModelForm} />
+    <Route path="/workplace/{p_id}/activitiesmatrix" component={ActivitiesMatrixForm} />
+    <Route path="/workplace/{p_id}/performance" component={PerformanceMeasureForm} />
+    <Route path="/workplace/{p_id}/risks" component={RisksForm} />
+    <Route path="/workplace/{p_id}/budget" component={BudgetForm} />
+    <Route path="/workplace/{p_id}/reports" component={ReportsForm} />
   </Switch>
 );
+
+// HOME
+const MainSwitcher = () => (
+  // Home, New, Open
+  <MainLayout>
+    <Switch>
+      <Route path="/new" component={NewPage} />
+      <Route path="/open" component={OpenPage} />
+      <Route path="/:fileId" render={FileSwitcher} />
+      <Route path="/" component={HomePage} />
+    </Switch>
+
+  </MainLayout>
+);
+
+const FileSwitcher = () => (
+  // Info, Export, Print, Share, About
+  <Switch>
+      <Route path="/:fileId/info" component={InfoPage} />
+      <Route path="/:fileId/export" component={ExportPage} />
+      <Route path="/:fileId/print" component={PrintPage} />
+      <Route path="/:fileId/share" component={SharePage} />
+      <Route path="/:fileId/about" component={AboutPage} />
+  </Switch>
+)
+
+
