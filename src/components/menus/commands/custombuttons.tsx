@@ -1,5 +1,12 @@
 import React from 'react'
-import { useTheme, CommandBarButton, IContextualMenuItemStyles, IButtonProps, concatStyleSets, IPalette, FontSizes } from '@fluentui/react';
+import { useTheme, 
+    CommandBarButton, 
+    IContextualMenuItemStyles, 
+    IButtonProps, 
+    concatStyleSets, 
+    IPalette, 
+    FontSizes 
+} from '@fluentui/react';
 
 export function CustomBarButton(props: IButtonProps) {
 

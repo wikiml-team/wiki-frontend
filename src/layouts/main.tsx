@@ -20,7 +20,7 @@ const MainLayout: FunctionComponent = (props) => {
       height: "100vh",
       width: "100%",
       padding: 40,
-      background: palette.neutralLighter,
+      background: palette.neutralLight,
     },
   };
 
