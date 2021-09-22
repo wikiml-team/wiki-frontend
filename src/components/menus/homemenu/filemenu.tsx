@@ -11,7 +11,7 @@ import { INavLinkGroup,
     mergeStyleSets,
     INavLink
 } from '@fluentui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 // const links = ["home", "new", "open"]
@@ -27,10 +27,16 @@ export default function FileMenu() {
 
     const handleClick = (ev?: React.MouseEvent<HTMLElement>, item?: INavLink) => {
         if (item) {
-            setSelectedKey(item.key || "key1" )
+            setSelectedKey(item.key || "key1")
+            window.localStorage.setItem('selectedKey', item.key || "key1")
         }
     }
 
+    useEffect(() => {
+        const storedSelectedOption = window.localStorage.getItem('selectedKey') || 'key1'
+        setSelectedKey(storedSelectedOption)
+      }, [])
+    
     // STYLES
     const classes = mergeStyleSets({
         footer: {
