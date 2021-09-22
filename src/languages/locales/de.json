@@ -34,6 +34,11 @@
     "options" : "",
     "return" : ""
   },
+  "homepages": {
+    "stared-projects" : "",
+    "teams": "",
+    "notifications": ""
+  },
   "menu": {
     "wikiml": "WikiML",
     "project": "Projekt",
