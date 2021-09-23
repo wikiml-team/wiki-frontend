@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import Apollo from "apollo";
 import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
@@ -11,7 +10,6 @@ const Main : FunctionComponent = (props) => {
       <Link to="/workplace">Workplace</Link>
       {/* <AutoSavingForm2 /> */}
 
-      <Apollo/>
     </React.Fragment>
 }
 

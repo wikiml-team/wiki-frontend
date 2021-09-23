@@ -115,7 +115,7 @@
     "approved": "Genehmigt"
   },
   "general-form": {
-    "shortname-field": "Projekttitel(kurz)",
+    "shortname-field": "Projekttitel (kurz)",
     "largename-field": "Projekttitel",
     "description-field": "Deskriptive Zusammenfassung",
     "country-field": "Empfängerland",

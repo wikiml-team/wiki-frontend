@@ -6,6 +6,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import English from "languages/locales/en.json";
 import Spanish from "languages/locales/es.json";
+import German from "languages/locales/de.json";
 
 i18n
   // .use(Backend)
@@ -18,6 +19,7 @@ i18n
     resources: {
       en: English,
       es: Spanish,
+      de: German,
     },
     interpolation: {
       escapeValue: false
