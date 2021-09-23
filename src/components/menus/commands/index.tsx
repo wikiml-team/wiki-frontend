@@ -36,6 +36,7 @@ export default function CommandMenu() {
       left: "50%",
       transform: "translateX(-50%)",
       color: palette.themeLight,
+      zIndex: 10
     },
   };
 
