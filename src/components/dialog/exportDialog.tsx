@@ -10,11 +10,12 @@ type ExportDialogProps = {
 
 export default function ExportDialog(props: ExportDialogProps) {
 
+    // LOGIC
     const {hideDialog, toggleHideDialog} = props;
 
     const { t } = useTranslation("dialog");
 
-
+    // STYLES
     const choiceGroupStyle : IChoiceGroupOptionStyles = {
         root: {
             width: 70,
@@ -27,8 +28,6 @@ export default function ExportDialog(props: ExportDialogProps) {
             borderColor: "red",
             paddingTop: 0,
         },
-
-
     }
 
     const iconStyle : IIconStyles = {
