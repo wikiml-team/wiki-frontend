@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { IStackStyles, Stack, useTheme } from "@fluentui/react";
+import { Scrollbars } from "react-custom-scrollbars";
 
 import FileMenu from "components/menus/homemenu/filemenu";
 
@@ -37,9 +38,11 @@ const MainLayout: FunctionComponent = (props) => {
 
         </Stack>
         <Stack styles={pageStackStyles}>
-          {children}
-          {/* <Apollo/> */}
+          <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
+            {children}
+          </Scrollbars>
         </Stack>
+
       </Stack>
     </React.Fragment>
 }
