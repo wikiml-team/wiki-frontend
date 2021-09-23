@@ -91,6 +91,10 @@
     "sources": "Fuentes de verificación",
     "users": "Usarios"
   },
+  "loading": {
+    "loading-title": "Cargando",
+    "loading-description": "Por favor espere unos segundos, estamos cargando los datos"
+  },
   "sidepanel": {
     "language-header": "Lenguaje",
     "language-select": "Selecciona un Lenguaje",

@@ -89,6 +89,10 @@
     "sources": "",
     "users": ""
   },
+  "loading": {
+    "loading-title": "",
+    "loading-description": ""
+  },
   "sidepanel": {
     "headerlang": "Sprache",
     "selectlang": "Sprache auswählen",
