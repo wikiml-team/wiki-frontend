@@ -180,7 +180,7 @@ export default function FileMenu() {
                 iconProps={iconProps} 
                 styles={buttonStyles}
                 href="#/workplace">
-                Return
+                {t("return")}
             </ActionButton>
 
             {/* links */}

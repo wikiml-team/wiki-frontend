@@ -1,8 +1,6 @@
 import React from 'react'
 import { DocumentCard, 
-    DocumentCardLogo, 
     DocumentCardTitle, 
-    IDocumentCardLogoProps, 
     IDocumentCardStyles, 
     useTheme,
     FontSizes,

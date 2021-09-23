@@ -1,13 +1,24 @@
 import { DocumentCard, 
+    DocumentCardActivity, 
     DocumentCardDetails, 
     DocumentCardImage, 
     DocumentCardTitle, 
     IDocumentCardStyles, 
     ImageFit
 } from '@fluentui/react'
+import canadian from "./logos/canadian.png"
+import german from "./logos/german.png"
+import autralian from "./logos/australian.png"
+
 
 type MethodologyCardProps = {
     name : string
+}
+
+const pic_dict = {
+  "canadian" : canadian,
+  "german" : german,
+  "australian": autralian
 }
 
 export default function MethodologyCard(props : MethodologyCardProps) {
@@ -21,19 +32,20 @@ export default function MethodologyCard(props : MethodologyCardProps) {
       };
 
     return (
+    <>
       <DocumentCard
+        onClickHref="/workplace"
         styles={cardStyles}
-        onClickHref="#/workplace"
       >
         <DocumentCardImage 
-          height={150} 
+          height={90} 
           imageFit={ImageFit.cover} 
-          imageSrc="../../../public/australian.png" 
+          imageSrc={pic_dict["canadian"]} 
         />
         <DocumentCardDetails>
-          <DocumentCardTitle title={props.name} />
+          <DocumentCardTitle title={props.name} showAsSecondaryTitle />
         </DocumentCardDetails>
-        {/* <DocumentCardActivity activity="Modified March 13, 2018" people={people.slice(0, 3)} /> */}
       </DocumentCard>
+      </>
     )
 }
