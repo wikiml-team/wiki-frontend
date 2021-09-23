@@ -34,10 +34,14 @@
     "options" : "Options",
     "return" : "Return"
   },
-  "homepages": {
+  "homepages-subtitles": {
     "stared-projects" : "Stared Projects",
     "teams": "Teams",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "recent": "Recent",
+    "owner" : "My projects",
+    "shared" : "Recenly shared",
+    "all" : "All"
   },
   "menu": {
     "wikiml": "WikiML",

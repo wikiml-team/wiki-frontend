@@ -34,10 +34,14 @@
     "options" : "",
     "return" : ""
   },
-  "homepages": {
+  "homepages-subtitles": {
     "stared-projects" : "",
     "teams": "",
-    "notifications": ""
+    "notifications": "",
+    "recent": "",
+    "owner" : "",
+    "shared" : "",
+    "all" : ""
   },
   "menu": {
     "wikiml": "WikiML",
