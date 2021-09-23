@@ -1,25 +1,32 @@
-import React, { ReactNode } from "react";
-import { Label } from "@fluentui/react";
+import { ReactNode } from "react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import IState from "models/state";
 import IWorkplaceConfiguration, { TabSchema } from "models/workplace";
 import tabsConfiguration from "pages/methodologies/canadian/tabsconfiguration";
 
-import GeneralForm from "pages/methodologies/canadian/projectforms/generalform";
-import SpecificationsForm from "pages/methodologies/canadian/licitationforms/specificationsform";
-import FormsTutorials from "pages/methodologies/canadian/tutorials/formstutorial";
-
 const initialState: IWorkplaceConfiguration = {
     tabsSchema: tabsConfiguration,
     latestMenuTab: "key2",
     configuration: { // menuTabKey : { toolBarComponentToRender, latestFormTab, pageComponentToRender}
-        key1: { tools: <Label>ToolBar #1</Label>, tab: "key1", page: <React.Fragment /> },
-        key2: { tools: <Label>ToolBar #2</Label>, tab: "key1", page: <GeneralForm /> },
-        key3: { tools: <Label>ToolBar #3</Label>, tab: "key1", page: <SpecificationsForm /> },
-        key4: { tools: <Label>ToolBar #4</Label>, tab: "key1", page: <FormsTutorials /> },
-        key5: { tools: <Label>ToolBar #5</Label>, tab: "key1", page: <React.Fragment /> },
-        key6: { tools: <Label>ToolBar #6</Label>, tab: "key1", page: <React.Fragment /> },
+        key1: { tools: tabsConfiguration.findByKey("key1").render, 
+                tab: "key1", 
+                page: tabsConfiguration.findChildByKey("key1", "key1").render },
+        key2: { tools: tabsConfiguration.findByKey("key2").render, 
+                tab: "key1", 
+                page: tabsConfiguration.findChildByKey("key2", "key1").render },
+        key3: { tools: tabsConfiguration.findByKey("key3").render, 
+                tab: "key1", 
+                page: tabsConfiguration.findChildByKey("key3", "key1").render },
+        key4: { tools: tabsConfiguration.findByKey("key4").render, 
+                tab: "key1", 
+                page: tabsConfiguration.findChildByKey("key4", "key1").render },
+        key5: { tools: tabsConfiguration.findByKey("key5").render, 
+                tab: "key1", 
+                page: tabsConfiguration.findChildByKey("key5", "key1").render },
+        key6: { tools: tabsConfiguration.findByKey("key6").render, 
+                tab: "key1", 
+                page: tabsConfiguration.findChildByKey("key6", "key1").render },
     }
 };
 
@@ -27,6 +34,7 @@ const workplaceSlice = createSlice({
     name: "workplace",
     initialState,
     reducers: {
+        // Set Tab Configuration when methodology changes
         setTabSchema: (state: IWorkplaceConfiguration, action: PayloadAction<{ tabs: TabSchema }>) => {
             state.tabsSchema = action.payload.tabs;
         },

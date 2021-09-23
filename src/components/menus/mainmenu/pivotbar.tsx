@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
   FontSizes,
@@ -10,7 +10,8 @@ import {
 } from "@fluentui/react";
 
 import { TabSchema } from "models/workplace";
-import { setLatestMenuTab } from "store/slices/workplaceslice";
+import { setLatestMenuTab, selectWorkplaceConfig } from "store/slices/workplaceslice";
+import { useHistory } from "react-router";
 
 type PivotBarProps = {
   schema: TabSchema;
@@ -20,6 +21,31 @@ type PivotBarProps = {
 export default function PivotBar(props: PivotBarProps) {
   const { schema, setShowToolBar } = props;
   const { tabs } = schema;
+
+  // LOGIC
+  const { t } = useTranslation("menu");
+  const history = useHistory()
+
+  // Tabs State
+  const dispatch = useDispatch();
+  const { latestMenuTab } = useSelector(selectWorkplaceConfig);
+
+  const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement>) => {
+    
+    if (item) {
+      const itemkey = item.props.itemKey!;
+      
+      // If it is the first key then move to homepage and not update tab_config
+      if (itemkey === "key1") {
+        history.push("/")
+      }
+      else {
+        // Update current menu tab
+        dispatch(setLatestMenuTab({ tabKey: itemkey }));
+      }
+    }
+    setShowToolBar(true)
+  }
 
   // STYLES
   const { palette } = useTheme();
@@ -55,26 +81,10 @@ export default function PivotBar(props: PivotBarProps) {
     },
   };
 
-  // LOGIC
-  const { t } = useTranslation("menu");
-
-  // Tabs State
-  const dispatch = useDispatch();
-
-  const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement>) => {
-    setShowToolBar(true)
-
-    if (item) {
-      const itemkey = item.props.itemKey!;
-      // Update current menu tab
-      dispatch(setLatestMenuTab({ tabKey: itemkey }));
-    }
-  }
-
   return (
     <Pivot
       linkFormat="tabs"
-      defaultSelectedKey="key2"
+      defaultSelectedKey={latestMenuTab !== "key2"? latestMenuTab : "key2"}
       styles={pivotStyles}
       onLinkClick={handleMenuOnClick}
     >

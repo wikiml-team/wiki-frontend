@@ -60,7 +60,6 @@ const tabsConfiguration = new TabSchema([
     name: "wikiml",
     icon: "WebComponents",
     render: <Redirect to="/" />,
-    // toolBar: 
   },
   {
     key: "key2",
