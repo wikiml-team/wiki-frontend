@@ -262,6 +262,17 @@
     "panel-warning": "Überprüfen Sie, ob der Stakeholder nicht bereits in der Datenbank angelegt ist, um Dopplungen zu vermeiden.",
     "stakeholder-label": "Stakeholder Name",
     "country-label": "Stakeholder Land "
+  },
+  "sectors" : {
+    "agriculture-nutrition" : "",
+    "economic-growth" : "",
+    "human-rights" : "",
+    "human-development" : "",
+    "energy" : "",
+    "infrastructure" : "",
+    "envirornment" : "",
+    "migration" : "",
+    "tecnology" : ""
   }
 }
   

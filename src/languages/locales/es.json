@@ -295,5 +295,16 @@
     "format-label": "Formato",
     "guide-label": "Guía",
     "tips-label": "Consejos"
+  },
+  "sectors" : {
+    "agriculture-nutrition" : "Agricultura y alimentación",
+    "economic-growth" : "Crecimiento económico",
+    "human-rights" : "Derechos humanos y Gobernanza democrática",
+    "human-development" : "Desarrollo humano",
+    "energy" : "Energía",
+    "infrastructure" : "Infraestructura",
+    "envirornment" : "Medioambiente",
+    "migration" : "Migración y asilo",
+    "tecnology" : "Tecnologías de la Información y la Comunicación"
   }
 }
