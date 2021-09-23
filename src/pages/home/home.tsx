@@ -38,7 +38,7 @@ export default function HomePage() {
             {/* Star Projects */}
 
             <Stack>
-                <Text variant='mediumPlus'>{t("homepages:stared-projects")}</Text>
+                <Text variant='mediumPlus'>{t("homepages-subtitles:stared-projects")}</Text>
                 <Stack horizontal>
                     {exampledata.map(({project, meth} : Example) => (
                         <StaredProjects projectName={project} methodology={meth}/>
@@ -47,12 +47,12 @@ export default function HomePage() {
                 <Separator styles={separatorStyles}/>
 
                 {/* Visualize Teams */}
-                <Text variant='mediumPlus'>{t("homepages:teams")}</Text>
+                <Text variant='mediumPlus'>{t("homepages-subtitles:teams")}</Text>
                 <Separator styles={separatorStyles}/>
 
                 {/* Notifications */}
                 {/* Separator */}
-                <Text variant='mediumPlus'>{t("homepages:notifications")}</Text>
+                <Text variant='mediumPlus'>{t("homepages-subtitles:notifications")}</Text>
                 <Separator styles={separatorStyles}/>
             </Stack>
         </div>
