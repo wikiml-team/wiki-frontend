@@ -21,11 +21,11 @@ interface IProject {
     name: string;
     methodology: string;
     owner: string;
-    permitions: Permitions;
+    permition: Permition;
     dateModified: string;
 }
 
-type Permitions = "owner" | "edit" | "read"
+type Permition = "owner" | "edit" | "read"
 
 const permitions = {
     "owner": "StarburstSolid",
@@ -39,7 +39,7 @@ const recent_projects : IProject[] = [
         name: "Reforestacion",
         methodology: "canadian",
         owner: "Alfonso Quesada",
-        permitions: "owner",
+        permition: "owner",
         dateModified: new Date().toLocaleDateString(),
     },
     {
@@ -47,7 +47,7 @@ const recent_projects : IProject[] = [
         name: "Agua y Saneamiento",
         methodology: "canadian",
         owner: "Loreta Gonda",
-        permitions: "edit",
+        permition: "edit",
         dateModified: new Date().toLocaleDateString(),
     },
     {
@@ -55,7 +55,7 @@ const recent_projects : IProject[] = [
         name: "Educacion para todos",
         methodology: "german",
         owner: "Paolo Ponce",
-        permitions: "read",
+        permition: "read",
         dateModified: new Date().toLocaleDateString(),
     }
 ]
@@ -66,7 +66,7 @@ const own_project : IProject[] = [
         name: "Reforestacion",
         methodology: "canadian",
         owner: "Alfonso Quesada",
-        permitions: "owner",
+        permition: "owner",
         dateModified: new Date().toLocaleDateString(),
     },
     {
@@ -74,7 +74,7 @@ const own_project : IProject[] = [
         name: "Siembra Organica",
         methodology: "german",
         owner: "Alfonso Quesada",
-        permitions: "owner",
+        permition: "owner",
         dateModified: new Date().toLocaleDateString(),
     },
     {
@@ -82,7 +82,7 @@ const own_project : IProject[] = [
         name: "Green town",
         methodology: "canadian",
         owner: "Alfonso Quesada",
-        permitions: "owner",
+        permition: "owner",
         dateModified: new Date().toLocaleDateString(),
     }
 ]
@@ -119,7 +119,7 @@ export default function OpenPage() {
             fieldName: 'date',
             minWidth: 200,
             data: 'string',
-            onRender: (item: IProject) => item.dateModified,
+            onRender: (item: IProject) => dateRender(item),
         },
     ]
 
@@ -132,8 +132,8 @@ export default function OpenPage() {
 
     const iconRender = (project: IProject) => {
         return (    
-            <TooltipHost content={t(project.permitions)}>
-                <IconButton iconProps={{ iconName: permitions[project.permitions]}}  />
+            <TooltipHost content={t(`open-permition-${project.permition}`)}>
+                <IconButton iconProps={{ iconName: permitions[project.permition]}}  />
             </TooltipHost>
         )
     }
@@ -146,6 +146,12 @@ export default function OpenPage() {
 
                 <Text variant="smallPlus" block>{project.owner}</Text>
             </React.Fragment>
+        )
+    }
+
+    const dateRender = (project: IProject) => {
+        return (
+            `${t("homepages-subtitles:open-date-modified")} ${project.dateModified}`
         )
     }
 
