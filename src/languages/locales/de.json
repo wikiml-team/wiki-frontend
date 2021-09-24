@@ -41,7 +41,11 @@
     "recent": "",
     "owner" : "",
     "shared" : "",
-    "all" : ""
+    "all" : "",
+    "open-permition-owner": "",
+    "open-permition-edit": "",
+    "open-permition-read": "",
+    "open-date-modified" : ""
   },
   "menu": {
     "wikiml": "WikiML",

@@ -41,7 +41,11 @@
     "recent": "Reciente",
     "owner" : "Mis proyectos",
     "shared" : "Compartidos",
-    "all" : "Todos"
+    "all" : "Todos",
+    "open-permition-owner": "Dueño",
+    "open-permition-edit": "Editar",
+    "open-permition-read": "Leer",
+    "open-date-modified" : "Modificado por última vez"
   },
   "menu": {
     "wikiml": "WikiML",
