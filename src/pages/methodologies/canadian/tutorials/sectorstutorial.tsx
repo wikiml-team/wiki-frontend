@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { DetailsList, DetailsListLayoutMode, IColumn, SelectionMode } from "@fluentui/react";
+import { DetailsList, IColumn, SelectionMode, Text } from "@fluentui/react";
 
 interface ISector {
   key: string;
@@ -57,15 +57,22 @@ export default function SectorsTutorials() {
         fieldName: 'sector',
         minWidth: 100,
         data: 'string',
-        onRender: (item: ISector) => t(item.name)
+        onRender: (item: ISector) => sectorRender(item)
     },
+  ]
 
-]
+  const sectorRender = (sector: ISector) => {
+    return (
+      <Text variant="medium">
+       {t(sector.name)}
+    </Text>
+    )
+  }
+
   return <DetailsList
             items={sectors}
             columns={columns}
             selectionMode={SelectionMode.none}
             isHeaderVisible={false}
-            // layoutMode={DetailsListLayoutMode.fixedColumns}
         />
 }
