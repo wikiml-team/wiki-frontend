@@ -125,7 +125,13 @@
     "default-accept" : "Aceptar",
     "export-title" : "Exportar Proyecto",
     "export-accept-label" : "Exportar",
-    "export-options-title" : "Seleccione el tipo de archivo a exportar:"
+    "export-options-title" : "Seleccione el tipo de archivo a exportar:",
+    "duplicate-title" : "Duplicar Proyecto",
+    "duplicate-accept-label" : "Duplicar",
+    "duplicate-options-title" : "Selecciona la metodología a la que quieres duplicar el proyecto",
+    "destroy-title" : "Eliminar Project",
+    "destroy-accept-label" : "Eliminar",
+    "destroy-text": "Está seguro que quiere eliminar el proyecto? Esta acción no podrá ser deshecha."
   },
   "languages": {
     "en": "Inglés",

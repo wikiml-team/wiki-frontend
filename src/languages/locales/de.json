@@ -121,7 +121,13 @@
     "default-accept" : "",
     "export-title" : "",
     "export-accept-label" : "",
-    "export-options-title" : ""
+    "export-options-title" : "",
+    "duplicate-title" : "",
+    "duplicate-accept-label" : "",
+    "duplicate-options-title" : "",
+    "destroy-title" : "",
+    "destroy-accept-label" : "",
+    "destroy-text": ""
   },
   "languages": {
     "en": "Englisch",
