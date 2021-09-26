@@ -120,20 +120,20 @@ export default function FileMenu() {
             links: [
                 {
                     name: t('home'),
-                    url: '#/',
+                    url: '/',
                     key: 'key1',
                     // iconProps: iconProps,
                     icon: 'Home',
                 },
                 {
                     name: t('new'),
-                    url: '#/new',
+                    url: '/new',
                     key: 'key2',
                     icon: 'Page',
                 },
                 {
                     name: t('open'),
-                    url: '#/open',
+                    url: '/open',
                     key: 'key3',
                     icon: 'OpenFolderHorizontal',
                 }
@@ -146,27 +146,27 @@ export default function FileMenu() {
             links: [
                 {
                     name: t('info'),
-                    url: '#/1/info',
+                    url: '/1/info',
                     key: 'key4',
                 },
                 {
                     name: t('export'),
-                    url: '#/1/export',
+                    url: '/1/export',
                     key: 'key5',
                 },
                 {
                     name: t('print'),
-                    url: '#/1/print',
+                    url: '/1/print',
                     key: 'key6',
                 },
                 {
                     name: t('share'),
-                    url: '#/1/share',
+                    url: '/1/share',
                     key: 'key7',
                 },
                 {
                     name: t('about'),
-                    url: '#/1/about',
+                    url: '/1/about',
                     key: 'key8',
                 },        
             ],
@@ -179,7 +179,7 @@ export default function FileMenu() {
             <ActionButton 
                 iconProps={iconProps} 
                 styles={buttonStyles}
-                href="#/workplace">
+                href="/workplace">
                 {t("return")}
             </ActionButton>
 

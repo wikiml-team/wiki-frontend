@@ -67,7 +67,7 @@ export default function StaredProjects(props : StaredProjectsProps) {
     return (
       <DocumentCard
         styles={cardStyles}
-        onClickHref="#/workplace"
+        onClickHref="/workplace"
       >
         {/* <DocumentCardLogo {...logoProps} /> */}
 

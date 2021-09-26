@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 
 import { GET_METHODOLOGIES } from 'apollo/methodologies';
 import { ProgressIndicator, Stack, Text } from '@fluentui/react';
-import MethodologyPage from 'components/cards/methodologycard';
+import MethodologyCard from 'components/cards/methodologycard';
 import { useTranslation } from 'react-i18next';
 
 export default function NewPage() {
@@ -33,7 +33,7 @@ const NewProjects = () => {
 
     return data.methodologies.map(({ id , name } : any) =>  (
         <Stack.Item key={id} >
-          <MethodologyPage name={name} />
+          <MethodologyCard name={name} />
         </Stack.Item>
         )
     )

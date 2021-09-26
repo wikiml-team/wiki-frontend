@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import WorkplaceLayout from "layouts/workplace";
 import HomePage from "pages/home/home";
@@ -27,9 +27,9 @@ export default function Routes() {
   return (
     <Router>
       <Switch>
-        <Route path="/workplace" render={WorkplaceSwitcher} />
         <Route path="/main" component={Main} />
-        <Route path="/" component={MainSwitcher} />
+        <Route path="/workplace" render={WorkplaceSwitcher} />
+        <Route path="/" render={MainSwitcher} />
       </Switch>
     </Router>
   );
