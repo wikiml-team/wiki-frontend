@@ -12,6 +12,7 @@ import SharePage from "pages/home/share";
 import PrintPage from "pages/home/print";
 import ExportPage from "pages/home/export";
 import Main from "pages/main";
+import MethodologiesPage from "pages/home/methodologies";
 
 // Canaidan Methodology - Project Tab
 const GeneralForm = lazy(() => import("pages/methodologies/canadian/projectforms/generalform"));
@@ -52,14 +53,14 @@ const WorkplaceSwitcher = () => (
 const ProjectSwitcher = () => (
   // After having users account and project id the url's format should be /workplace/#project_id/general
   <Switch>
-    <Route path="/workplace/{p_id}/general" component={GeneralForm} />
-    <Route path="/workplace/{p_id}/stakeholdres" component={StakeholdersForm} />
-    <Route path="/workplace/{p_id}/logicmodel" component={LogicModelForm} />
-    <Route path="/workplace/{p_id}/activitiesmatrix" component={ActivitiesMatrixForm} />
-    <Route path="/workplace/{p_id}/performance" component={PerformanceMeasureForm} />
-    <Route path="/workplace/{p_id}/risks" component={RisksForm} />
-    <Route path="/workplace/{p_id}/budget" component={BudgetForm} />
-    <Route path="/workplace/{p_id}/reports" component={ReportsForm} />
+    <Route path="/workplace/:projectId/general" component={GeneralForm} />
+    <Route path="/workplace/:projectId/stakeholdres" component={StakeholdersForm} />
+    <Route path="/workplace/:projectId/logicmodel" component={LogicModelForm} />
+    <Route path="/workplace/:projectId/activitiesmatrix" component={ActivitiesMatrixForm} />
+    <Route path="/workplace/:projectId/performance" component={PerformanceMeasureForm} />
+    <Route path="/workplace/:projectId/risks" component={RisksForm} />
+    <Route path="/workplace/:projectId/budget" component={BudgetForm} />
+    <Route path="/workplace/:projectId/reports" component={ReportsForm} />
   </Switch>
 );
 
@@ -70,6 +71,7 @@ const MainSwitcher = () => (
     <Switch>
       <Route path="/new" component={NewPage} />
       <Route path="/open" component={OpenPage} />
+      <Route path="/methodologies" component={MethodologiesPage} />
       <Route path="/:fileId" render={FileSwitcher} />
       <Route path="/" component={HomePage} />
     </Switch>

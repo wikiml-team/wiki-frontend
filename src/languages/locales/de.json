@@ -50,7 +50,8 @@
     "open-permition-owner": "",
     "open-permition-edit": "",
     "open-permition-read": "",
-    "open-date-modified" : ""
+    "open-date-modified" : "",
+    "methodologies-description": ""
   },
   "menu": {
     "wikiml": "WikiML",

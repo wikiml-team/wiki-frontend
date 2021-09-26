@@ -50,7 +50,8 @@
     "open-permition-owner": "Owner",
     "open-permition-edit": "Edit",
     "open-permition-read": "Read",
-    "open-date-modified" : "Last modified"
+    "open-date-modified" : "Last modified",
+    "methodologies-description": "You have access to modified the following methodologies:"
   },
   "menu": {
     "wikiml": "WikiML",

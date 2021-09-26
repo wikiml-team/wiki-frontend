@@ -215,6 +215,8 @@ export default function FileMenu() {
             {/* Separator */}
             <Separator styles={separatorStyles}/>
 
+            {/* This only appears if the user has permission to modify at leat one methodology */}
+            
             {/* My Methodologies */}
             <Nav 
                 selectedKey={selectedKey}
