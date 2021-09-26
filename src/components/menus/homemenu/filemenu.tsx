@@ -13,6 +13,7 @@ import { INavLinkGroup,
 } from '@fluentui/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 
 // const links = ["home", "new", "open"]
 // const footer_links = ["info", "export", "print", "share", "about"]
@@ -23,11 +24,16 @@ export default function FileMenu() {
     const { t } = useTranslation('navbar');
     const { palette } = useTheme();
 
+    const history = useHistory()
+
     const [selectedKey, setSelectedKey] = useState("key1")
 
-    const handleClick = (ev?: React.MouseEvent<HTMLElement>, item?: INavLink) => {
+    const handleNavClick = (ev?: React.MouseEvent<HTMLElement>, item?: INavLink) => {
+        if (ev) ev.preventDefault()
+
         if (item) {
             setSelectedKey(item.key || "key1")
+            history.push(item.url)
             window.localStorage.setItem('selectedKey', item.key || "key1")
         }
     }
@@ -114,7 +120,7 @@ export default function FileMenu() {
         },
     };
 
-    // VAR
+    // NAVs
     const nav: INavLinkGroup[] = [
         {
             links: [
@@ -140,6 +146,21 @@ export default function FileMenu() {
             ],
         },
     ];
+
+    // VAR
+    const nav_methodologies: INavLinkGroup[] = [
+        {
+            links: [
+                {
+                    name: t('methodologies'),
+                    url: '/methodologies',
+                    key: 'key4',
+                    // iconProps: iconProps,
+                    icon: 'StackIndicator',
+                }
+            ],
+        },
+    ];
     
     const footer_nav: INavLinkGroup[] = [
         {
@@ -147,27 +168,27 @@ export default function FileMenu() {
                 {
                     name: t('info'),
                     url: '/1/info',
-                    key: 'key4',
+                    key: 'key5',
                 },
                 {
                     name: t('export'),
                     url: '/1/export',
-                    key: 'key5',
+                    key: 'key6',
                 },
                 {
                     name: t('print'),
                     url: '/1/print',
-                    key: 'key6',
+                    key: 'key7',
                 },
                 {
                     name: t('share'),
                     url: '/1/share',
-                    key: 'key7',
+                    key: 'key8',
                 },
                 {
                     name: t('about'),
                     url: '/1/about',
-                    key: 'key8',
+                    key: 'key9',
                 },        
             ],
         }
@@ -189,7 +210,18 @@ export default function FileMenu() {
                 ariaLabel="File menu" 
                 styles={navStyles} 
                 groups={nav} 
-                onLinkClick={handleClick}/>
+                onLinkClick={handleNavClick}/>
+
+            {/* Separator */}
+            <Separator styles={separatorStyles}/>
+
+            {/* My Methodologies */}
+            <Nav 
+                selectedKey={selectedKey}
+                ariaLabel="File menu" 
+                styles={navStyles} 
+                groups={nav_methodologies} 
+                onLinkClick={handleNavClick}/>
 
             {/* Separator */}
             <Separator styles={separatorStyles}/>
@@ -201,7 +233,7 @@ export default function FileMenu() {
                 styles={navStyles} 
                 groups={footer_nav} 
                 className={classes.footer}
-                onLinkClick={handleClick}/>
+                onLinkClick={handleNavClick}/>
         </div>
     )
 }

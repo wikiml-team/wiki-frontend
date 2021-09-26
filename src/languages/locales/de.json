@@ -29,6 +29,7 @@
     "new" : "", 
     "open" : "",
     "info" : "",
+    "methodologies": "",
     "export" : "",
     "print" : "",
     "share" : "",
@@ -55,7 +56,7 @@
     "wikiml": "WikiML",
     "project": "Projekt",
     "methodology": "Methodik",
-    "licitations": "Lizenzen",
+    "licitations": "Ausschreibungen",
     "database": "Datenbank",
     "more": "Mehr"
   },
