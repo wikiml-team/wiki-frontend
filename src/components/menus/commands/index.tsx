@@ -10,12 +10,13 @@ import {
 } from "@fluentui/react";
 import { useBoolean } from '@fluentui/react-hooks';
 
-import { faritems, items, overflowItems } from "./items";
+import { GetFarItems, GetItems, GetOverflowItems } from "./items";
 import LanguagePanel from "components/sidepanel/languagepanel";
 import SettingsPanel from "components/sidepanel/settingspanel";
-import { CustomBarButton, CustomOverflowButton, overflowProps } from "./custombuttons";
-import ExportDialog from "components/dialog/exportDialog";
-import { useKeycloak } from "@react-keycloak/web";
+import { CustomBarButton, CustomOverflowButton, OverflowProps } from "./custombuttons";
+import ExportProjectDialog from "components/dialog/export";
+import DuplicateProjectDialog from "components/dialog/duplicate";
+import DestroyProjectDialog from "components/dialog/destroy";
 
 export default function CommandMenu() {
 
@@ -43,13 +44,14 @@ export default function CommandMenu() {
 
   // Panels State
   const { t } = useTranslation(["methodologies", "authentication"]);
-  const { keycloak} = useKeycloak()
 
   const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
   const [settingsPanelOpen, { setTrue: openSettingsPanel, setFalse: dismissSettingsPanel }] = useBoolean(false);
 
-  // Dialog State
-  const [hideDialog, { toggle: toggleHideDialog }] = useBoolean(true);
+  // Dialogs State
+  const [exportHideDialog, { toggle: toggleExportHideDialog }] = useBoolean(true);
+  const [duplicateHideDialog, { toggle: toggleDuplicateHideDialog }] = useBoolean(true);
+  const [destroyHideDialog, { toggle: toggleDestroyHideDialog }] = useBoolean(true);
 
   return (
     <React.Fragment>
@@ -59,11 +61,11 @@ export default function CommandMenu() {
 
       <CommandBar
         buttonAs={CustomBarButton}
-        items={items(toggleHideDialog)}
-        farItems={faritems(openLanguagePanel, openSettingsPanel, t, keycloak)}
-        overflowItems={overflowItems}
+        items={GetItems(toggleExportHideDialog)}
+        farItems={GetFarItems(openLanguagePanel, openSettingsPanel)}
+        overflowItems={GetOverflowItems(toggleDuplicateHideDialog, toggleDestroyHideDialog)}
         overflowButtonAs={CustomOverflowButton}
-        overflowButtonProps={overflowProps(palette)}
+        overflowButtonProps={OverflowProps()}
         ariaLabel="Use left and right arrow keys to navigate between commands"
         styles={comandBarStyles}
       />
@@ -86,9 +88,19 @@ export default function CommandMenu() {
         <SettingsPanel />
       </Panel>
 
-      <ExportDialog
-        hideDialog={hideDialog}
-        toggleHideDialog={toggleHideDialog}
+      <ExportProjectDialog
+        hideDialog={exportHideDialog}
+        toggleHideDialog={toggleExportHideDialog}
+      />
+
+      <DuplicateProjectDialog
+        hideDialog={duplicateHideDialog}
+        toggleHideDialog={toggleDuplicateHideDialog}
+      />
+
+      <DestroyProjectDialog
+        hideDialog={destroyHideDialog}
+        toggleHideDialog={toggleDestroyHideDialog}
       />
     </React.Fragment>
   );

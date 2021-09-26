@@ -75,7 +75,10 @@ export function CustomOverflowButton(props: IButtonProps) {
 };
 
 // Overflow Buttons Props
-export const overflowProps = (palette: IPalette) => {
+export const OverflowProps = () => {
+
+    const { palette } = useTheme();
+
     return {
         ariaLabel: "More commands",
         menuProps: {

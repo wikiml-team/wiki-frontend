@@ -1,14 +1,16 @@
-import { IChoiceGroupOption, IChoiceGroupOptionStyles, IIconStyles } from '@fluentui/react';
 import { useTranslation } from 'react-i18next';
+import {IChoiceGroupOption, 
+        IChoiceGroupOptionStyles,
+        IIconStyles } from '@fluentui/react';
 
-import CustomDialog from './customDialog'
+import CustomDialog from './custom'
 
 type ExportDialogProps = {
     hideDialog: boolean,
     toggleHideDialog: () => void
 }
 
-export default function ExportDialog(props: ExportDialogProps) {
+export default function ExportProjectDialog(props: ExportDialogProps) {
 
     // LOGIC
     const {hideDialog, toggleHideDialog} = props;
@@ -25,7 +27,6 @@ export default function ExportDialog(props: ExportDialogProps) {
         choiceFieldWrapper: {
             width: 70,
             height: 70,
-            borderColor: "red",
             paddingTop: 0,
         },
     }
@@ -38,19 +39,19 @@ export default function ExportDialog(props: ExportDialogProps) {
 
     const options : IChoiceGroupOption[] = [
         {
-          key: 'A',
+          key: 'key1',
           iconProps: { iconName: 'WordDocument', styles: iconStyle },
           text: 'Word',
           styles: choiceGroupStyle
         },
         {
-          key: 'B',
+          key: 'key2',
           iconProps: { iconName: 'ExcelDocument', styles: iconStyle },
           text: 'Excell',
           styles: choiceGroupStyle
         },
         {
-          key: 'C',
+          key: 'key3',
           iconProps: { iconName: 'PDF', styles: iconStyle },
           text: 'PDF',
           styles: choiceGroupStyle
@@ -63,12 +64,14 @@ export default function ExportDialog(props: ExportDialogProps) {
     }
 
     return <CustomDialog
-            title={t("export-title")}
-            hideDialog={hideDialog}
-            toggleHideDialog={toggleHideDialog}
+            dialogContentProps={{title : t("export-title")}}
+            hidden={hideDialog}
+            onDismiss={toggleHideDialog}
             primaryButtonText={t("export-accept-label")}
             acceptOnClick={handleAccpetButtonOnClick}
-            options={options}
-            optionsTitle={t("export-options-title")}
+            optionsProps={{
+              options,
+              optionsTitle : t("export-options-title")
+            }}
       />
 }
