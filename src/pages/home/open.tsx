@@ -92,7 +92,7 @@ const own_project : IProject[] = [
 export default function OpenPage() {
 
     // LOGIC
-    const { t } = useTranslation(["navbar", "homepages-subtitles"]);
+    const { t } = useTranslation(["homepages-subtitles", "navbar", "methodologies"]);
     const { palette } = useTheme()
 
     const columns: IColumn[] = [
@@ -141,8 +141,8 @@ export default function OpenPage() {
     const descriptionRender = (project: IProject) => {
         return (
             <React.Fragment>
-                <Text variant="medium">{project.name}-</Text>
-                <Text variant="small">{t(project.methodology)}</Text>
+                <Text variant="medium">{project.name} -</Text>
+                <Text variant="small"> {t(`methodologies:${project.methodology}`)}</Text>
 
                 <Text variant="smallPlus" block>{project.owner}</Text>
             </React.Fragment>
@@ -151,7 +151,7 @@ export default function OpenPage() {
 
     const dateRender = (project: IProject) => {
         return (
-            `${t("homepages-subtitles:open-date-modified")} ${project.dateModified}`
+            `${t("open-date-modified")} ${project.dateModified}`
         )
     }
 
@@ -169,10 +169,10 @@ export default function OpenPage() {
     };
 
     return <React.Fragment>
-        <Text variant='xLarge' styles={{root: {marginBottom: 20}}} block>{t("open")}</Text>
+        <Text variant='xLarge' styles={{root: {marginBottom: 20}}} block>{t("navbar:open")}</Text>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("homepages-subtitles:recent")}</Text> <br/>
+            <Text variant='mediumPlus'>{t("recent")}</Text> <br/>
 
             <DetailsList
                 items={recent_projects}
@@ -185,7 +185,7 @@ export default function OpenPage() {
         </Stack>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("homepages-subtitles:owner")}</Text> <br/>
+            <Text variant='mediumPlus'>{t("owner")}</Text> <br/>
 
             <DetailsList
                 items={own_project}
@@ -198,7 +198,7 @@ export default function OpenPage() {
         </Stack>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("homepages-subtitles:shared")}</Text> <br/>
+            <Text variant='mediumPlus'>{t("shared")}</Text> <br/>
 
             <DetailsList
                 items={recent_projects.slice(1)}
@@ -211,7 +211,7 @@ export default function OpenPage() {
         </Stack>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("homepages-subtitles:all")}</Text> <br/>
+            <Text variant='mediumPlus'>{t("all")}</Text> <br/>
 
             <DetailsList
                 items={own_project.concat(recent_projects)}

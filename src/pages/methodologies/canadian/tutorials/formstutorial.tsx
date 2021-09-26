@@ -14,7 +14,7 @@ export default function FormsTutorials() {
 
   const { tabsSchema } = useSelector(selectWorkplaceConfig);
 
-  const forms : IForm[] = tabsSchema.findByKey("key4").childtabs?.map((c, i) => {
+  const forms : IForm[] = tabsSchema.findByKey("key2").childtabs?.map((c, i) => {
     return ({ key: `key${i}`, name: c.name} as IForm)}) || [] as IForm[]
 
   const columns: IColumn[] = [
