@@ -57,15 +57,15 @@ const AutoSaveFormik: FunctionComponent<AutoSaveFormikProps> = (props) => {
             validationSchema={validationSchema}
         >
             <Form>
-                <h1>
+                {/* <h1>
                     AutoSavingForm{' '}
                     <small style={{ color: 'gray', fontSize: 11 }}>
                         <AutoSave debounceMs={1000} />
                     </small>
-                </h1>
+                </h1> */}
                 {children}
 
-                <Debug />
+                {/* <Debug /> */}
             </Form>
         </Formik>
     )
