@@ -5,6 +5,10 @@
     "german": "Metodología Alemana",
     "italian": "Metodología Italiana"
   },
+  "authentication" : {
+    "login" : "Iniciar sesión",
+    "logout" : "Salir"
+  },
   "commands": {
     "undo": "Deshacer",
     "redo": "Rehacer",

@@ -5,6 +5,10 @@
     "german": "Deutsche Methodik",
     "italian": "Italienische Methodik"
   },
+  "authentication" : {
+    "login" : "",
+    "logout" : ""
+  },
   "commands": {
     "undo": "Rückgängig",
     "redo": "Wiederholen",

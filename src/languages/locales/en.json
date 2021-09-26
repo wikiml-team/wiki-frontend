@@ -5,6 +5,10 @@
     "german": "German Methodology",
     "italian": "Italian Methodology"
   },
+  "authentication" : {
+    "login" : "Log in",
+    "logout" : "Log out"
+  },
   "commands": {
     "undo": "Undo",
     "redo": "Redo",
