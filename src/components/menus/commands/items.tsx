@@ -4,6 +4,7 @@ import {
 } from "@fluentui/react";
 
 import { fullscreenToggler } from "components/fullscreentoggler";
+import { KeycloakInstance } from "keycloak-js";
 
 i18n.loadNamespaces("commands");
 
@@ -71,7 +72,11 @@ export const overflowItems: ICommandBarItemProps[] = [
   },
 ];
 
-export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function) => {
+export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function, t: Function, keycloak : KeycloakInstance) => {
+  
+  const handleLogout = () => keycloak.logout();
+  const handleLogin = () => keycloak.login();
+  
   return [
     {
       key: "fullscreen",
@@ -107,11 +112,11 @@ export const faritems = (OpenLanguagePanel: Function, OpenSettingsPanel: Functio
     },
     {
       key: "user",
-      text: "Gabriela Rodríguez",
+      text: keycloak.authenticated? t("authentication:logout") : t("authentication:login"),
       ariaLabel: "User name",
       iconOnly: true,
       iconProps: { iconName: "Contact" },
-      onClick: () => alert("Contact"),
+      onClick: keycloak.authenticated? handleLogout : handleLogin
     },
   ] as ICommandBarItemProps[];
 }

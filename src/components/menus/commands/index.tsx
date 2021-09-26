@@ -15,6 +15,7 @@ import LanguagePanel from "components/sidepanel/languagepanel";
 import SettingsPanel from "components/sidepanel/settingspanel";
 import { CustomBarButton, CustomOverflowButton, overflowProps } from "./custombuttons";
 import ExportDialog from "components/dialog/exportDialog";
+import { useKeycloak } from "@react-keycloak/web";
 
 export default function CommandMenu() {
 
@@ -41,7 +42,8 @@ export default function CommandMenu() {
   };
 
   // Panels State
-  const { t } = useTranslation("methodologies");
+  const { t } = useTranslation(["methodologies", "authentication"]);
+  const { keycloak} = useKeycloak()
 
   const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
   const [settingsPanelOpen, { setTrue: openSettingsPanel, setFalse: dismissSettingsPanel }] = useBoolean(false);
@@ -52,13 +54,13 @@ export default function CommandMenu() {
   return (
     <React.Fragment>
       <Text variant="small" styles={textStyles}>
-        Project 1 - {t("methodologies:canadian")}
+        Agua y Saneamiento - {t("methodologies:canadian")}
       </Text>
 
       <CommandBar
         buttonAs={CustomBarButton}
         items={items(toggleHideDialog)}
-        farItems={faritems(openLanguagePanel, openSettingsPanel)}
+        farItems={faritems(openLanguagePanel, openSettingsPanel, t, keycloak)}
         overflowItems={overflowItems}
         overflowButtonAs={CustomOverflowButton}
         overflowButtonProps={overflowProps(palette)}
