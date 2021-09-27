@@ -13,6 +13,7 @@ import PrintPage from "pages/home/print";
 import ExportPage from "pages/home/export";
 import Main from "pages/main";
 import MethodologiesPage from "pages/home/methodologies";
+import ProfileSettings from "pages/profile";
 
 // Canaidan Methodology - Project Tab
 const GeneralForm = lazy(() => import("pages/methodologies/canadian/projectforms/generalform"));
@@ -30,6 +31,7 @@ export default function Routes() {
       <Switch>
         <Route path="/main" component={Main} />
         <Route path="/workplace" render={WorkplaceSwitcher} />
+        <Route path="/profile" component={ProfileSettings} />
         <Route path="/" render={MainSwitcher} />
       </Switch>
     </Router>

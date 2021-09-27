@@ -8,7 +8,7 @@ import {
   useTheme,
   Panel
 } from "@fluentui/react";
-import { useBoolean } from '@fluentui/react-hooks';
+import { useBoolean, useId } from '@fluentui/react-hooks';
 
 import { GetFarItems, GetItems, GetOverflowItems } from "./items";
 import LanguagePanel from "components/sidepanel/languagepanel";
@@ -17,6 +17,7 @@ import { CustomBarButton, CustomOverflowButton, OverflowProps } from "./custombu
 import ExportProjectDialog from "components/dialog/export";
 import DuplicateProjectDialog from "components/dialog/duplicate";
 import DestroyProjectDialog from "components/dialog/destroy";
+import UserCallout from "components/callout/user";
 
 export default function CommandMenu() {
 
@@ -42,9 +43,10 @@ export default function CommandMenu() {
     },
   };
 
-  // Panels State
+  // LOGIC
   const { t } = useTranslation(["methodologies", "authentication"]);
-
+  
+  // Panels State
   const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
   const [settingsPanelOpen, { setTrue: openSettingsPanel, setFalse: dismissSettingsPanel }] = useBoolean(false);
 
@@ -52,6 +54,10 @@ export default function CommandMenu() {
   const [exportHideDialog, { toggle: toggleExportHideDialog }] = useBoolean(true);
   const [duplicateHideDialog, { toggle: toggleDuplicateHideDialog }] = useBoolean(true);
   const [destroyHideDialog, { toggle: toggleDestroyHideDialog }] = useBoolean(true);
+
+  // Callout State
+  const [isUserCalloutVisible, { toggle: toggleIsUserCalloutVisible }] = useBoolean(false);
+  const calloutButtonId = useId('callout-button');
 
   return (
     <React.Fragment>
@@ -62,7 +68,7 @@ export default function CommandMenu() {
       <CommandBar
         buttonAs={CustomBarButton}
         items={GetItems(toggleExportHideDialog)}
-        farItems={GetFarItems(openLanguagePanel, openSettingsPanel)}
+        farItems={GetFarItems(openLanguagePanel, openSettingsPanel, toggleIsUserCalloutVisible, calloutButtonId)}
         overflowItems={GetOverflowItems(toggleDuplicateHideDialog, toggleDestroyHideDialog)}
         overflowButtonAs={CustomOverflowButton}
         overflowButtonProps={OverflowProps()}
@@ -101,6 +107,12 @@ export default function CommandMenu() {
       <DestroyProjectDialog
         hideDialog={destroyHideDialog}
         toggleHideDialog={toggleDestroyHideDialog}
+      />
+
+      <UserCallout
+        isCalloutVisible={isUserCalloutVisible}
+        toggleIsCalloutVisible={toggleIsUserCalloutVisible} 
+        calloutButtonId={calloutButtonId}
       />
     </React.Fragment>
   );

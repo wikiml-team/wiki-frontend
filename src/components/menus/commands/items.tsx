@@ -83,14 +83,10 @@ export const GetOverflowItems = (duplicateToggleHideDialog: Function, toggleDest
 ] as ICommandBarItemProps[]};
 
 
-export const GetFarItems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function) => {
+export const GetFarItems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function, ToogleCallout: Function, calloutButtonId : string) => {
   
-  const { keycloak } = useKeycloak()
   const { t } = useTranslation(["commands", "authentication"])
 
-  const handleLogout = () => keycloak.logout();
-  const handleLogin = () => keycloak.login();
-  
   return [
     {
       key: "fullscreen",
@@ -125,12 +121,12 @@ export const GetFarItems = (OpenLanguagePanel: Function, OpenSettingsPanel: Func
       onClick: () => alert("Notificactions"),
     },
     {
+      id: calloutButtonId,
       key: "user",
-      text: keycloak.authenticated? t("authentication:logout") : t("authentication:login"),
       ariaLabel: "User name",
       iconOnly: true,
       iconProps: { iconName: "Contact" },
-      onClick: keycloak.authenticated? handleLogout : handleLogin
+      onClick: ToogleCallout
     },
   ] as ICommandBarItemProps[];
 }
