@@ -13,7 +13,10 @@ import PrintPage from "pages/home/print";
 import ExportPage from "pages/home/export";
 import Main from "pages/main";
 import MethodologiesPage from "pages/home/methodologies";
-import ProfileSettings from "pages/profile";
+import Profile from "pages/settings/profile";
+import Privacy from "pages/settings/privacy";
+import Security from "pages/settings/security";
+import Team from "pages/settings/team";
 
 // Canaidan Methodology - Project Tab
 const GeneralForm = lazy(() => import("pages/methodologies/canadian/projectforms/generalform"));
@@ -30,13 +33,26 @@ export default function Routes() {
     <Router>
       <Switch>
         <Route path="/main" component={Main} />
+        <Route path="/settings" render={SettingsSwitcher} />
         <Route path="/workplace" render={WorkplaceSwitcher} />
-        <Route path="/profile" component={ProfileSettings} />
         <Route path="/" render={MainSwitcher} />
       </Switch>
     </Router>
   );
 }
+
+// SETTINGS
+const SettingsSwitcher = () => (
+  /* Profile, Privacy, Security */
+  // <WorkplaceLayout>
+    <Switch>
+      <Route path="/settings/profile" component={Profile} />
+      <Route path="/settings/privacy" component={Privacy} />
+      <Route path="/settings/security" component={Security} />
+      <Route path="/settings/team" component={Team} />
+    </Switch>
+  // </WorkplaceLayout>
+);
 
 // WORKPLACE
 const WorkplaceSwitcher = () => (
