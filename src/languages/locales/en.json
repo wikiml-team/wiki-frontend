@@ -3,7 +3,11 @@
   "basics": {
     "yes" : "yes",
     "no" : "no",
-    "thanks" : "Thanks"
+    "save": "Save",
+    "dismiss": "Cancel",
+    "thanks" : "Thanks",
+    "public" : "Public",
+    "private": "Private"
   },
   "methodologies": {
     "canadian": "Canadian Methodology",
@@ -110,20 +114,24 @@
     "loading-title": "Loading",
     "loading-description": "Please wait a few senconds, we are loading the data"
   },
-  "sidepanel": {
+  "language-settings": { 
     "language-header": "Language",
     "language-select": "Select a Language",
     "language-ui": "Language for User Interface",
-    "language-data": "Language for Data",
-    "header-settings": "Settings",
+    "language-data": "Language for Data"
+  },
+  "settings" : {
+    "settings-header": "Settings",
     "user": "User",
     "name": "Name",
     "nick": "Nickname",
     "coin": "Coin",
-    "theme": "Theme",
-    "color-theme": "Color Theme",
-    "save": "Save",
-    "dismiss": "Cancel"
+    "theme-header": "Theme",
+    "color-theme-title": "Color Theme",
+    "privacy-header": "Privacy",
+    "privacy-title": "Your project should be:",
+    "privacy-settings-text": "Go to project privacy settings",
+    "privacy-settings-link": "here"
   },
   "dialog": {
     "default-options-title" : "Select",

@@ -3,15 +3,12 @@ import { useTranslation } from "react-i18next";
 import {
   ISeparatorProps,
   IStackProps,
-  ITextFieldStyles,
   Label,
-  Persona,
-  PersonaInitialsColor,
-  PersonaSize,
+  Link,
   Separator,
   Stack,
   Text,
-  TextField,
+  Toggle,
   useTheme,
 } from "@fluentui/react";
 
@@ -35,15 +32,6 @@ export default function SettingsPanel() {
     }
   }
 
-  // TextField Styles
-  const nameTextFieldStyles: Partial<ITextFieldStyles> = {
-    fieldGroup: {
-      borderColor: palette.neutralTertiary,
-      ":hover": {
-        borderColor: palette.neutralSecondary,
-      },
-    },
-  };
 
   // Horizontal Separators
   const separatorProps: ISeparatorProps = {
@@ -59,58 +47,45 @@ export default function SettingsPanel() {
   };
 
   // LOGIC
-  const { t } = useTranslation(["sidepanel"]);
+  const { t } = useTranslation(["language-settings", "settings", "basics"]);
   const dispatch = useDispatch();
+
+  const handleChangePrivacy = () => {
+
+  }
 
   return (
     <Stack {...stackProps}>
       <Separator {...separatorProps}>
         <Text variant="mediumPlus">
-          <b>{t("user")}</b>
+          <b>{t("privacy-header")}</b>
         </Text>
       </Separator>
-      {/* NAME */}
+      {/* TOOGLE */}
       <Stack.Item>
-        <TextField
-          label={t("name")}
-          defaultValue="Gabriela Rodríguez"
-          styles={nameTextFieldStyles}
-        ></TextField>
-      </Stack.Item>
-      {/* NICKNAME */}
-      <Stack.Item>
-        <TextField
-          label={t("nick")}
-          defaultValue="Gabi"
-          styles={nameTextFieldStyles}
-        ></TextField>
-      </Stack.Item>
-      {/* COIN */}
-      <Stack.Item>
-        <Label>{t("coin")}</Label>
-        <Persona
-          text="Gabriela Rodríguez"
-          size={PersonaSize.size40}
-          initialsColor={PersonaInitialsColor.cyan}
+        <Toggle
+          label={t("privacy-title")}
+          defaultChecked
+          onText={t("basics:private")}
+          offText={t("basics:public")}
+          onChange={handleChangePrivacy}
         />
       </Stack.Item>
+      {/* LINK */}
+      <Stack.Item>
+        {t("privacy-settings-text")} {' '}
+        <Link href="/settings" underline>{t("privacy-settings-link")}</Link>.
+      </Stack.Item>
+      
       <br />
+
       <Separator {...separatorProps}>
         <Text variant="mediumPlus">
-          <b>{t("theme")}</b>
+          <b>{t("theme-header")}</b>
         </Text>
       </Separator>
-      {/* <Stack.Item>
-        <Toggle
-          label="Select a theme"
-          defaultChecked
-          onText="Dark"
-          offText="Light"
-          onChange={handleChangeTheme}
-        />
-      </Stack.Item> */}
       <Stack.Item>
-        <Label>{t("color-theme")}</Label>
+        <Label>{t("color-theme-title")}</Label>
         <Stack horizontal tokens={{ childrenGap: 5 }}>
           <ThemePicker
             colorCells={colorCells}

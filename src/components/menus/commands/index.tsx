@@ -44,7 +44,7 @@ export default function CommandMenu() {
   };
 
   // LOGIC
-  const { t } = useTranslation(["methodologies", "authentication"]);
+  const { t } = useTranslation(["language-settings", "settings", "methodologies", "authentication"]);
   
   // Panels State
   const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
@@ -80,7 +80,7 @@ export default function CommandMenu() {
         isOpen={languagePanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
-        headerText={t("sidepanel:language-header")}
+        headerText={t("language-settings:language-header")}
         onDismiss={dismissLanguagePanel}
         isBlocking={false}>
         <LanguagePanel />
@@ -90,7 +90,7 @@ export default function CommandMenu() {
         isOpen={settingsPanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
-        headerText={t("sidepanel:header-settings")}
+        headerText={t("settings:settings-header")}
         onDismiss={dismissSettingsPanel}
         isBlocking={false}>
         <SettingsPanel />

@@ -26,9 +26,6 @@ const MainLayout: FunctionComponent = (props) => {
   };
 
   return <React.Fragment>
-      {/* <Link to="/workplace">Workplace</Link> */}
-      {/* <AutoSavingForm2 /> */}
-
       <Stack horizontal>
         <Stack 
           verticalAlign="space-between" 

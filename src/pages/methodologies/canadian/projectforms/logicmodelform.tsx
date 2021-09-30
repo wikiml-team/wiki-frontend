@@ -71,7 +71,7 @@ export default function LogicModelForm() {
         </TooltipHost>
         <TooltipHost content={t("tooltip-panel-save")}>
           <DefaultButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
-            {t("sidepanel:save")}
+            {t("basics:save")}
           </DefaultButton>
         </TooltipHost>
       </div>

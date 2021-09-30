@@ -3,7 +3,11 @@
   "basics": {
     "yes" : "",
     "no" : "",
-    "thanks" : ""
+    "save": "",
+    "dismiss": "",
+    "thanks" : "",
+    "public" : "",
+    "private": ""
   },
   "methodologies": {
     "canadian":  "Kanadische Methodik",
@@ -110,20 +114,24 @@
     "loading-title": "",
     "loading-description": ""
   },
-  "sidepanel": {
+  "language": {
     "language-header": "Sprache",
     "language-select": "Sprache auswählen",
     "language-ui": "Sprache für Benutzeroberfläche",
-    "language-data": "Sprache für Daten",
-    "header-settings": "Einstellungen",
+    "language-data": "Sprache für Daten"
+  },
+  "settings" : {
+    "settings-header": "Einstellungen",
     "user": "Benutzer",
     "name": "Name",
     "nick": "Benutzername",
     "coin": "Profilbild",
     "theme": "Thema",
     "color-theme": "Farbgebung",
-    "save": "",
-    "dismiss": ""
+    "privacy-header": "",
+    "privacy-title": "",
+    "privacy-settings-text": "",
+    "privacy-settings-link": ""
   },
   "dialog": {
     "default-options-title" : "",

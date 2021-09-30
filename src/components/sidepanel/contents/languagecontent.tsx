@@ -10,7 +10,7 @@ import {
 import { setLanguage, selectLanguage } from "store/slices/languageslice";
 
 export default function LanguagePanel() {
-  const { t } = useTranslation(["sidepanel", "languages"]);
+  const { t } = useTranslation(["language-settings", "settings", "languages"]);
   const lang = useSelector(selectLanguage);
 
   const dispatch = useDispatch();

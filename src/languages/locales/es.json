@@ -3,7 +3,11 @@
   "basics": {
     "yes" : "Sí",
     "no" : "No",
-    "thanks" : "Gracias"
+    "save": "Guardar",
+    "dismiss": "Cancelar",
+    "thanks" : "Gracias",
+    "public" : "Público",
+    "private": "Privado"
   },
   "methodologies": {
     "canadian": "Metodología Global Affairs Canada",
@@ -110,20 +114,24 @@
     "loading-title": "Cargando",
     "loading-description": "Por favor espere unos segundos, estamos cargando los datos"
   },
-  "sidepanel": {
+  "language": {
     "language-header": "Lenguaje",
     "language-select": "Selecciona un Lenguaje",
     "language-ui": "Lenguaje para Interfaz de Usuario",
-    "language-data": "Lenguaje para Datos",
-    "header-settings": "Ajustes",
+    "language-data": "Lenguaje para Datos"
+  },
+  "settings" : {
+    "settings-header": "Ajustes",
     "user": "Usuario",
     "name": "Nombre",
     "nick": "Apodo",
     "coin": "Imagen",
     "theme": "Tema",
     "color-theme": "Color",
-    "save": "Guardar",
-    "dismiss": "Cancelar"
+    "privacy-header": "Privacidad",
+    "privacy-title": "Su proyecto debe ser:",
+    "privacy-settings-text": "Ir a los ajustes de privacidad",
+    "privacy-settings-link": "aquí"
   },
   "dialog": {
     "default-options-title" : "Seleccione",
