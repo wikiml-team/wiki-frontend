@@ -22,7 +22,7 @@ import { useBoolean } from '@fluentui/react-hooks';
 
 import { selectProject } from "store/slices/projectslice";
 import Stakeholders, { IStakholderInfo } from "models/canadian/stakeholders";
-import { StakehoderFormPanel } from "components/sidepanel/formcontents"
+import { StakehoderFormPanel } from "components/sidepanel/contents/formcontents"
 
 export default function StakeholdersForm() {
   // LOGIC
@@ -274,6 +274,7 @@ export default function StakeholdersForm() {
       isHiddenOnDismiss={true}
       headerText={t("panel-header")}
       onDismiss={dismissPanel}
+      isBlocking={false}
       isFooterAtBottom={true}
       onRenderFooterContent={onRenderFooterContent}
     >

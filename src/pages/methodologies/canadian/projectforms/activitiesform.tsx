@@ -18,13 +18,13 @@ import {
   ITextStyles,
   SelectionMode,
   DetailsList,
-  Panel
 } from '@fluentui/react';
 import { useBoolean } from '@fluentui/react-hooks';
 
 import { selectProject } from 'store/slices/projectslice';
 import ActivitiesMatrixGraph, { IActivityInfo } from 'models/canadian/actvitiesmatrix';
 import ContextualHelpContent from "components/help/contextualhelp"
+import ContextualHelpPanel from 'components/sidepanel/contextualhelp';
 
 export default function ActivitiesMatrixForm() {
 
@@ -257,13 +257,10 @@ export default function ActivitiesMatrixForm() {
       selectionMode={SelectionMode.none}
       isHeaderVisible={false}
     />
-    <Panel
+    <ContextualHelpPanel
       isOpen={helpPanelIsOpen}
-      closeButtonAriaLabel="Close"
-      isHiddenOnDismiss={true}
-      headerText={t("contextual-help:help-panel-header")}
+      header={t("contextual-help:help-panel-header")}
       onDismiss={dismissHelpPanel}
-      isFooterAtBottom={true}
     >
       <ContextualHelpContent
         definition="Def Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
@@ -271,7 +268,7 @@ export default function ActivitiesMatrixForm() {
         format="Cosi se me face le buc torbellini de sua me. "
         guide="Guide Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
         tips="Tips Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. " />
-    </Panel>
+    </ContextualHelpPanel>
   </React.Fragment>
 
 }
