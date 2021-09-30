@@ -1,5 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { DetailsList, DetailsListLayoutMode, IColumn, IconButton, ITextStyles, Link, SelectionMode, Text } from "@fluentui/react";
+import { DetailsList, 
+        DetailsListLayoutMode, 
+        IColumn, 
+        IconButton, 
+        Link, 
+        SelectionMode, 
+        Text } from "@fluentui/react";
 
 interface IDocumnet {
   key: string;

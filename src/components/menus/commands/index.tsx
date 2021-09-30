@@ -11,8 +11,8 @@ import {
 import { useBoolean, useId } from '@fluentui/react-hooks';
 
 import { GetFarItems, GetItems, GetOverflowItems } from "./items";
-import LanguagePanel from "components/sidepanel/languagepanel";
-import SettingsPanel from "components/sidepanel/settingspanel";
+import LanguagePanel from "components/sidepanel/contents/languagecontent";
+import SettingsPanel from "components/sidepanel/contents/settingscontent";
 import { CustomBarButton, CustomOverflowButton, OverflowProps } from "./custombuttons";
 import ExportProjectDialog from "components/dialog/export";
 import DuplicateProjectDialog from "components/dialog/duplicate";
@@ -81,7 +81,8 @@ export default function CommandMenu() {
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
         headerText={t("sidepanel:language-header")}
-        onDismiss={dismissLanguagePanel}>
+        onDismiss={dismissLanguagePanel}
+        isBlocking={false}>
         <LanguagePanel />
       </Panel>
 
@@ -90,7 +91,8 @@ export default function CommandMenu() {
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
         headerText={t("sidepanel:header-settings")}
-        onDismiss={dismissSettingsPanel}>
+        onDismiss={dismissSettingsPanel}
+        isBlocking={false}>
         <SettingsPanel />
       </Panel>
 

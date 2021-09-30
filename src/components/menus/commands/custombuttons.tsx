@@ -1,10 +1,8 @@
-import React from 'react'
 import { useTheme, 
     CommandBarButton, 
     IContextualMenuItemStyles, 
     IButtonProps, 
     concatStyleSets, 
-    IPalette, 
     FontSizes 
 } from '@fluentui/react';
 

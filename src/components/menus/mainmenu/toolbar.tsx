@@ -1,3 +1,5 @@
+import { FunctionComponent, useEffect, useRef } from "react";
+import { animated } from "react-spring";
 import {
   useTheme,
   IconButton,
@@ -5,8 +7,6 @@ import {
   IStackItemProps,
   IStackProps
 } from "@fluentui/react";
-import { FunctionComponent, useEffect, useRef } from "react";
-import { animated } from "react-spring";
 
 type ToolBarProps = {
   isFixed: boolean;

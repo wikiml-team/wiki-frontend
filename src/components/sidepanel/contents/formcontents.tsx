@@ -32,7 +32,7 @@ export function StakehoderFormPanel() {
     )
 }
 
-export function LogicModelOutputFormPanel() {
+export function LogicModelOutputSintaxFormPanel() {
     const { t } = useTranslation("logicmodel-activitymatrix-form");
 
     return (
@@ -70,7 +70,7 @@ export function LogicModelOutputFormPanel() {
     )
 }
 
-export function LogicModelOutcomeFormPanel() {
+export function LogicModelOutcomeSintaxFormPanel() {
     const { t } = useTranslation("logicmodel-activitymatrix-form");
 
     return (
