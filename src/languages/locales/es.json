@@ -1,5 +1,10 @@
 {
   "welcome": "Bienvenido a WikiML",
+  "basics": {
+    "yes" : "Sí",
+    "no" : "No",
+    "thanks" : "Gracias"
+  },
   "methodologies": {
     "canadian": "Metodología Global Affairs Canada",
     "german": "Metodología Alemana",
@@ -90,13 +95,13 @@
     "categories": "Categorías",
     "coins": "Monedas",
     "countries": "Países",
-    "developmentgoals": "Objetivos de desarrollo",
+    "development-goals": "Objetivos de desarrollo",
     "languages": "Idiomas",
     "methodologies": "Metodologías",
     "offers": "Ofertas",
-    "productsservices": "Productos & Servicios",
+    "products-services": "Productos & Servicios",
     "programs": "Programas",
-    "projectgoals": "Objetivos de Proyectos",
+    "project-goals": "Objetivos de Proyectos",
     "projects": "Projectos",
     "sources": "Fuentes de verificación",
     "users": "Usarios"
@@ -273,7 +278,8 @@
     "panel-verb-label": "Verbo",
     "tooltip-panel-save": "Solo guardar",
     "tooltip-panel-concat": "Conformar texto con los campos",
-    "concat-button-label": "Concatenar"
+    "concat-button-label": "Concatenar",
+    "save-before-closing" : "¿Está seguro que quiere cerrar el panel?"
   },
   "stakeholders-form": {
     "beneficiary": "Beneficiario",

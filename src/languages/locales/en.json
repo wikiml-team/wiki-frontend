@@ -1,5 +1,10 @@
 {
   "welcome": "Welcome to WikiMl",
+  "basics": {
+    "yes" : "yes",
+    "no" : "no",
+    "thanks" : "Thanks"
+  },
   "methodologies": {
     "canadian": "Canadian Methodology",
     "german": "German Methodology",
@@ -90,13 +95,13 @@
     "categories": "Categories",
     "coins": "Coins",
     "countries": "Countries",
-    "developmentgoals": "Development Goals",
+    "development-goals": "Development Goals",
     "languages": "Languages",
     "methodologies": "Methodologies",
     "offers": "Offers",
-    "productsservices": "Products & Services",
+    "products-services": "Products & Services",
     "programs": "Programs",
-    "projectgoals": "Project Goals",
+    "project-goals": "Project Goals",
     "projects": "Projects",
     "sources": "Verification Sources",
     "users": "Users"
@@ -273,7 +278,8 @@
     "panel-verb-label": "Verb",
     "tooltip-panel-save": "Just save",
     "tooltip-panel-concat": "Form text by concating fields",
-    "concat-button-label": "Concat"
+    "concat-button-label": "Concat",
+    "save-before-closing" : "Are you sure you want to close the panel?"
   },
   "stakeholders-form": {
     "beneficiary": "Beneficiary",
