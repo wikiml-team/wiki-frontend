@@ -1,13 +1,11 @@
-import i18n from "i18n"
+import { useHistory } from "react-router";
+import { useTranslation } from "react-i18next";
 import {
   ICommandBarItemProps,
 } from "@fluentui/react";
 
+import i18n from "i18n"
 import { fullscreenToggler } from "components/fullscreentoggler";
-
-import { useHistory } from "react-router";
-import { useKeycloak } from "@react-keycloak/web";
-import { useTranslation } from "react-i18next";
 
 i18n.loadNamespaces(["commands", "authentication"]);
 
