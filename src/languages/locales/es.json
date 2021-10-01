@@ -7,7 +7,8 @@
     "dismiss": "Cancelar",
     "thanks" : "Gracias",
     "public" : "Público",
-    "private": "Privado"
+    "private": "Privado",
+    "return" : "Atrás"
   },
   "methodologies": {
     "canadian": "Metodología Global Affairs Canada",
@@ -45,8 +46,7 @@
     "about" : "Acerca de",
     "account" : "Cuenta",
     "feedback" : "Retroalimentación",
-    "options" : "Opciones",
-    "return" : "Atrás"
+    "options" : "Opciones"
   },
   "homepages-subtitles": {
     "stared-projects" : "Proyectos Destacados",
@@ -132,6 +132,12 @@
     "privacy-title": "Su proyecto debe ser:",
     "privacy-settings-text": "Ir a los ajustes de privacidad",
     "privacy-settings-link": "aquí"
+  },
+  "settings-commands" : {
+    "profile": "Perfil",
+    "privacy": "Privacidad",
+    "security": "Seguridad",
+    "team": "Equipo de Trabajo"
   },
   "dialog": {
     "default-options-title" : "Seleccione",
