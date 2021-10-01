@@ -21,7 +21,7 @@ import { useHistory } from 'react-router';
 export default function FileMenu() {
 
     // LOGIC
-    const { t } = useTranslation('navbar');
+    const { t } = useTranslation(['navbar', 'basics']);
     const { palette } = useTheme();
 
     const history = useHistory()
@@ -201,7 +201,7 @@ export default function FileMenu() {
                 iconProps={iconProps} 
                 styles={buttonStyles}
                 href="/workplace">
-                {t("return")}
+                {t("basics:return")}
             </ActionButton>
 
             {/* links */}

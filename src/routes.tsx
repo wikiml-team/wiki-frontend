@@ -17,6 +17,7 @@ import Profile from "pages/settings/profile";
 import Privacy from "pages/settings/privacy";
 import Security from "pages/settings/security";
 import Team from "pages/settings/team";
+import SettingsLayout from "layouts/settings";
 
 // Canaidan Methodology - Project Tab
 const GeneralForm = lazy(() => import("pages/methodologies/canadian/projectforms/generalform"));
@@ -43,15 +44,15 @@ export default function Routes() {
 
 // SETTINGS
 const SettingsSwitcher = () => (
-  /* Profile, Privacy, Security */
-  // <WorkplaceLayout>
+  /* Profile, Privacy, Security, Team */
+  <SettingsLayout>
     <Switch>
       <Route path="/settings/profile" component={Profile} />
       <Route path="/settings/privacy" component={Privacy} />
       <Route path="/settings/security" component={Security} />
       <Route path="/settings/team" component={Team} />
     </Switch>
-  // </WorkplaceLayout>
+  </SettingsLayout>
 );
 
 // WORKPLACE

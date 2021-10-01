@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function ProfileSettings() {
+export default function Security() {
     return (
         <div>
-            Profile Settings
+            Security
         </div>
     )
 }

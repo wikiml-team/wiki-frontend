@@ -9,7 +9,7 @@ const Container = styled.div`
 
 type PagecontainerProps = {
   className?: string;
-  spring: any;
+  spring?: any;
   scrollHeight: string | number | undefined;
 }
 const PageContainer: React.FunctionComponent<PagecontainerProps> = (props) => {
