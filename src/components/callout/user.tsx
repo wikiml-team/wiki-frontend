@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
+import { useKeycloak } from '@react-keycloak/web';
+
 import { Callout, 
     Link, 
-    Text, 
     mergeStyleSets, 
-    FontWeights, 
     CommandBarButton, 
     Stack, 
     IStackStyles, 
@@ -11,8 +12,11 @@ import { Callout,
     PersonaSize, 
     IPersonaSharedProps ,
 } from '@fluentui/react';
-import { useKeycloak } from '@react-keycloak/web';
-import { useTranslation } from 'react-i18next';
+
+type UserInfoProps = {
+    name: string,
+    email: string
+}
 
 type UserCalloutProps = {
     isCalloutVisible : boolean,
@@ -34,10 +38,23 @@ export default function UserCallout(props : UserCalloutProps) {
     const examplePersona: IPersonaSharedProps = {
         secondaryText: 'gabi.santacruzpacheco@gmail.com',
         tertiaryText: 'editor',
-      };
+    };
+
+    // const [userInfo, setUserInfo] = useState<UserInfoProps>({name: "", email: ""})
+    
+    // useEffect(() => {
+    //     keycloak.loadUserInfo().then((info : any) => {
+    //         setUserInfo({name: info.name, email: info.email})
+    //     })
+    // }, [keycloak])
+
+    // keycloak.loadUserInfo().then((info : any) => {
+    //     setUserInfo({name: info.name, email: info.email})
+    // })
+
 
     // STYLES
-    const styles = mergeStyleSets({
+    const classes = mergeStyleSets({
         callout: {
             width: 320,
             padding: '20px 24px',
@@ -60,7 +77,7 @@ export default function UserCallout(props : UserCalloutProps) {
         <React.Fragment>
             {isCalloutVisible && (
                 <Callout
-                    className={styles.callout}
+                    className={classes.callout}
                     role="alertdialog"
                     gapSpace={0}
                     target={`#${calloutButtonId}`}
@@ -74,7 +91,7 @@ export default function UserCallout(props : UserCalloutProps) {
                         </CommandBarButton>
                     </Stack>
                     <Persona size={PersonaSize.size48} text="Gabriela Rodriguez" {...examplePersona}/>
-                    <Link href="/profile" className={styles.link}>
+                    <Link href="/settings/profile" className={classes.link}>
                         My profile
                     </Link>
                 </Callout>
