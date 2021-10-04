@@ -37,6 +37,7 @@ export default function LanguagePanel() {
     { key: "en", text: t("languages:en") },
     { key: "es", text: t("languages:es") },
     { key: "de", text: t("languages:de") },
+    { key: "it", text: t("languages:it") },
   ];
 
   return (

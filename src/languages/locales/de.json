@@ -1,10 +1,10 @@
 {
   "welcome": "Willkommen bei WikiMl",
   "basics": {
-    "yes" : "",
-    "no" : "",
-    "save": "",
-    "dismiss": "",
+    "yes" : "Ja",
+    "no" : "Nein",
+    "save": "Speichern",
+    "dismiss": "Abbruch",
     "thanks" : "",
     "public" : "",
     "private": "",
@@ -155,7 +155,8 @@
   "languages": {
     "en": "Englisch",
     "es": "Spanisch",
-    "de": "Deutsch"
+    "de": "Deutsch",
+    "it": ""
   },
   "status": {
     "pending": "ausstehenden",
@@ -268,12 +269,12 @@
     "ultimate-outcomes": "Endergebnis",
     "intermediate-outcomes": "Zwischenergebnis",
     "inmediate-outcomes": "Unmittelbares Ergebnis",
-    "outputs": "",
-    "activity": "Actividades",
-    "tooltip-add-inmediate-outcome": "",
-    "tooltip-add-intermediate-outcome": "",
-    "tooltip-add-output": "",
-    "tooltip-delete": "",
+    "outputs": "Outputs",
+    "activity": "Aktivitäten",
+    "tooltip-add-inmediate-outcome": "Unmittelbares Ergebnis hinzufügen",
+    "tooltip-add-intermediate-outcome": "Zwischenergebnis hinzufügen",
+    "tooltip-add-output": "Ertrag hinzufügen",
+    "tooltip-delete": "Löschen",
     "tooltip-see-activities": "",
     "tooltip-contextual-help": "",
     "tooltip-sintactic-struct": "",
@@ -320,7 +321,7 @@
     "panel-explanation": "Neuen Stakeholder in der Datenbank anlegen",
     "panel-warning": "Überprüfen Sie, ob der Stakeholder nicht bereits in der Datenbank angelegt ist, um Dopplungen zu vermeiden.",
     "stakeholder-label": "Stakeholder Name",
-    "country-label": "Stakeholder Land "
+    "country-label": "Stakeholder Land"
   },
   "contextual-help": {
     "tooltip-contextual-help": "",

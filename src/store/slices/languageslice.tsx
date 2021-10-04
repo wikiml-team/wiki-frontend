@@ -23,6 +23,10 @@ const LanguageSlice = createSlice({
       state = "de";
       i18n.changeLanguage(state);
     },
+    setItalian: (state: string) => {
+      state = "it";
+      i18n.changeLanguage(state);
+    },
   },
 });
 

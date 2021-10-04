@@ -155,7 +155,8 @@
   "languages": {
     "en": "English",
     "es": "Spanish",
-    "de": "German"
+    "de": "German",
+    "it": "Italian"
   },
   "status": {
     "pending": "Pending",

@@ -106,7 +106,7 @@
     "products-services": "Productos & Servicios",
     "programs": "Programas",
     "project-goals": "Objetivos de Proyectos",
-    "projects": "Projectos",
+    "projects": "Proyectos",
     "sources": "Fuentes de verificación",
     "users": "Usarios"
   },
@@ -116,7 +116,7 @@
   },
   "language": {
     "language-header": "Lenguaje",
-    "language-select": "Selecciona un Lenguaje",
+    "language-select": "Selecciona un lenguaje",
     "language-ui": "Lenguaje para Interfaz de Usuario",
     "language-data": "Lenguaje para Datos"
   },
@@ -155,7 +155,8 @@
   "languages": {
     "en": "Inglés",
     "es": "Español",
-    "de": "Alemán"
+    "de": "Alemán",
+    "it": "Italiano"
   },
   "status": {
     "pending": "Planificándose",
