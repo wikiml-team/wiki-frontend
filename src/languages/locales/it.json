@@ -137,7 +137,16 @@
       "profile": "",
       "privacy": "",
       "security": "",
-      "team": ""
+      "team": "", 
+      "privacy-page" : {
+        "title" : "",
+        "welcome-subtitle" : "",
+        "description" : "",
+        "commitment-to-privacy-link" : "",
+        "management-subtitle" : "",
+        "table-forms" : "",
+        "table-privacy" : ""
+      }
     },
     "dialog": {
       "default-options-title" : "",

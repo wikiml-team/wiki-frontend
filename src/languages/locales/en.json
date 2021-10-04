@@ -137,7 +137,16 @@
     "profile": "Profile",
     "privacy": "Privacy",
     "security": "Security",
-    "team": "Team"
+    "team": "Team",
+    "privacy-page" : {
+      "title" : "Privacy",
+      "welcome-subtitle" : "Welcome to your Privacy Panel",
+      "description" : "The first step to guaranteeing your privacy is giving you control of your data and the tools and information you need to make decisions that give you peace of mind.",
+      "commitment-to-privacy-link" : "Learn more about our commitment to privacy",
+      "management-subtitle" : "Manage Privacy",
+      "table-forms" : "Forms",
+      "table-privacy" : "Private"
+    }
   },
   "dialog": {
     "default-options-title" : "Select",
