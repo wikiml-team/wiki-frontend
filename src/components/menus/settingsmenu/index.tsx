@@ -13,7 +13,7 @@ export default function SettingsMenu() {
             height: 40,
             padding: 0,
             backgroundColor: palette.themePrimary,
-            ".ms-OverflowSet .ms-OverflowSet-item:first-child" : {
+            ".ms-OverflowSet .ms-OverflowSet-item:nth-child(2)" : {
                 borderRight: `1px solid ${palette.white}`
             }
         },

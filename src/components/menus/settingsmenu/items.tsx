@@ -11,6 +11,13 @@ export const GetItems = () => {
     return [
       {
         key: "return",
+        iconProps: { iconName: "WebComponents" },
+        iconOnly: true,
+        onClick: () => history.push("/"),
+        ariaLabel: "return"
+      },
+      {
+        key: "return",
         iconProps: { iconName: "NavigateBack" },
         text: t("basics:return"),
         onClick: () => history.goBack(),
