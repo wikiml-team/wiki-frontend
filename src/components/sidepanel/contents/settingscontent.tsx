@@ -74,7 +74,7 @@ export default function SettingsPanel() {
       {/* LINK */}
       <Stack.Item>
         {t("privacy-settings-text")} {' '}
-        <Link href="/settings" underline>{t("privacy-settings-link")}</Link>.
+        <Link href="/settings/privacy" underline>{t("privacy-settings-link")}</Link>.
       </Stack.Item>
       
       <br />

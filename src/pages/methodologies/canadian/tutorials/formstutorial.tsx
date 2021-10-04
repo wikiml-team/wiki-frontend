@@ -1,12 +1,10 @@
 import { useTranslation } from "react-i18next";
-import { DetailsList, IColumn, SelectionMode, Text } from "@fluentui/react";
 import { useSelector } from "react-redux";
-import { selectWorkplaceConfig } from "store/slices/workplaceslice";
 
-interface IForm {
-  key: string;
-  name: string
-}
+import { DetailsList, IColumn, SelectionMode, Text } from "@fluentui/react";
+
+import { selectWorkplaceConfig } from "store/slices/workplaceslice";
+import { IForm } from "models/workplace";
 
 export default function FormsTutorials() {
   // LOGIC
@@ -14,8 +12,7 @@ export default function FormsTutorials() {
 
   const { tabsSchema } = useSelector(selectWorkplaceConfig);
 
-  const forms : IForm[] = tabsSchema.findByKey("key2").childtabs?.map((c, i) => {
-    return ({ key: `key${i}`, name: c.name} as IForm)}) || [] as IForm[]
+  const forms : IForm[] = tabsSchema.findForms()
 
   const columns: IColumn[] = [
     {
@@ -32,7 +29,7 @@ export default function FormsTutorials() {
     return (
       <Text variant="medium">
        {t(form.name)}
-    </Text>
+      </Text>
     )
   }
 

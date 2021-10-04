@@ -17,6 +17,12 @@ export default interface IWorkplaceConfiguration {
   configuration: FormRenderDictionary
 }
 
+// Forms
+export interface IForm {
+  key: string;
+  name: string
+}
+
 // tabSchema
 export type Tab = {
   key: string;
@@ -63,6 +69,13 @@ export class TabSchema {
     }
 
     return {} as Tab;
+  }
+
+  findForms() : IForm[] {
+    const forms = this.findByKey("key2").childtabs?.map((c, i) => {
+      return ({ key: `key${i}`, name: c.name} as IForm)})
+   
+    return forms || [] as IForm[]
   }
 
   // getInitialConfiguration() : FormRenderDictionary {

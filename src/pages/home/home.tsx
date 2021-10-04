@@ -32,7 +32,7 @@ export default function HomePage() {
         },
     };
     return (
-        <div>
+        <React.Fragment>
             <Text variant='xLarge' styles={{root: {marginBottom: 20}}} block>{t("home")}</Text>
 
             {/* Star Projects */}
@@ -55,7 +55,7 @@ export default function HomePage() {
                 <Text variant='mediumPlus'>{t("homepages-subtitles:notifications")}</Text>
                 <Separator styles={separatorStyles}/>
             </Stack>
-        </div>
+        </React.Fragment>
     )
 }
 
