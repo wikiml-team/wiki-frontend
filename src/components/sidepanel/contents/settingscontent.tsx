@@ -47,7 +47,7 @@ export default function SettingsPanel() {
   };
 
   // LOGIC
-  const { t } = useTranslation(["language-settings", "settings", "basics"]);
+  const { t } = useTranslation(["settings", "basics"]);
   const dispatch = useDispatch();
 
   const handleChangePrivacy = () => {
