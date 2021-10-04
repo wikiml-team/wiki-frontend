@@ -50,7 +50,7 @@ export default function Privacy() {
             display: 'block',
         },
         subtitle: {
-            margin: "20px 0 5px 0",
+            margin: "30px 0 5px 0",
             display: 'block',
         },
     });
@@ -79,12 +79,14 @@ export default function Privacy() {
         <React.Fragment>
             <Text variant='xLarge' className={classes.title}>{t(`${t_path}:title`)}</Text>
             
+            {/* Welcome */}
             <Text variant='large' className={classes.subtitle}>{t(`${t_path}:welcome-subtitle`)}</Text>
-            <Text variant='medium' block >{t(`${t_path}:description`)}</Text>
+            <Text variant='medium' block >{t(`${t_path}:welcome-description`)}</Text>
             <Link href="" styles={linkStyles}>{t(`${t_path}:commitment-to-privacy-link`)}</Link>
 
+            {/* Set Privacy */}
             <Text variant='large' className={classes.subtitle}>{t(`${t_path}:management-subtitle`)}</Text>
-            
+            <Text variant='medium' block >{t(`${t_path}:management-description`)}</Text>
             <DetailsList
             items={forms}
             columns={columns}
