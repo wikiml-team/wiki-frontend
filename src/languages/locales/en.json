@@ -165,8 +165,10 @@
     "create-project-title" : "Create Project",
     "create-project-accept-label" : "Create",
     "create-project-name-label" : "Project name",
-    "create-project-language-label" : "Select project's language",
-    "create-project-privacy-label": "Select project's privacy",
+    "create-project-name-placeholder" : "Short name",
+    "create-project-language-label" : "Project language",
+    "create-project-language-placeholder" : "Select language",
+    "create-project-privacy-label": "Project privacy",
     "create-project-privacy-on": "Private",
     "create-project-privacy-off": "Public",
     "create-project-privacy-text": "Privacy settings can be modified later."
