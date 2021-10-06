@@ -17,7 +17,8 @@
     },
     "authentication" : {
       "login" : "",
-      "logout" : ""
+      "logout" : "",
+      "profile-link" : "Mi perfil"
     },
     "commands": {
       "undo": "",
@@ -160,7 +161,15 @@
       "duplicate-options-title" : "",
       "destroy-title" : "",
       "destroy-accept-label" : "",
-      "destroy-text": ""
+      "destroy-text": "",
+      "create-project-title" : "Crear Proyecto",
+      "create-project-accept-label" : "Crear",
+      "create-project-name-label" : "Nombre del proyecto",
+      "create-project-language-label" : "Selecciona el idioma del proyecto",
+      "create-project-privacy-label": "Selecciona la privacidad del proyecto",
+      "create-project-privacy-on": "Privado",
+      "create-project-privacy-off": "Público",
+      "create-project-privacy-text": "Los ajustes de privacidad pueden ser modificados luego."
     },
     "languages": {
       "en": "",

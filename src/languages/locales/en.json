@@ -17,7 +17,8 @@
   },
   "authentication" : {
     "login" : "Log in",
-    "logout" : "Log out"
+    "logout" : "Log out",
+    "profile-link" : "My profile"
   },
   "commands": {
     "undo": "Undo",
@@ -160,7 +161,15 @@
     "duplicate-options-title" : "Select the methodology you would want to duplicate your project into",
     "destroy-title" : "Delete Project",
     "destroy-accept-label" : "Delete",
-    "destroy-text": "Are you sure you want to delete your project? This action can't be undone."
+    "destroy-text": "Are you sure you want to delete your project? This action can't be undone.",
+    "create-project-title" : "Create Project",
+    "create-project-accept-label" : "Create",
+    "create-project-name-label" : "Project name",
+    "create-project-language-label" : "Select project's language",
+    "create-project-privacy-label": "Select project's privacy",
+    "create-project-privacy-on": "Private",
+    "create-project-privacy-off": "Public",
+    "create-project-privacy-text": "Privacy settings can be modified later."
   },
   "languages": {
     "en": "English",

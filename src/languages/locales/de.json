@@ -17,7 +17,8 @@
   },
   "authentication" : {
     "login" : "",
-    "logout" : ""
+    "logout" : "",
+    "profile-link" : ""
   },
   "commands": {
     "undo": "Rückgängig",
@@ -160,7 +161,15 @@
     "duplicate-options-title" : "",
     "destroy-title" : "",
     "destroy-accept-label" : "",
-    "destroy-text": ""
+    "destroy-text": "",
+    "create-project-title" : "Create Project",
+    "create-project-accept-label" : "Create",
+    "create-project-name-label" : "Project name",
+    "create-project-language-label" : "Select project's language",
+    "create-project-privacy-label": "Select project's privacy",
+    "create-project-privacy-on": "Private",
+    "create-project-privacy-off": "Public",
+    "create-project-privacy-text": "Privacy settings can be modified later."
   },
   "languages": {
     "en": "Englisch",
