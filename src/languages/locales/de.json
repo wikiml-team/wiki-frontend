@@ -57,7 +57,7 @@
     "owner" : "",
     "shared" : "",
     "all" : "",
-    "open-permition-owner": "",
+    "open-permition-owner": "Verwalten",
     "open-permition-edit": "",
     "open-permition-read": "",
     "open-date-modified" : "",
@@ -175,7 +175,7 @@
     "en": "Englisch",
     "es": "Spanisch",
     "de": "Deutsch",
-    "it": ""
+    "it": "Italienisch"
   },
   "status": {
     "pending": "ausstehenden",
@@ -199,7 +199,7 @@
     "sector-field": "Sektor",
     "duration-field": "Dauer",
     "duration-suffix": "Monate",
-    "donor-field": "Geldgeber",
+    "donor-field": "Hauptgeldgeber",
     "approvebudget-field": "Genehmigtes Budget",
     "contribution-field": "Beitrag",
     "approvedate-field": "Datum Projektgenehmigung",
