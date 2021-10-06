@@ -57,7 +57,7 @@ export default function CommandMenu() {
 
   // Callout State
   const [isUserCalloutVisible, { toggle: toggleIsUserCalloutVisible }] = useBoolean(false);
-  const calloutButtonId = useId('callout-button');
+  const calloutButtonId = useId('user-callout-button');
 
   return (
     <React.Fragment>
