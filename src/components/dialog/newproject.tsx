@@ -46,13 +46,15 @@ function NewProjectDialogBody() {
 
     return <Stack tokens={{ childrenGap: 16 }}> 
         <TextField 
-            label={t("create-project-name-label")} 
             required
-        />
+            label={t("create-project-name-label")}
+            placeholder={t("create-project-name-placeholder")} 
+            />
         <Dropdown
-            label={t("create-project-language-label")}
-            options={[]}
             required
+            label={t("create-project-language-label")}
+            placeholder={t("create-project-language-placeholder")} 
+            options={[]}
         />
         <Toggle 
             label={<>
