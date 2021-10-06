@@ -163,6 +163,7 @@
     "destroy-accept-label" : "Delete",
     "destroy-text": "Are you sure you want to delete your project? This action can't be undone.",
     "create-project-title" : "Create Project",
+    "create-project-text" : "Using methodology",
     "create-project-accept-label" : "Create",
     "create-project-name-label" : "Project name",
     "create-project-name-placeholder" : "Short name",

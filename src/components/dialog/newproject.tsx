@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import { Dropdown, 
         Icon, 
         Stack, 
+        Text, 
         TextField, 
         Toggle, 
         TooltipHost } from '@fluentui/react';
@@ -37,14 +38,21 @@ export default function NewProjectDialog(props : NewProjectCalloutProps) {
         onDismiss={toggleHideDialog}
         primaryButtonText={t("create-project-accept-label")}
         acceptOnClick={handleAccpetButtonOnClick}
-        optionalBody={<NewProjectDialogBody/>}
+        optionalBody={<NewProjectDialogBody methodologyId={methodologyId}/>}
   />
 }
 
-function NewProjectDialogBody() {
+type NewProjectDialogBodyProps = {
+    methodologyId: string
+}
+
+function NewProjectDialogBody(props : NewProjectDialogBodyProps) {
+
+    const { methodologyId } = props
     const { t } = useTranslation("dialog")
 
     return <Stack tokens={{ childrenGap: 16 }}> 
+        <Text variant="medium">{t("create-project-text")} {methodologyId}</Text>
         <TextField 
             required
             label={t("create-project-name-label")}

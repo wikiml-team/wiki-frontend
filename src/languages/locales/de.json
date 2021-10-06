@@ -164,6 +164,7 @@
     "destroy-text": "",
     "create-project-title" : "Create Project",
     "create-project-accept-label" : "Create",
+    "create-project-text" : "Using methodology",
     "create-project-name-label" : "Project name",
     "create-project-name-placeholder" : "Short name",
     "create-project-language-label" : "Project language",
