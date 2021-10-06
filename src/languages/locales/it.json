@@ -1,8 +1,8 @@
 {
     "welcome": "",
     "basics": {
-      "yes" : "",
-      "no" : "",
+      "yes" : "si",
+      "no" : "no",
       "save": "",
       "dismiss": "",
       "thanks" : "",
