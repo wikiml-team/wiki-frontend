@@ -1,3 +1,4 @@
+
 import { DocumentCard, 
     DocumentCardDetails, 
     DocumentCardImage, 
@@ -8,10 +9,13 @@ import { DocumentCard,
 import canadian from "./logos/canadian.png"
 import german from "./logos/german.png"
 import autralian from "./logos/australian.png"
+import React from 'react'
 
 
 type MethodologyCardProps = {
-    name : string
+    name : string,
+    href?: string,
+    onClick?: () => void
 }
 
 const pic_dict = {
@@ -22,6 +26,8 @@ const pic_dict = {
 
 export default function MethodologyCard(props : MethodologyCardProps) {
 
+  const { name, href, onClick } = props;
+
     const cardStyles: IDocumentCardStyles = {
         root: { 
             display: 'inline-block', 
@@ -30,21 +36,22 @@ export default function MethodologyCard(props : MethodologyCardProps) {
         },
       };
 
-    return (
-    <>
+  return (
+    <React.Fragment>
       <DocumentCard
-        onClickHref="/workplace"
-        styles={cardStyles}
-      >
-        <DocumentCardImage 
-          height={90} 
-          imageFit={ImageFit.cover} 
-          imageSrc={pic_dict["canadian"]} 
-        />
-        <DocumentCardDetails>
-          <DocumentCardTitle title={props.name} showAsSecondaryTitle />
-        </DocumentCardDetails>
+          onClickHref={href}
+          onClick={onClick}
+          styles={cardStyles}
+        >
+          <DocumentCardImage 
+            height={90} 
+            imageFit={ImageFit.cover} 
+            imageSrc={pic_dict["canadian"]} 
+          />
+          <DocumentCardDetails>
+            <DocumentCardTitle title={name} showAsSecondaryTitle />
+          </DocumentCardDetails>
       </DocumentCard>
-      </>
-    )
+    </React.Fragment>
+  )
 }
