@@ -19,7 +19,8 @@ type OptionsProps = {
 type CustomDialogProps = {
     acceptOnClick: (option: string) => void,
     primaryButtonText?: string,
-    optionsProps?: OptionsProps
+    optionsProps?: OptionsProps,
+    optionalBody?: any 
 }
 
 export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
@@ -29,6 +30,7 @@ export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
           primaryButtonText,  
           optionsProps,
           dialogContentProps,
+          optionalBody,
           ...allprops} = props;
 
     const { t } = useTranslation("dialog");
@@ -79,6 +81,7 @@ export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
         {...allprops}
     >
       {optionsProps && choiceGroup}
+      {optionalBody}
     <DialogFooter>
       <PrimaryButton onClick={() => acceptOnClick(optionSelected)} text={primaryButtonText?? t("default-accept") } />
       <DefaultButton onClick={() => {if (allprops.onDismiss) allprops.onDismiss()}} text="Cancel" />
