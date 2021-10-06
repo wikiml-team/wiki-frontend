@@ -3,7 +3,7 @@
     "basics": {
       "yes" : "si",
       "no" : "no",
-      "save": "",
+      "save": "salvare",
       "dismiss": "",
       "thanks" : "",
       "public" : "",
