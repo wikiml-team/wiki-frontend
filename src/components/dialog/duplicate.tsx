@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client';
-import { IChoiceGroupOption, ProgressIndicator } from '@fluentui/react';
+import { IChoiceGroupOption } from '@fluentui/react';
+import ExecuteQuery from 'apollo/executequery';
 import { GET_METHODOLOGIES } from 'apollo/methodologies';
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +17,16 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
 
     const { t } = useTranslation("dialog");
 
-    const options = MapMethodologiesToOptions() as IChoiceGroupOption[];
+    const mapMethodologiesToOptions = (data : any) => {
+      return data.methodologies.map(({ id , name } : any) => {
+        return {
+          key: `key${id}`,
+          text: name
+        } as IChoiceGroupOption
+      })
+    }
+
+    const options = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToOptions}) as IChoiceGroupOption[];
 
     const handleAccpetButtonOnClick = (option: string) => {
         alert(option)
@@ -35,26 +44,4 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
               optionsTitle : t("duplicate-options-title")
             }}
       />
-}
-
-export const MapMethodologiesToOptions = () => {
-
-  const {loading, error, data} = useQuery(GET_METHODOLOGIES);
-  const { t } = useTranslation("loading")
-
-  if (loading) {
-      return <ProgressIndicator
-              label={t("loading-title")} 
-              description={t("loading-description")} />
-  }
-  
-  if (error) return <p>Error :(</p>;
-
-  return data.methodologies.map(({ id , name } : any) => {
-    return {
-      key: `key${id}`,
-      text: name
-    } as IChoiceGroupOption
-  })
-
 }
