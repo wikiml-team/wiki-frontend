@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
@@ -246,7 +246,7 @@ export default function StakeholdersForm() {
     </React.Fragment>
   }
 
-  const onRenderFooterContent = React.useCallback(
+  const onRenderFooterContent = useCallback(
     () => (
       <div>
         <PrimaryButton onClick={dismissPanel} styles={{ root: { marginRight: 8 } }}>

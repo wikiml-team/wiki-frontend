@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { string, object } from "yup";
@@ -61,7 +61,7 @@ export default function LogicModelForm() {
   }
 
   // RENDER
-  const onRenderFooterContent = React.useCallback(
+  const onRenderFooterContent = useCallback(
     () => (
       <div>
         <TooltipHost content={t("tooltip-panel-concat")}>

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useCallback } from 'react'
 import { useTranslation } from 'react-i18next';
 import { DefaultButton,
         Dialog,
@@ -24,7 +24,7 @@ const SintaxHelpPanel: FunctionComponent<SintaxHelpPanelProps> = (props) => {
     const { t } = useTranslation("basics");
     const [isDialogVisible, { setTrue: showDialog, setFalse: hideDialog }] = useBoolean(false);
 
-    const onHideDialog = React.useCallback(
+    const onHideDialog = useCallback(
         ev => {
           ev.preventDefault();
           hideDialog();
@@ -32,7 +32,7 @@ const SintaxHelpPanel: FunctionComponent<SintaxHelpPanelProps> = (props) => {
         [hideDialog],
     );
     
-    const onHideDialogAndPanel = React.useCallback(() => {
+    const onHideDialogAndPanel = useCallback(() => {
         onDismiss();
         hideDialog();
     }, [onDismiss, hideDialog]);
