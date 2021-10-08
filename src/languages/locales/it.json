@@ -18,7 +18,7 @@
     "authentication" : {
       "login" : "Accedi",
       "logout" : "Esci",
-      "profile-link" : "Mi perfil"
+      "profile-link" : "Il mio profilo"
     },
     "commands": {
       "undo": "annullare",
@@ -106,29 +106,29 @@
       "offers": "Offerte",
       "products-services": "Prodotti e servizi",
       "programs": "Programmi",
-      "project-goals": "",
-      "projects": "",
-      "sources": "",
-      "users": ""
+      "project-goals": "Obiettivi del progetto",
+      "projects": "Progetti",
+      "sources": "Fonti",
+      "users": "Utenti"
     },
     "loading": {
-      "loading-title": "",
-      "loading-description": ""
+      "loading-title": "In carica",
+      "loading-description": "Si prega di attendere qualche secondo, i dati stanno caricando"
     },
     "language": {
-      "language-header": "",
-      "language-select": "",
-      "language-ui": "",
-      "language-data": ""
+      "language-header": "Lingua",
+      "language-select": "Seleziona una lingua",
+      "language-ui": "Lingua per l'interfaccia utente",
+      "language-data": "Lingua per i dati"
     },
     "settings" : {
-      "settings-header": "",
-      "user": "",
-      "name": "",
-      "nick": "",
-      "coin": "",
-      "theme": "",
-      "color-theme": "",
+      "settings-header": "Impostazioni",
+      "user": "Utente",
+      "name": "Nome",
+      "nick": "Sopranome",
+      "coin": "L'immagine del profilo",
+      "theme": "Tema",
+      "color-theme": "Tema-colore",
       "privacy-header": "",
       "privacy-title": "",
       "privacy-settings-text": "",
@@ -151,28 +151,28 @@
       }
     },
     "dialog": {
-      "default-options-title" : "",
-      "default-accept" : "",
-      "export-title" : "",
-      "export-accept-label" : "",
-      "export-options-title" : "",
+      "default-options-title" : "Selezionare",
+      "default-accept" : "Accetare",
+      "export-title" : "Esportazione progetto",
+      "export-accept-label" : "Esporta",
+      "export-options-title" : "Seleziona il tipo di filo da esportare",
       "duplicate-title" : "",
       "duplicate-accept-label" : "",
       "duplicate-options-title" : "",
       "destroy-title" : "",
       "destroy-accept-label" : "",
       "destroy-text": "",
-      "create-project-title" : "Crear Proyecto",
-      "create-project-accept-label" : "Crear",
+      "create-project-title" : "Crea progetto",
+      "create-project-accept-label" : "Creare",
       "create-project-text" : "Usando la metodología",
-      "create-project-name-label" : "Nombre del proyecto",
-      "create-project-name-placeholder" : "Nombre corto",
-      "create-project-language-label" : "Idioma del proyecto",
-      "create-project-language-placeholder" : "Seleciona un idioma",
-      "create-project-privacy-label": "Selecciona la privacidad del proyecto",
-      "create-project-privacy-on": "Privado",
-      "create-project-privacy-off": "Público",
-      "create-project-privacy-text": "Los ajustes de privacidad pueden ser modificados luego."
+      "create-project-name-label" : "Nome del progetto",
+      "create-project-name-placeholder" : "Nome corto",
+      "create-project-language-label" : "Lingua del progetto",
+      "create-project-language-placeholder" : "Selezionare la lingua",
+      "create-project-privacy-label": "Selezionare la privacy del progetto",
+      "create-project-privacy-on": "Privato",
+      "create-project-privacy-off": "Pubblico",
+      "create-project-privacy-text": "Le impostazioni della privacy possono essere modificate in seguito."
     },
     "languages": {
       "en": "",
