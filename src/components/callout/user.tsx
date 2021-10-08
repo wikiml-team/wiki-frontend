@@ -10,13 +10,8 @@ import { Callout,
     IStackStyles, 
     Persona, 
     PersonaSize, 
-    IPersonaSharedProps ,
 } from '@fluentui/react';
-
-type UserInfoProps = {
-    name: string,
-    email: string
-}
+import { KeycloakProfile } from 'keycloak-js';
 
 type UserCalloutProps = {
     isCalloutVisible : boolean,
@@ -35,23 +30,15 @@ export default function UserCallout(props : UserCalloutProps) {
     const handleLogout = () => keycloak.logout();
     const handleLogin = () => keycloak.login();
 
-    const examplePersona: IPersonaSharedProps = {
-        secondaryText: 'gabi.santacruzpacheco@gmail.com',
-        tertiaryText: 'editor',
-    };
-
-    // const [userInfo, setUserInfo] = useState<UserInfoProps>({name: "", email: ""})
+    const [profile, setProfile] = useState<KeycloakProfile>({})
     
-    // useEffect(() => {
-    //     keycloak.loadUserInfo().then((info : any) => {
-    //         setUserInfo({name: info.name, email: info.email})
-    //     })
-    // }, [keycloak])
-
-    // keycloak.loadUserInfo().then((info : any) => {
-    //     setUserInfo({name: info.name, email: info.email})
-    // })
-
+    useEffect(() => {
+        keycloak.loadUserProfile().then((info : any) => {
+            setProfile(info)
+        }).catch(() => {
+            console.warn('Failed to load user profile')
+        })
+    }, [keycloak])
 
     // STYLES
     const classes = mergeStyleSets({
@@ -90,9 +77,14 @@ export default function UserCallout(props : UserCalloutProps) {
                             onClick={keycloak.authenticated? handleLogout : handleLogin}>
                         </CommandBarButton>
                     </Stack>
-                    <Persona size={PersonaSize.size48} text="Gabriela Rodriguez" {...examplePersona}/>
+                    <Persona 
+                        size={PersonaSize.size48} 
+                        text={profile.firstName} 
+                        secondaryText={profile.email}
+                        tertiaryText='editor'
+                        />
                     <Link href="/settings/profile" className={classes.link}>
-                        My profile
+                        {t("profile-link")}
                     </Link>
                 </Callout>
             )}
