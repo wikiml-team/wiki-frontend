@@ -10,14 +10,14 @@ import { GET_METHODOLOGIES } from "apollo/methodologies";
 
 export default function MethodologiesPage() {
     const { t } = useTranslation(["navbar", "homepages-subtitles"]);
+    
+    const methodologiesCards = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToCards})
 
     return <React.Fragment>
         <Text variant='xLarge' block>{t("methodologies")}</Text> <br/>
-        <Text variant='mediumPlus'>{t("homepages-subtitles:methodologies-description")}</Text>
+        {/* <Text variant='mediumPlus'>{t("homepages-subtitles:methodologies-description")}</Text> */}
         <Stack horizontal>
-            <ExecuteQuery 
-                query={GET_METHODOLOGIES} 
-                applyToData={mapMethodologiesToCards}/>
+            {methodologiesCards}
         </Stack>
     </React.Fragment>
 }

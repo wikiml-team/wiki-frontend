@@ -48,7 +48,7 @@ export default function FileMenu() {
     const classes = mergeStyleSets({
         footer: {
             "a": {
-            paddingLeft: 30!,
+                paddingLeft: 36!,
             }
         },
       });
@@ -129,7 +129,6 @@ export default function FileMenu() {
                     name: t('home'),
                     url: '/',
                     key: 'key_home',
-                    // iconProps: iconProps,
                     icon: 'Home',
                 },
                 {

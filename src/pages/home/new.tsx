@@ -33,12 +33,12 @@ export default function NewPage() {
         )
     }
 
-    const methodologies = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToCards})
+    const methodologiesCards = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToCards})
 
     return <React.Fragment>
         <Text variant='xLarge'>{t("new")}</Text>
         <Stack horizontal>
-            {methodologies}
+            {methodologiesCards}
         </Stack>
         <NewProjectDialog 
             hideDialog={projectHideDialog}
