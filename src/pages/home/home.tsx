@@ -36,12 +36,11 @@ export default function HomePage() {
             <Text variant='xLarge' styles={{root: {marginBottom: 20}}} block>{t("home")}</Text>
 
             {/* Star Projects */}
-
             <Stack>
                 <Text variant='mediumPlus'>{t("homepages-subtitles:stared-projects")}</Text>
                 <Stack horizontal>
-                    {exampledata.map(({project, meth} : Example) => (
-                        <StaredProjects projectName={project} methodology={meth}/>
+                    {exampledata.map(({project, meth} : Example, key : number) => (
+                        <StaredProjects key={key} projectName={project} methodology={meth}/>
                     ))}
                 </Stack>
                 <Separator styles={separatorStyles}/>
