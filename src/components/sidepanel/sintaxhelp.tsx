@@ -52,7 +52,7 @@ const SintaxHelpPanel: FunctionComponent<SintaxHelpPanelProps> = (props) => {
         <Panel
             isOpen={isOpen}
             isLightDismiss={true}
-            onLightDismissClick={showDialog}
+            // onLightDismissClick={showDialog}
             onDismiss={onDismiss}
             headerText={header}
             closeButtonAriaLabel="Close"

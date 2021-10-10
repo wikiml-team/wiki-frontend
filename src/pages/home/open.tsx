@@ -62,7 +62,7 @@ const recent_projects : IProject[] = [
 
 const own_project : IProject[] = [
     {
-        key: "key1",
+        key: "key4",
         name: "Reforestacion",
         methodology: "canadian",
         owner: "Alfonso Quesada",
@@ -70,7 +70,7 @@ const own_project : IProject[] = [
         dateModified: new Date().toLocaleDateString(),
     },
     {
-        key: "key2",
+        key: "key5",
         name: "Siembra Organica",
         methodology: "german",
         owner: "Alfonso Quesada",
@@ -78,7 +78,7 @@ const own_project : IProject[] = [
         dateModified: new Date().toLocaleDateString(),
     },
     {
-        key: "key3",
+        key: "key6",
         name: "Green town",
         methodology: "canadian",
         owner: "Alfonso Quesada",

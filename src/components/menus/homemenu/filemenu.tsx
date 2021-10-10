@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
+
 import { INavLinkGroup, 
     INavStyles, 
     Nav, 
@@ -11,38 +15,35 @@ import { INavLinkGroup,
     mergeStyleSets,
     INavLink
 } from '@fluentui/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
-
-// const links = ["home", "new", "open"]
-// const footer_links = ["info", "export", "print", "share", "about"]
 
 export default function FileMenu() {
 
     // LOGIC
     const { t } = useTranslation(['navbar', 'basics']);
     const { palette } = useTheme();
-
     const history = useHistory()
 
-    const [selectedKey, setSelectedKey] = useState("key1")
+    const [selectedKey, setSelectedKey] = useState("")
+
+    useEffect(() => {
+        const path = history.location.pathname.split('/')
+        const key = path[path.length - 1] === ""? "key_home" : `key_${path[path.length - 1]}` 
+        setSelectedKey(key)
+    }, [history])
 
     const handleNavClick = (ev?: React.MouseEvent<HTMLElement>, item?: INavLink) => {
         if (ev) ev.preventDefault()
 
         if (item) {
-            setSelectedKey(item.key || "key1")
+            setSelectedKey(item.key || "key_home")
             history.push(item.url)
-            window.localStorage.setItem('selectedKey', item.key || "key1")
         }
     }
 
-    useEffect(() => {
-        const storedSelectedOption = window.localStorage.getItem('selectedKey') || 'key1'
-        setSelectedKey(storedSelectedOption)
-      }, [])
-    
+    const handleOnReturn = () => {
+        history.push("/workplace")
+    }
+
     // STYLES
     const classes = mergeStyleSets({
         footer: {
@@ -127,34 +128,33 @@ export default function FileMenu() {
                 {
                     name: t('home'),
                     url: '/',
-                    key: 'key1',
+                    key: 'key_home',
                     // iconProps: iconProps,
                     icon: 'Home',
                 },
                 {
                     name: t('new'),
                     url: '/new',
-                    key: 'key2',
+                    key: 'key_new',
                     icon: 'Page',
                 },
                 {
                     name: t('open'),
                     url: '/open',
-                    key: 'key3',
+                    key: 'key_open',
                     icon: 'OpenFolderHorizontal',
                 }
             ],
         },
     ];
 
-    // VAR
     const nav_methodologies: INavLinkGroup[] = [
         {
             links: [
                 {
                     name: t('methodologies'),
                     url: '/methodologies',
-                    key: 'key4',
+                    key: 'key_methodologies',
                     // iconProps: iconProps,
                     icon: 'StackIndicator',
                 }
@@ -168,31 +168,32 @@ export default function FileMenu() {
                 {
                     name: t('info'),
                     url: '/1/info',
-                    key: 'key5',
+                    key: 'key_info',
                 },
                 {
                     name: t('export'),
                     url: '/1/export',
-                    key: 'key6',
+                    key: 'key_export',
                 },
                 {
                     name: t('print'),
                     url: '/1/print',
-                    key: 'key7',
+                    key: 'key_print',
                 },
                 {
                     name: t('share'),
                     url: '/1/share',
-                    key: 'key8',
+                    key: 'key_share',
                 },
                 {
                     name: t('about'),
                     url: '/1/about',
-                    key: 'key9',
+                    key: 'key_about',
                 },        
             ],
         }
     ]
+
 
     return (
         <div>
@@ -200,7 +201,8 @@ export default function FileMenu() {
             <ActionButton 
                 iconProps={iconProps} 
                 styles={buttonStyles}
-                href="/workplace">
+                onClick={handleOnReturn}
+            >
                 {t("basics:return")}
             </ActionButton>
 
