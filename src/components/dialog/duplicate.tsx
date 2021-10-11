@@ -40,7 +40,11 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
             primaryButtonText={t("duplicate-accept-label")}
             acceptOnClick={handleAccpetButtonOnClick}
             // inline conditionally pass props
+<<<<<<< HEAD
             {...(options.length > 0 && {optionsProps: {
+=======
+            {...(options && {optionsProps: {
+>>>>>>> d9904d3f4b7698532c23e494fa34468bd0b865a4
               options,
               optionsTitle : t("duplicate-options-title")
             }})}
