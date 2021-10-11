@@ -313,9 +313,9 @@
       "panel-where-label": "Dove",
       "panel-topic-label": "Argomento",
       "panel-verb-label": "Verbo",
-      "tooltip-panel-save": "Salva in mezzo",
+      "tooltip-panel-save": "Salva solo",
       "tooltip-panel-concat": "Forma il testo concatenando i campi",
-      "concat-button-label": "",
+      "concat-button-label": "Concatenare",
       "save-before-closing" : "È sicuro/a di voler chiudere il pannello?"
     },
     "stakeholders-form": {
@@ -335,36 +335,36 @@
       "tooltip-change-main-stakeholder-2": "Seleziona come attuatore principale",
       "tooltip-change-main-stakeholder-3": "Seleziona come principale donatore",
       "tooltip-change-main-stakeholder-4": "Altro stakeholder",
-      "tooltip-add-stakeholder-DB": "",
-      "name-field": "",
-      "roll-field": "",
-      "select-stakeholder-placeholder": "",
-      "panel-header": "",
-      "panel-explanation": "",
-      "panel-warning": "",
-      "stakeholder-label": "",
-      "country-label": ""
+      "tooltip-add-stakeholder-DB": "Creare stakeholder nel database",
+      "name-field": "Stakeholder",
+      "roll-field": "Principale",
+      "select-stakeholder-placeholder": "Selezione Stakeholder",
+      "panel-header": "Creare stakeholder",
+      "panel-explanation": "Aggiungere un nuovo stakeholder al database.",
+      "panel-warning": "Controlla che lo stakeholder non esista precedentemente nel database per evitare dati duplicati",
+      "stakeholder-label": "Nome",
+      "country-label": "Paese"
     },
     "contextual-help": {
-      "tooltip-contextual-help": "",
-      "help-panel-header": "",
-      "collapse-all": "",
-      "definition-label": "",
-      "example-label": "",
-      "format-label": "",
-      "guide-label": "",
-      "tips-label": ""
+      "tooltip-contextual-help": "Aiuto sensibile al contesto",
+      "help-panel-header": "Aiuto sensibile al contesto",
+      "collapse-all": "aprire/chiudere-tutto",
+      "definition-label": "Definizione",
+      "example-label": "Esempio",
+      "format-label": "Formato",
+      "guide-label": "Guida",
+      "tips-label": "Consigli"
     },
     "sectors" : {
-      "agriculture-nutrition" : "",
-      "economic-growth" : "",
-      "human-rights" : "",
-      "human-development" : "",
-      "energy" : "",
-      "infrastructure" : "",
-      "envirornment" : "",
-      "migration" : "",
-      "tecnology" : ""
+      "agriculture-nutrition" : "agricoltura e alimentazione",
+      "economic-growth" : "Crescita economica",
+      "human-rights" : "Diritti umani e governance democratica",
+      "human-development" : "Sviluppo umano",
+      "energy" : "Energia",
+      "infrastructure" : "Infrastruttura",
+      "envirornment" : "Environment",
+      "migration" : "migrazione e asilo",
+      "tecnology" : "Tecnologie dell'informazione e della comunicazione"
     }
 }
     
