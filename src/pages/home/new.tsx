@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 
-import { Stack, Text } from '@fluentui/react';
+import { IStackProps, Stack, Text } from '@fluentui/react';
 import { useBoolean } from '@fluentui/react-hooks';
 
 import MethodologyCard from 'components/cards/methodologycard';
 import NewProjectDialog from 'components/dialog/newproject';
 import ExecuteQuery from 'apollo/executequery';
 import { GET_METHODOLOGIES } from 'apollo/methodologies';
+import { Title } from 'components/styled/titletext';
 
 export default function NewPage() {
     
@@ -20,7 +21,6 @@ export default function NewPage() {
     const mapMethodologiesToCards = (data: any) => {
 
         const handleOnClick = (id : string, name : string) => {
-            // alert(id)
             setMethodologyId(id)
             toggleProjectHideDialog()
         }
@@ -29,15 +29,24 @@ export default function NewPage() {
             <Stack.Item key={id}>
               <MethodologyCard name={name} onClick={() => handleOnClick(id, name)}/>
             </Stack.Item>
-            )
-        )
+        ))
     }
 
     const methodologiesCards = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToCards})
 
+    // STYLES
+    const stackProps : IStackProps = {
+        tokens: {childrenGap: 10},
+        styles: {
+            root: {
+                marginTop: 20
+            }
+        }
+    }
+
     return <React.Fragment>
-        <Text variant='xLarge'>{t("new")}</Text>
-        <Stack horizontal>
+        <Title>{t("new")}</Title>
+        <Stack horizontal {...stackProps}>
             {methodologiesCards}
         </Stack>
         <NewProjectDialog 

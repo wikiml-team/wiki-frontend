@@ -14,6 +14,7 @@ import { DetailsList,
          IDetailsListProps,
          IDetailsRowStyles,
          DetailsRow} from '@fluentui/react';
+import { Title } from 'components/styled/titletext';
 
 
 interface IProject {
@@ -169,7 +170,7 @@ export default function OpenPage() {
     };
 
     return <React.Fragment>
-        <Text variant='xLarge' styles={{root: {marginBottom: 20}}} block>{t("navbar:open")}</Text>
+        <Title>{t("navbar:open")}</Title>
 
         <Stack styles={stackStyles}>
             <Text variant='mediumPlus'>{t("recent")}</Text> <br/>

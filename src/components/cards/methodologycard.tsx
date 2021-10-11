@@ -41,7 +41,6 @@ export default function MethodologyCard(props : MethodologyCardProps) {
   const cardStyles: IDocumentCardStyles = {
       root: { 
           display: 'inline-block', 
-          margin: "20px 20px 20px 0", 
           width: 250 
       },
   };

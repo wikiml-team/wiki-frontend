@@ -5,6 +5,7 @@ import { ISeparatorStyles, Separator, Stack, Text, useTheme } from '@fluentui/re
 // import { useQuery } from '@apollo/client';
 // import { GET_USER_PROJECTS } from 'apollo/methodologies';
 import StaredProjects from 'components/cards/staredprojects';
+import { Title } from 'components/styled/titletext';
 
 // Home: star projects, visualizes teams, maybe notifications
 
@@ -33,7 +34,7 @@ export default function HomePage() {
     };
     return (
         <React.Fragment>
-            <Text variant='xLarge' styles={{root: {marginBottom: 20}}} block>{t("home")}</Text>
+            <Title>{t("home")}</Title>
 
             {/* Star Projects */}
             <Stack>
