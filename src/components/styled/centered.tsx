@@ -30,6 +30,9 @@ export const CenteredHorizontal: FunctionComponent<CenteredProps> = (
   </Container>
 );
 
+const ContainerText = styled.div`
+position: relative;`
+
 const Recipient2 = styled.div`
   position: absolute;
   top: 50%;
@@ -44,5 +47,13 @@ export const Centered: FunctionComponent<CenteredProps> = (
   <Container className={props.className}>
     <Recipient2>{props.children}</Recipient2>
   </Container>
+);
+
+export const CenteredText: FunctionComponent<CenteredProps> = (
+  props
+) => (
+  <ContainerText className={props.className}>
+    <Recipient2>{props.children}</Recipient2>
+  </ContainerText>
 );
 

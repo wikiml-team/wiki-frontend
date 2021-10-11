@@ -58,10 +58,11 @@
     "shared" : "Zuletzt freigegeben",
     "all" : "Alle",
     "open-permition-owner": "Besitzer",
-    "open-permition-edit": "Bearbeiten",
-    "open-permition-read": "Lesen",
     "open-date-modified" : "Zuletzt geändert",
-    "methodologies-description": ""
+    "methodologies-description": "Select whether you want to add, read or edit (if allowed) a methodology.",
+    "permition-read": "Lesen",
+    "permition-edit": "Bearbeiten",
+    "permition-create" : "Create"
   },
   "menu": {
     "wikiml": "WikiML",

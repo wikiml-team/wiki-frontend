@@ -58,10 +58,11 @@
     "shared" : "Compartidos",
     "all" : "Todos",
     "open-permition-owner": "Administrador",
-    "open-permition-edit": "Editar",
-    "open-permition-read": "Leer",
     "open-date-modified" : "Modificado por última vez",
-    "methodologies-description": "Usted tiene acceso a modificar las siguientes metodologías:"
+    "methodologies-description": "Selecciona si quiere leer, añadir o editar (si tiene los permisos) una metodología.",
+    "permition-read": "Leer",
+    "permition-edit": "Editar",
+    "permition-create" : "Create"
   },
   "menu": {
     "wikiml": "WikiML",

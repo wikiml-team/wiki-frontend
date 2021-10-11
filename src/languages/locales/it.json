@@ -3,12 +3,12 @@
     "basics": {
       "yes" : "si",
       "no" : "no",
-      "save": "salvare",
-      "dismiss": "cancellare",
-      "thanks" : "grazie",
-      "public" : "pubblico",
-      "private": "privato",
-      "return" : "ritorno"
+      "save": "Salvare",
+      "dismiss": "Cancellare",
+      "thanks" : "Grazie",
+      "public" : "Pubblico",
+      "private": "Privato",
+      "return" : "Ritorno"
     },
     "methodologies": {
       "canadian":  "Metodologia canadese",
@@ -58,10 +58,11 @@
       "shared" : "Recentemente condiviso",
       "all" : "Tutti",
       "open-permition-owner": "Proprietario",
-      "open-permition-edit": "Modificare",
-      "open-permition-read": "Leggere",
       "open-date-modified" : "Ultima modifica",
-      "methodologies-description": ""
+      "methodologies-description": "",
+      "permition-read": "Leggere",
+      "permition-edit": "Modificare",
+      "permition-create" : "Create"
     },
     "menu": {
       "wikiml": "WikiML",
