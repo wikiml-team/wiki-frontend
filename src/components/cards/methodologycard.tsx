@@ -5,25 +5,19 @@ import { DocumentCard,
     DocumentCardTitle, 
     IDocumentCardStyles, 
     ImageFit,
-    PrimaryButton,
     mergeStyleSets,
-    DefaultButton,
-    Stack,
-    IButtonStyles,
-    useTheme
 } from '@fluentui/react'
 
 import canadian from "./logos/canadian.png"
 import german from "./logos/german.png"
 import autralian from "./logos/australian.png"
-import styled from 'styled-components'
 import { useState } from 'react'
-import { Centered, CenteredHorizontal } from 'components/styled/centered'
 
 type MethodologyCardProps = {
     name : string,
     href?: string,
-    onClick?: () => void
+    onClick?: () => void,
+    contentToDisplay?: JSX.Element
 }
 
 const pic_dict = {
@@ -34,11 +28,16 @@ const pic_dict = {
 
 export default function MethodologyCard(props : MethodologyCardProps) {
 
-  const { name, href, onClick } = props;
-  const { palette } = useTheme()
+  // LOGIC
+  const { name, href, onClick, contentToDisplay } = props;
 
-  const [displayContent, setDisplayContent] = useState(false)
+  const [displayContent, setDisplayContent] = useState(false);
+
+  const handleOnMouseEnter = () => setDisplayContent(contentToDisplay? true: false);
+
+  const handleOnMouseLeave = () => setDisplayContent(false);
   
+  // STYLES
   const classes = mergeStyleSets({
       cardContent: {
         opacity: displayContent? "35%" : "inherit"
@@ -53,20 +52,14 @@ export default function MethodologyCard(props : MethodologyCardProps) {
       },
   };
 
-  const buttonStyles : IButtonStyles = {
-    root: {
-      backgroundColor: palette.themeDark
-    }
-  }
-
 
   return (
       <DocumentCard
           onClickHref={href}
-          onClick={onClick}
+          onClick={onClick?? (() => null)}
           styles={cardStyles}
-          onMouseEnter={() => setDisplayContent(true)}
-          onMouseLeave={() => setDisplayContent(false)}
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
         >
           <div className={classes.cardContent}>
             <DocumentCardImage 
@@ -79,35 +72,9 @@ export default function MethodologyCard(props : MethodologyCardProps) {
             </DocumentCardDetails>
           </div>
 
-          {displayContent && (<DisplayOver>
-            <Centered>
-
-              <Stack horizontal tokens={{childrenGap: 10}}>
-                <PrimaryButton
-                  text="Read"
-                  onClick={()=> {}} 
-                  styles={buttonStyles}
-                  />
-                <PrimaryButton 
-                  text="Edit" 
-                  onClick={()=> {}} 
-                  />
-              </Stack>
-            </Centered>
-          </DisplayOver>)}
+          {displayContent && contentToDisplay}
       </DocumentCard>
   )
 }
 
-const DisplayOver = styled.div({
-  height: "100%",
-  left: "0",
-  position: "absolute",
-  top: "0",
-  width: "100%",
-  zIndex: 2,
-  transition: "background-color 350ms ease",
-  backgroundColor: "transparent",
-  padding: "20px 20px",
-  boxSizing: "border-box",
-});
+
