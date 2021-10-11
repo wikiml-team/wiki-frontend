@@ -20,6 +20,12 @@
     "logout" : "Abmelden",
     "profile-link" : "Mein Profil"
   },
+  "permitions" : {
+    "read": "Lesen",
+    "edit": "Bearbeiten",
+    "create" : "Create",
+    "owner": "Manage"
+  },
   "commands": {
     "undo": "Rückgängig",
     "redo": "Wiederholen",
@@ -36,33 +42,52 @@
     "notifications": "Benachrichtigungen"
   },
   "navbar" : {
-    "home" : "Startseite ", 
-    "new" : "Neu", 
-    "open" : "Öffnen",
-    "info" : "",
-    "methodologies": "Metodologien",
-    "export" : "Exportieren",
-    "print" : "Drucken",
-    "share" : "Teilen",
-    "about" : "Info",
-    "account" : "Benutzerkonto",
-    "feedback" : "Feedback",
-    "options" : "Optionen"
-  },
-  "homepages-subtitles": {
-    "stared-projects" : "Markierte Projekte",
-    "teams": "Teams",
-    "notifications": "Benachrichtigungen",
-    "recent": "Neuste",
-    "owner" : "Meine Projekte",
-    "shared" : "Zuletzt freigegeben",
-    "all" : "Alle",
-    "open-permition-owner": "Besitzer",
-    "open-date-modified" : "Zuletzt geändert",
-    "methodologies-description": "Select whether you want to add, read or edit (if allowed) a methodology.",
-    "permition-read": "Lesen",
-    "permition-edit": "Bearbeiten",
-    "permition-create" : "Create"
+    "home" : {
+      "title" : "Startseite",
+      "stared-projects" : "Markierte Projekte",
+      "teams" : "Teams",
+      "notifications" : "Benachrichtigungen"
+    }, 
+    "new" : {
+      "title" : "Neu",
+      "select-create-project" : "Select the methodology your project should follow."
+    }, 
+    "open" : {
+      "title" : "Öffnen",
+      "recent": "Neuste",
+      "shared" : "Zuletzt freigegeben",
+      "all" : "Alle",
+      "date-modified" : "Zuletzt geändert"
+    },
+    "methodologies" : {
+      "title" : "Metodologien",
+      "description" : "Select the methodology you want to read, edit or add.",
+      "permitions-note" : "Edition will only be available if permitions have been given."
+    },
+    "info" : {
+      "title" : "Info"
+    },
+    "export" : {
+      "title" : "Exportieren"
+    },
+    "print" : {
+      "title" : "Drucken"
+    },
+    "share" : {
+      "title" : "Teilen"
+    },
+    "about" : {
+      "title" : "Info"
+    },
+    "account" : {
+      "title" : "Benutzerkonto"
+    },
+    "feedback" : {
+      "title" : "Feedback"
+    },
+    "options" : {
+      "title" : "Optionen"
+    }
   },
   "menu": {
     "wikiml": "WikiML",

@@ -66,7 +66,7 @@ function NewProjectDialogBody(props : NewProjectDialogBodyProps) {
         />
         <Toggle 
             label={<>
-                {`${t("create-project-privacy-label")} `}
+                {t("create-project-privacy-label")}{' '}
                 <TooltipHost content={t("create-project-privacy-text")}>
                     <Icon iconName="Info" aria-label="info" />
                 </TooltipHost>    

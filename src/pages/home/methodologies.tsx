@@ -11,7 +11,8 @@ import { IButtonStyles,
         useTheme,
         IButtonProps,
         TooltipHost,
-        mergeStyleSets} from "@fluentui/react";
+        mergeStyleSets,
+        Icon} from "@fluentui/react";
 
 import MethodologyCard from "components/cards/methodologycard";
 import ExecuteQuery from 'apollo/executequery';
@@ -23,7 +24,8 @@ import { Title } from 'components/styled/titletext';
 export default function MethodologiesPage() {
 
     // LOGIC
-    const { t } = useTranslation(["navbar", "homepages-subtitles"]);
+    const { t } = useTranslation();
+    const tpath = "navbar:methodologies"
     
     const methodologiesCards = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToCards})
 
@@ -81,14 +83,19 @@ export default function MethodologiesPage() {
     }
 
     return <React.Fragment>
-        <Title>{t("methodologies")}</Title>
-        <Text variant='mediumPlus'>{t("homepages-subtitles:methodologies-description")}</Text>
+        <Title>{t(`${tpath}:title`)}</Title>
+        <Text variant='mediumPlus'>
+            {t(`${tpath}:description`)}{' '}
+            <TooltipHost content={t(`${tpath}:permitions-note`)}>
+                <Icon iconName="Info" aria-label="info" />
+            </TooltipHost>
+        </Text>
 
         <Stack horizontal {...stackProps}>
             {/* To add a methodology */}
             <Stack.Item>
                 <CenteredText className={classes.iconContainer}>
-                    <TooltipHost content={t("homepages-subtitles:permition-create")} styles={tooltipStyles}>
+                    <TooltipHost content={t("permitions:create")} styles={tooltipStyles}>
                         <IconButton {...iconButtonProps} />
                     </TooltipHost>
                 </CenteredText>
@@ -115,7 +122,8 @@ const mapMethodologiesToCards = (data: any) => {
 
 function DisplayContentOverCard() {
     
-    const { t } = useTranslation("homepages-subtitles");
+    const { t } = useTranslation("permitions");
+
     const { palette } = useTheme()
     
     const buttonStyles : IButtonStyles = {
@@ -129,12 +137,12 @@ function DisplayContentOverCard() {
             <Centered>
                 <Stack horizontal tokens={{childrenGap: 10}}>
                     <PrimaryButton
-                        text={t("permition-read")}
+                        text={t("read")}
                         onClick={()=> {}} 
                         styles={buttonStyles}
                     />
                     <PrimaryButton 
-                        text={t("permition-edit")} 
+                        text={t("edit")} 
                         onClick={()=> {}} 
                     />
                 </Stack>

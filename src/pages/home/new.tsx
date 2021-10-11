@@ -13,7 +13,8 @@ import { Title } from 'components/styled/titletext';
 export default function NewPage() {
     
     // LOGIC
-    const { t } = useTranslation("navbar");
+    const { t } = useTranslation();
+    const tpath = "navbar:new"
     
     const [methodologyId, setMethodologyId] = useState("1")
     const [projectHideDialog, { toggle: toggleProjectHideDialog }] = useBoolean(true);
@@ -45,7 +46,9 @@ export default function NewPage() {
     }
 
     return <React.Fragment>
-        <Title>{t("new")}</Title>
+        <Title>{t(`${tpath}:title`)}</Title>
+
+        <Text variant="mediumPlus">{t(t(`${tpath}:select-create-project`))}</Text>
         <Stack horizontal {...stackProps}>
             {methodologiesCards}
         </Stack>

@@ -20,6 +20,12 @@
     "logout" : "Log out",
     "profile-link" : "My profile"
   },
+  "permitions" : {
+    "read": "Read",
+    "edit": "Edit",
+    "create" : "Create",
+    "owner": "Manage"
+  },
   "commands": {
     "undo": "Undo",
     "redo": "Redo",
@@ -36,33 +42,52 @@
     "notifications": "Notifications"
   },
   "navbar" : {
-    "home" : "Home", 
-    "new" : "New", 
-    "open" : "Open",
-    "methodologies": "Methodologies",
-    "info" : "Info",
-    "export" : "Export",
-    "print" : "Print",
-    "share" : "Share",
-    "about" : "About",
-    "account" : "Account",
-    "feedback" : "Feedback",
-    "options" : "Options"
-  },
-  "homepages-subtitles": {
-    "stared-projects" : "Stared Projects",
-    "teams": "Teams",
-    "notifications": "Notifications",
-    "recent": "Recent",
-    "owner" : "My projects",
-    "shared" : "Recenly shared",
-    "all" : "All",
-    "open-permition-owner": "Manage",
-    "open-date-modified" : "Last modified",
-    "methodologies-description": "Select whether you want to add, read or edit (if allowed) a methodology.",
-    "permition-read": "Read",
-    "permition-edit": "Edit",
-    "permition-create" : "Create"
+    "home" : {
+      "title" : "Home",
+      "stared-projects" : "Stared Projects",
+      "teams" : "Teams",
+      "notifications" : "Notifications"
+    }, 
+    "new" : {
+      "title" : "New",
+      "select-create-project" : "Select the methodology your project should follow."
+    }, 
+    "open" : {
+      "title" : "Open",
+      "recent": "Recent",
+      "shared" : "Recenly shared",
+      "all" : "All",
+      "date-modified" : "Last modified"
+    },
+    "methodologies" : {
+      "title" : "Methodologies",
+      "description" : "Select the methodology you want to read, edit or add.",
+      "permitions-note" : "Edition will only be available if permitions have been given."
+    },
+    "info" : {
+      "title" : "Info"
+    },
+    "export" : {
+      "title" : "Export"
+    },
+    "print" : {
+      "title" : "Print"
+    },
+    "share" : {
+      "title" : "Share"
+    },
+    "about" : {
+      "title" : "About"
+    },
+    "account" : {
+      "title" : "Account"
+    },
+    "feedback" : {
+      "title" : "Feedback"
+    },
+    "options" : {
+      "title" : "Options"
+    }
   },
   "menu": {
     "wikiml": "WikiML",

@@ -93,7 +93,10 @@ const own_project : IProject[] = [
 export default function OpenPage() {
 
     // LOGIC
-    const { t } = useTranslation(["homepages-subtitles", "navbar", "methodologies"]);
+    // const { t } = useTranslation(["homepages-subtitles", "navbar", "methodologies"]);
+    const { t } = useTranslation(["permitions", "methodologies"]);
+    const tpath = "navbar:open"
+
     const { palette } = useTheme()
 
     const columns: IColumn[] = [
@@ -133,7 +136,7 @@ export default function OpenPage() {
 
     const iconRender = (project: IProject) => {
         return (    
-            <TooltipHost content={t(`open-permition-${project.permition}`)}>
+            <TooltipHost content={t(`${project.permition}`)}>
                 <IconButton iconProps={{ iconName: permitions[project.permition]}}  />
             </TooltipHost>
         )
@@ -152,7 +155,7 @@ export default function OpenPage() {
 
     const dateRender = (project: IProject) => {
         return (
-            `${t("open-date-modified")} ${project.dateModified}`
+            `${t(`${tpath}:date-modified`)} ${project.dateModified}`
         )
     }
 
@@ -170,10 +173,10 @@ export default function OpenPage() {
     };
 
     return <React.Fragment>
-        <Title>{t("navbar:open")}</Title>
+        <Title>{t(t(`${tpath}:title`))}</Title>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("recent")}</Text> <br/>
+            <Text variant='mediumPlus'>{t(`${tpath}:recent`)}</Text> <br/>
 
             <DetailsList
                 items={recent_projects}
@@ -199,7 +202,7 @@ export default function OpenPage() {
         </Stack>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("shared")}</Text> <br/>
+            <Text variant='mediumPlus'>{t(`${tpath}:shared`)}</Text> <br/>
 
             <DetailsList
                 items={recent_projects.slice(1)}
@@ -212,7 +215,7 @@ export default function OpenPage() {
         </Stack>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("all")}</Text> <br/>
+            <Text variant='mediumPlus'>{t(`${tpath}:all`)}</Text> <br/>
 
             <DetailsList
                 items={own_project.concat(recent_projects)}
