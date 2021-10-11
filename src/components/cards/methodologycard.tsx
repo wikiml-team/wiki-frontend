@@ -1,3 +1,4 @@
+import { useSpring, animated } from 'react-spring'
 
 import { DocumentCard, 
     DocumentCardDetails, 
@@ -5,7 +6,6 @@ import { DocumentCard,
     DocumentCardTitle, 
     IDocumentCardStyles, 
     ImageFit,
-    mergeStyleSets,
 } from '@fluentui/react'
 import { useBoolean } from '@fluentui/react-hooks';
 
@@ -38,12 +38,6 @@ export default function MethodologyCard(props : MethodologyCardProps) {
   const handleOnMouseLeave = () => contentToDisplay && toggleDisplayContent();
   
   // STYLES
-  const classes = mergeStyleSets({
-      cardContent: {
-        opacity: displayContent? "35%" : "inherit"
-      }
-  })
-
   const cardStyles: IDocumentCardStyles = {
       root: { 
           display: 'inline-block', 
@@ -52,6 +46,13 @@ export default function MethodologyCard(props : MethodologyCardProps) {
       },
   };
 
+  const fadeStyles = useSpring({
+    opacity: displayContent ? 0.25 : 1
+  });
+
+  const mountStyles = useSpring({
+    opacity: displayContent ? 1 : 0
+  });
 
   return (
       <DocumentCard
@@ -61,7 +62,7 @@ export default function MethodologyCard(props : MethodologyCardProps) {
           onMouseEnter={handleOnMouseEnter}
           onMouseLeave={handleOnMouseLeave}
         >
-          <div className={classes.cardContent}>
+          <animated.div style={fadeStyles}>
             <DocumentCardImage 
               height={90} 
               imageFit={ImageFit.cover} 
@@ -70,9 +71,11 @@ export default function MethodologyCard(props : MethodologyCardProps) {
             <DocumentCardDetails>
               <DocumentCardTitle title={name} showAsSecondaryTitle />
             </DocumentCardDetails>
-          </div>
+          </animated.div>
 
-          {displayContent && contentToDisplay}
+          <animated.div style={mountStyles}>
+            {contentToDisplay}
+          </animated.div>
       </DocumentCard>
   )
 }

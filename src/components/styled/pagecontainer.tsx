@@ -9,14 +9,14 @@ const Container = styled.div`
 
 type PagecontainerProps = {
   className?: string;
-  spring?: any;
+  styles?: any;
   scrollHeight: string | number | undefined;
 }
 const PageContainer: React.FunctionComponent<PagecontainerProps> = (props) => {
 
-  const { className, spring, scrollHeight, children } = props;
+  const { className, styles, scrollHeight, children } = props;
 
-  return <animated.div style={spring}>
+  return <animated.div style={styles}>
     <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax={scrollHeight} >
       <Container className={className} >
         {children}

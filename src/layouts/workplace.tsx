@@ -23,19 +23,16 @@ const WorkplaceLayout: FunctionComponent = (props) => {
 
   // Toolbar Animation State & Controls
   const [fixToolBar, setFixToolBar] = useState(true)
-
   const [showToolBar, setShowToolBar] = useState(true)
+
   const toolBarTransition = useTransition(showToolBar, {
     from: { x: 0, y: -34, opacity: 0 },
     enter: { x: 0, y: 0, opacity: 1 },
     leave: { x: 0, y: -34, opacity: 0 },
   })
 
-  const pageSpring = useSpring({
-    marginTop: showToolBar ? 180 : 80,
-    from: {
-      marginTop: 180,
-    },
+  const pageStyles = useSpring({
+    marginTop: showToolBar ? 180 : 80
   })
 
   const handleToolbarClose = () => {
@@ -59,7 +56,7 @@ const WorkplaceLayout: FunctionComponent = (props) => {
         </ToolBar>
       </Sticky>
 
-      <PageContainer spring={pageSpring} scrollHeight={showToolBar ? "calc(100vh - 220px)" : "calc(100vh - 110px)"}>
+      <PageContainer styles={pageStyles} scrollHeight={showToolBar ? "calc(100vh - 220px)" : "calc(100vh - 110px)"}>
         {page}
       </PageContainer>
 
