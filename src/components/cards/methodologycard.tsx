@@ -7,11 +7,11 @@ import { DocumentCard,
     ImageFit,
     mergeStyleSets,
 } from '@fluentui/react'
+import { useBoolean } from '@fluentui/react-hooks';
 
 import canadian from "./logos/canadian.png"
 import german from "./logos/german.png"
 import autralian from "./logos/australian.png"
-import { useState } from 'react'
 
 type MethodologyCardProps = {
     name : string,
@@ -31,11 +31,11 @@ export default function MethodologyCard(props : MethodologyCardProps) {
   // LOGIC
   const { name, href, onClick, contentToDisplay } = props;
 
-  const [displayContent, setDisplayContent] = useState(false);
+  const [displayContent, {toggle: toggleDisplayContent}] = useBoolean(false);
 
-  const handleOnMouseEnter = () => setDisplayContent(contentToDisplay? true: false);
+  const handleOnMouseEnter = () => contentToDisplay && toggleDisplayContent();
 
-  const handleOnMouseLeave = () => setDisplayContent(false);
+  const handleOnMouseLeave = () => contentToDisplay && toggleDisplayContent();
   
   // STYLES
   const classes = mergeStyleSets({
