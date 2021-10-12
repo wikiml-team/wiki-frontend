@@ -7,7 +7,6 @@ import { IButtonStyles,
         Overlay, 
         PrimaryButton, 
         Stack, 
-        Text, 
         useTheme,
         IButtonProps,
         TooltipHost,
@@ -18,7 +17,7 @@ import MethodologyCard from "components/cards/methodologycard";
 import ExecuteQuery from 'apollo/executequery';
 import { GET_METHODOLOGIES } from "apollo/methodologies";
 import { Centered, CenteredText } from 'components/styled/centered';
-import { Title } from 'components/styled/titletext';
+import { Subtitle, Title } from 'components/styled/text';
 
 
 export default function MethodologiesPage() {
@@ -63,12 +62,15 @@ export default function MethodologiesPage() {
                 backgroundColor: palette.themeDark,
                 borderRadius: "30%",
             },
+            rootHovered: {
+                backgroundColor: palette.themeDarker,
+            },
+            rootPressed: {
+                backgroundColor: palette.themePrimary,
+            },
             icon: {
                 fontSize: 20,
                 color: palette.neutralLight,
-            },
-            rootHovered: {
-                backgroundColor: palette.themeDarker,
             },
             iconHovered: {
                 color: palette.neutralLighter
@@ -84,12 +86,13 @@ export default function MethodologiesPage() {
 
     return <React.Fragment>
         <Title>{t(`${tpath}:title`)}</Title>
-        <Text variant='mediumPlus'>
+
+        <Subtitle>
             {t(`${tpath}:description`)}{' '}
             <TooltipHost content={t(`${tpath}:permitions-note`)}>
                 <Icon iconName="Info" aria-label="info" />
             </TooltipHost>
-        </Text>
+        </Subtitle>
 
         <Stack horizontal {...stackProps}>
             {/* To add a methodology */}

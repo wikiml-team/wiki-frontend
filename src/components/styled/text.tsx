@@ -12,3 +12,10 @@ export const Title: React.FunctionComponent = (props) => {
         <Text variant="xLarge" block styles={styles}>{props.children}</Text>
     )
 }
+
+export const Subtitle: React.FunctionComponent = (props) => {
+
+    return (
+        <Text variant="medium" block>{props.children}</Text>
+    )
+}

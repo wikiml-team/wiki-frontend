@@ -14,7 +14,7 @@ import { DetailsList,
          IDetailsListProps,
          IDetailsRowStyles,
          DetailsRow} from '@fluentui/react';
-import { Title } from 'components/styled/titletext';
+import { Subtitle, Title } from 'components/styled/text';
 
 
 interface IProject {
@@ -176,7 +176,7 @@ export default function OpenPage() {
         <Title>{t(t(`${tpath}:title`))}</Title>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t(`${tpath}:recent`)}</Text> <br/>
+            <Subtitle>{t(`${tpath}:recent`)}</Subtitle> <br/>
 
             <DetailsList
                 items={recent_projects}
@@ -189,7 +189,7 @@ export default function OpenPage() {
         </Stack>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("owner")}</Text> <br/>
+            <Subtitle>{t("owner")}</Subtitle> <br/>
 
             <DetailsList
                 items={own_project}
@@ -202,7 +202,7 @@ export default function OpenPage() {
         </Stack>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t(`${tpath}:shared`)}</Text> <br/>
+            <Subtitle>{t(`${tpath}:shared`)}</Subtitle> <br/>
 
             <DetailsList
                 items={recent_projects.slice(1)}
@@ -215,7 +215,7 @@ export default function OpenPage() {
         </Stack>
 
         <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t(`${tpath}:all`)}</Text> <br/>
+            <Subtitle>{t(`${tpath}:all`)}</Subtitle> <br/>
 
             <DetailsList
                 items={own_project.concat(recent_projects)}

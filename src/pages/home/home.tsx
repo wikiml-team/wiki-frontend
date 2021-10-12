@@ -5,7 +5,7 @@ import { ISeparatorStyles, Separator, Stack, Text, useTheme } from '@fluentui/re
 // import { useQuery } from '@apollo/client';
 // import { GET_USER_PROJECTS } from 'apollo/methodologies';
 import StaredProjects from 'components/cards/staredprojects';
-import { Title } from 'components/styled/titletext';
+import { Title } from 'components/styled/text';
 
 // Home: star projects, visualizes teams, maybe notifications
 
