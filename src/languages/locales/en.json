@@ -141,14 +141,14 @@
     "loading-title": "Loading",
     "loading-description": "Please wait a few senconds, we are loading the data"
   },
-  "language-settings": { 
-    "language-header": "Language",
+  "language-sidepanel": { 
+    "header": "Language",
     "language-select": "Select a Language",
     "language-ui": "Language for User Interface",
     "language-data": "Language for Data"
   },
-  "settings" : {
-    "settings-header": "Settings",
+  "settings-sidepanel" : {
+    "header": "Settings",
     "user": "User",
     "name": "Name",
     "nick": "Nickname",
@@ -156,7 +156,7 @@
     "theme-header": "Theme",
     "color-theme-title": "Color Theme",
     "privacy-header": "Privacy",
-    "privacy-title": "Your project should be:",
+    "privacy-label": "Your project should be:",
     "privacy-settings-text": "Go to project privacy settings",
     "privacy-settings-link": "here"
   },

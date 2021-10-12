@@ -141,14 +141,14 @@
     "loading-title": "Laden",
     "loading-description": "Bitte warten Sie einen Moment, die Daten werden geladen"
   },
-  "language": {
-    "language-header": "Sprache",
+  "language-sidepanel": {
+    "header": "Sprache",
     "language-select": "Sprache auswählen",
     "language-ui": "Sprache für Benutzeroberfläche",
     "language-data": "Sprache für Daten"
   },
-  "settings" : {
-    "settings-header": "Einstellungen",
+  "settings-sidepanel" : {
+    "header": "Einstellungen",
     "user": "Benutzer",
     "name": "Name",
     "nick": "Benutzername",
@@ -156,7 +156,7 @@
     "theme": "Thema",
     "color-theme": "Farbgebung",
     "privacy-header": "",
-    "privacy-title": "",
+    "privacy-label": "",
     "privacy-settings-text": "",
     "privacy-settings-link": ""
   },
