@@ -58,7 +58,8 @@ export default function NewPage() {
                 hideDialog={projectHideDialog}
                 toggleHideDialog={toggleProjectHideDialog}
                 methodologyId={methodologyId}/>
-        </React.Fragment>)
+        </React.Fragment>
+    )
 }
 
 

@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+
 import { string, object } from "yup";
 import { ObjectShape } from "yup/lib/object";
 import { Formik, Form } from "formik";
+
 import {
   Stack,
   Text,
@@ -55,10 +57,13 @@ export default function LogicModelForm() {
   const [outcomeHelpPanelIsOpen, { setTrue: openOutcomeHelpPanel, setFalse: dismissOutcomeHelpPanel }] = useBoolean(false);
   const [outputHelpPanelIsOpen, { setTrue: openOutputHelpPanel, setFalse: dismissOutputHelpPanel }] = useBoolean(false);
 
-  const handleDismissPanel = () => {
-    dismissOutputPanel();
-    dismissOutcomePanel();
-  }
+  const handleDismissPanel = useCallback(
+    () => {
+      dismissOutputPanel();
+      dismissOutcomePanel();
+    },
+    [dismissOutputPanel, dismissOutcomePanel],
+  )
 
   // RENDER
   const onRenderFooterContent = useCallback(
@@ -76,7 +81,7 @@ export default function LogicModelForm() {
         </TooltipHost>
       </div>
     ),
-    [handleDismissPanel],
+    [handleDismissPanel, t],
   );
 
   // FORMIK
@@ -209,10 +214,12 @@ function LogicmodelLabels() {
     </Stack.Item>
   }
 
-  return <Stack {...labelStackProps}>
-    <TextMediumPlus label="ultimate-outcomes" />
-    <TextMediumPlus label="intermediate-outcomes" />
-    <TextMediumPlus label="intermediate-outcomes" />
-    <TextMediumPlus label="outputs" />
-  </Stack>
+  return (
+    <Stack {...labelStackProps}>
+      <TextMediumPlus label="ultimate-outcomes" />
+      <TextMediumPlus label="intermediate-outcomes" />
+      <TextMediumPlus label="intermediate-outcomes" />
+      <TextMediumPlus label="outputs" />
+    </Stack>
+  )
 }

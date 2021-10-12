@@ -1,4 +1,5 @@
 import React from 'react'
+
 import styled from 'styled-components';
 
 const Fixed = styled.div.attrs(props => ({ direction: "top" || "bottom" }))`

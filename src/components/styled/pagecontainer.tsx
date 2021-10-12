@@ -1,7 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 import { animated } from "react-spring";
 import { Scrollbars } from "react-custom-scrollbars";
+
+import styled from "styled-components";
 
 const Container = styled.div`
   padding: 20px 5% 50px 5%;

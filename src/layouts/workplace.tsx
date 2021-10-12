@@ -6,7 +6,6 @@ import { RemoveScrollBar } from 'react-remove-scroll-bar';
 import { selectWorkplaceConfig } from "store/slices/workplaceslice";
 import PageContainer from "components/styled/pagecontainer";
 import { Sticky } from "components/styled/sticky"
-
 import CommandMenu from "components/menus/commands/";
 import MainMenu from "components/menus/mainmenu";
 import ToolBar from "components/menus/mainmenu/toolbar";

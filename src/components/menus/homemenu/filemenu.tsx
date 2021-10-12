@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
@@ -210,7 +210,7 @@ export default function FileMenu() {
 
 
     return (
-        <div>
+        <React.Fragment>
             {/* close */}
             <ActionButton 
                 iconProps={iconProps} 
@@ -252,6 +252,6 @@ export default function FileMenu() {
                 groups={translateNames(footer_nav)} 
                 className={classes.footer}
                 onLinkClick={handleNavClick}/>
-        </div>
+        </React.Fragment>
     )
 }

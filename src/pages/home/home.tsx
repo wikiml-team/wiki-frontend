@@ -7,8 +7,6 @@ import { ISeparatorStyles, Separator, Stack, Text, useTheme } from '@fluentui/re
 import StaredProjects from 'components/cards/staredprojects';
 import { Title } from 'components/styled/text';
 
-// Home: star projects, visualizes teams, maybe notifications
-
 type Example = {
     project: string,
     meth: string

@@ -14,6 +14,7 @@ import { DetailsList,
          IDetailsListProps,
          IDetailsRowStyles,
          DetailsRow} from '@fluentui/react';
+
 import { Subtitle, Title } from 'components/styled/text';
 
 
@@ -93,7 +94,6 @@ const own_project : IProject[] = [
 export default function OpenPage() {
 
     // LOGIC
-    // const { t } = useTranslation(["homepages-subtitles", "navbar", "methodologies"]);
     const { t } = useTranslation(["permitions", "methodologies"]);
     const tpath = "navbar:open"
 
@@ -172,60 +172,61 @@ export default function OpenPage() {
         return null;
     };
 
-    return <React.Fragment>
-        <Title>{t(t(`${tpath}:title`))}</Title>
+    return (
+        <React.Fragment>
+            <Title>{t(t(`${tpath}:title`))}</Title>
 
-        <Stack styles={stackStyles}>
-            <Subtitle>{t(`${tpath}:recent`)}</Subtitle> <br/>
+            <Stack styles={stackStyles}>
+                <Subtitle>{t(`${tpath}:recent`)}</Subtitle> <br/>
 
-            <DetailsList
-                items={recent_projects}
-                columns={columns}
-                selectionMode={SelectionMode.none}
-                isHeaderVisible={false}
-                onRenderRow={onRenderRow}
-                layoutMode={DetailsListLayoutMode.fixedColumns}
-            />
-        </Stack>
+                <DetailsList
+                    items={recent_projects}
+                    columns={columns}
+                    selectionMode={SelectionMode.none}
+                    isHeaderVisible={false}
+                    onRenderRow={onRenderRow}
+                    layoutMode={DetailsListLayoutMode.fixedColumns}
+                    />
+            </Stack>
 
-        <Stack styles={stackStyles}>
-            <Subtitle>{t("owner")}</Subtitle> <br/>
+            <Stack styles={stackStyles}>
+                <Subtitle>{t("owner")}</Subtitle> <br/>
 
-            <DetailsList
-                items={own_project}
-                columns={columns}
-                selectionMode={SelectionMode.none}
-                isHeaderVisible={false}
-                onRenderRow={onRenderRow}
-                layoutMode={DetailsListLayoutMode.fixedColumns}
-            />
-        </Stack>
+                <DetailsList
+                    items={own_project}
+                    columns={columns}
+                    selectionMode={SelectionMode.none}
+                    isHeaderVisible={false}
+                    onRenderRow={onRenderRow}
+                    layoutMode={DetailsListLayoutMode.fixedColumns}
+                    />
+            </Stack>
 
-        <Stack styles={stackStyles}>
-            <Subtitle>{t(`${tpath}:shared`)}</Subtitle> <br/>
+            <Stack styles={stackStyles}>
+                <Subtitle>{t(`${tpath}:shared`)}</Subtitle> <br/>
 
-            <DetailsList
-                items={recent_projects.slice(1)}
-                columns={columns}
-                selectionMode={SelectionMode.none}
-                isHeaderVisible={false}
-                onRenderRow={onRenderRow}
-                layoutMode={DetailsListLayoutMode.fixedColumns}
-            />
-        </Stack>
+                <DetailsList
+                    items={recent_projects.slice(1)}
+                    columns={columns}
+                    selectionMode={SelectionMode.none}
+                    isHeaderVisible={false}
+                    onRenderRow={onRenderRow}
+                    layoutMode={DetailsListLayoutMode.fixedColumns}
+                    />
+            </Stack>
 
-        <Stack styles={stackStyles}>
-            <Subtitle>{t(`${tpath}:all`)}</Subtitle> <br/>
+            <Stack styles={stackStyles}>
+                <Subtitle>{t(`${tpath}:all`)}</Subtitle> <br/>
 
-            <DetailsList
-                items={own_project.concat(recent_projects)}
-                columns={columns}
-                selectionMode={SelectionMode.none}
-                isHeaderVisible={false}
-                onRenderRow={onRenderRow}
-                layoutMode={DetailsListLayoutMode.fixedColumns}
-            />
-        </Stack>
-    </React.Fragment>
+                <DetailsList
+                    items={own_project.concat(recent_projects)}
+                    columns={columns}
+                    selectionMode={SelectionMode.none}
+                    isHeaderVisible={false}
+                    onRenderRow={onRenderRow}
+                    layoutMode={DetailsListLayoutMode.fixedColumns}
+                    />
+            </Stack>
+        </React.Fragment>)
 }
 

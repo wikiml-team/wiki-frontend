@@ -19,7 +19,6 @@ import { GET_METHODOLOGIES } from "apollo/methodologies";
 import { Centered, CenteredText } from 'components/styled/centered';
 import { Subtitle, Title } from 'components/styled/text';
 
-
 export default function MethodologiesPage() {
 
     // LOGIC
@@ -126,12 +125,11 @@ const mapMethodologiesToCards = (data: any) => {
 function DisplayContentOverCard() {
     
     const { t } = useTranslation("permitions");
-
     const { palette } = useTheme()
     
     const buttonStyles : IButtonStyles = {
         root: {
-        backgroundColor: palette.themeDarker
+            backgroundColor: palette.themeDarker
         }
     }
 

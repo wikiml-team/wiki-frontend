@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
-import { IStackStyles, Stack, useTheme } from "@fluentui/react";
 import { Scrollbars } from "react-custom-scrollbars";
+
+import { IStackStyles, Stack, useTheme } from "@fluentui/react";
 
 import FileMenu from "components/menus/homemenu/filemenu";
 
@@ -25,23 +26,25 @@ const MainLayout: FunctionComponent = (props) => {
     },
   };
 
-  return <React.Fragment>
-      <Stack horizontal>
-        <Stack 
-          verticalAlign="space-between" 
-          styles={menuStackStyles}
-        >
-          <FileMenu />
+  return (
+    <React.Fragment>
+        <Stack horizontal>
+          <Stack 
+            verticalAlign="space-between" 
+            styles={menuStackStyles}
+          >
+            <FileMenu />
+          </Stack>
+
+          <Stack styles={pageStackStyles}>
+            <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
+              {children}
+            </Scrollbars>
+          </Stack>
 
         </Stack>
-        <Stack styles={pageStackStyles}>
-          <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
-            {children}
-          </Scrollbars>
-        </Stack>
-
-      </Stack>
     </React.Fragment>
+  )
 }
 
 export default MainLayout;

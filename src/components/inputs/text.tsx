@@ -5,14 +5,12 @@ const TextFieldInput = ({ field, form, ...props }: any) => {
     return form.touched && form.errors ? form.errors[field.name] : "";
   };
 
-  return (
-    <TextField
-      {...field}
-      {...props}
-      onGetErrorMessage={handleGetError}
-      deferredValidationTime={500}
-    />
-  );
+  return <TextField
+            {...field}
+            {...props}
+            onGetErrorMessage={handleGetError}
+            deferredValidationTime={500}
+          />
 };
 
 export default TextFieldInput;

@@ -15,16 +15,14 @@ const MultilineTextFieldInput = ({ field, form, ...props }: any) => {
         return form.touched && form.errors ? form.errors[field.name] : "";
     };
 
-    return (
-        <TextField
-            multiline={multiline}
-            onChange={onChange}
-            {...field}
-            {...props}
-            onGetErrorMessage={handleGetError}
-            deferredValidationTime={500}
-        />
-    );
+    return <TextField
+                multiline={multiline}
+                onChange={onChange}
+                {...field}
+                {...props}
+                onGetErrorMessage={handleGetError}
+                deferredValidationTime={500}
+            />
 };
 
 export default MultilineTextFieldInput;

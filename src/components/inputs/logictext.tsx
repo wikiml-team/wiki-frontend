@@ -1,7 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
 import { Field } from "formik";
+
 import {
     Stack,
     IStackItemProps,
@@ -195,74 +197,76 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
         },
     };
 
-    return <Stack
-        horizontal
-        styles={titleStyles}
-        horizontalAlign="space-between"
-    >
-        <Stack.Item>
-            <Text variant="medium">{node.id}</Text>
-        </Stack.Item>
-        <Stack.Item>
+    return (
+        <Stack
+            horizontal
+            styles={titleStyles}
+            horizontalAlign="space-between"
+        >
+            <Stack.Item>
+                <Text variant="medium">{node.id}</Text>
+            </Stack.Item>
+            <Stack.Item>
 
-            {isAnOputut ?
-                <>
-                    <TooltipHost content={t("tooltip-see-activities")}>
+                {isAnOputut ?
+                    <>
+                        <TooltipHost content={t("tooltip-see-activities")}>
+                            <IconButton
+                                iconProps={{ iconName: "SnapToGrid" }}
+                                styles={commandStyles}
+                                onClick={() => handleRedirectToActivity(node.id)}
+                            />
+                        </TooltipHost>
+                        <TooltipHost content={t("tooltip-sintactic-struct")}>
+                            <IconButton
+                                iconProps={{ iconName: "ShowResults" }}
+                                styles={commandStyles}
+                                onClick={() => hanldeOpenOutputPanel()}
+                            />
+                        </TooltipHost>
+                        <TooltipHost content={t("tooltip-contextual-help")}>
+                            <IconButton
+                                iconProps={{ iconName: "Help" }}
+                                styles={commandStyles}
+                                onClick={() => handleOutputHelpPanel()}
+                            />
+                        </TooltipHost>
+                    </> : <>
+                        <TooltipHost content={t("tooltip-sintactic-struct")}>
+                            <IconButton
+                                iconProps={{ iconName: "ShowResults" }}
+                                styles={commandStyles}
+                                onClick={() => hanldeOpenOutcomePanel()}
+                            />
+                        </TooltipHost>
+                        <TooltipHost content={t("contextual-help:tooltip-contextual-help")}>
+                            <IconButton
+                                iconProps={{ iconName: "Help" }}
+                                styles={commandStyles}
+                                onClick={() => handleOutcomeHelpPanel()}
+                            />
+                        </TooltipHost></>
+                }
+                {canAdd &&
+                    <TooltipHost content={t(tooltipContent)}>
                         <IconButton
-                            iconProps={{ iconName: "SnapToGrid" }}
+                            iconProps={{ iconName: "Add" }}
                             styles={commandStyles}
-                            onClick={() => handleRedirectToActivity(node.id)}
+                            onClick={() => handleAddChild(node.id)}
                         />
                     </TooltipHost>
-                    <TooltipHost content={t("tooltip-sintactic-struct")}>
+                }
+                {canDelete &&
+                    <TooltipHost content={t("tooltip-delete")}>
                         <IconButton
-                            iconProps={{ iconName: "ShowResults" }}
+                            iconProps={{ iconName: "Cancel" }}
                             styles={commandStyles}
-                            onClick={() => hanldeOpenOutputPanel()}
+                            onClick={() => handleDelete(node.id)}
                         />
                     </TooltipHost>
-                    <TooltipHost content={t("tooltip-contextual-help")}>
-                        <IconButton
-                            iconProps={{ iconName: "Help" }}
-                            styles={commandStyles}
-                            onClick={() => handleOutputHelpPanel()}
-                        />
-                    </TooltipHost>
-                </> : <>
-                    <TooltipHost content={t("tooltip-sintactic-struct")}>
-                        <IconButton
-                            iconProps={{ iconName: "ShowResults" }}
-                            styles={commandStyles}
-                            onClick={() => hanldeOpenOutcomePanel()}
-                        />
-                    </TooltipHost>
-                    <TooltipHost content={t("contextual-help:tooltip-contextual-help")}>
-                        <IconButton
-                            iconProps={{ iconName: "Help" }}
-                            styles={commandStyles}
-                            onClick={() => handleOutcomeHelpPanel()}
-                        />
-                    </TooltipHost></>
-            }
-            {canAdd &&
-                <TooltipHost content={t(tooltipContent)}>
-                    <IconButton
-                        iconProps={{ iconName: "Add" }}
-                        styles={commandStyles}
-                        onClick={() => handleAddChild(node.id)}
-                    />
-                </TooltipHost>
-            }
-            {canDelete &&
-                <TooltipHost content={t("tooltip-delete")}>
-                    <IconButton
-                        iconProps={{ iconName: "Cancel" }}
-                        styles={commandStyles}
-                        onClick={() => handleDelete(node.id)}
-                    />
-                </TooltipHost>
-            }
-        </Stack.Item>
-    </Stack>
+                }
+            </Stack.Item>
+        </Stack>
+    )
 }
 

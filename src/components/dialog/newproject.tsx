@@ -1,6 +1,5 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import { Dropdown, 
         Icon, 
@@ -51,30 +50,31 @@ function NewProjectDialogBody(props : NewProjectDialogBodyProps) {
     const { methodologyId } = props
     const { t } = useTranslation("dialog")
 
-    return <Stack tokens={{ childrenGap: 16 }}> 
-        <Text variant="medium">{t("create-project-text")} {methodologyId}</Text>
-        <TextField 
-            required
-            label={t("create-project-name-label")}
-            placeholder={t("create-project-name-placeholder")} 
+    return (
+        <Stack tokens={{ childrenGap: 16 }}> 
+            <Text variant="medium">{t("create-project-text")} {methodologyId}</Text>
+            <TextField 
+                required
+                label={t("create-project-name-label")}
+                placeholder={t("create-project-name-placeholder")} 
+                />
+            <Dropdown
+                required
+                label={t("create-project-language-label")}
+                placeholder={t("create-project-language-placeholder")} 
+                options={[]}
             />
-        <Dropdown
-            required
-            label={t("create-project-language-label")}
-            placeholder={t("create-project-language-placeholder")} 
-            options={[]}
-        />
-        <Toggle 
-            label={<>
-                {t("create-project-privacy-label")}{' '}
-                <TooltipHost content={t("create-project-privacy-text")}>
-                    <Icon iconName="Info" aria-label="info" />
-                </TooltipHost>    
-            </>} 
-            defaultChecked 
-            onText={t("create-project-privacy-on")} 
-            offText={t("create-project-privacy-off")} 
-        />
-
-    </Stack>
+            <Toggle 
+                label={<>
+                    {t("create-project-privacy-label")}{' '}
+                    <TooltipHost content={t("create-project-privacy-text")}>
+                        <Icon iconName="Info" aria-label="info" />
+                    </TooltipHost>    
+                </>} 
+                defaultChecked 
+                onText={t("create-project-privacy-on")} 
+                offText={t("create-project-privacy-off")} 
+            />
+        </Stack>
+    )
 }
