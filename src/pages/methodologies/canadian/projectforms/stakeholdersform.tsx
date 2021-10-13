@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+
 import {
   Dropdown,
   IColumn,
@@ -258,28 +259,30 @@ export default function StakeholdersForm() {
     [dismissPanel],
   );
 
-  return <React.Fragment>
+  return (
+    <React.Fragment>
 
-    <DetailsList
-      items={items}
-      columns={columns}
-      groups={groups}
-      selectionMode={SelectionMode.none}
-      isHeaderVisible={true}
-    />
+      <DetailsList
+        items={items}
+        columns={columns}
+        groups={groups}
+        selectionMode={SelectionMode.none}
+        isHeaderVisible={true}
+      />
 
-    <Panel
-      isOpen={panelIsOpen}
-      closeButtonAriaLabel="Close"
-      isHiddenOnDismiss={true}
-      headerText={t("panel-header")}
-      onDismiss={dismissPanel}
-      isBlocking={false}
-      isFooterAtBottom={true}
-      onRenderFooterContent={onRenderFooterContent}
-    >
-      <StakehoderFormPanel />
-    </Panel>
+      <Panel
+        isOpen={panelIsOpen}
+        closeButtonAriaLabel="Close"
+        isHiddenOnDismiss={true}
+        headerText={t("panel-header")}
+        onDismiss={dismissPanel}
+        isBlocking={false}
+        isFooterAtBottom={true}
+        onRenderFooterContent={onRenderFooterContent}
+      >
+        <StakehoderFormPanel />
+      </Panel>
 
-  </React.Fragment>
+    </React.Fragment>
+  )
 }

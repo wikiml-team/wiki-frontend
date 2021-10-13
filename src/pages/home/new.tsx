@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 
-import { IStackProps, Stack, Text } from '@fluentui/react';
+import { IStackProps, Stack } from '@fluentui/react';
 import { useBoolean } from '@fluentui/react-hooks';
 
 import MethodologyCard from 'components/cards/methodologycard';
 import NewProjectDialog from 'components/dialog/newproject';
 import ExecuteQuery from 'apollo/executequery';
 import { GET_METHODOLOGIES } from 'apollo/methodologies';
-import { Title } from 'components/styled/titletext';
+import { Subtitle, Title } from 'components/styled/text';
 
 export default function NewPage() {
     
     // LOGIC
-    const { t } = useTranslation("navbar");
+    const { t } = useTranslation();
+    const tpath = "navbar:new"
     
     const [methodologyId, setMethodologyId] = useState("1")
     const [projectHideDialog, { toggle: toggleProjectHideDialog }] = useBoolean(true);
@@ -44,16 +45,21 @@ export default function NewPage() {
         }
     }
 
-    return <React.Fragment>
-        <Title>{t("new")}</Title>
-        <Stack horizontal {...stackProps}>
-            {methodologiesCards}
-        </Stack>
-        <NewProjectDialog 
-            hideDialog={projectHideDialog}
-            toggleHideDialog={toggleProjectHideDialog}
-            methodologyId={methodologyId}/>
-    </React.Fragment>
+    return (
+        <React.Fragment>
+            <Title>{t(`${tpath}:title`)}</Title>
+            <Subtitle>{t(t(`${tpath}:select-create-project`))}</Subtitle>
+
+            <Stack horizontal {...stackProps}>
+                {methodologiesCards}
+            </Stack>
+
+            <NewProjectDialog 
+                hideDialog={projectHideDialog}
+                toggleHideDialog={toggleProjectHideDialog}
+                methodologyId={methodologyId}/>
+        </React.Fragment>
+    )
 }
 
 

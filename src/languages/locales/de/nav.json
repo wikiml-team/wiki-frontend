@@ -1,0 +1,48 @@
+{
+    "home" : {
+      "title" : "Startseite",
+      "stared-projects" : "Markierte Projekte",
+      "teams" : "Teams",
+      "notifications" : "Benachrichtigungen"
+    }, 
+    "new" : {
+      "title" : "Neu",
+      "select-create-project" : "Select the methodology your project should follow."
+    }, 
+    "open" : {
+      "title" : "Öffnen",
+      "recent": "Neuste",
+      "shared" : "Zuletzt freigegeben",
+      "all" : "Alle",
+      "date-modified" : "Zuletzt geändert"
+    },
+    "methodologies" : {
+      "title" : "Metodologien",
+      "description" : "Select the methodology you want to read, edit or add.",
+      "permitions-note" : "Edition will only be available if permitions have been given."
+    },
+    "info" : {
+      "title" : "Info"
+    },
+    "export" : {
+      "title" : "Exportieren"
+    },
+    "print" : {
+      "title" : "Drucken"
+    },
+    "share" : {
+      "title" : "Teilen"
+    },
+    "about" : {
+      "title" : "Info"
+    },
+    "account" : {
+      "title" : "Benutzerkonto"
+    },
+    "feedback" : {
+      "title" : "Feedback"
+    },
+    "options" : {
+      "title" : "Optionen"
+    }
+}

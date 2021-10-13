@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { ChoiceGroup, ContextualMenu,
    DefaultButton,
    Dialog,
@@ -7,8 +10,6 @@ import { ChoiceGroup, ContextualMenu,
    IDialogContentProps,
    IDialogProps,
    PrimaryButton } from '@fluentui/react';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 type OptionsProps = {
   options: IChoiceGroupOption[],
@@ -50,7 +51,6 @@ export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
                             label={optionsTitle?? t("default-options-title")}
                             options={options}
                             onChange={onChange}
-                            // defaultSelectedKey={defaultKey}
                             required
                           />
     }
@@ -75,20 +75,22 @@ export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
         }
 
 
-    return <Dialog
-        dialogContentProps={customDialogContentProps}
-        modalProps={modalProps}
-        {...allprops}
-    >
-      {optionsProps && choiceGroup}
-      {optionalBody}
-    <DialogFooter>
-      <PrimaryButton
-        onClick={() => acceptOnClick(optionSelected)} 
-        text={primaryButtonText?? t("default-accept") } />
-      <DefaultButton 
-        onClick={() => {if (allprops.onDismiss) allprops.onDismiss()}} 
-        text="Cancel" />
-    </DialogFooter>
-  </Dialog>
+    return (
+      <Dialog
+          dialogContentProps={customDialogContentProps}
+          modalProps={modalProps}
+          {...allprops}
+      >
+        {optionsProps && choiceGroup}
+        {optionalBody}
+      <DialogFooter>
+        <PrimaryButton
+          onClick={() => acceptOnClick(optionSelected)} 
+          text={primaryButtonText?? t("default-accept") } />
+        <DefaultButton 
+          onClick={() => {if (allprops.onDismiss) allprops.onDismiss()}} 
+          text="Cancel" />
+      </DialogFooter>
+    </Dialog>
+  )
 }

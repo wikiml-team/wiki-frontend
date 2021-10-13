@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
@@ -19,40 +19,55 @@ import { INavLinkGroup,
 export default function FileMenu() {
 
     // LOGIC
-    const { t } = useTranslation(['navbar', 'basics']);
-    const { palette } = useTheme();
+    const { t } = useTranslation('basics');
+    const translateNames = (nav : INavLinkGroup[]) : INavLinkGroup[] => {
+
+        const { links } = nav[0]
+
+        const translated = links.map((link, key) => {
+            return {
+                ...link,
+                name: t(`navbar:${link.name}:title`)
+            }
+        })
+
+        return [{ links: translated}];
+    }
+
     const history = useHistory()
-
+    
     const [selectedKey, setSelectedKey] = useState("")
-
+    
     useEffect(() => {
         const path = history.location.pathname.split('/')
         const key = path[path.length - 1] === ""? "key_home" : `key_${path[path.length - 1]}` 
         setSelectedKey(key)
     }, [history])
-
+    
     const handleNavClick = (ev?: React.MouseEvent<HTMLElement>, item?: INavLink) => {
         if (ev) ev.preventDefault()
-
+        
         if (item) {
             setSelectedKey(item.key || "key_home")
             history.push(item.url)
         }
     }
-
+    
     const handleOnReturn = () => {
         history.push("/workplace")
     }
-
+    
     // STYLES
+    const { palette } = useTheme();
+
     const classes = mergeStyleSets({
         footer: {
             "a": {
                 paddingLeft: 36!,
             }
         },
-      });
-
+    });
+    
     // Action Button Return
     const buttonStyles: IButtonStyles = {
         root: {
@@ -65,7 +80,7 @@ export default function FileMenu() {
             textAlign: 'left'
         }
     }
-
+    
     const iconProps : Partial<IIconProps> = {
         iconName: 'NavigateBack',
         styles: {
@@ -126,19 +141,19 @@ export default function FileMenu() {
         {
             links: [
                 {
-                    name: t('home'),
+                    name: 'home',
                     url: '/',
                     key: 'key_home',
                     icon: 'Home',
                 },
                 {
-                    name: t('new'),
+                    name: 'new',
                     url: '/new',
                     key: 'key_new',
                     icon: 'Page',
                 },
                 {
-                    name: t('open'),
+                    name: 'open',
                     url: '/open',
                     key: 'key_open',
                     icon: 'OpenFolderHorizontal',
@@ -151,7 +166,7 @@ export default function FileMenu() {
         {
             links: [
                 {
-                    name: t('methodologies'),
+                    name: 'methodologies',
                     url: '/methodologies',
                     key: 'key_methodologies',
                     // iconProps: iconProps,
@@ -165,27 +180,27 @@ export default function FileMenu() {
         {
             links: [
                 {
-                    name: t('info'),
+                    name: 'info',
                     url: '/1/info',
                     key: 'key_info',
                 },
                 {
-                    name: t('export'),
+                    name: 'export',
                     url: '/1/export',
                     key: 'key_export',
                 },
                 {
-                    name: t('print'),
+                    name: 'print',
                     url: '/1/print',
                     key: 'key_print',
                 },
                 {
-                    name: t('share'),
+                    name: 'share',
                     url: '/1/share',
                     key: 'key_share',
                 },
                 {
-                    name: t('about'),
+                    name: 'about',
                     url: '/1/about',
                     key: 'key_about',
                 },        
@@ -195,7 +210,7 @@ export default function FileMenu() {
 
 
     return (
-        <div>
+        <React.Fragment>
             {/* close */}
             <ActionButton 
                 iconProps={iconProps} 
@@ -210,7 +225,7 @@ export default function FileMenu() {
                 selectedKey={selectedKey}
                 ariaLabel="File menu" 
                 styles={navStyles} 
-                groups={nav} 
+                groups={translateNames(nav)} 
                 onLinkClick={handleNavClick}/>
 
             {/* Separator */}
@@ -223,7 +238,7 @@ export default function FileMenu() {
                 selectedKey={selectedKey}
                 ariaLabel="File menu" 
                 styles={navStyles} 
-                groups={nav_methodologies} 
+                groups={translateNames(nav_methodologies)} 
                 onLinkClick={handleNavClick}/>
 
             {/* Separator */}
@@ -234,9 +249,9 @@ export default function FileMenu() {
                 selectedKey={selectedKey}
                 ariaLabel="File menu" 
                 styles={navStyles} 
-                groups={footer_nav} 
+                groups={translateNames(footer_nav)} 
                 className={classes.footer}
                 onLinkClick={handleNavClick}/>
-        </div>
+        </React.Fragment>
     )
 }

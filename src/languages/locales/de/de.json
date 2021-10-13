@@ -41,83 +41,6 @@
     "settings": "Einstellungen",
     "notifications": "Benachrichtigungen"
   },
-  "navbar" : {
-<<<<<<< HEAD
-    "home" : "Startseite ", 
-    "new" : "Neu", 
-    "open" : "Öffnen",
-    "info" : "",
-    "methodologies": "Metodologien",
-    "export" : "Exportieren",
-    "print" : "Drucken",
-    "share" : "Teilen",
-    "about" : "Info",
-    "account" : "Benutzerkonto",
-    "feedback" : "Feedback",
-    "options" : "Optionen"
-  },
-  "homepages-subtitles": {
-    "stared-projects" : "Markierte Projekte",
-    "teams": "Teams",
-    "notifications": "Benachrichtigungen",
-    "recent": "Neuste",
-    "owner" : "Meine Projekte",
-    "shared" : "Akzeptieren / Ablehnen der Einladung zur Teilnahme",
-    "all" : "Alle",
-    "open-permition-owner": "Verwalten",
-    "open-permition-edit": "Bearbeiten",
-    "open-permition-read": "Lesen",
-    "open-date-modified" : "Zuletzt geändert",
-    "methodologies-description": ""
-=======
-    "home" : {
-      "title" : "Startseite",
-      "stared-projects" : "Markierte Projekte",
-      "teams" : "Teams",
-      "notifications" : "Benachrichtigungen"
-    }, 
-    "new" : {
-      "title" : "Neu",
-      "select-create-project" : "Select the methodology your project should follow."
-    }, 
-    "open" : {
-      "title" : "Öffnen",
-      "recent": "Neuste",
-      "shared" : "Zuletzt freigegeben",
-      "all" : "Alle",
-      "date-modified" : "Zuletzt geändert"
-    },
-    "methodologies" : {
-      "title" : "Metodologien",
-      "description" : "Select the methodology you want to read, edit or add.",
-      "permitions-note" : "Edition will only be available if permitions have been given."
-    },
-    "info" : {
-      "title" : "Info"
-    },
-    "export" : {
-      "title" : "Exportieren"
-    },
-    "print" : {
-      "title" : "Drucken"
-    },
-    "share" : {
-      "title" : "Teilen"
-    },
-    "about" : {
-      "title" : "Info"
-    },
-    "account" : {
-      "title" : "Benutzerkonto"
-    },
-    "feedback" : {
-      "title" : "Feedback"
-    },
-    "options" : {
-      "title" : "Optionen"
-    }
->>>>>>> 0396ff2bb766bda655c4486821015aa3719159ef
-  },
   "menu": {
     "wikiml": "WikiML",
     "project": "Projekt",
@@ -243,9 +166,9 @@
     "shortname-field": "Projekttitel (kurz)",
     "largename-field": "Projekttitel",
     "description-field": "Deskriptive Zusammenfassung",
-    "country-field": "Hauptempfänger",
-    "imporganization-field": "Hauptdurchführender",
-    "intorganization-field": "Hauptvermittler",
+    "country-field": "Empfängerland",
+    "imporganization-field": "Durchführende Organisation",
+    "intorganization-field": "Intermediäre Organisation",
     "currency-field": "Währung",
     "budget-field": "Budget",
     "budget-prefix": "Beantragt",

@@ -1,6 +1,8 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+
 import {
   FontSizes,
   IPivotStyles,
@@ -9,9 +11,8 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { TabSchema } from "models/workplace";
 import { setLatestMenuTab, selectWorkplaceConfig } from "store/slices/workplaceslice";
-import { useHistory } from "react-router";
+import { TabSchema } from "models/workplace";
 
 type PivotBarProps = {
   schema: TabSchema;

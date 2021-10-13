@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toNumber } from 'lodash';
+
 import {
   FontSizes,
   IconButton,
@@ -249,27 +250,28 @@ export default function ActivitiesMatrixForm() {
     )
   }
 
-  return <React.Fragment>
-    <DetailsList
-      items={items}
-      columns={columns}
-      onRenderRow={onRenderRow}
-      selectionMode={SelectionMode.none}
-      isHeaderVisible={false}
-    />
-    <ContextualHelpPanel
-      isOpen={helpPanelIsOpen}
-      header={t("contextual-help:help-panel-header")}
-      onDismiss={dismissHelpPanel}
-    >
-      <ContextualHelpContent
-        definition="Def Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
-        example=""
-        format="Cosi se me face le buc torbellini de sua me. "
-        guide="Guide Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
-        tips="Tips Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. " />
-    </ContextualHelpPanel>
-  </React.Fragment>
+  return ( 
+    <React.Fragment>
+      <DetailsList
+        items={items}
+        columns={columns}
+        onRenderRow={onRenderRow}
+        selectionMode={SelectionMode.none}
+        isHeaderVisible={false}
+      />
+      <ContextualHelpPanel
+        isOpen={helpPanelIsOpen}
+        header={t("contextual-help:help-panel-header")}
+        onDismiss={dismissHelpPanel}
+      >
+        <ContextualHelpContent
+          definition="Def Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+          example=""
+          format="Cosi se me face le buc torbellini de sua me. "
+          guide="Guide Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+          tips="Tips Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. " />
+      </ContextualHelpPanel>
+    </React.Fragment>)
 
 }
 

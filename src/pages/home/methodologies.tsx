@@ -1,23 +1,43 @@
 import React from 'react'
 import { useTranslation } from "react-i18next";
 
-import { IButtonStyles, IconButton, IStackProps, Overlay, PrimaryButton, Stack, Text, useTheme } from "@fluentui/react";
+import { IButtonStyles, 
+        IconButton, 
+        IStackProps, 
+        Overlay, 
+        PrimaryButton, 
+        Stack, 
+        useTheme,
+        IButtonProps,
+        TooltipHost,
+        mergeStyleSets,
+        Icon} from "@fluentui/react";
 
 import MethodologyCard from "components/cards/methodologycard";
 import ExecuteQuery from 'apollo/executequery';
 import { GET_METHODOLOGIES } from "apollo/methodologies";
-import { Centered } from 'components/styled/centered';
-import { Title } from 'components/styled/titletext';
-
+import { Centered, CenteredText } from 'components/styled/centered';
+import { Subtitle, Title } from 'components/styled/text';
 
 export default function MethodologiesPage() {
 
     // LOGIC
-    const { t } = useTranslation(["navbar", "homepages-subtitles"]);
+    const { t } = useTranslation();
+    const tpath = "navbar:methodologies"
     
     const methodologiesCards = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToCards})
 
     // STYLES
+    const { palette } = useTheme();
+
+    const classes = mergeStyleSets({
+        iconContainer: {
+            position: "relative",
+            height: 152,
+            width: 60,
+        }
+    })
+
     const stackProps : IStackProps = {
         tokens: {childrenGap: 10},
         styles: {
@@ -27,15 +47,63 @@ export default function MethodologiesPage() {
         }
     }
 
+    const iconButtonProps : IButtonProps = {
+        iconProps: {
+            iconName: 'add'
+        },
+        styles: {
+            root: {
+                padding: 20,
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: palette.themeDark,
+                borderRadius: "30%",
+            },
+            rootHovered: {
+                backgroundColor: palette.themeDarker,
+            },
+            rootPressed: {
+                backgroundColor: palette.themePrimary,
+            },
+            icon: {
+                fontSize: 20,
+                color: palette.neutralLight,
+            },
+            iconHovered: {
+                color: palette.neutralLighter
+            }
+        }
+    }
+
+    const tooltipStyles  = {
+        root: {
+            padding: 15
+        }
+    }
+
     return <React.Fragment>
-        <Title>{t("methodologies")}</Title>
+        <Title>{t(`${tpath}:title`)}</Title>
+
+        <Subtitle>
+            {t(`${tpath}:description`)}{' '}
+            <TooltipHost content={t(`${tpath}:permitions-note`)}>
+                <Icon iconName="Info" aria-label="info" />
+            </TooltipHost>
+        </Subtitle>
+
         <Stack horizontal {...stackProps}>
-            {/* <Stack.Item>
-                <IconButton
-                    iconProps={{iconName: 'emoji'}}
-                    styles={{root: {fontSize: 200}}}
-                    />
-            </Stack.Item> */}
+            {/* To add a methodology */}
+            <Stack.Item>
+                <CenteredText className={classes.iconContainer}>
+                    <TooltipHost content={t("permitions:create")} styles={tooltipStyles}>
+                        <IconButton {...iconButtonProps} />
+                    </TooltipHost>
+                </CenteredText>
+            </Stack.Item>
+
+            {/* To read or edit a methodology */}
             {methodologiesCards}
         </Stack>
     </React.Fragment>
@@ -56,11 +124,12 @@ const mapMethodologiesToCards = (data: any) => {
 
 function DisplayContentOverCard() {
     
+    const { t } = useTranslation("permitions");
     const { palette } = useTheme()
     
     const buttonStyles : IButtonStyles = {
         root: {
-        backgroundColor: palette.themeDarker
+            backgroundColor: palette.themeDarker
         }
     }
 
@@ -69,12 +138,12 @@ function DisplayContentOverCard() {
             <Centered>
                 <Stack horizontal tokens={{childrenGap: 10}}>
                     <PrimaryButton
-                        text="Read"
+                        text={t("read")}
                         onClick={()=> {}} 
                         styles={buttonStyles}
                     />
                     <PrimaryButton 
-                        text="Edit" 
+                        text={t("edit")} 
                         onClick={()=> {}} 
                     />
                 </Stack>
@@ -82,3 +151,4 @@ function DisplayContentOverCard() {
         </Overlay>
     )
 }
+

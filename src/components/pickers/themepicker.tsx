@@ -1,5 +1,7 @@
 import React from "react";
+
 import { IColorCellProps, mergeStyleSets, useTheme } from "@fluentui/react";
+
 import { Circle } from "components/styled/shapes";
 
 type SwatchThemePickerProps = {

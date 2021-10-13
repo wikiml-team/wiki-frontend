@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
+
 import { Panel } from '@fluentui/react'
 
 type ContextualHelpPanelProps = {
@@ -11,18 +12,20 @@ const ContextualHelpPanel: FunctionComponent<ContextualHelpPanelProps> = (props)
     
     const { isOpen, onDismiss, header } = props;
     
-    return <Panel
-      isOpen={isOpen}
-      closeButtonAriaLabel="Close"
-      isHiddenOnDismiss={true}
-      headerText={header}
-      onDismiss={onDismiss}
-      isLightDismiss={true}
-      isBlocking={false}
-      isFooterAtBottom={true}
-    >
-        {props.children}
-    </Panel>
+    return (
+        <Panel
+            isOpen={isOpen}
+            closeButtonAriaLabel="Close"
+            isHiddenOnDismiss={true}
+            headerText={header}
+            onDismiss={onDismiss}
+            isLightDismiss={true}
+            isBlocking={false}
+            isFooterAtBottom={true}
+            >
+            {props.children}
+        </Panel>
+    )
 }
 
 export default ContextualHelpPanel

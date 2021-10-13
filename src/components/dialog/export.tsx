@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+
 import {IChoiceGroupOption, 
         IChoiceGroupOptionStyles,
         IIconStyles } from '@fluentui/react';
@@ -64,14 +65,14 @@ export default function ExportProjectDialog(props: ExportDialogProps) {
     }
 
     return <CustomDialog
-            dialogContentProps={{title : t("export-title")}}
-            hidden={hideDialog}
-            onDismiss={toggleHideDialog}
-            primaryButtonText={t("export-accept-label")}
-            acceptOnClick={handleAccpetButtonOnClick}
-            optionsProps={{
-              options,
-              optionsTitle : t("export-options-title")
-            }}
-      />
+              dialogContentProps={{title : t("export-title")}}
+              hidden={hideDialog}
+              onDismiss={toggleHideDialog}
+              primaryButtonText={t("export-accept-label")}
+              acceptOnClick={handleAccpetButtonOnClick}
+              optionsProps={{
+                options,
+                optionsTitle : t("export-options-title")
+              }}
+            />
 }

@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
 import classnames from "classnames";
+
 import { mergeStyleSets } from "@fluentui/react";
+
+import styled from "styled-components";
 
 interface CircleProps {
   ariaLabel?: string;

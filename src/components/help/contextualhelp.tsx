@@ -1,10 +1,9 @@
-import React from 'react'
+import { useTranslation } from 'react-i18next';
 import { Scrollbars } from "react-custom-scrollbars";
 
 import { IColumn, IGroup, DetailsList, SelectionMode } from '@fluentui/react'
 
 import IContextualHelpContent from 'models/contextualhelp'
-import { useTranslation } from 'react-i18next';
 
 export default function ContextualHelpContent(content: IContextualHelpContent) {
 
@@ -43,14 +42,16 @@ export default function ContextualHelpContent(content: IContextualHelpContent) {
         })
     }
 
-    return <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
-        <DetailsList
-            items={items}
-            columns={columns}
-            groups={groups}
-            // onRenderRow={onRenderRow}
-            selectionMode={SelectionMode.none}
-            isHeaderVisible={true}
-        />
-    </Scrollbars>
+    return (
+        <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
+            <DetailsList
+                items={items}
+                columns={columns}
+                groups={groups}
+                // onRenderRow={onRenderRow}
+                selectionMode={SelectionMode.none}
+                isHeaderVisible={true}
+            />
+        </Scrollbars>
+    )
 }

@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+
 import {
   ISeparatorProps,
   IStackProps,
@@ -32,7 +33,6 @@ export default function SettingsPanel() {
     }
   }
 
-
   // Horizontal Separators
   const separatorProps: ISeparatorProps = {
     alignContent: "end",
@@ -47,7 +47,7 @@ export default function SettingsPanel() {
   };
 
   // LOGIC
-  const { t } = useTranslation(["settings", "basics"]);
+  const { t } = useTranslation(["settings-sidepanel", "basics"]);
   const dispatch = useDispatch();
 
   const handleChangePrivacy = () => {
@@ -64,7 +64,7 @@ export default function SettingsPanel() {
       {/* TOOGLE */}
       <Stack.Item>
         <Toggle
-          label={t("privacy-title")}
+          label={t("privacy-label")}
           defaultChecked
           onText={t("basics:private")}
           offText={t("basics:public")}

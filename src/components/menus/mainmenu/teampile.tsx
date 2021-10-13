@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Facepile,
   OverflowButtonType,
@@ -80,16 +81,14 @@ const faces: IFacepilePersona[] = [
 ];
 
 export default function TeamPile() {
-  return (
-    <Facepile
-      personas={faces}
-      personaSize={PersonaSize.size24}
-      maxDisplayablePersonas={4}
-      overflowButtonProps={overflowButtonProps}
-      overflowButtonType={OverflowButtonType.descriptive}
-      addButtonProps={addButtonProps()}
-      ariaDescription="To move through the items use left and right arrow keys."
-      styles={FacePileStyles}
-    />
-  );
+  return <Facepile
+            personas={faces}
+            personaSize={PersonaSize.size24}
+            maxDisplayablePersonas={4}
+            overflowButtonProps={overflowButtonProps}
+            overflowButtonType={OverflowButtonType.descriptive}
+            addButtonProps={addButtonProps()}
+            ariaDescription="To move through the items use left and right arrow keys."
+            styles={FacePileStyles}
+          />
 }

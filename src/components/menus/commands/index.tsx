@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+
 import {
   CommandBar,
   ICommandBarStyles,
@@ -44,7 +45,7 @@ export default function CommandMenu() {
   };
 
   // LOGIC
-  const { t } = useTranslation(["language-settings", "settings", "methodologies", "authentication"]);
+  const { t } = useTranslation(["methodologies", "language-sidepanel", "settings-sidepanel"]);
   
   // Panels State
   const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
@@ -62,7 +63,7 @@ export default function CommandMenu() {
   return (
     <React.Fragment>
       <Text variant="small" styles={textStyles}>
-        Agua y Saneamiento - {t("methodologies:canadian")}
+        Agua y Saneamiento - {t("canadian")}
       </Text>
 
       <CommandBar
@@ -80,7 +81,7 @@ export default function CommandMenu() {
         isOpen={languagePanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
-        headerText={t("language-settings:language-header")}
+        headerText={t("language-sidepanel:header")}
         onDismiss={dismissLanguagePanel}
         isBlocking={false}>
         <LanguagePanel />
@@ -90,7 +91,7 @@ export default function CommandMenu() {
         isOpen={settingsPanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
-        headerText={t("settings:settings-header")}
+        headerText={t("settings-sidepanel:header")}
         onDismiss={dismissSettingsPanel}
         isBlocking={false}>
         <SettingsPanel />

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
+
 import { useKeycloak } from '@react-keycloak/web';
+import { KeycloakProfile } from 'keycloak-js';
 
 import { Callout, 
     Link, 
@@ -11,7 +13,6 @@ import { Callout,
     Persona, 
     PersonaSize, 
 } from '@fluentui/react';
-import { KeycloakProfile } from 'keycloak-js';
 
 type UserCalloutProps = {
     isCalloutVisible : boolean,
@@ -77,15 +78,17 @@ export default function UserCallout(props : UserCalloutProps) {
                             onClick={keycloak.authenticated? handleLogout : handleLogin}>
                         </CommandBarButton>
                     </Stack>
-                    <Persona 
+                    {keycloak.authenticated && <>
+                        <Persona 
                         size={PersonaSize.size48} 
                         text={profile.firstName} 
                         secondaryText={profile.email}
                         tertiaryText='editor'
                         />
-                    <Link href="/settings/profile" className={classes.link}>
-                        {t("profile-link")}
-                    </Link>
+                        <Link href="/settings/profile" className={classes.link}>
+                            {t("profile-link")}
+                        </Link></>
+                    }
                 </Callout>
             )}
         </React.Fragment>

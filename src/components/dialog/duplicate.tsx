@@ -1,8 +1,9 @@
-import { IChoiceGroupOption } from '@fluentui/react';
-import ExecuteQuery from 'apollo/executequery';
-import { GET_METHODOLOGIES } from 'apollo/methodologies';
 import { useTranslation } from 'react-i18next';
 
+import { IChoiceGroupOption } from '@fluentui/react';
+
+import ExecuteQuery from 'apollo/executequery';
+import { GET_METHODOLOGIES } from 'apollo/methodologies';
 import CustomDialog from './custom'
 
 type ExportDialogProps = {
@@ -34,15 +35,15 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
     }
 
     return <CustomDialog
-            hidden={hideDialog}
-            onDismiss={toggleHideDialog}
-            dialogContentProps={{title : t("duplicate-title")}}
-            primaryButtonText={t("duplicate-accept-label")}
-            acceptOnClick={handleAccpetButtonOnClick}
-            // inline conditionally pass props
-            {...(options.length > 0 && {optionsProps: {
-              options,
-              optionsTitle : t("duplicate-options-title")
-            }})}
-      />
+              hidden={hideDialog}
+              onDismiss={toggleHideDialog}
+              dialogContentProps={{title : t("duplicate-title")}}
+              primaryButtonText={t("duplicate-accept-label")}
+              acceptOnClick={handleAccpetButtonOnClick}
+              // inline conditionally pass props
+              {...(options.length > 0 && {optionsProps: {
+                options,
+                optionsTitle : t("duplicate-options-title")
+              }})}
+            />
 }

@@ -14,7 +14,8 @@ import { DetailsList,
          IDetailsListProps,
          IDetailsRowStyles,
          DetailsRow} from '@fluentui/react';
-import { Title } from 'components/styled/titletext';
+
+import { Subtitle, Title } from 'components/styled/text';
 
 
 interface IProject {
@@ -93,7 +94,9 @@ const own_project : IProject[] = [
 export default function OpenPage() {
 
     // LOGIC
-    const { t } = useTranslation(["homepages-subtitles", "navbar", "methodologies"]);
+    const { t } = useTranslation(["permitions", "methodologies"]);
+    const tpath = "navbar:open"
+
     const { palette } = useTheme()
 
     const columns: IColumn[] = [
@@ -133,7 +136,7 @@ export default function OpenPage() {
 
     const iconRender = (project: IProject) => {
         return (    
-            <TooltipHost content={t(`open-permition-${project.permition}`)}>
+            <TooltipHost content={t(`${project.permition}`)}>
                 <IconButton iconProps={{ iconName: permitions[project.permition]}}  />
             </TooltipHost>
         )
@@ -152,7 +155,7 @@ export default function OpenPage() {
 
     const dateRender = (project: IProject) => {
         return (
-            `${t("open-date-modified")} ${project.dateModified}`
+            `${t(`${tpath}:date-modified`)} ${project.dateModified}`
         )
     }
 
@@ -169,60 +172,61 @@ export default function OpenPage() {
         return null;
     };
 
-    return <React.Fragment>
-        <Title>{t("navbar:open")}</Title>
+    return (
+        <React.Fragment>
+            <Title>{t(t(`${tpath}:title`))}</Title>
 
-        <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("recent")}</Text> <br/>
+            <Stack styles={stackStyles}>
+                <Subtitle>{t(`${tpath}:recent`)}</Subtitle> <br/>
 
-            <DetailsList
-                items={recent_projects}
-                columns={columns}
-                selectionMode={SelectionMode.none}
-                isHeaderVisible={false}
-                onRenderRow={onRenderRow}
-                layoutMode={DetailsListLayoutMode.fixedColumns}
-            />
-        </Stack>
+                <DetailsList
+                    items={recent_projects}
+                    columns={columns}
+                    selectionMode={SelectionMode.none}
+                    isHeaderVisible={false}
+                    onRenderRow={onRenderRow}
+                    layoutMode={DetailsListLayoutMode.fixedColumns}
+                    />
+            </Stack>
 
-        <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("owner")}</Text> <br/>
+            <Stack styles={stackStyles}>
+                <Subtitle>{t("owner")}</Subtitle> <br/>
 
-            <DetailsList
-                items={own_project}
-                columns={columns}
-                selectionMode={SelectionMode.none}
-                isHeaderVisible={false}
-                onRenderRow={onRenderRow}
-                layoutMode={DetailsListLayoutMode.fixedColumns}
-            />
-        </Stack>
+                <DetailsList
+                    items={own_project}
+                    columns={columns}
+                    selectionMode={SelectionMode.none}
+                    isHeaderVisible={false}
+                    onRenderRow={onRenderRow}
+                    layoutMode={DetailsListLayoutMode.fixedColumns}
+                    />
+            </Stack>
 
-        <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("shared")}</Text> <br/>
+            <Stack styles={stackStyles}>
+                <Subtitle>{t(`${tpath}:shared`)}</Subtitle> <br/>
 
-            <DetailsList
-                items={recent_projects.slice(1)}
-                columns={columns}
-                selectionMode={SelectionMode.none}
-                isHeaderVisible={false}
-                onRenderRow={onRenderRow}
-                layoutMode={DetailsListLayoutMode.fixedColumns}
-            />
-        </Stack>
+                <DetailsList
+                    items={recent_projects.slice(1)}
+                    columns={columns}
+                    selectionMode={SelectionMode.none}
+                    isHeaderVisible={false}
+                    onRenderRow={onRenderRow}
+                    layoutMode={DetailsListLayoutMode.fixedColumns}
+                    />
+            </Stack>
 
-        <Stack styles={stackStyles}>
-            <Text variant='mediumPlus'>{t("all")}</Text> <br/>
+            <Stack styles={stackStyles}>
+                <Subtitle>{t(`${tpath}:all`)}</Subtitle> <br/>
 
-            <DetailsList
-                items={own_project.concat(recent_projects)}
-                columns={columns}
-                selectionMode={SelectionMode.none}
-                isHeaderVisible={false}
-                onRenderRow={onRenderRow}
-                layoutMode={DetailsListLayoutMode.fixedColumns}
-            />
-        </Stack>
-    </React.Fragment>
+                <DetailsList
+                    items={own_project.concat(recent_projects)}
+                    columns={columns}
+                    selectionMode={SelectionMode.none}
+                    isHeaderVisible={false}
+                    onRenderRow={onRenderRow}
+                    layoutMode={DetailsListLayoutMode.fixedColumns}
+                    />
+            </Stack>
+        </React.Fragment>)
 }
 

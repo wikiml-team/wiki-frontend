@@ -5,9 +5,7 @@ import { ISeparatorStyles, Separator, Stack, Text, useTheme } from '@fluentui/re
 // import { useQuery } from '@apollo/client';
 // import { GET_USER_PROJECTS } from 'apollo/methodologies';
 import StaredProjects from 'components/cards/staredprojects';
-import { Title } from 'components/styled/titletext';
-
-// Home: star projects, visualizes teams, maybe notifications
+import { Title } from 'components/styled/text';
 
 type Example = {
     project: string,
@@ -16,7 +14,9 @@ type Example = {
 
 export default function HomePage() {
 
-    const { t } = useTranslation(["navbar", "homepage"]);
+    const { t } = useTranslation();
+    const tpath = "navbar:home"
+    
     const { palette } = useTheme();
 
     const exampledata : Example[] = [
@@ -34,11 +34,11 @@ export default function HomePage() {
     };
     return (
         <React.Fragment>
-            <Title>{t("home")}</Title>
+            <Title>{t(`${tpath}:title`)}</Title>
 
             {/* Star Projects */}
             <Stack>
-                <Text variant='mediumPlus'>{t("homepages-subtitles:stared-projects")}</Text>
+                <Text variant='mediumPlus'>{t(`${tpath}:stared-projects`)}</Text>
                 <Stack horizontal>
                     {exampledata.map(({project, meth} : Example, key : number) => (
                         <StaredProjects key={key} projectName={project} methodology={meth}/>
@@ -47,12 +47,12 @@ export default function HomePage() {
                 <Separator styles={separatorStyles}/>
 
                 {/* Visualize Teams */}
-                <Text variant='mediumPlus'>{t("homepages-subtitles:teams")}</Text>
+                <Text variant='mediumPlus'>{t(`${tpath}:teams`)}</Text>
                 <Separator styles={separatorStyles}/>
 
                 {/* Notifications */}
                 {/* Separator */}
-                <Text variant='mediumPlus'>{t("homepages-subtitles:notifications")}</Text>
+                <Text variant='mediumPlus'>{t(`${tpath}:notifications`)}</Text>
                 <Separator styles={separatorStyles}/>
             </Stack>
         </React.Fragment>

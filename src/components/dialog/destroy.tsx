@@ -30,5 +30,5 @@ export default function DestroyProjectDialog(props: ExportDialogProps) {
             onDismiss={toggleHideDialog}
             primaryButtonText={t("destroy-accept-label")}
             acceptOnClick={handleAccpetButtonOnClick}
-    />
+            />
 }

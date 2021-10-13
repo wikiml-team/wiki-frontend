@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+
 import {
   ISeparatorStyles,
   IStackProps,
@@ -8,10 +9,10 @@ import {
   useTheme,
 } from "@fluentui/react";
 
+import { setConfiguration } from "store/slices/workplaceslice";
+import { Tab } from "models/workplace";
 import PagesTabs from "./pagestabs";
 import AddButton from "./addbutton";
-import { Tab } from "models/workplace";
-import { setConfiguration } from "store/slices/workplaceslice";
 
 type FooterProps = {
   tab: Tab;

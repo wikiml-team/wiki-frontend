@@ -41,54 +41,6 @@
       "settings": "impostazioni",
       "notifications": "notifiche"
     },
-    "navbar" : {
-      "home" : {
-        "title" : "Home",
-        "stared-projects" : "Progetti evidenziati",
-        "teams" : "Team",
-        "notifications" : "Notifiche"
-      }, 
-      "new" : {
-        "title" : "Nuovo",
-        "select-create-project" : "Selecciona la metodología que debe seguir el nuevo proyecto."
-      }, 
-      "open" : {
-        "title" : "Aprire",
-        "recent": "Recenti",
-        "shared" : "Recentemente condiviso",
-        "all" : "Tutti",
-        "date-modified" : "Ultima modifica"
-      },
-      "methodologies" : {
-        "title" : "",
-        "description" : "Selecciona la metodología que quiere leer, editar o añadir.",
-        "permitions-note" : "La edición solo estará disponible si los permisos han sido previamente dados."
-      },
-      "info" : {
-        "title" : "Info"
-      },
-      "export" : {
-        "title" : "Exportazione"
-      },
-      "print" : {
-        "title" : "Stampare"
-      },
-      "share" : {
-        "title" : "Condividere"
-      },
-      "about" : {
-        "title" : "Informazioni"
-      },
-      "account" : {
-        "title" : "Account"
-      },
-      "feedback" : {
-        "title" : "Feedback"
-      },
-      "options" : {
-        "title" : "Opzioni"
-      }
-    },
     "menu": {
       "wikiml": "WikiML",
       "project": "Progetto",
