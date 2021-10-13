@@ -1,14 +1,20 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-import { DetailsList, IColumn, SelectionMode, Text } from "@fluentui/react";
+import { DetailsList, 
+        IColumn, 
+        ITextStyles, 
+        SelectionMode, 
+        Text, 
+        FontWeights} from "@fluentui/react";
 
 import { selectWorkplaceConfig } from "store/slices/workplaceslice";
 import { IForm } from "models/workplace";
 
 export default function FormsTutorials() {
   // LOGIC
-  const { t } = useTranslation("pages");
+  const { t } = useTranslation(["pages", "tutorials"]);
+  const t_path = "tutorials:forms"
 
   const { tabsSchema } = useSelector(selectWorkplaceConfig);
 
@@ -17,26 +23,57 @@ export default function FormsTutorials() {
   const columns: IColumn[] = [
     {
         key: 'column1',
-        name: 'forms',
-        fieldName: 'forms',
+        name: t(`${t_path}:form-table-header`),
+        fieldName: 'form',
         minWidth: 100,
+        maxWidth: 200,
+        isMultiline: true,
         data: 'string',
         onRender: (item: IForm) => formRender(item)
+    },
+    {
+      key: 'column2',
+      fieldName: 'description',
+      name: t(`${t_path}:description-table-header`),
+      minWidth: 100,
+      isMultiline: true,
+      data: 'string',
+      onRender: (item: IForm) => descriptionRender(item)
     },
   ]
 
   const formRender = (form: IForm) => {
+
+    const handleOnClick = (item : React.MouseEvent<HTMLElement, MouseEvent>) => {
+
+    }
+
+    const textStyles : ITextStyles = {
+      root: {
+        fontWeight: FontWeights.semibold
+      }
+    }
+    return (
+        <Text variant="medium" styles={textStyles} onClick={(item) => handleOnClick(item)}>
+          {t(form.name)}
+        </Text>
+    )
+  }
+
+  const descriptionRender = (form: IForm) => {
     return (
       <Text variant="medium">
-       {t(form.name)}
+       {t(form.description || "")}
       </Text>
     )
   }
+
+
 
   return <DetailsList
             items={forms}
             columns={columns}
             selectionMode={SelectionMode.none}
-            isHeaderVisible={false}
+            // isHeaderVisible={false}
         />
 }
