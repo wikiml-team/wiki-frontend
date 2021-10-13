@@ -29,10 +29,7 @@ const MainLayout: FunctionComponent = (props) => {
   return (
     <React.Fragment>
         <Stack horizontal>
-          <Stack 
-            verticalAlign="space-between" 
-            styles={menuStackStyles}
-          >
+          <Stack styles={menuStackStyles} >
             <FileMenu />
           </Stack>
 
