@@ -77,12 +77,6 @@ export default function MethodologiesPage() {
         }
     }
 
-    const tooltipStyles  = {
-        root: {
-            padding: 15
-        }
-    }
-
     return <React.Fragment>
         <Title>{t(`${tpath}:title`)}</Title>
 

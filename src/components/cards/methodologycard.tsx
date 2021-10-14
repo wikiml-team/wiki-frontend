@@ -15,6 +15,7 @@ import { useBoolean } from '@fluentui/react-hooks';
 import canadian from "./logos/canadian.png"
 import german from "./logos/german.png"
 import autralian from "./logos/australian.png"
+import GetCardColor from 'themes/cardtheme';
 
 type MethodologyCardProps = {
     name : string,
@@ -42,9 +43,7 @@ export default function MethodologyCard(props : MethodologyCardProps) {
   const handleOnMouseLeave = () => contentToDisplay && toggleDisplayContent();
   
   // STYLES
-  const { palette } = useTheme()
-  const previewProps: IDocumentCardPreviewProps = {
-    getOverflowDocumentCountText: (overflowCount: number) => `+${overflowCount} more`,
+  const previewProps : IDocumentCardPreviewProps = {
     previewImages: [
       {
         width: 250,
@@ -53,8 +52,8 @@ export default function MethodologyCard(props : MethodologyCardProps) {
     ],
     styles: {
       root: {
-        backgroundImage: `linear-gradient(75deg, ${palette.themeDarker},  ${palette.themeTertiary})`,
-        transition: "background 0.5s linear",
+        background: GetCardColor(),
+        backgroundColor: "rgb(254, 163, 170)",
       }
     }
   }
