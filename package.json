@@ -23,7 +23,7 @@
     "@types/styled-components": "^5.1.9",
     "axios": "^0.21.4",
     "classnames": "^2.3.1",
-    "cypress": "^6.8.0",
+    "cypress": "^8.6.0",
     "fluentui-react-grid": "^1.0.0",
     "formik": "^2.2.6",
     "graphql": "^15.5.3",
