@@ -15,7 +15,7 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "en",
-    keySeparator: false,
+    // keySeparator: false,
     // debug: true,
     resources: {
       en: English,

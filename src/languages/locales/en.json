@@ -41,9 +41,14 @@
     "settings": "Settings",
     "notifications": "Notifications"
   },
-  "navbar" : {
+  
+
+
+
+
+  "navbar" : { 
     "home" : {
-      "title" : "Home",
+      "title" : "Home", 
       "stared-projects" : "Stared Projects",
       "teams" : "Teams",
       "notifications" : "Notifications"
@@ -90,6 +95,10 @@
       "title" : "Options"
     }
   },
+
+
+
+  
   "menu": {
     "wikiml": "WikiML",
     "project": "Project",

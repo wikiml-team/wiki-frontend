@@ -1,0 +1,13 @@
+{
+    "forms" : {
+        "header" : "Forms",
+        "form-table-header" : "Form",
+        "description-table-header" : "Description"
+    },
+    "sectors" : {
+        "header" : "Sectors"
+    },
+    "guides" : {
+        "header" : "Guides"
+    }
+}
