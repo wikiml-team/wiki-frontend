@@ -56,13 +56,14 @@
       "title" : "Öffnen",
       "recent": "Neuste",
       "shared" : "Zuletzt freigegeben",
+      "shared-info" : "Akzeptieren / Ablehnen der Einladung zur Teilnahme",
       "all" : "Alle",
       "date-modified" : "Zuletzt geändert"
     },
     "methodologies" : {
       "title" : "Metodologien",
       "description" : "Select the methodology you want to read, edit or add.",
-      "permitions-note" : "Edition will only be available if permitions have been given."
+      "permitions-info" : "Edition will only be available if permitions have been given."
     },
     "info" : {
       "title" : "Info"

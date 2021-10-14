@@ -56,13 +56,14 @@
       "title" : "Open",
       "recent": "Recent",
       "shared" : "Recenly shared",
+      "shared-info" : "Accept / Decline the invitation to participate",
       "all" : "All",
       "date-modified" : "Last modified"
     },
     "methodologies" : {
       "title" : "Methodologies",
       "description" : "Select the methodology you want to read, edit or add.",
-      "permitions-note" : "Edition will only be available if permitions have been given."
+      "permitions-info" : "Edition will only be available if permitions have been given."
     },
     "info" : {
       "title" : "Info"
@@ -136,6 +137,12 @@
     "projects": "Projects",
     "sources": "Verification Sources",
     "users": "Users"
+  },
+  "tutorials": {
+    "forms" : {
+      "form-table-header" : "Form",
+      "description-table-header" : "Description"
+    }
   },
   "loading": {
     "loading-title": "Loading",

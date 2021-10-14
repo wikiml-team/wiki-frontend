@@ -1,0 +1,20 @@
+{
+    "filemenu" : {
+        "home" : "Home",
+        "new" : "New",
+        "open" : "Open"
+    },
+    "commandbar" : {
+        "undo" : "Undo",
+        "redo" : "Redo",
+        "share" : "Share"
+    },
+    "mainmenu" : {
+        "wiki" : "WikiML",
+        "project" : "Project",
+        "licitations" : "Licitations",
+        "methodology" : "Methodology",
+        "database" : "Database",
+        "more" : "More"
+    }
+}

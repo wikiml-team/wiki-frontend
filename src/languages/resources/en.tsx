@@ -1,9 +1,7 @@
-import English from "languages/locales/en/en.json"
-import en_nav from "languages/locales/en/nav.json"
+import filemenu from "languages/locales/en/filemenu.json"
 
 const en = {
-    English,
-    nav: en_nav
+    filemenu
 }
 
 export default en
