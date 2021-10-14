@@ -42,6 +42,34 @@
     "notifications": "Notifications"
   },
   "navbar" : {
+<<<<<<< HEAD
+    "home" : "Home", 
+    "new" : "New", 
+    "open" : "Open",
+    "methodologies": "Methodologies",
+    "info" : "Info",
+    "export" : "Export",
+    "print" : "Print",
+    "share" : "Share",
+    "about" : "About",
+    "account" : "Account",
+    "feedback" : "Feedback",
+    "options" : "Options"
+  },
+  "homepages-subtitles": {
+    "stared-projects" : "Stared Projects",
+    "teams": "Teams",
+    "notifications": "Notifications",
+    "recent": "Recent",
+    "owner" : "My projects",
+    "shared" : "Accept / Decline the invitation to participate",
+    "all" : "All",
+    "open-permition-owner": "Manage",
+    "open-permition-edit": "Edit",
+    "open-permition-read": "Read",
+    "open-date-modified" : "Last modified",
+    "methodologies-description": "You have access to modified the following methodologies:"
+=======
     "home" : {
       "title" : "Home",
       "stared-projects" : "Stared Projects",
@@ -88,6 +116,7 @@
     "options" : {
       "title" : "Options"
     }
+>>>>>>> 0396ff2bb766bda655c4486821015aa3719159ef
   },
   "menu": {
     "wikiml": "WikiML",
@@ -220,9 +249,9 @@
     "shortname-field": "Project name (short)",
     "largename-field": "Project name",
     "description-field": "Descriptive resume",
-    "country-field": "Aid recipient",
-    "imporganization-field": "Implementing organization",
-    "intorganization-field": "Intermediary organization",
+    "country-field": "Principal Recipient",
+    "imporganization-field": "Main implementer",
+    "intorganization-field": "Main intermediary",
     "currency-field": "Currency",
     "budget-field": "Budget",
     "budget-prefix": "Solicited",

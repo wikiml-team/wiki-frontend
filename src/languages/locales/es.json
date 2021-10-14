@@ -42,6 +42,34 @@
     "notifications": "Notificaciones"
   },
   "navbar" : {
+<<<<<<< HEAD
+    "home" : "Inicio", 
+    "new" : "Nuevo", 
+    "open" : "Abrir",
+    "methodologies": "Metodologias",
+    "info" : "Info",
+    "export" : "Exportar",
+    "print" : "Imprimir",
+    "share" : "Compartir",
+    "about" : "Acerca de",
+    "account" : "Cuenta",
+    "feedback" : "Retroalimentación",
+    "options" : "Opciones"
+  },
+  "homepages-subtitles": {
+    "stared-projects" : "Proyectos Destacados",
+    "teams": "Equipos",
+    "notifications": "Notificaciones",
+    "recent": "Reciente",
+    "owner" : "Mis proyectos",
+    "shared" : "Aceptar / Rechazar la invitación a participar",
+    "all" : "Todos",
+    "open-permition-owner": "Administrar",
+    "open-permition-edit": "Editar",
+    "open-permition-read": "Leer",
+    "open-date-modified" : "Modificado por última vez",
+    "methodologies-description": "Usted tiene acceso a modificar las siguientes metodologías:"
+=======
     "home" : {
       "title" : "Inicio",
       "stared-projects" : "Proyectos Destacados",
@@ -88,6 +116,7 @@
     "options" : {
       "title" : "Opciones"
     }
+>>>>>>> 0396ff2bb766bda655c4486821015aa3719159ef
   },
   "menu": {
     "wikiml": "WikiML",
@@ -214,9 +243,9 @@
     "shortname-field": "Nombre del proyecto (corto)",
     "largename-field": "Nombre del proyecto",
     "description-field": "Resumen descriptivo",
-    "country-field": "Receptor de ayuda",
-    "imporganization-field": "Implementadora",
-    "intorganization-field": "Intermediaria",
+    "country-field": "Principal receptor",
+    "imporganization-field": "Implementadora principal",
+    "intorganization-field": "Intermediaria principal",
     "currency-field": "Moneda",
     "budget-field": "Presupuesto",
     "budget-prefix": "Solicitado",
@@ -228,7 +257,7 @@
     "sector-field": "Sector",
     "duration-field": "Duración",
     "duration-suffix": "meses",
-    "donor-field": "Donante",
+    "donor-field": "Donante principal",
     "approvebudget-field": "Presupuesto aprobado",
     "contribution-field": "Contribución",
     "approvedate-field": "Aprobado",
@@ -352,7 +381,7 @@
     "other": "Otros Interesados",
     "tooltip-main-stakeholder-0": "Beneficiario principal",
     "tooltip-main-stakeholder-1": "Intermediario principal",
-    "tooltip-main-stakeholder-2": "Lider del consorcio",
+    "tooltip-main-stakeholder-2": "Líder del consorcio",
     "tooltip-main-stakeholder-3": "Donante principal",
     "tooltip-add-stakeholder": "Añadir parte interesada",
     "tooltip-delete-stakeholder": "Eliminar parte interesada",
