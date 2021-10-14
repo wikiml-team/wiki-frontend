@@ -162,12 +162,12 @@ export default function GeneralForm() {
         default: "field_invalid",
       },
       // use functions to generate an error object that includes the value from the schema
-      string: {
-        default: "asi mismo",
-      },
-      number: {
-        default: "asimismo",
-      },
+      // string: {
+      //   default: "asi mismo",
+      // },
+      // number: {
+      //   default: "asimismo",
+      // },
     });
   }, [validationSchema]);
 

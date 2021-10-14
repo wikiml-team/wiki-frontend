@@ -3,9 +3,12 @@ import { useSpring, animated } from 'react-spring'
 import { DocumentCard, 
     DocumentCardDetails, 
     DocumentCardImage, 
+    DocumentCardPreview, 
     DocumentCardTitle, 
+    IDocumentCardPreviewProps, 
     IDocumentCardStyles, 
     ImageFit,
+    useTheme,
 } from '@fluentui/react'
 import { useBoolean } from '@fluentui/react-hooks';
 
@@ -17,7 +20,8 @@ type MethodologyCardProps = {
     name : string,
     href?: string,
     onClick?: () => void,
-    contentToDisplay?: JSX.Element
+    contentToDisplay?: JSX.Element,
+    addCard? : boolean
 }
 
 const pic_dict = {
@@ -29,7 +33,7 @@ const pic_dict = {
 export default function MethodologyCard(props : MethodologyCardProps) {
 
   // LOGIC
-  const { name, href, onClick, contentToDisplay } = props;
+  const { name, href, onClick, contentToDisplay, addCard } = props;
 
   const [displayContent, {toggle: toggleDisplayContent}] = useBoolean(false);
 
@@ -38,6 +42,23 @@ export default function MethodologyCard(props : MethodologyCardProps) {
   const handleOnMouseLeave = () => contentToDisplay && toggleDisplayContent();
   
   // STYLES
+  const { palette } = useTheme()
+  const previewProps: IDocumentCardPreviewProps = {
+    getOverflowDocumentCountText: (overflowCount: number) => `+${overflowCount} more`,
+    previewImages: [
+      {
+        width: 250,
+        height: 90,
+      }
+    ],
+    styles: {
+      root: {
+        backgroundImage: `linear-gradient(75deg, ${palette.themeDarker},  ${palette.themeTertiary})`,
+        transition: "background 0.5s linear",
+      }
+    }
+  }
+
   const cardStyles: IDocumentCardStyles = {
       root: { 
           display: 'inline-block', 
@@ -62,13 +83,16 @@ export default function MethodologyCard(props : MethodologyCardProps) {
           onMouseLeave={handleOnMouseLeave}
         >
           <animated.div style={fadeStyles}>
-            <DocumentCardImage 
-              height={90} 
-              imageFit={ImageFit.cover} 
-              imageSrc={pic_dict["canadian"]} 
+            {addCard? 
+              <DocumentCardPreview {...previewProps} /> :
+              <DocumentCardImage 
+                height={90} 
+                imageFit={ImageFit.cover} 
+                imageSrc={pic_dict["canadian"]} 
               />
+            }
             <DocumentCardDetails>
-              <DocumentCardTitle title={name} showAsSecondaryTitle />
+              <DocumentCardTitle title={name} showAsSecondaryTitle/>
             </DocumentCardDetails>
           </animated.div>
 

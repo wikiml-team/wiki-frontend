@@ -96,11 +96,12 @@ export default function MethodologiesPage() {
         <Stack horizontal {...stackProps}>
             {/* To add a methodology */}
             <Stack.Item>
-                <CenteredText className={classes.iconContainer}>
-                    <TooltipHost content={t("permitions:create")} styles={tooltipStyles}>
-                        <IconButton {...iconButtonProps} />
-                    </TooltipHost>
-                </CenteredText>
+                <MethodologyCard 
+                    name={"Personalize methodology"} 
+                    href={""} 
+                    addCard
+                    contentToDisplay={<DisplayContentOverCard add/>}
+                    />
             </Stack.Item>
 
             {/* To read or edit a methodology */}
@@ -122,7 +123,7 @@ const mapMethodologiesToCards = (data: any) => {
     )
 }
 
-function DisplayContentOverCard() {
+function DisplayContentOverCard(props : {add? : boolean}) {
     
     const { t } = useTranslation("permitions");
     const { palette } = useTheme()
@@ -137,15 +138,22 @@ function DisplayContentOverCard() {
         <Overlay>
             <Centered>
                 <Stack horizontal tokens={{childrenGap: 10}}>
-                    <PrimaryButton
-                        text={t("read")}
-                        onClick={()=> {}} 
-                        styles={buttonStyles}
-                    />
-                    <PrimaryButton 
-                        text={t("edit")} 
-                        onClick={()=> {}} 
-                    />
+                    {
+                        props.add? (
+                            <PrimaryButton 
+                                text={t("create")} 
+                                onClick={()=> {}}/>
+                        ) : (<>
+                            <PrimaryButton
+                                text={t("read")}
+                                onClick={()=> {}} 
+                                styles={buttonStyles}
+                                />
+                            <PrimaryButton 
+                                text={t("edit")} 
+                                onClick={()=> {}}/>
+                            </>)
+                    }
                 </Stack>
             </Centered>
         </Overlay>
