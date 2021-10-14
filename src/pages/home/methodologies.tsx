@@ -88,7 +88,7 @@ export default function MethodologiesPage() {
 
         <Subtitle>
             {t(`${tpath}:description`)}{' '}
-            <TooltipHost content={t(`${tpath}:permitions-note`)}>
+            <TooltipHost content={t(`${tpath}:permitions-info`)}>
                 <Icon iconName="Info" aria-label="info" />
             </TooltipHost>
         </Subtitle>

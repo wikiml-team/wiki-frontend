@@ -13,7 +13,8 @@ import { DetailsList,
          useTheme,
          IDetailsListProps,
          IDetailsRowStyles,
-         DetailsRow} from '@fluentui/react';
+         DetailsRow,
+         Icon} from '@fluentui/react';
 
 import { Subtitle, Title } from 'components/styled/text';
 
@@ -203,7 +204,11 @@ export default function OpenPage() {
             </Stack>
 
             <Stack styles={stackStyles}>
-                <Subtitle>{t(`${tpath}:shared`)}</Subtitle> <br/>
+                <Subtitle>{t(`${tpath}:shared`)} {" "}
+                    <TooltipHost content={t(`${tpath}:shared-info`)}>
+                        <Icon iconName="Info" aria-label="info" />
+                    </TooltipHost>
+                </Subtitle>
 
                 <DetailsList
                     items={recent_projects.slice(1)}

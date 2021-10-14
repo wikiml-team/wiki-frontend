@@ -42,34 +42,6 @@
     "notifications": "Benachrichtigungen"
   },
   "navbar" : {
-<<<<<<< HEAD
-    "home" : "Startseite ", 
-    "new" : "Neu", 
-    "open" : "Öffnen",
-    "info" : "",
-    "methodologies": "Metodologien",
-    "export" : "Exportieren",
-    "print" : "Drucken",
-    "share" : "Teilen",
-    "about" : "Info",
-    "account" : "Benutzerkonto",
-    "feedback" : "Feedback",
-    "options" : "Optionen"
-  },
-  "homepages-subtitles": {
-    "stared-projects" : "Markierte Projekte",
-    "teams": "Teams",
-    "notifications": "Benachrichtigungen",
-    "recent": "Neuste",
-    "owner" : "Meine Projekte",
-    "shared" : "Akzeptieren / Ablehnen der Einladung zur Teilnahme",
-    "all" : "Alle",
-    "open-permition-owner": "Verwalten",
-    "open-permition-edit": "Bearbeiten",
-    "open-permition-read": "Lesen",
-    "open-date-modified" : "Zuletzt geändert",
-    "methodologies-description": ""
-=======
     "home" : {
       "title" : "Startseite",
       "stared-projects" : "Markierte Projekte",
@@ -84,13 +56,14 @@
       "title" : "Öffnen",
       "recent": "Neuste",
       "shared" : "Zuletzt freigegeben",
+      "shared-info" : "Akzeptieren / Ablehnen der Einladung zur Teilnahme",
       "all" : "Alle",
       "date-modified" : "Zuletzt geändert"
     },
     "methodologies" : {
       "title" : "Metodologien",
       "description" : "Select the methodology you want to read, edit or add.",
-      "permitions-note" : "Edition will only be available if permitions have been given."
+      "permitions-info" : "Edition will only be available if permitions have been given."
     },
     "info" : {
       "title" : "Info"
@@ -116,7 +89,6 @@
     "options" : {
       "title" : "Optionen"
     }
->>>>>>> 0396ff2bb766bda655c4486821015aa3719159ef
   },
   "menu": {
     "wikiml": "WikiML",

@@ -19,7 +19,7 @@
     "methodologies" : {
       "title" : "Metodologien",
       "description" : "Select the methodology you want to read, edit or add.",
-      "permitions-note" : "Edition will only be available if permitions have been given."
+      "permitions-info" : "Edition will only be available if permitions have been given."
     },
     "info" : {
       "title" : "Info"

@@ -42,34 +42,6 @@
     "notifications": "Notifications"
   },
   "navbar" : {
-<<<<<<< HEAD
-    "home" : "Home", 
-    "new" : "New", 
-    "open" : "Open",
-    "methodologies": "Methodologies",
-    "info" : "Info",
-    "export" : "Export",
-    "print" : "Print",
-    "share" : "Share",
-    "about" : "About",
-    "account" : "Account",
-    "feedback" : "Feedback",
-    "options" : "Options"
-  },
-  "homepages-subtitles": {
-    "stared-projects" : "Stared Projects",
-    "teams": "Teams",
-    "notifications": "Notifications",
-    "recent": "Recent",
-    "owner" : "My projects",
-    "shared" : "Accept / Decline the invitation to participate",
-    "all" : "All",
-    "open-permition-owner": "Manage",
-    "open-permition-edit": "Edit",
-    "open-permition-read": "Read",
-    "open-date-modified" : "Last modified",
-    "methodologies-description": "You have access to modified the following methodologies:"
-=======
     "home" : {
       "title" : "Home",
       "stared-projects" : "Stared Projects",
@@ -84,13 +56,14 @@
       "title" : "Open",
       "recent": "Recent",
       "shared" : "Recenly shared",
+      "shared-info" : "Accept / Decline the invitation to participate",
       "all" : "All",
       "date-modified" : "Last modified"
     },
     "methodologies" : {
       "title" : "Methodologies",
       "description" : "Select the methodology you want to read, edit or add.",
-      "permitions-note" : "Edition will only be available if permitions have been given."
+      "permitions-info" : "Edition will only be available if permitions have been given."
     },
     "info" : {
       "title" : "Info"
@@ -116,7 +89,6 @@
     "options" : {
       "title" : "Options"
     }
->>>>>>> 0396ff2bb766bda655c4486821015aa3719159ef
   },
   "menu": {
     "wikiml": "WikiML",

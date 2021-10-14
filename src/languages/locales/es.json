@@ -42,34 +42,6 @@
     "notifications": "Notificaciones"
   },
   "navbar" : {
-<<<<<<< HEAD
-    "home" : "Inicio", 
-    "new" : "Nuevo", 
-    "open" : "Abrir",
-    "methodologies": "Metodologias",
-    "info" : "Info",
-    "export" : "Exportar",
-    "print" : "Imprimir",
-    "share" : "Compartir",
-    "about" : "Acerca de",
-    "account" : "Cuenta",
-    "feedback" : "Retroalimentación",
-    "options" : "Opciones"
-  },
-  "homepages-subtitles": {
-    "stared-projects" : "Proyectos Destacados",
-    "teams": "Equipos",
-    "notifications": "Notificaciones",
-    "recent": "Reciente",
-    "owner" : "Mis proyectos",
-    "shared" : "Aceptar / Rechazar la invitación a participar",
-    "all" : "Todos",
-    "open-permition-owner": "Administrar",
-    "open-permition-edit": "Editar",
-    "open-permition-read": "Leer",
-    "open-date-modified" : "Modificado por última vez",
-    "methodologies-description": "Usted tiene acceso a modificar las siguientes metodologías:"
-=======
     "home" : {
       "title" : "Inicio",
       "stared-projects" : "Proyectos Destacados",
@@ -84,13 +56,14 @@
       "title" : "Abrir",
       "recent": "Reciente",
       "shared" : "Compartido",
+      "shared-info" : "Aceptar / Rechazar la invitación a participar",
       "all" : "Todos",
       "date-modified" : "última modificación"
     },
     "methodologies" : {
       "title" : "Metodologías",
       "description" : "Selecciona la metodología que quiere leer, editar o añadir.",
-      "permitions-note" : "La edición solo estará disponible si los permisos han sido previamente dados."
+      "permitions-info" : "La edición solo estará disponible si los permisos han sido previamente dados."
     },
     "info" : {
       "title" : "Info"
@@ -116,7 +89,6 @@
     "options" : {
       "title" : "Opciones"
     }
->>>>>>> 0396ff2bb766bda655c4486821015aa3719159ef
   },
   "menu": {
     "wikiml": "WikiML",
