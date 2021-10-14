@@ -137,6 +137,12 @@
     "sources": "Verification Sources",
     "users": "Users"
   },
+  "tutorials": {
+    "forms" : {
+      "form-table-header" : "Form",
+      "description-table-header" : "Description"
+    }
+  },
   "loading": {
     "loading-title": "Loading",
     "loading-description": "Please wait a few senconds, we are loading the data"
