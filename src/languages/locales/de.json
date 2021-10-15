@@ -23,8 +23,8 @@
   "permitions" : {
     "read": "Lesen",
     "edit": "Bearbeiten",
-    "create" : "Create",
-    "owner": "Manage"
+    "create" : "Erstellen",
+    "owner": "Verwalten"
   },
   "commands": {
     "undo": "Rückgängig",
@@ -351,10 +351,10 @@
     "implementer": "Durchführende Organisation",
     "donor": "Geldgeber",
     "other": "Weitere Stakeholder",
-    "tooltip-main-stakeholder-0": "Hauptbegünstigte",
+    "tooltip-main-stakeholder-0": "Hauptempfänger",
     "tooltip-main-stakeholder-1": "Hauptintermediär",
     "tooltip-main-stakeholder-2": "Konsortialführer",
-    "tooltip-main-stakeholder-3": "Hauptgeldgeber",
+    "tooltip-main-stakeholder-3": "Hauptmittler",
     "tooltip-add-stakeholder": "Stakeholder hinzufügen",
     "tooltip-delete-stakeholder": "Stakeholder löschen",
     "tooltip-change-main-stakeholder-0": "Als Hauptbegünstigten auswählen",
