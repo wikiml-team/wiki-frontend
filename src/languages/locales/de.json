@@ -23,7 +23,7 @@
   "permitions" : {
     "read": "Lesen",
     "edit": "Bearbeiten",
-    "create" : "Create",
+    "create" : "Erstellen",
     "owner": "Verwalten"
   },
   "commands": {
