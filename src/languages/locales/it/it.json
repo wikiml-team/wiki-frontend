@@ -23,8 +23,8 @@
     "permitions" : {
       "read" : "Leggere",
       "edit" : "Modificare",
-      "create" : "Crear",
-      "owner": "Administrar"
+      "create" : "Creare",
+      "owner": "Gestire"
     },
     "commands": {
       "undo": "annullare",
