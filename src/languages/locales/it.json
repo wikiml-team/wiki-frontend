@@ -23,8 +23,8 @@
     "permitions" : {
       "read" : "Leggere",
       "edit" : "Modificare",
-      "create" : "Crear",
-      "owner": "Administrar"
+      "create" : "Creare",
+      "owner": "Gestire"
     },
     "commands": {
       "undo": "annullare",
@@ -165,7 +165,7 @@
       "profile": "Perfilo",
       "privacy": "Privacy",
       "security": "Sicurezza",
-      "team": "team di lavoro", 
+      "team": "Team di lavoro", 
       "privacy-page" : {
         "title" : "Privacy",
         "welcome-subtitle" : "Benvenuto nel tuo pannello della privacy",
@@ -351,7 +351,7 @@
       "implementer": "Attuatore",
       "donor": "Donatore",
       "other": "Altri stakeholder",
-      "tooltip-main-stakeholder-0": "Beneficiario principale",
+      "tooltip-main-stakeholder-0": "Destinatario principalee",
       "tooltip-main-stakeholder-1": "Intermediario principale",
       "tooltip-main-stakeholder-2": "Leader del consorzio",
       "tooltip-main-stakeholder-3": "Donatore principale",
