@@ -6,14 +6,14 @@ import { IStackStyles, Stack, useTheme } from "@fluentui/react";
 import FileMenu from "components/menus/homemenu/filemenu";
 
 const MainLayout: FunctionComponent = (props) => {
-  const { palette } = useTheme();
+
   const { children } = props;
-  
+
+  const { palette } = useTheme();
   const menuStackStyles: IStackStyles = {
     root: {
       height: "100vh",
       width: 200,
-      // background: palette.themeSecondary,
     },
   };
 
@@ -27,20 +27,18 @@ const MainLayout: FunctionComponent = (props) => {
   };
 
   return (
-    <React.Fragment>
-        <Stack horizontal>
-          <Stack styles={menuStackStyles} >
-            <FileMenu />
-          </Stack>
+    <Stack horizontal>
+      <Stack styles={menuStackStyles} >
+        <FileMenu />
+      </Stack>
 
-          <Stack styles={pageStackStyles}>
-            <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
-              {children}
-            </Scrollbars>
-          </Stack>
+      <Stack styles={pageStackStyles}>
+        <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
+          {children}
+        </Scrollbars>
+      </Stack>
 
-        </Stack>
-    </React.Fragment>
+    </Stack>
   )
 }
 

@@ -1,20 +1,46 @@
 {
-    "filemenu" : {
-        "home" : "Home",
-        "new" : "New",
-        "open" : "Open"
+    "filemenu": {
+        "home": "Home",
+        "new": "New",
+        "open": "Open",
+        "methodologies": "Methodologies",
+        "info": "Info",
+        "export": "Export",
+        "print": "Print",
+        "share": "Share",
+        "about": "About",
+        "account": "Account",
+        "feedback": "Feedback",
+        "options": "Options"
     },
-    "commandbar" : {
-        "undo" : "Undo",
-        "redo" : "Redo",
-        "share" : "Share"
+    "commandbar": {
+        "undo": "Undo",
+        "redo": "Redo",
+        "share": "Share",
+        "export": "Export",
+        "newproject": "New",
+        "openproject": "Open",
+        "destroyproject": "Delete",
+        "duplicate": "Duplicate",
+        "print": "Print",
+        "fullscreen": "Fullscreen",
+        "language": "Language",
+        "settings": "Settings",
+        "notifications": "Notifications",
+        "account": "Account"
     },
-    "mainmenu" : {
-        "wiki" : "WikiML",
-        "project" : "Project",
-        "licitations" : "Licitations",
-        "methodology" : "Methodology",
-        "database" : "Database",
-        "more" : "More"
+    "mainmenu": {
+        "wikiml": "WikiML",
+        "project": "Project",
+        "methodology": "Methodology",
+        "licitations": "Licitations",
+        "database": "Database",
+        "more": "More"
+    },
+    "settings": {
+        "profile": "Profile",
+        "privacy": "Privacy",
+        "security": "Security",
+        "team": "Team"
     }
 }

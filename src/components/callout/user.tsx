@@ -25,7 +25,7 @@ export default function UserCallout(props : UserCalloutProps) {
     // LOGIC
     const { isCalloutVisible, toggleIsCalloutVisible, calloutButtonId } = props;
     
-    const { t } = useTranslation("authentication")
+    const { t } = useTranslation("settings", { keyPrefix: "authentication" })
     const { keycloak } = useKeycloak()
 
     const handleLogout = () => keycloak.logout();
@@ -74,7 +74,7 @@ export default function UserCallout(props : UserCalloutProps) {
                 >
                     <Stack horizontal horizontalAlign="end" styles={stackStyles}>
                         <CommandBarButton 
-                            text={keycloak.authenticated? t("authentication:logout") : t("authentication:login")} 
+                            text={keycloak.authenticated? t("logout") : t("login")} 
                             onClick={keycloak.authenticated? handleLogout : handleLogin}>
                         </CommandBarButton>
                     </Stack>

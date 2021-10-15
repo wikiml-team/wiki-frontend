@@ -22,7 +22,7 @@ export default function NewProjectDialog(props : NewProjectCalloutProps) {
     // LOGIC
     const { hideDialog, toggleHideDialog, methodologyId } = props;
     
-    const { t } = useTranslation("dialog")
+    const { t } = useTranslation("commands", {keyPrefix: "new"})
     const history = useHistory()
 
     const handleAccpetButtonOnClick = (option: string) => {
@@ -32,10 +32,10 @@ export default function NewProjectDialog(props : NewProjectCalloutProps) {
     }
 
     return <CustomDialog
-        dialogContentProps={{title : t("create-project-title")}}
+        dialogContentProps={{title : t("header")}}
         hidden={hideDialog}
         onDismiss={toggleHideDialog}
-        primaryButtonText={t("create-project-accept-label")}
+        primaryButtonText={t("button-accept-label")}
         acceptOnClick={handleAccpetButtonOnClick}
         optionalBody={<NewProjectDialogBody methodologyId={methodologyId}/>}
   />
@@ -48,32 +48,32 @@ type NewProjectDialogBodyProps = {
 function NewProjectDialogBody(props : NewProjectDialogBodyProps) {
 
     const { methodologyId } = props
-    const { t } = useTranslation("dialog")
+    const { t } = useTranslation("commands", { keyPrefix: "new.body"})
 
     return (
         <Stack tokens={{ childrenGap: 16 }}> 
-            <Text variant="medium">{t("create-project-text")} {methodologyId}</Text>
+            <Text variant="medium">{t("text")} {methodologyId}</Text>
             <TextField 
                 required
-                label={t("create-project-name-label")}
-                placeholder={t("create-project-name-placeholder")} 
+                label={t("name-label")}
+                placeholder={t("name-placeholder")} 
                 />
             <Dropdown
                 required
-                label={t("create-project-language-label")}
-                placeholder={t("create-project-language-placeholder")} 
+                label={t("language-label")}
+                placeholder={t("language-placeholder")} 
                 options={[]}
             />
             <Toggle 
                 label={<>
-                    {t("create-project-privacy-label")}{' '}
-                    <TooltipHost content={t("create-project-privacy-text")}>
+                    {t("privacy-label")}{' '}
+                    <TooltipHost content={t("privacy-text")}>
                         <Icon iconName="Info" aria-label="info" />
                     </TooltipHost>    
                 </>} 
                 defaultChecked 
-                onText={t("create-project-privacy-on")} 
-                offText={t("create-project-privacy-off")} 
+                onText={t("privacy-on")} 
+                offText={t("privacy-off")} 
             />
         </Stack>
     )

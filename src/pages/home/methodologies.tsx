@@ -22,8 +22,7 @@ import { Subtitle, Title } from 'components/styled/text';
 export default function MethodologiesPage() {
 
     // LOGIC
-    const { t } = useTranslation();
-    const tpath = "navbar:methodologies"
+    const { t } = useTranslation("filemenu", { keyPrefix : "methodologies"});
     
     const methodologiesCards = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToCards})
 
@@ -78,11 +77,11 @@ export default function MethodologiesPage() {
     }
 
     return <React.Fragment>
-        <Title>{t(`${tpath}:title`)}</Title>
+        <Title>{t("header")}</Title>
 
         <Subtitle>
-            {t(`${tpath}:description`)}{' '}
-            <TooltipHost content={t(`${tpath}:permitions-info`)}>
+            {t("text")}{' '}
+            <TooltipHost content={t("permitions-info")}>
                 <Icon iconName="Info" aria-label="info" />
             </TooltipHost>
         </Subtitle>

@@ -16,7 +16,7 @@ export default function ExportProjectDialog(props: ExportDialogProps) {
     // LOGIC
     const {hideDialog, toggleHideDialog} = props;
 
-    const { t } = useTranslation("dialog");
+    const { t } = useTranslation("commands", { keyPrefix: "export"});
 
     // STYLES
     const choiceGroupStyle : IChoiceGroupOptionStyles = {
@@ -65,14 +65,14 @@ export default function ExportProjectDialog(props: ExportDialogProps) {
     }
 
     return <CustomDialog
-              dialogContentProps={{title : t("export-title")}}
-              hidden={hideDialog}
-              onDismiss={toggleHideDialog}
-              primaryButtonText={t("export-accept-label")}
-              acceptOnClick={handleAccpetButtonOnClick}
+              dialogContentProps={{title : t("header")}}
               optionsProps={{
                 options,
-                optionsTitle : t("export-options-title")
+                optionsTitle : t("options-select")
               }}
+              primaryButtonText={t("button-accept-label")}
+              acceptOnClick={handleAccpetButtonOnClick}
+              hidden={hideDialog}
+              onDismiss={toggleHideDialog}
             />
 }

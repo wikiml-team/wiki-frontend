@@ -6,34 +6,8 @@ import {
     Dropdown
 } from "@fluentui/react";
 
-export function StakehoderFormPanel() {
-    const { t } = useTranslation("stakeholders-form");
-
-    return (
-        <Stack tokens={{ childrenGap: 16 }}>
-            <Stack.Item>
-                {t("panel-explanation")}
-                <br /><br />
-            </Stack.Item>
-
-            <Stack.Item>
-                <TextField
-                    label={t("stakeholder-label")}
-                />
-            </Stack.Item>
-
-            <Stack.Item>
-                <Dropdown
-                    options={[]}
-                    label={t("country-label")}
-                />
-            </Stack.Item>
-        </Stack>
-    )
-}
-
-export function LogicModelOutputSintaxFormPanel() {
-    const { t } = useTranslation("logicmodel-activitymatrix-form");
+export function LMOutputSintaxPanelContent() {
+    const { t } = useTranslation("forms", { keyPrefix: "logicmodel"});
 
     return (
         <Stack tokens={{ childrenGap: 16 }}>
@@ -70,8 +44,8 @@ export function LogicModelOutputSintaxFormPanel() {
     )
 }
 
-export function LogicModelOutcomeSintaxFormPanel() {
-    const { t } = useTranslation("logicmodel-activitymatrix-form");
+export function LMOutcomeSintaxPanelContent() {
+    const { t } = useTranslation("forms", { keyPrefix: "logicmodel"});
 
     return (
         <Stack tokens={{ childrenGap: 16 }}>

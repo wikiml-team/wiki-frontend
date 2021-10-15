@@ -24,7 +24,7 @@ export default function PivotBar(props: PivotBarProps) {
   const { tabs } = schema;
 
   // LOGIC
-  const { t } = useTranslation("menu");
+  const { t } = useTranslation("menuheaders", { keyPrefix: "mainmenu"});
   const history = useHistory()
 
   // Tabs State

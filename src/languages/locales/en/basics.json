@@ -1,0 +1,29 @@
+{
+    "welcome": "Welcome to WikiMl",
+    "yes": "yes",
+    "no": "no",
+    "save": "Save",
+    "dismiss": "Cancel",
+    "thanks": "Thanks",
+    "public": "Public",
+    "private": "Private",
+    "return": "Return",
+    "options-select": "Select",
+    "button-accept": "Accept",
+    "button-cancel": "Cancel",
+    "methodologies": {
+        "canadian": "Canadian Methodology",
+        "german": "German Methodology",
+        "italian": "Italian Methodology"
+    },
+    "loading": {
+        "title": "Loading",
+        "description": "Please wait a few senconds, we are loading the data"
+    },
+    "languages": {
+        "en": "English",
+        "es": "Spanish",
+        "de": "German",
+        "it": "Italian"
+    }
+}

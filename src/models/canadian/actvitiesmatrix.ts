@@ -54,7 +54,7 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
         return this;
     }
 
-    buidOutputsActivityList() {
+    buildOutputsActivityList() {
         // get all Inmediate Outcomes Ids
         const inmediatesIds = this.vertex.filter(v => v.level === 2).sort((a, b) => toNumber(a.id) - toNumber(b.id)).map(v => v.id);
         const items: IActivityInfo[] = [];

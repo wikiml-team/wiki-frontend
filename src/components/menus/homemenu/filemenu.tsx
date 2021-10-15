@@ -19,7 +19,7 @@ import { INavLinkGroup,
 export default function FileMenu() {
 
     // LOGIC
-    const { t } = useTranslation('basics');
+    const { t } = useTranslation(['menuheaders', 'basics']);
     const translateNames = (nav : INavLinkGroup[]) : INavLinkGroup[] => {
 
         const { links } = nav[0]
@@ -27,7 +27,7 @@ export default function FileMenu() {
         const translated = links.map((link, key) => {
             return {
                 ...link,
-                name: t(`navbar:${link.name}:title`)
+                name: t(`filemenu.${link.name}`)
             }
         })
 

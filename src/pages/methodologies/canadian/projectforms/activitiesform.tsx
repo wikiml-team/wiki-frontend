@@ -24,7 +24,7 @@ import { useBoolean } from '@fluentui/react-hooks';
 
 import { selectProject } from 'store/slices/projectslice';
 import ActivitiesMatrixGraph, { IActivityInfo } from 'models/canadian/actvitiesmatrix';
-import ContextualHelpContent from "components/help/contextualhelp"
+import ContextualHelpContent from "components/sidepanel/contents/contextualhelp"
 import ContextualHelpPanel from 'components/sidepanel/contextualhelp';
 
 export default function ActivitiesMatrixForm() {
@@ -35,12 +35,12 @@ export default function ActivitiesMatrixForm() {
   const currentForm = project.forms.find(form => form.name === "logicModelActivities")!;
   const logicModelActivitiesMatrix = currentForm.structure as ActivitiesMatrixGraph;
 
-  const initialItems = logicModelActivitiesMatrix.buidOutputsActivityList();
+  const initialItems = logicModelActivitiesMatrix.buildOutputsActivityList();
 
   const [items, setItems] = useState(initialItems);
   const [activitiesMatrix, setActivitiesMatrix] = useState(logicModelActivitiesMatrix);
 
-  const { t } = useTranslation(["logicmodel-activitymatrix-form", "contextual-help"]);
+  const { t } = useTranslation("forms", { keyPrefix: "activitiesmatrix"});
 
   const columns: IColumn[] = [
     {
@@ -94,7 +94,7 @@ export default function ActivitiesMatrixForm() {
     const activityId = itemId[4];
 
     setActivitiesMatrix(activitiesMatrix.addActivityToOutput(outputId, activityId));
-    setItems(activitiesMatrix.buidOutputsActivityList());
+    setItems(activitiesMatrix.buildOutputsActivityList());
   }
 
   const handleDeleteActivity = (itemId: string) => {
@@ -102,7 +102,7 @@ export default function ActivitiesMatrixForm() {
     const activityId = (toNumber(itemId[4]) + 1).toString();
 
     setActivitiesMatrix(activitiesMatrix.deleteActivity(outputId, activityId));
-    setItems(activitiesMatrix.buidOutputsActivityList());
+    setItems(activitiesMatrix.buildOutputsActivityList());
   }
 
   // Panels
@@ -223,7 +223,7 @@ export default function ActivitiesMatrixForm() {
 
     return (item.level === 2 &&
       <React.Fragment>
-        <TooltipHost content={t("contextual-help:tooltip-contextual-help")}>
+        <TooltipHost content={t("tooltip-contextual-help")}>
           <IconButton
             iconProps={{ iconName: "Help" }}
             styles={commandStyles}
@@ -261,7 +261,6 @@ export default function ActivitiesMatrixForm() {
       />
       <ContextualHelpPanel
         isOpen={helpPanelIsOpen}
-        header={t("contextual-help:help-panel-header")}
         onDismiss={dismissHelpPanel}
       >
         <ContextualHelpContent

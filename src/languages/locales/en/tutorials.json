@@ -1,13 +1,31 @@
 {
-    "forms" : {
-        "header" : "Forms",
-        "form-table-header" : "Form",
-        "description-table-header" : "Description"
+    "forms": {
+        "header": "Forms",
+        "form-table-header": "Form",
+        "description-table-header": "Description"
     },
-    "sectors" : {
-        "header" : "Sectors"
+    "sectors": {
+        "header": "Sectors",
+        "sector-agriculture-nutrition" : "Agriculture and Nutrition",
+        "sector-economic-growth" : "Economic growth",
+        "sector-human-rights" : "Human rights and Democratic governance",
+        "sector-human-development" : "Human development",
+        "sector-energy" : "Energy",
+        "sector-infrastructure" : "Infrastructure",
+        "sector-environment" : "Environmente",
+        "sector-migration" : "Migration and Asylum",
+        "sector-tecnology" : "Information and Communication technology"
     },
-    "guides" : {
-        "header" : "Guides"
+    "guides": {
+        "header": "Guides"
+    },
+    "tutorials": {
+        "header": "Tutorials"
+    },
+    "outcomes": {
+        "header": "Outcomes"
+    },
+    "indicators": {
+        "header": "Indicators"
     }
 }

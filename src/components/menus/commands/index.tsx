@@ -12,8 +12,8 @@ import {
 import { useBoolean, useId } from '@fluentui/react-hooks';
 
 import { GetFarItems, GetItems, GetOverflowItems } from "./items";
-import LanguagePanel from "components/sidepanel/contents/languagecontent";
-import SettingsPanel from "components/sidepanel/contents/settingscontent";
+import LanguagePanelContent from "components/sidepanel/contents/language";
+import SettingsPanelContent from "components/sidepanel/contents/settings";
 import { CustomBarButton, CustomOverflowButton, OverflowProps } from "./custombuttons";
 import ExportProjectDialog from "components/dialog/export";
 import DuplicateProjectDialog from "components/dialog/duplicate";
@@ -45,7 +45,8 @@ export default function CommandMenu() {
   };
 
   // LOGIC
-  const { t } = useTranslation(["methodologies", "language-sidepanel", "settings-sidepanel"]);
+  const { t } = useTranslation("commands");
+  const t1 = useTranslation("basics", { keyPrefix: "methodologies"})
   
   // Panels State
   const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
@@ -63,7 +64,7 @@ export default function CommandMenu() {
   return (
     <React.Fragment>
       <Text variant="small" styles={textStyles}>
-        Agua y Saneamiento - {t("canadian")}
+        Agua y Saneamiento - {t("basics:canadian")}
       </Text>
 
       <CommandBar
@@ -81,20 +82,20 @@ export default function CommandMenu() {
         isOpen={languagePanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
-        headerText={t("language-sidepanel:header")}
+        headerText={t("language.header")}
         onDismiss={dismissLanguagePanel}
         isBlocking={false}>
-        <LanguagePanel />
+        <LanguagePanelContent />
       </Panel>
 
       <Panel
         isOpen={settingsPanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
-        headerText={t("settings-sidepanel:header")}
+        headerText={t("settings.header")}
         onDismiss={dismissSettingsPanel}
         isBlocking={false}>
-        <SettingsPanel />
+        <SettingsPanelContent />
       </Panel>
 
       <ExportProjectDialog

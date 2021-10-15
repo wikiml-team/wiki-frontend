@@ -1,49 +1,50 @@
 {
   "home": {
-    "title": "Home",
+    "header": "Home",
     "stared-projects": "Stared Projects",
     "teams": "Teams",
     "notifications": "Notifications"
   },
   "new": {
-    "title": "New",
-    "select-create-project": "Select the methodology your project should follow."
+    "header": "New",
+    "text": "Select the methodology your project should follow."
   },
   "open": {
-    "title": "Open",
+    "header": "Open",
     "recent": "Recent",
+    "manage": "Manage",
     "shared": "Recenly shared",
     "shared-info": "Accept / Decline the invitation to participate",
     "all": "All",
     "date-modified": "Last modified"
   },
   "methodologies": {
-    "title": "Methodologies",
-    "description": "Select the methodology you want to read, edit or add.",
+    "header": "Methodologies",
+    "text": "Select the methodology you want to read, edit or add.",
     "permitions-info": "Edition will only be available if permitions have been given."
   },
   "info": {
-    "title": "Info"
+    "header": "Info"
   },
   "export": {
-    "title": "Export"
+    "header": "Export"
   },
   "print": {
-    "title": "Print"
+    "header": "Print"
   },
   "share": {
-    "title": "Share"
+    "header": "Share"
   },
   "about": {
-    "title": "About"
+    "header": "About"
   },
   "account": {
-    "title": "Account"
+    "header": "Account"
   },
   "feedback": {
-    "title": "Feedback"
+    "header": "Feedback"
   },
   "options": {
-    "title": "Options"
+    "header": "Options"
   }
 }

@@ -5,21 +5,22 @@ import { ICommandBarItemProps } from "@fluentui/react"
 
 export const GetItems = () => {
 
-    const { t } = useTranslation(["settings-commands", "basics"])
+    const { t } = useTranslation("menuheaders", { keyPrefix: "settings" })
+    const t1 = useTranslation('basics').t
     const history = useHistory();
   
     return [
       {
-        key: "return",
+        key: "home",
         iconProps: { iconName: "WebComponents" },
         iconOnly: true,
         onClick: () => history.push("/"),
-        ariaLabel: "return"
+        ariaLabel: "home"
       },
       {
         key: "return",
         iconProps: { iconName: "NavigateBack" },
-        text: t("basics:return"),
+        text: t1("return"),
         onClick: () => history.goBack(),
         ariaLabel: "return"
       },

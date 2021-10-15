@@ -11,7 +11,9 @@ import {
 import { setLanguage, selectLanguage } from "store/slices/languageslice";
 
 export default function LanguagePanel() {
-  const { t } = useTranslation(["language-sidepanel", "languages"]);
+  const { t } = useTranslation("commands", { keyPrefix: "language"});
+  const t1 = useTranslation("basics", { keyPrefix: "languages"}).t
+  
   const lang = useSelector(selectLanguage);
 
   const dispatch = useDispatch();
@@ -35,10 +37,10 @@ export default function LanguagePanel() {
   }
 
   const suportedLangs = [
-    { key: "en", text: t("languages:en") },
-    { key: "es", text: t("languages:es") },
-    { key: "de", text: t("languages:de") },
-    { key: "it", text: t("languages:it") },
+    { key: "en", text: t1("en") },
+    { key: "es", text: t1("es") },
+    { key: "de", text: t1("de") },
+    { key: "it", text: t1("it") },
   ];
 
   return (

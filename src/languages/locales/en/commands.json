@@ -1,0 +1,50 @@
+{
+    "share": {},
+    "export": {
+        "header": "Export Project",
+        "options-select": "Select the file type to export:",
+        "button-accept-label": "Export"
+    },
+    "new": {
+        "header": "Create Project",
+        "accept-label": "Create",
+        "body": {
+            "text": "Using methodology",
+            "name-label": "Project name",
+            "name-placeholder": "Short name",
+            "language-label": "Project language",
+            "language-placeholder": "Select language",
+            "privacy-label": "Project privacy",
+            "privacy-on": "Private",
+            "privacy-off": "Public",
+            "privacy-text": "Privacy settings can be modified later."
+        }
+    },
+    "open": {},
+    "destroy": {
+        "title": "Delete Project",
+        "text": "Are you sure you want to delete your project? This action can't be undone.",
+        "button-accept-label": "Delete"
+    },
+    "duplicate": {
+        "title": "Duplicate Project",
+        "options-select": "Select the methodology you would want to duplicate your project into",
+        "button-accept-label": "Duplicate"
+    },
+    "print": {},
+    "language": {
+        "header": "Language",
+        "language-select": "Select a Language",
+        "language-ui": "Language for User Interface",
+        "language-data": "Language for Data"
+    },
+    "settings": {
+        "header": "Settings",
+        "theme-header": "Theme",
+        "color-theme-title": "Color Theme",
+        "privacy-header": "Privacy",
+        "privacy-label": "Your project should be:",
+        "privacy-settings-text": "Go to project privacy settings",
+        "privacy-settings-link": "here"
+    }
+}

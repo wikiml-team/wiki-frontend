@@ -95,8 +95,7 @@ const own_project : IProject[] = [
 export default function OpenPage() {
 
     // LOGIC
-    const { t } = useTranslation(["permitions", "methodologies"]);
-    const tpath = "navbar:open"
+    const { t } = useTranslation(["filemenu", "settings", "basics"])
 
     const { palette } = useTheme()
 
@@ -137,7 +136,7 @@ export default function OpenPage() {
 
     const iconRender = (project: IProject) => {
         return (    
-            <TooltipHost content={t(`${project.permition}`)}>
+            <TooltipHost content={t(`settings:permitions.${project.permition}`)}>
                 <IconButton iconProps={{ iconName: permitions[project.permition]}}  />
             </TooltipHost>
         )
@@ -147,7 +146,7 @@ export default function OpenPage() {
         return (
             <React.Fragment>
                 <Text variant="medium">{project.name} -</Text>
-                <Text variant="small"> {t(`methodologies:${project.methodology}`)}</Text>
+                <Text variant="small"> {t(`basics:methodologies.${project.methodology}`)}</Text>
 
                 <Text variant="smallPlus" block>{project.owner}</Text>
             </React.Fragment>
@@ -156,7 +155,7 @@ export default function OpenPage() {
 
     const dateRender = (project: IProject) => {
         return (
-            `${t(`${tpath}:date-modified`)} ${project.dateModified}`
+            `${t("open.date-modified")} ${project.dateModified}`
         )
     }
 
@@ -175,10 +174,10 @@ export default function OpenPage() {
 
     return (
         <React.Fragment>
-            <Title>{t(t(`${tpath}:title`))}</Title>
+            <Title>{t("open.header")}</Title>
 
             <Stack styles={stackStyles}>
-                <Subtitle>{t(`${tpath}:recent`)}</Subtitle> <br/>
+                <Subtitle>{t("open.recent")}</Subtitle> <br/>
 
                 <DetailsList
                     items={recent_projects}
@@ -191,7 +190,7 @@ export default function OpenPage() {
             </Stack>
 
             <Stack styles={stackStyles}>
-                <Subtitle>{t("owner")}</Subtitle> <br/>
+                <Subtitle>{t("open.manage")}</Subtitle> <br/>
 
                 <DetailsList
                     items={own_project}
@@ -204,8 +203,8 @@ export default function OpenPage() {
             </Stack>
 
             <Stack styles={stackStyles}>
-                <Subtitle>{t(`${tpath}:shared`)} {" "}
-                    <TooltipHost content={t(`${tpath}:shared-info`)}>
+                <Subtitle>{t("open.shared")} {" "}
+                    <TooltipHost content={t("shared-info")}>
                         <Icon iconName="Info" aria-label="info" />
                     </TooltipHost>
                 </Subtitle>
@@ -221,7 +220,7 @@ export default function OpenPage() {
             </Stack>
 
             <Stack styles={stackStyles}>
-                <Subtitle>{t(`${tpath}:all`)}</Subtitle> <br/>
+                <Subtitle>{t("open.all")}</Subtitle> <br/>
 
                 <DetailsList
                     items={own_project.concat(recent_projects)}

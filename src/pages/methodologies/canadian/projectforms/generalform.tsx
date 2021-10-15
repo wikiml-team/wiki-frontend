@@ -91,7 +91,7 @@ export default function GeneralForm() {
   };
 
   // LOGIC
-  const { t } = useTranslation(["general-form", "status"]);
+  const { t } = useTranslation("forms", { keyPrefix: "general"});
   const project = useSelector(selectProject);
   const generalInfo = project.info as IProjectInfo<ECanadianSector>;
 
@@ -234,7 +234,7 @@ export default function GeneralForm() {
               <Stack {...headerStackProps}>
                 <Stack.Item>
                   <Label>{t("status-field")}</Label>
-                  {t(`status:${generalInfo.status}`)}
+                  {t(`status-${generalInfo.status}`)}
                 </Stack.Item>
                 <Stack.Item>
                   <Label>{t("wikicode-field")}</Label>

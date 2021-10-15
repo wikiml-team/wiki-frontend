@@ -1,4 +1,8 @@
 {
+
+
+
+  
   "welcome": "Welcome to WikiMl",
   "basics": {
     "yes" : "yes",
@@ -41,11 +45,6 @@
     "settings": "Settings",
     "notifications": "Notifications"
   },
-  
-
-
-
-
   "navbar" : { 
     "home" : {
       "title" : "Home", 
@@ -98,7 +97,7 @@
 
 
 
-  
+
   "menu": {
     "wikiml": "WikiML",
     "project": "Project",
@@ -153,10 +152,13 @@
       "description-table-header" : "Description"
     }
   },
+
+
   "loading": {
     "loading-title": "Loading",
     "loading-description": "Please wait a few senconds, we are loading the data"
   },
+  
   "language-sidepanel": { 
     "header": "Language",
     "language-select": "Select a Language",

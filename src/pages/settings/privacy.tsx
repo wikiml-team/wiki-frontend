@@ -10,15 +10,15 @@ import { ILinkStyles,
         DetailsList, 
         SelectionMode, 
         IColumn,
-        Checkbox} from '@fluentui/react'
+        Checkbox } from '@fluentui/react'
 
 import { selectWorkplaceConfig } from 'store/slices/workplaceslice'
 import { IForm } from 'models/workplace'
 
 export default function Privacy() {
     
-    const { t } = useTranslation()
-    const t_path = "settings-commands:privacy-page"
+    const { t } = useTranslation("settings", { keyPrefix: "privacy-page"})
+    const t1 = useTranslation('forms').t
 
     const { tabsSchema } = useSelector(selectWorkplaceConfig);
     const forms : IForm[] = tabsSchema.findForms()
@@ -26,7 +26,7 @@ export default function Privacy() {
     const columns: IColumn[] = [
         {
             key: 'column1',
-            name: t(`${t_path}:table-forms`),
+            name: t("table-forms"),
             fieldName: 'forms',
             minWidth: 100,
             maxWidth: 300,
@@ -35,7 +35,7 @@ export default function Privacy() {
         },
         {
             key: 'column2',
-            name: t(`${t_path}:table-privacy`),
+            name: t("table-privacy"),
             fieldName: 'Private',
             minWidth: 100,
             data: 'string',
@@ -64,7 +64,7 @@ export default function Privacy() {
     const formRender = (form: IForm) => {
         return (
           <Text variant="medium">
-           {t(`pages:${form.name}`)}
+           {t1(`${form.name}.header`)}
           </Text>
         )
     }
@@ -77,21 +77,20 @@ export default function Privacy() {
 
     return (
         <React.Fragment>
-            <Text variant='xLarge' className={classes.title}>{t(`${t_path}:title`)}</Text>
+            <Text variant='xLarge' className={classes.title}>{t("header")}</Text>
             
             {/* Welcome */}
-            <Text variant='large' className={classes.subtitle}>{t(`${t_path}:welcome-subtitle`)}</Text>
-            <Text variant='medium' block >{t(`${t_path}:welcome-description`)}</Text>
-            <Link href="" styles={linkStyles}>{t(`${t_path}:commitment-to-privacy-link`)}</Link>
+            <Text variant='large' className={classes.subtitle}>{t("welcome-subtitle")}</Text>
+            <Text variant='medium' block >{t("welcome-description")}</Text>
+            <Link href="" styles={linkStyles}>{t("commitment-to-privacy-link")}</Link>
 
             {/* Set Privacy */}
-            <Text variant='large' className={classes.subtitle}>{t(`${t_path}:management-subtitle`)}</Text>
-            <Text variant='medium' block >{t(`${t_path}:management-description`)}</Text>
+            <Text variant='large' className={classes.subtitle}>{t("management-subtitle")}</Text>
+            <Text variant='medium' block >{t("management-description")}</Text>
             <DetailsList
             items={forms}
             columns={columns}
             selectionMode={SelectionMode.none}
-            // isHeaderVisible={false}
         />
         </React.Fragment>
     )

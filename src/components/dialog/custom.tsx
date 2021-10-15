@@ -34,7 +34,7 @@ export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
           optionalBody,
           ...allprops} = props;
 
-    const { t } = useTranslation("dialog");
+    const { t } = useTranslation("basics");
 
     const onChange = (ev?: React.FormEvent<HTMLInputElement | HTMLElement>, option?: IChoiceGroupOption): void => {
         setOptionSelected(option!.key);
@@ -48,7 +48,7 @@ export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
       defaultKey = optionsSelectedKey?? (options && options[0]? options[0].key : "")
 
       choiceGroup = <ChoiceGroup
-                            label={optionsTitle?? t("default-options-title")}
+                            label={optionsTitle?? t("options-select")}
                             options={options}
                             onChange={onChange}
                             required
@@ -86,10 +86,10 @@ export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
       <DialogFooter>
         <PrimaryButton
           onClick={() => acceptOnClick(optionSelected)} 
-          text={primaryButtonText?? t("default-accept") } />
+          text={primaryButtonText?? t("button-accept") } />
         <DefaultButton 
           onClick={() => {if (allprops.onDismiss) allprops.onDismiss()}} 
-          text="Cancel" />
+          text={t("button-cancel")} />
       </DialogFooter>
     </Dialog>
   )

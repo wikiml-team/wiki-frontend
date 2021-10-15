@@ -12,23 +12,23 @@ export default function DestroyProjectDialog(props: ExportDialogProps) {
     // LOGIC
     const {hideDialog, toggleHideDialog} = props;
 
-    const { t } = useTranslation("dialog");
+    const { t } = useTranslation("commands", { keyPrefix: "destroy"});
 
     const dialogContentProps = {
-        // type: DialogType.largeHeader,
-        title: t("destroy-title"),
-        subText: t("destroy-text"),
+        title: t("title"),
+        subText: t("text"),
       };
 
     const handleAccpetButtonOnClick = (option: string) => {
+        // ... more code
         toggleHideDialog()
     }
 
     return <CustomDialog
             dialogContentProps={dialogContentProps}
+            primaryButtonText={t("button-accept-label")}
+            acceptOnClick={handleAccpetButtonOnClick}
             hidden={hideDialog}
             onDismiss={toggleHideDialog}
-            primaryButtonText={t("destroy-accept-label")}
-            acceptOnClick={handleAccpetButtonOnClick}
             />
 }

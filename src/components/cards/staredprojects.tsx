@@ -68,8 +68,6 @@ export default function StaredProjects(props : StaredProjectsProps) {
         styles={cardStyles}
         onClickHref="/workplace"
       >
-        {/* <DocumentCardLogo {...logoProps} /> */}
-
         <DocumentCardTitle title={props.projectName} styles={cardTitleStyles}/>
         <DocumentCardTitle title={props.methodology} showAsSecondaryTitle/>
 

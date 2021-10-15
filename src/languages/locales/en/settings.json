@@ -1,0 +1,23 @@
+{
+    "authentication": {
+        "login": "Log in",
+        "logout": "Log out",
+        "profile-link": "My profile"
+    },
+    "permitions": {
+        "read": "Read",
+        "edit": "Edit",
+        "create": "Create",
+        "owner": "Manage"
+    },
+    "privacy-page": {
+        "header": "Privacy",
+        "welcome-subtitle": "Welcome to your Privacy Panel",
+        "welcome-description": "The first step to guaranteeing your privacy is giving you control of your data and the tools and information you need to make decisions that give you peace of mind.",
+        "commitment-to-privacy-link": "Learn more about our commitment to privacy",
+        "management-subtitle": "Manage Privacy",
+        "management-description": "Here you can set the privacy of the forms.",
+        "table-forms": "Forms",
+        "table-privacy": "Private"
+    }
+}

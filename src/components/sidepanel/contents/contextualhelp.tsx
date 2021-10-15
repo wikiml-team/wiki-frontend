@@ -9,7 +9,7 @@ export default function ContextualHelpContent(content: IContextualHelpContent) {
 
     // LOGIC
     const { definition, example, format, guide, tips } = content;
-    const { t } = useTranslation("contextual-help")
+    const { t } = useTranslation("forms", { keyPrefix: "contextual-help"})
 
     // Columns
     const columns: IColumn[] = [

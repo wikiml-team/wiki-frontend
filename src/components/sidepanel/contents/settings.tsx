@@ -17,7 +17,8 @@ import { setTheme } from "store/slices/themeslice";
 import ThemePicker from "components/pickers/themepicker";
 import { colorCells } from "themes/office";
 
-export default function SettingsPanel() {
+export default function SettingsPanelContent() {
+
   // STYLES
   const { palette } = useTheme();
 
@@ -47,7 +48,9 @@ export default function SettingsPanel() {
   };
 
   // LOGIC
-  const { t } = useTranslation(["settings-sidepanel", "basics"]);
+  const { t } = useTranslation("commands", { keyPrefix: "settings"});
+  const t1 = useTranslation("basics").t
+  
   const dispatch = useDispatch();
 
   const handleChangePrivacy = () => {
@@ -66,8 +69,8 @@ export default function SettingsPanel() {
         <Toggle
           label={t("privacy-label")}
           defaultChecked
-          onText={t("basics:private")}
-          offText={t("basics:public")}
+          onText={t1("private")}
+          offText={t1("public")}
           onChange={handleChangePrivacy}
         />
       </Stack.Item>

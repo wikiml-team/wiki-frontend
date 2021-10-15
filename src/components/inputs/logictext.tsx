@@ -151,7 +151,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
         handleOutputHelpPanel } = props;
     const { node, children } = nodeTree;
 
-    const { t } = useTranslation(["logicmodel-activitymatrix-form", "contextual-help"]);
+    const { t } = useTranslation("forms", { keyPrefix: "logicmodel"});
     const dispatch = useDispatch();
     const { tabsSchema, latestMenuTab } = useSelector(selectWorkplaceConfig);
 
@@ -239,7 +239,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                                 onClick={() => hanldeOpenOutcomePanel()}
                             />
                         </TooltipHost>
-                        <TooltipHost content={t("contextual-help:tooltip-contextual-help")}>
+                        <TooltipHost content={t("tooltip-contextual-help")}>
                             <IconButton
                                 iconProps={{ iconName: "Help" }}
                                 styles={commandStyles}

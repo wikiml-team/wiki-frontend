@@ -16,7 +16,7 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
     // LOGIC
     const {hideDialog, toggleHideDialog} = props;
 
-    const { t } = useTranslation("dialog");
+    const { t } = useTranslation("commands", { keyPrefix: "duplicate" });
 
     const mapMethodologiesToOptions = (data : any) => {
       return data.methodologies.map(({ id , name } : any) => {
@@ -35,15 +35,15 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
     }
 
     return <CustomDialog
-              hidden={hideDialog}
-              onDismiss={toggleHideDialog}
-              dialogContentProps={{title : t("duplicate-title")}}
-              primaryButtonText={t("duplicate-accept-label")}
+              dialogContentProps={{title : t("title")}}
+              primaryButtonText={t("button-accept-label")}
               acceptOnClick={handleAccpetButtonOnClick}
               // inline conditionally pass props
               {...(options.length > 0 && {optionsProps: {
                 options,
-                optionsTitle : t("duplicate-options-title")
+                optionsTitle : t("options-select")
               }})}
+              hidden={hideDialog}
+              onDismiss={toggleHideDialog}
             />
 }

@@ -4,6 +4,7 @@ import { useBoolean } from "@fluentui/react-hooks";
 const MultilineTextFieldInput = ({ field, form, ...props }: any) => {
 
     const [multiline, { toggle: toggleMultiline }] = useBoolean(false);
+    
     const onChange = (ev: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newText: string): void => {
         const newMultiline = newText.length > 50;
         if (newMultiline !== multiline) {

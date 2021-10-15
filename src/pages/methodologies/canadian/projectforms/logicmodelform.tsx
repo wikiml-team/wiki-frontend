@@ -20,8 +20,8 @@ import { useBoolean } from '@fluentui/react-hooks';
 import LogicTextFieldInput from "components/inputs/logictext";
 import LogicmodelGraph from "models/canadian/logicmodel";
 import { selectProject } from "store/slices/projectslice";
-import { LogicModelOutcomeSintaxFormPanel, LogicModelOutputSintaxFormPanel } from "components/sidepanel/contents/formcontents"
-import ContextualHelpContent from "components/help/contextualhelp"
+import { LMOutcomeSintaxPanelContent, LMOutputSintaxPanelContent } from "components/sidepanel/contents/logicmodel"
+import ContextualHelpContent from "components/sidepanel/contents/contextualhelp"
 import ContextualHelpPanel from "components/sidepanel/contextualhelp";
 import SintaxHelpPanel from "components/sidepanel/sintaxhelp";
 
@@ -32,7 +32,8 @@ type formValuesType = {
 export default function LogicModelForm() {
 
   // LOGIC
-  const { t } = useTranslation(["logicmodel-activitymatrix-form", "contextual-help"]);
+  const { t } = useTranslation("forms", { keyPrefix: "logicmodel" });
+  const ts = useTranslation("basics").t;
 
   const project = useSelector(selectProject);
   const currentForm = project.forms.find(form => form.name === "logicModelActivities")!;
@@ -76,7 +77,7 @@ export default function LogicModelForm() {
         </TooltipHost>
         <TooltipHost content={t("tooltip-panel-save")}>
           <DefaultButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
-            {t("basics:save")}
+            {ts("save")}
           </DefaultButton>
         </TooltipHost>
       </div>
@@ -136,7 +137,7 @@ export default function LogicModelForm() {
       onRenderFooterContent={onRenderFooterContent}
       dialogTitle={t("save-before-closing")}
     >
-      <LogicModelOutcomeSintaxFormPanel />
+      <LMOutcomeSintaxPanelContent />
     </SintaxHelpPanel>
 
     {/* Output Panel */}
@@ -147,13 +148,12 @@ export default function LogicModelForm() {
       onRenderFooterContent={onRenderFooterContent}
       dialogTitle={t("save-before-closing")}
     >
-      <LogicModelOutputSintaxFormPanel />
+      <LMOutputSintaxPanelContent />
     </SintaxHelpPanel>
 
     {/* Outcome Help Panel */}
     <ContextualHelpPanel
       isOpen={outcomeHelpPanelIsOpen}
-      header={t("contextual-help:help-panel-header")}
       onDismiss={dismissOutcomeHelpPanel}
     >
       <ContextualHelpContent
@@ -167,7 +167,6 @@ export default function LogicModelForm() {
     {/* Output Help Panel */}
     <ContextualHelpPanel
       isOpen={outputHelpPanelIsOpen}
-      header={t("contextual-help:help-panel-header")}
       onDismiss={dismissOutputHelpPanel}
     >
       <ContextualHelpContent
@@ -185,7 +184,7 @@ export default function LogicModelForm() {
 function LogicmodelLabels() {
 
   // LOGIC
-  const { t } = useTranslation("logicmodel-activitymatrix-form");
+  const { t } = useTranslation("forms", { keyPrefix: "logicmodel"});
 
   // STYLES
   const labelStackProps: IStackProps = {

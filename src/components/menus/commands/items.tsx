@@ -4,14 +4,11 @@ import {
   ICommandBarItemProps,
 } from "@fluentui/react";
 
-import i18n from "i18n"
 import { fullscreenToggler } from "components/fullscreentoggler";
-
-i18n.loadNamespaces(["commands", "authentication"]);
 
 export const GetItems = (exportToggleHideDialog: Function) => {
 
-  const { t } = useTranslation("commands")
+  const { t } = useTranslation("menuheaders", { keyPrefix: "commandbar"})
 
   return [
     {
@@ -46,7 +43,7 @@ export const GetItems = (exportToggleHideDialog: Function) => {
 export const GetOverflowItems = (duplicateToggleHideDialog: Function, toggleDestroyHideDialog: Function) => {
 
   const history = useHistory();
-  const { t } = useTranslation("commands")
+  const { t } = useTranslation("menuheaders", { keyPrefix: "commandbar"})
 
   return [{
     key: "new",
@@ -83,7 +80,7 @@ export const GetOverflowItems = (duplicateToggleHideDialog: Function, toggleDest
 
 export const GetFarItems = (OpenLanguagePanel: Function, OpenSettingsPanel: Function, ToogleCallout: Function, calloutButtonId : string) => {
   
-  const { t } = useTranslation(["commands", "authentication"])
+  const { t } = useTranslation("menuheaders", { keyPrefix: "commandbar"})
 
   return [
     {
@@ -120,7 +117,7 @@ export const GetFarItems = (OpenLanguagePanel: Function, OpenSettingsPanel: Func
     },
     {
       id: calloutButtonId,
-      key: "user",
+      key: t("account"),
       ariaLabel: "User name",
       iconOnly: true,
       iconProps: { iconName: "Contact" },

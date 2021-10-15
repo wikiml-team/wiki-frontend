@@ -23,6 +23,7 @@ const SintaxHelpPanel: FunctionComponent<SintaxHelpPanelProps> = (props) => {
     const { isOpen, onDismiss, header, onRenderFooterContent, dialogTitle } = props;
 
     const { t } = useTranslation("basics");
+    
     const [isDialogVisible, { setTrue: showDialog, setFalse: hideDialog }] = useBoolean(false);
 
     const onHideDialog = useCallback(

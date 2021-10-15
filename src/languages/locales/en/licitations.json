@@ -1,0 +1,14 @@
+{
+    "lot": {
+        "header" : "Conform Lot"
+    },
+    "specifications": {
+        "header" : "Technical Specifications"
+    },
+    "technical-offer": {
+        "header" : "Technical Offer"
+    },
+    "financial-offer": {
+        "header" : "Financial Offer"
+    }
+}

@@ -1,27 +1,28 @@
 import { FunctionComponent } from 'react'
 
 import { Panel } from '@fluentui/react'
+import { useTranslation } from 'react-i18next';
 
 type ContextualHelpPanelProps = {
     isOpen: boolean,
     onDismiss: () => void
-    header: string
 }
 
 const ContextualHelpPanel: FunctionComponent<ContextualHelpPanelProps> = (props) => {
     
-    const { isOpen, onDismiss, header } = props;
+    const { isOpen, onDismiss } = props;
+    const { t } = useTranslation("forms", { keyPrefix: "contextual-help"})
     
     return (
         <Panel
-            isOpen={isOpen}
             closeButtonAriaLabel="Close"
+            headerText={t("help-panel-header")}
+            isOpen={isOpen}
             isHiddenOnDismiss={true}
-            headerText={header}
-            onDismiss={onDismiss}
             isLightDismiss={true}
             isBlocking={false}
             isFooterAtBottom={true}
+            onDismiss={onDismiss}
             >
             {props.children}
         </Panel>

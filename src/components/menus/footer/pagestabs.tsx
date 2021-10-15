@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -11,6 +11,7 @@ import {
 } from "@fluentui/react";
 
 import { Tab } from "models/workplace";
+import i18next from "i18next";
 
 type PagesTabProps = {
   tabs?: Tab[];
@@ -24,7 +25,7 @@ export default function PagesTabs(props: PagesTabProps) {
   // LOGIC
   const { tabs, onClick, parentKey, defaultKey, } = props;
 
-  const { t } = useTranslation("pages");
+  const { t } = useTranslation()
 
   const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement, MouseEvent>) => onClick(parentKey, item)
 
@@ -76,7 +77,7 @@ export default function PagesTabs(props: PagesTabProps) {
             <PivotItem
               key={tab.key}
               itemKey={tab.key}
-              headerText={t(tab.name)}
+              headerText={t(`${tab.name}.header`, { ns: getNamespace(parentKey) })}
               itemIcon={tab.icon}
             >
               {tab.render}
@@ -85,4 +86,22 @@ export default function PagesTabs(props: PagesTabProps) {
         })}
     </Pivot>
   );
+}
+
+const getNamespace = (key: string) => {
+
+  switch (key) {
+    case "key1":
+      return "wikiml"
+    case "key2":
+      return "forms"
+    case "key3":
+      return "licitations"
+    case "key4":
+      return "tutorials"
+    case "key5":
+      return "database"
+    default:
+      return "none"
+  }
 }

@@ -14,8 +14,7 @@ type Example = {
 
 export default function HomePage() {
 
-    const { t } = useTranslation();
-    const tpath = "navbar:home"
+    const { t } = useTranslation("filemenu", { keyPrefix: 'home' });
     
     const { palette } = useTheme();
 
@@ -34,11 +33,11 @@ export default function HomePage() {
     };
     return (
         <React.Fragment>
-            <Title>{t(`${tpath}:title`)}</Title>
+            <Title>{t("header")}</Title>
 
             {/* Star Projects */}
             <Stack>
-                <Text variant='mediumPlus'>{t(`${tpath}:stared-projects`)}</Text>
+                <Text variant='mediumPlus'>{t("stared-projects")}</Text>
                 <Stack horizontal>
                     {exampledata.map(({project, meth} : Example, key : number) => (
                         <StaredProjects key={key} projectName={project} methodology={meth}/>
@@ -47,12 +46,12 @@ export default function HomePage() {
                 <Separator styles={separatorStyles}/>
 
                 {/* Visualize Teams */}
-                <Text variant='mediumPlus'>{t(`${tpath}:teams`)}</Text>
+                <Text variant='mediumPlus'>{t("teams")}</Text>
                 <Separator styles={separatorStyles}/>
 
                 {/* Notifications */}
                 {/* Separator */}
-                <Text variant='mediumPlus'>{t(`${tpath}:notifications`)}</Text>
+                <Text variant='mediumPlus'>{t("notifications")}</Text>
                 <Separator styles={separatorStyles}/>
             </Stack>
         </React.Fragment>

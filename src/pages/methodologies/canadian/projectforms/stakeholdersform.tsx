@@ -23,13 +23,13 @@ import { useBoolean } from '@fluentui/react-hooks';
 
 import { selectProject } from "store/slices/projectslice";
 import Stakeholders, { IStakholderInfo } from "models/canadian/stakeholders";
-import { StakehoderFormPanel } from "components/sidepanel/contents/formcontents"
+import { AddStakehoderPanelContent } from "components/sidepanel/contents/stakeholder"
 
 export default function StakeholdersForm() {
   // LOGIC
 
   // State
-  const { t } = useTranslation("stakeholders-form");
+  const { t } = useTranslation("forms", { keyPrefix: "stakeholders"});
 
   const project = useSelector(selectProject);
   const currentForm = project.forms.find(form => form.name === "stakeholders")!;
@@ -280,7 +280,7 @@ export default function StakeholdersForm() {
         isFooterAtBottom={true}
         onRenderFooterContent={onRenderFooterContent}
       >
-        <StakehoderFormPanel />
+        <AddStakehoderPanelContent />
       </Panel>
 
     </React.Fragment>
