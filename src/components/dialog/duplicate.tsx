@@ -35,13 +35,13 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
     }
 
     return <CustomDialog
-              dialogContentProps={{title : t("title")}}
-              primaryButtonText={t("button-accept-label")}
+              dialogContentProps={{title : t("header")}}
+              primaryButtonText={t("accept-label")}
               acceptOnClick={handleAccpetButtonOnClick}
               // inline conditionally pass props
               {...(options.length > 0 && {optionsProps: {
                 options,
-                optionsTitle : t("options-select")
+                optionsTitle : t("select-label")
               }})}
               hidden={hideDialog}
               onDismiss={toggleHideDialog}

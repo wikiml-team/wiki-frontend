@@ -16,7 +16,7 @@ const ContextualHelpPanel: FunctionComponent<ContextualHelpPanelProps> = (props)
     return (
         <Panel
             closeButtonAriaLabel="Close"
-            headerText={t("help-panel-header")}
+            headerText={t("header")}
             isOpen={isOpen}
             isHiddenOnDismiss={true}
             isLightDismiss={true}

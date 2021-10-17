@@ -76,8 +76,8 @@ export default function SettingsPanelContent() {
       </Stack.Item>
       {/* LINK */}
       <Stack.Item>
-        {t("privacy-settings-text")} {' '}
-        <Link href="/settings/privacy" underline>{t("privacy-settings-link")}</Link>.
+        {t("privacy-text")} {' '}
+        <Link href="/settings/privacy" underline>{t("privacy-link")}</Link>.
       </Stack.Item>
       
       <br />
@@ -88,7 +88,7 @@ export default function SettingsPanelContent() {
         </Text>
       </Separator>
       <Stack.Item>
-        <Label>{t("color-theme-title")}</Label>
+        <Label>{t("colortheme-title")}</Label>
         <Stack horizontal tokens={{ childrenGap: 5 }}>
           <ThemePicker
             colorCells={colorCells}

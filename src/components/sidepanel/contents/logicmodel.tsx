@@ -7,37 +7,37 @@ import {
 } from "@fluentui/react";
 
 export function LMOutputSintaxPanelContent() {
-    const { t } = useTranslation("forms", { keyPrefix: "logicmodel"});
+    const { t } = useTranslation("forms", { keyPrefix: "logicmodel.panel"});
 
     return (
         <Stack tokens={{ childrenGap: 16 }}>
             <Stack.Item>
-                {t("output-panel-explanation")}
+                {t("output-explanation")}
                 <br /><br />
             </Stack.Item>
 
             <Stack.Item>
                 <TextField
-                    label={t("panel-what-label")}
+                    label={t("what-label")}
                 />
             </Stack.Item>
 
             <Stack.Item>
                 <TextField
-                    label={t("panel-topic-label")}
+                    label={t("topic-label")}
                 />
             </Stack.Item>
 
             <Stack.Item>
                 <TextField
-                    label={t("panel-verb-label")}
+                    label={t("verb-label")}
                 />
             </Stack.Item>
 
             <Stack.Item>
                 <Dropdown
                     options={[]}
-                    label={t("panel-to-whom-label")}
+                    label={t("towhom-label")}
                 />
             </Stack.Item>
         </Stack>
@@ -45,38 +45,38 @@ export function LMOutputSintaxPanelContent() {
 }
 
 export function LMOutcomeSintaxPanelContent() {
-    const { t } = useTranslation("forms", { keyPrefix: "logicmodel"});
+    const { t } = useTranslation("forms", { keyPrefix: "logicmodel.panel"});
 
     return (
         <Stack tokens={{ childrenGap: 16 }}>
             <Stack.Item>
-                {t("outcome-panel-explanation")}
+                {t("outcome-explanation")}
                 <br /><br />
             </Stack.Item>
 
             <Stack.Item>
                 <Dropdown
                     options={[]}
-                    label={t("panel-direction-label")}
+                    label={t("direction-label")}
                 />
             </Stack.Item>
 
             <Stack.Item>
                 <TextField
-                    label={t("panel-what-label")}
+                    label={t("what-label")}
                 />
             </Stack.Item>
 
             <Stack.Item>
                 <Dropdown
                     options={[]}
-                    label={t("panel-by-whom-label")}
+                    label={t("bywhom-label")}
                 />
             </Stack.Item>
 
             <Stack.Item>
                 <TextField
-                    label={t("panel-where-label")}
+                    label={t("where-label")}
                 />
             </Stack.Item>
         </Stack>

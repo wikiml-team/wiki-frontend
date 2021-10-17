@@ -48,7 +48,7 @@ export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
       defaultKey = optionsSelectedKey?? (options && options[0]? options[0].key : "")
 
       choiceGroup = <ChoiceGroup
-                            label={optionsTitle?? t("options-select")}
+                            label={optionsTitle?? t("select")}
                             options={options}
                             onChange={onChange}
                             required
@@ -86,10 +86,10 @@ export default function CustomDialog(props : CustomDialogProps & IDialogProps) {
       <DialogFooter>
         <PrimaryButton
           onClick={() => acceptOnClick(optionSelected)} 
-          text={primaryButtonText?? t("button-accept") } />
+          text={primaryButtonText?? t("accept") } />
         <DefaultButton 
           onClick={() => {if (allprops.onDismiss) allprops.onDismiss()}} 
-          text={t("button-cancel")} />
+          text={t("cancel")} />
       </DialogFooter>
     </Dialog>
   )

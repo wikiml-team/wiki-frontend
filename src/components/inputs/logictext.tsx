@@ -157,8 +157,8 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
 
     // tooltips and buttons
     const tooltipContent = node.level === 0 ?
-        "tooltip-add-inmediate-outcome" : node.level === 1 ?
-            "tooltip-add-intermediate-outcome" : "tooltip-add-output";
+        "tooltip.add-inmediate-outcome" : node.level === 1 ?
+            "tooltip.add-intermediate-outcome" : "tooltip.add-output";
 
     const canAdd = node.level !== 3;
     const canDelete = children.length === 0;
@@ -210,21 +210,21 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
 
                 {isAnOputut ?
                     <>
-                        <TooltipHost content={t("tooltip-see-activities")}>
+                        <TooltipHost content={t("tooltip.see-activities")}>
                             <IconButton
                                 iconProps={{ iconName: "SnapToGrid" }}
                                 styles={commandStyles}
                                 onClick={() => handleRedirectToActivity(node.id)}
                             />
                         </TooltipHost>
-                        <TooltipHost content={t("tooltip-sintactic-struct")}>
+                        <TooltipHost content={t("tooltip.sintactic-struct")}>
                             <IconButton
                                 iconProps={{ iconName: "ShowResults" }}
                                 styles={commandStyles}
                                 onClick={() => hanldeOpenOutputPanel()}
                             />
                         </TooltipHost>
-                        <TooltipHost content={t("tooltip-contextual-help")}>
+                        <TooltipHost content={t("tooltip.contextual-help")}>
                             <IconButton
                                 iconProps={{ iconName: "Help" }}
                                 styles={commandStyles}
@@ -232,14 +232,14 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                             />
                         </TooltipHost>
                     </> : <>
-                        <TooltipHost content={t("tooltip-sintactic-struct")}>
+                        <TooltipHost content={t("tooltip.sintactic-struct")}>
                             <IconButton
                                 iconProps={{ iconName: "ShowResults" }}
                                 styles={commandStyles}
                                 onClick={() => hanldeOpenOutcomePanel()}
                             />
                         </TooltipHost>
-                        <TooltipHost content={t("tooltip-contextual-help")}>
+                        <TooltipHost content={t("tooltip.contextual-help")}>
                             <IconButton
                                 iconProps={{ iconName: "Help" }}
                                 styles={commandStyles}
@@ -257,7 +257,7 @@ function LogicTextFieldHeader(props: LogicTextFieldInputProps) {
                     </TooltipHost>
                 }
                 {canDelete &&
-                    <TooltipHost content={t("tooltip-delete")}>
+                    <TooltipHost content={t("tooltip.delete")}>
                         <IconButton
                             iconProps={{ iconName: "Cancel" }}
                             styles={commandStyles}

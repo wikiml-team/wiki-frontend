@@ -14,13 +14,12 @@ type SintaxHelpPanelProps = {
     onDismiss: () => void
     header: string,
     onRenderFooterContent? : any,
-    dialogTitle: string
 }
 
 const SintaxHelpPanel: FunctionComponent<SintaxHelpPanelProps> = (props) => {
     
     // LOGIC
-    const { isOpen, onDismiss, header, onRenderFooterContent, dialogTitle } = props;
+    const { isOpen, onDismiss, header, onRenderFooterContent } = props;
 
     const { t } = useTranslation("basics");
     
@@ -42,7 +41,7 @@ const SintaxHelpPanel: FunctionComponent<SintaxHelpPanelProps> = (props) => {
     // STYLEs
     const dialogContentProps = {
         type: DialogType.normal,
-        title: dialogTitle,
+        title: t("save-before-closing"),
     };
     
     const dialogModalProps = {

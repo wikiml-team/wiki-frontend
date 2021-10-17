@@ -1,7 +1,7 @@
 {
   "home": {
     "header": "Home",
-    "stared-projects": "Stared Projects",
+    "starprojects": "Stared Projects",
     "teams": "Teams",
     "notifications": "Notifications"
   },
@@ -16,7 +16,7 @@
     "shared": "Recenly shared",
     "shared-info": "Accept / Decline the invitation to participate",
     "all": "All",
-    "date-modified": "Last modified"
+    "date": "Last modified"
   },
   "methodologies": {
     "header": "Methodologies",

@@ -15,7 +15,7 @@ export default function DestroyProjectDialog(props: ExportDialogProps) {
     const { t } = useTranslation("commands", { keyPrefix: "destroy"});
 
     const dialogContentProps = {
-        title: t("title"),
+        title: t("header"),
         subText: t("text"),
       };
 
@@ -26,7 +26,7 @@ export default function DestroyProjectDialog(props: ExportDialogProps) {
 
     return <CustomDialog
             dialogContentProps={dialogContentProps}
-            primaryButtonText={t("button-accept-label")}
+            primaryButtonText={t("accept-label")}
             acceptOnClick={handleAccpetButtonOnClick}
             hidden={hideDialog}
             onDismiss={toggleHideDialog}

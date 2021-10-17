@@ -37,7 +37,7 @@ export default function HomePage() {
 
             {/* Star Projects */}
             <Stack>
-                <Text variant='mediumPlus'>{t("stared-projects")}</Text>
+                <Text variant='mediumPlus'>{t("starprojects")}</Text>
                 <Stack horizontal>
                     {exampledata.map(({project, meth} : Example, key : number) => (
                         <StaredProjects key={key} projectName={project} methodology={meth}/>

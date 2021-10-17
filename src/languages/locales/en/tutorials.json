@@ -6,15 +6,15 @@
     },
     "sectors": {
         "header": "Sectors",
-        "sector-agriculture-nutrition" : "Agriculture and Nutrition",
-        "sector-economic-growth" : "Economic growth",
-        "sector-human-rights" : "Human rights and Democratic governance",
-        "sector-human-development" : "Human development",
-        "sector-energy" : "Energy",
-        "sector-infrastructure" : "Infrastructure",
-        "sector-environment" : "Environmente",
-        "sector-migration" : "Migration and Asylum",
-        "sector-tecnology" : "Information and Communication technology"
+        "agriculture" : "Agriculture and Nutrition",
+        "economic" : "Economic growth",
+        "rights" : "Human rights and Democratic governance",
+        "development" : "Human development",
+        "energy" : "Energy",
+        "infrastructure" : "Infrastructure",
+        "environment" : "Environmente",
+        "migration" : "Migration and Asylum",
+        "tecnology" : "Information and Communication technology"
     },
     "guides": {
         "header": "Guides"

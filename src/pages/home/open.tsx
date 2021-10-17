@@ -155,7 +155,7 @@ export default function OpenPage() {
 
     const dateRender = (project: IProject) => {
         return (
-            `${t("open.date-modified")} ${project.dateModified}`
+            `${t("open.date")} ${project.dateModified}`
         )
     }
 

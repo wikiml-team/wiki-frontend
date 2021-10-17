@@ -17,7 +17,7 @@
     "countries": {
         "header": "Countries"
     },
-    "development-goals": {
+    "development": {
         "header": "Development Goals"
     },
     "languages": {
@@ -29,13 +29,13 @@
     "offers": {
         "header": "Offers"
     },
-    "products-services": {
+    "products": {
         "header": "Products & Services"
     },
     "programs": {
         "header": "Programs"
     },
-    "project-goals": {
+    "goals": {
         "header": "Project Goals"
     },
     "projects": {

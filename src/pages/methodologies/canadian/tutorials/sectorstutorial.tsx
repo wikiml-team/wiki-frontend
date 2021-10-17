@@ -9,19 +9,19 @@ interface ISector {
 const sectors : ISector[] = [
   {
       key: "key1",
-      name: "agriculture-nutrition",
+      name: "agriculture",
   },
   {
       key: "key2",
-      name: "economic-growth",
+      name: "economic",
   },
   {
       key: "key3",
-      name: "human-rights",
+      name: "rights",
   },
   {
       key: "key4",
-      name: "human-development",
+      name: "development",
   },
   {
       key: "key5",
@@ -48,7 +48,7 @@ const sectors : ISector[] = [
 export default function SectorsTutorials() {
 
   // LOGIC
-  const { t } = useTranslation("sectors");
+  const { t } = useTranslation("tutorials.sectors");
 
   const columns: IColumn[] = [
     {

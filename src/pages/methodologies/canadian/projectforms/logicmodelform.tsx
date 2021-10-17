@@ -72,7 +72,7 @@ export default function LogicModelForm() {
       <div>
         <TooltipHost content={t("tooltip-panel-concat")}>
           <PrimaryButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
-            {t("concat-button-label")}
+            {t("concat")}
           </PrimaryButton>
         </TooltipHost>
         <TooltipHost content={t("tooltip-panel-save")}>
@@ -132,10 +132,9 @@ export default function LogicModelForm() {
     {/* Outcome Panel */}
     <SintaxHelpPanel
       isOpen={outcomePanelIsOpen}
-      header={t("outcome-panel-header")}
+      header={t("panel.outcome-header")}
       onDismiss={dismissOutcomePanel}
       onRenderFooterContent={onRenderFooterContent}
-      dialogTitle={t("save-before-closing")}
     >
       <LMOutcomeSintaxPanelContent />
     </SintaxHelpPanel>
@@ -143,10 +142,9 @@ export default function LogicModelForm() {
     {/* Output Panel */}
     <SintaxHelpPanel
       isOpen={outputPanelIsOpen}
-      header={t("output-panel-header")}
+      header={t("panel.output-header")}
       onDismiss={dismissOutputPanel}
       onRenderFooterContent={onRenderFooterContent}
-      dialogTitle={t("save-before-closing")}
     >
       <LMOutputSintaxPanelContent />
     </SintaxHelpPanel>

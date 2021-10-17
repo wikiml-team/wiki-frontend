@@ -68,9 +68,9 @@ export default function ExportProjectDialog(props: ExportDialogProps) {
               dialogContentProps={{title : t("header")}}
               optionsProps={{
                 options,
-                optionsTitle : t("options-select")
+                optionsTitle : t("select-label")
               }}
-              primaryButtonText={t("button-accept-label")}
+              primaryButtonText={t("accept-label")}
               acceptOnClick={handleAccpetButtonOnClick}
               hidden={hideDialog}
               onDismiss={toggleHideDialog}

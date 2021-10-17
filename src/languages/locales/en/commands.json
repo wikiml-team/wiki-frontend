@@ -2,8 +2,8 @@
     "share": {},
     "export": {
         "header": "Export Project",
-        "options-select": "Select the file type to export:",
-        "button-accept-label": "Export"
+        "select-label": "Select the file type to export:",
+        "accept-label": "Export"
     },
     "new": {
         "header": "Create Project",
@@ -22,14 +22,14 @@
     },
     "open": {},
     "destroy": {
-        "title": "Delete Project",
+        "header": "Delete Project",
         "text": "Are you sure you want to delete your project? This action can't be undone.",
-        "button-accept-label": "Delete"
+        "accept-label": "Delete"
     },
     "duplicate": {
-        "title": "Duplicate Project",
-        "options-select": "Select the methodology you would want to duplicate your project into",
-        "button-accept-label": "Duplicate"
+        "header": "Duplicate Project",
+        "select-label": "Select the methodology you would want to duplicate your project into",
+        "accept-label": "Duplicate"
     },
     "print": {},
     "language": {
@@ -41,10 +41,10 @@
     "settings": {
         "header": "Settings",
         "theme-header": "Theme",
-        "color-theme-title": "Color Theme",
+        "colortheme-title": "Color Theme",
         "privacy-header": "Privacy",
         "privacy-label": "Your project should be:",
-        "privacy-settings-text": "Go to project privacy settings",
-        "privacy-settings-link": "here"
+        "privacy-text": "Go to project privacy settings",
+        "privacy-link": "here"
     }
 }

@@ -7,18 +7,18 @@ import {
 } from "@fluentui/react";
 
 export function AddStakehoderPanelContent() {
-    const { t } = useTranslation("forms", { keyPrefix: "stakeholders"});
+    const { t } = useTranslation("forms", { keyPrefix: "stakeholders.panel"});
 
     return (
         <Stack tokens={{ childrenGap: 16 }}>
             <Stack.Item>
-                {t("panel-explanation")}
+                {t("explanation")}
                 <br /><br />
             </Stack.Item>
 
             <Stack.Item>
                 <TextField
-                    label={t("stakeholder-label")}
+                    label={t("name-label")}
                 />
             </Stack.Item>
 

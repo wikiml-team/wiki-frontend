@@ -251,7 +251,7 @@ const tabsConfiguration = new TabSchema([
       },
       {
         key: "key6",
-        name: "development-goals",
+        name: "development",
         icon: "Database",
         render: <DevelopmentGoalsData/>,
       },
@@ -287,7 +287,7 @@ const tabsConfiguration = new TabSchema([
       },
       {
         key: "key12",
-        name: "products-services",
+        name: "products",
         icon: "Database",
         render: <ProductsServicesData/>,
       },
@@ -299,7 +299,7 @@ const tabsConfiguration = new TabSchema([
       },
       {
         key: "key14",
-        name: "project-goals",
+        name: "goals",
         icon: "Database",
         render: <ProjectGoalsData/>,
       },

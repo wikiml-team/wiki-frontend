@@ -35,7 +35,7 @@ export default function NewProjectDialog(props : NewProjectCalloutProps) {
         dialogContentProps={{title : t("header")}}
         hidden={hideDialog}
         onDismiss={toggleHideDialog}
-        primaryButtonText={t("button-accept-label")}
+        primaryButtonText={t("accept-label")}
         acceptOnClick={handleAccpetButtonOnClick}
         optionalBody={<NewProjectDialogBody methodologyId={methodologyId}/>}
   />

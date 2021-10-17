@@ -130,10 +130,10 @@ export default function GeneralForm() {
   };
 
   const validationSchema = object().shape({
-    shortName: string().max(20, t("shortname-error")).required(t("required")),
+    shortName: string().max(20, t("shortname.error")).required(t("required")),
     largeName: string()
-      .min(20, t("largename-error"))
-      .max(100, t("largename-error"))
+      .min(20, t("largename.error"))
+      .max(100, t("largename.error"))
       .required(t("required")),
     description: string(),
     country: string().required(t("required")),
@@ -195,7 +195,7 @@ export default function GeneralForm() {
           <Row>
             <TextField
               required
-              label={t("shortname-field")}
+              label={t("shortname.field")}
               name="shortName"
               component={TextFieldInput}
               sizeLg={3}
@@ -203,7 +203,7 @@ export default function GeneralForm() {
 
             <TextField
               required
-              label={t("largename-field")}
+              label={t("largename.field")}
               name="largeName"
               component={TextFieldInput}
               sizeLg={9}
@@ -212,7 +212,7 @@ export default function GeneralForm() {
           {/* Description */}
           <Row>
             <TextField
-              label={t("description-field")}
+              label={t("description.field")}
               name="description"
               component={TextFieldInput}
               {...multilineTextFieldProps}
@@ -233,11 +233,11 @@ export default function GeneralForm() {
 
               <Stack {...headerStackProps}>
                 <Stack.Item>
-                  <Label>{t("status-field")}</Label>
-                  {t(`status-${generalInfo.status}`)}
+                  <Label>{t("status.field")}</Label>
+                  {t(`status.${generalInfo.status}`)}
                 </Stack.Item>
                 <Stack.Item>
-                  <Label>{t("wikicode-field")}</Label>
+                  <Label>{t("wikicode.field")}</Label>
                   {generalInfo.wikicode}
                 </Stack.Item>
               </Stack>
@@ -245,19 +245,19 @@ export default function GeneralForm() {
 
               <Row>
                 <StandardField
-                  label={t("country-field")}
+                  label={t("country.field")}
                   name="country"
                   component={DropdownFieldInput}
                   options={countries}
                 />
                 <StandardField
-                  label={t("imporganization-field")}
+                  label={t("imporganization.field")}
                   name="impOrganization"
                   component={DropdownFieldInput}
                   options={countries}
                 />
                 <StandardField
-                  label={t("intorganization-field")}
+                  label={t("intorganization.field")}
                   name="intOrganization"
                   component={DropdownFieldInput}
                   options={countries}
@@ -266,54 +266,54 @@ export default function GeneralForm() {
 
               <Row>
                 <StandardField
-                  label={t("currency-field")}
+                  label={t("currency.field")}
                   name="currency"
                   component={DropdownFieldInput}
                 />
                 <StandardField
-                  label={t("program-field")}
+                  label={t("program.field")}
                   name="program"
                   component={DropdownFieldInput}
                   options={countries}
                 />
                 <StandardField
-                  label={t("sector-field")}
+                  label={t("sector.field")}
                   name="sector"
                   component={DropdownFieldInput}
                   options={countries}
                 />
                 <StandardField
-                  label={t("duration-field")}
+                  label={t("duration.field")}
                   name="duration"
                   component={TextFieldInput}
-                  suffix={t("duration-suffix")}
+                  suffix={t("duration.suffix")}
                 />
               </Row>
 
               <Row>
 
                 <StandardField
-                  label={t("budget-field")}
+                  label={t("budget.field")}
                   name="budget"
                   component={TextFieldInput}
-                  prefix={t("budget-prefix")}
+                  prefix={t("calculated.budget-prefix")}
                 />
                 <StandardField
-                  label={t("calculated-field")}
+                  label={t("calculated.field")}
                   name="budgetPerItems"
                   component={TextFieldInput}
-                  prefix={t("budgetitems-prefix")}
+                  prefix={t("calculated.budgetitems-prefix")}
                   readOnly
                 />
                 <StandardField
-                  label={t("calculated-field")}
+                  label={t("calculated.field")}
                   name="budgetPerAct"
                   component={TextFieldInput}
-                  prefix={t("budgetact-prefix")}
+                  prefix={t("calculated.budgetact-prefix")}
                   readOnly
                 />
                 <StandardField
-                  label={t("financed-field")}
+                  label={t("financed.field")}
                   name="budgetFinanced"
                   component={TextFieldInput}
                 />
@@ -332,7 +332,7 @@ export default function GeneralForm() {
 
               <Stack {...headerStackProps}>
                 <Stack.Item>
-                  <Label>{t("donorcode-field")}</Label>
+                  <Label>{t("donorcode.field")}</Label>
                   {generalInfo.donorcode}
                 </Stack.Item>
               </Stack>
@@ -340,14 +340,14 @@ export default function GeneralForm() {
 
               <Row>
                 <StandardField
-                  label={t("donor-field")}
+                  label={t("donor.field")}
                   name="donor"
                   component={DropdownFieldInput}
                   options={countries}
                   sizeLg={6}
                 />
                 <StandardField
-                  label={t("approvedate-field")}
+                  label={t("approvedate.field")}
                   name="approveDate"
                   component={DateFieldInput}
                   onSelectDate={handleSelectApprovedDate}
@@ -357,7 +357,7 @@ export default function GeneralForm() {
 
               <Row>
                 <StandardField
-                  label={t("initialdate-field")}
+                  label={t("initialdate.field")}
                   name="initialDate"
                   component={DateFieldInput}
                   minDate={approvedDate}
@@ -365,7 +365,7 @@ export default function GeneralForm() {
                   sizeLg={6}
                 />
                 <StandardField
-                  label={t("finaldate-field")}
+                  label={t("finaldate.field")}
                   name="finalDate"
                   component={DateFieldInput}
                   minDate={initialDate}
@@ -375,7 +375,7 @@ export default function GeneralForm() {
 
               <Row>
                 <StandardField
-                  label={t("approvebudget-field")}
+                  label={t("approvebudget.field")}
                   name="approvedBudget"
                   component={TextFieldInput}
                   options={countries}
@@ -383,7 +383,7 @@ export default function GeneralForm() {
                   sizeLg={6}
                 />
                 <StandardField
-                  label={t("contribution-field")}
+                  label={t("contribution.field")}
                   name="contribution"
                   component={TextFieldInput}
                   sizeLg={6}

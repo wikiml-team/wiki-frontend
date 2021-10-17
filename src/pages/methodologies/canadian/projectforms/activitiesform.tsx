@@ -40,7 +40,7 @@ export default function ActivitiesMatrixForm() {
   const [items, setItems] = useState(initialItems);
   const [activitiesMatrix, setActivitiesMatrix] = useState(logicModelActivitiesMatrix);
 
-  const { t } = useTranslation("forms", { keyPrefix: "activitiesmatrix"});
+  const { t } = useTranslation("forms", { keyPrefix: "activitiesmatrix.tooltip"});
 
   const columns: IColumn[] = [
     {
@@ -223,14 +223,14 @@ export default function ActivitiesMatrixForm() {
 
     return (item.level === 2 &&
       <React.Fragment>
-        <TooltipHost content={t("tooltip-contextual-help")}>
+        <TooltipHost content={t("contextual-help")}>
           <IconButton
             iconProps={{ iconName: "Help" }}
             styles={commandStyles}
             onClick={() => openHelpPanel()}
           />
         </TooltipHost>
-        <TooltipHost content={t("tooltip-add-act")}>
+        <TooltipHost content={t("add-act")}>
           <IconButton
             iconProps={{ iconName: "Add" }}
             styles={commandStyles}
@@ -238,7 +238,7 @@ export default function ActivitiesMatrixForm() {
           />
         </TooltipHost>
         {item.hasSiblings &&
-          <TooltipHost content={t("tooltip-delete-act")}>
+          <TooltipHost content={t("delete-act")}>
             <IconButton
               iconProps={{ iconName: "Cancel" }}
               styles={commandStyles}

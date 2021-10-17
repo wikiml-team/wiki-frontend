@@ -8,9 +8,10 @@
     "public": "Public",
     "private": "Private",
     "return": "Return",
-    "options-select": "Select",
-    "button-accept": "Accept",
-    "button-cancel": "Cancel",
+    "select": "Select",
+    "accept": "Accept",
+    "cancel": "Cancel",
+    "save-before-closing": "Do you want to save before closing?",
     "methodologies": {
         "canadian": "Canadian Methodology",
         "german": "German Methodology",
@@ -18,7 +19,7 @@
     },
     "loading": {
         "title": "Loading",
-        "description": "Please wait a few senconds, we are loading the data"
+        "description": "Please wait a few senconds, we are loading the data."
     },
     "languages": {
         "en": "English",

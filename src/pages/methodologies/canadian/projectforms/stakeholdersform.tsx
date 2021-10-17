@@ -55,7 +55,7 @@ export default function StakeholdersForm() {
     },
     {
       key: 'column2',
-      name: t('name-field'),
+      name: t('header'),
       styles: { root: { fontSize: 40 } },
       ariaLabel: 'Stakehoder',
       fieldName: 'name',
@@ -67,7 +67,7 @@ export default function StakeholdersForm() {
     },
     {
       key: 'column3',
-      name: 'Add/Remove',
+      name: t('action-field'),
       fieldName: 'operators',
       minWidth: 70,
       data: 'string',
@@ -152,13 +152,13 @@ export default function StakeholdersForm() {
     return (
       <Stack horizontal styles={{ root: { minWidth: 800 } }}>
         <Dropdown
-          placeholder={t("select-stakeholder-placeholder")}
+          placeholder={t("select-placeholder")}
           defaultSelectedKey={item.id.toString()}
           options={options}
           styles={dropdownStyles}
         />
 
-        <TooltipHost content={t(`tooltip-add-stakeholder-DB`)}>
+        <TooltipHost content={t(`tooltip.add-stakeholder-DB`)}>
           <IconButton
             iconProps={{ iconName: "AddFriend" }}
             styles={commandStyles}
@@ -198,13 +198,13 @@ export default function StakeholdersForm() {
     };
 
     return item.main ?
-      <TooltipHost content={t(`tooltip-main-stakeholder-${item.category.name}`)}>
+      <TooltipHost content={t(`tooltip.main-stakeholder-${item.category.name}`)}>
         <IconButton
           iconProps={{ iconName: "PartyLeader" }}
           styles={bossIconStyles}
         />
       </TooltipHost> :
-      <TooltipHost content={t(`tooltip-change-main-stakeholder-${item.category.name}`)}>
+      <TooltipHost content={t(`tooltip.change-main-stakeholder-${item.category.name}`)}>
         <IconButton
           iconProps={{ iconName: "Contact" }}
           styles={iconStyles}
@@ -228,7 +228,7 @@ export default function StakeholdersForm() {
     };
 
     return <React.Fragment>
-      <TooltipHost content={t("tooltip-add-stakeholder")}>
+      <TooltipHost content={t("tooltip.add-stakeholder")}>
         <IconButton
           iconProps={{ iconName: "Add" }}
           styles={commandStyles}
@@ -236,7 +236,7 @@ export default function StakeholdersForm() {
         />
       </TooltipHost>
       {item.hasSiblings &&
-        <TooltipHost content={t("tooltip-delete-stakeholder")}>
+        <TooltipHost content={t("tooltip.delete-stakeholder")}>
           <IconButton
             iconProps={{ iconName: "Cancel" }}
             styles={commandStyles}
@@ -274,7 +274,7 @@ export default function StakeholdersForm() {
         isOpen={panelIsOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
-        headerText={t("panel-header")}
+        headerText={t("panel.header")}
         onDismiss={dismissPanel}
         isBlocking={false}
         isFooterAtBottom={true}
