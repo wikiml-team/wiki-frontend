@@ -1,1 +1,50 @@
-{}
+{
+    "share": {},
+    "export": {
+        "header": "Projekz exportieren",
+        "select-label": "Wählen Sie den zu exportierenden Datentyp aus:",
+        "accept-label": "Exportieren"
+    },
+    "new": {
+        "header": "Projekt erstellen",
+        "accept-label": "Erstellen",
+        "body": {
+            "text": "Methodik verwenden",
+            "name-label": "Prokttitel",
+            "name-placeholder": "Kurztitel",
+            "language-label": "Projektsprachen",
+            "language-placeholder": "Sprache auswählen",
+            "privacy-label": "Projekt Datenschutz",
+            "privacy-on": "Privat",
+            "privacy-off": "Öffentlich",
+            "privacy-text": "Datenschutzeinstellungen können später geändert werden"
+        }
+    },
+    "open": {},
+    "destroy": {
+        "header": "Delete Project",
+        "text": "Are you sure you want to delete your project? This action can't be undone.",
+        "accept-label": "Delete"
+    },
+    "duplicate": {
+        "header": "Duplicate Project",
+        "select-label": "Select the methodology you would want to duplicate your project into",
+        "accept-label": "Duplicate"
+    },
+    "print": {},
+    "language": {
+        "header": "Sprache",
+        "language-select": "Sprache auswählen",
+        "language-ui": "Sprache für Benutzeroberfläche",
+        "language-data": "Sprache für Daten"
+    },
+    "settings": {
+        "header": "Einstellungen",
+        "theme-header": "Thema",
+        "colortheme-title": "Farbgebung",
+        "privacy-header": "",
+        "privacy-label": "",
+        "privacy-text": "",
+        "privacy-link": ""
+    }
+}

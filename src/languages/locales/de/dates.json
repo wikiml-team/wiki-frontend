@@ -1,0 +1,57 @@
+{
+    "date-placeholder": "Select a date",
+    "months": {
+        "january": "Januar",
+        "february": "Februar",
+        "march": "März",
+        "april": "April",
+        "may": "Mai",
+        "june": "Juni",
+        "july": "Juli",
+        "august": "August",
+        "september": "September",
+        "october": "Oktober",
+        "november": "November",
+        "december": "Dezember"
+    },
+    "shortmonths": {
+        "jan": "Jan",
+        "feb": "Feb",
+        "mar": "März",
+        "apr": "Apr",
+        "may": "Mai",
+        "jun": "Jun",
+        "jul": "Jul",
+        "aug": "Aug",
+        "sep": "Sep",
+        "oct": "Okt",
+        "nov": "Nov",
+        "dec": "Dez"
+    },
+    "days": {
+        "sunday": "Sonntag",
+        "monday": "Montag",
+        "tuesday": "Dienstag",
+        "wednesday": "Mittwoch",
+        "thursday": "Donnerstag",
+        "friday": "Freitag",
+        "saturday": "Samstag"
+    },
+    "shortdays": {
+        "sunday": "So",
+        "monday": "Mo",
+        "tuesday": "Di",
+        "wednesday": "Mi",
+        "thursday": "Do",
+        "friday": "Fr",
+        "saturday": "Sa"
+    },
+    "calendar": {
+        "goToToday": "Gehe zu heute",
+        "prevMonthAriaLabel": "Gehe zum vorherigen Monat",
+        "nextMonthAriaLabel": "Gehe zum nächsten Monat",
+        "prevYearAriaLabel": "Gehe zum vorherigen Jahr",
+        "nextYearAriaLabel": "Gehe zum nächsten Jahr",
+        "closeButtonAriaLabel": "Datumsauswahl schließen"
+    }
+}

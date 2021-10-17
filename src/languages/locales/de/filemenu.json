@@ -1,49 +1,50 @@
 {
   "home": {
-    "title": "Startseite",
-    "stared-projects": "Markierte Projekte",
+    "header": "Startseite",
+    "starprojects": "Markierte Projekte",
     "teams": "Teams",
     "notifications": "Benachrichtigungen"
   },
   "new": {
-    "title": "Neu",
-    "select-create-project": "Select the methodology your project should follow."
+    "header": "Neu",
+    "text": "Select the methodology your project should follow."
   },
   "open": {
-    "title": "Öffnen",
+    "header": "Öffnen",
     "recent": "Neuste",
+    "manage": "",
     "shared": "Zuletzt freigegeben",
     "shared-info": "Akzeptieren / Ablehnen der Einladung zur Teilnahme",
     "all": "Alle",
-    "date-modified": "Zuletzt geändert"
+    "date": "Zuletzt geändert"
   },
   "methodologies": {
-    "title": "Metodologien",
-    "description": "Select the methodology you want to read, edit or add.",
+    "header": "Metodologien",
+    "text": "Select the methodology you want to read, edit or add.",
     "permitions-info": "Edition will only be available if permitions have been given."
   },
   "info": {
-    "title": "Info"
+    "header": "Info"
   },
   "export": {
-    "title": "Exportieren"
+    "header": "Exportieren"
   },
   "print": {
-    "title": "Drucken"
+    "header": "Drucken"
   },
   "share": {
-    "title": "Teilen"
+    "header": "Teilen"
   },
   "about": {
-    "title": "Info"
+    "header": "Info"
   },
   "account": {
-    "title": "Benutzerkonto"
+    "header": "Benutzerkonto"
   },
   "feedback": {
-    "title": "Feedback"
+    "header": "Feedback"
   },
   "options": {
-    "title": "Optionen"
+    "header": "Optionen"
   }
 }

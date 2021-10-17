@@ -1,0 +1,14 @@
+{
+    "lot": {
+        "header" : "Budgetposten gruppieren"
+    },
+    "specifications": {
+        "header" : "Technische Spezifikationen"
+    },
+    "technical-offer": {
+        "header" : "Technisches Angebot"
+    },
+    "financial-offer": {
+        "header" : "Finanzielles Angebot"
+    }
+}
