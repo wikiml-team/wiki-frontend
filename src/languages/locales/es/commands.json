@@ -1,1 +1,50 @@
-{}
+{
+    "share": {},
+    "export": {
+        "header": "Exportar Proyecto",
+        "select-label": "Seleccione el tipo de archivo a exportar:",
+        "accept-label": "Exportar"
+    },
+    "new": {
+        "header": "Crear Proyecto",
+        "accept-label": "Crear",
+        "body": {
+            "text": "Usando metodología",
+            "name-label": "Nombre del proyecto",
+            "name-placeholder": "Nombre corto",
+            "language-label": "Idioma del proyecto",
+            "language-placeholder": "Seleccione el idioma",
+            "privacy-label": "Privacidad del proyecto",
+            "privacy-on": "Privado",
+            "privacy-off": "Público",
+            "privacy-text": "Los ajustes de privacidad pueden ser modificados luego."
+        }
+    },
+    "open": {},
+    "destroy": {
+        "header": "Eliminar proyecto",
+        "text": "Está seguro que quiere eliminar el proyecto? Esta acción no podrá ser deshecha.",
+        "accept-label": "Eliminar"
+    },
+    "duplicate": {
+        "header": "Duplicar Proyecto",
+        "select-label": "Seleccione la metodología a la que quieres duplicar el proyecto",
+        "accept-label": "Duplicate"
+    },
+    "print": {},
+    "language": {
+        "header": "Lenguaje",
+        "language-select": "Seleccione enguaje",
+        "language-ui": "Lenguaje para interfaz de usuario",
+        "language-data": "Lenguaje para datos"
+    },
+    "settings": {
+        "header": "Ajustes",
+        "theme-header": "Tema",
+        "colortheme-title": "Color",
+        "privacy-header": "Privacidad",
+        "privacy-label": "Su proyecto debe ser:",
+        "privacy-text": "Ir a los ajustes de privacidad",
+        "privacy-link": "aquí"
+    }
+}

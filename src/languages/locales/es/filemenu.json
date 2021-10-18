@@ -1,49 +1,50 @@
 {
   "home": {
-    "title": "Inicio",
-    "stared-projects": "Proyectos Destacados",
-    "teams": "Equipos",
+    "header": "Home",
+    "starprojects": "Proyectos Destacados",
+    "teams": "Equipos de trabajo",
     "notifications": "Notificaciones"
   },
   "new": {
-    "title": "Nuevo",
-    "select-create-project": "Selecciona la metodología que debe seguir el nuevo proyecto."
+    "header": "Nuevo",
+    "text": "Seleccione la metodología que debe seguir el proyecto."
   },
   "open": {
-    "title": "Abrir",
+    "header": "Abrir",
     "recent": "Reciente",
-    "shared": "Compartido",
+    "manage": "Administra",
+    "shared": "Compartido recientemente",
     "shared-info": "Aceptar / Rechazar la invitación a participar",
     "all": "Todos",
-    "date-modified": "última modificación"
+    "date": "Última modificación"
   },
   "methodologies": {
-    "title": "Metodologías",
-    "description": "Selecciona la metodología que quiere leer, editar o añadir.",
+    "header": "Metodologías",
+    "text": "Selecciona la metodología que quiere leer, editar o añadir.",
     "permitions-info": "La edición solo estará disponible si los permisos han sido previamente dados."
   },
   "info": {
-    "title": "Info"
+    "header": "Info"
   },
   "export": {
-    "title": "Exportar"
+    "header": "Exportar"
   },
   "print": {
-    "title": "Imprimir"
+    "header": "Imprimir"
   },
   "share": {
-    "title": "Compartir"
+    "header": "Compartir"
   },
   "about": {
-    "title": "Acerca"
+    "header": "Acerca"
   },
   "account": {
-    "title": "Cuenta"
+    "header": "Cuenta"
   },
   "feedback": {
-    "title": "Retroalimentación"
+    "header": "Retroalimentación"
   },
   "options": {
-    "title": "Opciones"
+    "header": "Opciones"
   }
 }

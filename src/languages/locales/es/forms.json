@@ -1,2 +1,208 @@
 {
+    "general": {
+        "header": "General",
+        "required": "Requerido",
+        "shortname": {
+            "field": "Nombre del proyecto (corto)",
+            "error": "Debe tener 20 caracteres o menos."
+        },
+        "largename": {
+            "field": "Nombre del proyecto",
+            "error": "Debe tener entre 20 y 100 caracteres."
+        },
+        "description": {
+            "field": "Resumen descriptivo",
+            "error": ""
+        },
+        "country": {
+            "field": "Principal receptor",
+            "error": ""
+        },
+        "imporganization": {
+            "field": "Implementadora principal",
+            "error": ""
+        },
+        "intorganization": {
+            "field": "Intermediaria principal",
+            "error": ""
+        },
+        "currency": {
+            "field": "Moneda",
+            "error": ""
+        },
+        "budget": {
+            "field": "Presupuesto",
+            "prefix": "Solicitado",
+            "error": ""
+        },
+        "calculated": {
+            "field": "Calculado",
+            "budgetitems-prefix": "Por items",
+            "budgetact-prefix": "Per actividades"
+        },
+        "financed": {
+            "field": "Financiado",
+            "error": ""
+        },
+        "program": {
+            "field": "Programa",
+            "error": ""
+        },
+        "sector": {
+            "field": "Sector",
+            "error": ""
+        },
+        "duration": {
+            "field": "Duración",
+            "suffix": "months",
+            "error": ""
+        },
+        "donor": {
+            "field": "Donante principal",
+            "error": ""
+        },
+        "approvebudget": {
+            "field": "Presupuesto aprobado",
+            "error": ""
+        },
+        "contribution": {
+            "field": "Contribución",
+            "error": ""
+        },
+        "approvedate": {
+            "field": "Aprobado",
+            "error": ""
+        },
+        "initialdate": {
+            "field": "Inicio",
+            "error": ""
+        },
+        "finaldate": {
+            "field": "Final",
+            "error": ""
+        },
+        "status": {
+            "field": "Estado",
+            "pending": "Pendiente",
+            "approved": "Aprovado",
+            "error": ""
+        },
+        "wikicode": {
+            "field": "Código WikiML",
+            "error": ""
+        },
+        "donorcode": {
+            "field": "Código Donante",
+            "error": ""
+        }
+    },
+    "stakeholders": {
+        "header": "Partes interesada",
+        "beneficiary": "Beneficiario",
+        "intermediary": "Intermediario",
+        "implementer": "Implementador",
+        "donor": "Donante",
+        "other": "Otros Interesados",
+        "roll-field": "Rol",
+        "action-field": "Añadir / Eliminar",
+        "select-placeholder": "Seleccione parte interesada",
+        "tooltip": {
+            "main-stakeholder-0": "Beneficiario principal",
+            "main-stakeholder-1": "Intermediario principal",
+            "main-stakeholder-2": "Líder del consorcio",
+            "main-stakeholder-3": "Donante principal",
+            "add-stakeholder": "Añadir parte interesada",
+            "delete-stakeholder": "Eliminar parte interesada",
+            "change-main-stakeholder-0": "Seleccionar como beneficiario principal",
+            "change-main-stakeholder-1": "Seleccionar como intermediario principal",
+            "change-main-stakeholder-2": "Seleccionar como lider del consorcio",
+            "change-main-stakeholder-3": "Seleccionar como donante principal",
+            "change-main-stakeholder-4": "Otra parte interesada",
+            "add-stakeholder-DB": "Crear parte interesada en basedatos"
+        },
+        "panel" : {
+            "header": "Crear parte interesada",
+            "explanation": "Añada a la base de datos una nueva parte interesada..",
+            "warning": "Revisar que no exista la parte interesada previamente en base datos para evitar datos repetidos.",
+            "name-label": "Nombre",
+            "country-label": "País"
+        }
+    },
+    "logicmodel": {
+        "header": "Módelo Lógico",
+        "ultimate-outcomes": "Resultado Final",
+        "intermediate-outcomes": "Resultados Intermedios",
+        "inmediate-outcomes": "Resultados Inmediatos",
+        "outputs": "Productos",
+        "activity": "Actividad",
+        "concat": "Concatenar",
+        "tooltip": {
+            "add-inmediate-outcome": "Añadir resultado inmediado",
+            "add-intermediate-outcome": "Añadir resultado intermedio",
+            "add-output": "Añadir producto",
+            "see-activities": "Ver actividades",
+            "contextual-help": "Ayuda contextual",
+            "sintactic-struct": "Editar estructura sintáctica",
+            "delete": "Eliminar"
+        },
+        "panel" : {
+            "direction-label": "Dirección",
+            "what-label": "Qué",
+            "bywhom-label": "Quién",
+            "towhom-label": "A quién / Para quién",
+            "where-label": "Dónde",
+            "topic-label": "Tema",
+            "verb-label": "Verbo",
+            "outcome-header": "Sintaxis de un resultado",
+            "outcome-explanation": "Completar el formulario para describir el producto con calidad.",
+            "output-header": "Sintaxis de un producto",
+            "output-explanation": "Completar el formulario para describir el resultado con calidad.",
+            "tooltip-save": "Solo guardar",
+            "tooltip-concat": "Conformar texto concatenando los campos"
+        }
+    },
+    "activitiesmatrix": {
+        "header": "Matriz de Actividades",
+        "inmediate-outcomes": "Resultados Inmediatos",
+        "outputs": "Productos",
+        "activity": "Actividad",
+        "tooltip": {
+            "add-act": "Añadir actividad",
+            "delete-act": "Eliminar actividad ",
+            "contextual-help": "Ayuda contextual"
+        }
+    },
+    "performance": {
+        "header": "Medición del Desempeño"
+    },
+    "changenarrative": {
+        "header": "Narrativa del Cambio"
+    },
+    "risks": {
+        "header": "Riesgos"
+    },
+    "budget": {
+        "header": "Presupuesto"
+    },
+    "financing": {
+        "header": "Financiación"
+    },
+    "reports": {
+        "header": "Solicitud"
+    },
+    "application": {
+        "header": "Informes"
+    },
+    "evaluations": {
+        "header": "Evaluaciones"
+    },
+    "contextual-help": {
+        "header": "Ayuda Contextual",
+        "collapse-all": "Abrir/Cerrar todo",
+        "definition-label": "Definición",
+        "example-label": "Ejemplo",
+        "format-label": "Formato",
+        "guide-label": "Guía",
+        "tips-label": "Consejos"
+    }
 }

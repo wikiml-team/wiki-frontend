@@ -1,0 +1,23 @@
+{
+    "authentication": {
+        "login": "Iniciar sesión",
+        "logout": "Cerrar sesión",
+        "profile-link": "Mi perfil"
+    },
+    "permitions": {
+        "read": "Leer",
+        "edit": "Editar",
+        "create": "Crear",
+        "owner": "Administrar"
+    },
+    "privacy-page": {
+        "header": "Privacidad",
+        "welcome-subtitle": "Bienvenido a su Panel de Privacidad",
+        "welcome-description": "El primer paso para garantizar su privacidad es brindarle el control de sus datos y las herramientas e información que necesita para tomar decisiones que le brinden tranquilidad.",
+        "commitment-to-privacy-link": "Obtenga más información sobre nuestro compromiso con la privacidad.",
+        "management-subtitle": "Administrar Privacidad",
+        "management-description": "Aquí puede configurar la privacidad de los formularios.",
+        "table-forms": "Formularios",
+        "table-privacy": "Privacidad"
+    }
+}

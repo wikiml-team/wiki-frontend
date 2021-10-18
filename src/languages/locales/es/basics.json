@@ -1,0 +1,30 @@
+{
+    "welcome": "Bienvenido a WikiML",
+    "yes": "Sí",
+    "no": "No",
+    "save": "Guardar",
+    "dismiss": "Cancelar",
+    "thanks": "Gracias",
+    "public": "Público",
+    "private": "Privado",
+    "return": "Atrás",
+    "select": "Seleccione",
+    "accept": "Aceptar",
+    "cancel": "Cancelar",
+    "save-before-closing": "Desea guardar antes de cerrar?",
+    "methodologies": {
+        "canadian": "Metodología Global Affairs Canada",
+        "german": "Metodología Alemana",
+        "italian": "Metodología Italiana"
+    },
+    "loading": {
+        "title": "Cargando",
+        "description": "Por favor espere unos segundos, estamos cargando los datos."
+    },
+    "languages": {
+        "en": "Inglés",
+        "es": "Español",
+        "de": "Alemán",
+        "it": "Italiano"
+    }
+}
