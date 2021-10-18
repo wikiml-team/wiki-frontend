@@ -167,8 +167,8 @@
         "outputs": "Outputs",
         "activity": "Aktivitäten",
         "tooltip": {
-            "add-act": "Aktivität darunter hinzufügen",
-            "delete-act": "Aktivität löschen",
+            "add-activity": "Aktivität darunter hinzufügen",
+            "delete-activity": "Aktivität löschen",
             "contextual-help": "Kontextbezogene Hilfe"
         }
     },
@@ -198,11 +198,11 @@
     },
     "contextual-help": {
         "header": "Contextual help",
-        "collapse-all": "Alles öffnen/schließen",
-        "definition-label": "Definition",
-        "example-label": "Beispiel",
-        "format-label": "Format",
-        "guide-label": "Leitfaden",
-        "tips-label": "Tipps"
+        "collapse": "Alles öffnen/schließen",
+        "definition": "Definition",
+        "example": "Beispiel",
+        "format": "Format",
+        "guide": "Leitfaden",
+        "tips": "Tipps"
     }
 }

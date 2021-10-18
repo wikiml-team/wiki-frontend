@@ -1,0 +1,23 @@
+{
+    "authentication": {
+        "login": "Accedi",
+        "logout": "Esci",
+        "profile-link": "Il mio profilo"
+    },
+    "permitions": {
+        "read": "Leggere",
+        "edit": "Modificare",
+        "create": "Creare",
+        "owner": "Gestire"
+    },
+    "privacy-page": {
+        "header": "Privacy",
+        "welcome-subtitle": "Benvenuto nel tuo pannello della privacy",
+        "welcome-description": "Il primo passo per garantire la sua privacy è darle il controllo dei suoi dati e gli strumenti e le informazioni di cui ha bisogno per prendere decisioni che le danno tranquilità ",
+        "commitment-to-privacy-link": "Per saperne di più sul nostro impegno per la privacy",
+        "management-subtitle": "Gestire Privacy",
+        "management-description": "Qui può configurare le impostazioni di privacy per i moduli",
+        "table-forms": "Modulo",
+        "table-privacy": "Privato"
+    }
+}

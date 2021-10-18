@@ -1,1 +1,50 @@
-{}
+{
+    "share": {},
+    "export": {
+        "header": "Esportazione Progetto",
+        "select-label": "Seleziona il tipo di filo da esportare:",
+        "accept-label": "Esporta"
+    },
+    "new": {
+        "header": "Nuovo Progetto",
+        "accept-label": "Creare",
+        "body": {
+            "text": "",
+            "name-label": "Nome del progetto",
+            "name-placeholder": "Nome corto",
+            "language-label": "Lingua del progetto",
+            "language-placeholder": "Selezionare la lingua",
+            "privacy-label": "Privacy del progetto",
+            "privacy-on": "Privato",
+            "privacy-off": "Pubblico",
+            "privacy-text": "Le impostazioni della privacy possono essere modificate in seguito."
+        }
+    },
+    "open": {},
+    "destroy": {
+        "header": "Cancellare il progetto",
+        "text": "È sicuro/a di voler cancellare il suo progetto? Questa azione non può essere annullata.",
+        "accept-label": "Cancellare"
+    },
+    "duplicate": {
+        "header": "Duplicare il progetto",
+        "select-label": "Seleziona la metodologia in cui vorrei duplicare il tuo progetto",
+        "accept-label": "Duplicare"
+    },
+    "print": {},
+    "language": {
+        "header": "Lingua",
+        "language-select": "Seleziona una lingua",
+        "language-ui": "Lingua per l'interfaccia utente",
+        "language-data": "Lingua per i dati"
+    },
+    "settings": {
+        "header": "Impostazioni",
+        "theme-header": "Tema",
+        "colortheme-title": "Tema-colore",
+        "privacy-header": "",
+        "privacy-label": "",
+        "privacy-text": "",
+        "privacy-link": ""
+    }
+}

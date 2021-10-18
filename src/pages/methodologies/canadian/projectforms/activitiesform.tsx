@@ -230,7 +230,7 @@ export default function ActivitiesMatrixForm() {
             onClick={() => openHelpPanel()}
           />
         </TooltipHost>
-        <TooltipHost content={t("add-act")}>
+        <TooltipHost content={t("add-activity")}>
           <IconButton
             iconProps={{ iconName: "Add" }}
             styles={commandStyles}
@@ -238,7 +238,7 @@ export default function ActivitiesMatrixForm() {
           />
         </TooltipHost>
         {item.hasSiblings &&
-          <TooltipHost content={t("delete-act")}>
+          <TooltipHost content={t("delete-activity")}>
             <IconButton
               iconProps={{ iconName: "Cancel" }}
               styles={commandStyles}

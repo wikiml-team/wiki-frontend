@@ -1,20 +1,46 @@
 {
-    "filemenu" : {
-        "home" : "Home",
-        "new" : "New",
-        "open" : "Open"
+    "filemenu": {
+        "home": "Home",
+        "new": "Nuovo",
+        "open": "Aprire",
+        "methodologies": "Metodologie",
+        "info": "Info",
+        "export": "Exportazione",
+        "print": "Stampare",
+        "share": "Condividere",
+        "about": "Informazioni",
+        "account": "Account",
+        "feedback": "Feedback",
+        "options": "Opzioni"
     },
-    "commandbar" : {
-        "undo" : "Undo",
-        "redo" : "Redo",
-        "share" : "Share"
+    "commandbar": {
+        "undo": "Annullare",
+        "redo": "Rifare",
+        "share": "Condividere",
+        "export": "Esportare",
+        "newproject": "Nuovo",
+        "openproject": "Aprire",
+        "destroyproject": "Eliminare",
+        "duplicate": "Duplicare",
+        "print": "Stampare",
+        "fullscreen": "Schermo intero",
+        "language": "Lingua",
+        "settings": "Impostazioni",
+        "notifications": "Notifiche",
+        "account": ""
     },
-    "mainmenu" : {
-        "wiki" : "WikiML",
-        "project" : "Project",
-        "licitations" : "Licitations",
-        "methodology" : "Methodology",
-        "database" : "Database",
-        "more" : "More"
+    "mainmenu": {
+        "wikiml": "WikiML",
+        "project": "Progetto",
+        "methodology": "Metodologia",
+        "licitations": "Licitazioni",
+        "database": "Database",
+        "more": "Altro"
+    },
+    "settings": {
+        "profile": "Perfilo",
+        "privacy": "Privacy",
+        "security": "Sicurezza",
+        "team": "Team di lavoro"
     }
 }

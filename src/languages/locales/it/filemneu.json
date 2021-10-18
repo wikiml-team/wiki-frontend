@@ -1,49 +1,50 @@
 {
   "home": {
-    "title": "Home",
-    "stared-projects": "Progetti evidenziati",
-    "teams": "Team",
+    "header": "Home",
+    "starprojects": "Progetti evidenziati",
+    "teams": "Teams",
     "notifications": "Notifiche"
   },
   "new": {
-    "title": "Nuovo",
-    "select-create-project": "Selecciona la metodología que debe seguir el nuevo proyecto."
+    "header": "Nuovo",
+    "text": "Selecciona la metodología que debe seguir el nuevo proyecto."
   },
   "open": {
-    "title": "Aprire",
+    "header": "Aprire",
     "recent": "Recenti",
+    "manage": "",
     "shared": "Recentemente condiviso",
     "shared-info": "",
     "all": "Tutti",
-    "date-modified": "Ultima modifica"
+    "date": "Ultima modifica"
   },
   "methodologies": {
-    "title": "",
-    "description": "Selecciona la metodología que quiere leer, editar o añadir.",
-    "permitions-info": "La edición solo estará disponible si los permisos han sido previamente dados."
+    "header": "",
+    "text": "",
+    "permitions-info": ""
   },
   "info": {
-    "title": "Info"
+    "header": "Info"
   },
   "export": {
-    "title": "Exportazione"
+    "header": "Exportazione"
   },
   "print": {
-    "title": "Stampare"
+    "header": "Stampare"
   },
   "share": {
-    "title": "Condividere"
+    "header": "Condividere"
   },
   "about": {
-    "title": "Informazioni"
+    "header": "Informazioni"
   },
   "account": {
-    "title": "Account"
+    "header": "Account"
   },
   "feedback": {
-    "title": "Feedback"
+    "header": "Feedback"
   },
   "options": {
-    "title": "Opzioni"
+    "header": "Opzioni"
   }
 }

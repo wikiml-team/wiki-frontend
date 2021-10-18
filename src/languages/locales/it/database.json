@@ -1,0 +1,50 @@
+{
+    "activities": {
+        "header": "Attività"
+    },
+    "assumptions": {
+        "header": "Ipotesi"
+    },
+    "budgets": {
+        "header": "Bilanci"
+    },
+    "categories": {
+        "header": "Categorie"
+    },
+    "coins": {
+        "header": "Immagine di profilo"
+    },
+    "countries": {
+        "header": "Paesi"
+    },
+    "development": {
+        "header": "Obiettivi di sviluppo"
+    },
+    "languages": {
+        "header": "Lingue"
+    },
+    "methodologies": {
+        "header": "Metodologie"
+    },
+    "offers": {
+        "header": "Offerte"
+    },
+    "products": {
+        "header": "Prodotti e servizi"
+    },
+    "programs": {
+        "header": "Programmi"
+    },
+    "goals": {
+        "header": "Obiettivi del progetto"
+    },
+    "projects": {
+        "header": "Progetti"
+    },
+    "sources": {
+        "header": "Fonti"
+    },
+    "users": {
+        "header": "Utenti"
+    }
+}

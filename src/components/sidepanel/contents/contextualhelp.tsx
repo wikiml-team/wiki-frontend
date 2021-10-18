@@ -15,7 +15,7 @@ export default function ContextualHelpContent(content: IContextualHelpContent) {
     const columns: IColumn[] = [
         {
             key: 'column1',
-            name: t('collapse-all'),
+            name: t('collapse'),
             fieldName: 'collapse',
             minWidth: 100,
             data: 'string',
@@ -38,7 +38,7 @@ export default function ContextualHelpContent(content: IContextualHelpContent) {
 
     for (var title of titles) {
         groups.push({
-            key: `category-${title}`, name: t(`${title}-label`), startIndex: index++, count: 1
+            key: `category-${title}`, name: t(title), startIndex: index++, count: 1
         })
     }
 

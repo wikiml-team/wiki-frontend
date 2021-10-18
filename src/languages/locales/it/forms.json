@@ -1,2 +1,208 @@
 {
+    "general": {
+        "header": "Generale",
+        "required": "Required",
+        "shortname": {
+            "field": "Titolo del progetto (breve)",
+            "error": "Deve essere di 20 caratteri o meno"
+        },
+        "largename": {
+            "field": "Titolo del progetto",
+            "error": ""
+        },
+        "description": {
+            "field": "Curriculum descrittivo",
+            "error": ""
+        },
+        "country": {
+            "field": "Destinatario dell'aiuto",
+            "error": ""
+        },
+        "imporganization": {
+            "field": "Organizzazione di attuazione",
+            "error": ""
+        },
+        "intorganization": {
+            "field": "Organizzazione intermediaria",
+            "error": ""
+        },
+        "currency": {
+            "field": "Valuta",
+            "error": ""
+        },
+        "budget": {
+            "field": "Bilancio",
+            "prefix": "Sollecitato",
+            "error": ""
+        },
+        "calculated": {
+            "field": "Calcolato",
+            "budgetitems-prefix": "Per voci",
+            "budgetact-prefix": "Per attività"
+        },
+        "financed": {
+            "field": "Finanziato",
+            "error": ""
+        },
+        "program": {
+            "field": "Programma",
+            "error": ""
+        },
+        "sector": {
+            "field": "Settore",
+            "error": ""
+        },
+        "duration": {
+            "field": "Durata",
+            "suffix": "mesi",
+            "error": ""
+        },
+        "donor": {
+            "field": "Donatore principale",
+            "error": ""
+        },
+        "approvebudget": {
+            "field": "Bilancio",
+            "error": ""
+        },
+        "contribution": {
+            "field": "Contributo",
+            "error": ""
+        },
+        "approvedate": {
+            "field": "Datadi approvazione",
+            "error": ""
+        },
+        "initialdate": {
+            "field": "Data iniziale",
+            "error": ""
+        },
+        "finaldate": {
+            "field": "Data finale",
+            "error": ""
+        },
+        "status": {
+            "field": "Stato",
+            "pending": "In sospeso",
+            "approved": "Approvato",
+            "error": ""
+        },
+        "wikicode": {
+            "field": "Codice WikiML",
+            "error": ""
+        },
+        "donorcode": {
+            "field": "Codice Donatore",
+            "error": ""
+        }
+    },
+    "stakeholders": {
+        "header": "Stakeholders",
+        "beneficiary": "Beneficiario",
+        "intermediary": "Intermediario",
+        "implementer": "Attuatore",
+        "donor": "Donatore",
+        "other": "Altri stakeholder",
+        "roll-field": "Principale",
+        "action-field": "Aggiungi / Elimina",
+        "select-placeholder": "Selecciona stakeholder",
+        "tooltip": {
+            "main-stakeholder-0": "Destinatario principalee",
+            "main-stakeholder-1": "Intermediario principale",
+            "main-stakeholder-2": "Leader del consorzio",
+            "main-stakeholder-3": "Donatore principale",
+            "add-stakeholder": "Aggiungi stakeholder sotto",
+            "delete-stakeholder": "Elimina stakeholder",
+            "change-main-stakeholder-0": "Seleziona come beneficiario principale",
+            "change-main-stakeholder-1": "Seleziona come intermediario principale",
+            "change-main-stakeholder-2": "Seleziona come attuatore principale",
+            "change-main-stakeholder-3": "Seleziona come principale donatore",
+            "change-main-stakeholder-4": "Altro stakeholder",
+            "add-stakeholder-DB": "Creare stakeholder nel database"
+        },
+        "panel" : {
+            "header": "Creare stakeholder",
+            "explanation": "Aggiungere un nuovo stakeholder al database.",
+            "warning": "Controlla che lo stakeholder non esista precedentemente nel database per evitare dati duplicati.",
+            "name-label": "Nome",
+            "country-label": "Paese"
+        }
+    },
+    "logicmodel": {
+        "header": "Modello logico",
+        "ultimate-outcomes": "Risultati finali",
+        "intermediate-outcomes": "Risultati intermediati",
+        "inmediate-outcomes": "Risultati inmediati",
+        "outputs": "Output",
+        "activity": "Attività",
+        "concat": "Concatenare",
+        "tooltip": {
+            "add-inmediate-outcome": "Aggiungi risultato immediato",
+            "add-intermediate-outcome": "Aggiungi risultato intermedio",
+            "add-output": "Aggiungi output",
+            "delete": "Elimina",
+            "see-activities": "Visualizza attività",
+            "contextual-help": "Aiuto contestuale",
+            "sintactic-struct": "Modifica struttura sintattica"
+        },
+        "panel" : {
+            "direction-label": "Direzione",
+            "what-label": "Cosa",
+            "bywhom-label": "Chi",
+            "towhom-label": "A chi o per chi",
+            "where-label": "Dove",
+            "topic-label": "Argomento",
+            "verb-label": "Verbo",
+            "outcome-header": "Sintassi dei risultati",
+            "outcome-explanation": "Compila il modulo per descrivere l'output con qualit",
+            "output-header": "Sintassi dei risultati",
+            "output-explanation": "Compila il modulo per descrivere il risultato con qualità",
+            "tooltip-save": "Salva solo",
+            "tooltip-concat": "Forma il testo concatenando i campi"
+        }
+    },
+    "activitiesmatrix": {
+        "header": "Matrice della attività",
+        "inmediate-outcomes": "Risultati inmediati",
+        "outputs": "Output",
+        "activity": "Attività",
+        "tooltip": {
+            "add-activity": "Aggiungi attività qui sotto",
+            "delete-activity": "Cancella attività",
+            "contextual-help": "Aiuto sensibile al contesto"
+        }
+    },
+    "performance": {
+        "header": "Misura della performance"
+    },
+    "changenarrative": {
+        "header": "Narrativa del cambio"
+    },
+    "risks": {
+        "header": "Rischi"
+    },
+    "budget": {
+        "header": "Budget"
+    },
+    "financing": {
+        "header": "Finanziamento"
+    },
+    "reports": {
+        "header": "Rapporti"
+    },
+    "application": {
+        "header": "Applicazione"
+    },
+    "evaluations": {
+        "header": "Valutazione"
+    },
+    "contextual-help": {
+        "header": "Aiuto sensibile al contesto",
+        "collapse": "Prire/Chiudere-tutto",
+        "definition": "Definizione",
+        "example": "Esempio",
+        "format": "Formato",
+        "guide": "Guida",
+        "tips": "Consigli"
+    }
 }

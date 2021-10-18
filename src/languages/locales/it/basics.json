@@ -1,0 +1,30 @@
+{
+    "welcome": "Benvenuto su WikiML",
+    "yes": "si",
+    "no": "no",
+    "save": "Salvare",
+    "dismiss": "Cancellare",
+    "thanks": "Grazie",
+    "public": "Pubblico",
+    "private": "Privato",
+    "return": "Ritorno",
+    "select": "Seleziona",
+    "accept": "Accetare",
+    "cancel": "Cancellare",
+    "save-before-closing": "Do you want to save before closing?",
+    "methodologies": {
+        "canadian": "Metodologia canadese",
+        "german": "Metodologia tedesca",
+        "italian": "Metodologia italiana" 
+    },
+    "loading": {
+        "title": "In carica",
+        "description": "Si prega di attendere qualche secondo, i dati stanno caricando."
+    },
+    "languages": {
+        "en": "Inglese",
+        "es": "Spagnolo",
+        "de": "Tedesco",
+        "it": "Italiano"
+    }
+}

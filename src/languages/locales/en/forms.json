@@ -70,15 +70,15 @@
             "error": ""
         },
         "approvedate": {
-            "field": "Project approved date",
+            "field": "Approved date",
             "error": ""
         },
         "initialdate": {
-            "field": "Project initial date",
+            "field": "Initial date",
             "error": ""
         },
         "finaldate": {
-            "field": "Project final date",
+            "field": "Final date",
             "error": ""
         },
         "status": {
@@ -167,8 +167,8 @@
         "outputs": "Outputs",
         "activity": "Activity",
         "tooltip": {
-            "add-act": "Add activity below",
-            "delete-act": "Delete activity",
+            "add-activity": "Add activity below",
+            "delete-activity": "Delete activity",
             "contextual-help": "Contextual help"
         }
     },
@@ -198,11 +198,11 @@
     },
     "contextual-help": {
         "header": "Contextual help",
-        "collapse-all": "Open/Close all",
-        "definition-label": "Definition",
-        "example-label": "Example",
-        "format-label": "Format",
-        "guide-label": "Guide",
-        "tips-label": "Tips"
+        "collapse": "Open/Close all",
+        "definition": "Definition",
+        "example": "Example",
+        "format": "Format",
+        "guide": "Guide",
+        "tips": "Tips"
     }
 }

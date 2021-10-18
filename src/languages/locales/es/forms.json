@@ -103,7 +103,7 @@
         "implementer": "Implementador",
         "donor": "Donante",
         "other": "Otros Interesados",
-        "roll-field": "Rol",
+        "roll-field": "Principal",
         "action-field": "Añadir / Eliminar",
         "select-placeholder": "Seleccione parte interesada",
         "tooltip": {
@@ -167,8 +167,8 @@
         "outputs": "Productos",
         "activity": "Actividad",
         "tooltip": {
-            "add-act": "Añadir actividad",
-            "delete-act": "Eliminar actividad ",
+            "add-activity": "Añadir actividad",
+            "delete-activity": "Eliminar actividad ",
             "contextual-help": "Ayuda contextual"
         }
     },
@@ -198,11 +198,11 @@
     },
     "contextual-help": {
         "header": "Ayuda Contextual",
-        "collapse-all": "Abrir/Cerrar todo",
-        "definition-label": "Definición",
-        "example-label": "Ejemplo",
-        "format-label": "Formato",
-        "guide-label": "Guía",
-        "tips-label": "Consejos"
+        "collapse": "Abrir/Cerrar todo",
+        "definition": "Definición",
+        "example": "Ejemplo",
+        "format": "Formato",
+        "guide": "Guía",
+        "tips": "Consejos"
     }
 }
