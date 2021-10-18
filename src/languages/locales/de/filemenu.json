@@ -7,7 +7,7 @@
   },
   "new": {
     "header": "Neu",
-    "text": "Select the methodology your project should follow."
+    "text": "Wählen Sie die Methodik, der Ihr Projekt folgen soll."
   },
   "open": {
     "header": "Öffnen",
@@ -20,8 +20,8 @@
   },
   "methodologies": {
     "header": "Metodologien",
-    "text": "Select the methodology you want to read, edit or add.",
-    "permitions-info": "Edition will only be available if permitions have been given."
+    "text": "Wählen Sie die Methodik, die Sie lesen, bearbeiten oder erweitern möchten.",
+    "permitions-info": "Die Ausgabe wird nur verfügbar sein, wenn eine Genehmigung erteilt wurde."
   },
   "info": {
     "header": "Info"
