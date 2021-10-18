@@ -9,7 +9,7 @@
         "header": "Nuovo Progetto",
         "accept-label": "Creare",
         "body": {
-            "text": "",
+            "text": "Usare la metodologia",
             "name-label": "Nome del progetto",
             "name-placeholder": "Nome corto",
             "language-label": "Lingua del progetto",
