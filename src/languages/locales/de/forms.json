@@ -115,7 +115,7 @@
             "delete-stakeholder": "Stakeholder löschen",
             "change-main-stakeholder-0": "Als Hauptbegünstigten auswählen",
             "change-main-stakeholder-1": "Als Hauptintermediär auswählen",
-            "change-main-stakeholder-2": "Als Hauptdurchführende Organisation auswählen",
+            "change-main-stakeholder-2": "Als Hauptdurchführungsorganisation auswählen",
             "change-main-stakeholder-3": "Als Hauptgeldgeber auswählen",
             "change-main-stakeholder-4": "Weitere stakeholder",
             "add-stakeholder-DB": "Stakeholder in der Datenbank anlegen"
