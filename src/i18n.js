@@ -4,10 +4,10 @@ import { initReactI18next } from "react-i18next";
 // import Backend from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-import Spanish from "languages/locales/es.json";
-import German from "languages/locales/de.json";
-import Italian from "languages/locales/it.json";
-import en from "languages/resources/en";
+import english from "languages/resources/en";
+import spanish from "languages/resources/es";
+import german from "languages/resources/de";
+import italian from "languages/resources/it";
 
 i18n
   // .use(Backend)
@@ -15,13 +15,12 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "en",
-    // keySeparator: false,
     // debug: true,
     resources: {
-      en: en,
-      es: Spanish,
-      de: German,
-      it: Italian
+      en: english,
+      es: spanish,
+      de: german,
+      it: italian
     },
     interpolation: {
       escapeValue: false
