@@ -7,14 +7,14 @@
   },
   "new": {
     "header": "Nuovo",
-    "text": "Selecciona la metodología que debe seguir el nuevo proyecto."
+    "text": "Selecciona la metodología que debe seguir el nuevo proyecto"
   },
   "open": {
     "header": "Aprire",
     "recent": "Recenti",
     "manage": "",
     "shared": "Recentemente condiviso",
-    "shared-info": "",
+    "shared-info": "Accettare / rifiutare l'invito a partecipare",
     "all": "Tutti",
     "date": "Ultima modifica"
   },

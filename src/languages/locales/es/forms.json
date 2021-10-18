@@ -109,13 +109,13 @@
         "tooltip": {
             "main-stakeholder-0": "Beneficiario principal",
             "main-stakeholder-1": "Intermediario principal",
-            "main-stakeholder-2": "Líder del consorcio",
+            "main-stakeholder-2": "Implementador principal",
             "main-stakeholder-3": "Donante principal",
             "add-stakeholder": "Añadir parte interesada",
             "delete-stakeholder": "Eliminar parte interesada",
             "change-main-stakeholder-0": "Seleccionar como beneficiario principal",
             "change-main-stakeholder-1": "Seleccionar como intermediario principal",
-            "change-main-stakeholder-2": "Seleccionar como lider del consorcio",
+            "change-main-stakeholder-2": "Seleccionar como implementador principal",
             "change-main-stakeholder-3": "Seleccionar como donante principal",
             "change-main-stakeholder-4": "Otra parte interesada",
             "add-stakeholder-DB": "Crear parte interesada en basedatos"
