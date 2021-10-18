@@ -1,7 +1,7 @@
 {
     "share": {},
     "export": {
-        "header": "Projekz exportieren",
+        "header": "Projekt exportieren",
         "select-label": "Wählen Sie den zu exportierenden Datentyp aus:",
         "accept-label": "Exportieren"
     },
@@ -22,14 +22,14 @@
     },
     "open": {},
     "destroy": {
-        "header": "Delete Project",
-        "text": "Are you sure you want to delete your project? This action can't be undone.",
-        "accept-label": "Delete"
+        "header": "Projekt löschen",
+        "text": "Sind Sie sicher, dass Sie Ihr Projekt löschen wollen? Diese Aktion kann nicht rückgängig gemacht werden.",
+        "accept-label": "Löschen"
     },
     "duplicate": {
-        "header": "Duplicate Project",
-        "select-label": "Select the methodology you would want to duplicate your project into",
-        "accept-label": "Duplicate"
+        "header": "Projekt duplizieren",
+        "select-label": "Wählen Sie die Methodik aus, in die Sie Ihr Projekt duplizieren möchten",
+        "accept-label": "Duplizieren"
     },
     "print": {},
     "language": {
