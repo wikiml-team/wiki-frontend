@@ -107,7 +107,7 @@
         "action-field": "Add / Remove",
         "select-placeholder": "Select stakeholder",
         "tooltip": {
-            "main-stakeholder-0": "Hauptempfänger",
+            "main-stakeholder-0": "Hauptbegünstigte",
             "main-stakeholder-1": "Hauptintermediär",
             "main-stakeholder-2": "Konsortialführer",
             "main-stakeholder-3": "Hauptgeldgeber",
