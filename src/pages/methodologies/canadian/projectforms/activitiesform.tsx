@@ -40,7 +40,7 @@ export default function ActivitiesMatrixForm() {
   const [items, setItems] = useState(initialItems);
   const [activitiesMatrix, setActivitiesMatrix] = useState(logicModelActivitiesMatrix);
 
-  const { t } = useTranslation("forms", { keyPrefix: "activitiesmatrix.tooltip"});
+  const { t } = useTranslation("forms", { keyPrefix: "activitiesmatrix"});
 
   const columns: IColumn[] = [
     {
