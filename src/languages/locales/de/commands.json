@@ -42,9 +42,9 @@
         "header": "Einstellungen",
         "theme-header": "Thema",
         "colortheme-title": "Farbgebung",
-        "privacy-header": "",
-        "privacy-label": "",
-        "privacy-text": "",
-        "privacy-link": ""
+        "privacy-header": "Privatsphäre",
+        "privacy-label": "Das sollte Ihr Projekt sein:",
+        "privacy-text": "Gehen Sie zu den Datenschutzeinstellungen",
+        "privacy-link": "hier"
     }
 }
