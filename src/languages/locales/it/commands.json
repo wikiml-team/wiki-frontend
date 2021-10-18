@@ -9,7 +9,7 @@
         "header": "Nuovo Progetto",
         "accept-label": "Creare",
         "body": {
-            "text": "",
+            "text": "Usare la metodologia",
             "name-label": "Nome del progetto",
             "name-placeholder": "Nome corto",
             "language-label": "Lingua del progetto",
@@ -41,10 +41,10 @@
     "settings": {
         "header": "Impostazioni",
         "theme-header": "Tema",
-        "colortheme-title": "Tema-colore",
-        "privacy-header": "",
-        "privacy-label": "",
-        "privacy-text": "",
-        "privacy-link": ""
+        "colortheme-title": "Colore",
+        "privacy-header": "Privacy",
+        "privacy-label": "Il suo progetto dovrebbe essere:",
+        "privacy-text": "Vai alle impostazioni della privacy",
+        "privacy-link": "qui"
     }
 }

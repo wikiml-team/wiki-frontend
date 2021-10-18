@@ -12,22 +12,22 @@
   "open": {
     "header": "Aprire",
     "recent": "Recenti",
-    "manage": "",
+    "manage": "Gestire",
     "shared": "Recentemente condiviso",
     "shared-info": "Accettare / rifiutare l'invito a partecipare",
     "all": "Tutti",
     "date": "Ultima modifica"
   },
   "methodologies": {
-    "header": "",
-    "text": "",
-    "permitions-info": ""
+    "header": "Metodologie ",
+    "text": "Seleziona la metodologia che vuoi leggere, modificare o ampliare.",
+    "permitions-info": "La modifica sarà disponibile solo se i permessi sono stati dati in precedenza."
   },
   "info": {
     "header": "Info"
   },
   "export": {
-    "header": "Exportazione"
+    "header": "Esportazione"
   },
   "print": {
     "header": "Stampare"

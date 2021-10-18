@@ -1,5 +1,5 @@
 {
-    "welcome": "Willkommen bei WikiMl",
+    "welcome": "Willkommen bei WikiML",
     "yes" : "Ja",
     "no" : "Nein",
     "save": "Speichern",
@@ -11,7 +11,7 @@
     "select": "Auswählen",
     "accept": "Akzeptieren",
     "cancel": "Abbrechen",
-    "save-before-closing": "Do you want to save before closing?",
+    "save-before-closing": "Möchten Sie vor dem Schließen speichern?",
     "methodologies": {
         "canadian": "Kanadische Methodik",
         "german": "Deutsche Methodik",

@@ -1,11 +1,11 @@
 {
     "forms": {
-        "header": "Forms",
-        "form-table-header": "Form",
-        "description-table-header": "Description"
+        "header": "Formulare",
+        "form-table-header": "Formular",
+        "description-table-header": "Beschreibung"
     },
     "sectors": {
-        "header": "Sectors",
+        "header": "Sektor",
         "agriculture" : "Landwirtschaft und Ernährung",
         "economic" : "Wirtschaftswachstum",
         "rights" : "Menschenrechte und demokratische Regierungsführung",
@@ -14,7 +14,7 @@
         "infrastructure" : "Infrastruktur",
         "environment" : "Umwelt",
         "migration" : "Migration und Asyl",
-        "tecnology" : "Informations und Kommunikationstechnologie"
+        "tecnology" : "Informations- und Kommunikationstechnologie"
     },
     "guides": {
         "header": "Leitfäden"
@@ -26,6 +26,6 @@
         "header": "Ergebnisse"
     },
     "indicators": {
-        "header": "Indikaoren"
+        "header": "Indikatoren"
     }
 }

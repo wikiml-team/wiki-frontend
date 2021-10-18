@@ -1,7 +1,7 @@
 {
     "welcome": "Benvenuto su WikiML",
-    "yes": "si",
-    "no": "no",
+    "yes": "Si",
+    "no": "No",
     "save": "Salvare",
     "dismiss": "Cancellare",
     "thanks": "Grazie",
@@ -11,7 +11,7 @@
     "select": "Seleziona",
     "accept": "Accetare",
     "cancel": "Cancellare",
-    "save-before-closing": "Do you want to save before closing?",
+    "save-before-closing": "Vuoi salvare prima di chiudere?",
     "methodologies": {
         "canadian": "Metodologia canadese",
         "german": "Metodologia tedesca",

@@ -11,13 +11,13 @@
         "owner": "Verwalten"
     },
     "privacy-page": {
-        "header": "Privacy",
-        "welcome-subtitle": "Welcome to your Privacy Panel",
-        "welcome-description": "The first step to guaranteeing your privacy is giving you control of your data and the tools and information you need to make decisions that give you peace of mind.",
-        "commitment-to-privacy-link": "Learn more about our commitment to privacy",
-        "management-subtitle": "Manage Privacy",
-        "management-description": "Here you can set the privacy of the forms.",
-        "table-forms": "Forms",
-        "table-privacy": "Private"
+        "header": "Datenschutz",
+        "welcome-subtitle": "Wilkommen in Ihren Einstellungen zu Privatspphäre",
+        "welcome-description": "Der erste Schritt zum Schutz Ihrer Privatsphäre besteht darin, Ihnen die Kontrolle über Ihre Daten zu geben und Ihnen die Werkzeuge und Informationen an die Hand zu geben, die Sie benötigen, um Entscheidungen zu treffen, die Ihnen ein gutes Gefühl geben.",
+        "commitment-to-privacy-link": "Erfahren Sie mehr über unser Engagement für den Datenschutz",
+        "management-subtitle": "Privatsphäre verwalten",
+        "management-description": "Hier können Sie die Privatsphäre für die Formulare festlegen.",
+        "table-forms": "Formulare",
+        "table-privacy": "Privat"
     }
 }
