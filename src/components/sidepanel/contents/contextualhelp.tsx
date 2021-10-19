@@ -25,13 +25,13 @@ export default function ContextualHelpContent(content: IContextualHelpContent) {
     ]
 
     // Base Items (without filter)
-    const base = [definition, example, format, guide, tips]
+    const bodies = [definition, example, format, guide, tips]
 
     // Groups (filter those that have empty body)
     const titles = ["definition", "example", "format", "guide", "tips"]
-        .filter((t, i) => base[i] !== "");
+        .filter((t, i) => bodies[i] !== "");
     // Items (filter those that have empty body)        
-    const items = base.filter(t => t !== "");
+    const items = bodies.filter(t => t !== "");
 
     let groups = [] as IGroup[];
     let index = 0;

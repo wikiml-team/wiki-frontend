@@ -46,36 +46,6 @@ export default function MethodologiesPage() {
         }
     }
 
-    const iconButtonProps : IButtonProps = {
-        iconProps: {
-            iconName: 'add'
-        },
-        styles: {
-            root: {
-                padding: 20,
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: palette.themeDark,
-                borderRadius: "30%",
-            },
-            rootHovered: {
-                backgroundColor: palette.themeDarker,
-            },
-            rootPressed: {
-                backgroundColor: palette.themePrimary,
-            },
-            icon: {
-                fontSize: 20,
-                color: palette.neutralLight,
-            },
-            iconHovered: {
-                color: palette.neutralLighter
-            }
-        }
-    }
-
     return <React.Fragment>
         <Title>{t("header")}</Title>
 
@@ -92,8 +62,8 @@ export default function MethodologiesPage() {
                 <MethodologyCard 
                     name={"Personalize methodology"} 
                     href={""} 
-                    addCard
                     contentToDisplay={<DisplayContentOverCard add/>}
+                    addCard
                     />
             </Stack.Item>
 

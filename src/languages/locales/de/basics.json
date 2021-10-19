@@ -19,7 +19,9 @@
     },
     "loading": {
         "title": "Laden",
-        "description": "Bitte warten Sie einen Moment, die Daten werden geladen."
+        "description": "Bitte warten Sie einen Moment, die Daten werden geladen.",
+        "error": "",
+        "text": ""
     },
     "languages": {
         "en": "Englisch",

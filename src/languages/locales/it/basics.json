@@ -19,7 +19,9 @@
     },
     "loading": {
         "title": "In carica",
-        "description": "Si prega di attendere qualche secondo, i dati stanno caricando."
+        "description": "Si prega di attendere qualche secondo, i dati stanno caricando.",
+        "error": "",
+        "text": ""
     },
     "languages": {
         "en": "Inglese",
