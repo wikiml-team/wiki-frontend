@@ -23,7 +23,7 @@
             "error": ""
         },
         "intorganization": {
-            "field": "Hauptvermittler",
+            "field": "Hauptintermediär",
             "error": ""
         },
         "currency": {
@@ -107,15 +107,15 @@
         "action-field": "Add / Remove",
         "select-placeholder": "Select stakeholder",
         "tooltip": {
-            "main-stakeholder-0": "Hauptempfänger",
+            "main-stakeholder-0": "Hauptbegünstigte",
             "main-stakeholder-1": "Hauptintermediär",
             "main-stakeholder-2": "Konsortialführer",
-            "main-stakeholder-3": "Hauptmittler",
+            "main-stakeholder-3": "Hauptgeldgeber",
             "add-stakeholder": "Stakeholder hinzufügen", 
             "delete-stakeholder": "Stakeholder löschen",
             "change-main-stakeholder-0": "Als Hauptbegünstigten auswählen",
             "change-main-stakeholder-1": "Als Hauptintermediär auswählen",
-            "change-main-stakeholder-2": "Als Hauptdurchführende Organisation auswählen",
+            "change-main-stakeholder-2": "Als Hauptdurchführungsorganisation auswählen",
             "change-main-stakeholder-3": "Als Hauptgeldgeber auswählen",
             "change-main-stakeholder-4": "Weitere stakeholder",
             "add-stakeholder-DB": "Stakeholder in der Datenbank anlegen"

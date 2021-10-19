@@ -109,13 +109,13 @@
         "tooltip": {
             "main-stakeholder-0": "Main beneficiary",
             "main-stakeholder-1": "Main intermediary",
-            "main-stakeholder-2": "Consortium leader",
+            "main-stakeholder-2": "Main implementer",
             "main-stakeholder-3": "Main donor",
             "add-stakeholder": "Add stakeholder bellow",
             "delete-stakeholder": "Delete stakeholder",
             "change-main-stakeholder-0": "Select as main beneficiary",
             "change-main-stakeholder-1": "Select as main intermediary",
-            "change-main-stakeholder-2": "Select as consortium leader",
+            "change-main-stakeholder-2": "Select as main implementer",
             "change-main-stakeholder-3": "Select as main donor",
             "change-main-stakeholder-4": "Other stakeholder",
             "add-stakeholder-DB": "Create stakeholder in database"

@@ -1,7 +1,7 @@
 {
     "general": {
         "header": "Generale",
-        "required": "Required",
+        "required": "Richiesto",
         "shortname": {
             "field": "Titolo del progetto (breve)",
             "error": "Deve essere di 20 caratteri o meno"
@@ -54,7 +54,7 @@
         },
         "duration": {
             "field": "Durata",
-            "suffix": "mesi",
+            "suffix": "Mesi",
             "error": ""
         },
         "donor": {
@@ -70,7 +70,7 @@
             "error": ""
         },
         "approvedate": {
-            "field": "Datadi approvazione",
+            "field": "Data di approvazione",
             "error": ""
         },
         "initialdate": {
@@ -98,7 +98,7 @@
     },
     "stakeholders": {
         "header": "Stakeholders",
-        "beneficiary": "Beneficiario",
+        "beneficiary": "Destinatorio",
         "intermediary": "Intermediario",
         "implementer": "Attuatore",
         "donor": "Donatore",
@@ -107,13 +107,13 @@
         "action-field": "Aggiungi / Elimina",
         "select-placeholder": "Selecciona stakeholder",
         "tooltip": {
-            "main-stakeholder-0": "Destinatario principalee",
+            "main-stakeholder-0": "Destinatario principale",
             "main-stakeholder-1": "Intermediario principale",
             "main-stakeholder-2": "Leader del consorzio",
             "main-stakeholder-3": "Donatore principale",
             "add-stakeholder": "Aggiungi stakeholder sotto",
             "delete-stakeholder": "Elimina stakeholder",
-            "change-main-stakeholder-0": "Seleziona come beneficiario principale",
+            "change-main-stakeholder-0": "Seleziona come destinatorio principale",
             "change-main-stakeholder-1": "Seleziona come intermediario principale",
             "change-main-stakeholder-2": "Seleziona come attuatore principale",
             "change-main-stakeholder-3": "Seleziona come principale donatore",
@@ -198,7 +198,7 @@
     },
     "contextual-help": {
         "header": "Aiuto sensibile al contesto",
-        "collapse": "Prire/Chiudere-tutto",
+        "collapse": "Aprire / Chiudere-tutto",
         "definition": "Definizione",
         "example": "Esempio",
         "format": "Formato",
