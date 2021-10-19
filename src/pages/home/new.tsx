@@ -15,13 +15,13 @@ export default function NewPage() {
     // LOGIC
     const { t } = useTranslation("filemenu", { keyPrefix: 'new' });
     
-    const [methodologyId, setMethodologyId] = useState("1")
+    const [currentMethodology, setcurrentMethodology] = useState({id: "", name: ""})
     const [projectHideDialog, { toggle: toggleProjectHideDialog }] = useBoolean(true);
 
     const mapMethodologiesToCards = (data: any) => {
 
         const handleOnClick = (id : string, name : string) => {
-            setMethodologyId(id)
+            setcurrentMethodology({id: id, name: name})
             toggleProjectHideDialog()
         }
     
@@ -56,7 +56,8 @@ export default function NewPage() {
             <NewProjectDialog 
                 hideDialog={projectHideDialog}
                 toggleHideDialog={toggleProjectHideDialog}
-                methodologyId={methodologyId}/>
+                methodology={currentMethodology}
+                />
         </React.Fragment>
     )
 }

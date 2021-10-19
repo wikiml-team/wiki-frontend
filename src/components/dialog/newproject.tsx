@@ -1,9 +1,11 @@
 import { useHistory } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import { useId } from '@fluentui/react-hooks';
 
 import {
     Dropdown,
     Icon,
+    Label,
     Stack,
     Text,
     TextField,
@@ -16,21 +18,22 @@ import CustomDialog from './custom';
 type NewProjectCalloutProps = {
     hideDialog: boolean,
     toggleHideDialog: () => void,
-    methodologyId: string
+    methodology: {id: string, name: string}
+
 }
 
 export default function NewProjectDialog(props: NewProjectCalloutProps) {
 
     // LOGIC
-    const { hideDialog, toggleHideDialog, methodologyId } = props;
+    const { hideDialog, toggleHideDialog, methodology } = props;
 
     const { t } = useTranslation("commands", { keyPrefix: "new" })
     const history = useHistory()
 
     const handleAccpetButtonOnClick = (option: string) => {
         toggleHideDialog()
-        alert(`Created project with methodology ${methodologyId}`)
-        history.push(`/workplace/${methodologyId}/1`)
+        alert(`Created project with methodology ${methodology.id}`)
+        history.push(`/workplace/${methodology.id}/1`)
     }
 
     return <CustomDialog
@@ -39,22 +42,25 @@ export default function NewProjectDialog(props: NewProjectCalloutProps) {
         onDismiss={toggleHideDialog}
         primaryButtonText={t("accept-label")}
         acceptOnClick={handleAccpetButtonOnClick}
-        optionalBody={<NewProjectDialogBody methodologyId={methodologyId} />}
+        optionalBody={<NewProjectDialogBody name={methodology.name} />}
     />
 }
 
 type NewProjectDialogBodyProps = {
-    methodologyId: string
+    name: string
 }
 
 function NewProjectDialogBody(props: NewProjectDialogBodyProps) {
 
-    const { methodologyId } = props
+    const { name } = props
     const { t } = useTranslation("commands", { keyPrefix: "new.body" })
+
+    const elem = useId();
 
     return (
         <Stack tokens={{ childrenGap: 16 }}>
-            <Text variant="medium">{t("text")} {methodologyId}</Text>
+            <Label >Methodology</Label>
+            <Text variant="medium" styles={{root: { marginTop: "1px !important"}}}>{name}</Text>
             <TextField
                 required
                 label={t("name-label")}
