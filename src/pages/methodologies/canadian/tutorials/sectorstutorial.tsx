@@ -48,7 +48,7 @@ const sectors : ISector[] = [
 export default function SectorsTutorials() {
 
   // LOGIC
-  const { t } = useTranslation("tutorials.sectors");
+  const { t } = useTranslation("tutorials", { keyPrefix: "sectors"});
 
   const columns: IColumn[] = [
     {

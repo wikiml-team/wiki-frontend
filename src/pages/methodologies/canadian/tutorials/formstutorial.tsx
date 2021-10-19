@@ -13,8 +13,8 @@ import { IForm } from "models/workplace";
 
 export default function FormsTutorials() {
   // LOGIC
-  const { t } = useTranslation(["pages", "tutorials"]);
-  const t_path = "tutorials:forms"
+  const { t } = useTranslation("tutorials", { keyPrefix: "forms"});
+  const tforms = useTranslation("forms").t;
 
   const { tabsSchema } = useSelector(selectWorkplaceConfig);
 
@@ -23,7 +23,7 @@ export default function FormsTutorials() {
   const columns: IColumn[] = [
     {
         key: 'column1',
-        name: t(`${t_path}:form-table-header`),
+        name: t(`form-table-header`),
         fieldName: 'form',
         minWidth: 100,
         maxWidth: 200,
@@ -34,7 +34,7 @@ export default function FormsTutorials() {
     {
       key: 'column2',
       fieldName: 'description',
-      name: t(`${t_path}:description-table-header`),
+      name: t(`description-table-header`),
       minWidth: 100,
       isMultiline: true,
       data: 'string',
@@ -55,7 +55,7 @@ export default function FormsTutorials() {
     }
     return (
         <Text variant="medium" styles={textStyles} onClick={(item) => handleOnClick(item)}>
-          {t(form.name)}
+          {tforms(`${form.name}.header`)}
         </Text>
     )
   }
