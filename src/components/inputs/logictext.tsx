@@ -20,7 +20,7 @@ import {
 } from '@fluentui/react';
 
 import { selectWorkplaceConfig, setConfiguration } from "store/slices/workplaceslice";
-import { Tree } from "models/tree";
+import { Tree } from "models/graph";
 import { LogicmodelVertex } from "models/canadian/logicmodel";
 import TextFieldInput from "components/inputs/text";
 

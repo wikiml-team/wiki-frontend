@@ -2,6 +2,11 @@ import { toNumber } from "lodash";
 import { ActivityVertex } from "models/canadian/actvitiesmatrix";
 import { LogicmodelVertex } from "models/canadian/logicmodel";
 
+export type Tree<T extends Vertex | LogicmodelVertex | ActivityVertex> = {
+    node: T;
+    children: Tree<T>[];
+}
+
 export type Vertex = {
     id: string;
 }
@@ -14,11 +19,6 @@ export type Edge = {
 interface IGraph<T> {
     vertex: T[];
     edges: Edge[];
-}
-
-export type Tree<T extends Vertex | LogicmodelVertex | ActivityVertex> = {
-    node: T;
-    children: Tree<T>[];
 }
 
 export class Graph<T extends Vertex | LogicmodelVertex | ActivityVertex> implements IGraph<T> {
@@ -39,24 +39,16 @@ export class Graph<T extends Vertex | LogicmodelVertex | ActivityVertex> impleme
         return 3 - id.split("").filter(c => c === "0").length;
     }
 
+    getChildrenCount(parentId: string): number {
+        return this.edges.filter(e => e.from === parentId).length;
+    }
+
     findChildrenIds(parentId: string): string[] {
         return this.edges.filter(e => e.from === parentId).map(e => e.to);
     }
 
     generateId(parentId: string, level: number, num: number): string {
         return parentId.slice(0, level + 1).concat((num + 1).toString()).padEnd(4, "0");
-    }
-
-    generateSiblingId(siblingId: string, num?: number) {
-        // Get level
-        const level = this.getNodeLevel(siblingId);
-
-        // Generate new id
-        let id = siblingId.slice(0, level);
-        const order = num ? num : toNumber(siblingId[level]) + 1;
-        id += order.toString();
-        id = id.padEnd(4, "0");
-        return { id: id.toString(), level: level, order };
     }
 
     findAllDescendants(id: string) {

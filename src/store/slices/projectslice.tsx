@@ -6,7 +6,7 @@ import { ECanadianSector } from "models/sector";
 import IProject from "models/project";
 import { LogicmodelVertex } from "models/canadian/logicmodel";
 import LogicModelActivitiesMatrix, { ActivityVertex } from "models/canadian/actvitiesmatrix";
-import { Edge } from "models/tree";
+import { Edge } from "models/graph";
 import Stakeholders, { categories } from "models/canadian/stakeholders";
 
 // Examples - Set initial in blank
