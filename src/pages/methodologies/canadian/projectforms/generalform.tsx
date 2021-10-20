@@ -296,7 +296,7 @@ export default function GeneralForm() {
                   name="budget"
                   component={TextFieldInput}
                   prefix={t("budget.prefix")}
-                />`
+                />
                 <StandardField
                   label={t("calculated.field")}
                   name="budgetPerItems"

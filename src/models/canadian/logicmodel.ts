@@ -150,6 +150,8 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
         }
         return this;
     }
+
+
 }
 
 // Examples

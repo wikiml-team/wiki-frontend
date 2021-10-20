@@ -40,7 +40,7 @@ export default function ActivitiesMatrixForm() {
   const [items, setItems] = useState(initialItems);
   const [activitiesMatrix, setActivitiesMatrix] = useState(logicModelActivitiesMatrix);
 
-  const { t } = useTranslation("forms", { keyPrefix: "activitiesmatrix"});
+  const { t } = useTranslation("forms", { keyPrefix: "activitiesmatrix" });
 
   const columns: IColumn[] = [
     {
@@ -138,7 +138,7 @@ export default function ActivitiesMatrixForm() {
         case 2:
           customStyles.root = {
             ":hover": {
-              backgroundColor: palette.white,
+              // backgroundColor: palette.white,
             }
           }
           break;
@@ -250,7 +250,7 @@ export default function ActivitiesMatrixForm() {
     )
   }
 
-  return ( 
+  return (
     <React.Fragment>
       <DetailsList
         items={items}
