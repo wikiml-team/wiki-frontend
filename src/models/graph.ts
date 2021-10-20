@@ -66,14 +66,27 @@ export class Graph<T extends Vertex | LogicmodelVertex | ActivityVertex> impleme
 
     private buildTreeRec(tree: Tree<T>) {
 
-        const childVertex = this.edges.filter(edge => edge.from === tree.node.id).map(edge => this.findNode(edge.to)!);
+        const childrenVertexes = this.edges.filter(edge => edge.from === tree.node.id).map(
+            edge => this.findNode(edge.to)!
+            ).sort((a: T, b: T) => this.compareIds(a.id, b.id));
 
-        tree.children = childVertex.map(child => ({ node: child, children: [] } as Tree<T>));
+        tree.children = childrenVertexes.map(child => ({ node: child, children: [] } as Tree<T>));
 
         tree.children.forEach(child => {
             this.buildTreeRec(child);
         })
 
         return tree;
+    }
+
+    compareIds(id1: string, id2: string) : number {
+        for (var i = 0; i < id1.length; i++) {
+            const r = toNumber(id1.charAt(i)) - toNumber(id2.charAt(i))
+            
+            if (r === 0) continue;
+
+            return r;
+        }
+        return 0
     }
 }
