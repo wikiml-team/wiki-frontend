@@ -1,6 +1,6 @@
 import { toNumber } from "lodash";
 import INodeInfo from "models/nodeinfo";
-import { Edge } from "../tree";
+import { Edge } from "../graph";
 import LogicmodelGraph, { LogicmodelVertex } from "./logicmodel"
 
 export type ActivityVertex = {

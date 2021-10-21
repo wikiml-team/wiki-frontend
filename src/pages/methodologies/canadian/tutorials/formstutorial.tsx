@@ -63,7 +63,7 @@ export default function FormsTutorials() {
   const descriptionRender = (form: IForm) => {
     return (
       <Text variant="medium">
-       {t(form.description || "")}
+       {form.description || ""}
       </Text>
     )
   }

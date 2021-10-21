@@ -91,7 +91,7 @@ export default function GeneralForm() {
   };
 
   // LOGIC
-  const { t } = useTranslation("forms", { keyPrefix: "general"});
+  const { t } = useTranslation("forms", { keyPrefix: "general" });
   const project = useSelector(selectProject);
   const generalInfo = project.info as IProjectInfo<ECanadianSector>;
 
@@ -291,13 +291,12 @@ export default function GeneralForm() {
               </Row>
 
               <Row>
-
-`                <StandardField
+                <StandardField
                   label={t("budget.field")}
                   name="budget"
                   component={TextFieldInput}
                   prefix={t("budget.prefix")}
-                />`
+                />
                 <StandardField
                   label={t("calculated.field")}
                   name="budgetPerItems"

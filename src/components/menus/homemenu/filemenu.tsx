@@ -27,6 +27,7 @@ export default function FileMenu() {
         const translated = links.map((link, key) => {
             return {
                 ...link,
+                key: link.key,
                 name: t(`filemenu.${link.name}`)
             }
         })

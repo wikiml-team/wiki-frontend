@@ -26,17 +26,6 @@ export default function MethodologiesPage() {
     
     const methodologiesCards = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToCards})
 
-    // STYLES
-    const { palette } = useTheme();
-
-    const classes = mergeStyleSets({
-        iconContainer: {
-            position: "relative",
-            height: 152,
-            width: 60,
-        }
-    })
-
     const stackProps : IStackProps = {
         tokens: {childrenGap: 10},
         styles: {

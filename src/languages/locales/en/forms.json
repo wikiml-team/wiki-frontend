@@ -182,7 +182,11 @@
         "header": "Risks"
     },
     "budget": {
-        "header": "Budget"
+        "header": "Budget",
+        "item-field": "Item",
+        "price-field": "Price",
+        "amount-field": "Amount",
+        "subtotal-prefix": "Subtotal"
     },
     "financing": {
         "header": "Financing"

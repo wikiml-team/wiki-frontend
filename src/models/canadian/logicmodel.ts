@@ -1,14 +1,30 @@
 import { toNumber } from "lodash";
-import { Graph, Edge } from "../tree";
+import { Graph, Edge } from "models/graph";
 
 export type LogicmodelVertex = {
-    id: string;
-    text: string;
-    level: number;
+    id: string
+    text: string
+    level: number
 }
 
 export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
 
+    generateId(parentId: string, level: number, num: number): string {
+        return parentId.slice(0, level + 1).concat((num + 1).toString()).padEnd(4, "0");
+    }
+    
+    generateSiblingId(siblingId: string, num?: number) {
+        // Get level
+        const level = this.getNodeLevel(siblingId);
+
+        // Generate new id
+        const root = siblingId.slice(0, level);
+        const order = num ? num : toNumber(siblingId[level]) + 1;
+        const id = (root + order.toString()).padEnd(4, "0");
+
+        return { id: id.toString(), level: level, order };
+    }
+    
     setNodeText(id: string, char: string): LogicmodelGraph {
         const node = this.vertex.find(v => v.id === id);
 
@@ -33,7 +49,7 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
         const parentNode = this.findNode(parentId)!;
 
         const newNode = {
-            id: this.generateId(parentId, parentNode.level, this.findChildrenIds(parentId).length),
+            id: this.generateId(parentId, parentNode.level, this.getChildrenCount(parentId)),
             text: "",
             level: parentNode.level + 1
         } as LogicmodelVertex
@@ -134,6 +150,8 @@ export default class LogicmodelGraph extends Graph<LogicmodelVertex> {
         }
         return this;
     }
+
+
 }
 
 // Examples

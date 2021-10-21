@@ -182,16 +182,20 @@
         "header": "Riesgos"
     },
     "budget": {
-        "header": "Presupuesto"
+        "header": "Presupuesto",
+        "item-field": "Item",
+        "price-field": "Precio",
+        "amount-field": "Cantidad",
+        "subtotal-prefix": "Subtotal"
     },
     "financing": {
         "header": "Financiación"
     },
     "reports": {
-        "header": "Solicitud"
+        "header": "Informes"
     },
     "application": {
-        "header": "Informes"
+        "header": "Solicitud"
     },
     "evaluations": {
         "header": "Evaluaciones"

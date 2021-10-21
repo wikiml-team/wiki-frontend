@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import IState from "models/state";
-import { IProjectInfo } from "models/project";
+import IProject, { IProjectInfo } from "models/project";
 import { ECanadianSector } from "models/sector";
-import IProject from "models/project";
+import { Edge } from "models/graph";
 import { LogicmodelVertex } from "models/canadian/logicmodel";
 import LogicModelActivitiesMatrix, { ActivityVertex } from "models/canadian/actvitiesmatrix";
-import { Edge } from "models/tree";
 import Stakeholders, { categories } from "models/canadian/stakeholders";
+import BudgetGraph, { BudgetItem } from "models/canadian/budget";
 
 // Examples - Set initial in blank
 const initialProjectInfoState: IProjectInfo<ECanadianSector> = {
@@ -43,6 +43,7 @@ const initialProjectInfoState: IProjectInfo<ECanadianSector> = {
     contribution: 1000.00,
 };
 
+// LOGIC MODEL
 const vertexExample: LogicmodelVertex[] = [
     {
         id: "1000",
@@ -126,7 +127,8 @@ const edgesExample: Edge[] = [
     { from: "1220", to: "1221" },
 ];
 
-const actvitiesExamples: ActivityVertex[] = [
+// ACTIVITIES
+const actvitiesExample: ActivityVertex[] = [
     {
         outputId: "1111",
         id: "0",
@@ -169,9 +171,10 @@ const actvitiesExamples: ActivityVertex[] = [
     },
 ]
 
-const actmatrixGraphExample = new LogicModelActivitiesMatrix(vertexExample, edgesExample, actvitiesExamples);
+const actmatrixGraphExample = new LogicModelActivitiesMatrix(vertexExample, edgesExample, actvitiesExample);
 
-const stakeholders = new Stakeholders([
+// STAKEHOLDERS
+const stakeholdersExample = new Stakeholders([
     {
         id: 0,
         name: "Stakeholder1 Ben",
@@ -230,12 +233,60 @@ const stakeholders = new Stakeholders([
     },
 ])
 
+// BUDGET
+const budgetItems: BudgetItem[] = [
+    {
+        id: "1",
+        name: "Recursos Humanos",
+    },
+    {
+        id: "1.1",
+        name: "Salarios (importes brutos, incluyendo cargas de la seguridad social y otros gastos relacionados, personal local)",
+    },
+    {
+        id: "1.1.1",
+        name: "Personal técnico",
+        values: { price: 3.05, amount: 1}
+    },
+    {
+        id: "1.1.2",
+        name: "Personal administrativo y de apoyo",
+        values: { price: 3.05, amount: 1}
+    },
+    {
+        id: "1.2",
+        name: "Salarios (importes brutos, incluyendo cargas de la seguridad social y otros gastos relacionados, personal expatriado/internacional)",
+    },
+    {
+        id: "1.3",
+        name: "Dietas para misiones/viajes5",
+    },
+    {
+        id: "1.3.1",
+        name: "En el extranjero (personal para la Acción)",
+        values: { price: 3.05, amount: 1}
+    },
+    {
+        id: "1.3.2",
+        name: "Local (personal para la Acción)",
+        values: { price: 3.05, amount: 1}
+    },
+    {
+        id: "1.3.3",
+        name: "Participantes en seminarios/conferencias",
+        values: { price: 3.05, amount: 1}
+    },
+];
+
+const budgetExample = new BudgetGraph(budgetItems)
+
 const initialState: IProject = {
     info: initialProjectInfoState,
     methodology: "canadian",
     forms: [
         { name: "logicModelActivities", structure: actmatrixGraphExample },
-        { name: "stakeholders", structure: stakeholders },
+        { name: "stakeholders", structure: stakeholdersExample },
+        { name: "budget", structure: budgetExample}
     ],
 }
 
