@@ -19,21 +19,8 @@ import { INavLinkGroup,
 export default function FileMenu() {
 
     // LOGIC
-    const { t } = useTranslation(['menuheaders', 'basics']);
-    const translateNames = (nav : INavLinkGroup[]) : INavLinkGroup[] => {
-
-        const { links } = nav[0]
-
-        const translated = links.map((link, key) => {
-            return {
-                ...link,
-                key: link.key,
-                name: t(`filemenu.${link.name}`)
-            }
-        })
-
-        return [{ links: translated}];
-    }
+    const { t } = useTranslation('menuheaders', {keyPrefix: 'filemenu'});
+    const t_basics = useTranslation('basics').t
 
     const history = useHistory()
     
@@ -45,7 +32,7 @@ export default function FileMenu() {
         setSelectedKey(key)
     }, [history])
     
-    const handleNavClick = (ev?: React.MouseEvent<HTMLElement>, item?: INavLink) => {
+    const handleNavOnClick = (ev?: React.MouseEvent<HTMLElement>, item?: INavLink) => {
         if (ev) ev.preventDefault()
         
         if (item) {
@@ -142,22 +129,24 @@ export default function FileMenu() {
         {
             links: [
                 {
-                    name: 'home',
+                    name: t('home'),
                     url: '/',
                     key: 'key_home',
                     icon: 'Home',
                 },
                 {
-                    name: 'new',
+                    name: t('new'),
                     url: '/new',
                     key: 'key_new',
                     icon: 'Page',
+                    title: `${t('new')} ${t('project')}`
                 },
                 {
-                    name: 'open',
+                    name: t('open'),
                     url: '/open',
                     key: 'key_open',
                     icon: 'OpenFolderHorizontal',
+                    title: `${t('open')} ${t('project')}`
                 }
             ],
         },
@@ -167,10 +156,9 @@ export default function FileMenu() {
         {
             links: [
                 {
-                    name: 'methodologies',
+                    name: t('methodologies'),
                     url: '/methodologies',
                     key: 'key_methodologies',
-                    // iconProps: iconProps,
                     icon: 'StackIndicator',
                 }
             ],
@@ -181,27 +169,27 @@ export default function FileMenu() {
         {
             links: [
                 {
-                    name: 'info',
+                    name: t('info'),
                     url: '/1/info',
                     key: 'key_info',
                 },
                 {
-                    name: 'export',
+                    name: t('export'),
                     url: '/1/export',
                     key: 'key_export',
                 },
                 {
-                    name: 'print',
+                    name: t('print'),
                     url: '/1/print',
                     key: 'key_print',
                 },
                 {
-                    name: 'share',
+                    name: t('share'),
                     url: '/1/share',
                     key: 'key_share',
                 },
                 {
-                    name: 'about',
+                    name: t('about'),
                     url: '/1/about',
                     key: 'key_about',
                 },        
@@ -218,7 +206,7 @@ export default function FileMenu() {
                 styles={buttonStyles}
                 onClick={handleOnReturn}
             >
-                {t("basics:return")}
+                {t_basics("return")}
             </ActionButton>
 
             {/* links */}
@@ -226,8 +214,8 @@ export default function FileMenu() {
                 selectedKey={selectedKey}
                 ariaLabel="File menu" 
                 styles={navStyles} 
-                groups={translateNames(nav)} 
-                onLinkClick={handleNavClick}/>
+                groups={nav} 
+                onLinkClick={handleNavOnClick}/>
 
             {/* Separator */}
             <Separator styles={separatorStyles}/>
@@ -239,8 +227,8 @@ export default function FileMenu() {
                 selectedKey={selectedKey}
                 ariaLabel="File menu" 
                 styles={navStyles} 
-                groups={translateNames(nav_methodologies)} 
-                onLinkClick={handleNavClick}/>
+                groups={nav_methodologies} 
+                onLinkClick={handleNavOnClick}/>
 
             {/* Separator */}
             <Separator styles={separatorStyles}/>
@@ -250,9 +238,9 @@ export default function FileMenu() {
                 selectedKey={selectedKey}
                 ariaLabel="File menu" 
                 styles={navStyles} 
-                groups={translateNames(footer_nav)} 
+                groups={footer_nav} 
                 className={classes.footer}
-                onLinkClick={handleNavClick}/>
+                onLinkClick={handleNavOnClick}/>
         </React.Fragment>
     )
 }

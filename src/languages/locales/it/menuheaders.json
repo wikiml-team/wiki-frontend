@@ -3,6 +3,7 @@
         "home": "Home",
         "new": "Nuovo",
         "open": "Aprire",
+        "project": "Progetto",
         "methodologies": "Metodologie",
         "info": "Info",
         "export": "Exportazione",
@@ -30,7 +31,7 @@
         "account": "Account"
     },
     "mainmenu": {
-        "wikiml": "WikiML",
+        "filemnu": "Menu file",
         "project": "Progetto",
         "methodology": "Metodologia",
         "licitations": "Licitazioni",
