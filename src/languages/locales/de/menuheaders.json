@@ -31,7 +31,8 @@
         "account": "Benutzerkonto"
     },
     "mainmenu": {
-        "filemenu": "Dateimenü",
+        "wikiml": "WikiMl",
+        "filemenu": "Datei",
         "project": "Projekt",
         "methodology": "Methodik",
         "licitations": "Ausschreibungen",
