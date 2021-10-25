@@ -49,7 +49,7 @@ export default function SettingsPanelContent() {
 
   // LOGIC
   const { t } = useTranslation("commands", { keyPrefix: "settings"});
-  const t1 = useTranslation("basics").t
+  const t_basics = useTranslation("basics").t
   
   const dispatch = useDispatch();
 
@@ -69,8 +69,8 @@ export default function SettingsPanelContent() {
         <Toggle
           label={t("privacy-label")}
           defaultChecked
-          onText={t1("private")}
-          offText={t1("public")}
+          onText={t_basics("private")}
+          offText={t_basics("public")}
           onChange={handleChangePrivacy}
         />
       </Stack.Item>

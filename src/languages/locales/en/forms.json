@@ -120,7 +120,7 @@
             "change-main-stakeholder-4": "Other stakeholder",
             "add-stakeholder-DB": "Create stakeholder in database"
         },
-        "panel" : {
+        "panel": {
             "header": "Create stakeholder",
             "explanation": "Add a new stakeholder to database.",
             "warning": "Check the stakeholder isn´t already in database before adding it in order to avoid duplicated data.",
@@ -145,7 +145,7 @@
             "sintactic-struct": "Edit sintactic structure",
             "delete": "Delete"
         },
-        "panel" : {
+        "panel": {
             "direction-label": "Direction",
             "what-label": "What",
             "bywhom-label": "Who",
@@ -186,7 +186,17 @@
         "item-field": "Item",
         "price-field": "Price",
         "amount-field": "Amount",
-        "subtotal-prefix": "Subtotal"
+        "subtotal-prefix": "Subtotal",
+        "actions-field": "Actions",
+        "item-type": "Item",
+        "subtitle-type": "Subtitle",
+        "title-type": "Title",
+        "subtotal-type": "Subtotal",
+        "tooltip": {
+            "contextual-help": "Contextual help",
+            "add-item": "Add item below",
+            "delete-item": "Delete item"
+        }
     },
     "financing": {
         "header": "Financing"

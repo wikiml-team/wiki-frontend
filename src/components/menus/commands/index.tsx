@@ -46,7 +46,7 @@ export default function CommandMenu() {
 
   // LOGIC
   const { t } = useTranslation("commands");
-  const t1 = useTranslation("basics", { keyPrefix: "methodologies"})
+  const t_basics = useTranslation("basics", { keyPrefix: "methodologies"}).t
   
   // Panels State
   const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
@@ -64,7 +64,7 @@ export default function CommandMenu() {
   return (
     <React.Fragment>
       <Text variant="small" styles={textStyles}>
-        Agua y Saneamiento - {t("basics:canadian")}
+        Agua y Saneamiento - {t_basics("canadian")}
       </Text>
 
       <CommandBar

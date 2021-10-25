@@ -1,11 +1,24 @@
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import { DetailsList, DetailsRow, IColumn, IDetailsListProps, IDetailsRowStyles, ITextStyles, SelectionMode, Text, useTheme } from "@fluentui/react";
+import { DetailsList, 
+  DetailsRow, 
+  IButtonStyles, 
+  IColumn, 
+  IconButton, 
+  IDetailsListProps, 
+  IDetailsRowStyles, 
+  ITextFieldProps, 
+  ITextStyles, 
+  SelectionMode, 
+  Text, 
+  TextField, 
+  TooltipHost, 
+  useTheme } from "@fluentui/react";
 
 import { selectProject } from "store/slices/projectslice";
-import BudgetList, { BudgetItem, BudgetItemInfo, LevelBudgetItem } from "models/canadian/budget";
+import BudgetList, { BudgetItemInfo } from "models/canadian/budget";
 
 export default function BudgetForm() {
 
@@ -25,7 +38,7 @@ export default function BudgetForm() {
       fieldName: 'item',
       ariaLabel: 'Items',
       data: 'string',
-      minWidth: 10,
+      minWidth: 70,
       flexGrow: 1,
       isMultiline: true,
       onRender: (item: BudgetItemInfo) => nameRender(item),
@@ -35,11 +48,11 @@ export default function BudgetForm() {
       name: t('price-field'),
       fieldName: 'price',
       ariaLabel: "price",
-      minWidth: 0,
+      minWidth: 70,
       maxWidth: 350,
       isRowHeader: true,
       data: 'number',
-      onRender: (item: BudgetItem) => item.values?.price || ''
+      onRender: (item: BudgetItemInfo) => columnValueRender(item, item.values?.price.toString() || '')
     },
     {
       key: 'column3',
@@ -49,14 +62,26 @@ export default function BudgetForm() {
       data: 'string',
       isResizable: true,
       isPadded: true,
+      // isFiltered: true,
+      onRender: (item: BudgetItemInfo) => columnValueRender(item, item.values?.amount.toString() || '')
+    },
+    {
+      key: 'column4',
+      name: t('actions-field'),
+      fieldName: 'actions',
+      minWidth: 100,
+      data: 'string',
+      isResizable: true,
+      isPadded: true,
       isMultiline: true,
       // isFiltered: true,
-      onRender: (item: BudgetItem) => item.values?.amount || ''
+      onRender: (item: BudgetItemInfo) => actionsRender(item)
     }
   ]
 
   // STYLES
   const { palette } = useTheme()
+
   const nameRender = (item: BudgetItemInfo) => {
     const variant = item.type === 'title' ? "mediumPlus" : "medium" ;
     const space = item.level * 2
@@ -70,6 +95,73 @@ export default function BudgetForm() {
 
     const prefix =  item.type === 'subtotal'? t('subtotal-prefix') : ''
     return <Text variant={variant} styles={textStyles}>{`${prefix} ${item.id} ${item.name}`}</Text>
+  }
+
+  const columnValueRender = (item: BudgetItemInfo, value: string) => {
+    const textFieldProps: ITextFieldProps = {
+      defaultValue: value,
+      styles: {
+        root: {
+          minWidth: 70,
+          width: "4ch"
+        },
+        fieldGroup: {
+          borderRadius: "0 0 2px 2px",
+          border: `1px solid ${palette.neutralLighter}`,
+          selectors: {
+            ":hover": {
+              border: `1px solid ${palette.neutralTertiary}`,
+
+            },
+          },
+        },
+      },
+    }
+
+    return item.type === 'item' && <TextField {...textFieldProps}/>
+  }
+
+  const actionsRender = (item: BudgetItemInfo) => {
+    const commandStyles: Partial<IButtonStyles> = {
+      root: {
+        height: 25,
+      },
+      rootHovered: {
+        backgroundColor: palette.neutralLighter,
+      },
+      icon: {
+        fontSize: 13,
+        color: palette.black,
+      },
+    };
+
+    return (item.type === 'item' &&
+      <React.Fragment>
+        <TooltipHost content={t("tooltip.contextual-help")}>
+          <IconButton
+            iconProps={{ iconName: "Help" }}
+            styles={commandStyles}
+            onClick={() => {}}
+          />
+        </TooltipHost>
+        <TooltipHost content={t("tooltip.add-item")}>
+          <IconButton
+            iconProps={{ iconName: "Add" }}
+            styles={commandStyles}
+            onClick={() => {}}
+          />
+        </TooltipHost>
+        {'hasSiblings' in item &&
+          <TooltipHost content={t("tooltip.delete-item")}>
+            <IconButton
+              iconProps={{ iconName: "Cancel" }}
+              styles={commandStyles}
+              onClick={() => {}}
+            />
+          </TooltipHost>
+        }
+      </React.Fragment>
+    )
   }
 
   const onRenderRow: IDetailsListProps['onRenderRow'] = props => {
@@ -91,20 +183,20 @@ export default function BudgetForm() {
           customStyles.root = {
             backgroundColor: palette.themeLighterAlt,
             ":hover": {
-              backgroundColor: palette.neutralQuaternaryAlt,
+              backgroundColor: palette.neutralLight,
             }
           }
           break;
         case 'item':
           customStyles.root = {
             ":hover": {
-              backgroundColor: palette.neutralLight,
+              backgroundColor: palette.neutralLighter,
             }
           }
           break;
         case 'subtotal':
             customStyles.root = {
-            backgroundColor: palette.neutralLight,
+            backgroundColor: item.level === 0 ? palette.neutralTertiaryAlt : palette.neutralLight,
 
               ":hover": {
                 backgroundColor: palette.neutralQuaternaryAlt,
@@ -116,7 +208,7 @@ export default function BudgetForm() {
       return <DetailsRow {...props} styles={customStyles} />;
     }
     return null;
-};
+  };
 
   return <DetailsList
           items={items}

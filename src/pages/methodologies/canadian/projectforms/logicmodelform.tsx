@@ -33,7 +33,7 @@ export default function LogicModelForm() {
 
   // LOGIC
   const { t } = useTranslation("forms", { keyPrefix: "logicmodel" });
-  const ts = useTranslation("basics").t;
+  const t_basics = useTranslation("basics").t;
 
   const project = useSelector(selectProject);
   const currentForm = project.forms.find(form => form.name === "logicModelActivities")!;
@@ -77,7 +77,7 @@ export default function LogicModelForm() {
         </TooltipHost>
         <TooltipHost content={t("tooltip-panel-save")}>
           <DefaultButton onClick={handleDismissPanel} styles={{ root: { marginRight: 8 } }}>
-            {ts("save")}
+            {t_basics("save")}
           </DefaultButton>
         </TooltipHost>
       </div>

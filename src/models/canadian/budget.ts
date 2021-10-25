@@ -33,6 +33,10 @@ export default class BudgetList {
         return this.items.find(item => item.id == id) || {} as BudgetItem
     }
 
+    findFatherId(id: string) : string {
+        return id.split('.').pop()?.toString() || ''
+    }
+
     generateId(parentId: string, num: number): string {
         return parentId + '.' + num;
     }
@@ -41,8 +45,12 @@ export default class BudgetList {
         return id.split('.').length -1 
     }
 
-    findChildrenItems(id: string) : BudgetItem[] {
+    findChildren(id: string) : BudgetItem[] {
         return this.items.filter(item => item.id.includes(id + '.'))
+    }
+
+    findChildrenItems(id: string) : BudgetItem[] {
+        return this.items.filter(item => item.id.includes(id + '.') && this.getItemLevel(item.id) === this.levelLimit -1)
     }
 
     findInmediateChildrenItems(id: string) {
@@ -54,10 +62,11 @@ export default class BudgetList {
         
         let infoItems : BudgetItemInfo[] = this.items.map(item => {
             const level = this.getItemLevel(item.id)
-
+            const siblings =  this.findInmediateChildrenItems(this.findFatherId(item.id))
             return {
                 ...item,
                 level: level,
+                hasSiblings: siblings.length > 1,
                 type: level === this.levelLimit -1? 'item' : level === 0? 'title' : 'subtitle'
             } as LevelBudgetItem
 
@@ -68,24 +77,28 @@ export default class BudgetList {
             // add subtotal rows
             infoItems.forEach((item, i) => {
                 if(item.type === 'title' || item.type === 'subtitle') {
-                    const children = this.findChildrenItems(item.id)
-                    const n_children = children.length
-                    
-                    if (n_children) {
-                        const subtotalPrice = children.map(item => item.values?.price || 0).reduce((prev, next) => prev + next);
-                        const subtotalAmount = children.map(item => item.values?.amount || 0).reduce((prev, next) => prev + next);
+                    const childrenItems = this.findChildrenItems(item.id)
+
+                    if(childrenItems.length > 1) {
+                        const children = this.findChildren(item.id)
+                        const n_children = children.length
                         
-                        const subtotalItem = {
-                            type: 'subtotal',
-                            id: '' ,
-                            titleId: item.id,
-                            level: this.getItemLevel(item.id),
-                            name: item.name,
-                            values: { price: Math.floor(subtotalPrice *100)/100, amount: Math.floor(subtotalAmount *100)/100 }
-                        } as SubtotalItem
-                        
-                        // insert subtotal passing its children
-                        infoItems.splice(i + n_children + 1, 0, subtotalItem)
+                        if (n_children) {
+                            const subtotalPrice = children.map(item => item.values?.price || 0).reduce((prev, next) => prev + next);
+                            const subtotalAmount = children.map(item => item.values?.amount || 0).reduce((prev, next) => prev + next);
+                            
+                            const subtotalItem = {
+                                type: 'subtotal',
+                                id: '' ,
+                                titleId: item.id,
+                                level: this.getItemLevel(item.id),
+                                name: item.name,
+                                values: { price: Math.floor(subtotalPrice *100)/100, amount: Math.floor(subtotalAmount *100)/100 }
+                            } as SubtotalItem
+                            
+                            // insert subtotal passing its children
+                            infoItems.splice(i + n_children + 1, 0, subtotalItem)
+                        }
                     }
                 }
             })
@@ -116,6 +129,6 @@ export default class BudgetList {
 
 }
 
-export type LevelBudgetItem = BudgetItem & { level: number, type: 'item' | 'title' | 'subtitle' }
+export type LevelBudgetItem = BudgetItem & { level: number, hasSiblings?: boolean, type: 'item' | 'title' | 'subtitle' }
 
 export type BudgetItemInfo = LevelBudgetItem | SubtotalItem
