@@ -22,6 +22,7 @@ export interface IForm {
   key: string;
   name: string;
   description?: string;
+  public?: boolean
 }
 
 // tabSchema

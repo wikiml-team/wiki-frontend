@@ -79,16 +79,18 @@ export default function CommandMenu() {
       />
 
       <Panel
+        isLightDismiss
         isOpen={languagePanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
         headerText={t("language.header")}
         onDismiss={dismissLanguagePanel}
-        isBlocking={false}>
+        >
         <LanguagePanelContent />
       </Panel>
 
       <Panel
+        isLightDismiss
         isOpen={settingsPanelOpen}
         closeButtonAriaLabel="Close"
         isHiddenOnDismiss={true}
