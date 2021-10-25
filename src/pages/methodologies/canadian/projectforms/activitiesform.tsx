@@ -33,12 +33,9 @@ export default function ActivitiesMatrixForm() {
   // State
   const project = useSelector(selectProject);
   const currentForm = project.forms.find(form => form.name === "logicModelActivities")!;
-  const logicModelActivitiesMatrix = currentForm.structure as ActivitiesMatrixGraph;
+  const activitiesMatrix = currentForm.structure as ActivitiesMatrixGraph;
 
-  const initialItems = logicModelActivitiesMatrix.buildOutputsActivityList();
-
-  const [items, setItems] = useState(initialItems);
-  const [activitiesMatrix, setActivitiesMatrix] = useState(logicModelActivitiesMatrix);
+  const [items, setItems] = useState(activitiesMatrix.buildOutputsActivityList());
 
   const { t } = useTranslation("forms", { keyPrefix: "activitiesmatrix" });
 
@@ -93,7 +90,7 @@ export default function ActivitiesMatrixForm() {
     const outputId = itemId.slice(0, 4);
     const activityId = itemId[4];
 
-    setActivitiesMatrix(activitiesMatrix.addActivityToOutput(outputId, activityId));
+    activitiesMatrix.addActivityToOutput(outputId, activityId)
     setItems(activitiesMatrix.buildOutputsActivityList());
   }
 
@@ -101,7 +98,7 @@ export default function ActivitiesMatrixForm() {
     const outputId = itemId.slice(0, 4);
     const activityId = (toNumber(itemId[4]) + 1).toString();
 
-    setActivitiesMatrix(activitiesMatrix.deleteActivity(outputId, activityId));
+    activitiesMatrix.deleteActivity(outputId, activityId)
     setItems(activitiesMatrix.buildOutputsActivityList());
   }
 

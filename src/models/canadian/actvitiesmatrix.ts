@@ -21,8 +21,8 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
     findActivitiesByOutput(outputId: string) {
         return this.activities.filter(a => a.outputId === outputId);
     }
-
-    addActivityToOutput(outputId: string, id: string): LogicModelActivitiesMatrix {
+    
+    addActivityToOutput(outputId: string, id: string) : ActivityVertex {
         // Update siblingsIds below
         let i = toNumber(id)
         this.activities.filter(a => a.outputId === outputId && toNumber(a.id) >= i).sort().forEach((sibling, key) => {
@@ -39,19 +39,24 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
         // Add to graph
         this.activities.push(newActivity);
         this.activities = this.activities.sort((a, b) => toNumber(a.id) - toNumber(b.id));
-        return this
+
+        return newActivity
     }
 
-    deleteActivity(outputId: string, id: string): LogicModelActivitiesMatrix {
+    // true if it deletes one activity
+    deleteActivity(outputId: string, id: string): boolean {
+        // Count len
+        const len = this.activities.length
+
         // Delete from activities
         this.activities = this.activities.filter(a => !(a.id === id && a.outputId === outputId));
 
-        // Update children ids
+        // Update siblings ids
         this.activities.filter(a => a.outputId === outputId).sort().forEach((child, key) => {
             child.id = key.toString();
         });
 
-        return this;
+        return len === this.activities.length +1;
     }
 
     buildOutputsActivityList() {

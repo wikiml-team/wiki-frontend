@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
@@ -16,9 +16,12 @@ import { DetailsList,
   TextField, 
   TooltipHost, 
   useTheme } from "@fluentui/react";
+import { useBoolean } from '@fluentui/react-hooks';
 
 import { selectProject } from "store/slices/projectslice";
 import BudgetList, { BudgetItemInfo } from "models/canadian/budget";
+import ContextualHelpPanel from "components/sidepanel/contextualhelp";
+import ContextualHelpContent from "components/sidepanel/contents/contextualhelp";
 
 export default function BudgetForm() {
 
@@ -78,6 +81,15 @@ export default function BudgetForm() {
       onRender: (item: BudgetItemInfo) => actionsRender(item)
     }
   ]
+
+  // Handlers
+  const handleDeleteItem = (itemId: string) => {
+    budgetList.deleteItem(itemId)
+    setItems(budgetList.buildBudgetItemsList(true));
+  }
+
+  // Panels
+  const [helpPanelIsOpen, { setTrue: openHelpPanel, setFalse: dismissHelpPanel }] = useBoolean(false);
 
   // STYLES
   const { palette } = useTheme()
@@ -141,7 +153,7 @@ export default function BudgetForm() {
           <IconButton
             iconProps={{ iconName: "Help" }}
             styles={commandStyles}
-            onClick={() => {}}
+            onClick={() => openHelpPanel()}
           />
         </TooltipHost>
         <TooltipHost content={t("tooltip.add-item")}>
@@ -151,12 +163,12 @@ export default function BudgetForm() {
             onClick={() => {}}
           />
         </TooltipHost>
-        {'hasSiblings' in item &&
+        {'hasSiblings' in item && item.hasSiblings &&
           <TooltipHost content={t("tooltip.delete-item")}>
             <IconButton
               iconProps={{ iconName: "Cancel" }}
               styles={commandStyles}
-              onClick={() => {}}
+              onClick={() => handleDeleteItem(item.id)}
             />
           </TooltipHost>
         }
@@ -210,10 +222,23 @@ export default function BudgetForm() {
     return null;
   };
 
-  return <DetailsList
-          items={items}
-          columns={columns}
-          onRenderRow={onRenderRow}
-          selectionMode={SelectionMode.none}
-        />;
+  return <React.Fragment>
+          <DetailsList
+            items={items}
+            columns={columns}
+            onRenderRow={onRenderRow}
+            selectionMode={SelectionMode.none}
+            />
+          <ContextualHelpPanel
+            isOpen={helpPanelIsOpen}
+            onDismiss={dismissHelpPanel}
+          >
+            <ContextualHelpContent
+              definition="Def Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+              example=""
+              format="Cosi se me face le buc torbellini de sua me."
+              guide="Guide Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. "
+              tips="Tips Lorem ipsum dolre mas seit cause frieto mei suilka fraterni de su vormetto. Cosi se me face le buc torbellini de sua me. " />
+          </ContextualHelpPanel>
+        </React.Fragment>
 }

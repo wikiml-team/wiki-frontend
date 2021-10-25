@@ -4,7 +4,7 @@ export type BudgetItem = {
     id: string
     name: string
     values?: { price: number, amount: number } 
-    subtotal?: number
+    subtotal?: boolean
     columns?: string[]
 }
 
@@ -32,19 +32,39 @@ export default class BudgetList {
     findItem(id: string) : BudgetItem {
         return this.items.find(item => item.id == id) || {} as BudgetItem
     }
+    
+    toBudgetItemInfo(item: BudgetItem) : BudgetItemInfo {
+        const level = this.getItemLevel(item.id)
+        const siblings =  this.findSiblings(item.id)
 
-    findFatherId(id: string) : string {
-        return id.split('.').pop()?.toString() || ''
+        return {
+            ...item,
+            level: level,
+            hasSiblings: siblings.length > 1,
+            type: level === this.levelLimit -1? 'item' : level === 0? 'title' : 'subtitle'
+        } as LevelBudgetItem
     }
-
+    
+    findFatherId(id: string) : string {
+        let aux = id.split('.')
+        aux.pop()
+        return aux.join('.')
+    }
+    
     generateId(parentId: string, num: number): string {
         return parentId + '.' + num;
     }
-
+    
+    // Level = Depth
     getItemLevel(id: string) : number {
         return id.split('.').length -1 
     }
 
+    // Order = siblings befor it
+    getItemOrder(id: string) : number {
+        return toNumber(id.split('.').pop()) || 0
+    }
+    
     findChildren(id: string) : BudgetItem[] {
         return this.items.filter(item => item.id.includes(id + '.'))
     }
@@ -57,19 +77,14 @@ export default class BudgetList {
         return this.items.filter(item => item.id.includes(id + '.') && 
                                 this.getItemLevel(item.id) - this.getItemLevel(id) === 1)
     }
+    findSiblings(id: string) {
+        return this.findInmediateChildrenItems(this.findFatherId(id))
+    }
 
     buildBudgetItemsList(showSubtotals: boolean = false) : BudgetItemInfo[] {
         
         let infoItems : BudgetItemInfo[] = this.items.map(item => {
-            const level = this.getItemLevel(item.id)
-            const siblings =  this.findInmediateChildrenItems(this.findFatherId(item.id))
-            return {
-                ...item,
-                level: level,
-                hasSiblings: siblings.length > 1,
-                type: level === this.levelLimit -1? 'item' : level === 0? 'title' : 'subtitle'
-            } as LevelBudgetItem
-
+            return this.toBudgetItemInfo(item)
         }).sort((a: BudgetItemInfo, b: BudgetItemInfo) => this.compareIds(a, b))
 
         if (showSubtotals) {
@@ -125,6 +140,49 @@ export default class BudgetList {
 
             // if they are equal and length isn't reached keep checking
         }
+    }
+
+    addItem(siblingId: string) {
+        // Update siblingsIds below
+        // let i = toNumber(id)
+        // this.activities.filter(a => a.outputId === outputId && toNumber(a.id) >= i).sort().forEach((sibling, key) => {
+        //     sibling.id = (i + key + 1).toString();
+        // })
+        // const order = this.getItemOrder(id)
+    }
+
+    // true if deleted one element, false otherwise
+    deleteItem(id: string): boolean {
+        // Count length
+        const len = this.items.length
+
+        const type = this.toBudgetItemInfo(this.findItem(id)).type;
+
+        switch (type) {
+            case 'item':
+                // Delete from items
+                this.items = this.items.filter(item => item.id !== id)
+                
+                // Update siblings ids
+                const siblings = this.findSiblings(id)
+                siblings.forEach((child, key) => {
+                    let newId = child.id.split('.')
+                    newId[newId.length-1] = (key + 1).toString()
+                    child.id = newId.join('.')
+                });
+                
+                break;
+
+            case 'title' || 'subtitle': 
+                break;
+        
+            case 'subtotal':
+                break;
+            default:
+                break;
+        }
+
+        return len === this.items.length +1
     }
 
 }
