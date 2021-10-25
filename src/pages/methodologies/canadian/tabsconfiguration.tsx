@@ -57,7 +57,7 @@ import ApplicationForm from "./projectforms/applicationform";
 const tabsConfiguration = new TabSchema([
   {
     key: "key1",
-    name: "wikiml",
+    name: "filemenu",
     icon: "WebComponents",
     render: <Redirect to="/" />,
   },

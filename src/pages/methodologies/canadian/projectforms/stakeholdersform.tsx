@@ -73,7 +73,7 @@ export default function StakeholdersForm() {
       data: 'string',
       isPadded: true,
       // isFiltered: true,
-      onRender: (item: IStakholderInfo) => operatorsRender(item),
+      onRender: (item: IStakholderInfo) => actionsRender(item),
     },
   ]
 
@@ -213,7 +213,7 @@ export default function StakeholdersForm() {
       </TooltipHost>
   }
 
-  const operatorsRender = (item: IStakholderInfo) => {
+  const actionsRender = (item: IStakholderInfo) => {
     const commandStyles: Partial<IButtonStyles> = {
       root: {
         height: 25,

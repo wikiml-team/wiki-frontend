@@ -84,7 +84,7 @@ export default function ActivitiesMatrixForm() {
       minWidth: 100,
       data: 'string',
       isPadded: true,
-      onRender: (item: IActivityInfo) => operatorsRender(item),
+      onRender: (item: IActivityInfo) => actionsRender(item),
     },
   ]
 
@@ -207,7 +207,7 @@ export default function ActivitiesMatrixForm() {
     return html
   }
 
-  const operatorsRender = (item: IActivityInfo) => {
+  const actionsRender = (item: IActivityInfo) => {
     const commandStyles: Partial<IButtonStyles> = {
       root: {
         height: 25,
@@ -223,14 +223,14 @@ export default function ActivitiesMatrixForm() {
 
     return (item.level === 2 &&
       <React.Fragment>
-        <TooltipHost content={t("contextual-help")}>
+        <TooltipHost content={t("tooltip.contextual-help")}>
           <IconButton
             iconProps={{ iconName: "Help" }}
             styles={commandStyles}
             onClick={() => openHelpPanel()}
           />
         </TooltipHost>
-        <TooltipHost content={t("add-activity")}>
+        <TooltipHost content={t("tooltip.add-activity")}>
           <IconButton
             iconProps={{ iconName: "Add" }}
             styles={commandStyles}
@@ -238,7 +238,7 @@ export default function ActivitiesMatrixForm() {
           />
         </TooltipHost>
         {item.hasSiblings &&
-          <TooltipHost content={t("delete-activity")}>
+          <TooltipHost content={t("tooltip.delete-activity")}>
             <IconButton
               iconProps={{ iconName: "Cancel" }}
               styles={commandStyles}

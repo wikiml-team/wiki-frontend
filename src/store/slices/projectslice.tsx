@@ -258,6 +258,10 @@ const budgetItems: BudgetItem[] = [
         name: "Salarios (importes brutos, incluyendo cargas de la seguridad social y otros gastos relacionados, personal expatriado/internacional)",
     },
     {
+        id: "1.2.1",
+        name: "Salario de los trabajadores",
+    },
+    {
         id: "1.3",
         name: "Dietas para misiones/viajes5",
     },

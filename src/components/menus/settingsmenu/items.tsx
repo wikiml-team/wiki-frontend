@@ -6,7 +6,7 @@ import { ICommandBarItemProps } from "@fluentui/react"
 export const GetItems = () => {
 
     const { t } = useTranslation("menuheaders", { keyPrefix: "settings" })
-    const t1 = useTranslation('basics').t
+    const t_basics = useTranslation('basics').t
     const history = useHistory();
   
     return [
@@ -20,7 +20,7 @@ export const GetItems = () => {
       {
         key: "return",
         iconProps: { iconName: "NavigateBack" },
-        text: t1("return"),
+        text: t_basics("return"),
         onClick: () => history.goBack(),
         ariaLabel: "return"
       },
