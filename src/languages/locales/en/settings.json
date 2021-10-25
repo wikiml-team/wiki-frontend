@@ -16,7 +16,8 @@
         "welcome-description": "The first step to guaranteeing your privacy is giving you control of your data and the tools and information you need to make decisions that give you peace of mind.",
         "commitment-to-privacy-link": "Learn more about our commitment to privacy",
         "management-subtitle": "Manage Privacy",
-        "management-description": "Here you can set the privacy of the forms.",
+        "management-description": "Here you can set the privacy of the project. If you set the project as private all forms will be private. If you set the project as public, you can further selecet if a form can be public or private.",
+        "toggle-label": "Your project should be:",
         "table-forms": "Forms",
         "table-privacy": "Private"
     }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
@@ -10,7 +10,9 @@ import { ILinkStyles,
         DetailsList, 
         SelectionMode, 
         IColumn,
-        Checkbox } from '@fluentui/react'
+        Checkbox, 
+        Toggle} from '@fluentui/react'
+import { useBoolean } from '@fluentui/react-hooks';
 
 import { selectWorkplaceConfig } from 'store/slices/workplaceslice'
 import { IForm } from 'models/workplace'
@@ -18,10 +20,12 @@ import { IForm } from 'models/workplace'
 export default function Privacy() {
     
     const { t } = useTranslation("settings", { keyPrefix: "privacy-page"})
-    const t1 = useTranslation('forms').t
+    const t_basics = useTranslation("basics").t
+    const t_forms = useTranslation('forms').t
 
     const { tabsSchema } = useSelector(selectWorkplaceConfig);
-    const forms : IForm[] = tabsSchema.findForms()
+    const [privateProject, {toggle: togglePrivateProject}] = useBoolean(true)
+    const [forms, setForms] = useState<IForm[]>(tabsSchema.findForms())
 
     const columns: IColumn[] = [
         {
@@ -39,9 +43,25 @@ export default function Privacy() {
             fieldName: 'Private',
             minWidth: 100,
             data: 'string',
-            onRender: (item: IForm) => checkboxRender(item)
+            onRender: (item: IForm) => CheckboxRender(item)
         },
     ]
+
+    // Handlers
+    const handleChangePrivacy = (event: React.MouseEvent<HTMLElement, MouseEvent>, checked?: boolean | undefined) => {
+        
+        togglePrivateProject()
+
+        if(checked) {
+            const newForms = forms.map(f => {
+                return {
+                    ...f,
+                    public: false
+                }
+            })
+            setForms(newForms)
+        }         
+    }   
 
     // STYLES
     const classes = mergeStyleSets({
@@ -64,14 +84,35 @@ export default function Privacy() {
     const formRender = (form: IForm) => {
         return (
           <Text variant="medium">
-           {t1(`${form.name}.header`)}
+           {t_forms(`${form.name}.header`)}
           </Text>
         )
     }
 
-    const checkboxRender = (from: IForm) => {
+    const CheckboxRender = (form: IForm) => {
+        const [checked, {toggle: toggleChecked}] = useBoolean(!form.public)
+
+        const handleOnChange = React.useCallback(
+            (ev?: React.FormEvent<HTMLElement | HTMLInputElement>, checked?: boolean): void => {
+                toggleChecked()
+                const newForms = forms.map(form => {
+                    return (form.key === form.key)?
+                        {
+                            ...form,
+                            public: !checked
+                        } as IForm : form
+                })
+                setForms(newForms)
+            },
+            [],
+        );
+
         return (
-            <Checkbox />
+            <Checkbox 
+             checked={checked}
+             onChange={handleOnChange}
+             disabled={privateProject}
+             />
         )
     }
 
@@ -87,6 +128,16 @@ export default function Privacy() {
             {/* Set Privacy */}
             <Text variant='large' className={classes.subtitle}>{t("management-subtitle")}</Text>
             <Text variant='medium' block >{t("management-description")}</Text>
+
+            <br/>
+            <Toggle
+                label={t("toggle-label")}
+                inlineLabel
+                defaultChecked
+                onText={t_basics("private")}
+                offText={t_basics("public")}
+                onChange={handleChangePrivacy}
+            />
             <DetailsList
             items={forms}
             columns={columns}

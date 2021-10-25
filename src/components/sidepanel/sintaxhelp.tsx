@@ -59,6 +59,7 @@ const SintaxHelpPanel: FunctionComponent<SintaxHelpPanelProps> = (props) => {
                 headerText={header}
                 closeButtonAriaLabel="Close"
                 onRenderFooterContent={onRenderFooterContent}
+                isHiddenOnDismiss={true}
                 >
                 {props.children}
             </Panel>

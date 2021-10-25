@@ -6,12 +6,12 @@ export const GET_METHODOLOGIES = gql`{
       name
     }
 }`
-export const buildQueryMethodologies = (fields? : string[]) => {
+export const buildQueryMethodologies = (fields?: string[]) => {
   const f = fields?.filter(f => f !== "name" && f !== "id")
 
   return gql`{
     methodologies {
-      id, name, ${fields?.toString()}
+      id, name, ${f?.toString() || ''}
     }
   }`
 }
