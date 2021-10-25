@@ -30,7 +30,7 @@ export default class BudgetList {
     }
 
     findItem(id: string) : BudgetItem {
-        return this.items.find(item => item.id == id) || {} as BudgetItem
+        return this.items.find(item => item.id === id) || {} as BudgetItem
     }
     
     toBudgetItemInfo(item: BudgetItem) : BudgetItemInfo {
@@ -85,7 +85,7 @@ export default class BudgetList {
         
         let infoItems : BudgetItemInfo[] = this.items.map(item => {
             return this.toBudgetItemInfo(item)
-        }).sort((a: BudgetItemInfo, b: BudgetItemInfo) => this.compareIds(a, b))
+        }).sort((a, b) => this.compareIds(a, b))
 
         if (showSubtotals) {
 
@@ -99,7 +99,11 @@ export default class BudgetList {
                         const n_children = children.length
                         
                         if (n_children) {
-                            const subtotalPrice = children.map(item => item.values?.price || 0).reduce((prev, next) => prev + next);
+                            const subtotalPrice = children.map(item => {
+                                const price = item.values?.price || 0
+                                const amount = item.values?.amount || 0
+                                return price * amount
+                            }).reduce((prev, next) => prev + next);
                             const subtotalAmount = children.map(item => item.values?.amount || 0).reduce((prev, next) => prev + next);
                             
                             const subtotalItem = {
@@ -123,32 +127,52 @@ export default class BudgetList {
     }
 
     
-    compareIds(item1: BudgetItemInfo, item2: BudgetItemInfo) : number {
+    compareIds(item1: BudgetItem, item2: BudgetItem) : number {
 
         // if same level then compare the order inside level
         const item1split = item1.id.split('.')
         const item2split = item2.id.split('.')
 
-        for (let index = 0; ; index++) {
+        const minLen = Math.min(item1split.length, item2split.length)
+
+        for (let index = 0; index < minLen; index++) {
             const diff = toNumber(item1split[index]) - toNumber(item2split[index])
             
             if (diff !== 0) return diff;
             
-            if (index === item1split.length && index === item2split.length) return 0 
-            if (index === item1split.length) return -1
-            if (index === item2split.length) return 1
-
-            // if they are equal and length isn't reached keep checking
+            if (index === item1split.length -1 && index === item2split.length -1) return 0 
         }
+        // if reached len and still equal but one still have more slots in id...
+        return item1split.length - item2split.length 
+        
     }
 
     addItem(siblingId: string) {
         // Update siblingsIds below
-        // let i = toNumber(id)
-        // this.activities.filter(a => a.outputId === outputId && toNumber(a.id) >= i).sort().forEach((sibling, key) => {
-        //     sibling.id = (i + key + 1).toString();
-        // })
-        // const order = this.getItemOrder(id)
+        const siblings = this.findSiblings(siblingId)
+        const newItemOrder = this.getItemOrder(siblingId) + 1
+        siblings.filter(sibling => this.getItemOrder(sibling.id) >= newItemOrder).sort((a, b) => 
+            this.compareIds(a, b)
+        ).forEach((sibling, key) => {
+            sibling.id = this.updateId(sibling.id, (newItemOrder + key + 1).toString(), this.getItemLevel(sibling.id)) 
+        })
+
+        // Create new item
+        const newItem = {
+            id: this.updateId(siblingId, newItemOrder.toString(), this.getItemLevel(siblingId)),
+            name: 'New Item',
+            columns: Array(this.columns.length),
+            values: {
+                price: 0,
+                amount: 0
+            }
+        } as BudgetItem
+
+        // Add to list
+        this.items.push(newItem);
+        this.items = this.items.sort((a, b) => this.compareIds(a, b));
+
+        return newItem
     }
 
     // true if deleted one element, false otherwise
@@ -166,9 +190,7 @@ export default class BudgetList {
                 // Update siblings ids
                 const siblings = this.findSiblings(id)
                 siblings.forEach((child, key) => {
-                    let newId = child.id.split('.')
-                    newId[newId.length-1] = (key + 1).toString()
-                    child.id = newId.join('.')
+                    child.id = this.updateId(child.id, (key + 1).toString(), this.getItemLevel(id))
                 });
                 
                 break;
@@ -183,6 +205,12 @@ export default class BudgetList {
         }
 
         return len === this.items.length +1
+    }
+
+    updateId(id: string, value: string, slot: number): string {
+        let newId = id.split('.')
+        newId[slot] = value
+        return newId.join('.')
     }
 
 }

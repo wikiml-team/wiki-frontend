@@ -25,7 +25,9 @@ export default class LogicModelActivitiesMatrix extends LogicmodelGraph {
     addActivityToOutput(outputId: string, id: string) : ActivityVertex {
         // Update siblingsIds below
         let i = toNumber(id)
-        this.activities.filter(a => a.outputId === outputId && toNumber(a.id) >= i).sort().forEach((sibling, key) => {
+        this.activities.filter(a => a.outputId === outputId && toNumber(a.id) >= i).sort((a, b) => {
+            return toNumber(a.id) - toNumber(b.id)
+        }).forEach((sibling, key) => {
             sibling.id = (i + key + 1).toString();
         })
 

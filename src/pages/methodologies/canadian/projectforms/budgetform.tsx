@@ -12,9 +12,11 @@ import { DetailsList,
   ITextFieldProps, 
   ITextStyles, 
   SelectionMode, 
+  Stack, 
   Text, 
   TextField, 
   TooltipHost, 
+  FontSizes,
   useTheme } from "@fluentui/react";
 import { useBoolean } from '@fluentui/react-hooks';
 
@@ -44,7 +46,7 @@ export default function BudgetForm() {
       minWidth: 70,
       flexGrow: 1,
       isMultiline: true,
-      onRender: (item: BudgetItemInfo) => nameRender(item),
+      onRender: (item: BudgetItemInfo) => NameRender(item),
     },
     {
       key: 'column2',
@@ -55,7 +57,7 @@ export default function BudgetForm() {
       maxWidth: 350,
       isRowHeader: true,
       data: 'number',
-      onRender: (item: BudgetItemInfo) => columnValueRender(item, item.values?.price.toString() || '')
+      onRender: (item: BudgetItemInfo) => ColumnValueRender(item, item.values?.price.toString() || '', 'price')
     },
     {
       key: 'column3',
@@ -65,8 +67,7 @@ export default function BudgetForm() {
       data: 'string',
       isResizable: true,
       isPadded: true,
-      // isFiltered: true,
-      onRender: (item: BudgetItemInfo) => columnValueRender(item, item.values?.amount.toString() || '')
+      onRender: (item: BudgetItemInfo) => ColumnValueRender(item, item.values?.amount.toString() || '', 'amount')
     },
     {
       key: 'column4',
@@ -77,12 +78,16 @@ export default function BudgetForm() {
       isResizable: true,
       isPadded: true,
       isMultiline: true,
-      // isFiltered: true,
       onRender: (item: BudgetItemInfo) => actionsRender(item)
     }
   ]
 
   // Handlers
+  const handleAddItem = (itemId: string) => {
+    budgetList.addItem(itemId)
+    setItems(budgetList.buildBudgetItemsList(true));
+  }
+
   const handleDeleteItem = (itemId: string) => {
     budgetList.deleteItem(itemId)
     setItems(budgetList.buildBudgetItemsList(true));
@@ -94,10 +99,46 @@ export default function BudgetForm() {
   // STYLES
   const { palette } = useTheme()
 
-  const nameRender = (item: BudgetItemInfo) => {
+  const NameRender = (item: BudgetItemInfo) => {
     const variant = item.type === 'title' ? "mediumPlus" : "medium" ;
     const space = item.level * 2
+    const prefix =  item.type === 'subtotal'? t('subtotal-prefix') : ''
     
+    // const [textValue, setTextValue] = useState(`${prefix} ${item.name}`)
+   
+    // const onChangeTextFieldValue = React.useCallback(
+    //   (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+    //     setTextValue(newValue || '');
+    //   },
+    //   [],
+    // );
+
+    const textFieldProps: ITextFieldProps = {
+      value: `${prefix} ${item.name}`,
+      multiline: true,
+      resizable: false,
+      // onChange: onChangeTextFieldValue,
+      styles: {
+        root: {
+          backgroundColor: "inherit",
+        },
+        fieldGroup: {
+          backgroundColor: "transparent",
+          borderColor: 'transparent',
+          borderRadius: "0 0 2px 2px",
+          selectors: {
+            ":hover": {
+              borderColor: palette.neutralTertiary,
+            },
+          },
+        },
+        field: {
+          backgroundColor: "transparent",
+          fontSize: item.type === 'title' ? FontSizes.mediumPlus : FontSizes.medium
+        }
+      },
+    }
+
     const textStyles: ITextStyles = {
       root: {
         fontWeight: 500,
@@ -105,17 +146,34 @@ export default function BudgetForm() {
       }
     }
 
-    const prefix =  item.type === 'subtotal'? t('subtotal-prefix') : ''
-    return <Text variant={variant} styles={textStyles}>{`${prefix} ${item.id} ${item.name}`}</Text>
+    return <Stack horizontal tokens={{ childrenGap: 4 }}>
+      <Stack.Item styles={{root: {paddingTop: 5}}}>
+        <Text variant={variant} styles={textStyles}>{item.id}</Text>
+      </Stack.Item>
+      <Stack.Item grow>
+        <TextField {...textFieldProps} />
+      </Stack.Item>
+    </Stack>
   }
 
-  const columnValueRender = (item: BudgetItemInfo, value: string) => {
+  const ColumnValueRender = (item: BudgetItemInfo, value: string, columnName?: string) => {
+
+    // const [textValue, setTextValue] = useState(value)
+    
+    // const onChangeTextFieldValue = React.useCallback(
+    //   (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+    //     setTextValue(newValue || '');
+    //   },
+    //   [],
+    // );
+
     const textFieldProps: ITextFieldProps = {
-      defaultValue: value,
+      value: value,
+      // onChange: onChangeTextFieldValue,
       styles: {
         root: {
           minWidth: 70,
-          width: "4ch"
+          width: "4ch",
         },
         fieldGroup: {
           borderRadius: "0 0 2px 2px",
@@ -123,14 +181,14 @@ export default function BudgetForm() {
           selectors: {
             ":hover": {
               border: `1px solid ${palette.neutralTertiary}`,
-
+              
             },
           },
         },
       },
     }
 
-    return item.type === 'item' && <TextField {...textFieldProps}/>
+    return (item.type === 'item' || item.type === 'subtotal') && <TextField {...textFieldProps}/>
   }
 
   const actionsRender = (item: BudgetItemInfo) => {
@@ -160,7 +218,7 @@ export default function BudgetForm() {
           <IconButton
             iconProps={{ iconName: "Add" }}
             styles={commandStyles}
-            onClick={() => {}}
+            onClick={() => handleAddItem(item.id)}
           />
         </TooltipHost>
         {'hasSiblings' in item && item.hasSiblings &&
