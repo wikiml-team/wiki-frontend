@@ -182,11 +182,22 @@
         "header": "Risiken"
     },
     "budget": {
-        "header": "Budget",
+        "header": "",
+        "item-type": "",
+        "subtitle-type": "",
+        "title-type": "",
+        "subtotal-type": "",
         "item-field": "",
+        "unit-field": "",
         "price-field": "",
         "amount-field": "",
-        "subtotal-prefix": ""
+        "total-field": "",
+        "actions-field": "",
+        "tooltip": {
+            "contextual-help": "",
+            "add-item": "",
+            "delete-item": ""
+        }
     },
     "financing": {
         "header": "Finanzierung"

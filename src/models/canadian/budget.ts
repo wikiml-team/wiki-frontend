@@ -3,7 +3,7 @@ import { toNumber } from "lodash";
 export type BudgetItem = {
     id: string
     name: string
-    values?: { price: number, amount: number } 
+    values?: { unit: string, price: number, amount: number } 
     subtotal?: boolean
     columns?: string[]
 }
@@ -11,10 +11,9 @@ export type BudgetItem = {
 export type SubtotalItem = {
     type: 'subtotal'
     id: string 
-    titleId: string
-    level: number
     name: string
-    values: { price: number, amount: number } 
+    level: number
+    value: number 
 }
 
 export default class BudgetList {
@@ -37,8 +36,12 @@ export default class BudgetList {
         const level = this.getItemLevel(item.id)
         const siblings =  this.findSiblings(item.id)
 
+        const amount = item.values?.amount || 0
+        const price = item.values?.price || 0
+
         return {
             ...item,
+            cost: amount * price,
             level: level,
             hasSiblings: siblings.length > 1,
             type: level === this.levelLimit -1? 'item' : level === 0? 'title' : 'subtitle'
@@ -108,11 +111,10 @@ export default class BudgetList {
                             
                             const subtotalItem = {
                                 type: 'subtotal',
-                                id: '' ,
-                                titleId: item.id,
+                                id: item.id,
                                 level: this.getItemLevel(item.id),
                                 name: item.name,
-                                values: { price: Math.floor(subtotalPrice *100)/100, amount: Math.floor(subtotalAmount *100)/100 }
+                                value: Math.floor(subtotalPrice *100)/100
                             } as SubtotalItem
                             
                             // insert subtotal passing its children
@@ -215,6 +217,6 @@ export default class BudgetList {
 
 }
 
-export type LevelBudgetItem = BudgetItem & { level: number, hasSiblings?: boolean, type: 'item' | 'title' | 'subtitle' }
+export type LevelBudgetItem = BudgetItem & { cost: number, level: number, hasSiblings?: boolean, type: 'item' | 'title' | 'subtitle' }
 
 export type BudgetItemInfo = LevelBudgetItem | SubtotalItem

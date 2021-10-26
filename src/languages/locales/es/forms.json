@@ -183,10 +183,20 @@
     },
     "budget": {
         "header": "Presupuesto",
+        "item-type": "Item",
+        "subtitle-type": "Subtitulo",
+        "title-type": "Título",
+        "subtotal-type": "Subtotal",
         "item-field": "Item",
+        "unit-field": "Unidad",
         "price-field": "Precio",
         "amount-field": "Cantidad",
-        "subtotal-prefix": "Subtotal"
+        "total-field": "Costo Total",
+        "tooltip": {
+            "contextual-help": "Ayuda contextual",
+            "add-item": "Añadir item debajo",
+            "delete-item": "Eliminar item"
+        }
     },
     "financing": {
         "header": "Financiación"

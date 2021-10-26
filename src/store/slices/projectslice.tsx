@@ -246,12 +246,12 @@ const budgetItems: BudgetItem[] = [
     {
         id: "1.1.1",
         name: "Personal técnico",
-        values: { price: 3.05, amount: 1}
+        values: { unit: "personas", price: 3.05, amount: 1}
     },
     {
         id: "1.1.2",
         name: "Personal administrativo y de apoyo",
-        values: { price: 5.45, amount: 3}
+        values: { unit: "personas", price: 5.45, amount: 3}
     },
     {
         id: "1.2",
@@ -268,17 +268,17 @@ const budgetItems: BudgetItem[] = [
     {
         id: "1.3.1",
         name: "En el extranjero (personal para la Acción)",
-        values: { price: 2.00, amount: 1}
+        values: { unit: "personas", price: 2.00, amount: 1}
     },
     {
         id: "1.3.2",
         name: "Local (personal para la Acción)",
-        values: { price: 10.00, amount: 1}
+        values: { unit: "personas", price: 10.00, amount: 1}
     },
     {
         id: "1.3.3",
         name: "Participantes en seminarios/conferencias",
-        values: { price: 13.05, amount: 1}
+        values: { unit: "personas", price: 13.05, amount: 1}
     },
 ];
 
