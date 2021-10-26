@@ -19,7 +19,8 @@ import {
   FontSizes,
   useTheme,
   DetailsListLayoutMode,
-  ITextProps
+  ITextProps,
+  FontWeights
 } from "@fluentui/react";
 import { useBoolean } from '@fluentui/react-hooks';
 
@@ -49,6 +50,8 @@ export default function BudgetForm() {
       minWidth: 70,
       flexGrow: 1,
       isMultiline: true,
+      isResizable: true,
+      isRowHeader: true,
       onRender: (item: BudgetItemInfo) => NameRender(item),
     },
     {
@@ -58,7 +61,7 @@ export default function BudgetForm() {
       ariaLabel: "unit",
       minWidth: 100,
       maxWidth: 350,
-      isRowHeader: true,
+      isResizable: true,
       data: 'number',
       onRender: (item: BudgetItemInfo) => ColumnValueRender(item, getUnitValue(item), false, 'unit')
     },
@@ -69,8 +72,8 @@ export default function BudgetForm() {
       ariaLabel: "price",
       minWidth: 70,
       maxWidth: 350,
-      isRowHeader: true,
       data: 'number',
+      isResizable: true,
       onRender: (item: BudgetItemInfo) => ColumnValueRender(item, getPriceValue(item))
     },
     {
@@ -78,7 +81,7 @@ export default function BudgetForm() {
       name: t('amount-field'),
       fieldName: 'amount',
       minWidth: 70,
-      data: 'string',
+      data: 'number',
       isResizable: true,
       isPadded: true,
       onRender: (item: BudgetItemInfo) => ColumnValueRender(item, getAmountValue(item))
@@ -88,7 +91,7 @@ export default function BudgetForm() {
       name: t('total-field'),
       fieldName: 'total',
       minWidth: 70,
-      data: 'string',
+      data: 'number',
       isResizable: true,
       isPadded: true,
       onRender: (item: BudgetItemInfo) => ColumnValueRender(item, getTotalCostValue(item), true)
@@ -98,22 +101,21 @@ export default function BudgetForm() {
       name: t('actions-field'),
       fieldName: 'actions',
       minWidth: 100,
-      data: 'string',
+      data: 'actions',
       isResizable: true,
       isPadded: true,
-      isMultiline: true,
       onRender: (item: BudgetItemInfo) => actionsRender(item)
     }
   ]
 
   // Get correct field value
   const getUnitValue = (item: BudgetItemInfo): string => {
-    return (item.type === 'item' && item.values?.unit.toString()) || ''
+    return (item.type === 'subtotal' && item.value.toString()) || 
+          (item.type === 'item' && item.values?.unit.toString()) || ''
   }
 
   const getPriceValue = (item: BudgetItemInfo): string => {
-    return (item.type !== 'subtotal' && item.values?.price.toString()) ||
-      (item.type === 'subtotal' && item.value.toString()) || ''
+    return (item.type === 'item' && item.values?.price.toString()) || ''
   }
 
   const getAmountValue = (item: BudgetItemInfo): string => {
@@ -236,12 +238,21 @@ export default function BudgetForm() {
       },
     }
 
+    const textProps: ITextProps = {
+      variant: 'medium',
+      styles: {
+        root: {
+          fontWeight: item.type === 'subtotal'? FontWeights.semibold : FontWeights.light
+        }
+      }
+    }
+
     const fixedCell = fixedcolumn || item.type === 'subtotal' || value === ''
     switch (fixedCell) {
       case true:
         return (
           <div style={{ padding: 8 }}>
-            <Text variant="medium">{value}</Text>
+            <Text {...textProps}>{value}</Text>
           </div>
         )
       default:
