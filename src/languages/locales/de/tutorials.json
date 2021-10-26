@@ -1,11 +1,17 @@
 {
+    "contact": {
+        "header": "",
+        "oficialpage": ""
+    },
     "forms": {
         "header": "Formulare",
-        "form-table-header": "Formular",
-        "description-table-header": "Beschreibung"
+        "form-title": "Formular",
+        "description-title": "Beschreibung"
     },
     "sectors": {
-        "header": "Sektor",
+        "header": "Sektoren",
+        "sector-title": "Sektor",
+        "description-title": "Beschreibung",
         "agriculture" : "Landwirtschaft und Ernährung",
         "economic" : "Wirtschaftswachstum",
         "rights" : "Menschenrechte und demokratische Regierungsführung",

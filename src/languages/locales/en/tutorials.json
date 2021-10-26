@@ -1,11 +1,17 @@
 {
+    "contact": {
+        "header": "Contact",
+        "oficialpage": "Oficial page"
+    },
     "forms": {
         "header": "Forms",
-        "form-table-header": "Form",
-        "description-table-header": "Description"
+        "form-title": "Form",
+        "description-title": "Description"
     },
     "sectors": {
         "header": "Sectors",
+        "sector-title": "Sector",
+        "description-title": "Description",
         "agriculture" : "Agriculture and Nutrition",
         "economic" : "Economic growth",
         "rights" : "Human rights and Democratic governance",

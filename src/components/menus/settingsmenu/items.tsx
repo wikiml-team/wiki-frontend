@@ -8,7 +8,7 @@ export const GetItems = () => {
     const { t } = useTranslation("menuheaders", { keyPrefix: "settings" })
     const t_basics = useTranslation('basics').t
     const history = useHistory();
-  
+
     return [
       {
         key: "home",
@@ -21,7 +21,7 @@ export const GetItems = () => {
         key: "return",
         iconProps: { iconName: "NavigateBack" },
         text: t_basics("return"),
-        onClick: () => history.goBack(),
+        onClick: () => history.push('/workplace'),
         ariaLabel: "return"
       },
       {

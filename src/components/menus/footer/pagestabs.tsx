@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -11,7 +11,6 @@ import {
 } from "@fluentui/react";
 
 import { Tab } from "models/workplace";
-import i18next from "i18next";
 
 type PagesTabProps = {
   tabs?: Tab[];

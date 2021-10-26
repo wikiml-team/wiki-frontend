@@ -53,6 +53,7 @@ import UsersData from "./database/usersdata";
 import { TabSchema } from "models/workplace";
 import EvaluationForm from "./projectforms/evaluationform";
 import ApplicationForm from "./projectforms/applicationform";
+import Contact from "./tutorials/contact";
 
 const tabsConfiguration = new TabSchema([
   {
@@ -177,36 +178,42 @@ const tabsConfiguration = new TabSchema([
     childtabs: [
       {
         key: "key1",
+        name: "contact",
+        icon: "PageData",
+        render: <Contact />,
+      },
+      {
+        key: "key2",
         name: "forms",
         icon: "PageData",
         render: <FormsTutorials />,
       },
       {
-        key: "key2",
+        key: "key3",
         name: "sectors",
         icon: "Sections",
         render: <SectorsTutorials />,
       },
       {
-        key: "key3",
+        key: "key4",
         name: "guides",
         icon: "GUID",
         render: <GuidesTutorials />,
       },
       {
-        key: "key4",
+        key: "key5",
         name: "tutorials",
         icon: "Video",
         render: <Tutorials />,
       },
       {
-        key: "key5",
+        key: "key6",
         name: "outcomes",
         icon: "ReportDocument",
         render: <OutcomesTutorial />,
       },
       {
-        key: "key6",
+        key: "key7",
         name: "indicators",
         icon: "CRMReport",
         render: <IndicatorsTutorial />,

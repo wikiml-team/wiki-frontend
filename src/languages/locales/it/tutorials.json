@@ -1,11 +1,17 @@
 {
+    "contact": {
+        "header": "",
+        "oficialpage": ""
+    },
     "forms": {
         "header": "Moduli",
-        "form-table-header": "Modulo",
-        "description-table-header": "Descrizione"
+        "form-title": "Modulo",
+        "description-title": "Descrizione"
     },
     "sectors": {
         "header": "Settori",
+        "sector-title": "Settor",
+        "description-title": "Descrizione",
         "agriculture" : "Agricoltura e alimentazione",
         "economic" : "Crescita economica",
         "rights" : "Diritti umani e governance democratica",

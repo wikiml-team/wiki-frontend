@@ -3,6 +3,8 @@ import { DetailsList,
         DetailsListLayoutMode, 
         IColumn, 
         IconButton, 
+        ILinkStyles, 
+        ITextStyles, 
         Link, 
         SelectionMode, 
         Text } from "@fluentui/react";
@@ -30,7 +32,8 @@ const guides : IDocumnet[] = [
   {
       key: "key2",
       name: "Gestión basada en los resultados para la programación de la asistencia internacional: Una guía práctica",
-      fileType: "other"
+      fileType: "other",
+      link: 'https://www.international.gc.ca/world-monde/funding-financement/results_based_management-gestion_axee_resultats-guide.aspx?lang=eng'
   },
   {
       key: "key3",
@@ -87,10 +90,11 @@ export default function GuidesTutorials() {
         name: 'name',
         fieldName: 'name',
         minWidth: 100,
-        maxWidth: 500,
+        flexGrow: 1,
+        isMultiline: true, 
         data: 'string',
-        onRender: (item: IDocumnet) => linkRender(item),
         isPadded: true,
+        onRender: (item: IDocumnet) => linkRender(item),
       },
     ]
 
@@ -102,9 +106,15 @@ export default function GuidesTutorials() {
 
     const linkRender = (doc: IDocumnet) => {
 
+      const textStyles: ITextStyles = {
+        root: {
+          lineHeight: '32px'
+        }
+      }
+
       return (
-        <Text variant="medium">
-          <Link href={doc.link} styles={{root:{marginTop: 7}}}>{t(doc.name)}</Link>
+        <Text variant="medium" styles={textStyles}>
+          <Link href={doc.link} target='_blank'>{t(doc.name)}</Link>
         </Text>
       )
     }

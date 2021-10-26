@@ -1,11 +1,17 @@
 {
+    "contact": {
+        "header": "Contacto",
+        "oficialpage": "Página oficial"
+    },
     "forms": {
         "header": "Formularioss",
-        "form-table-header": "Formulario",
-        "description-table-header": "Descripción"
+        "form-title": "Formulario",
+        "description-title": "Descripción"
     },
     "sectors": {
         "header": "Sectores",
+        "sector-title": "Sector",
+        "description-title": "Descripción",
         "agriculture" : "Agricultura y alimentación",
         "economic" : "Crecimiento económico",
         "rights" : "Derechos humanos y Gobernanza democrática",
