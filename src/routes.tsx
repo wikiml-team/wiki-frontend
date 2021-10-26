@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import WorkplaceLayout from "layouts/workplace";
 import HomePage from "pages/home/home";
-import MainLayout from "layouts/main";
+import FileLayout from "layouts/file";
 import NewPage from "pages/home/new";
 import OpenPage from "pages/home/open";
 import InfoPage from "pages/home/info";
@@ -20,14 +20,14 @@ import Team from "pages/settings/team";
 import SettingsLayout from "layouts/settings";
 
 // Canaidan Methodology - Project Tab
-const GeneralForm = lazy(() => import("pages/methodologies/canadian/projectforms/generalform"));
-const StakeholdersForm = lazy(() => import("pages/methodologies/canadian/projectforms/stakeholdersform"));
-const LogicModelForm = lazy(() => import("pages/methodologies/canadian/projectforms/logicmodelform"));
-const ActivitiesMatrixForm = lazy(() => import("pages/methodologies/canadian/projectforms/activitiesform"));
-const PerformanceMeasureForm = lazy(() => import("pages/methodologies/canadian/projectforms/performanceform"));
-const RisksForm = lazy(() => import("pages/methodologies/canadian/projectforms/risksform"));
-const BudgetForm = lazy(() => import("pages/methodologies/canadian/projectforms/budgetform"));
-const ReportsForm = lazy(() => import("pages/methodologies/canadian/projectforms/reportsform"));
+const GeneralForm = lazy(() => import("pages/forms/canadian/projectforms/generalform"));
+const StakeholdersForm = lazy(() => import("pages/forms/canadian/projectforms/stakeholdersform"));
+const LogicModelForm = lazy(() => import("pages/forms/canadian/projectforms/logicmodelform"));
+const ActivitiesMatrixForm = lazy(() => import("pages/forms/canadian/projectforms/activitiesform"));
+const PerformanceMeasureForm = lazy(() => import("pages/forms/canadian/projectforms/performanceform"));
+const RisksForm = lazy(() => import("pages/forms/canadian/projectforms/risksform"));
+const BudgetForm = lazy(() => import("pages/forms/canadian/projectforms/budgetform"));
+const ReportsForm = lazy(() => import("pages/forms/canadian/projectforms/reportsform"));
 
 export default function Routes() {
   return (
@@ -86,7 +86,7 @@ const ProjectSwitcher = () => (
 // HOME
 const MainSwitcher = () => (
   // Home, New, Open
-  <MainLayout>
+  <FileLayout>
     <Switch>
       <Route path="/new" component={NewPage} />
       <Route path="/open" component={OpenPage} />
@@ -95,7 +95,7 @@ const MainSwitcher = () => (
       <Route path="/" component={HomePage} />
     </Switch>
 
-  </MainLayout>
+  </FileLayout>
 );
 
 const FileSwitcher = () => (

@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import IState from "models/state";
 import IWorkplaceConfiguration, { TabSchema } from "models/workplace";
-import tabsConfiguration from "pages/methodologies/canadian/tabsconfiguration";
+import tabsConfiguration from "pages/forms/canadian/tabsconfiguration";
 
 const initialState: IWorkplaceConfiguration = {
     tabsSchema: tabsConfiguration,

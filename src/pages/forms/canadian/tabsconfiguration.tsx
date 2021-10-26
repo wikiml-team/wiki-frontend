@@ -3,30 +3,30 @@ import { Redirect } from "react-router";
 import { Label } from "@fluentui/react";
 
 // PROJECT FORMS
-import GeneralForm from "pages/methodologies/canadian/projectforms/generalform";
-import StakeholdersForm from "pages/methodologies/canadian/projectforms/stakeholdersform";
-import LogicModelForm from "pages/methodologies/canadian/projectforms/logicmodelform";
-import ActivitiesMatrixForm from "pages/methodologies/canadian/projectforms/activitiesform";
-import PerformanceMeasureForm from "pages/methodologies/canadian/projectforms/performanceform";
-import RisksForm from "pages/methodologies/canadian/projectforms/risksform";
-import BudgetForm from "pages/methodologies/canadian/projectforms/budgetform";
-import ReportsForm from "pages/methodologies/canadian/projectforms/reportsform";
-import ChangeNarrativeForm from "pages/methodologies/canadian/projectforms/changenarrativeform";
+import GeneralForm from "pages/forms/canadian/projectforms/generalform";
+import StakeholdersForm from "pages/forms/canadian/projectforms/stakeholdersform";
+import LogicModelForm from "pages/forms/canadian/projectforms/logicmodelform";
+import ActivitiesMatrixForm from "pages/forms/canadian/projectforms/activitiesform";
+import PerformanceMeasureForm from "pages/forms/canadian/projectforms/performanceform";
+import RisksForm from "pages/forms/canadian/projectforms/risksform";
+import BudgetForm from "pages/forms/canadian/projectforms/budgetform";
+import ReportsForm from "pages/forms/canadian/projectforms/reportsform";
+import ChangeNarrativeForm from "pages/forms/canadian/projectforms/changenarrativeform";
 
 // LICITATION FORMS
-import LotForm from "pages/methodologies/canadian/licitationforms/lotform";
-import SpecificationsForm from "pages/methodologies/canadian/licitationforms/specificationsform";
-import TechnicalOfferForm from "pages/methodologies/canadian/licitationforms/technicalofferform";
-import FinancialOfferForm from "pages/methodologies/canadian/licitationforms/financialofferform";
+import LotForm from "pages/forms/canadian/licitationforms/lotform";
+import SpecificationsForm from "pages/forms/canadian/licitationforms/specificationsform";
+import TechnicalOfferForm from "pages/forms/canadian/licitationforms/technicalofferform";
+import FinancialOfferForm from "pages/forms/canadian/licitationforms/financialofferform";
 
 // TUTORIALS
-import FormsTutorials from "pages/methodologies/canadian/tutorials/formstutorial";
-import SectorsTutorials from "pages/methodologies/canadian/tutorials/sectorstutorial";
-import GuidesTutorials from "pages/methodologies/canadian/tutorials/guidestutorial";
-import Tutorials from "pages/methodologies/canadian/tutorials/methodologytutorials";
-import OutcomesTutorial from "pages/methodologies/canadian/tutorials/outcomestutorial";
-import IndicatorsTutorial from "pages/methodologies/canadian/tutorials/indicatorstutorial";
-import FinancingForm from "pages/methodologies/canadian/tutorials/indicatorstutorial";
+import FormsTutorials from "pages/forms/canadian/tutorials/formstutorial";
+import SectorsTutorials from "pages/forms/canadian/tutorials/sectorstutorial";
+import GuidesTutorials from "pages/forms/canadian/tutorials/guidestutorial";
+import Tutorials from "pages/forms/canadian/tutorials/methodologytutorials";
+import OutcomesTutorial from "pages/forms/canadian/tutorials/outcomestutorial";
+import IndicatorsTutorial from "pages/forms/canadian/tutorials/indicatorstutorial";
+import FinancingForm from "pages/forms/canadian/tutorials/indicatorstutorial";
 
 // DATABASE
 import ActivitiesData from "./database/activitiesdata";

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
-import { INavLinkGroup, 
+import {
     INavStyles, 
     Nav, 
     useTheme, 
@@ -15,12 +15,12 @@ import { INavLinkGroup,
     mergeStyleSets,
     INavLink
 } from '@fluentui/react';
+import { GetFooterItems, GetPrimaryItems, GetSecondaryItems } from './items';
 
 export default function FileMenu() {
 
     // LOGIC
-    const { t } = useTranslation('menuheaders', {keyPrefix: 'filemenu'});
-    const t_basics = useTranslation('basics').t
+    const { t } = useTranslation('basics');
 
     const history = useHistory()
     
@@ -125,78 +125,11 @@ export default function FileMenu() {
     };
 
     // NAVs
-    const nav: INavLinkGroup[] = [
-        {
-            links: [
-                {
-                    name: t('home'),
-                    url: '/',
-                    key: 'key_home',
-                    icon: 'Home',
-                },
-                {
-                    name: t('new'),
-                    url: '/new',
-                    key: 'key_new',
-                    icon: 'Page',
-                    title: `${t('new')} ${t('project')}`
-                },
-                {
-                    name: t('open'),
-                    url: '/open',
-                    key: 'key_open',
-                    icon: 'OpenFolderHorizontal',
-                    title: `${t('open')} ${t('project')}`
-                }
-            ],
-        },
-    ];
+    const nav = GetPrimaryItems()
 
-    const nav_methodologies: INavLinkGroup[] = [
-        {
-            links: [
-                {
-                    name: t('methodologies'),
-                    url: '/methodologies',
-                    key: 'key_methodologies',
-                    icon: 'StackIndicator',
-                }
-            ],
-        },
-    ];
+    const nav_methodologies = GetSecondaryItems()
     
-    const footer_nav: INavLinkGroup[] = [
-        {
-            links: [
-                {
-                    name: t('info'),
-                    url: '/1/info',
-                    key: 'key_info',
-                },
-                {
-                    name: t('export'),
-                    url: '/1/export',
-                    key: 'key_export',
-                },
-                {
-                    name: t('print'),
-                    url: '/1/print',
-                    key: 'key_print',
-                },
-                {
-                    name: t('share'),
-                    url: '/1/share',
-                    key: 'key_share',
-                },
-                {
-                    name: t('about'),
-                    url: '/1/about',
-                    key: 'key_about',
-                },        
-            ],
-        }
-    ]
-
+    const footer_nav = GetFooterItems()
 
     return (
         <React.Fragment>
@@ -206,10 +139,10 @@ export default function FileMenu() {
                 styles={buttonStyles}
                 onClick={handleOnReturn}
             >
-                {t_basics("return")}
+                {t("return")}
             </ActionButton>
 
-            {/* links */}
+            {/* Project */}
             <Nav 
                 selectedKey={selectedKey}
                 ariaLabel="File menu" 

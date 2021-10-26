@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 
 import { IStackStyles, Stack, useTheme } from "@fluentui/react";
 
-import FileMenu from "components/menus/homemenu/filemenu";
+import FileMenu from "components/menus/filenav";
 
-const MainLayout: FunctionComponent = (props) => {
+const FileLayout: FunctionComponent = (props) => {
 
   const { children } = props;
 
@@ -42,5 +42,5 @@ const MainLayout: FunctionComponent = (props) => {
   )
 }
 
-export default MainLayout;
+export default FileLayout;
 
