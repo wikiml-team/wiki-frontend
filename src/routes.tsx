@@ -2,8 +2,11 @@ import { lazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import WorkplaceLayout from "layouts/workplace";
-import HomePage from "pages/home/home";
 import FileLayout from "layouts/file";
+import SettingsLayout from "layouts/settings";
+import MethodologyLayout from "layouts/methodology";
+
+import HomePage from "pages/home/home";
 import NewPage from "pages/home/new";
 import OpenPage from "pages/home/open";
 import InfoPage from "pages/home/info";
@@ -17,7 +20,6 @@ import Profile from "pages/settings/profile";
 import Privacy from "pages/settings/privacy";
 import Security from "pages/settings/security";
 import Team from "pages/settings/team";
-import SettingsLayout from "layouts/settings";
 
 // Canaidan Methodology - Project Tab
 const GeneralForm = lazy(() => import("pages/forms/canadian/projectforms/generalform"));
@@ -36,6 +38,7 @@ export default function Routes() {
         <Route path="/main" component={Main} />
         <Route path="/settings" render={SettingsSwitcher} />
         <Route path="/workplace" render={WorkplaceSwitcher} />
+        <Route path="/methodology" render={MethodologyManagementSwitcher} />
         <Route path="/" render={MainSwitcher} />
       </Switch>
     </Router>
@@ -94,7 +97,6 @@ const MainSwitcher = () => (
       <Route path="/:fileId" render={FileSwitcher} />
       <Route path="/" component={HomePage} />
     </Switch>
-
   </FileLayout>
 );
 
@@ -108,5 +110,18 @@ const FileSwitcher = () => (
       <Route path="/:fileId/about" component={AboutPage} />
   </Switch>
 )
+
+// Methodology
+const MethodologyManagementSwitcher = () => (
+  /* Profile, Privacy, Security, Team */
+  <MethodologyLayout>
+    <Switch>
+      <Route path="/methodology/:methodologyId/read" component={Team} />
+      <Route path="/methodology/:methodologyId/update" component={Privacy} />
+      <Route path="/methodology/:methodologyId/delete" component={Security} />
+      <Route path="/methodology/create" component={Profile}/>
+    </Switch>
+  </MethodologyLayout>
+);
 
 

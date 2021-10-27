@@ -10,14 +10,13 @@ import {
     IIconProps,
     ActionButton,
     IButtonStyles,
-    Separator,
-    ISeparatorStyles,
     mergeStyleSets,
     INavLink
 } from '@fluentui/react';
-import { GetFooterItems, GetPrimaryItems, GetSecondaryItems } from './items';
+import { GetItems } from './items';
+import Scrollbars from 'react-custom-scrollbars';
 
-export default function FileMenu() {
+export default function MethodologyMenu() {
 
     // LOGIC
     const { t } = useTranslation('basics');
@@ -28,7 +27,7 @@ export default function FileMenu() {
     
     useEffect(() => {
         const path = history.location.pathname.split('/')
-        const key = path[path.length - 1] === ""? "key_home" : `key_${path[path.length - 1]}` 
+        const key = path[path.length - 1] === ""? "project_index" : `${path[path.length - 1]}` 
         setSelectedKey(key)
     }, [history])
     
@@ -36,13 +35,13 @@ export default function FileMenu() {
         if (ev) ev.preventDefault()
         
         if (item) {
-            setSelectedKey(item.key || "key_home")
+            setSelectedKey(item.key || "project_index")
             history.push(item.url)
         }
     }
     
     const handleOnReturn = () => {
-        history.push("/workplace")
+        history.push("/")
     }
     
     // STYLES
@@ -106,30 +105,23 @@ export default function FileMenu() {
         },
         linkText: {
             // color: palette.white!
-            paddingLeft: 10
+            paddingLeft: 30
         },
         groupContent: {
             marginBottom: 2
+        },
+        chevronIcon: {
+            marginLeft: 8
+        },
+        chevronButton: {
+            width: 30,
+            // marginLeft: 10
+
         }
     };
 
-    // Separator
-    const separatorStyles: Partial<ISeparatorStyles> = {
-        root: {
-        "::before": {
-            margin: "0px 10px",
-            height: 0.4,
-            background: palette.neutralTertiaryAlt,
-            },
-        },
-    };
-
     // NAVs
-    const nav = GetPrimaryItems()
-
-    const nav_methodologies = GetSecondaryItems()
-    
-    const footer_nav = GetFooterItems()
+    const nav = GetItems()
 
     return (
         <React.Fragment>
@@ -143,35 +135,16 @@ export default function FileMenu() {
             </ActionButton>
 
             {/* Project */}
+            <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
             <Nav 
                 selectedKey={selectedKey}
-                ariaLabel="File menu" 
+                ariaLabel="Methodology menu" 
                 styles={navStyles} 
                 groups={nav} 
-                onLinkClick={handleNavOnClick}/>
+                onLinkClick={handleNavOnClick}
+                />
+            </Scrollbars>
 
-            {/* Separator */}
-            <Separator styles={separatorStyles}/>
-
-            {/* Methodologies */}
-            <Nav 
-                selectedKey={selectedKey}
-                ariaLabel="File menu" 
-                styles={navStyles} 
-                groups={nav_methodologies} 
-                onLinkClick={handleNavOnClick}/>
-
-            {/* Separator */}
-            <Separator styles={separatorStyles}/>
-
-            {/* footer */}
-            <Nav 
-                selectedKey={selectedKey}
-                ariaLabel="File menu" 
-                styles={navStyles} 
-                groups={footer_nav} 
-                className={classes.footer}
-                onLinkClick={handleNavOnClick}/>
         </React.Fragment>
     )
 }

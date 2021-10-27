@@ -2,15 +2,12 @@ import React from 'react'
 import { useTranslation } from "react-i18next";
 
 import { IButtonStyles, 
-        IconButton, 
         IStackProps, 
         Overlay, 
         PrimaryButton, 
         Stack, 
         useTheme,
-        IButtonProps,
         TooltipHost,
-        mergeStyleSets,
         Icon} from "@fluentui/react";
 
 import MethodologyCard from "components/cards/methodologycard";
@@ -18,6 +15,7 @@ import ExecuteQuery from 'apollo/executequery';
 import { GET_METHODOLOGIES } from "apollo/methodologies";
 import { Centered, CenteredText } from 'components/styled/centered';
 import { Subtitle, Title } from 'components/styled/text';
+import { useHistory } from 'react-router';
 
 export default function MethodologiesPage() {
 
@@ -69,16 +67,19 @@ const mapMethodologiesToCards = (data: any) => {
             <MethodologyCard 
                 name={name} 
                 href={`/methodologies/${id}`} 
-                contentToDisplay={<DisplayContentOverCard/>}/>
+                contentToDisplay={<DisplayContentOverCard methodology_id={id}/>}/>
         </Stack.Item>
         )
     )
 }
 
-function DisplayContentOverCard(props : {add? : boolean}) {
+function DisplayContentOverCard(props : {add? : boolean, methodology_id?: number}) {
     
+    const {add, methodology_id } = props
+
     const { t } = useTranslation("permitions");
     const { palette } = useTheme()
+    const history = useHistory()
     
     const buttonStyles : IButtonStyles = {
         root: {
@@ -91,19 +92,19 @@ function DisplayContentOverCard(props : {add? : boolean}) {
             <Centered>
                 <Stack horizontal tokens={{childrenGap: 10}}>
                     {
-                        props.add? (
+                        add? (
                             <PrimaryButton 
                                 text={t("create")} 
-                                onClick={()=> {}}/>
+                                onClick={()=> history.push('/methodology/create')}/>
                         ) : (<>
                             <PrimaryButton
                                 text={t("read")}
-                                onClick={()=> {}} 
+                                onClick={()=> history.push(`methodology/${methodology_id}/read`)} 
                                 styles={buttonStyles}
                                 />
                             <PrimaryButton 
                                 text={t("edit")} 
-                                onClick={()=> {}}/>
+                                onClick={()=> history.push(`methodology/${methodology_id}/edit`)}/>
                             </>)
                     }
                 </Stack>
