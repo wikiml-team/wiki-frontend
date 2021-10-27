@@ -44,5 +44,12 @@
         "privacy": "Privacidad",
         "security": "Securidad",
         "team": "Equipo"
+    },
+    "methodology": {
+        "forms": "Formularios",
+        "licitations": "Licitaciones",
+        "tutorials": "Tutoriales",
+        "indicators": "Indicatores",
+        "index": "Índice"
     }
 }

@@ -44,5 +44,12 @@
         "privacy": "Privacy",
         "security": "Security",
         "team": "Team"
+    },
+    "methodology": {
+        "forms": "Project Forms",
+        "licitations": "Licitation Forms",
+        "tutorials": "Tutorials",
+        "indicators": "Indicators",
+        "index": "Index"
     }
 }
