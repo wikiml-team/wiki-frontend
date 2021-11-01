@@ -1,25 +1,35 @@
 import { lazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Main from "pages/main";
 
+// Layouts
 import WorkplaceLayout from "layouts/workplace";
 import FileLayout from "layouts/file";
 import SettingsLayout from "layouts/settings";
 import MethodologyLayout from "layouts/methodology";
 
-import HomePage from "pages/filemenu/home";
-import NewPage from "pages/filemenu/new";
-import OpenPage from "pages/filemenu/open";
-import InfoPage from "pages/filemenu/info";
-import AboutPage from "pages/filemenu/about";
-import SharePage from "pages/filemenu/share";
-import PrintPage from "pages/filemenu/print";
-import ExportPage from "pages/filemenu/export";
-import Main from "pages/main";
-import MethodologiesPage from "pages/filemenu/methodologies";
-import Profile from "pages/settings/profile";
-import Privacy from "pages/settings/privacy";
-import Security from "pages/settings/security";
-import Team from "pages/settings/team";
+// Filemenu
+const HomePage = lazy(() => import("pages/filemenu/home"));
+const NewPage = lazy(() => import("pages/filemenu/new"));
+const OpenPage = lazy(() => import("pages/filemenu/open"));
+const InfoPage = lazy(() => import("pages/filemenu/info"));
+const AboutPage = lazy(() => import("pages/filemenu/about"));
+const SharePage = lazy(() => import("pages/filemenu/share"));
+const PrintPage = lazy(() => import("pages/filemenu/print"));
+const ExportPage = lazy(() => import("pages/filemenu/export"));
+const MethodologiesPage = lazy(() => import("pages/filemenu/methodologies"));
+
+// Settings
+const Profile = lazy(() => import("pages/settings/profile"));
+const Privacy = lazy(() => import("pages/settings/privacy"));
+const Security = lazy(() => import("pages/settings/security"));
+const Team = lazy(() => import("pages/settings/team"));
+
+// Methodology Management
+const MethodologyInfo = lazy(() => import("pages/methodology"));
+const UpdateMethodology = lazy(() => import("pages/methodology/update"));
+const DeleteMethodology = lazy(() => import("pages/methodology/delete"));
+const CreateMethodology = lazy(() => import("pages/methodology/create"));
 
 // Canaidan Methodology - Project Tab
 const GeneralForm = lazy(() => import("pages/forms/canadian/projectforms/generalform"));
@@ -116,10 +126,10 @@ const MethodologyManagementSwitcher = () => (
   /* Profile, Privacy, Security, Team */
   <MethodologyLayout>
     <Switch>
-      <Route path="/methodology/:methodologyId/read" component={Team} />
-      <Route path="/methodology/:methodologyId/update" component={Privacy} />
-      <Route path="/methodology/:methodologyId/delete" component={Security} />
-      <Route path="/methodology/create" component={Profile}/>
+      <Route path="/methodology/:methodologyId/read/:form" component={MethodologyInfo} />
+      <Route path="/methodology/:methodologyId/update/:form" component={UpdateMethodology} />
+      <Route path="/methodology/:methodologyId/delete/:form" component={DeleteMethodology} />
+      <Route path="/methodology/create" component={CreateMethodology}/>
     </Switch>
   </MethodologyLayout>
 );

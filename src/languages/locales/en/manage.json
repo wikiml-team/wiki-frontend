@@ -1,0 +1,20 @@
+{
+    "form": {
+        "header": "Component",
+        "amount": {
+            "maximal-field": "Maximal Amount",
+            "minimal-field": "Minimal Amount",
+            "top-field": "Top Amount"
+        },
+        "characters": {
+            "maximal-field": "Maximal Character",
+            "minimal-field": "Minimal Character",
+            "top-field": "Top Character"
+        },
+        "language-field" : "Language",
+        "name-field": "Label name",
+        "tooltip-field": "Tooltip",
+        "definition-field": "Definition",
+        "format-field": "Format"
+    }
+}
