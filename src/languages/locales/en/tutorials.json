@@ -5,13 +5,13 @@
     },
     "forms": {
         "header": "Forms",
-        "form-title": "Form",
-        "description-title": "Description"
+        "form-field": "Form",
+        "description-field": "Description"
     },
     "sectors": {
         "header": "Sectors",
-        "sector-title": "Sector",
-        "description-title": "Description",
+        "sector-field": "Sector",
+        "description-field": "Description",
         "agriculture" : "Agriculture and Nutrition",
         "economic" : "Economic growth",
         "rights" : "Human rights and Democratic governance",

@@ -12,6 +12,11 @@
     "accept": "Accept",
     "cancel": "Cancel",
     "save-before-closing": "Do you want to save before closing?",
+    "actions": {
+        "edit": "Edit",
+        "create": "Create",
+        "delete": "Delete"
+    },
     "methodologies": {
         "canadian": "Canadian Methodology",
         "german": "German Methodology",

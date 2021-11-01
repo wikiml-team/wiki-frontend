@@ -1,10 +1,10 @@
 import { ITheme } from "@fluentui/react";
 import IProject from "./project";
-
+import ILanguageSetting from "./languagesetting"
 import IWorkplaceConfiguration from "./workplace";
 
 export default interface IState {
-  language: string;
+  language: ILanguageSetting;
   theme: ITheme;
   helpTooltips: boolean;
   project: IProject;

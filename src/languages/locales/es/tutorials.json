@@ -5,13 +5,13 @@
     },
     "forms": {
         "header": "Formularioss",
-        "form-title": "Formulario",
-        "description-title": "Descripción"
+        "form-field": "Formulario",
+        "description-field": "Descripción"
     },
     "sectors": {
         "header": "Sectores",
-        "sector-title": "Sector",
-        "description-title": "Descripción",
+        "sector-field": "Sector",
+        "description-field": "Descripción",
         "agriculture" : "Agricultura y alimentación",
         "economic" : "Crecimiento económico",
         "rights" : "Derechos humanos y Gobernanza democrática",

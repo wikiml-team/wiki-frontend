@@ -5,13 +5,13 @@
     },
     "forms": {
         "header": "Moduli",
-        "form-title": "Modulo",
-        "description-title": "Descrizione"
+        "form-field": "Modulo",
+        "description-field": "Descrizione"
     },
     "sectors": {
         "header": "Settori",
-        "sector-title": "Settor",
-        "description-title": "Descrizione",
+        "sector-field": "Settor",
+        "description-field": "Descrizione",
         "agriculture" : "Agricoltura e alimentazione",
         "economic" : "Crescita economica",
         "rights" : "Diritti umani e governance democratica",

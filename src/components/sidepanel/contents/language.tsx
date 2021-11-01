@@ -8,13 +8,14 @@ import {
   Stack,
 } from "@fluentui/react";
 
-import { setLanguage, selectLanguage } from "store/slices/languageslice";
+import { setLanguage, selectLanguage, selectSupportedLanguages } from "store/slices/languageslice";
 
 export default function LanguagePanel() {
   const { t } = useTranslation("commands", { keyPrefix: "language"});
-  const t1 = useTranslation("basics", { keyPrefix: "languages"}).t
+  const t_basics = useTranslation("basics", { keyPrefix: "languages"}).t
   
   const lang = useSelector(selectLanguage);
+  const supportedLanguages = useSelector(selectSupportedLanguages);
 
   const dispatch = useDispatch();
 
@@ -36,19 +37,19 @@ export default function LanguagePanel() {
     }
   }
 
-  const suportedLangs = [
-    { key: "en", text: t1("en") },
-    { key: "es", text: t1("es") },
-    { key: "de", text: t1("de") },
-    { key: "it", text: t1("it") },
-  ];
+  const suportedLangs = supportedLanguages.map(key => {
+    return {
+      key: key,
+      text: t_basics(key)
+    }
+  })
 
   return (
     <Stack {...stackProps}>
       <Stack.Item>
         <Dropdown
           label={t("language-ui")}
-          defaultSelectedKey={lang ? lang : undefined}
+          defaultSelectedKey={lang}
           placeholder={t("language-select")}
           options={suportedLangs}
           onChange={handleDataOnChange}

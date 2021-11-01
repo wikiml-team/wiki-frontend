@@ -63,7 +63,7 @@ export default function SectorsTutorials() {
   const columns: IColumn[] = [
     {
         key: 'column1',
-        name: t('sector-title'),
+        name: t('sector-field'),
         fieldName: 'sector',
         flexGrow: 1,
         minWidth: 100,
@@ -76,7 +76,7 @@ export default function SectorsTutorials() {
     },
     {
         key: 'column2',
-        name: t('description-title'),
+        name: t('description-field'),
         fieldName: 'description',
         minWidth: 100,
         flexGrow: 5,

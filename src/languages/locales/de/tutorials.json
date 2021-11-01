@@ -5,13 +5,13 @@
     },
     "forms": {
         "header": "Formulare",
-        "form-title": "Formular",
-        "description-title": "Beschreibung"
+        "form-field": "Formular",
+        "description-field": "Beschreibung"
     },
     "sectors": {
         "header": "Sektoren",
-        "sector-title": "Sektor",
-        "description-title": "Beschreibung",
+        "sector-field": "Sektor",
+        "description-field": "Beschreibung",
         "agriculture" : "Landwirtschaft und Ernährung",
         "economic" : "Wirtschaftswachstum",
         "rights" : "Menschenrechte und demokratische Regierungsführung",

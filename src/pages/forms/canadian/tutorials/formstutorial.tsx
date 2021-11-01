@@ -23,7 +23,7 @@ export default function FormsTutorials() {
   const columns: IColumn[] = [
     {
         key: 'column1',
-        name: t(`form-title`),
+        name: t(`form-field`),
         fieldName: 'form',
         minWidth: 100,
         maxWidth: 200,
@@ -34,7 +34,7 @@ export default function FormsTutorials() {
     {
       key: 'column2',
       fieldName: 'description',
-      name: t(`description-title`),
+      name: t(`description-field`),
       minWidth: 100,
       isMultiline: true,
       data: 'string',
