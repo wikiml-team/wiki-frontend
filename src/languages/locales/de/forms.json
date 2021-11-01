@@ -182,21 +182,21 @@
         "header": "Risiken"
     },
     "budget": {
-        "header": "",
-        "item-type": "",
-        "subtitle-type": "",
-        "title-type": "",
-        "subtotal-type": "",
-        "item-field": "",
-        "unit-field": "",
-        "price-field": "",
-        "amount-field": "",
-        "total-field": "",
-        "actions-field": "",
+        "header": "Budget",
+        "item-type": "Artikel",
+        "subtitle-type": "Untertitel",
+        "title-type": "Titel",
+        "subtotal-type": "Zwischensumme",
+        "item-field": "Posten",
+        "unit-field": "Einheit",
+        "price-field": "Preis",
+        "amount-field": "Menge",
+        "total-field": "Gesamtkosten",
+        "actions-field": "Aktionen",
         "tooltip": {
-            "contextual-help": "",
-            "add-item": "",
-            "delete-item": ""
+            "contextual-help": "Kontextbezogene Hilfe",
+            "add-item": "Nachfolgender Posten hinzufügen",
+            "delete-item": "Posten löschen"
         }
     },
     "financing": {

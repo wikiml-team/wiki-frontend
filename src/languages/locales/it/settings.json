@@ -16,7 +16,8 @@
         "welcome-description": "Il primo passo per garantire la sua privacy è darle il controllo dei suoi dati e gli strumenti e le informazioni di cui ha bisogno per prendere decisioni che le danno tranquilità ",
         "commitment-to-privacy-link": "Per saperne di più sul nostro impegno per la privacy",
         "management-subtitle": "Gestire Privacy",
-        "management-description": "Qui può configurare le impostazioni di privacy per i moduli",
+        "management-description": "Qui può impostare la privacy del progetto. Se imposta il progetto come privato, tutti i moduli saranno privati. Se imposti il progetto come pubblico, può selezionare se un modulo può essere pubblico o privato.",
+        "toggle-label": "Il suo progetto dovrebbe essere:",
         "table-forms": "Modulo",
         "table-privacy": "Privato"
     }

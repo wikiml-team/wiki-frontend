@@ -182,20 +182,20 @@
         "header": "Rischi"
     },
     "budget": {
-        "header": "",
-        "item-type": "",
-        "subtitle-type": "",
-        "title-type": "",
-        "subtotal-type": "",
-        "item-field": "",
-        "unit-field": "",
-        "price-field": "",
-        "amount-field": "",
-        "total-field": "",
+        "header": "Bilancio",
+        "item-type": "Capo di mercanzia",
+        "subtitle-type": "Sottotitolo",
+        "title-type": "Titolo",
+        "subtotal-type": "Subtotale",
+        "item-field": "Capo di mercanzia",
+        "unit-field": "Unità",
+        "price-field": "Prezzo",
+        "amount-field": "Importo",
+        "total-field": "Azioni",
         "tooltip": {
-            "contextual-help": "",
-            "add-item": "",
-            "delete-item": ""
+            "contextual-help": "Aiuto contestuale",
+            "add-item": "Aggiungi un capo di mercanzia qui sotto",
+            "delete-item": "Eliminare capo di mercanzia"
         }
     },
     "financing": {
