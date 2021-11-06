@@ -21,7 +21,8 @@
         "title": "Laden",
         "description": "Bitte warten Sie einen Moment, die Daten werden geladen.",
         "error": "",
-        "text": ""
+        "error-text": "",
+        "nodata": ""
     },
     "languages": {
         "en": "Englisch",

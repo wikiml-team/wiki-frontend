@@ -21,7 +21,8 @@
         "title": "In carica",
         "description": "Si prega di attendere qualche secondo, i dati stanno caricando.",
         "error": "",
-        "text": ""
+        "error-text": "",
+        "nodata": ""
     },
     "languages": {
         "en": "Inglese",

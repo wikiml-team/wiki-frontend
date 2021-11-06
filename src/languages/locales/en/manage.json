@@ -1,6 +1,7 @@
 {
     "form": {
         "header": "Component",
+        "index": "Index",
         "amount": {
             "maximal-field": "Maximal Amount",
             "minimal-field": "Minimal Amount",

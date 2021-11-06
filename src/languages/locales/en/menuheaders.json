@@ -46,9 +46,9 @@
         "team": "Team"
     },
     "methodology": {
-        "forms": "Project Forms",
+        "project": "Project Forms",
         "licitations": "Licitation Forms",
-        "tutorials": "Tutorials",
+        "methodology": "Tutorials",
         "indicators": "Indicators",
         "index": "Index"
     }

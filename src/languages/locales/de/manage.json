@@ -1,0 +1,21 @@
+{
+    "form": {
+        "header": "",
+        "index": "",
+        "amount": {
+            "maximal-field": "",
+            "minimal-field": "",
+            "top-field": ""
+        },
+        "characters": {
+            "maximal-field": "",
+            "minimal-field": "",
+            "top-field": ""
+        },
+        "language-field" : "",
+        "name-field": "",
+        "tooltip-field": "",
+        "definition-field": "",
+        "format-field": ""
+    }
+}

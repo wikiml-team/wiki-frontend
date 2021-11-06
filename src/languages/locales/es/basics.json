@@ -21,7 +21,8 @@
         "title": "Cargando",
         "description": "Por favor espere unos segundos, estamos cargando los datos.",
         "error": "Error",
-        "text": "El servidor está teniendo problemas, por favor espere unos minutos."
+        "error-text": "El servidor está teniendo problemas, por favor espere unos minutos.",
+        "nodata": "No se pudo encontrar datos."
     },
     "languages": {
         "en": "Inglés",

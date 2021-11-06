@@ -26,7 +26,8 @@
         "title": "Loading",
         "description": "Please wait a few senconds, we are loading the data.",
         "error": "Error",
-        "text" : "The server is having problems, wait a few minutes please."
+        "error-text" : "The server is having problems, wait a few minutes please.",
+        "nodata": "Could not find data."
     },
     "languages": {
         "en": "English",

@@ -46,9 +46,9 @@
         "team": "Equipo"
     },
     "methodology": {
-        "forms": "Formularios",
+        "project": "Formularios",
         "licitations": "Licitaciones",
-        "tutorials": "Tutoriales",
+        "methodology": "Tutoriales",
         "indicators": "Indicatores",
         "index": "Índice"
     }

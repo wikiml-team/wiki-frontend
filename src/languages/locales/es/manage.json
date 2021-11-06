@@ -1,0 +1,21 @@
+{
+    "form": {
+        "header": "Componente",
+        "index": "Índice",
+        "amount": {
+            "maximal-field": "Cantidad Máxima",
+            "minimal-field": "Cantidad Mínima",
+            "top-field": "Cantidad Tope"
+        },
+        "characters": {
+            "maximal-field": "Caracteres Máximos",
+            "minimal-field": "Caracteres Mínimos",
+            "top-field": "Caracteres Tope"
+        },
+        "language-field" : "Lenguaje",
+        "name-field": "Nombre",
+        "tooltip-field": "Tooltip",
+        "definition-field": "Definición",
+        "format-field": "Formato"
+    }
+}
