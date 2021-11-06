@@ -8,7 +8,6 @@ import { DocumentCard,
     IDocumentCardPreviewProps, 
     IDocumentCardStyles, 
     ImageFit,
-    useTheme,
 } from '@fluentui/react'
 import { useBoolean } from '@fluentui/react-hooks';
 

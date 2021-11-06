@@ -126,10 +126,18 @@ const MethodologyManagementSwitcher = () => (
   /* Profile, Privacy, Security, Team */
   <MethodologyLayout>
     <Switch>
-      <Route path="/methodology/:methodologyId/read/:form" component={MethodologyInfo} />
-      <Route path="/methodology/:methodologyId/update/:form" component={UpdateMethodology} />
-      <Route path="/methodology/:methodologyId/delete/:form" component={DeleteMethodology} />
-      <Route path="/methodology/create" component={CreateMethodology}/>
+      {/* METHODOLOGY READ|EDIT */}
+      {/* Update a feature */}
+      <Route path="/methodology/:methodologyId/features/update/index" component={MethodologyInfo}/>
+      
+      <Route path="/methodology/:methodologyId/features/update/:form" component={UpdateMethodology} />
+      {/* Create new feature */}
+      <Route path="/methodology/:methodologyId/features/new/:form" component={DeleteMethodology} />
+      {/* List all features */}
+      <Route path="/methodology/:methodologyId/features/:form" component={MethodologyInfo} /> 
+
+      {/* METHODOLOGY CREATE */}
+      <Route path="/methodology/new/:methodologyId" component={CreateMethodology}/>
     </Switch>
   </MethodologyLayout>
 );

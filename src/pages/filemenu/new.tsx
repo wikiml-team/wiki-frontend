@@ -1,68 +1,75 @@
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import { IStackProps, Stack } from '@fluentui/react';
-import { useBoolean } from '@fluentui/react-hooks';
+import { IStackProps, Stack } from "@fluentui/react";
+import { useBoolean } from "@fluentui/react-hooks";
 
-import MethodologyCard from 'components/cards/methodologycard';
-import NewProjectDialog from 'components/dialog/newproject';
-import ExecuteQuery from 'apollo/executequery';
-import { GET_METHODOLOGIES } from 'apollo/methodologies';
-import { Subtitle, Title } from 'components/styled/text';
+import MethodologyCard from "components/cards/methodologycard";
+import NewProjectDialog from "components/dialog/newproject";
+import { GET_METHODOLOGIES } from "apollo/methodologies";
+import { Subtitle, Title } from "components/styled/text";
+import { useQuery } from "@apollo/client";
+import { GetMethodologies, GetMethodologies_methodologies } from "types";
+import QueryStateIndicator from "apollo/indicator";
 
 export default function NewPage() {
-    
-    // LOGIC
-    const { t } = useTranslation("filemenu", { keyPrefix: 'new' });
-    
-    const [currentMethodology, setcurrentMethodology] = useState({id: "", name: ""})
-    const [projectHideDialog, { toggle: toggleProjectHideDialog }] = useBoolean(true);
+  // LOGIC
+  const { t } = useTranslation("filemenu", { keyPrefix: "new" });
 
-    const mapMethodologiesToCards = (data: any) => {
+  const [currentMethodology, setcurrentMethodology] = useState({
+    id: "",
+    name: "",
+  });
+  const [projectHideDialog, { toggle: toggleProjectHideDialog }] =
+    useBoolean(true);
 
-        const handleOnClick = (id : string, name : string) => {
-            setcurrentMethodology({id: id, name: name})
-            toggleProjectHideDialog()
-        }
-    
-        return data.methodologies.map(({ id , name } : any) =>  (
-            <Stack.Item key={id}>
-              <MethodologyCard name={name} onClick={() => handleOnClick(id, name)}/>
-            </Stack.Item>
-        ))
-    }
+  const handleOnClick = (id: string, name: string) => {
+    setcurrentMethodology({ id: id, name: name });
+    toggleProjectHideDialog();
+  };
 
-    const methodologiesCards = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToCards})
+  const { data, loading, error } =
+    useQuery<GetMethodologies>(GET_METHODOLOGIES);
 
-    // STYLES
-    const stackProps : IStackProps = {
-        tokens: {childrenGap: 10},
-        styles: {
-            root: {
-                marginTop: 20
-            }
-        }
-    }
+  <QueryStateIndicator data={data} loading={loading} error={error} />;
 
-    return (
-        <React.Fragment>
-            <Title>{t("header")}</Title>
-            <Subtitle>{t("text")}</Subtitle>
+  // STYLES
+  const stackProps: IStackProps = {
+    tokens: { childrenGap: 10 },
+    styles: {
+      root: {
+        marginTop: 20,
+      },
+    },
+  };
 
-            <Stack horizontal {...stackProps}>
-                {methodologiesCards}
-            </Stack>
+  return (
+    <React.Fragment>
+      <Title>{t("header")}</Title>
+      <Subtitle>{t("text")}</Subtitle>
 
-            <NewProjectDialog 
-                hideDialog={projectHideDialog}
-                toggleHideDialog={toggleProjectHideDialog}
-                methodology={currentMethodology}
-                />
-        </React.Fragment>
-    )
+      <Stack horizontal {...stackProps}>
+        {data && data.methodologies.map((m) => mapToCard(m, handleOnClick))}
+      </Stack>
+
+      <NewProjectDialog
+        hideDialog={projectHideDialog}
+        toggleHideDialog={toggleProjectHideDialog}
+        methodology={currentMethodology}
+      />
+    </React.Fragment>
+  );
 }
 
+const mapToCard = (
+  methodology: GetMethodologies_methodologies,
+  handler: (id: string, name: string) => void
+) => {
+  const { id, name } = methodology;
 
-
-
-
+  return (
+    <Stack.Item key={id}>
+      <MethodologyCard name={name || ""} onClick={() => handler(id, name || "")} />
+    </Stack.Item>
+  );
+};

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 import {
     INavStyles, 
@@ -22,20 +22,19 @@ export default function MethodologyMenu() {
     const { t } = useTranslation('basics');
 
     const history = useHistory()
+    const { form } = useParams<any>();
     
     const [selectedKey, setSelectedKey] = useState("")
     
     useEffect(() => {
-        const path = history.location.pathname.split('/')
-        const key = path[path.length - 1] === ""? "project_index" : `${path[path.length - 1]}` 
-        setSelectedKey(key)
-    }, [history])
+        setSelectedKey(form || 'index')
+    }, [form])
     
     const handleNavOnClick = (ev?: React.MouseEvent<HTMLElement>, item?: INavLink) => {
         if (ev) ev.preventDefault()
         
         if (item) {
-            setSelectedKey(item.key || "project_index")
+            setSelectedKey(item.key || 'index')
             history.push(item.url)
         }
     }
@@ -46,14 +45,6 @@ export default function MethodologyMenu() {
     
     // STYLES
     const { palette } = useTheme();
-
-    const classes = mergeStyleSets({
-        footer: {
-            "a": {
-                paddingLeft: 36!,
-            }
-        },
-    });
     
     // Action Button Return
     const buttonStyles: IButtonStyles = {

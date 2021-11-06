@@ -1,29 +1,19 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 export const GET_METHODOLOGY_BY_ID = gql`
-    query Methodology($id: String!) {
-    methodologies(id: $id) {
+  query GetMethodologyById($id: ID!) {
+    methodology(id: $id) {
       id
       name
     }
-}`
+  }
+`;
 
 export const GET_METHODOLOGY_BY_NAME = gql`
-    query Methodology($name: String!) {
-    methodologies(name: $name) {
+  query GetMethodologyByName($name: String!) {
+    methodology(name: $name) {
       id
       name
     }
-}`
-
-export const buildQueryMethodology = (search: string, fields? : string[]) => {
-  const f = fields?.filter(f => f !== "name" && f !== "id")
-
-  return gql`
-    query Methodology($name: String!) {
-      methodologies(name: $name) {
-        id
-        name
-      }
-    }`
-}
+  }
+`;

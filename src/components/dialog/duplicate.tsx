@@ -2,9 +2,11 @@ import { useTranslation } from 'react-i18next';
 
 import { IChoiceGroupOption } from '@fluentui/react';
 
-import ExecuteQuery from 'apollo/executequery';
 import { GET_METHODOLOGIES } from 'apollo/methodologies';
 import CustomDialog from './custom'
+import { useQuery } from '@apollo/client';
+import QueryStateIndicator from 'apollo/indicator';
+import { GetMethodologies, GetMethodologies_methodologies } from 'types';
 
 type ExportDialogProps = {
     hideDialog: boolean,
@@ -18,16 +20,11 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
 
     const { t } = useTranslation("commands", { keyPrefix: "duplicate" });
 
-    const mapMethodologiesToOptions = (data : any) => {
-      return data.methodologies.map(({ id , name } : any) => {
-        return {
-          key: `key${id}`,
-          text: name
-        } as IChoiceGroupOption
-      })
-    }
+    const { data, loading, error } = useQuery<GetMethodologies>(GET_METHODOLOGIES);
 
-    const options = ExecuteQuery({query: GET_METHODOLOGIES, applyToData: mapMethodologiesToOptions}) as IChoiceGroupOption[];
+    <QueryStateIndicator data={data} loading={loading} error={error} />
+
+    const options = data && data.methodologies.map(m => mapToOptions(m)) 
 
     const handleAccpetButtonOnClick = (option: string) => {
         alert(option)
@@ -39,11 +36,21 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
               primaryButtonText={t("accept-label")}
               acceptOnClick={handleAccpetButtonOnClick}
               // inline conditionally pass props
-              {...(options.length > 0 && {optionsProps: {
+              {...(options && {optionsProps: {
                 options,
                 optionsTitle : t("select-label")
               }})}
               hidden={hideDialog}
               onDismiss={toggleHideDialog}
             />
+}
+
+
+const mapToOptions = (methodology : GetMethodologies_methodologies) => {
+  const { id, name} = methodology
+
+  return {
+      key: `key${id}`,
+      text: name
+    } as IChoiceGroupOption
 }
