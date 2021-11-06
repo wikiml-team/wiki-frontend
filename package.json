@@ -55,6 +55,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "schema:load": "apollo schema:download --endpoint=http://80.209.237.197:3000/graphql graphql-schema.json",
+    "codegen:generate": "apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --outputFlat --queries=src/**/*.ts* src/types.ts",
+    "codegen:types": "npm run schema:load && npm run codegen:generate",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
