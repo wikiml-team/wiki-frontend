@@ -14,7 +14,6 @@ import {
   TooltipHost,
   IconButton,
   SelectionMode,
-  IStackStyles,
   DetailsListLayoutMode,
   useTheme,
   IDetailsListProps,
@@ -144,12 +143,12 @@ export default function OpenPage() {
     const date = new Date(project.dateModified).toLocaleDateString();
     const text = `${t("date")} ${date}`;
 
-    const spanStyles : ITextStyles = {
+    const spanStyles: ITextStyles = {
       root: {
         display: "inline-block",
         verticalAlign: "middle",
-        lineHeight: "normal"
-      }
+        lineHeight: "normal",
+      },
     };
 
     return (
@@ -159,7 +158,9 @@ export default function OpenPage() {
           lineHeight: "inherit",
         }}
       >
-        <Text variant="small" styles={spanStyles}>{text}</Text>
+        <Text variant="small" styles={spanStyles}>
+          {text}
+        </Text>
       </div>
     );
   };
