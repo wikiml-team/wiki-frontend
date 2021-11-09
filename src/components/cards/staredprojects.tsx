@@ -1,81 +1,101 @@
-import { DocumentCard, 
-    DocumentCardTitle, 
-    IDocumentCardStyles, 
-    useTheme,
-    FontSizes,
-    IDocumentCardTitleStyles,
-    DocumentCardActivity,
-    DocumentCardActions,
-    IIconProps
-} from '@fluentui/react';
+import {
+  DocumentCard,
+  DocumentCardTitle,
+  IDocumentCardStyles,
+  useTheme,
+  FontSizes,
+  IDocumentCardTitleStyles,
+  DocumentCardActivity,
+  DocumentCardActions,
+} from "@fluentui/react";
+import { useBoolean } from "@fluentui/react-hooks";
+
+import { IFeaturedProject } from "pages/filemenu/home";
+import { useTranslation } from "react-i18next";
 
 type StaredProjectsProps = {
-    projectName : string,
-    methodology: string
+  project: IFeaturedProject
+};
+
+export default function StaredProjects(props: StaredProjectsProps) {
+  // LOGIC
+  const { t } = useTranslation("filemenu", { keyPrefix: "home"})
+  const { project } = props
+  const {name, methodology, owner, createdAt} = project
+
+  const actions = GetCardActions();
+  const date = new Date(createdAt).toLocaleDateString()
+
+  // STYLES
+  const cardStyles: IDocumentCardStyles = {
+    root: {
+      display: "inline-block",
+      margin: "20px 20px 20px 0",
+      width: 10,
+    },
+  };
+
+  const cardTitleStyles: IDocumentCardTitleStyles = {
+    root: {
+      fontSize: FontSizes.mediumPlus,
+      height: 20,
+      paddingBottom: 2,
+    },
+  };
+
+  return (
+    <DocumentCard styles={cardStyles}>
+      <DocumentCardTitle title={name} styles={cardTitleStyles} />
+      <DocumentCardTitle title={methodology} showAsSecondaryTitle />
+
+      <DocumentCardActivity
+        activity={`${t("starprojects-createdAt")} ${date}`}
+        people={[{ name: owner, profileImageSrc: "" }]}
+      />
+      {/* <DocumentCardActions actions={actions} /> */}
+    </DocumentCard>
+  );
 }
 
-export default function StaredProjects(props : StaredProjectsProps) {
+const GetCardActions = () => {
+  const [isFavorite, { toggle: toggleIsFavorite }] = useBoolean(true);
+  const { palette } = useTheme();
 
-    // STYLES
-    const { palette } = useTheme();
+  const handleOnClick = () => {
+    toggleIsFavorite();
+    // update in database
+  };
 
-    const cardStyles: IDocumentCardStyles = {
-        root: { 
-            display: 'inline-block', 
-            margin: "20px 20px 20px 0", 
-            width: 10
-        },
+  const starIconProps = {
+    iconName: "FavoriteStarFill",
+    styles: {
+      root: {
+        color: isFavorite ? palette.yellowDark : palette.accent,
+      },
+    },
+  };
 
-      };
+  const notificationsIconProps = {
+    iconName: "FavoriteStarFill",
+    styles: {
+      root: {
+        color: isFavorite ? palette.yellowDark : palette.accent,
+      },
+    },
+  };
 
-    const cardTitleStyles: IDocumentCardTitleStyles = {
-        root: {
-            fontSize: FontSizes.mediumPlus,
-            height: 20,
-            paddingBottom: 2
-        }
-    }
+  const documentCardActions = [
+    {
+      iconProps: starIconProps,
+      onClick: handleOnClick,
+      ariaLabel: "unstar",
+    },
+    {
+      iconProps: { iconName: "Ringer",  },
+      onClick: () => {},
+      ariaLabel: "notifications action",
+    },
+  ];
 
-    const starIconProps: IIconProps = {
-        iconName: 'FavoriteStarFill',
-        styles: {
-            root: {
-                color: palette.yellowDark,
-            }
-        }
-    };
-
-    const documentCardActions = [
-        {
-          iconProps: starIconProps,
-          onClick: () => {},
-          ariaLabel: 'unstar',
-        },
-        {
-          iconProps: { iconName: 'Pin' },
-          onClick: () => {},
-          ariaLabel: 'pin action',
-        },
-        {
-          iconProps: { iconName: 'Ringer' },
-          onClick: () => {},
-          ariaLabel: 'notifications action',
-        },
-      ];
-
-    return (
-      <DocumentCard
-        styles={cardStyles}
-        onClickHref="/workplace"
-      >
-        <DocumentCardTitle title={props.projectName} styles={cardTitleStyles}/>
-        <DocumentCardTitle title={props.methodology} showAsSecondaryTitle/>
-
-        <DocumentCardActivity
-            activity="Created Feb 23, 2016"
-            people={[{ name: 'Annie Lindqvist', profileImageSrc: '', initials: 'RK'  }]}
-            />
-        <DocumentCardActions actions={documentCardActions} views={432} />
-      </DocumentCard>
-    )
-}
+  return documentCardActions;
+};

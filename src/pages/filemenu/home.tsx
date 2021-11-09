@@ -1,74 +1,86 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next';
-import { ISeparatorStyles, Separator, Stack, Text, useTheme } from '@fluentui/react'
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-// import { useQuery } from '@apollo/client';
-// import { GET_USER_PROJECTS } from 'apollo/methodologies';
-import StaredProjects from 'components/cards/staredprojects';
-import { Title } from 'components/styled/text';
+import { ISeparatorStyles, Separator, Stack, useTheme } from "@fluentui/react";
 
-type Example = {
-    project: string,
-    meth: string
+import { useQuery } from "@apollo/client";
+import { GetProjects, GetProjects_projects } from "types";
+import { GET_PROJECTS } from "apollo/projects";
+import QueryStateIndicator from "apollo/indicator";
+
+import StaredProjects from "components/cards/staredprojects";
+import { Subtitle, Title } from "components/styled/text";
+
+export interface IFeaturedProject {
+  name: string;
+  methodology: string;
+  owner: string;
+  createdAt: string;
 }
 
 export default function HomePage() {
+  // LOGIC
+  const { t } = useTranslation("filemenu", { keyPrefix: "home" });
+  const { palette } = useTheme();
 
-    const { t } = useTranslation("filemenu", { keyPrefix: 'home' });
-    
-    const { palette } = useTheme();
+  // DATA
+  const { data, loading, error } = useQuery<GetProjects>(GET_PROJECTS);
 
-    const exampledata : Example[] = [
-        {project: "Agua y Sanamiento", meth: "Canadian Methodology"},
-        {project: "Reforestacion", meth: "German Methodology"}
-    ] 
+  if (!data || loading || error)
+    return <QueryStateIndicator data={data} loading={loading} error={error} />;
 
-    const separatorStyles: Partial<ISeparatorStyles> = {
-        root: {
-            "::before": {
-                height: 0.4,
-                background: palette.neutralTertiaryAlt,
-            },
-        },
-    };
-    return (
-        <React.Fragment>
-            <Title>{t("header")}</Title>
+  // All projects
+  const projects: IFeaturedProject[] =
+    data?.projects.map((project) => MapProjectToCard(project)) ||
+    ([] as IFeaturedProject[]); //add .filter(project => project.isFavorite)
 
-            {/* Star Projects */}
-            <Stack>
-                <Text variant='mediumPlus'>{t("starprojects")}</Text>
-                <Stack horizontal>
-                    {exampledata.map(({project, meth} : Example, key : number) => (
-                        <StaredProjects key={key} projectName={project} methodology={meth}/>
-                    ))}
-                </Stack>
-                <Separator styles={separatorStyles}/>
+  // STYLES
+  const separatorStyles: Partial<ISeparatorStyles> = {
+    root: {
+      "::before": {
+        height: 0.4,
+        background: palette.neutralTertiaryAlt,
+      },
+    },
+  };
 
-                {/* Visualize Teams */}
-                <Text variant='mediumPlus'>{t("teams")}</Text>
-                <Separator styles={separatorStyles}/>
+  return (
+    <React.Fragment>
+      <Title>{t("header")}</Title>
 
-                {/* Notifications */}
-                {/* Separator */}
-                <Text variant='mediumPlus'>{t("notifications")}</Text>
-                <Separator styles={separatorStyles}/>
-            </Stack>
-        </React.Fragment>
-    )
+      <Stack tokens={{ childrenGap: 20 }}>
+        {/* Star Projects */}
+        <Stack.Item>
+          <Subtitle>{t("starprojects")}</Subtitle>
+          <Stack horizontal>
+            {projects.map((project: IFeaturedProject, key: number) => (
+              <StaredProjects key={key} project={project} />
+            ))}
+          </Stack>
+          <Separator styles={separatorStyles} />
+        </Stack.Item>
+
+        {/* Visualize Teams */}
+        <Stack.Item>
+          <Subtitle>{t("teams")}</Subtitle>
+          <Separator styles={separatorStyles} />
+        </Stack.Item>
+
+        {/* Notifications */}
+        <Stack.Item>
+          <Subtitle>{t("notifications")}</Subtitle>
+          <Separator styles={separatorStyles} />
+        </Stack.Item>
+      </Stack>
+    </React.Fragment>
+  );
 }
 
-// const UserProjects = () => {
-
-//     const {loading, error, data} = useQuery(GET_USER_PROJECTS);
-  
-//     if (loading) return <p>Loading...</p>;
-//     if (error) return <p>Error :(</p>;
-
-//     return data.methodologies.map(({ id , name, methodology } : any) =>  (
-//         <Stack.Item key={id} >
-//           <StaredProjects projectName={name} methodology={methodology}/>
-//         </Stack.Item>
-//         )
-//     )
-// }
+const MapProjectToCard = (project: GetProjects_projects) => {
+  return {
+    name: project.shortName,
+    methodology: project.methodology.name,
+    owner: "owner",
+    createdAt: project.createdAt,
+  } as IFeaturedProject;
+};

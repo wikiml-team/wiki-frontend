@@ -1,9 +1,8 @@
 import { useParams } from "react-router";
 
 import { useQuery } from "@apollo/client";
-import { GET_METHODOLOGY_BY_ID } from "apollo/methodologies/methodology";
-
 import { GetMethodologyById, GetMethodologyByIdVariables } from "types";
+import { GET_METHODOLOGY_BY_ID } from "apollo/methodologies/methodology";
 import QueryStateIndicator from "apollo/indicator";
 
 export default function MethodologyInfo() {
