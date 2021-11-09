@@ -1,238 +1,246 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-import { DetailsList,
-         Stack,
-         Text,
-         IColumn, 
-         TooltipHost,
-         IconButton,
-         SelectionMode, 
-         IStackStyles,
-         DetailsListLayoutMode,
-         useTheme,
-         IDetailsListProps,
-         IDetailsRowStyles,
-         DetailsRow,
-         Icon} from '@fluentui/react';
+import { useQuery } from "@apollo/client";
+import { GetProjects, GetProjects_projects } from "types";
+import { GET_PROJECTS } from "apollo/projects";
+import QueryStateIndicator from "apollo/indicator";
 
-import { Subtitle, Title } from 'components/styled/text';
+import {
+  DetailsList,
+  Stack,
+  Text,
+  IColumn,
+  TooltipHost,
+  IconButton,
+  SelectionMode,
+  IStackStyles,
+  DetailsListLayoutMode,
+  useTheme,
+  IDetailsListProps,
+  IDetailsRowStyles,
+  DetailsRow,
+  Icon,
+  ITextStyles,
+} from "@fluentui/react";
+import { useBoolean } from "@fluentui/react-hooks";
 
+import { Subtitle, Title } from "components/styled/text";
 
 interface IProject {
-    key: string;
-    name: string;
-    methodology: string;
-    owner: string;
-    permition: Permition;
-    dateModified: string;
+  key: string;
+  name: string;
+  methodology: string;
+  owner: string;
+  dateModified: string;
+  isFavorite?: boolean;
 }
 
-type Permition = "owner" | "edit" | "read"
-
-const permitions = {
-    "owner": "StarburstSolid",
-    "edit" : "EditSolid12",
-    "read" : "ReadingModeSolid"
-}
-
-const recent_projects : IProject[] = [
-    {
-        key: "key1",
-        name: "Reforestacion",
-        methodology: "canadian",
-        owner: "Alfonso Quesada",
-        permition: "owner",
-        dateModified: new Date().toLocaleDateString(),
-    },
-    {
-        key: "key2",
-        name: "Agua y Saneamiento",
-        methodology: "canadian",
-        owner: "Loreta Gonda",
-        permition: "edit",
-        dateModified: new Date().toLocaleDateString(),
-    },
-    {
-        key: "key3",
-        name: "Educacion para todos",
-        methodology: "german",
-        owner: "Paolo Ponce",
-        permition: "read",
-        dateModified: new Date().toLocaleDateString(),
-    }
-]
-
-const own_project : IProject[] = [
-    {
-        key: "key4",
-        name: "Reforestacion",
-        methodology: "canadian",
-        owner: "Alfonso Quesada",
-        permition: "owner",
-        dateModified: new Date().toLocaleDateString(),
-    },
-    {
-        key: "key5",
-        name: "Siembra Organica",
-        methodology: "german",
-        owner: "Alfonso Quesada",
-        permition: "owner",
-        dateModified: new Date().toLocaleDateString(),
-    },
-    {
-        key: "key6",
-        name: "Green town",
-        methodology: "canadian",
-        owner: "Alfonso Quesada",
-        permition: "owner",
-        dateModified: new Date().toLocaleDateString(),
-    }
-]
-
-
-// Open: own projects, recent projects, new shared project (have been invited)
+// Open: recent projects, new shared project, all
 export default function OpenPage() {
+  // LOGIC
+  const { t } = useTranslation("filemenu", { keyPrefix: "open" });
+  const t_basics = useTranslation("basics").t;
+  const { palette } = useTheme();
 
-    // LOGIC
-    const { t } = useTranslation("filemenu", { keyPrefix: "open"})
-    const t_basics = useTranslation("basics").t
-    const t_settings = useTranslation("settings").t
+  // DATA
+  const { data, loading, error } = useQuery<GetProjects>(GET_PROJECTS);
 
-    const { palette } = useTheme()
+  if (!data || loading || error)
+    return <QueryStateIndicator data={data} loading={loading} error={error} />;
 
-    const columns: IColumn[] = [
-        {
-            key: 'column1',
-            name: 'icon',
-            fieldName: 'icon',
-            minWidth: 10,
-            maxWidth: 35,
-            data: 'string',
-            onRender: (item: IProject) => iconRender(item)
-        },
-        {
-            key: 'column2',
-            name: 'description',
-            fieldName: 'description',
-            minWidth: 300,
-            data: 'string',
-            onRender: (item: IProject) => descriptionRender(item),
-        },
-        {
-            key: 'column3',
-            name: 'date',
-            fieldName: 'date',
-            minWidth: 200,
-            data: 'string',
-            onRender: (item: IProject) => dateRender(item),
-        },
-    ]
+  // All projects
+  const projects: IProject[] =
+    data?.projects.map((project) => MapToProjectRow(project)) ||
+    ([] as IProject[]);
 
-    // STYLES
-    const stackStyles : IStackStyles = {
+  // Recent projects
+  const recentProjects: IProject[] = projects
+    .filter((p) => {
+      const pdate = new Date(p.dateModified);
+      const now = new Date();
+      // @ts-ignore
+      const diffDays = Math.ceil(Math.abs(pdate - now) / (1000 * 60 * 60 * 24));
+      return diffDays < 20;
+    })
+    // @ts-ignore
+    .sort((p1, p2) => p1.dateModified - p2.dateModified)
+    .slice(0, 3);
+
+  const columns: IColumn[] = [
+    {
+      key: "column1",
+      name: "icon",
+      fieldName: "icon",
+      minWidth: 10,
+      maxWidth: 35,
+      data: "string",
+      onRender: (item: IProject) => IconRender(item),
+    },
+    {
+      key: "column2",
+      name: "description",
+      fieldName: "description",
+      minWidth: 300,
+      data: "string",
+      onRender: (item: IProject) => DescriptionRender(item),
+    },
+    {
+      key: "column3",
+      name: "date",
+      fieldName: "date",
+      minWidth: 200,
+      data: "string",
+      onRender: (item: IProject) => DateRender(item),
+    },
+  ];
+
+  // STYLES
+  const IconRender = (project: IProject) => {
+    // default value project.isFavorite
+    const [isFavorite, { toggle: toggleIsFavorite }] = useBoolean(false);
+
+    const handleOnClick = () => {
+      toggleIsFavorite();
+      // update in database
+    };
+
+    const starIconProps = {
+      iconName: "FavoriteStarFill",
+      styles: {
         root: {
-            marginBottom: 25
-        }
-    }
-
-    const iconRender = (project: IProject) => {
-        return (    
-            <TooltipHost content={t_settings(`permitions.${project.permition}`)}>
-                <IconButton iconProps={{ iconName: permitions[project.permition]}}  />
-            </TooltipHost>
-        )
-    }
-    
-    const descriptionRender = (project: IProject) => {
-        return (
-            <React.Fragment>
-                <Text variant="medium">{project.name} -</Text>
-                <Text variant="small"> {t_basics(`methodologies.${project.methodology}`)}</Text>
-
-                <Text variant="smallPlus" block>{project.owner}</Text>
-            </React.Fragment>
-        )
-    }
-
-    const dateRender = (project: IProject) => {
-        return (
-            `${t("date")} ${project.dateModified}`
-        )
-    }
-
-    const onRenderRow: IDetailsListProps['onRenderRow'] = props => {
-        const customStyles: Partial<IDetailsRowStyles> = {
-            root: {
-                backgroundColor: palette.neutralLight
-            }
-        }
-    
-        if (props) {
-          return <DetailsRow {...props} styles={customStyles} />;
-        }
-        return null;
+          color: isFavorite ? palette.yellowDark : palette.accent,
+        },
+      },
     };
 
     return (
-        <React.Fragment>
-            <Title>{t("header")}</Title>
+      <TooltipHost content={isFavorite ? t("isfavorite") : t("notfavorite")}>
+        <IconButton iconProps={starIconProps} onClick={handleOnClick} />
+      </TooltipHost>
+    );
+  };
 
-            <Stack styles={stackStyles}>
-                <Subtitle>{t("recent")}</Subtitle> <br/>
+  const DescriptionRender = (project: IProject) => {
+    const name = `${project.name} - `;
+    const methodology = t_basics([
+      `methodologies.${project.methodology}`,
+      project.methodology,
+    ]);
 
-                <DetailsList
-                    items={recent_projects}
-                    columns={columns}
-                    selectionMode={SelectionMode.none}
-                    isHeaderVisible={false}
-                    onRenderRow={onRenderRow}
-                    layoutMode={DetailsListLayoutMode.fixedColumns}
-                    />
-            </Stack>
+    return (
+      <React.Fragment>
+        <Text variant="medium">{name}</Text>
+        <Text variant="small">{methodology}</Text>
 
-            <Stack styles={stackStyles}>
-                <Subtitle>{t("manage")}</Subtitle> <br/>
+        <Text variant="smallPlus" block>
+          {project.owner}
+        </Text>
+      </React.Fragment>
+    );
+  };
 
-                <DetailsList
-                    items={own_project}
-                    columns={columns}
-                    selectionMode={SelectionMode.none}
-                    isHeaderVisible={false}
-                    onRenderRow={onRenderRow}
-                    layoutMode={DetailsListLayoutMode.fixedColumns}
-                    />
-            </Stack>
+  const DateRender = (project: IProject) => {
+    const date = new Date(project.dateModified).toLocaleDateString();
+    const text = `${t("date")} ${date}`;
 
-            <Stack styles={stackStyles}>
-                <Subtitle>{t("shared")} {" "}
-                    <TooltipHost content={t("shared-info")}>
-                        <Icon iconName="Info" aria-label="info" />
-                    </TooltipHost>
-                </Subtitle>
+    const spanStyles : ITextStyles = {
+      root: {
+        display: "inline-block",
+        verticalAlign: "middle",
+        lineHeight: "normal"
+      }
+    };
 
-                <DetailsList
-                    items={recent_projects.slice(1)}
-                    columns={columns}
-                    selectionMode={SelectionMode.none}
-                    isHeaderVisible={false}
-                    onRenderRow={onRenderRow}
-                    layoutMode={DetailsListLayoutMode.fixedColumns}
-                    />
-            </Stack>
+    return (
+      <div
+        style={{
+          height: "100%",
+          lineHeight: "inherit",
+        }}
+      >
+        <Text variant="small" styles={spanStyles}>{text}</Text>
+      </div>
+    );
+  };
 
-            <Stack styles={stackStyles}>
-                <Subtitle>{t("all")}</Subtitle> <br/>
+  const onRenderRow: IDetailsListProps["onRenderRow"] = (props) => {
+    const customStyles: Partial<IDetailsRowStyles> = {
+      root: {
+        backgroundColor: palette.neutralLight,
+      },
+    };
 
-                <DetailsList
-                    items={own_project.concat(recent_projects)}
-                    columns={columns}
-                    selectionMode={SelectionMode.none}
-                    isHeaderVisible={false}
-                    onRenderRow={onRenderRow}
-                    layoutMode={DetailsListLayoutMode.fixedColumns}
-                    />
-            </Stack>
-        </React.Fragment>)
+    if (props) {
+      return <DetailsRow {...props} styles={customStyles} />;
+    }
+    return null;
+  };
+
+  return (
+    <React.Fragment>
+      <Title>{t("header")}</Title>
+
+      <Stack tokens={{ childrenGap: 20 }}>
+        <Stack.Item>
+          <Subtitle>{t("recent")}</Subtitle>
+          {recentProjects.length > 0 ? (
+            <DetailsList
+              items={recentProjects}
+              columns={columns}
+              selectionMode={SelectionMode.none}
+              isHeaderVisible={false}
+              onRenderRow={onRenderRow}
+              layoutMode={DetailsListLayoutMode.fixedColumns}
+            />
+          ) : (
+            t("shared-null")
+          )}
+        </Stack.Item>
+
+        <Stack.Item>
+          <Subtitle>
+            {t("shared")}{" "}
+            <TooltipHost content={t("shared-info")}>
+              <Icon iconName="Info" aria-label="info" />
+            </TooltipHost>
+          </Subtitle>
+
+          {t_basics("unsupported")}
+
+          {/* <DetailsList
+          items={projects.slice(1)}
+          columns={columns}
+          selectionMode={SelectionMode.none}
+          isHeaderVisible={false}
+          onRenderRow={onRenderRow}
+          layoutMode={DetailsListLayoutMode.fixedColumns}
+        /> */}
+        </Stack.Item>
+
+        <Stack.Item>
+          <Subtitle>{t("all")}</Subtitle> <br />
+          <DetailsList
+            items={projects}
+            columns={columns}
+            selectionMode={SelectionMode.none}
+            isHeaderVisible={false}
+            onRenderRow={onRenderRow}
+            layoutMode={DetailsListLayoutMode.fixedColumns}
+          />
+        </Stack.Item>
+      </Stack>
+    </React.Fragment>
+  );
 }
 
+const MapToProjectRow = (project: GetProjects_projects) => {
+  return {
+    key: project.id,
+    name: project.shortName,
+    methodology: project.methodology.name,
+    dateModified: project.createdAt,
+    owner: "Owner",
+    // isFavorite: project.isFavorite
+  } as IProject;
+};
