@@ -81,9 +81,29 @@ export interface GetMethodologyByNameVariables {
 // GraphQL query operation: GetProjects
 // ====================================================
 
+export interface GetProjects_projects_methodology {
+  __typename: "Methodology";
+  id: string;
+  name: string | null;
+}
+
 export interface GetProjects_projects_intermediateOutcomes {
   __typename: "IntermediateOutcome";
   id: string;
+}
+
+export interface GetProjects_projects_projectPermissions {
+  __typename: "ProjectPermission";
+  id: string;
+  userId: number;
+}
+
+export interface GetProjects_projects_ultimateOutcome {
+  __typename: "UltimateOutcome";
+  id: string;
+  description: string | null;
+  what: string | null;
+  where: string | null;
 }
 
 export interface GetProjects_projects {
@@ -91,7 +111,21 @@ export interface GetProjects_projects {
   id: string;
   shortName: string | null;
   largeName: string | null;
+  description: string | null;
+  languageId: number;
+  programId: number | null;
+  projectStatusId: number;
+  public: boolean | null;
+  sectorId: number;
+  currencyCode: string | null;
+  durationPlan: number | null;
+  methodology: GetProjects_projects_methodology;
   intermediateOutcomes: GetProjects_projects_intermediateOutcomes[];
+  projectPermissions: GetProjects_projects_projectPermissions[];
+  solicitedBudget: number | null;
+  ultimateOutcome: GetProjects_projects_ultimateOutcome | null;
+  wikimlCode: string | null;
+  createdAt: any;
 }
 
 export interface GetProjects {
