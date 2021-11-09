@@ -2,6 +2,7 @@
   "home": {
     "header": "Home",
     "starprojects": "Progetti evidenziati",
+    "starprojects-createdAt": "",
     "teams": "Teams",
     "notifications": "Notifiche"
   },
@@ -14,12 +15,13 @@
     "recent": "Recenti",
     "manage": "Gestire",
     "shared": "Recentemente condiviso",
+    "shared-null": "",
     "shared-info": "Accettare / rifiutare l'invito a partecipare",
     "all": "Tutti",
     "date": "Ultima modifica"
   },
   "methodologies": {
-    "header": "Metodologie ",
+    "header": "Metodologie",
     "text": "Seleziona la metodologia che vuoi leggere, modificare o ampliare.",
     "permitions-info": "La modifica sarà disponibile solo se i permessi sono stati dati in precedenza."
   },

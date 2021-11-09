@@ -12,6 +12,7 @@
     "accept": "Akzeptieren",
     "cancel": "Abbrechen",
     "save-before-closing": "Möchten Sie vor dem Schließen speichern?",
+    "unsupported": "",
     "methodologies": {
         "canadian": "Kanadische Methodik",
         "german": "Deutsche Methodik",

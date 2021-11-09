@@ -2,6 +2,7 @@
   "home": {
     "header": "Home",
     "starprojects": "Proyectos Destacados",
+    "starprojects-createdAt": "Creado el",
     "teams": "Equipos de trabajo",
     "notifications": "Notificaciones"
   },
@@ -14,6 +15,7 @@
     "recent": "Reciente",
     "manage": "Administra",
     "shared": "Compartido recientemente",
+    "shared-null": "",
     "shared-info": "Aceptar / Rechazar la invitación a participar",
     "all": "Todos",
     "date": "Última modificación"

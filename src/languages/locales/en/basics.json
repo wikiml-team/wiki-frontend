@@ -12,6 +12,7 @@
     "accept": "Accept",
     "cancel": "Cancel",
     "save-before-closing": "Do you want to save before closing?",
+    "unsupported": "Feature still not supported.",
     "actions": {
         "edit": "Edit",
         "create": "Create",

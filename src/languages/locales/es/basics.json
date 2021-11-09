@@ -12,6 +12,7 @@
     "accept": "Aceptar",
     "cancel": "Cancelar",
     "save-before-closing": "Desea guardar antes de cerrar?",
+    "unsupported": "",
     "methodologies": {
         "canadian": "Metodología Global Affairs Canada",
         "german": "Metodología Alemana",

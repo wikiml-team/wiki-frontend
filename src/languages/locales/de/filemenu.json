@@ -2,6 +2,7 @@
   "home": {
     "header": "Startseite",
     "starprojects": "Markierte Projekte",
+    "starprojects-createdAt": "",
     "teams": "Teams",
     "notifications": "Benachrichtigungen"
   },
@@ -14,6 +15,7 @@
     "recent": "Neuste",
     "manage": "",
     "shared": "Zuletzt freigegeben",
+    "shared-null": "",
     "shared-info": "Akzeptieren / Ablehnen der Einladung zur Teilnahme",
     "all": "Alle",
     "date": "Zuletzt geändert"

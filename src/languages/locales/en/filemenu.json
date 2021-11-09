@@ -2,6 +2,7 @@
   "home": {
     "header": "Home",
     "starprojects": "Featured Projects",
+    "starprojects-createdAt": "Created at",
     "teams": "Teams",
     "notifications": "Notifications"
   },
@@ -14,9 +15,12 @@
     "recent": "Recent",
     "manage": "Manage",
     "shared": "Recenly shared",
+    "shared-null": "No projects work on recently",
     "shared-info": "Accept / Decline the invitation to participate",
     "all": "All",
-    "date": "Last modified"
+    "date": "Last modified",
+    "isfavorite": "Unselect as Favorite",
+    "notfavorite": "Select as Favorite"
   },
   "methodologies": {
     "header": "Methodologies",
