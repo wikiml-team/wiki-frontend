@@ -1,5 +1,7 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { useTranslation } from "react-i18next";
+import { toNumber } from "lodash";
 
 import {
   IButtonStyles,
@@ -12,15 +14,14 @@ import {
   Icon,
 } from "@fluentui/react";
 
-import MethodologyCard from "components/cards/methodologycard";
-import { GET_METHODOLOGIES } from "apollo/methodologies";
-import { Centered } from "components/styled/centered";
-import { Subtitle, Title } from "components/styled/text";
-import { useHistory } from "react-router";
 import { useQuery } from "@apollo/client";
 import { GetMethodologies, GetMethodologies_methodologies } from "types";
-import { toNumber } from "lodash";
+import { GET_METHODOLOGIES } from "apollo/methodologies";
 import QueryStateIndicator from "apollo/indicator";
+
+import MethodologyCard from "components/cards/methodologycard";
+import { Centered } from "components/styled/centered";
+import { Subtitle, Title } from "components/styled/text";
 
 export default function MethodologiesPage() {
   // STYLES
@@ -36,6 +37,7 @@ export default function MethodologiesPage() {
   // LOGIC
   const { t } = useTranslation("filemenu", { keyPrefix: "methodologies" });
 
+  // DATA
   const { data, loading, error } = useQuery<GetMethodologies>(GET_METHODOLOGIES);
 
   <QueryStateIndicator data={data} loading={loading} error={error} />
