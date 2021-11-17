@@ -4,6 +4,29 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetLanguages
+// ====================================================
+
+export interface GetLanguages_languages {
+  __typename: "Language";
+  id: string;
+  name: string | null;
+  code: string | null;
+}
+
+export interface GetLanguages {
+  /**
+   * return s the list of all supported languages
+   */
+  languages: GetLanguages_languages[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetMethodologies
 // ====================================================
 
@@ -70,6 +93,54 @@ export interface GetMethodologyByName {
 
 export interface GetMethodologyByNameVariables {
   name: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetPrograms
+// ====================================================
+
+export interface GetPrograms_programs {
+  __typename: "Program";
+  id: string;
+  name: string | null;
+}
+
+export interface GetPrograms {
+  /**
+   * returns the list of the programs
+   */
+  programs: GetPrograms_programs[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetProgramById
+// ====================================================
+
+export interface GetProgramById_program {
+  __typename: "Program";
+  id: string;
+  name: string | null;
+}
+
+export interface GetProgramById {
+  /**
+   * returns the program with the given id
+   */
+  program: GetProgramById_program | null;
+}
+
+export interface GetProgramByIdVariables {
+  id: string;
 }
 
 /* tslint:disable */
@@ -199,6 +270,72 @@ export interface GetProjectById {
 }
 
 export interface GetProjectByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetSectors
+// ====================================================
+
+export interface GetSectors_sectors_methodology {
+  __typename: "Methodology";
+  id: string;
+  name: string | null;
+}
+
+export interface GetSectors_sectors {
+  __typename: "Sector";
+  id: string;
+  name: string | null;
+  description: string | null;
+  methodology: GetSectors_sectors_methodology;
+  projectSample: string | null;
+}
+
+export interface GetSectors {
+  /**
+   * returns the list of the sectors
+   */
+  sectors: GetSectors_sectors[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetSectorById
+// ====================================================
+
+export interface GetSectorById_sector_methodology {
+  __typename: "Methodology";
+  id: string;
+  name: string | null;
+}
+
+export interface GetSectorById_sector {
+  __typename: "Sector";
+  id: string;
+  name: string | null;
+  description: string | null;
+  methodology: GetSectorById_sector_methodology;
+  projectSample: string | null;
+}
+
+export interface GetSectorById {
+  /**
+   * returns the sector with the given id
+   */
+  sector: GetSectorById_sector | null;
+}
+
+export interface GetSectorByIdVariables {
   id: string;
 }
 
