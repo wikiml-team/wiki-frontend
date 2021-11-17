@@ -4,13 +4,14 @@ import { useTranslation } from "react-i18next";
 import { IStackProps, Stack } from "@fluentui/react";
 import { useBoolean } from "@fluentui/react-hooks";
 
-import MethodologyCard from "components/cards/methodologycard";
-import NewProjectDialog from "components/dialog/newproject";
-import { GET_METHODOLOGIES } from "apollo/methodologies";
-import { Subtitle, Title } from "components/styled/text";
 import { useQuery } from "@apollo/client";
+import { GET_METHODOLOGIES } from "apollo/methodologies";
 import { GetMethodologies, GetMethodologies_methodologies } from "types";
 import QueryStateIndicator from "apollo/indicator";
+
+import MethodologyCard from "components/cards/methodologycard";
+import NewProjectDialog from "components/dialog/newproject";
+import { Subtitle, Title } from "components/styled/text";
 
 export default function NewPage() {
   // LOGIC
@@ -31,7 +32,8 @@ export default function NewPage() {
   const { data, loading, error } =
     useQuery<GetMethodologies>(GET_METHODOLOGIES);
 
-  <QueryStateIndicator data={data} loading={loading} error={error} />;
+  if (!data || loading || error)
+    return <QueryStateIndicator data={data} loading={loading} error={error} />;
 
   // STYLES
   const stackProps: IStackProps = {
@@ -69,7 +71,10 @@ const mapToCard = (
 
   return (
     <Stack.Item key={id}>
-      <MethodologyCard name={name || ""} onClick={() => handler(id, name || "")} />
+      <MethodologyCard
+        name={name || ""}
+        onClick={() => handler(id, name || "")}
+      />
     </Stack.Item>
   );
 };

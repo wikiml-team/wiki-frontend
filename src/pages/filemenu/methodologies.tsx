@@ -40,7 +40,8 @@ export default function MethodologiesPage() {
   // DATA
   const { data, loading, error } = useQuery<GetMethodologies>(GET_METHODOLOGIES);
 
-  <QueryStateIndicator data={data} loading={loading} error={error} />
+  if (!data || loading || error)
+    return <QueryStateIndicator data={data} loading={loading} error={error} />;
 
   return (
     <React.Fragment>

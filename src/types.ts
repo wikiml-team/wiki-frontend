@@ -140,6 +140,73 @@ export interface GetProjects {
 // @generated
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: GetProjectById
+// ====================================================
+
+export interface GetProjectById_project_methodology {
+  __typename: "Methodology";
+  id: string;
+  name: string | null;
+}
+
+export interface GetProjectById_project_intermediateOutcomes {
+  __typename: "IntermediateOutcome";
+  id: string;
+}
+
+export interface GetProjectById_project_projectPermissions {
+  __typename: "ProjectPermission";
+  id: string;
+  userId: number;
+}
+
+export interface GetProjectById_project_ultimateOutcome {
+  __typename: "UltimateOutcome";
+  id: string;
+  description: string | null;
+  what: string | null;
+  where: string | null;
+}
+
+export interface GetProjectById_project {
+  __typename: "Project";
+  id: string;
+  shortName: string | null;
+  largeName: string | null;
+  methodology: GetProjectById_project_methodology;
+  description: string | null;
+  languageId: number;
+  programId: number | null;
+  projectStatusId: number;
+  public: boolean | null;
+  sectorId: number;
+  currencyCode: string | null;
+  durationPlan: number | null;
+  intermediateOutcomes: GetProjectById_project_intermediateOutcomes[];
+  projectPermissions: GetProjectById_project_projectPermissions[];
+  solicitedBudget: number | null;
+  ultimateOutcome: GetProjectById_project_ultimateOutcome | null;
+  wikimlCode: string | null;
+  createdAt: any;
+}
+
+export interface GetProjectById {
+  /**
+   * returns the project with the given id
+   */
+  project: GetProjectById_project | null;
+}
+
+export interface GetProjectByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
