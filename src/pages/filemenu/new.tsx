@@ -16,6 +16,7 @@ import { Subtitle, Title } from "components/styled/text";
 export default function NewPage() {
   // LOGIC
   const { t } = useTranslation("filemenu", { keyPrefix: "new" });
+  const { t: t_basics } = useTranslation("basics", { keyPrefix: "methodologies" });
 
   const [currentMethodology, setcurrentMethodology] = useState({
     id: "",
@@ -53,7 +54,7 @@ export default function NewPage() {
       <Subtitle>{t("text")}</Subtitle>
 
       <Stack horizontal {...stackProps}>
-        {data && data.methodologies.map((m) => MapToCard(m, handleOnClick))}
+        {data && data.methodologies.map((m) => MapToCard(m, handleOnClick, t_basics))}
       </Stack>
 
       <NewProjectDialog
@@ -67,12 +68,11 @@ export default function NewPage() {
 
 const MapToCard = (
   methodology: GetMethodologies_methodologies,
-  handler: (id: string, name: string) => void
+  handler: (id: string, name: string) => void,
+  t: Function
 ) => {
   const { id, name } = methodology;
   const methodologyName = name || "";
-
-  const { t } = useTranslation("basics", { keyPrefix: "methodologies" });
 
   return (
     <Stack.Item key={id}>

@@ -21,7 +21,21 @@ export interface IFeaturedProject {
 export default function HomePage() {
   // LOGIC
   const { t } = useTranslation("filemenu", { keyPrefix: "home" });
+  const { t: t_basics } = useTranslation("basics", {
+    keyPrefix: "methodologies",
+  });
+
+  // STYLES
   const { palette } = useTheme();
+
+  const separatorStyles: Partial<ISeparatorStyles> = {
+    root: {
+      "::before": {
+        height: 0.4,
+        background: palette.neutralTertiaryAlt,
+      },
+    },
+  };
 
   // DATA
   const { data, loading, error } = useQuery<GetProjects>(GET_PROJECTS);
@@ -31,18 +45,8 @@ export default function HomePage() {
 
   // All projects
   const projects: IFeaturedProject[] =
-    data?.projects.map((project) => MapProjectToCard(project)) ||
+    data?.projects.map((project) => MapProjectToCard(project, t_basics)) ||
     ([] as IFeaturedProject[]); //add .filter(project => project.isFavorite)
-
-  // STYLES
-  const separatorStyles: Partial<ISeparatorStyles> = {
-    root: {
-      "::before": {
-        height: 0.4,
-        background: palette.neutralTertiaryAlt,
-      },
-    },
-  };
 
   return (
     <React.Fragment>
@@ -76,10 +80,8 @@ export default function HomePage() {
   );
 }
 
-const MapProjectToCard = (project: GetProjects_projects) => {
-  const { t } = useTranslation("basics", { keyPrefix: "methodologies" });
-
-  const methodology = project.methodology.name || ''
+const MapProjectToCard = (project: GetProjects_projects, t: Function) => {
+  const methodology = project.methodology.name || "";
 
   return {
     name: project.shortName,

@@ -23,8 +23,10 @@ type PivotBarProps = {
 };
 
 export default function PivotBar(props: PivotBarProps) {
-  const { schema, setShowToolBar } = props;
-  const { tabs } = schema;
+  const {
+    schema: { tabs },
+    setShowToolBar,
+  } = props;
 
   // LOGIC
   const { t } = useTranslation("menuheaders", { keyPrefix: "mainmenu" });

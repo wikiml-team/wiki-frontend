@@ -35,7 +35,7 @@ type formValuesType = {
 export default function LogicModelForm() {
   // LOGIC
   const { t } = useTranslation("forms", { keyPrefix: "logicmodel" });
-  const t_basics = useTranslation("basics").t;
+  const { t: t_basics } = useTranslation("basics");
 
   const project = useSelector(selectProject);
   const currentForm = project.forms.find(

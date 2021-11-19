@@ -39,32 +39,7 @@ interface IProject {
 export default function OpenPage() {
   // LOGIC
   const { t } = useTranslation("filemenu", { keyPrefix: "open" });
-  const t_basics = useTranslation("basics").t;
-  const { palette } = useTheme();
-
-  // DATA
-  const { data, loading, error } = useQuery<GetProjects>(GET_PROJECTS);
-
-  if (!data || loading || error)
-    return <QueryStateIndicator data={data} loading={loading} error={error} />;
-
-  // All projects
-  const projects: IProject[] =
-    data?.projects.map((project) => MapToProjectRow(project)) ||
-    ([] as IProject[]);
-
-  // Filter Recent projects
-  const recentProjects: IProject[] = projects
-    .filter((p) => {
-      const pdate = new Date(p.dateModified);
-      const now = new Date();
-      // @ts-ignore
-      const diffDays = Math.ceil(Math.abs(pdate - now) / (1000 * 60 * 60 * 24));
-      return diffDays < 20;
-    })
-    // @ts-ignore
-    .sort((p1, p2) => p1.dateModified - p2.dateModified)
-    .slice(0, 3);
+  const { t: t_basics } = useTranslation("basics");
 
   const columns: IColumn[] = [
     {
@@ -93,8 +68,10 @@ export default function OpenPage() {
       onRender: (item: IProject) => DateRender(item),
     },
   ];
-
+  
   // STYLES
+  const { palette } = useTheme();
+  
   const IconRender = (project: IProject) => {
     // default value project.isFavorite
     const [isFavorite, { toggle: toggleIsFavorite }] = useBoolean(false);
@@ -178,6 +155,31 @@ export default function OpenPage() {
     return null;
   };
 
+  // DATA
+  const { data, loading, error } = useQuery<GetProjects>(GET_PROJECTS);
+
+  if (!data || loading || error)
+    return <QueryStateIndicator data={data} loading={loading} error={error} />;
+
+  // All projects
+  const projects: IProject[] =
+    data?.projects.map((project) => MapToProjectRow(project, t_basics)) ||
+    ([] as IProject[]);
+
+  // Filter Recent projects
+  const recentProjects: IProject[] = projects
+    .filter((p) => {
+      const pdate = new Date(p.dateModified);
+      const now = new Date();
+      // @ts-ignore
+      const diffDays = Math.ceil(Math.abs(pdate - now) / (1000 * 60 * 60 * 24));
+      return diffDays < 20;
+    })
+    // @ts-ignore
+    .sort((p1, p2) => p1.dateModified - p2.dateModified)
+    .slice(0, 3);
+
+
   return (
     <React.Fragment>
       <Title>{t("header")}</Title>
@@ -208,15 +210,6 @@ export default function OpenPage() {
           </Subtitle>
 
           {t_basics("unsupported")}
-
-          {/* <DetailsList
-          items={projects.slice(1)}
-          columns={columns}
-          selectionMode={SelectionMode.none}
-          isHeaderVisible={false}
-          onRenderRow={onRenderRow}
-          layoutMode={DetailsListLayoutMode.fixedColumns}
-        /> */}
         </Stack.Item>
 
         <Stack.Item>
@@ -235,11 +228,9 @@ export default function OpenPage() {
   );
 }
 
-const MapToProjectRow = (project: GetProjects_projects) => {
-  const { t } = useTranslation("basics", { keyPrefix: "methodologies" });
+const MapToProjectRow = (project: GetProjects_projects, t: Function) => {
+  const methodology = project.methodology.name || "";
 
-  const methodology = project.methodology.name || '';
-  
   return {
     key: project.id,
     name: project.shortName,

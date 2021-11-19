@@ -30,7 +30,9 @@ import UserCallout from "components/callout/user";
 export default function CommandMenu() {
   // LOGIC
   const { t } = useTranslation("commands");
-  const t_basics = useTranslation("basics", { keyPrefix: "methodologies" }).t;
+  const { t: t_basics } = useTranslation("basics", {
+    keyPrefix: "methodologies",
+  });
 
   const { projectId } = useParams<any>();
 
@@ -115,12 +117,8 @@ export default function CommandMenu() {
     },
   });
 
-  if (!data || loading || error)
-    return <QueryStateIndicator data={data} loading={loading} error={error} />;
-
-  const name = data.project?.shortName || "";
-
-  const methodology = data.project?.methodology.name || "";
+  const name = data?.project?.shortName || "";
+  const methodology = data?.project?.methodology.name || "";
 
   return (
     <React.Fragment>

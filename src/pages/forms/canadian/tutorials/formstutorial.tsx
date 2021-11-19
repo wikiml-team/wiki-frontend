@@ -16,7 +16,7 @@ import { IForm } from "models/workplace";
 export default function FormsTutorials() {
   // LOGIC
   const { t } = useTranslation("tutorials", { keyPrefix: "forms" });
-  const t_forms = useTranslation("forms").t;
+  const { t: t_forms } = useTranslation("forms");
 
   const { tabsSchema } = useSelector(selectWorkplaceConfig);
 

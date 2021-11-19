@@ -18,21 +18,20 @@ import ThemePicker from "components/pickers/themepicker";
 import { colorCells } from "themes/office";
 
 export default function SettingsPanelContent() {
-
   // STYLES
   const { palette } = useTheme();
 
   // Stack Props
   const stackProps: IStackProps = {
     tokens: {
-      childrenGap: 15
+      childrenGap: 15,
     },
     styles: {
       root: {
-        marginTop: 40
-      }
-    }
-  }
+        marginTop: 40,
+      },
+    },
+  };
 
   // Horizontal Separators
   const separatorProps: ISeparatorProps = {
@@ -48,14 +47,12 @@ export default function SettingsPanelContent() {
   };
 
   // LOGIC
-  const { t } = useTranslation("commands", { keyPrefix: "settings"});
-  const t_basics = useTranslation("basics").t
-  
+  const { t } = useTranslation("commands", { keyPrefix: "settings" });
+  const { t: t_basics } = useTranslation("basics");
+
   const dispatch = useDispatch();
 
-  const handleChangePrivacy = () => {
-
-  }
+  const handleChangePrivacy = () => {};
 
   return (
     <Stack {...stackProps}>
@@ -76,10 +73,13 @@ export default function SettingsPanelContent() {
       </Stack.Item>
       {/* LINK */}
       <Stack.Item>
-        {t("privacy-text")} {' '}
-        <Link href="/settings/privacy" underline>{t("privacy-link")}</Link>.
+        {t("privacy-text")}{" "}
+        <Link href="/settings/privacy" underline>
+          {t("privacy-link")}
+        </Link>
+        .
       </Stack.Item>
-      
+
       <br />
 
       <Separator {...separatorProps}>

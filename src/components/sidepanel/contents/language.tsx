@@ -1,19 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import {
-  Dropdown,
-  IDropdownOption,
-  IStackProps,
-  Stack,
-} from "@fluentui/react";
+import { Dropdown, IDropdownOption, IStackProps, Stack } from "@fluentui/react";
 
-import { setLanguage, selectLanguage, selectSupportedLanguages } from "store/slices/languageslice";
+import {
+  setLanguage,
+  selectLanguage,
+  selectSupportedLanguages,
+} from "store/slices/languageslice";
 
 export default function LanguagePanel() {
-  const { t } = useTranslation("commands", { keyPrefix: "language"});
-  const t_basics = useTranslation("basics", { keyPrefix: "languages"}).t
-  
+  const { t } = useTranslation("commands", { keyPrefix: "language" });
+  const { t: t_basics } = useTranslation("basics", { keyPrefix: "languages" });
+
   const lang = useSelector(selectLanguage);
   const supportedLanguages = useSelector(selectSupportedLanguages);
 
@@ -28,21 +27,21 @@ export default function LanguagePanel() {
 
   const stackProps: IStackProps = {
     tokens: {
-      childrenGap: 15
+      childrenGap: 15,
     },
     styles: {
       root: {
-        marginTop: 40
-      }
-    }
-  }
+        marginTop: 40,
+      },
+    },
+  };
 
-  const suportedLangs = supportedLanguages.map(key => {
+  const suportedLangs = supportedLanguages.map((key) => {
     return {
       key: key,
-      text: t_basics(key)
-    }
-  })
+      text: t_basics(key),
+    };
+  });
 
   return (
     <Stack {...stackProps}>
@@ -60,7 +59,7 @@ export default function LanguagePanel() {
           label={t("language-data")}
           placeholder={t("language-select")}
           options={suportedLangs}
-          onChange={() => { }}
+          onChange={() => {}}
         />
       </Stack.Item>
     </Stack>

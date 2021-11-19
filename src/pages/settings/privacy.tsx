@@ -22,8 +22,8 @@ import { IForm } from "models/workplace";
 export default function Privacy() {
   // LOGIC
   const { t } = useTranslation("settings", { keyPrefix: "privacy-page" });
-  const t_basics = useTranslation("basics").t;
-  const t_forms = useTranslation("forms").t;
+  const { t: t_basics } = useTranslation("basics");
+  const { t: t_forms } = useTranslation("forms");
 
   const { tabsSchema } = useSelector(selectWorkplaceConfig);
   const [privateProject, { toggle: togglePrivateProject }] = useBoolean(true);

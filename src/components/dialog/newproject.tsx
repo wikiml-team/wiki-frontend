@@ -55,7 +55,9 @@ function NewProjectDialogBody(props: NewProjectDialogBodyProps) {
 
   // LOGIC
   const { t } = useTranslation("commands", { keyPrefix: "new.body" });
-  const t_basics = useTranslation("basics", { keyPrefix: "methodologies" }).t;
+  const { t: t_basics } = useTranslation("basics", {
+    keyPrefix: "methodologies",
+  });
 
   const methodology = t_basics(name, name);
 

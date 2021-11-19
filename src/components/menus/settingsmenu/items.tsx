@@ -5,7 +5,7 @@ import { ICommandBarItemProps } from "@fluentui/react";
 
 export const GetItems = () => {
   const { t } = useTranslation("menuheaders", { keyPrefix: "settings" });
-  const t_basics = useTranslation("basics").t;
+  const { t: t_basics } = useTranslation("basics");
 
   const history = useHistory();
 

@@ -23,9 +23,9 @@ import { Title } from "components/styled/text";
 export default function UpdateMethodology() {
   // LOGIC
   const { t } = useTranslation("manage", { keyPrefix: "form" });
-  const t_basics = useTranslation("basics", { keyPrefix: "languages" }).t;
+  const { t: t_basics } = useTranslation("basics", { keyPrefix: "languages" });
 
-  const { form } = useParams<any>();
+  const { form } = useParams<{ form: string }>();
 
   const isIndex = form?.includes("index") ? true : false;
 
