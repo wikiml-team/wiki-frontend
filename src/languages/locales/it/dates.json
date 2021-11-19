@@ -1,57 +1,57 @@
 {
-    "date-placeholder": "Select a date",
-    "months": {
-        "january": "Gennaio",
-        "february": "Febbraio",
-        "march": "Marzo",
-        "april": "Aprile",
-        "may": "Maggio",
-        "june": "Giugno",
-        "july": "Luglio",
-        "august": "Agosto",
-        "september": "Settembre",
-        "october": "Ottobre",
-        "november": "Novembre",
-        "december": "Dicembre"
-    },
-    "shortmonths": {
-        "jan": "gen",
-        "feb": "feb",
-        "mar": "mar",
-        "apr": "apr",
-        "may": "mag",
-        "jun": "giu",
-        "jul": "lug",
-        "aug": "ago",
-        "sep": "set",
-        "oct": "ott",
-        "nov": "nov",
-        "dec": "dic"
-    },
-    "days": {
-        "sunday": "Domenica",
-        "monday": "Lunedì",
-        "tuesday": "Martedì",
-        "wednesday": "Mercoledì",
-        "thursday": "Giovedì",
-        "friday": "Venerdì",
-        "saturday": "Sabato"
-    },
-    "shortdays": {
-        "sunday": "Dom",
-        "monday": "Lun",
-        "tuesday": "Mar",
-        "wednesday": "Mer",
-        "thursday": "Gio",
-        "friday": "Ven",
-        "saturday": "Sab"
-    },
-    "calendar": {
-        "goToToday": "Vai a oggi",
-        "prevMonthAriaLabel": "Vai al mese precedente",
-        "nextMonthAriaLabel": "ai al mese successivo",
-        "prevYearAriaLabel": "Vai all'anno precedente",
-        "nextYearAriaLabel": "Vai all'anno successivo",
-        "closeButtonAriaLabel": "Chiudi il selezionatore di date"
-    }
+  "date-placeholder": "Select a date",
+  "months": {
+    "january": "Gennaio",
+    "february": "Febbraio",
+    "march": "Marzo",
+    "april": "Aprile",
+    "may": "Maggio",
+    "june": "Giugno",
+    "july": "Luglio",
+    "august": "Agosto",
+    "september": "Settembre",
+    "october": "Ottobre",
+    "november": "Novembre",
+    "december": "Dicembre"
+  },
+  "shortmonths": {
+    "jan": "gen",
+    "feb": "feb",
+    "mar": "mar",
+    "apr": "apr",
+    "may": "mag",
+    "jun": "giu",
+    "jul": "lug",
+    "aug": "ago",
+    "sep": "set",
+    "oct": "ott",
+    "nov": "nov",
+    "dec": "dic"
+  },
+  "days": {
+    "sunday": "Domenica",
+    "monday": "Lunedì",
+    "tuesday": "Martedì",
+    "wednesday": "Mercoledì",
+    "thursday": "Giovedì",
+    "friday": "Venerdì",
+    "saturday": "Sabato"
+  },
+  "shortdays": {
+    "sunday": "Dom",
+    "monday": "Lun",
+    "tuesday": "Mar",
+    "wednesday": "Mer",
+    "thursday": "Gio",
+    "friday": "Ven",
+    "saturday": "Sab"
+  },
+  "calendar": {
+    "goToToday": "Vai a oggi",
+    "prevMonthAriaLabel": "Vai al mese precedente",
+    "nextMonthAriaLabel": "ai al mese successivo",
+    "prevYearAriaLabel": "Vai all'anno precedente",
+    "nextYearAriaLabel": "Vai all'anno successivo",
+    "closeButtonAriaLabel": "Chiudi il selezionatore di date"
+  }
 }

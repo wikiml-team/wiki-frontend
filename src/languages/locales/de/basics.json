@@ -1,34 +1,34 @@
 {
-    "welcome": "Willkommen bei WikiML",
-    "yes" : "Ja",
-    "no" : "Nein",
-    "save": "Speichern",
-    "dismiss": "Abbruch",
-    "thanks" : "Danke",
-    "public" : "Öffentlich",
-    "private": "Privat",
-    "return" : "Zurück",
-    "select": "Auswählen",
-    "accept": "Akzeptieren",
-    "cancel": "Abbrechen",
-    "save-before-closing": "Möchten Sie vor dem Schließen speichern?",
-    "unsupported": "",
-    "methodologies": {
-        "canadian": "Kanadische Methodik",
-        "german": "Deutsche Methodik",
-        "italian": "Italienische Methodik"
-    },
-    "loading": {
-        "title": "Laden",
-        "description": "Bitte warten Sie einen Moment, die Daten werden geladen.",
-        "error": "",
-        "error-text": "",
-        "nodata": ""
-    },
-    "languages": {
-        "en": "Englisch",
-        "es": "Spanisch",
-        "de": "Deutsch",
-        "it": "Italienisch"
-    }
+  "welcome": "Willkommen bei WikiML",
+  "yes": "Ja",
+  "no": "Nein",
+  "save": "Speichern",
+  "dismiss": "Abbruch",
+  "thanks": "Danke",
+  "public": "Öffentlich",
+  "private": "Privat",
+  "return": "Zurück",
+  "select": "Auswählen",
+  "accept": "Akzeptieren",
+  "cancel": "Abbrechen",
+  "save-before-closing": "Möchten Sie vor dem Schließen speichern?",
+  "unsupported": "",
+  "methodologies": {
+    "canadian": "Kanadische Methodik",
+    "german": "Deutsche Methodik",
+    "italian": "Italienische Methodik"
+  },
+  "loading": {
+    "title": "Laden",
+    "description": "Bitte warten Sie einen Moment, die Daten werden geladen.",
+    "error": "",
+    "error-text": "",
+    "nodata": ""
+  },
+  "languages": {
+    "en": "Englisch",
+    "es": "Spanisch",
+    "de": "Deutsch",
+    "it": "Italienisch"
+  }
 }

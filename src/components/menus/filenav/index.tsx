@@ -1,177 +1,185 @@
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import { useTranslation } from "react-i18next";
 
 import {
-    INavStyles, 
-    Nav, 
-    useTheme, 
-    FontSizes, 
-    IIconProps,
-    ActionButton,
-    IButtonStyles,
-    Separator,
-    ISeparatorStyles,
-    mergeStyleSets,
-    INavLink
-} from '@fluentui/react';
-import { GetFooterItems, GetPrimaryItems, GetSecondaryItems } from './items';
+  ActionButton,
+  FontSizes,
+  IButtonStyles,
+  IIconProps,
+  INavLink,
+  INavStyles,
+  ISeparatorStyles,
+  mergeStyleSets,
+  Nav,
+  Separator,
+  useTheme,
+} from "@fluentui/react";
+
+import { GetFooterItems, GetPrimaryItems, GetSecondaryItems } from "./items";
 
 export default function FileMenu() {
+  // LOGIC
+  const { t } = useTranslation("basics");
 
-    // LOGIC
-    const { t } = useTranslation('basics');
+  const history = useHistory();
 
-    const history = useHistory()
-    
-    const [selectedKey, setSelectedKey] = useState("")
-    
-    useEffect(() => {
-        const path = history.location.pathname.split('/')
-        const key = path[path.length - 1] === ""? "key_home" : `key_${path[path.length - 1]}` 
-        setSelectedKey(key)
-    }, [history])
-    
-    const handleNavOnClick = (ev?: React.MouseEvent<HTMLElement>, item?: INavLink) => {
-        if (ev) ev.preventDefault()
-        
-        if (item) {
-            setSelectedKey(item.key || "key_home")
-            history.push(item.url)
-        }
+  const [selectedKey, setSelectedKey] = useState("");
+
+  useEffect(() => {
+    const path = history.location.pathname.split("/");
+    const key =
+      path[path.length - 1] === ""
+        ? "key_home"
+        : `key_${path[path.length - 1]}`;
+    setSelectedKey(key);
+  }, [history]);
+
+  const handleNavOnClick = (
+    ev?: React.MouseEvent<HTMLElement>,
+    item?: INavLink
+  ) => {
+    if (ev) ev.preventDefault();
+
+    if (item) {
+      setSelectedKey(item.key || "key_home");
+      history.push(item.url);
     }
-    
-    const handleOnReturn = () => {
-        history.push("/workplace")
-    }
-    
-    // STYLES
-    const { palette } = useTheme();
+  };
 
-    const classes = mergeStyleSets({
-        footer: {
-            "a": {
-                paddingLeft: 36!,
-            }
-        },
-    });
-    
-    // Action Button Return
-    const buttonStyles: IButtonStyles = {
-        root: {
-            marginTop: 20,
-            marginBottom: 20,
-            width: '100%'
-        },
-        textContainer: {
-            width: '100%',
-            textAlign: 'left'
-        }
-    }
-    
-    const iconProps : Partial<IIconProps> = {
-        iconName: 'NavigateBack',
-        styles: {
-            root: {
-                paddingLeft: 7,
-                marginRight: 10,
-                fontSize: FontSizes.mediumPlus,
-            }
-        }
-    }
+  const handleOnReturn = () => {
+    history.push("/workplace/1");
+  };
 
-    // Main navigation
-    const navStyles: Partial<INavStyles> = {
-        root: {
-            height: "inherit",
-            boxSizing: 'border-box',
-            border: "none",
-            overflowY: 'auto',
-            color: palette.white!,
-        },
-        link: {
-            paddingLeft: 10,
-            fontSize: FontSizes.medium,
-            // color: palette.white!,
+  // STYLES
+  const { palette } = useTheme();
 
-            // '.ms-Nav-compositeLink:hover &': {
-            //     backgroundColor: palette.themePrimary,
-            //     color: palette.white
-            // },
+  const classes = mergeStyleSets({
+    footer: {
+      a: {
+        paddingLeft: 36!,
+      },
+    },
+  });
 
-            // '.is-selected &': {
-            //     backgroundColor: palette.themeDarkAlt
-            // }
+  // Action Button Return
+  const buttonStyles: IButtonStyles = {
+    root: {
+      marginTop: 20,
+      marginBottom: 20,
+      width: "100%",
+    },
+    textContainer: {
+      width: "100%",
+      textAlign: "left",
+    },
+  };
 
-        },
-        linkText: {
-            // color: palette.white!
-            paddingLeft: 10
-        },
-        groupContent: {
-            marginBottom: 2
-        }
-    };
+  const iconProps: Partial<IIconProps> = {
+    iconName: "NavigateBack",
+    styles: {
+      root: {
+        paddingLeft: 7,
+        marginRight: 10,
+        fontSize: FontSizes.mediumPlus,
+      },
+    },
+  };
 
-    // Separator
-    const separatorStyles: Partial<ISeparatorStyles> = {
-        root: {
-        "::before": {
-            margin: "0px 10px",
-            height: 0.4,
-            background: palette.neutralTertiaryAlt,
-            },
-        },
-    };
+  // Main navigation
+  const navStyles: Partial<INavStyles> = {
+    root: {
+      height: "inherit",
+      boxSizing: "border-box",
+      border: "none",
+      overflowY: "auto",
+      color: palette.white!,
+    },
+    link: {
+      paddingLeft: 10,
+      fontSize: FontSizes.medium,
+      // color: palette.white!,
 
-    // NAVs
-    const nav = GetPrimaryItems()
+      // '.ms-Nav-compositeLink:hover &': {
+      //     backgroundColor: palette.themePrimary,
+      //     color: palette.white
+      // },
 
-    const nav_methodologies = GetSecondaryItems()
-    
-    const footer_nav = GetFooterItems()
+      // '.is-selected &': {
+      //     backgroundColor: palette.themeDarkAlt
+      // }
+    },
+    linkText: {
+      // color: palette.white!
+      paddingLeft: 10,
+    },
+    groupContent: {
+      marginBottom: 2,
+    },
+  };
 
-    return (
-        <React.Fragment>
-            {/* close */}
-            <ActionButton 
-                iconProps={iconProps} 
-                styles={buttonStyles}
-                onClick={handleOnReturn}
-            >
-                {t("return")}
-            </ActionButton>
+  // Separator
+  const separatorStyles: Partial<ISeparatorStyles> = {
+    root: {
+      "::before": {
+        margin: "0px 10px",
+        height: 0.4,
+        background: palette.neutralTertiaryAlt,
+      },
+    },
+  };
 
-            {/* Project */}
-            <Nav 
-                selectedKey={selectedKey}
-                ariaLabel="File menu" 
-                styles={navStyles} 
-                groups={nav} 
-                onLinkClick={handleNavOnClick}/>
+  // NAVs
+  const nav = GetPrimaryItems();
 
-            {/* Separator */}
-            <Separator styles={separatorStyles}/>
+  const nav_methodologies = GetSecondaryItems();
 
-            {/* Methodologies */}
-            <Nav 
-                selectedKey={selectedKey}
-                ariaLabel="File menu" 
-                styles={navStyles} 
-                groups={nav_methodologies} 
-                onLinkClick={handleNavOnClick}/>
+  const footer_nav = GetFooterItems();
 
-            {/* Separator */}
-            <Separator styles={separatorStyles}/>
+  return (
+    <React.Fragment>
+      {/* close */}
+      <ActionButton
+        iconProps={iconProps}
+        styles={buttonStyles}
+        onClick={handleOnReturn}
+      >
+        {t("return")}
+      </ActionButton>
 
-            {/* footer */}
-            <Nav 
-                selectedKey={selectedKey}
-                ariaLabel="File menu" 
-                styles={navStyles} 
-                groups={footer_nav} 
-                className={classes.footer}
-                onLinkClick={handleNavOnClick}/>
-        </React.Fragment>
-    )
+      {/* Project */}
+      <Nav
+        selectedKey={selectedKey}
+        ariaLabel="File menu"
+        styles={navStyles}
+        groups={nav}
+        onLinkClick={handleNavOnClick}
+      />
+
+      {/* Separator */}
+      <Separator styles={separatorStyles} />
+
+      {/* Methodologies */}
+      <Nav
+        selectedKey={selectedKey}
+        ariaLabel="File menu"
+        styles={navStyles}
+        groups={nav_methodologies}
+        onLinkClick={handleNavOnClick}
+      />
+
+      {/* Separator */}
+      <Separator styles={separatorStyles} />
+
+      {/* footer */}
+      <Nav
+        selectedKey={selectedKey}
+        ariaLabel="File menu"
+        styles={navStyles}
+        groups={footer_nav}
+        className={classes.footer}
+        onLinkClick={handleNavOnClick}
+      />
+    </React.Fragment>
+  );
 }

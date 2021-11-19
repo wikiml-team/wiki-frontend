@@ -1,223 +1,223 @@
 {
-    "general": {
-        "header": "Allgemein",
-        "required": "Erforderlich",
-        "shortname": {
-            "field": "Projekttitel (kurz)",
-            "error": "Darf maximal 20 Zeichen haben"
-        },
-        "largename": {
-            "field": "Projekttitel",
-            "error": "Muss zwischen 20 und 100 Zeichen haben"
-        },
-        "description": {
-            "field": "Deskriptive Zusammenfassung",
-            "error": ""
-        },
-        "country": {
-            "field": "Hauptempfänger",
-            "error": ""
-        },
-        "imporganization": {
-            "field": "Hauptdurchführender",
-            "error": ""
-        },
-        "intorganization": {
-            "field": "Hauptintermediär",
-            "error": ""
-        },
-        "currency": {
-            "field": "Währung",
-            "error": ""
-        },
-        "budget": {
-            "field": "Budget",
-            "prefix": "Beantragt",
-            "error": ""
-        },
-        "calculated": {
-            "field": "Berechnet",
-            "budgetitems-prefix": "Pro Posten",
-            "budgetact-prefix": "Pro Aktivität"
-        },
-        "financed": {
-            "field": "Finanziert",
-            "error": ""
-        },
-        "program": {
-            "field": "Programm",
-            "error": ""
-        },
-        "sector": {
-            "field": "Sektor",
-            "error": ""
-        },
-        "duration": {
-            "field": "Dauer",
-            "suffix": "Monate",
-            "error": ""
-        },
-        "donor": {
-            "field": "Hauptgeldgeber",
-            "error": ""
-        },
-        "approvebudget": {
-            "field": "Genehmigtes Budget",
-            "error": ""
-        },
-        "contribution": {
-            "field": "Beitrag",
-            "error": ""
-        },
-        "approvedate": {
-            "field": "Datum Projektgenehmigung",
-            "error": ""
-        },
-        "initialdate": {
-            "field": "Startdatum Projekt",
-            "error": ""
-        },
-        "finaldate": {
-            "field": "Enddatum Projekt",
-            "error": ""
-        },
-        "status": {
-            "field": "Status",
-            "pending": "Ausstehend",
-            "approved": "Genehmigt",
-            "error": ""
-        },
-        "wikicode": {
-            "field": "WikiML-Code",
-            "error": ""
-        },
-        "donorcode": {
-            "field": "Geldgebercode",
-            "error": ""
-        }
+  "general": {
+    "header": "Allgemein",
+    "required": "Erforderlich",
+    "shortname": {
+      "field": "Projekttitel (kurz)",
+      "error": "Darf maximal 20 Zeichen haben"
     },
-    "stakeholders": {
-        "header": "Stakeholder",
-        "beneficiary": "Begünstigte",
-        "intermediary": "Intermediäre Organisation",
-        "implementer": "Durchführende Organisation",
-        "donor": "Geldgeber",
-        "other": "Weitere Stakeholder",
-        "roll-field": "Roll",
-        "action-field": "Add / Remove",
-        "select-placeholder": "Select stakeholder",
-        "tooltip": {
-            "main-stakeholder-0": "Hauptbegünstigte",
-            "main-stakeholder-1": "Hauptintermediär",
-            "main-stakeholder-2": "Konsortialführer",
-            "main-stakeholder-3": "Hauptgeldgeber",
-            "add-stakeholder": "Stakeholder hinzufügen", 
-            "delete-stakeholder": "Stakeholder löschen",
-            "change-main-stakeholder-0": "Als Hauptbegünstigten auswählen",
-            "change-main-stakeholder-1": "Als Hauptintermediär auswählen",
-            "change-main-stakeholder-2": "Als Hauptdurchführungsorganisation auswählen",
-            "change-main-stakeholder-3": "Als Hauptgeldgeber auswählen",
-            "change-main-stakeholder-4": "Weitere stakeholder",
-            "add-stakeholder-DB": "Stakeholder in der Datenbank anlegen"
-        },
-        "panel" : {
-            "header": "Create stakeholder",
-            "explanation": "Neuen Stakeholder in der Datenbank anlegen.",
-            "warning": "Überprüfen Sie, ob der Stakeholder nicht bereits in der Datenbank angelegt ist, um Dopplungen zu vermeiden.",
-            "name-label": "Stakeholder Name",
-            "country-label": "Stakeholder Land"
-        }
+    "largename": {
+      "field": "Projekttitel",
+      "error": "Muss zwischen 20 und 100 Zeichen haben"
     },
-    "logicmodel": {
-        "header": "Logikmodell",
-        "ultimate-outcomes": "Endergebnis",
-        "intermediate-outcomes": "Zwischenergebnis",
-        "inmediate-outcomes": "Unmittelbares Ergebnis",
-        "outputs": "Outputs",
-        "activity": "Aktivitäten",
-        "concat": "Concat",
-        "tooltip": {
-            "add-inmediate-outcome": "Unmittelbares Ergebnis hinzufügen",
-            "add-intermediate-outcome": "Zwischenergebnis hinzufügen",
-            "add-output": "Output hinzufügen",
-            "delete": "Löschen",
-            "see-activities": "Aktivitäten anzeigen",
-            "contextual-help": "Kontextbezogene Hilfe",
-            "sintactic-struct": "Syntaktische Struktur bearbeiten"
-        },
-        "panel" : {
-            "direction-label": "Direction",
-            "what-label": "Was",
-            "bywhom-label": "Wer",
-            "towhom-label": "An/für wen",
-            "where-label": "Wo",
-            "topic-label": "Thema",
-            "verb-label": "Verb",
-            "outcome-header": "Ergebnis Syntax",
-            "outcome-explanation": "Füllen Sie das Formular aus, um das qualitative Output zu beschreiben",
-            "output-header": "Output Syntax",
-            "output-explanation": "Füllen Sie das Formular aus, um das qualitative Ergebnis zu beschreiben",
-            "tooltip-save": "Zwischenspeichern",
-            "tooltip-concat": "Formulartext durch Verkettung von Feldern"
-        }
+    "description": {
+      "field": "Deskriptive Zusammenfassung",
+      "error": ""
     },
-    "activitiesmatrix": {
-        "header": "Aktivitäten-Matrix",
-        "inmediate-outcomes": "Unmittelbares Ergebnis",
-        "outputs": "Outputs",
-        "activity": "Aktivitäten",
-        "tooltip": {
-            "add-activity": "Aktivität darunter hinzufügen",
-            "delete-activity": "Aktivität löschen",
-            "contextual-help": "Kontextbezogene Hilfe"
-        }
+    "country": {
+      "field": "Hauptempfänger",
+      "error": ""
     },
-    "performance": {
-        "header": "Leistungsmessung"
+    "imporganization": {
+      "field": "Hauptdurchführender",
+      "error": ""
     },
-    "changenarrative": {
-        "header": "Änderungsdarstellung"
+    "intorganization": {
+      "field": "Hauptintermediär",
+      "error": ""
     },
-    "risks": {
-        "header": "Risiken"
+    "currency": {
+      "field": "Währung",
+      "error": ""
     },
     "budget": {
-        "header": "Budget",
-        "item-type": "Artikel",
-        "subtitle-type": "Untertitel",
-        "title-type": "Titel",
-        "subtotal-type": "Zwischensumme",
-        "item-field": "Posten",
-        "unit-field": "Einheit",
-        "price-field": "Preis",
-        "amount-field": "Menge",
-        "total-field": "Gesamtkosten",
-        "actions-field": "Aktionen",
-        "tooltip": {
-            "contextual-help": "Kontextbezogene Hilfe",
-            "add-item": "Nachfolgender Posten hinzufügen",
-            "delete-item": "Posten löschen"
-        }
+      "field": "Budget",
+      "prefix": "Beantragt",
+      "error": ""
     },
-    "financing": {
-        "header": "Finanzierung"
+    "calculated": {
+      "field": "Berechnet",
+      "budgetitems-prefix": "Pro Posten",
+      "budgetact-prefix": "Pro Aktivität"
     },
-    "reports": {
-        "header": "Berichte"
+    "financed": {
+      "field": "Finanziert",
+      "error": ""
     },
-    "application": {
-        "header": "Antrag"
+    "program": {
+      "field": "Programm",
+      "error": ""
     },
-    "evaluations": {
-        "header": "Auswertungen"
+    "sector": {
+      "field": "Sektor",
+      "error": ""
     },
-    "contextual-help": {
-        "header": "Contextual help",
-        "collapse": "Alles öffnen/schließen",
-        "definition": "Definition",
-        "example": "Beispiel",
-        "format": "Format",
-        "guide": "Leitfaden",
-        "tips": "Tipps"
+    "duration": {
+      "field": "Dauer",
+      "suffix": "Monate",
+      "error": ""
+    },
+    "donor": {
+      "field": "Hauptgeldgeber",
+      "error": ""
+    },
+    "approvebudget": {
+      "field": "Genehmigtes Budget",
+      "error": ""
+    },
+    "contribution": {
+      "field": "Beitrag",
+      "error": ""
+    },
+    "approvedate": {
+      "field": "Datum Projektgenehmigung",
+      "error": ""
+    },
+    "initialdate": {
+      "field": "Startdatum Projekt",
+      "error": ""
+    },
+    "finaldate": {
+      "field": "Enddatum Projekt",
+      "error": ""
+    },
+    "status": {
+      "field": "Status",
+      "pending": "Ausstehend",
+      "approved": "Genehmigt",
+      "error": ""
+    },
+    "wikicode": {
+      "field": "WikiML-Code",
+      "error": ""
+    },
+    "donorcode": {
+      "field": "Geldgebercode",
+      "error": ""
     }
+  },
+  "stakeholders": {
+    "header": "Stakeholder",
+    "beneficiary": "Begünstigte",
+    "intermediary": "Intermediäre Organisation",
+    "implementer": "Durchführende Organisation",
+    "donor": "Geldgeber",
+    "other": "Weitere Stakeholder",
+    "roll-field": "Roll",
+    "action-field": "Add / Remove",
+    "select-placeholder": "Select stakeholder",
+    "tooltip": {
+      "main-stakeholder-0": "Hauptbegünstigte",
+      "main-stakeholder-1": "Hauptintermediär",
+      "main-stakeholder-2": "Konsortialführer",
+      "main-stakeholder-3": "Hauptgeldgeber",
+      "add-stakeholder": "Stakeholder hinzufügen",
+      "delete-stakeholder": "Stakeholder löschen",
+      "change-main-stakeholder-0": "Als Hauptbegünstigten auswählen",
+      "change-main-stakeholder-1": "Als Hauptintermediär auswählen",
+      "change-main-stakeholder-2": "Als Hauptdurchführungsorganisation auswählen",
+      "change-main-stakeholder-3": "Als Hauptgeldgeber auswählen",
+      "change-main-stakeholder-4": "Weitere stakeholder",
+      "add-stakeholder-DB": "Stakeholder in der Datenbank anlegen"
+    },
+    "panel": {
+      "header": "Create stakeholder",
+      "explanation": "Neuen Stakeholder in der Datenbank anlegen.",
+      "warning": "Überprüfen Sie, ob der Stakeholder nicht bereits in der Datenbank angelegt ist, um Dopplungen zu vermeiden.",
+      "name-label": "Stakeholder Name",
+      "country-label": "Stakeholder Land"
+    }
+  },
+  "logicmodel": {
+    "header": "Logikmodell",
+    "ultimate-outcomes": "Endergebnis",
+    "intermediate-outcomes": "Zwischenergebnis",
+    "inmediate-outcomes": "Unmittelbares Ergebnis",
+    "outputs": "Outputs",
+    "activity": "Aktivitäten",
+    "concat": "Concat",
+    "tooltip": {
+      "add-inmediate-outcome": "Unmittelbares Ergebnis hinzufügen",
+      "add-intermediate-outcome": "Zwischenergebnis hinzufügen",
+      "add-output": "Output hinzufügen",
+      "delete": "Löschen",
+      "see-activities": "Aktivitäten anzeigen",
+      "contextual-help": "Kontextbezogene Hilfe",
+      "sintactic-struct": "Syntaktische Struktur bearbeiten"
+    },
+    "panel": {
+      "direction-label": "Direction",
+      "what-label": "Was",
+      "bywhom-label": "Wer",
+      "towhom-label": "An/für wen",
+      "where-label": "Wo",
+      "topic-label": "Thema",
+      "verb-label": "Verb",
+      "outcome-header": "Ergebnis Syntax",
+      "outcome-explanation": "Füllen Sie das Formular aus, um das qualitative Output zu beschreiben",
+      "output-header": "Output Syntax",
+      "output-explanation": "Füllen Sie das Formular aus, um das qualitative Ergebnis zu beschreiben",
+      "tooltip-save": "Zwischenspeichern",
+      "tooltip-concat": "Formulartext durch Verkettung von Feldern"
+    }
+  },
+  "activitiesmatrix": {
+    "header": "Aktivitäten-Matrix",
+    "inmediate-outcomes": "Unmittelbares Ergebnis",
+    "outputs": "Outputs",
+    "activity": "Aktivitäten",
+    "tooltip": {
+      "add-activity": "Aktivität darunter hinzufügen",
+      "delete-activity": "Aktivität löschen",
+      "contextual-help": "Kontextbezogene Hilfe"
+    }
+  },
+  "performance": {
+    "header": "Leistungsmessung"
+  },
+  "changenarrative": {
+    "header": "Änderungsdarstellung"
+  },
+  "risks": {
+    "header": "Risiken"
+  },
+  "budget": {
+    "header": "Budget",
+    "item-type": "Artikel",
+    "subtitle-type": "Untertitel",
+    "title-type": "Titel",
+    "subtotal-type": "Zwischensumme",
+    "item-field": "Posten",
+    "unit-field": "Einheit",
+    "price-field": "Preis",
+    "amount-field": "Menge",
+    "total-field": "Gesamtkosten",
+    "actions-field": "Aktionen",
+    "tooltip": {
+      "contextual-help": "Kontextbezogene Hilfe",
+      "add-item": "Nachfolgender Posten hinzufügen",
+      "delete-item": "Posten löschen"
+    }
+  },
+  "financing": {
+    "header": "Finanzierung"
+  },
+  "reports": {
+    "header": "Berichte"
+  },
+  "application": {
+    "header": "Antrag"
+  },
+  "evaluations": {
+    "header": "Auswertungen"
+  },
+  "contextual-help": {
+    "header": "Contextual help",
+    "collapse": "Alles öffnen/schließen",
+    "definition": "Definition",
+    "example": "Beispiel",
+    "format": "Format",
+    "guide": "Leitfaden",
+    "tips": "Tipps"
+  }
 }

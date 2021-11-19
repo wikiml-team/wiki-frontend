@@ -20,13 +20,15 @@ type PagesTabProps = {
 };
 
 export default function PagesTabs(props: PagesTabProps) {
-
+  const { tabs, onClick, parentKey, defaultKey } = props;
+  
   // LOGIC
-  const { tabs, onClick, parentKey, defaultKey, } = props;
+  const { t } = useTranslation();
 
-  const { t } = useTranslation()
-
-  const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement, MouseEvent>) => onClick(parentKey, item)
+  const handleMenuOnClick = (
+    item?: PivotItem,
+    ev?: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => onClick(parentKey, item);
 
   // STYLES
   const { palette } = useTheme();
@@ -76,7 +78,9 @@ export default function PagesTabs(props: PagesTabProps) {
             <PivotItem
               key={tab.key}
               itemKey={tab.key}
-              headerText={t(`${tab.name}.header`, { ns: getNamespace(parentKey) })}
+              headerText={t(`${tab.name}.header`, {
+                ns: getNamespace(parentKey),
+              })}
               itemIcon={tab.icon}
             >
               {tab.render}
@@ -88,19 +92,18 @@ export default function PagesTabs(props: PagesTabProps) {
 }
 
 const getNamespace = (key: string) => {
-
   switch (key) {
     case "key1":
-      return "wikiml"
+      return "wikiml";
     case "key2":
-      return "forms"
+      return "forms";
     case "key3":
-      return "licitations"
+      return "licitations";
     case "key4":
-      return "tutorials"
+      return "tutorials";
     case "key5":
-      return "database"
+      return "database";
     default:
-      return "none"
+      return "none";
   }
-}
+};

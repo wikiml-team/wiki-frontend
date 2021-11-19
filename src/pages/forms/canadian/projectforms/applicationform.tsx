@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function ApplicationForm() {
-    return (
-        <div>
-            ApplicationForm
-        </div>
-    )
+  return <div>ApplicationForm</div>;
 }

@@ -1,34 +1,34 @@
 {
-    "welcome": "Bienvenido a WikiML",
-    "yes": "Sí",
-    "no": "No",
-    "save": "Guardar",
-    "dismiss": "Cancelar",
-    "thanks": "Gracias",
-    "public": "Público",
-    "private": "Privado",
-    "return": "Atrás",
-    "select": "Seleccione",
-    "accept": "Aceptar",
-    "cancel": "Cancelar",
-    "save-before-closing": "Desea guardar antes de cerrar?",
-    "unsupported": "",
-    "methodologies": {
-        "canadian": "Metodología Global Affairs Canada",
-        "german": "Metodología Alemana",
-        "italian": "Metodología Italiana"
-    },
-    "loading": {
-        "title": "Cargando",
-        "description": "Por favor espere unos segundos, estamos cargando los datos.",
-        "error": "Error",
-        "error-text": "El servidor está teniendo problemas, por favor espere unos minutos.",
-        "nodata": "No se pudo encontrar datos."
-    },
-    "languages": {
-        "en": "Inglés",
-        "es": "Español",
-        "de": "Alemán",
-        "it": "Italiano"
-    }
+  "welcome": "Bienvenido a WikiML",
+  "yes": "Sí",
+  "no": "No",
+  "save": "Guardar",
+  "dismiss": "Cancelar",
+  "thanks": "Gracias",
+  "public": "Público",
+  "private": "Privado",
+  "return": "Atrás",
+  "select": "Seleccione",
+  "accept": "Aceptar",
+  "cancel": "Cancelar",
+  "save-before-closing": "Desea guardar antes de cerrar?",
+  "unsupported": "",
+  "methodologies": {
+    "canadian": "Metodología Global Affairs Canada",
+    "german": "Metodología Alemana",
+    "italian": "Metodología Italiana"
+  },
+  "loading": {
+    "title": "Cargando",
+    "description": "Por favor espere unos segundos, estamos cargando los datos.",
+    "error": "Error",
+    "error-text": "El servidor está teniendo problemas, por favor espere unos minutos.",
+    "nodata": "No se pudo encontrar datos."
+  },
+  "languages": {
+    "en": "Inglés",
+    "es": "Español",
+    "de": "Alemán",
+    "it": "Italiano"
+  }
 }

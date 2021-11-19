@@ -5,12 +5,16 @@ const DropdownFieldInput = ({ field, form, ...props }: any) => {
     return form.touched && form.errors ? form.errors[field.name] : "";
   };
 
-  return <Dropdown
-          {...field}
-          {...props}
-          onGetErrorMessage={handleGetError}
-          deferredValidationTime={500}
-        />
+  return (
+    <Dropdown
+      {...field}
+      {...props}
+      defaultSelectedKey={field.value}
+      onGetErrorMessage={handleGetError}
+      deferredValidationTime={500}
+
+    />
+  );
 };
 
 export default DropdownFieldInput;

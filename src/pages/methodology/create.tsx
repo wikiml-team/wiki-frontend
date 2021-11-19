@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function CreateMethodology() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div>CreateMethodology</div>;
 }

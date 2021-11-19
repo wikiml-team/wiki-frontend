@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useHistory, useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 import Scrollbars from "react-custom-scrollbars";
 
 import {
+  ActionButton,
+  FontSizes,
+  IButtonStyles,
+  IIconProps,
+  INavLink,
   INavStyles,
   Nav,
   useTheme,
-  FontSizes,
-  IIconProps,
-  ActionButton,
-  IButtonStyles,
-  INavLink,
 } from "@fluentui/react";
 
 import { GetItems } from "./items";
@@ -111,8 +111,8 @@ export default function MethodologyMenu() {
     },
   };
 
-  // NAVs
-  const nav = GetItems();
+  // DATA
+  const _nav = GetItems();
 
   return (
     <React.Fragment>
@@ -136,7 +136,7 @@ export default function MethodologyMenu() {
           selectedKey={selectedKey}
           ariaLabel="Methodology menu"
           styles={navStyles}
-          groups={nav}
+          groups={_nav}
           onLinkClick={handleNavOnClick}
         />
       </Scrollbars>

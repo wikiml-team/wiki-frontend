@@ -7,19 +7,19 @@ import { ObjectShape } from "yup/lib/object";
 import { Formik, Form } from "formik";
 
 import {
-  Stack,
-  Text,
+  DefaultButton,
   IStackProps,
   ITextStyles,
   PrimaryButton,
-  DefaultButton,
+  Stack,
+  Text,
   TooltipHost,
 } from "@fluentui/react";
 import { useBoolean } from "@fluentui/react-hooks";
 
-import LogicTextFieldInput from "components/inputs/logictext";
-import LogicmodelGraph from "models/canadian/logicmodel";
 import { selectProject } from "store/slices/projectslice";
+import LogicmodelGraph from "models/canadian/logicmodel";
+import LogicTextFieldInput from "components/inputs/logictext";
 import {
   LMOutcomeSintaxPanelContent,
   LMOutputSintaxPanelContent,

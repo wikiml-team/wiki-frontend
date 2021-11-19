@@ -1,223 +1,223 @@
 {
-    "general": {
-        "header": "General",
-        "required": "Required",
-        "shortname": {
-            "field": "Project name (short)",
-            "error": "Must be 20 characters or less"
-        },
-        "largename": {
-            "field": "Project name",
-            "error": "Must be more than 20 characters and less than 100"
-        },
-        "description": {
-            "field": "Descriptive resume",
-            "error": ""
-        },
-        "country": {
-            "field": "Principal recipient",
-            "error": ""
-        },
-        "imporganization": {
-            "field": "Main implementer",
-            "error": ""
-        },
-        "intorganization": {
-            "field": "Main intermediary",
-            "error": ""
-        },
-        "currency": {
-            "field": "Currency",
-            "error": ""
-        },
-        "budget": {
-            "field": "Budget",
-            "prefix": "Solicited",
-            "error": ""
-        },
-        "calculated": {
-            "field": "Calculated",
-            "budgetitems-prefix": "Per items",
-            "budgetact-prefix": "Per activities"
-        },
-        "financed": {
-            "field": "Financed",
-            "error": ""
-        },
-        "program": {
-            "field": "Program",
-            "error": ""
-        },
-        "sector": {
-            "field": "Sector",
-            "error": ""
-        },
-        "duration": {
-            "field": "Duration",
-            "suffix": "months",
-            "error": ""
-        },
-        "donor": {
-            "field": "Main donor",
-            "error": ""
-        },
-        "approvebudget": {
-            "field": "Approved budget",
-            "error": ""
-        },
-        "contribution": {
-            "field": "Contribution",
-            "error": ""
-        },
-        "approvedate": {
-            "field": "Approved date",
-            "error": ""
-        },
-        "initialdate": {
-            "field": "Initial date",
-            "error": ""
-        },
-        "finaldate": {
-            "field": "Final date",
-            "error": ""
-        },
-        "status": {
-            "field": "Status",
-            "pending": "Pending",
-            "approved": "Approved",
-            "error": ""
-        },
-        "wikicode": {
-            "field": "WikiML Code",
-            "error": ""
-        },
-        "donorcode": {
-            "field": "Donor Code",
-            "error": ""
-        }
+  "general": {
+    "header": "General",
+    "required": "Required",
+    "shortname": {
+      "field": "Project name (short)",
+      "error": "Must be 20 characters or less"
     },
-    "stakeholders": {
-        "header": "Stakeholders",
-        "beneficiary": "Beneficiary",
-        "intermediary": "Intermediary",
-        "implementer": "Implementer",
-        "donor": "Donor",
-        "other": "Other Stakeholders",
-        "roll-field": "Roll",
-        "action-field": "Add / Remove",
-        "select-placeholder": "Select stakeholder",
-        "tooltip": {
-            "main-stakeholder-0": "Main beneficiary",
-            "main-stakeholder-1": "Main intermediary",
-            "main-stakeholder-2": "Main implementer",
-            "main-stakeholder-3": "Main donor",
-            "add-stakeholder": "Add stakeholder bellow",
-            "delete-stakeholder": "Delete stakeholder",
-            "change-main-stakeholder-0": "Select as main beneficiary",
-            "change-main-stakeholder-1": "Select as main intermediary",
-            "change-main-stakeholder-2": "Select as main implementer",
-            "change-main-stakeholder-3": "Select as main donor",
-            "change-main-stakeholder-4": "Other stakeholder",
-            "add-stakeholder-DB": "Create stakeholder in database"
-        },
-        "panel": {
-            "header": "Create stakeholder",
-            "explanation": "Add a new stakeholder to database.",
-            "warning": "Check the stakeholder isn´t already in database before adding it in order to avoid duplicated data.",
-            "name-label": "Stakeholder Name",
-            "country-label": "Stakeholder Country"
-        }
+    "largename": {
+      "field": "Project name",
+      "error": "Must be more than 20 characters and less than 100"
     },
-    "logicmodel": {
-        "header": "Logic Model",
-        "ultimate-outcomes": "Ultimate Outcomes",
-        "intermediate-outcomes": "Intermediate Outcomes",
-        "inmediate-outcomes": "Inmediate Outcomes",
-        "outputs": "Outputs",
-        "activity": "Activity",
-        "concat": "Concat",
-        "tooltip": {
-            "add-inmediate-outcome": "Add inmediate outcome",
-            "add-intermediate-outcome": "Add intermediate outcome",
-            "add-output": "Add output",
-            "see-activities": "View activities",
-            "contextual-help": "Contextual help",
-            "sintactic-struct": "Edit sintactic structure",
-            "delete": "Delete"
-        },
-        "panel": {
-            "direction-label": "Direction",
-            "what-label": "What",
-            "bywhom-label": "Who",
-            "towhom-label": "To/for whom",
-            "where-label": "Where",
-            "topic-label": "Topic",
-            "verb-label": "Verb",
-            "outcome-header": "Outcome sintax",
-            "outcome-explanation": "Fill in the form to describe the outcome with quality",
-            "output-header": "Output sintax",
-            "output-explanation": "Fill in the form to describe the output with quality",
-            "tooltip-save": "Just save",
-            "tooltip-concat": "Form text by concating fields"
-        }
+    "description": {
+      "field": "Descriptive resume",
+      "error": ""
     },
-    "activitiesmatrix": {
-        "header": "Activities Matrix",
-        "inmediate-outcomes": "Inmediate Outcomes",
-        "outputs": "Outputs",
-        "activity": "Activity",
-        "tooltip": {
-            "add-activity": "Add activity below",
-            "delete-activity": "Delete activity",
-            "contextual-help": "Contextual help"
-        }
+    "country": {
+      "field": "Principal recipient",
+      "error": ""
     },
-    "performance": {
-        "header": "Performance Measure"
+    "imporganization": {
+      "field": "Main implementer",
+      "error": ""
     },
-    "changenarrative": {
-        "header": "Change Narrative"
+    "intorganization": {
+      "field": "Main intermediary",
+      "error": ""
     },
-    "risks": {
-        "header": "Risks"
+    "currency": {
+      "field": "Currency",
+      "error": ""
     },
     "budget": {
-        "header": "Budget",
-        "item-type": "Item",
-        "subtitle-type": "Subtitle",
-        "title-type": "Title",
-        "subtotal-type": "Subtotal",
-        "item-field": "Item",
-        "unit-field": "Unit",
-        "price-field": "Price",
-        "amount-field": "Amount",
-        "total-field": "Total Cost",
-        "actions-field": "Actions",
-        "tooltip": {
-            "contextual-help": "Contextual help",
-            "add-item": "Add item below",
-            "delete-item": "Delete item"
-        }
+      "field": "Budget",
+      "prefix": "Solicited",
+      "error": ""
     },
-    "financing": {
-        "header": "Financing"
+    "calculated": {
+      "field": "Calculated",
+      "budgetitems-prefix": "Per items",
+      "budgetact-prefix": "Per activities"
     },
-    "reports": {
-        "header": "Reports"
+    "financed": {
+      "field": "Financed",
+      "error": ""
     },
-    "application": {
-        "header": "Application"
+    "program": {
+      "field": "Program",
+      "error": ""
     },
-    "evaluations": {
-        "header": "Evaluations"
+    "sector": {
+      "field": "Sector",
+      "error": ""
     },
-    "contextual-help": {
-        "header": "Contextual help",
-        "collapse": "Open/Close all",
-        "definition": "Definition",
-        "example": "Example",
-        "format": "Format",
-        "guide": "Guide",
-        "tips": "Tips"
+    "duration": {
+      "field": "Duration",
+      "suffix": "months",
+      "error": ""
+    },
+    "donor": {
+      "field": "Main donor",
+      "error": ""
+    },
+    "approvebudget": {
+      "field": "Approved budget",
+      "error": ""
+    },
+    "contribution": {
+      "field": "Contribution",
+      "error": ""
+    },
+    "approvedate": {
+      "field": "Approved date",
+      "error": ""
+    },
+    "initialdate": {
+      "field": "Initial date",
+      "error": ""
+    },
+    "finaldate": {
+      "field": "Final date",
+      "error": ""
+    },
+    "status": {
+      "field": "Status",
+      "pending": "Pending",
+      "approved": "Approved",
+      "error": ""
+    },
+    "wikicode": {
+      "field": "WikiML Code",
+      "error": ""
+    },
+    "donorcode": {
+      "field": "Donor Code",
+      "error": ""
     }
+  },
+  "stakeholders": {
+    "header": "Stakeholders",
+    "beneficiary": "Beneficiary",
+    "intermediary": "Intermediary",
+    "implementer": "Implementer",
+    "donor": "Donor",
+    "other": "Other Stakeholders",
+    "roll-field": "Roll",
+    "action-field": "Add / Remove",
+    "select-placeholder": "Select stakeholder",
+    "tooltip": {
+      "main-stakeholder-0": "Main beneficiary",
+      "main-stakeholder-1": "Main intermediary",
+      "main-stakeholder-2": "Main implementer",
+      "main-stakeholder-3": "Main donor",
+      "add-stakeholder": "Add stakeholder bellow",
+      "delete-stakeholder": "Delete stakeholder",
+      "change-main-stakeholder-0": "Select as main beneficiary",
+      "change-main-stakeholder-1": "Select as main intermediary",
+      "change-main-stakeholder-2": "Select as main implementer",
+      "change-main-stakeholder-3": "Select as main donor",
+      "change-main-stakeholder-4": "Other stakeholder",
+      "add-stakeholder-DB": "Create stakeholder in database"
+    },
+    "panel": {
+      "header": "Create stakeholder",
+      "explanation": "Add a new stakeholder to database.",
+      "warning": "Check the stakeholder isn´t already in database before adding it in order to avoid duplicated data.",
+      "name-label": "Stakeholder Name",
+      "country-label": "Stakeholder Country"
+    }
+  },
+  "logicmodel": {
+    "header": "Logic Model",
+    "ultimate-outcomes": "Ultimate Outcomes",
+    "intermediate-outcomes": "Intermediate Outcomes",
+    "inmediate-outcomes": "Inmediate Outcomes",
+    "outputs": "Outputs",
+    "activity": "Activity",
+    "concat": "Concat",
+    "tooltip": {
+      "add-inmediate-outcome": "Add inmediate outcome",
+      "add-intermediate-outcome": "Add intermediate outcome",
+      "add-output": "Add output",
+      "see-activities": "View activities",
+      "contextual-help": "Contextual help",
+      "sintactic-struct": "Edit sintactic structure",
+      "delete": "Delete"
+    },
+    "panel": {
+      "direction-label": "Direction",
+      "what-label": "What",
+      "bywhom-label": "Who",
+      "towhom-label": "To/for whom",
+      "where-label": "Where",
+      "topic-label": "Topic",
+      "verb-label": "Verb",
+      "outcome-header": "Outcome sintax",
+      "outcome-explanation": "Fill in the form to describe the outcome with quality",
+      "output-header": "Output sintax",
+      "output-explanation": "Fill in the form to describe the output with quality",
+      "tooltip-save": "Just save",
+      "tooltip-concat": "Form text by concating fields"
+    }
+  },
+  "activitiesmatrix": {
+    "header": "Activities Matrix",
+    "inmediate-outcomes": "Inmediate Outcomes",
+    "outputs": "Outputs",
+    "activity": "Activity",
+    "tooltip": {
+      "add-activity": "Add activity below",
+      "delete-activity": "Delete activity",
+      "contextual-help": "Contextual help"
+    }
+  },
+  "performance": {
+    "header": "Performance Measure"
+  },
+  "changenarrative": {
+    "header": "Change Narrative"
+  },
+  "risks": {
+    "header": "Risks"
+  },
+  "budget": {
+    "header": "Budget",
+    "item-type": "Item",
+    "subtitle-type": "Subtitle",
+    "title-type": "Title",
+    "subtotal-type": "Subtotal",
+    "item-field": "Item",
+    "unit-field": "Unit",
+    "price-field": "Price",
+    "amount-field": "Amount",
+    "total-field": "Total Cost",
+    "actions-field": "Actions",
+    "tooltip": {
+      "contextual-help": "Contextual help",
+      "add-item": "Add item below",
+      "delete-item": "Delete item"
+    }
+  },
+  "financing": {
+    "header": "Financing"
+  },
+  "reports": {
+    "header": "Reports"
+  },
+  "application": {
+    "header": "Application"
+  },
+  "evaluations": {
+    "header": "Evaluations"
+  },
+  "contextual-help": {
+    "header": "Contextual help",
+    "collapse": "Open/Close all",
+    "definition": "Definition",
+    "example": "Example",
+    "format": "Format",
+    "guide": "Guide",
+    "tips": "Tips"
+  }
 }

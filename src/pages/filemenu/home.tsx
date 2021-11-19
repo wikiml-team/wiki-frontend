@@ -77,9 +77,13 @@ export default function HomePage() {
 }
 
 const MapProjectToCard = (project: GetProjects_projects) => {
+  const { t } = useTranslation("basics", { keyPrefix: "methodologies" });
+
+  const methodology = project.methodology.name || ''
+
   return {
     name: project.shortName,
-    methodology: project.methodology.name,
+    methodology: t(methodology, methodology),
     owner: "owner",
     createdAt: project.createdAt,
   } as IFeaturedProject;

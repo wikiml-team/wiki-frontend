@@ -1,14 +1,14 @@
 {
-    "lot": {
-        "header" : "Lotto conforme"
-    },
-    "specifications": {
-        "header" : "Specifiche tecniche"
-    },
-    "technical-offer": {
-        "header" : "Offerta tecnica"
-    },
-    "financial-offer": {
-        "header" : "Offerta finanziaria"
-    }
+  "lot": {
+    "header": "Lotto conforme"
+  },
+  "specifications": {
+    "header": "Specifiche tecniche"
+  },
+  "technical-offer": {
+    "header": "Offerta tecnica"
+  },
+  "financial-offer": {
+    "header": "Offerta finanziaria"
+  }
 }

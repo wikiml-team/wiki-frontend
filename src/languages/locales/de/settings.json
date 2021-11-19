@@ -1,24 +1,24 @@
 {
-    "authentication": {
-        "login": "Anmelden",
-        "logout": "Abmelden",
-        "profile-link": "Mein Profil"
-    },
-    "permitions": {
-        "read": "Lesen",
-        "edit": "Bearbeiten",
-        "create": "Erstellen",
-        "owner": "Verwalten"
-    },
-    "privacy-page": {
-        "header": "Datenschutz",
-        "welcome-subtitle": "Wilkommen in Ihren Einstellungen zu Privatspphäre",
-        "welcome-description": "Der erste Schritt zum Schutz Ihrer Privatsphäre besteht darin, Ihnen die Kontrolle über Ihre Daten zu geben und Ihnen die Werkzeuge und Informationen an die Hand zu geben, die Sie benötigen, um Entscheidungen zu treffen, die Ihnen ein gutes Gefühl geben.",
-        "commitment-to-privacy-link": "Erfahren Sie mehr über unser Engagement für den Datenschutz",
-        "management-subtitle": "Privatsphäre verwalten",
-        "management-description": "Hier können Sie den Datenschutz für das Projekt festlegen. Wenn Sie das Projekt als privat einstellen, sind alle Formulare privat. Wenn Sie das Projekt als öffentlich einstellen, können Sie auswählen, ob ein Formular öffentlich oder privat sein soll.",
-        "toggle-label": "Ihr Projekt sollte sein:",
-        "table-forms": "Formulare",
-        "table-privacy": "Privat"
-    }
+  "authentication": {
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "profile-link": "Mein Profil"
+  },
+  "permitions": {
+    "read": "Lesen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "owner": "Verwalten"
+  },
+  "privacy-page": {
+    "header": "Datenschutz",
+    "welcome-subtitle": "Wilkommen in Ihren Einstellungen zu Privatspphäre",
+    "welcome-description": "Der erste Schritt zum Schutz Ihrer Privatsphäre besteht darin, Ihnen die Kontrolle über Ihre Daten zu geben und Ihnen die Werkzeuge und Informationen an die Hand zu geben, die Sie benötigen, um Entscheidungen zu treffen, die Ihnen ein gutes Gefühl geben.",
+    "commitment-to-privacy-link": "Erfahren Sie mehr über unser Engagement für den Datenschutz",
+    "management-subtitle": "Privatsphäre verwalten",
+    "management-description": "Hier können Sie den Datenschutz für das Projekt festlegen. Wenn Sie das Projekt als privat einstellen, sind alle Formulare privat. Wenn Sie das Projekt als öffentlich einstellen, können Sie auswählen, ob ein Formular öffentlich oder privat sein soll.",
+    "toggle-label": "Ihr Projekt sollte sein:",
+    "table-forms": "Formulare",
+    "table-privacy": "Privat"
+  }
 }

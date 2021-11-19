@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function FeedbackPage() {
-    return (
-        <div>
-            FeedbackPage
-        </div>
-    )
+  return <div>FeedbackPage</div>;
 }

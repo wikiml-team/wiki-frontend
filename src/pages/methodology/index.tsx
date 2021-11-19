@@ -6,7 +6,7 @@ import { GET_METHODOLOGY_BY_ID } from "apollo/methodologies/methodology";
 import QueryStateIndicator from "apollo/indicator";
 
 export default function MethodologyInfo() {
-  const { methodologyId } = useParams<any>();
+  const { methodologyId } = useParams<{methodologyId: string}>();
 
   // Get data
   const { data, loading, error } = useQuery<

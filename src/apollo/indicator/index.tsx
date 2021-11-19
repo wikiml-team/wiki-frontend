@@ -1,36 +1,35 @@
 import { useTranslation } from "react-i18next";
 
-import { ProgressIndicator } from "@fluentui/react";
 import { ApolloError } from "@apollo/client";
 
+import { ProgressIndicator } from "@fluentui/react";
+
 type StateIndicatorProps = {
-    data?: any,
-    loading?: boolean,
-    error?: ApolloError,
-    errorMessage?: string
-}
+  data?: any;
+  loading?: boolean;
+  error?: ApolloError;
+  errorMessage?: string;
+};
 
 export default function QueryStateIndicator(props: StateIndicatorProps) {
+  const { data, loading, error, errorMessage } = props;
 
-    const {data, loading, error, errorMessage } = props;
+  const { t } = useTranslation("basics", { keyPrefix: "loading" });
 
-    const { t } = useTranslation("basics", { keyPrefix: "loading" })
+  if (loading) {
+    return (
+      <ProgressIndicator label={t("title")} description={t("description")} />
+    );
+  }
 
-    if (loading) {
-        return <ProgressIndicator
-            label={t("title")} 
-            description={t("description")} />
-    
-    }
-    if (error) {
-        const message = errorMessage?? error.name + '\n ' + error?.message;
-        return <p>{`${t("error")}: ${message}`}</p>
-    }
+  if (error) {
+    const message = errorMessage ?? error.name + "\n " + error?.message;
+    return <p>{`${t("error")}: ${message}`}</p>;
+  }
 
-    if (!data) {
-        return <p>{t("nodata")}</p>
-    }
+  if (!data) {
+    return <p>{t("nodata")}</p>;
+  }
 
-    return <></>
-
+  return <></>;
 }

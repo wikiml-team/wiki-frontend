@@ -1,37 +1,37 @@
 {
-    "contact": {
-        "header": "Contact",
-        "oficialpage": "Oficial page"
-    },
-    "forms": {
-        "header": "Forms",
-        "form-field": "Form",
-        "description-field": "Description"
-    },
-    "sectors": {
-        "header": "Sectors",
-        "sector-field": "Sector",
-        "description-field": "Description",
-        "agriculture" : "Agriculture and Nutrition",
-        "economic" : "Economic growth",
-        "rights" : "Human rights and Democratic governance",
-        "development" : "Human development",
-        "energy" : "Energy",
-        "infrastructure" : "Infrastructure",
-        "environment" : "Environmente",
-        "migration" : "Migration and Asylum",
-        "tecnology" : "Information and Communication technology"
-    },
-    "guides": {
-        "header": "Guides"
-    },
-    "tutorials": {
-        "header": "Tutorials"
-    },
-    "outcomes": {
-        "header": "Outcomes"
-    },
-    "indicators": {
-        "header": "Indicators"
-    }
+  "contact": {
+    "header": "Contact",
+    "oficialpage": "Oficial page"
+  },
+  "forms": {
+    "header": "Forms",
+    "form-field": "Form",
+    "description-field": "Description"
+  },
+  "sectors": {
+    "header": "Sectors",
+    "sector-field": "Sector",
+    "description-field": "Description",
+    "agriculture": "Agriculture and Nutrition",
+    "economic": "Economic growth",
+    "rights": "Human rights and Democratic governance",
+    "development": "Human development",
+    "energy": "Energy",
+    "infrastructure": "Infrastructure",
+    "environment": "Environmente",
+    "migration": "Migration and Asylum",
+    "tecnology": "Information and Communication technology"
+  },
+  "guides": {
+    "header": "Guides"
+  },
+  "tutorials": {
+    "header": "Tutorials"
+  },
+  "outcomes": {
+    "header": "Outcomes"
+  },
+  "indicators": {
+    "header": "Indicators"
+  }
 }

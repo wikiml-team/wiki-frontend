@@ -21,6 +21,7 @@ export default function NewPage() {
     id: "",
     name: "",
   });
+
   const [projectHideDialog, { toggle: toggleProjectHideDialog }] =
     useBoolean(true);
 
@@ -28,12 +29,6 @@ export default function NewPage() {
     setcurrentMethodology({ id: id, name: name });
     toggleProjectHideDialog();
   };
-
-  const { data, loading, error } =
-    useQuery<GetMethodologies>(GET_METHODOLOGIES);
-
-  if (!data || loading || error)
-    return <QueryStateIndicator data={data} loading={loading} error={error} />;
 
   // STYLES
   const stackProps: IStackProps = {
@@ -45,13 +40,20 @@ export default function NewPage() {
     },
   };
 
+  // DATA
+  const { data, loading, error } =
+    useQuery<GetMethodologies>(GET_METHODOLOGIES);
+
+  if (!data || loading || error)
+    return <QueryStateIndicator data={data} loading={loading} error={error} />;
+
   return (
     <React.Fragment>
       <Title>{t("header")}</Title>
       <Subtitle>{t("text")}</Subtitle>
 
       <Stack horizontal {...stackProps}>
-        {data && data.methodologies.map((m) => mapToCard(m, handleOnClick))}
+        {data && data.methodologies.map((m) => MapToCard(m, handleOnClick))}
       </Stack>
 
       <NewProjectDialog
@@ -63,17 +65,20 @@ export default function NewPage() {
   );
 }
 
-const mapToCard = (
+const MapToCard = (
   methodology: GetMethodologies_methodologies,
   handler: (id: string, name: string) => void
 ) => {
   const { id, name } = methodology;
+  const methodologyName = name || "";
+
+  const { t } = useTranslation("basics", { keyPrefix: "methodologies" });
 
   return (
     <Stack.Item key={id}>
       <MethodologyCard
-        name={name || ""}
-        onClick={() => handler(id, name || "")}
+        name={t(methodologyName, methodologyName)}
+        onClick={() => handler(id, methodologyName)}
       />
     </Stack.Item>
   );

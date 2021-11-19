@@ -2,10 +2,10 @@ import { useTranslation } from "react-i18next";
 
 import { IChoiceGroupOption } from "@fluentui/react";
 
-import { GET_METHODOLOGIES } from "apollo/methodologies";
 import { useQuery } from "@apollo/client";
-import QueryStateIndicator from "apollo/indicator";
 import { GetMethodologies, GetMethodologies_methodologies } from "types";
+import { GET_METHODOLOGIES } from "apollo/methodologies";
+import QueryStateIndicator from "apollo/indicator";
 
 import CustomDialog from "./custom";
 
@@ -15,9 +15,9 @@ type ExportDialogProps = {
 };
 
 export default function DuplicateProjectDialog(props: ExportDialogProps) {
-  // LOGIC
   const { hideDialog, toggleHideDialog } = props;
 
+  // LOGIC
   const { t } = useTranslation("commands", { keyPrefix: "duplicate" });
 
   const handleAccpetButtonOnClick = (option: string) => {
@@ -29,13 +29,12 @@ export default function DuplicateProjectDialog(props: ExportDialogProps) {
   const { data, loading, error } =
     useQuery<GetMethodologies>(GET_METHODOLOGIES);
 
-  <QueryStateIndicator data={data} loading={loading} error={error} />;
+  if (!data || loading || error)
+    return <QueryStateIndicator data={data} loading={loading} error={error} />;
 
-  const options =
-    data &&
-    data.methodologies.map((methodology) =>
-      MapMethodologyToOptions(methodology)
-    );
+  const options = data.methodologies.map((methodology) =>
+    MapMethodologyToOptions(methodology)
+  );
 
   return (
     <CustomDialog

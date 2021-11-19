@@ -53,7 +53,7 @@ export default function OpenPage() {
     data?.projects.map((project) => MapToProjectRow(project)) ||
     ([] as IProject[]);
 
-  // Recent projects
+  // Filter Recent projects
   const recentProjects: IProject[] = projects
     .filter((p) => {
       const pdate = new Date(p.dateModified);
@@ -236,10 +236,14 @@ export default function OpenPage() {
 }
 
 const MapToProjectRow = (project: GetProjects_projects) => {
+  const { t } = useTranslation("basics", { keyPrefix: "methodologies" });
+
+  const methodology = project.methodology.name || '';
+  
   return {
     key: project.id,
     name: project.shortName,
-    methodology: project.methodology.name,
+    methodology: t(methodology, methodology),
     dateModified: project.createdAt,
     owner: "Owner",
     // isFavorite: project.isFavorite

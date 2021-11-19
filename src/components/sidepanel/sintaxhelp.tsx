@@ -19,13 +19,12 @@ type SintaxHelpPanelProps = {
 };
 
 const SintaxHelpPanel: FunctionComponent<SintaxHelpPanelProps> = (props) => {
-  // LOGIC
   const { isOpen, onDismiss, header, onRenderFooterContent } = props;
 
+  // LOGIC
   const { t } = useTranslation("basics");
 
-  const [isDialogVisible, { setFalse: hideDialog }] =
-    useBoolean(false);
+  const [isDialogVisible, { setFalse: hideDialog }] = useBoolean(false);
 
   const onHideDialog = useCallback(
     (ev) => {
@@ -40,7 +39,7 @@ const SintaxHelpPanel: FunctionComponent<SintaxHelpPanelProps> = (props) => {
     hideDialog();
   }, [onDismiss, hideDialog]);
 
-  // STYLEs
+  // STYLES
   const dialogContentProps = {
     type: DialogType.normal,
     title: t("save-before-closing"),

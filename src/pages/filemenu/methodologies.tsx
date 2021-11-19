@@ -1,17 +1,13 @@
 import React from "react";
-import { useHistory } from "react-router";
 import { useTranslation } from "react-i18next";
+
 import { toNumber } from "lodash";
 
 import {
-  IButtonStyles,
-  IStackProps,
-  Overlay,
-  PrimaryButton,
-  Stack,
-  useTheme,
-  TooltipHost,
   Icon,
+  IStackProps,
+  Stack,
+  TooltipHost,
 } from "@fluentui/react";
 
 import { useQuery } from "@apollo/client";
@@ -20,10 +16,13 @@ import { GET_METHODOLOGIES } from "apollo/methodologies";
 import QueryStateIndicator from "apollo/indicator";
 
 import MethodologyCard from "components/cards/methodologycard";
-import { Centered } from "components/styled/centered";
 import { Subtitle, Title } from "components/styled/text";
+import { DisplayContentOverCard } from "components/cards/actionsovercard";
 
 export default function MethodologiesPage() {
+  // LOGIC
+  const { t } = useTranslation("filemenu", { keyPrefix: "methodologies" });
+  
   // STYLES
   const stackProps: IStackProps = {
     tokens: { childrenGap: 10 },
@@ -34,11 +33,9 @@ export default function MethodologiesPage() {
     },
   };
 
-  // LOGIC
-  const { t } = useTranslation("filemenu", { keyPrefix: "methodologies" });
-
   // DATA
-  const { data, loading, error } = useQuery<GetMethodologies>(GET_METHODOLOGIES);
+  const { data, loading, error } =
+    useQuery<GetMethodologies>(GET_METHODOLOGIES);
 
   if (!data || loading || error)
     return <QueryStateIndicator data={data} loading={loading} error={error} />;
@@ -66,7 +63,7 @@ export default function MethodologiesPage() {
         </Stack.Item>
 
         {/* To read or edit a methodology */}
-       {data && data.methodologies.map(m => mapToCard(m))}
+        {data && data.methodologies.map((m) => mapToCard(m))}
       </Stack>
     </React.Fragment>
   );
@@ -76,62 +73,14 @@ const mapToCard = (data: GetMethodologies_methodologies) => {
   return (
     <Stack.Item key={data.id}>
       <MethodologyCard
-        name={data.name || ''}
+        name={data.name || ""}
         href={`/methodologies/${data.id}`}
-        contentToDisplay={<DisplayContentOverCard methodology_id={toNumber(data.id)} />}
+        contentToDisplay={
+          <DisplayContentOverCard methodology_id={toNumber(data.id)} />
+        }
       />
     </Stack.Item>
-  )
+  );
 };
 
-function DisplayContentOverCard(props: {
-  add?: boolean;
-  methodology_id?: number;
-}) {
-  const { add, methodology_id } = props;
 
-  const { t } = useTranslation("permitions");
-  const { palette } = useTheme();
-  const history = useHistory();
-
-  const buttonStyles: IButtonStyles = {
-    root: {
-      backgroundColor: palette.themeDarker,
-    },
-  };
-
-  return (
-    <Overlay>
-      <Centered>
-        <Stack horizontal tokens={{ childrenGap: 10 }}>
-          {add ? (
-            <PrimaryButton
-              text={t("create")}
-              onClick={() => history.push("/methodology/new")}
-            />
-          ) : (
-            <>
-              <PrimaryButton
-                text={t("read")}
-                onClick={() =>
-                  history.push(
-                    `/methodology/${methodology_id}/features/index`
-                  )
-                }
-                styles={buttonStyles}
-              />
-              <PrimaryButton
-                text={t("edit")}
-                onClick={() =>
-                  history.push(
-                    `/methodology/${methodology_id}/features/update/index`
-                  )
-                }
-              />
-            </>
-          )}
-        </Stack>
-      </Centered>
-    </Overlay>
-  );
-}

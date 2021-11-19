@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function StakeholdersData() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div>StakeholdersData</div>;
 }

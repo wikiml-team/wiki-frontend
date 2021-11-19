@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function OptionsPage() {
-    return (
-        <div>
-            Options
-        </div>
-    )
+  return <div>Options</div>;
 }

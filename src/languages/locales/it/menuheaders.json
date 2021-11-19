@@ -1,55 +1,55 @@
 {
-    "filemenu": {
-        "home": "Home",
-        "new": "Nuovo",
-        "open": "Aprire",
-        "project": "Progetto",
-        "methodologies": "Metodologie",
-        "info": "Info",
-        "export": "Exportazione",
-        "print": "Stampare",
-        "share": "Condividere",
-        "about": "Informazioni",
-        "account": "Account",
-        "feedback": "Feedback",
-        "options": "Opzioni"
-    },
-    "commandbar": {
-        "undo": "Annullare",
-        "redo": "Rifare",
-        "share": "Condividere",
-        "export": "Esportare",
-        "newproject": "Nuovo",
-        "openproject": "Aprire",
-        "destroyproject": "Eliminare",
-        "duplicate": "Duplicare",
-        "print": "Stampare",
-        "fullscreen": "Schermo intero",
-        "language": "Lingua",
-        "settings": "Impostazioni",
-        "notifications": "Notifiche",
-        "account": "Account"
-    },
-    "mainmenu": {
-        "wikiml": "WikiMl",
-        "filemenu": "File",
-        "project": "Progetto",
-        "methodology": "Metodologia",
-        "licitations": "Licitazioni",
-        "database": "Database",
-        "more": "Altro"
-    },
-    "settings": {
-        "profile": "Perfilo",
-        "privacy": "Privacy",
-        "security": "Sicurezza",
-        "team": "Team di lavoro"
-    },
-    "methodology": {
-        "project": "",
-        "licitations": "",
-        "methodology": "",
-        "indicators": "",
-        "index": ""
-    }
+  "filemenu": {
+    "home": "Home",
+    "new": "Nuovo",
+    "open": "Aprire",
+    "project": "Progetto",
+    "methodologies": "Metodologie",
+    "info": "Info",
+    "export": "Exportazione",
+    "print": "Stampare",
+    "share": "Condividere",
+    "about": "Informazioni",
+    "account": "Account",
+    "feedback": "Feedback",
+    "options": "Opzioni"
+  },
+  "commandbar": {
+    "undo": "Annullare",
+    "redo": "Rifare",
+    "share": "Condividere",
+    "export": "Esportare",
+    "newproject": "Nuovo",
+    "openproject": "Aprire",
+    "destroyproject": "Eliminare",
+    "duplicate": "Duplicare",
+    "print": "Stampare",
+    "fullscreen": "Schermo intero",
+    "language": "Lingua",
+    "settings": "Impostazioni",
+    "notifications": "Notifiche",
+    "account": "Account"
+  },
+  "mainmenu": {
+    "wikiml": "WikiMl",
+    "filemenu": "File",
+    "project": "Progetto",
+    "methodology": "Metodologia",
+    "licitations": "Licitazioni",
+    "database": "Database",
+    "more": "Altro"
+  },
+  "settings": {
+    "profile": "Perfilo",
+    "privacy": "Privacy",
+    "security": "Sicurezza",
+    "team": "Team di lavoro"
+  },
+  "methodology": {
+    "project": "",
+    "licitations": "",
+    "methodology": "",
+    "indicators": "",
+    "index": ""
+  }
 }

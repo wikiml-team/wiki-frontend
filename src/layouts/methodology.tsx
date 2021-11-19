@@ -1,11 +1,10 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent } from "react";
 
-import MethodologyMenu from 'components/menus/methodologynav';
-import { IStackStyles, Stack, useTheme } from '@fluentui/react';
-import Scrollbars from 'react-custom-scrollbars';
+import MethodologyMenu from "components/menus/methodologynav";
+import { IStackStyles, Stack, useTheme } from "@fluentui/react";
+import Scrollbars from "react-custom-scrollbars";
 
 const MethodologyLayout: FunctionComponent = (props) => {
-
   const { children } = props;
 
   const { palette } = useTheme();
@@ -27,18 +26,22 @@ const MethodologyLayout: FunctionComponent = (props) => {
 
   return (
     <Stack horizontal>
-      <Stack styles={menuStackStyles} >
+      <Stack styles={menuStackStyles}>
         <MethodologyMenu />
       </Stack>
 
       <Stack styles={pageStackStyles}>
-        <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
+        <Scrollbars
+          autoHide
+          autoHeight
+          autoHeightMin={100}
+          autoHeightMax="calc(100vh - 75px)"
+        >
           {children}
         </Scrollbars>
       </Stack>
-
     </Stack>
-  )
-}
+  );
+};
 
-export default MethodologyLayout
+export default MethodologyLayout;

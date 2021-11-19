@@ -1,30 +1,30 @@
+import { useTranslation } from "react-i18next";
+
 import {
   DocumentCard,
-  DocumentCardTitle,
-  IDocumentCardStyles,
-  useTheme,
-  FontSizes,
-  IDocumentCardTitleStyles,
   DocumentCardActivity,
-  DocumentCardActions,
+  DocumentCardTitle,
+  FontSizes,
+  IDocumentCardStyles,
+  IDocumentCardTitleStyles,
+  useTheme,
 } from "@fluentui/react";
 import { useBoolean } from "@fluentui/react-hooks";
 
 import { IFeaturedProject } from "pages/filemenu/home";
-import { useTranslation } from "react-i18next";
 
 type StaredProjectsProps = {
-  project: IFeaturedProject
+  project: IFeaturedProject;
 };
 
 export default function StaredProjects(props: StaredProjectsProps) {
-  // LOGIC
-  const { t } = useTranslation("filemenu", { keyPrefix: "home"})
-  const { project } = props
-  const {name, methodology, owner, createdAt} = project
+  const { name, methodology, owner, createdAt } = props.project;
 
-  const actions = GetCardActions();
-  const date = new Date(createdAt).toLocaleDateString()
+  // LOGIC
+  const { t } = useTranslation("filemenu", { keyPrefix: "home" });
+
+  // const actions = GetCardActions();
+  const date = new Date(createdAt).toLocaleDateString();
 
   // STYLES
   const cardStyles: IDocumentCardStyles = {
@@ -91,7 +91,7 @@ const GetCardActions = () => {
       ariaLabel: "unstar",
     },
     {
-      iconProps: { iconName: "Ringer",  },
+      iconProps: { iconName: "Ringer" },
       onClick: () => {},
       ariaLabel: "notifications action",
     },

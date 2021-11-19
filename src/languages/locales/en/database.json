@@ -1,50 +1,50 @@
 {
-    "activities": {
-        "header": "Activities"
-    },
-    "assumptions": {
-        "header": "Assumptions"
-    },
-    "budgets": {
-        "header": "Budgets"
-    },
-    "categories": {
-        "header": "Categories"
-    },
-    "coins": {
-        "header": "Coins"
-    },
-    "countries": {
-        "header": "Countries"
-    },
-    "development": {
-        "header": "Development Goals"
-    },
-    "languages": {
-        "header": "Languages"
-    },
-    "methodologies": {
-        "header": "Methodologies"
-    },
-    "offers": {
-        "header": "Offers"
-    },
-    "products": {
-        "header": "Products & Services"
-    },
-    "programs": {
-        "header": "Programs"
-    },
-    "goals": {
-        "header": "Project Goals"
-    },
-    "projects": {
-        "header": "Projects"
-    },
-    "sources": {
-        "header": "Verification Sources"
-    },
-    "users": {
-        "header": "Users"
-    }
+  "activities": {
+    "header": "Activities"
+  },
+  "assumptions": {
+    "header": "Assumptions"
+  },
+  "budgets": {
+    "header": "Budgets"
+  },
+  "categories": {
+    "header": "Categories"
+  },
+  "coins": {
+    "header": "Coins"
+  },
+  "countries": {
+    "header": "Countries"
+  },
+  "development": {
+    "header": "Development Goals"
+  },
+  "languages": {
+    "header": "Languages"
+  },
+  "methodologies": {
+    "header": "Methodologies"
+  },
+  "offers": {
+    "header": "Offers"
+  },
+  "products": {
+    "header": "Products & Services"
+  },
+  "programs": {
+    "header": "Programs"
+  },
+  "goals": {
+    "header": "Project Goals"
+  },
+  "projects": {
+    "header": "Projects"
+  },
+  "sources": {
+    "header": "Verification Sources"
+  },
+  "users": {
+    "header": "Users"
+  }
 }

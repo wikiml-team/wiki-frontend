@@ -1,55 +1,55 @@
 {
-    "filemenu": {
-        "home": "Startseite",
-        "new": "Neu",
-        "open": "Öffnen",
-        "project": "Projekt",
-        "methodologies": "Metodologien",
-        "info": "Info",
-        "export": "Exportieren",
-        "print": "Drucken",
-        "share": "Teilen",
-        "about": "Info",
-        "account": "Benutzerkonto",
-        "feedback": "Feedback",
-        "options": "Optionen"
-    },
-    "commandbar": {
-        "undo": "Rückgängig",
-        "redo": "Wiederholen",
-        "share": "Teilen",
-        "export": "Exportieren",
-        "newproject": "Neu",
-        "openproject": "Öffnen",
-        "destroyproject": "Löschen",
-        "duplicate": "Duplizieren",
-        "print": "Drucken",
-        "fullscreen": "Vollbild",
-        "language": "Sprachen",
-        "settings": "Einstellungen",
-        "notifications": "Benachrichtigungen",
-        "account": "Benutzerkonto"
-    },
-    "mainmenu": {
-        "wikiml": "WikiMl",
-        "filemenu": "Datei",
-        "project": "Projekt",
-        "methodology": "Methodik",
-        "licitations": "Ausschreibungen",
-        "database": "Datenbank",
-        "more": "Mehr"
-    },
-    "settings": {
-        "profile": "",
-        "privacy": "",
-        "security": "",
-        "team": ""
-    },
-    "methodology": {
-        "project": "",
-        "licitations": "",
-        "methodology": "",
-        "indicators": "",
-        "index": ""
-    }
+  "filemenu": {
+    "home": "Startseite",
+    "new": "Neu",
+    "open": "Öffnen",
+    "project": "Projekt",
+    "methodologies": "Metodologien",
+    "info": "Info",
+    "export": "Exportieren",
+    "print": "Drucken",
+    "share": "Teilen",
+    "about": "Info",
+    "account": "Benutzerkonto",
+    "feedback": "Feedback",
+    "options": "Optionen"
+  },
+  "commandbar": {
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "share": "Teilen",
+    "export": "Exportieren",
+    "newproject": "Neu",
+    "openproject": "Öffnen",
+    "destroyproject": "Löschen",
+    "duplicate": "Duplizieren",
+    "print": "Drucken",
+    "fullscreen": "Vollbild",
+    "language": "Sprachen",
+    "settings": "Einstellungen",
+    "notifications": "Benachrichtigungen",
+    "account": "Benutzerkonto"
+  },
+  "mainmenu": {
+    "wikiml": "WikiMl",
+    "filemenu": "Datei",
+    "project": "Projekt",
+    "methodology": "Methodik",
+    "licitations": "Ausschreibungen",
+    "database": "Datenbank",
+    "more": "Mehr"
+  },
+  "settings": {
+    "profile": "",
+    "privacy": "",
+    "security": "",
+    "team": ""
+  },
+  "methodology": {
+    "project": "",
+    "licitations": "",
+    "methodology": "",
+    "indicators": "",
+    "index": ""
+  }
 }

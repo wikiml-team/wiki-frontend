@@ -1,11 +1,7 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent } from "react";
 
-const Home : FunctionComponent = (props) => {
-    return (
-        <div>
-            IndexPage
-        </div>
-    )
-}
+const Home: FunctionComponent = (props) => {
+  return <div>IndexPage</div>;
+};
 
-export default Home
+export default Home;

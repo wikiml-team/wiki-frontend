@@ -1,50 +1,50 @@
 {
-    "activities": {
-        "header": "Aktivitäten"
-    },
-    "assumptions": {
-        "header": "Annahmen"
-    },
-    "budgets": {
-        "header": "Budget"
-    },
-    "categories": {
-        "header": "Kategorien"
-    },
-    "coins": {
-        "header": "Profilbilder"
-    },
-    "countries": {
-        "header": "Länder"
-    },
-    "development": {
-        "header": "Entwicklungsziele"
-    },
-    "languages": {
-        "header": "Sprachen"
-    },
-    "methodologies": {
-        "header": "Methodologien"
-    },
-    "offers": {
-        "header": "Angebote"
-    },
-    "products": {
-        "header": "Produkte und Dienstleistungen"
-    },
-    "programs": {
-        "header": "Programme"
-    },
-    "goals": {
-        "header": "Projektziele"
-    },
-    "projects": {
-        "header": "Projekte"
-    },
-    "sources": {
-        "header": "Quellen"
-    },
-    "users": {
-        "header": "Benutzer"
-    }
+  "activities": {
+    "header": "Aktivitäten"
+  },
+  "assumptions": {
+    "header": "Annahmen"
+  },
+  "budgets": {
+    "header": "Budget"
+  },
+  "categories": {
+    "header": "Kategorien"
+  },
+  "coins": {
+    "header": "Profilbilder"
+  },
+  "countries": {
+    "header": "Länder"
+  },
+  "development": {
+    "header": "Entwicklungsziele"
+  },
+  "languages": {
+    "header": "Sprachen"
+  },
+  "methodologies": {
+    "header": "Methodologien"
+  },
+  "offers": {
+    "header": "Angebote"
+  },
+  "products": {
+    "header": "Produkte und Dienstleistungen"
+  },
+  "programs": {
+    "header": "Programme"
+  },
+  "goals": {
+    "header": "Projektziele"
+  },
+  "projects": {
+    "header": "Projekte"
+  },
+  "sources": {
+    "header": "Quellen"
+  },
+  "users": {
+    "header": "Benutzer"
+  }
 }

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Main : FunctionComponent = (props) => {
 
   return <React.Fragment>
-      <Link to="/workplace">Workplace</Link>
+      <Link to="/workplace/1">Workplace</Link>
       {/* <AutoSavingForm2 /> */}
 
     </React.Fragment>

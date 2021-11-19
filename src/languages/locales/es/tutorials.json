@@ -1,37 +1,37 @@
 {
-    "contact": {
-        "header": "Contacto",
-        "oficialpage": "Página oficial"
-    },
-    "forms": {
-        "header": "Formularioss",
-        "form-field": "Formulario",
-        "description-field": "Descripción"
-    },
-    "sectors": {
-        "header": "Sectores",
-        "sector-field": "Sector",
-        "description-field": "Descripción",
-        "agriculture" : "Agricultura y alimentación",
-        "economic" : "Crecimiento económico",
-        "rights" : "Derechos humanos y Gobernanza democrática",
-        "development" : "Desarrollo humano",
-        "energy" : "Energía",
-        "infrastructure" : "Infraestructura",
-        "environment" : "Medioambiente",
-        "migration" : "Migración y asilo",
-        "tecnology" : "Tecnologías de la Información y la Comunicación"
-    },
-    "guides": {
-        "header": "Guides"
-    },
-    "tutorials": {
-        "header": "Tutorials"
-    },
-    "outcomes": {
-        "header": "Outcomes"
-    },
-    "indicators": {
-        "header": "Indicators"
-    }
+  "contact": {
+    "header": "Contacto",
+    "oficialpage": "Página oficial"
+  },
+  "forms": {
+    "header": "Formularioss",
+    "form-field": "Formulario",
+    "description-field": "Descripción"
+  },
+  "sectors": {
+    "header": "Sectores",
+    "sector-field": "Sector",
+    "description-field": "Descripción",
+    "agriculture": "Agricultura y alimentación",
+    "economic": "Crecimiento económico",
+    "rights": "Derechos humanos y Gobernanza democrática",
+    "development": "Desarrollo humano",
+    "energy": "Energía",
+    "infrastructure": "Infraestructura",
+    "environment": "Medioambiente",
+    "migration": "Migración y asilo",
+    "tecnology": "Tecnologías de la Información y la Comunicación"
+  },
+  "guides": {
+    "header": "Guides"
+  },
+  "tutorials": {
+    "header": "Tutorials"
+  },
+  "outcomes": {
+    "header": "Outcomes"
+  },
+  "indicators": {
+    "header": "Indicators"
+  }
 }

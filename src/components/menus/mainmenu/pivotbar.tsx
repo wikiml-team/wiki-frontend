@@ -11,7 +11,10 @@ import {
   useTheme,
 } from "@fluentui/react";
 
-import { setLatestMenuTab, selectWorkplaceConfig } from "store/slices/workplaceslice";
+import {
+  setLatestMenuTab,
+  selectWorkplaceConfig,
+} from "store/slices/workplaceslice";
 import { TabSchema } from "models/workplace";
 
 type PivotBarProps = {
@@ -24,29 +27,30 @@ export default function PivotBar(props: PivotBarProps) {
   const { tabs } = schema;
 
   // LOGIC
-  const { t } = useTranslation("menuheaders", { keyPrefix: "mainmenu"});
-  const history = useHistory()
+  const { t } = useTranslation("menuheaders", { keyPrefix: "mainmenu" });
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   // Tabs State
-  const dispatch = useDispatch();
   const { latestMenuTab } = useSelector(selectWorkplaceConfig);
 
-  const handleMenuOnClick = (item?: PivotItem, ev?: React.MouseEvent<HTMLElement>) => {
-    
+  const handleMenuOnClick = (
+    item?: PivotItem,
+    ev?: React.MouseEvent<HTMLElement>
+  ) => {
     if (item) {
       const itemkey = item.props.itemKey!;
-      
+
       // If it is the first key then move to homepage and not update tab_config
       if (itemkey === "key1") {
-        history.push("/")
-      }
-      else {
+        history.push("/");
+      } else {
         // Update current menu tab
         dispatch(setLatestMenuTab({ tabKey: itemkey }));
       }
     }
-    setShowToolBar(true)
-  }
+    setShowToolBar(true);
+  };
 
   // STYLES
   const { palette } = useTheme();
@@ -85,7 +89,7 @@ export default function PivotBar(props: PivotBarProps) {
   return (
     <Pivot
       linkFormat="tabs"
-      defaultSelectedKey={latestMenuTab !== "key2"? latestMenuTab : "key2"}
+      defaultSelectedKey={latestMenuTab !== "key2" ? latestMenuTab : "key2"}
       styles={pivotStyles}
       onLinkClick={handleMenuOnClick}
     >

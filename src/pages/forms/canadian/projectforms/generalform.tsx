@@ -1,9 +1,22 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
+
 import { string, object, number, setLocale } from "yup";
-import { Grid, Col, Row } from "fluentui-react-grid";
 import { Field, FormikValues } from "formik";
+
+import { useQuery } from "@apollo/client";
+import {
+  GetPrograms,
+  GetProjectById,
+  GetProjectByIdVariables,
+  GetProjects_projects,
+  GetSectors,
+} from "types";
+import { GET_PROJECT_BY_ID } from "apollo/projects/project";
+import QueryStateIndicator from "apollo/indicator";
+
 import {
   Stack,
   ITextFieldProps,
@@ -15,6 +28,7 @@ import {
   ISeparatorProps,
   Label,
 } from "@fluentui/react";
+import { Grid, Col, Row } from "fluentui-react-grid";
 
 import { selectProject } from "store/slices/projectslice";
 import { ECanadianSector } from "models/sector";
@@ -23,110 +37,32 @@ import DropdownFieldInput from "components/inputs/dropdown";
 import TextFieldInput from "components/inputs/text";
 import DateFieldInput from "components/inputs/datepicker";
 import AutoSaveFormik from "components/form/autosaveform";
+import { GET_SECTORS } from "apollo/sectors";
+import { GET_PROGRAMS } from "apollo/programs";
 
-
-type formValuesType = FormikValues | {
-  shortName: string;
-  largeName: string;
-  description: string;
-  country: string;
-  impOrganization: string;
-  intOrganization: string;
-  budget: number;
-  budgetPerItems: number;
-  budgetPerAct: number;
-  budgetFinanced: number;
-  budgetSolicited: number;
-  program: string;
-  sector: ECanadianSector;
-  duration: number;
-  donor: string;
-  approvedBudget: number;
-  approvedDate: Date | string;
-  initialDate: Date | string;
-  finalDate: Date | string;
-  contribution: number;
-};
+type formValuesType = FormikValues | GetProjects_projects;
 
 export default function GeneralForm() {
-  // STYLE
-  const classes = mergeStyleSets({
-    circle: {
-      height: 40,
-      width: 40,
-      borderRadius: "50%",
-      minWidth: 40,
-      fontSize: 16,
-    },
-  });
-
-  const multilineTextFieldProps: ITextFieldProps = {
-    required: true,
-    multiline: true,
-    autoAdjustHeight: true,
-    styles: {
-      root: {
-        width: "100%",
-        marginTop: 10,
-      },
-      field: {
-        height: 100,
-      },
-    },
-  };
-
-  const headerStackProps: IStackProps = {
-    tokens: { childrenGap: "m" },
-    horizontal: true,
-    horizontalAlign: "space-between",
-    styles: {
-      root: {
-        paddingRight: 40,
-      },
-    },
-  };
-
-  const separatorProps: ISeparatorProps = {
-    alignContent: "start",
-  };
-
   // LOGIC
   const { t } = useTranslation("forms", { keyPrefix: "general" });
+  const { projectId } = useParams<any>();
+
   const project = useSelector(selectProject);
   const generalInfo = project.info as IProjectInfo<ECanadianSector>;
 
-  const [initialDate, setInitialDate] = useState(generalInfo.initialDate as Date)
-  const [approvedDate, setApprovedDate] = useState(generalInfo.approvedDate as Date)
+  const [initialDate, setInitialDate] = useState(
+    generalInfo.initialDate as Date
+  );
+  const [approvedDate, setApprovedDate] = useState(
+    generalInfo.approvedDate as Date
+  );
 
   const handleSelectInitialDate = (date: Date) => {
     setInitialDate(date);
-  }
+  };
 
   const handleSelectApprovedDate = (date: Date) => {
     setApprovedDate(date);
-  }
-
-  const initValues: formValuesType = {
-    shortName: generalInfo.shortname,
-    largeName: generalInfo.name,
-    description: generalInfo.description,
-    country: generalInfo.country,
-    impOrganization: generalInfo.organization,
-    intOrganization: generalInfo.intermediary,
-    budget: generalInfo.budget,
-    budgetPerItems: generalInfo.budgetItems,
-    budgetPerAct: generalInfo.budgetAct,
-    budgetFinanced: generalInfo.budgetFinanced,
-    budgetSolicited: generalInfo.solicitedBudget,
-    program: generalInfo.program,
-    sector: generalInfo.sector,
-    duration: generalInfo.duration,
-    donor: generalInfo.donor,
-    approvedBudget: generalInfo.approvedBudget,
-    approvedDate: generalInfo.approvedDate,
-    initialDate: generalInfo.initialDate,
-    finalDate: generalInfo.finalDate,
-    contribution: generalInfo.contribution
   };
 
   const validationSchema = object().shape({
@@ -175,13 +111,128 @@ export default function GeneralForm() {
     alert(values);
   };
 
-  const countries: IDropdownOption[] = [
-    { key: "1", text: "Cuba" },
-    { key: "2", text: "England" },
-    { key: "3", text: "United States" },
-    { key: "4", text: "España" },
-    { key: "5", text: "Canada" },
-  ];
+  // STYLE
+  const classes = mergeStyleSets({
+    circle: {
+      height: 40,
+      width: 40,
+      borderRadius: "50%",
+      minWidth: 40,
+      fontSize: 16,
+    },
+  });
+
+  const multilineTextFieldProps: ITextFieldProps = {
+    required: true,
+    multiline: true,
+    autoAdjustHeight: true,
+    styles: {
+      root: {
+        width: "100%",
+        marginTop: 10,
+      },
+      field: {
+        height: 100,
+      },
+    },
+  };
+
+  const headerStackProps: IStackProps = {
+    tokens: { childrenGap: "m" },
+    horizontal: true,
+    horizontalAlign: "space-between",
+    styles: {
+      root: {
+        paddingRight: 40,
+      },
+    },
+  };
+
+  const separatorProps: ISeparatorProps = {
+    alignContent: "start",
+  };
+
+  // DATA
+  const { data, loading, error } = useQuery<
+    GetProjectById,
+    GetProjectByIdVariables
+  >(GET_PROJECT_BY_ID, {
+    variables: { id: projectId },
+  });
+
+  const sectorsResponse = useQuery<GetSectors>(GET_SECTORS);
+  const programsResponse = useQuery<GetPrograms>(GET_PROGRAMS);
+
+  if (!sectorsResponse.data || sectorsResponse.loading) {
+    return (
+      <QueryStateIndicator
+        data={sectorsResponse.data}
+        loading={sectorsResponse.loading}
+        error={sectorsResponse.error}
+      />
+    );
+  }
+
+  if (!programsResponse.data || programsResponse.loading) {
+    return (
+      <QueryStateIndicator
+        data={programsResponse.data}
+        loading={programsResponse.loading}
+        error={programsResponse.error}
+      />
+    );
+  }
+
+  if (!data || loading || error)
+    return <QueryStateIndicator data={data} loading={loading} error={error} />;
+
+  const sectors = sectorsResponse.data?.sectors.map((s) => {
+    return {
+      key: s.id,
+      text: s.name,
+    };
+  });
+  const programs = programsResponse.data.programs.map((p) => {
+    return {
+      key: p.id,
+      text: p.name,
+    };
+  });
+  const countries: IDropdownOption[] = [];
+
+  const initValues: formValuesType = {
+    shortName: data.project!.shortName,
+    largeName: data.project!.largeName,
+    methodology: data.project!.methodology,
+    description: data.project!.description,
+    language: data.project!.languageId,
+    program: data.project!.programId?.toString(),
+    projectStatusId: data.project!.projectStatusId,
+    public: data.project!.public,
+    sector: data.project!.sectorId.toString(),
+    currencyCode: data.project!.currencyCode,
+    durationPlan: data.project!.durationPlan,
+    intermediateOutcomes: data.project!.intermediateOutcomes,
+    projectPermissions: data.project!.projectPermissions,
+    solicitedBudget: data.project!.solicitedBudget,
+    ultimateOutcome: data.project!.ultimateOutcome,
+    wikimlCode: data.project!.wikimlCode,
+    createdAt: data.project!.createdAt,
+
+    // country: data.project!.,
+    // impOrganization: data.project!.organization,
+    // intOrganization: data.project!.intermediary,
+    // budget: data.project!.budget,
+    // budgetPerItems: data.project!.budgetItems,
+    // budgetPerAct: data.project!.budgetAct,
+    // approvedBudget: data.project!.approvedBudget,
+    // budgetFinanced: data.project!.budgetFinanced,
+    // donor: data.project!.donor,
+    // approvedDate: data.project!.approvedDate,
+    // initialDate: data.project!.initialDate,
+    // finalDate: data.project!.finalDate,
+    // contribution: data.project!.contribution,
+  };
 
   return (
     <AutoSaveFormik
@@ -217,7 +268,6 @@ export default function GeneralForm() {
               component={TextFieldInput}
               {...multilineTextFieldProps}
               sizeLg={12}
-
             />
           </Row>
           <br />
@@ -274,14 +324,22 @@ export default function GeneralForm() {
                   label={t("program.field")}
                   name="program"
                   component={DropdownFieldInput}
-                  options={countries}
+                  options={programs}
                 />
-                <StandardField
+                <Col sizeSm={2} sizeMd={6} sizeLg={3}>
+                  <Field
+                    label={t("sector.field")}
+                    name="sector"
+                    component={DropdownFieldInput}
+                    options={sectors}
+                  />
+                </Col>
+                {/* <StandardField
                   label={t("sector.field")}
                   name="sector"
                   component={DropdownFieldInput}
-                  options={countries}
-                />
+                  options={sectors}
+                /> */}
                 <StandardField
                   label={t("duration.field")}
                   name="duration"
@@ -317,8 +375,6 @@ export default function GeneralForm() {
                   component={TextFieldInput}
                 />
               </Row>
-
-
             </Col>
 
             {/* 2. Donor */}
@@ -398,7 +454,11 @@ export default function GeneralForm() {
 
 const StandardField = (props: any) => {
   return (
-    <Col sizeSm={props.sizeSm || 2} sizeMd={props.sizeMd || 6} sizeLg={props.sizeLg || 3}>
+    <Col
+      sizeSm={props.sizeSm || 2}
+      sizeMd={props.sizeMd || 6}
+      sizeLg={props.sizeLg || 3}
+    >
       <Field {...props} />
     </Col>
   );
@@ -406,12 +466,12 @@ const StandardField = (props: any) => {
 
 const TextField = ({ grow, ...props }: any) => {
   return (
-    <Col sizeSm={props.sizeSm || 2} sizeMd={props.sizeMd || 6} sizeLg={props.sizeLg || 3}>
+    <Col
+      sizeSm={props.sizeSm || 2}
+      sizeMd={props.sizeMd || 6}
+      sizeLg={props.sizeLg || 3}
+    >
       <Field {...props} />
     </Col>
   );
 };
-
-export function generalFormViewMode() {
-  return <div>Form Basics</div>;
-}

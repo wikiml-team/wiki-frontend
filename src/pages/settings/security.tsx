@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Security() {
-    return (
-        <div>
-            Security
-        </div>
-    )
+  return <div>Security</div>;
 }

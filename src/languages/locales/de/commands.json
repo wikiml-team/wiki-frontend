@@ -1,50 +1,50 @@
 {
-    "share": {},
-    "export": {
-        "header": "Projekt exportieren",
-        "select-label": "Wählen Sie den zu exportierenden Datentyp aus:",
-        "accept-label": "Exportieren"
-    },
-    "new": {
-        "header": "Projekt erstellen",
-        "accept-label": "Erstellen",
-        "body": {
-            "text": "Methodik verwenden",
-            "name-label": "Prokttitel",
-            "name-placeholder": "Kurztitel",
-            "language-label": "Projektsprachen",
-            "language-placeholder": "Sprache auswählen",
-            "privacy-label": "Projekt Datenschutz",
-            "privacy-on": "Privat",
-            "privacy-off": "Öffentlich",
-            "privacy-text": "Datenschutzeinstellungen können später geändert werden"
-        }
-    },
-    "open": {},
-    "destroy": {
-        "header": "Projekt löschen",
-        "text": "Sind Sie sicher, dass Sie Ihr Projekt löschen wollen? Diese Aktion kann nicht rückgängig gemacht werden.",
-        "accept-label": "Löschen"
-    },
-    "duplicate": {
-        "header": "Projekt duplizieren",
-        "select-label": "Wählen Sie die Methodik aus, in die Sie Ihr Projekt duplizieren möchten",
-        "accept-label": "Duplizieren"
-    },
-    "print": {},
-    "language": {
-        "header": "Sprache",
-        "language-select": "Sprache auswählen",
-        "language-ui": "Sprache für Benutzeroberfläche",
-        "language-data": "Sprache für Daten"
-    },
-    "settings": {
-        "header": "Einstellungen",
-        "theme-header": "Thema",
-        "colortheme-title": "Farbgebung",
-        "privacy-header": "Privatsphäre",
-        "privacy-label": "Das sollte Ihr Projekt sein:",
-        "privacy-text": "Gehen Sie zu den Datenschutzeinstellungen",
-        "privacy-link": "hier"
+  "share": {},
+  "export": {
+    "header": "Projekt exportieren",
+    "select-label": "Wählen Sie den zu exportierenden Datentyp aus:",
+    "accept-label": "Exportieren"
+  },
+  "new": {
+    "header": "Projekt erstellen",
+    "accept-label": "Erstellen",
+    "body": {
+      "text": "Methodik verwenden",
+      "name-label": "Prokttitel",
+      "name-placeholder": "Kurztitel",
+      "language-label": "Projektsprachen",
+      "language-placeholder": "Sprache auswählen",
+      "privacy-label": "Projekt Datenschutz",
+      "privacy-on": "Privat",
+      "privacy-off": "Öffentlich",
+      "privacy-text": "Datenschutzeinstellungen können später geändert werden"
     }
+  },
+  "open": {},
+  "destroy": {
+    "header": "Projekt löschen",
+    "text": "Sind Sie sicher, dass Sie Ihr Projekt löschen wollen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "accept-label": "Löschen"
+  },
+  "duplicate": {
+    "header": "Projekt duplizieren",
+    "select-label": "Wählen Sie die Methodik aus, in die Sie Ihr Projekt duplizieren möchten",
+    "accept-label": "Duplizieren"
+  },
+  "print": {},
+  "language": {
+    "header": "Sprache",
+    "language-select": "Sprache auswählen",
+    "language-ui": "Sprache für Benutzeroberfläche",
+    "language-data": "Sprache für Daten"
+  },
+  "settings": {
+    "header": "Einstellungen",
+    "theme-header": "Thema",
+    "colortheme-title": "Farbgebung",
+    "privacy-header": "Privatsphäre",
+    "privacy-label": "Das sollte Ihr Projekt sein:",
+    "privacy-text": "Gehen Sie zu den Datenschutzeinstellungen",
+    "privacy-link": "hier"
+  }
 }

@@ -21,6 +21,7 @@ import {
 import { Title } from "components/styled/text";
 
 export default function UpdateMethodology() {
+  // LOGIC
   const { t } = useTranslation("manage", { keyPrefix: "form" });
   const t_basics = useTranslation("basics", { keyPrefix: "languages" }).t;
 
@@ -137,5 +138,5 @@ export default function UpdateMethodology() {
       {/* Format */}
       <TextField label={t("format-field")} />
     </Stack>
-  )
+  );
 }

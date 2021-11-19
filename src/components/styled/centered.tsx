@@ -23,16 +23,15 @@ const Recipient = styled.div`
 interface CenteredProps {
   className?: string;
 }
-export const CenteredHorizontal: FunctionComponent<CenteredProps> = (
-  props
-) => (
+export const CenteredHorizontal: FunctionComponent<CenteredProps> = (props) => (
   <Container className={props.className}>
     <Recipient>{props.children}</Recipient>
   </Container>
 );
 
 const ContainerText = styled.div`
-position: relative;`
+  position: relative;
+`;
 
 const Recipient2 = styled.div`
   position: absolute;
@@ -41,20 +40,14 @@ const Recipient2 = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-
-export const Centered: FunctionComponent<CenteredProps> = (
-  props
-) => (
+export const Centered: FunctionComponent<CenteredProps> = (props) => (
   <Container className={props.className}>
     <Recipient2>{props.children}</Recipient2>
   </Container>
 );
 
-export const CenteredText: FunctionComponent<CenteredProps> = (
-  props
-) => (
+export const CenteredText: FunctionComponent<CenteredProps> = (props) => (
   <ContainerText className={props.className}>
     <Recipient2>{props.children}</Recipient2>
   </ContainerText>
 );
-

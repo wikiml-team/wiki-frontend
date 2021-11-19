@@ -1,20 +1,20 @@
 {
-    "form": {
-        "header": "",
-        "amount": {
-            "maximal-field": "",
-            "minimal-field": "",
-            "top-field": ""
-        },
-        "characters": {
-            "maximal-field": "",
-            "minimal-field": "",
-            "top-field": ""
-        },
-        "language-field" : "",
-        "name-field": "",
-        "tooltip-field": "",
-        "definition-field": "",
-        "format-field": ""
-    }
+  "form": {
+    "header": "",
+    "amount": {
+      "maximal-field": "",
+      "minimal-field": "",
+      "top-field": ""
+    },
+    "characters": {
+      "maximal-field": "",
+      "minimal-field": "",
+      "top-field": ""
+    },
+    "language-field": "",
+    "name-field": "",
+    "tooltip-field": "",
+    "definition-field": "",
+    "format-field": ""
+  }
 }

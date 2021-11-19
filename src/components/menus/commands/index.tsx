@@ -1,26 +1,61 @@
 import React from "react";
+import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 
 import {
   CommandBar,
+  IButtonProps,
   ICommandBarStyles,
   ITextStyles,
+  Panel,
   Text,
   useTheme,
-  Panel
 } from "@fluentui/react";
-import { useBoolean, useId } from '@fluentui/react-hooks';
+import { useBoolean, useId } from "@fluentui/react-hooks";
+
+import { useQuery } from "@apollo/client";
+import { GetProjectById, GetProjectByIdVariables } from "types";
+import { GET_PROJECT_BY_ID } from "apollo/projects/project";
+import QueryStateIndicator from "apollo/indicator";
 
 import { GetFarItems, GetItems, GetOverflowItems } from "./items";
+import { CustomBarButton, CustomOverflowButton } from "./custombuttons";
 import LanguagePanelContent from "components/sidepanel/contents/language";
 import SettingsPanelContent from "components/sidepanel/contents/settings";
-import { CustomBarButton, CustomOverflowButton, OverflowProps } from "./custombuttons";
 import ExportProjectDialog from "components/dialog/export";
 import DuplicateProjectDialog from "components/dialog/duplicate";
 import DestroyProjectDialog from "components/dialog/destroy";
 import UserCallout from "components/callout/user";
 
 export default function CommandMenu() {
+  // LOGIC
+  const { t } = useTranslation("commands");
+  const t_basics = useTranslation("basics", { keyPrefix: "methodologies" }).t;
+
+  const { projectId } = useParams<any>();
+
+  // Panels State
+  const [
+    languagePanelOpen,
+    { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel },
+  ] = useBoolean(false);
+  const [
+    settingsPanelOpen,
+    { setTrue: openSettingsPanel, setFalse: dismissSettingsPanel },
+  ] = useBoolean(false);
+
+  // Dialogs State
+  const [exportHideDialog, { toggle: toggleExportHideDialog }] =
+    useBoolean(true);
+  const [duplicateHideDialog, { toggle: toggleDuplicateHideDialog }] =
+    useBoolean(true);
+  const [destroyHideDialog, { toggle: toggleDestroyHideDialog }] =
+    useBoolean(true);
+
+  // Callout State
+  const [isUserCalloutVisible, { toggle: toggleIsUserCalloutVisible }] =
+    useBoolean(false);
+  const calloutButtonId = useId("user-callout-button");
 
   // STYLES
   const { palette } = useTheme();
@@ -40,40 +75,66 @@ export default function CommandMenu() {
       left: "50%",
       transform: "translateX(-50%)",
       color: palette.themeLight,
-      zIndex: 10
+      zIndex: 10,
     },
   };
 
-  // LOGIC
-  const { t } = useTranslation("commands");
-  const t_basics = useTranslation("basics", { keyPrefix: "methodologies"}).t
-  
-  // Panels State
-  const [languagePanelOpen, { setTrue: openLanguagePanel, setFalse: dismissLanguagePanel }] = useBoolean(false);
-  const [settingsPanelOpen, { setTrue: openSettingsPanel, setFalse: dismissSettingsPanel }] = useBoolean(false);
+  const overflowProps: IButtonProps = {
+    ariaLabel: "More commands",
+    menuProps: {
+      styles: {
+        subComponentStyles: {
+          menuItem: {
+            icon: { color: palette.black },
+          },
+        },
+      },
+      items: [],
+    },
+  };
 
-  // Dialogs State
-  const [exportHideDialog, { toggle: toggleExportHideDialog }] = useBoolean(true);
-  const [duplicateHideDialog, { toggle: toggleDuplicateHideDialog }] = useBoolean(true);
-  const [destroyHideDialog, { toggle: toggleDestroyHideDialog }] = useBoolean(true);
+  // DATA
+  const _items = GetItems(toggleExportHideDialog);
+  const _faritems = GetFarItems(
+    openLanguagePanel,
+    openSettingsPanel,
+    toggleIsUserCalloutVisible,
+    calloutButtonId
+  );
+  const _overflowitems = GetOverflowItems(
+    toggleDuplicateHideDialog,
+    toggleDestroyHideDialog
+  );
 
-  // Callout State
-  const [isUserCalloutVisible, { toggle: toggleIsUserCalloutVisible }] = useBoolean(false);
-  const calloutButtonId = useId('user-callout-button');
+  const { data, loading, error } = useQuery<
+    GetProjectById,
+    GetProjectByIdVariables
+  >(GET_PROJECT_BY_ID, {
+    variables: {
+      id: projectId,
+    },
+  });
+
+  if (!data || loading || error)
+    return <QueryStateIndicator data={data} loading={loading} error={error} />;
+
+  const name = data.project?.shortName || "";
+
+  const methodology = data.project?.methodology.name || "";
 
   return (
     <React.Fragment>
       <Text variant="small" styles={textStyles}>
-        Agua y Saneamiento - {t_basics("canadian")}
+        {name} - {t_basics(methodology, methodology)}
       </Text>
 
       <CommandBar
         buttonAs={CustomBarButton}
-        items={GetItems(toggleExportHideDialog)}
-        farItems={GetFarItems(openLanguagePanel, openSettingsPanel, toggleIsUserCalloutVisible, calloutButtonId)}
-        overflowItems={GetOverflowItems(toggleDuplicateHideDialog, toggleDestroyHideDialog)}
+        items={_items}
+        farItems={_faritems}
+        overflowItems={_overflowitems}
         overflowButtonAs={CustomOverflowButton}
-        overflowButtonProps={OverflowProps()}
+        overflowButtonProps={overflowProps}
         ariaLabel="Use left and right arrow keys to navigate between commands"
         styles={comandBarStyles}
       />
@@ -85,7 +146,7 @@ export default function CommandMenu() {
         isHiddenOnDismiss={true}
         headerText={t("language.header")}
         onDismiss={dismissLanguagePanel}
-        >
+      >
         <LanguagePanelContent />
       </Panel>
 
@@ -96,7 +157,8 @@ export default function CommandMenu() {
         isHiddenOnDismiss={true}
         headerText={t("settings.header")}
         onDismiss={dismissSettingsPanel}
-        isBlocking={false}>
+        isBlocking={false}
+      >
         <SettingsPanelContent />
       </Panel>
 
@@ -117,7 +179,7 @@ export default function CommandMenu() {
 
       <UserCallout
         isCalloutVisible={isUserCalloutVisible}
-        toggleIsCalloutVisible={toggleIsUserCalloutVisible} 
+        toggleIsCalloutVisible={toggleIsUserCalloutVisible}
         calloutButtonId={calloutButtonId}
       />
     </React.Fragment>

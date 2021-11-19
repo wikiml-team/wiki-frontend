@@ -6,7 +6,6 @@ import { IStackStyles, Stack, useTheme } from "@fluentui/react";
 import FileMenu from "components/menus/filenav";
 
 const FileLayout: FunctionComponent = (props) => {
-
   const { children } = props;
 
   const { palette } = useTheme();
@@ -28,19 +27,22 @@ const FileLayout: FunctionComponent = (props) => {
 
   return (
     <Stack horizontal>
-      <Stack styles={menuStackStyles} >
+      <Stack styles={menuStackStyles}>
         <FileMenu />
       </Stack>
 
       <Stack styles={pageStackStyles}>
-        <Scrollbars autoHide autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 75px)" >
+        <Scrollbars
+          autoHide
+          autoHeight
+          autoHeightMin={100}
+          autoHeightMax="calc(100vh - 75px)"
+        >
           {children}
         </Scrollbars>
       </Stack>
-
     </Stack>
-  )
-}
+  );
+};
 
 export default FileLayout;
-

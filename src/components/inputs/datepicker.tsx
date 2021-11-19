@@ -1,9 +1,15 @@
-import { addMonths, DatePicker, IDatePickerStrings, IDatePickerStyles } from "@fluentui/react";
+import {
+  addMonths,
+  DatePicker,
+  IDatePickerStrings,
+  IDatePickerStyles,
+} from "@fluentui/react";
 import { useTranslation } from "react-i18next";
 
 import { useConst } from "@fluentui/react-hooks";
 
 const DateFieldInput = ({ field, form, ...props }: any) => {
+  // LOGIC
   const { t } = useTranslation("dates");
 
   const DayPickerStrings: IDatePickerStrings = {
@@ -71,23 +77,25 @@ const DateFieldInput = ({ field, form, ...props }: any) => {
 
   const minDate = useConst(addMonths(new Date(Date.now()), -1));
 
-
+  // STYLES
   const datepickerStyles: Partial<IDatePickerStyles> = {
     root: {
-      height: 60.4
-    }
-  }
+      height: 60.4,
+    },
+  };
 
-  return <DatePicker
-    placeholder={t("date-placeholder")}
-    minDate={minDate}
-    onGetErrorMessage={handleGetError}
-    deferredValidationTime={500}
-    strings={DayPickerStrings}
-    styles={datepickerStyles}
-    {...field}
-    {...props}
-  />
+  return (
+    <DatePicker
+      placeholder={t("date-placeholder")}
+      minDate={minDate}
+      onGetErrorMessage={handleGetError}
+      deferredValidationTime={500}
+      strings={DayPickerStrings}
+      styles={datepickerStyles}
+      {...field}
+      {...props}
+    />
+  );
 };
 
 export default DateFieldInput;

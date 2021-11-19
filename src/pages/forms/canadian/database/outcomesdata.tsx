@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function OutcomesData() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div>OutcomesData</div>;
 }

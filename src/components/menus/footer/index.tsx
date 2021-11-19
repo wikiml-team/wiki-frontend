@@ -20,8 +20,25 @@ type FooterProps = {
 };
 
 export default function Footer(props: FooterProps) {
-
   const { tab, selectedkey } = props;
+
+  // LOGIC
+  const dispatch = useDispatch();
+
+  const handleTabOnClick = (parentkey: string, item?: PivotItem) => {
+    if (item) {
+      const itemkey = item.props.itemKey!;
+
+      // Update current configuration
+      dispatch(
+        setConfiguration({
+          key: parentkey,
+          tab: itemkey,
+          page: item.props.children,
+        })
+      );
+    }
+  };
 
   // STYLES
   const { palette } = useTheme();
@@ -45,18 +62,6 @@ export default function Footer(props: FooterProps) {
         backgroundColor: palette.neutralQuaternary,
       },
     },
-  };
-
-  // LOGIC
-  const dispatch = useDispatch();
-
-  const handleTabOnClick = (parentkey: string, item?: PivotItem) => {
-    if (item) {
-      const itemkey = item.props.itemKey!;
-
-      // Update current configuration
-      dispatch(setConfiguration({ key: parentkey, tab: itemkey, page: item.props.children }))
-    }
   };
 
   return (

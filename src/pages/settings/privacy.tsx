@@ -3,15 +3,15 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import {
+  Checkbox,
+  DetailsList,
+  FontSizes,
+  IColumn,
   ILinkStyles,
   Link,
-  Text,
-  FontSizes,
   mergeStyleSets,
-  DetailsList,
   SelectionMode,
-  IColumn,
-  Checkbox,
+  Text,
   Toggle,
 } from "@fluentui/react";
 import { useBoolean } from "@fluentui/react-hooks";
