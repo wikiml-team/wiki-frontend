@@ -12,7 +12,6 @@ const DropdownFieldInput = ({ field, form, ...props }: any) => {
       defaultSelectedKey={field.value}
       onGetErrorMessage={handleGetError}
       deferredValidationTime={500}
-
     />
   );
 };

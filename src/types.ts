@@ -158,23 +158,10 @@ export interface GetProjects_projects_methodology {
   name: string | null;
 }
 
-export interface GetProjects_projects_intermediateOutcomes {
-  __typename: "IntermediateOutcome";
-  id: string;
-}
-
 export interface GetProjects_projects_projectPermissions {
   __typename: "ProjectPermission";
   id: string;
   userId: number;
-}
-
-export interface GetProjects_projects_ultimateOutcome {
-  __typename: "UltimateOutcome";
-  id: string;
-  description: string | null;
-  what: string | null;
-  where: string | null;
 }
 
 export interface GetProjects_projects {
@@ -184,17 +171,10 @@ export interface GetProjects_projects {
   largeName: string | null;
   description: string | null;
   languageId: number;
-  programId: number | null;
   projectStatusId: number;
   public: boolean | null;
-  sectorId: number;
-  currencyCode: string | null;
-  durationPlan: number | null;
   methodology: GetProjects_projects_methodology;
-  intermediateOutcomes: GetProjects_projects_intermediateOutcomes[];
   projectPermissions: GetProjects_projects_projectPermissions[];
-  solicitedBudget: number | null;
-  ultimateOutcome: GetProjects_projects_ultimateOutcome | null;
   wikimlCode: string | null;
   createdAt: any;
 }
@@ -217,6 +197,12 @@ export interface GetProjects {
 
 export interface GetProjectById_project_methodology {
   __typename: "Methodology";
+  id: string;
+  name: string | null;
+}
+
+export interface GetProjectById_project_projectStatus {
+  __typename: "ProjectStatus";
   id: string;
   name: string | null;
 }
@@ -249,7 +235,7 @@ export interface GetProjectById_project {
   description: string | null;
   languageId: number;
   programId: number | null;
-  projectStatusId: number;
+  projectStatus: GetProjectById_project_projectStatus;
   public: boolean | null;
   sectorId: number;
   currencyCode: string | null;
@@ -257,7 +243,7 @@ export interface GetProjectById_project {
   intermediateOutcomes: GetProjectById_project_intermediateOutcomes[];
   projectPermissions: GetProjectById_project_projectPermissions[];
   solicitedBudget: number | null;
-  ultimateOutcome: GetProjectById_project_ultimateOutcome | null;
+  ultimateOutcome: GetProjectById_project_ultimateOutcome;
   wikimlCode: string | null;
   createdAt: any;
 }
@@ -270,6 +256,32 @@ export interface GetProjectById {
 }
 
 export interface GetProjectByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetProjectStatusById
+// ====================================================
+
+export interface GetProjectStatusById_projectStatus {
+  __typename: "ProjectStatus";
+  id: string;
+  name: string | null;
+}
+
+export interface GetProjectStatusById {
+  /**
+   * returns the project status with the given id
+   */
+  projectStatus: GetProjectStatusById_projectStatus | null;
+}
+
+export interface GetProjectStatusByIdVariables {
   id: string;
 }
 

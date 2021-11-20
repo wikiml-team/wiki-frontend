@@ -34,7 +34,7 @@ export default function CommandMenu() {
     keyPrefix: "methodologies",
   });
 
-  const { projectId } = useParams<any>();
+  const { projectId } = useParams<{projectId: string}>();
 
   // Panels State
   const [
