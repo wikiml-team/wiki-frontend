@@ -35,7 +35,7 @@
     "filemenu": "Archivo",
     "project": "Proyecto",
     "methodology": "Metodología",
-    "licitations": "Licitaciones",
+    "licitations": "Adquisiciones",
     "database": "Base de Datos",
     "more": "Más"
   },
@@ -47,7 +47,7 @@
   },
   "methodology": {
     "project": "Formularios",
-    "licitations": "Licitaciones",
+    "licitations": "Adquisiciones",
     "methodology": "Tutoriales",
     "indicators": "Indicatores",
     "index": "Índice"
