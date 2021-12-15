@@ -61,14 +61,17 @@ export default function LogicModelForm() {
     outputPanelIsOpen,
     { setTrue: openOutputPanel, setFalse: dismissOutputPanel },
   ] = useBoolean(false);
+
   const [
     outcomePanelIsOpen,
     { setTrue: openOutcomePanel, setFalse: dismissOutcomePanel },
   ] = useBoolean(false);
+
   const [
     outcomeHelpPanelIsOpen,
     { setTrue: openOutcomeHelpPanel, setFalse: dismissOutcomeHelpPanel },
   ] = useBoolean(false);
+
   const [
     outputHelpPanelIsOpen,
     { setTrue: openOutputHelpPanel, setFalse: dismissOutputHelpPanel },

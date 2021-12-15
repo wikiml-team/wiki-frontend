@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { string, object, number, setLocale } from "yup";
-import { Field, FormikValues } from "formik";
+import { FormikValues } from "formik";
+
+import CurrencyList from "currency-list";
+import { countries as CountryList } from "countries-list";
 
 import { useQuery } from "@apollo/client";
 import {
   GetPrograms,
   GetProjectById,
   GetProjectByIdVariables,
-  GetProjects_projects,
+  GetProjectById_project,
   GetSectors,
 } from "types";
 import { GET_PROJECT_BY_ID } from "apollo/projects/project";
+import { GET_SECTORS } from "apollo/sectors";
+import { GET_PROGRAMS } from "apollo/programs";
 import QueryStateIndicator from "apollo/indicator";
 
 import {
@@ -30,39 +35,125 @@ import {
 } from "@fluentui/react";
 import { Grid, Col, Row } from "fluentui-react-grid";
 
-import { selectProject } from "store/slices/projectslice";
-import { ECanadianSector } from "models/sector";
-import { IProjectInfo } from "models/project";
+import { selectLanguage } from "store/slices/languageslice";
 import DropdownFieldInput from "components/inputs/dropdown";
 import TextFieldInput from "components/inputs/text";
 import DateFieldInput from "components/inputs/datepicker";
 import AutoSaveFormik from "components/form/autosaveform";
-import { GET_SECTORS } from "apollo/sectors";
-import { GET_PROGRAMS } from "apollo/programs";
+import getCurrencyRegExp from "../../../../components/currencyregex";
+import { StandardField } from "components/inputs/standard";
+import { ErrorLabelRender } from "components/errorlabel";
+import CountryDropdownFieldInput from "components/inputs/countryselect";
 
-type formValuesType = FormikValues | GetProjects_projects;
+type ProjectFormValues = {
+  short: string;
+  large: string;
+  description: string;
+  program: string;
+  sector: string;
+  duration: string;
+  currencycode: string;
+  currencyregex: RegExp;
+  country: string;
+  implementary: string;
+  intermediate: string;
+  donor: string;
+  budget: string;
+  budgetPerItems: string;
+  budgetPerAct: string;
+  budgetFinanced: string;
+  budgetSolicited: string;
+  approvedBudget: string;
+  approvedDate: Date;
+  initialDate: Date;
+  finalDate: Date;
+};
+
+type formValuesType = FormikValues | ProjectFormValues;
+
+const mapProjectToForm = (
+  project: GetProjectById_project,
+  data: { currencyregex: RegExp }
+) => {
+  const form = {
+    short: project.shortName,
+    large: project.largeName,
+    description: project.description,
+    program: project.programId,
+    sector: project.sectorId,
+    duration: project.durationPlan,
+    currencycode: project.currencyCode,
+    currencyregex: data.currencyregex,
+    country: string,
+    implementary: string,
+    intermediate: string,
+    donor: string,
+    budget: string,
+    budgetPerItems: string,
+    budgetPerAct: string,
+    budgetFinanced: string,
+    budgetSolicited: string,
+    approvedBudget: string,
+    approvedDate: Date,
+    initialDate: Date,
+    finalDate: Date,
+  };
+
+  return form;
+};
 
 export default function GeneralForm() {
   // LOGIC
   const { t } = useTranslation("forms", { keyPrefix: "general" });
-  const { projectId } = useParams<any>();
+  const { projectId } = useParams<{ projectId: string }>();
 
-  const project = useSelector(selectProject);
-  const generalInfo = project.info as IProjectInfo<ECanadianSector>;
+  const lang = useSelector(selectLanguage);
+  const currencyList = Object.entries(CurrencyList.getAll(lang));
+  const countryList = Object.entries(CountryList);
+
+  // states
+  const [project, setProject] = useState<GetProjectById_project>();
+  const [projectForm, setProjectForm] = useState<ProjectFormValues>();
+
+  const [currencyProps, setCurrencyProps] = useState<{
+    code: string;
+    regex: RegExp;
+  }>({
+    code: "",
+    regex: /^(?!0\.00)\d{1,3}(\d{3})*(\.\d\d)?$/,
+  });
 
   const [initialDate, setInitialDate] = useState(
-    generalInfo.initialDate as Date
+    // generalInfo.initialDate as Date
+    new Date()
   );
   const [approvedDate, setApprovedDate] = useState(
-    generalInfo.approvedDate as Date
+    // generalInfo.approvedDate as Date
+    new Date()
   );
 
+  const handleCurrencyChange = (
+    event: React.FormEvent<HTMLDivElement>,
+    item: IDropdownOption
+  ) => {
+    const code = item.key.toString();
+    setCurrencyProps({
+      code: code,
+      regex: getCurrencyRegExp(code, currencyList),
+    });
+  };
+
+  // Handlers
   const handleSelectInitialDate = (date: Date) => {
     setInitialDate(date);
   };
 
   const handleSelectApprovedDate = (date: Date) => {
     setApprovedDate(date);
+  };
+
+  const handleSubmit = (values: formValuesType, { setSubmitting }: any) => {
+    alert(values);
   };
 
   const validationSchema = object().shape({
@@ -76,7 +167,9 @@ export default function GeneralForm() {
     impOrganization: string().required(t("required")),
     intOrganization: string().required(t("required")),
     currency: string().required(t("required")),
-    budget: number().required(t("required")),
+    budget: string()
+      .required(t("required"))
+      .matches(currencyProps.regex, t("budget.error")),
     budgetPerItems: number().required(t("required")),
     budgetPerAct: number().required(t("required")),
     budgetFinanced: number().required(t("required")),
@@ -90,26 +183,6 @@ export default function GeneralForm() {
     initialDate: string().required(t("required")),
     finalDate: string().required(t("required")),
   });
-
-  useEffect(() => {
-    setLocale({
-      // use constant translation keys for messages without values
-      mixed: {
-        default: "field_invalid",
-      },
-      // use functions to generate an error object that includes the value from the schema
-      // string: {
-      //   default: "asi mismo",
-      // },
-      // number: {
-      //   default: "asimismo",
-      // },
-    });
-  }, [validationSchema]);
-
-  const handleSubmit = (values: formValuesType, { setSubmitting }: any) => {
-    alert(values);
-  };
 
   // STYLE
   const classes = mergeStyleSets({
@@ -153,73 +226,124 @@ export default function GeneralForm() {
   };
 
   // DATA
-  const { data, loading, error } = useQuery<
-    GetProjectById,
-    GetProjectByIdVariables
-  >(GET_PROJECT_BY_ID, {
+  // Project
+  const {
+    data: projectsData,
+    loading: projectsLoading,
+    error: projectsError,
+  } = useQuery<GetProjectById, GetProjectByIdVariables>(GET_PROJECT_BY_ID, {
     variables: { id: projectId },
+    onCompleted: (d) => {
+      if (d.project) {
+        setProject(d.project);
+        // @ts-ignore
+        setCurrencyProps({
+          code: d.project.currencyCode?.toString() || "",
+          regex: getCurrencyRegExp(
+            d.project.currencyCode?.toString() || "",
+            currencyList
+          ),
+        });
+
+        validationSchema.fields.budget.matches(
+          getCurrencyRegExp(d.project.currencyCode || "", currencyList)
+        );
+      }
+    },
   });
 
-  const sectorsResponse = useQuery<GetSectors>(GET_SECTORS);
-  const programsResponse = useQuery<GetPrograms>(GET_PROGRAMS);
+  // stakeholdersData
+  const {
+    data: stakeholdersData,
+    loading: stakeholdersLoading,
+    error: stakeholdersError,
+  } = useQuery<GetSectors>(GET_SECTORS);
 
-  if (!sectorsResponse.data || sectorsResponse.loading) {
+  // Sectors
+  const {
+    data: sectorsData,
+    error: sectorsError,
+  } = useQuery<GetSectors>(GET_SECTORS);
+
+  // Programs
+  const {
+    data: programsData,
+    error: programsError,
+  } = useQuery<GetPrograms>(GET_PROGRAMS);
+
+  useEffect(() => {
+    setLocale({
+      mixed: {
+        default: "field_invalid",
+      },
+    });
+  }, [validationSchema]);
+
+  if (!projectsData || projectsLoading || projectsError) {
     return (
       <QueryStateIndicator
-        data={sectorsResponse.data}
-        loading={sectorsResponse.loading}
-        error={sectorsResponse.error}
+        data={projectsData}
+        loading={projectsLoading}
+        error={projectsError}
       />
     );
   }
 
-  if (!programsResponse.data || programsResponse.loading) {
-    return (
-      <QueryStateIndicator
-        data={programsResponse.data}
-        loading={programsResponse.loading}
-        error={programsResponse.error}
-      />
-    );
-  }
+  if (!project) return <></>;
 
-  if (!data || loading || error)
-    return <QueryStateIndicator data={data} loading={loading} error={error} />;
+  // Variables
+  // const stakeholders = ;
 
-  const sectors = sectorsResponse.data?.sectors.map((s) => {
+  const sectors = sectorsData?.sectors.map((s) => {
     return {
       key: s.id,
       text: s.name,
     };
   });
-  const programs = programsResponse.data.programs.map((p) => {
+
+  const programs = programsData?.programs.map((p) => {
     return {
       key: p.id,
       text: p.name,
     };
   });
-  const countries: IDropdownOption[] = [];
+
+  const countries: IDropdownOption[] = countryList.map((country) => {
+    return {
+      key: country[0],
+      text: country[1].name,
+    };
+  });
+
+  const currencies: IDropdownOption[] = currencyList.map((currency) => {
+    return {
+      key: currency[0],
+      text: currency[1].name + ` ( ${currency[1].symbol} )`,
+    };
+  });
+
+  const status: string = projectsData?.project?.projectStatus?.name || "";
 
   const initValues: formValuesType = {
-    shortName: data.project!.shortName,
-    largeName: data.project!.largeName,
-    methodology: data.project!.methodology,
-    description: data.project!.description,
-    language: data.project!.languageId,
-    program: data.project!.programId?.toString(),
-    projectStatusId: data.project!.projectStatusId,
-    public: data.project!.public,
-    sector: data.project!.sectorId.toString(),
-    currencyCode: data.project!.currencyCode,
-    durationPlan: data.project!.durationPlan,
-    intermediateOutcomes: data.project!.intermediateOutcomes,
-    projectPermissions: data.project!.projectPermissions,
-    solicitedBudget: data.project!.solicitedBudget,
-    ultimateOutcome: data.project!.ultimateOutcome,
-    wikimlCode: data.project!.wikimlCode,
-    createdAt: data.project!.createdAt,
+    shortName: project.shortName,
+    largeName: project.largeName,
+    methodology: project.methodology,
+    description: project.description,
+    language: project.languageId,
+    program: project.programId?.toString(),
+    status: status,
+    public: project.public,
+    sector: project.sectorId.toString(),
+    currency: project.currencyCode,
+    duration: project.durationPlan,
+    intermediateOutcomes: project.intermediateOutcomes,
+    projectPermissions: project.projectPermissions,
+    solicitedBudget: project.solicitedBudget,
+    ultimateOutcome: project.ultimateOutcome,
+    wikimlCode: project.wikimlCode,
+    createdAt: project.createdAt,
+    // country: project.,
 
-    // country: data.project!.,
     // impOrganization: data.project!.organization,
     // intOrganization: data.project!.intermediary,
     // budget: data.project!.budget,
@@ -244,7 +368,7 @@ export default function GeneralForm() {
         <Grid dir="ltr">
           {/* Names */}
           <Row>
-            <TextField
+            <StandardField
               required
               label={t("shortname.field")}
               name="shortName"
@@ -252,7 +376,7 @@ export default function GeneralForm() {
               sizeLg={3}
             />
 
-            <TextField
+            <StandardField
               required
               label={t("largename.field")}
               name="largeName"
@@ -262,7 +386,7 @@ export default function GeneralForm() {
           </Row>
           {/* Description */}
           <Row>
-            <TextField
+            <StandardField
               label={t("description.field")}
               name="description"
               component={TextFieldInput}
@@ -284,11 +408,11 @@ export default function GeneralForm() {
               <Stack {...headerStackProps}>
                 <Stack.Item>
                   <Label>{t("status.field")}</Label>
-                  {t(`status.${generalInfo.status}`)}
+                  {t(`status.${status}`, status)}
                 </Stack.Item>
                 <Stack.Item>
                   <Label>{t("wikicode.field")}</Label>
-                  {generalInfo.wikicode}
+                  {project.wikimlCode}
                 </Stack.Item>
               </Stack>
               <br />
@@ -304,13 +428,13 @@ export default function GeneralForm() {
                   label={t("imporganization.field")}
                   name="impOrganization"
                   component={DropdownFieldInput}
-                  options={countries}
+                  options={[]}
                 />
                 <StandardField
                   label={t("intorganization.field")}
                   name="intOrganization"
                   component={DropdownFieldInput}
-                  options={countries}
+                  options={[]}
                 />
               </Row>
 
@@ -319,27 +443,34 @@ export default function GeneralForm() {
                   label={t("currency.field")}
                   name="currency"
                   component={DropdownFieldInput}
+                  options={currencies}
+                  selectedKey={currencyProps.code ?? project.currencyCode}
+                  onChange={(a: any, b: IDropdownOption) =>
+                    handleCurrencyChange(a, b)
+                  }
                 />
                 <StandardField
                   label={t("program.field")}
                   name="program"
                   component={DropdownFieldInput}
                   options={programs}
+                  aria-errormessage={t("errors.nodata")}
+                  {...(programsError && {
+                    onRenderLabel: (props: ITextFieldProps) =>
+                      ErrorLabelRender(props),
+                  })}
                 />
-                <Col sizeSm={2} sizeMd={6} sizeLg={3}>
-                  <Field
-                    label={t("sector.field")}
-                    name="sector"
-                    component={DropdownFieldInput}
-                    options={sectors}
-                  />
-                </Col>
-                {/* <StandardField
+                <StandardField
                   label={t("sector.field")}
                   name="sector"
                   component={DropdownFieldInput}
                   options={sectors}
-                /> */}
+                  aria-errormessage={t("errors.nodata")}
+                  {...(sectorsError && {
+                    onRenderLabel: (props: ITextFieldProps) =>
+                      ErrorLabelRender(props),
+                  })}
+                />
                 <StandardField
                   label={t("duration.field")}
                   name="duration"
@@ -351,7 +482,7 @@ export default function GeneralForm() {
               <Row>
                 <StandardField
                   label={t("budget.field")}
-                  name="budget"
+                  name="solicitedBudget"
                   component={TextFieldInput}
                   prefix={t("budget.prefix")}
                 />
@@ -373,6 +504,7 @@ export default function GeneralForm() {
                   label={t("financed.field")}
                   name="budgetFinanced"
                   component={TextFieldInput}
+                  readOnly
                 />
               </Row>
             </Col>
@@ -388,7 +520,7 @@ export default function GeneralForm() {
               <Stack {...headerStackProps}>
                 <Stack.Item>
                   <Label>{t("donorcode.field")}</Label>
-                  {generalInfo.donorcode}
+                  XXX
                 </Stack.Item>
               </Stack>
               <br />
@@ -434,7 +566,7 @@ export default function GeneralForm() {
                   name="approvedBudget"
                   component={TextFieldInput}
                   options={countries}
-                  suffix={generalInfo.currency}
+                  suffix={currencyProps.code ?? project.currencyCode}
                   sizeLg={6}
                 />
                 <StandardField
@@ -451,27 +583,3 @@ export default function GeneralForm() {
     </AutoSaveFormik>
   );
 }
-
-const StandardField = (props: any) => {
-  return (
-    <Col
-      sizeSm={props.sizeSm || 2}
-      sizeMd={props.sizeMd || 6}
-      sizeLg={props.sizeLg || 3}
-    >
-      <Field {...props} />
-    </Col>
-  );
-};
-
-const TextField = ({ grow, ...props }: any) => {
-  return (
-    <Col
-      sizeSm={props.sizeSm || 2}
-      sizeMd={props.sizeMd || 6}
-      sizeLg={props.sizeLg || 3}
-    >
-      <Field {...props} />
-    </Col>
-  );
-};
