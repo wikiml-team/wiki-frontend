@@ -2,6 +2,9 @@
   "general": {
     "header": "General",
     "required": "Required",
+    "errors": {
+      "nodata": "No data found"
+    },
     "shortname": {
       "field": "Project name (short)",
       "error": "Must be 20 characters or less"
@@ -33,7 +36,7 @@
     "budget": {
       "field": "Budget",
       "prefix": "Solicited",
-      "error": ""
+      "error": "Should be a valid numeric payment amount according to the currency selected."
     },
     "calculated": {
       "field": "Calculated",
