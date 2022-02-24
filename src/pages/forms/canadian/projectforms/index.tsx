@@ -11,11 +11,15 @@ import { countries as CountryList } from "countries-list";
 
 import { useQuery } from "@apollo/client";
 import {
+  GetCofundersByProjectId,
+  GetCofundersByProjectIdVariables,
   GetPrograms,
   GetProjectById,
   GetProjectByIdVariables,
   GetProjectById_project,
   GetSectors,
+  GetStakeholdersByProjectId,
+  GetStakeholdersByProjectIdVariables,
 } from "types";
 import { GET_PROJECT_BY_ID } from "apollo/projects/project";
 import { GET_SECTORS } from "apollo/sectors";
@@ -43,7 +47,7 @@ import AutoSaveFormik from "components/form/autosaveform";
 import getCurrencyRegExp from "../../../../components/currencyregex";
 import { StandardField } from "components/inputs/standard";
 import { ErrorLabelRender } from "components/errorlabel";
-import CountryDropdownFieldInput from "components/inputs/countryselect";
+import { GET_STAKEHOLDERS_BY_PROJECTID } from "apollo/stakeholders.tsx/projectstakeholder";
 
 type ProjectFormValues = {
   short: string;
@@ -108,8 +112,9 @@ export default function GeneralForm() {
   const { projectId } = useParams<{ projectId: string }>();
 
   const lang = useSelector(selectLanguage);
-  const currencyList = Object.entries(CurrencyList.getAll(lang));
-  const countryList = Object.entries(CountryList);
+  
+  const currencyList = Object.entries(CurrencyList.getAll(lang) || []);
+  const countryList = Object.entries(CountryList || []);
 
   // states
   const [project, setProject] = useState<GetProjectById_project>();
@@ -252,12 +257,27 @@ export default function GeneralForm() {
     },
   });
 
-  // stakeholdersData
+  // stakeholders
   const {
     data: stakeholdersData,
     loading: stakeholdersLoading,
     error: stakeholdersError,
-  } = useQuery<GetSectors>(GET_SECTORS);
+  } = useQuery<GetStakeholdersByProjectId, GetStakeholdersByProjectIdVariables>(GET_STAKEHOLDERS_BY_PROJECTID, {
+    variables: {
+      id: projectId
+    }
+  });
+
+  // cofunders
+  const {
+    data: cofundersData,
+    loading: cofundersLoading,
+    error: cofundersError,
+  } = useQuery<GetCofundersByProjectId, GetCofundersByProjectIdVariables>(GET_STAKEHOLDERS_BY_PROJECTID, {
+    variables: {
+      id: projectId
+    }
+  });
 
   // Sectors
   const {
@@ -292,7 +312,13 @@ export default function GeneralForm() {
   if (!project) return <></>;
 
   // Variables
-  // const stakeholders = ;
+  console.log("projectStakeholders")
+  console.log(stakeholdersData?.project?.projectStakeholders)
+  const recepient = stakeholdersData?.project?.projectStakeholders.find((s) => s.main === true && s.stakeholderCategory.name === "Beneficiary")?.stakeholder.name
+  // const implementer = stakeholdersData?.project?.projectStakeholders.find((s) => s.main === true && s.stakeholderCategory.name === "Implementer")?.stakeholder.name
+  const intermediary = stakeholdersData?.project?.projectStakeholders.find((s) => s.main === true && s.stakeholderCategory.name === "Intermediary")?.stakeholder.name
+
+  // const maindonor = cofundersData?.project?.coFunders.find((cf) => cf.projectStakeholder.main === true && cf.projectStakeholder.stakeholderCategory.name === "donor")
 
   const sectors = sectorsData?.sectors.map((s) => {
     return {
@@ -342,16 +368,16 @@ export default function GeneralForm() {
     ultimateOutcome: project.ultimateOutcome,
     wikimlCode: project.wikimlCode,
     createdAt: project.createdAt,
-    // country: project.,
+    country: recepient,
+    // impOrganization: implementer,
+    intOrganization: intermediary,
+    // donor: maindonor,
 
-    // impOrganization: data.project!.organization,
-    // intOrganization: data.project!.intermediary,
     // budget: data.project!.budget,
     // budgetPerItems: data.project!.budgetItems,
     // budgetPerAct: data.project!.budgetAct,
     // approvedBudget: data.project!.approvedBudget,
     // budgetFinanced: data.project!.budgetFinanced,
-    // donor: data.project!.donor,
     // approvedDate: data.project!.approvedDate,
     // initialDate: data.project!.initialDate,
     // finalDate: data.project!.finalDate,
