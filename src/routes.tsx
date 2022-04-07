@@ -33,7 +33,7 @@ const CreateMethodology = lazy(() => import("pages/methodology/create"));
 
 // Canaidan Methodology - Project Tab
 const GeneralForm = lazy(
-  () => import("pages/forms/canadian/projectforms")
+  () => import("pages/forms/canadian/projectforms/generalform")
 );
 const StakeholdersForm = lazy(
   () => import("pages/forms/canadian/projectforms/stakeholdersform")

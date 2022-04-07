@@ -21,7 +21,7 @@ export default function MethodologyMenu() {
   const { t } = useTranslation("basics");
 
   const history = useHistory();
-  const { form } = useParams<{form: string}>();
+  const { form } = useParams<any>();
 
   const [selectedKey, setSelectedKey] = useState("");
 

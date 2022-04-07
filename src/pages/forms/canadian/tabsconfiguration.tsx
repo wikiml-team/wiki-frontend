@@ -2,7 +2,7 @@ import { Redirect } from "react-router";
 import { Label } from "@fluentui/react";
 
 // PROJECT FORMS
-import GeneralForm from "pages/forms/canadian/projectforms";
+import GeneralForm from "pages/forms/canadian/projectforms/generalform";
 import StakeholdersForm from "pages/forms/canadian/projectforms/stakeholdersform";
 import LogicModelForm from "pages/forms/canadian/projectforms/logicmodelform";
 import ActivitiesMatrixForm from "pages/forms/canadian/projectforms/activitiesform";

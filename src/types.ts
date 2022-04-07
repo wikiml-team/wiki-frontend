@@ -4,57 +4,6 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetCofundersByProjectId
-// ====================================================
-
-export interface GetCofundersByProjectId_project_coFunders_projectStakeholder_stakeholder {
-  __typename: "Stakeholder";
-  id: string;
-  name: string | null;
-}
-
-export interface GetCofundersByProjectId_project_coFunders_projectStakeholder_stakeholderCategory {
-  __typename: "StakeholderCategory";
-  id: string;
-  name: string | null;
-}
-
-export interface GetCofundersByProjectId_project_coFunders_projectStakeholder {
-  __typename: "ProjectStakeholder";
-  id: string;
-  main: boolean | null;
-  stakeholder: GetCofundersByProjectId_project_coFunders_projectStakeholder_stakeholder;
-  stakeholderCategory: GetCofundersByProjectId_project_coFunders_projectStakeholder_stakeholderCategory;
-}
-
-export interface GetCofundersByProjectId_project_coFunders {
-  __typename: "CoFunder";
-  id: string;
-  projectStakeholder: GetCofundersByProjectId_project_coFunders_projectStakeholder;
-}
-
-export interface GetCofundersByProjectId_project {
-  __typename: "Project";
-  coFunders: GetCofundersByProjectId_project_coFunders[];
-}
-
-export interface GetCofundersByProjectId {
-  /**
-   * returns the project with the given id
-   */
-  project: GetCofundersByProjectId_project | null;
-}
-
-export interface GetCofundersByProjectIdVariables {
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: GetLanguages
 // ====================================================
 
@@ -209,10 +158,23 @@ export interface GetProjects_projects_methodology {
   name: string | null;
 }
 
+export interface GetProjects_projects_intermediateOutcomes {
+  __typename: "IntermediateOutcome";
+  id: string;
+}
+
 export interface GetProjects_projects_projectPermissions {
   __typename: "ProjectPermission";
   id: string;
   userId: number;
+}
+
+export interface GetProjects_projects_ultimateOutcome {
+  __typename: "UltimateOutcome";
+  id: string;
+  description: string | null;
+  what: string | null;
+  where: string | null;
 }
 
 export interface GetProjects_projects {
@@ -222,10 +184,17 @@ export interface GetProjects_projects {
   largeName: string | null;
   description: string | null;
   languageId: number;
+  programId: number | null;
   projectStatusId: number;
   public: boolean | null;
+  sectorId: number;
+  currencyCode: string | null;
+  durationPlan: number | null;
   methodology: GetProjects_projects_methodology;
+  intermediateOutcomes: GetProjects_projects_intermediateOutcomes[];
   projectPermissions: GetProjects_projects_projectPermissions[];
+  solicitedBudget: number | null;
+  ultimateOutcome: GetProjects_projects_ultimateOutcome | null;
   wikimlCode: string | null;
   createdAt: any;
 }
@@ -248,12 +217,6 @@ export interface GetProjects {
 
 export interface GetProjectById_project_methodology {
   __typename: "Methodology";
-  id: string;
-  name: string | null;
-}
-
-export interface GetProjectById_project_projectStatus {
-  __typename: "ProjectStatus";
   id: string;
   name: string | null;
 }
@@ -286,7 +249,7 @@ export interface GetProjectById_project {
   description: string | null;
   languageId: number;
   programId: number | null;
-  projectStatus: GetProjectById_project_projectStatus;
+  projectStatusId: number;
   public: boolean | null;
   sectorId: number;
   currencyCode: string | null;
@@ -373,51 +336,6 @@ export interface GetSectorById {
 }
 
 export interface GetSectorByIdVariables {
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: GetStakeholdersByProjectId
-// ====================================================
-
-export interface GetStakeholdersByProjectId_project_projectStakeholders_stakeholder {
-  __typename: "Stakeholder";
-  id: string;
-  name: string | null;
-}
-
-export interface GetStakeholdersByProjectId_project_projectStakeholders_stakeholderCategory {
-  __typename: "StakeholderCategory";
-  id: string;
-  name: string | null;
-}
-
-export interface GetStakeholdersByProjectId_project_projectStakeholders {
-  __typename: "ProjectStakeholder";
-  id: string;
-  main: boolean | null;
-  stakeholder: GetStakeholdersByProjectId_project_projectStakeholders_stakeholder;
-  stakeholderCategory: GetStakeholdersByProjectId_project_projectStakeholders_stakeholderCategory;
-}
-
-export interface GetStakeholdersByProjectId_project {
-  __typename: "Project";
-  projectStakeholders: GetStakeholdersByProjectId_project_projectStakeholders[];
-}
-
-export interface GetStakeholdersByProjectId {
-  /**
-   * returns the project with the given id
-   */
-  project: GetStakeholdersByProjectId_project | null;
-}
-
-export interface GetStakeholdersByProjectIdVariables {
   id: string;
 }
 

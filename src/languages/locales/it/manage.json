@@ -15,6 +15,19 @@
     "name-field": "",
     "tooltip-field": "",
     "definition-field": "",
-    "format-field": ""
+    "format-field": "",
+    
+    "budget": {
+      "header": "Budget1asdsadsad",
+      "item-description": "Item description",
+      "measure-unit-id": "Measure unit",
+      "item-amount": "Amount",
+      "item-total": "Total",
+      "subtotal": "Is subtotal row",
+      "submit-button": "Add item",
+      "operations": "Operations",
+      "first-row-button": "Add new item"
+    }
   }
+  
 }

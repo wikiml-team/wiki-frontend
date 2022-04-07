@@ -13,10 +13,7 @@ export const GET_PROJECT_BY_ID = gql`
       description
       languageId
       programId
-      projectStatus {
-        id
-        name
-      }
+      projectStatusId
       public
       sectorId
       currencyCode

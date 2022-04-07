@@ -95,6 +95,7 @@ export default class BudgetList {
         this.getItemLevel(item.id) - this.getItemLevel(id) === 1
     );
   }
+  
   findSiblings(id: string) {
     return this.findInmediateChildrenItems(this.findFatherId(id));
   }
@@ -163,8 +164,19 @@ export default class BudgetList {
     return item1split.length - item2split.length;
   }
 
-  addItem(siblingId: string) {
+  addItem(siblingId: string, level?: number) {
+    if (level){
+      level = level + 1;
+    }else{
+      level = 1;
+    }
+
+    /*
+    siblingId = this.findLastRootItem(siblingId, level);
+    const newItemOrder = this.getItemOrder(siblingId) + 1;
+    
     // Update siblingsIds below
+    /*
     const siblings = this.findSiblings(siblingId);
     const newItemOrder = this.getItemOrder(siblingId) + 1;
     siblings
@@ -176,15 +188,11 @@ export default class BudgetList {
           (newItemOrder + key + 1).toString(),
           this.getItemLevel(sibling.id)
         );
-      });
+      }); */
 
     // Create new item
     const newItem = {
-      id: this.updateId(
-        siblingId,
-        newItemOrder.toString(),
-        this.getItemLevel(siblingId)
-      ),
+      id: this.obtainNewID(siblingId, level),
       name: "New Item",
       columns: Array(this.columns.length),
       values: {
@@ -241,6 +249,65 @@ export default class BudgetList {
     newId[slot] = value;
     return newId.join(".");
   }
+
+  //Returns the las ID of not parents Item
+  obtainNewID(parentID: String, level : number){
+    let currentParentID : string[] = parentID.split('.');
+    let lastId = 0;
+    let currentLastID : string[] = [];
+    let newID = 0;
+    let currentID = 0;
+
+    this.items.map(function(item, index){
+
+      if (parentID === '0' && level === 0 ){
+        currentID = toNumber(item.id.split('.')[level]);
+      
+        if (currentID > lastId){
+          lastId = currentID;
+          currentLastID = item.id.split('.')
+        }
+      }
+      
+      if (currentParentID.length === 0){
+        currentID = toNumber(item.id.split('.')[level]);
+      
+        if (currentID > lastId){
+          lastId = currentID;
+          currentLastID = item.id.split('.')
+        }
+      }
+
+      if (currentParentID.length === 1){
+          if (currentParentID[0] === item.id.split('.')[0]){
+          currentID = toNumber(item.id.split('.')[level]);
+        
+          if (currentID > lastId){
+            lastId = currentID;
+            currentLastID = item.id.split('.')
+          }
+        }
+      }
+
+      if (currentParentID.length === 2){
+        if (currentParentID[0] === item.id.split('.')[0] && currentParentID[1] === item.id.split('.')[1]){
+        currentID = toNumber(item.id.split('.')[level]);
+      
+        if (currentID > lastId){
+          lastId = currentID;
+          currentLastID = item.id.split('.')
+        }
+      }
+    }
+
+    });
+
+    newID = Number(currentLastID[level]) + 1
+    currentLastID[level] = String(newID)
+
+    return String(currentLastID.join('.'));
+  }
+
 }
 
 export type LevelBudgetItem = BudgetItem & {
