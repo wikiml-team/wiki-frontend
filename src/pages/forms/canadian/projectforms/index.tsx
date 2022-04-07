@@ -10,8 +10,9 @@ import CurrencyList from "currency-list";
 import { countries as CountryList } from "countries-list";
 
 import { useQuery } from "@apollo/client";
+/*
 import {
-  GetCofundersByProjectId,
+  //GetCofundersByProjectId,
   GetCofundersByProjectIdVariables,
   GetPrograms,
   GetProjectById,
@@ -21,6 +22,7 @@ import {
   GetStakeholdersByProjectId,
   GetStakeholdersByProjectIdVariables,
 } from "types";
+*/
 import { GET_PROJECT_BY_ID } from "apollo/projects/project";
 import { GET_SECTORS } from "apollo/sectors";
 import { GET_PROGRAMS } from "apollo/programs";
@@ -48,6 +50,7 @@ import getCurrencyRegExp from "../../../../components/currencyregex";
 import { StandardField } from "components/inputs/standard";
 import { ErrorLabelRender } from "components/errorlabel";
 import { GET_STAKEHOLDERS_BY_PROJECTID } from "apollo/stakeholders.tsx/projectstakeholder";
+import { GetPrograms, GetProjectById, GetProjectByIdVariables, GetProjectById_project, GetSectors } from "types";
 
 type ProjectFormValues = {
   short: string;
@@ -258,6 +261,7 @@ export default function GeneralForm() {
   });
 
   // stakeholders
+  /*
   const {
     data: stakeholdersData,
     loading: stakeholdersLoading,
@@ -266,9 +270,10 @@ export default function GeneralForm() {
     variables: {
       id: projectId
     }
-  });
+  });*/
 
   // cofunders
+  /*
   const {
     data: cofundersData,
     loading: cofundersLoading,
@@ -277,7 +282,7 @@ export default function GeneralForm() {
     variables: {
       id: projectId
     }
-  });
+  });*/
 
   // Sectors
   const {
@@ -312,6 +317,7 @@ export default function GeneralForm() {
   if (!project) return <></>;
 
   // Variables
+  /*
   console.log("projectStakeholders")
   console.log(stakeholdersData?.project?.projectStakeholders)
   const recepient = stakeholdersData?.project?.projectStakeholders.find((s) => s.main === true && s.stakeholderCategory.name === "Beneficiary")?.stakeholder.name
@@ -319,7 +325,7 @@ export default function GeneralForm() {
   const intermediary = stakeholdersData?.project?.projectStakeholders.find((s) => s.main === true && s.stakeholderCategory.name === "Intermediary")?.stakeholder.name
 
   // const maindonor = cofundersData?.project?.coFunders.find((cf) => cf.projectStakeholder.main === true && cf.projectStakeholder.stakeholderCategory.name === "donor")
-
+*/
   const sectors = sectorsData?.sectors.map((s) => {
     return {
       key: s.id,
@@ -348,7 +354,7 @@ export default function GeneralForm() {
     };
   });
 
-  const status: string = projectsData?.project?.projectStatus?.name || "";
+  //const status: string = projectsData?.project?.projectStatus?.name || "";
 
   const initValues: formValuesType = {
     shortName: project.shortName,
@@ -357,7 +363,7 @@ export default function GeneralForm() {
     description: project.description,
     language: project.languageId,
     program: project.programId?.toString(),
-    status: status,
+    //status: status,
     public: project.public,
     sector: project.sectorId.toString(),
     currency: project.currencyCode,
@@ -368,9 +374,9 @@ export default function GeneralForm() {
     ultimateOutcome: project.ultimateOutcome,
     wikimlCode: project.wikimlCode,
     createdAt: project.createdAt,
-    country: recepient,
+    //country: recepient,
     // impOrganization: implementer,
-    intOrganization: intermediary,
+    //intOrganization: intermediary,
     // donor: maindonor,
 
     // budget: data.project!.budget,
@@ -434,7 +440,7 @@ export default function GeneralForm() {
               <Stack {...headerStackProps}>
                 <Stack.Item>
                   <Label>{t("status.field")}</Label>
-                  {t(`status.${status}`, status)}
+                  sdf
                 </Stack.Item>
                 <Stack.Item>
                   <Label>{t("wikicode.field")}</Label>
