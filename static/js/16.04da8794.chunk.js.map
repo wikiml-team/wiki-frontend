@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/methodology/delete.tsx"],"names":["DeleteMethodology"],"mappings":"+FAAA,+DAEe,SAASA,IACtB,OAAO","file":"static/js/16.04da8794.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nexport default function DeleteMethodology() {\r\n  return <div>DeleteMethodology</div>;\r\n}\r\n"],"sourceRoot":""}

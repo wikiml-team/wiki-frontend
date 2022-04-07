@@ -1,0 +1,2 @@
+(this.webpackJsonpwiki=this.webpackJsonpwiki||[]).push([[19],{640:function(i,n,t){"use strict";t.r(n),t.d(n,"default",(function(){return r}));t(0);var e=t(2);function r(){return Object(e.jsx)("div",{children:"Profile"})}}}]);
+//# sourceMappingURL=19.d232a502.chunk.js.map

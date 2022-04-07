@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/filemenu/export.tsx"],"names":["ExportPage"],"mappings":"+FAAA,+DAGe,SAASA,IACtB,OAAO","file":"static/js/11.4564dd0a.chunk.js","sourcesContent":["import React from \"react\";\n\n// Export: choose export file for each form and wether or not to export it\nexport default function ExportPage() {\n  return <div>Export</div>;\n}\n"],"sourceRoot":""}

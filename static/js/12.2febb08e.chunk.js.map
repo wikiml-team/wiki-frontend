@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/filemenu/info.tsx"],"names":["InfoPage"],"mappings":"+FAAA,+DAGe,SAASA,IACtB,OAAO","file":"static/js/12.2febb08e.chunk.js","sourcesContent":["import React from \"react\";\n\n// Info: project methodology, team, % of completion, errors or warnings\nexport default function InfoPage() {\n  return <div>Info</div>;\n}\n"],"sourceRoot":""}

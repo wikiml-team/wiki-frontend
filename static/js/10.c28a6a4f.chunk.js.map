@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/filemenu/about.tsx"],"names":["AboutPage"],"mappings":"+FAAA,+DAGe,SAASA,IACtB,OAAO","file":"static/js/10.c28a6a4f.chunk.js","sourcesContent":["import React from \"react\";\n\n// About: about the platform, privacy and terms of use, privacy and cookies\nexport default function AboutPage() {\n  return <div>About</div>;\n}\n"],"sourceRoot":""}

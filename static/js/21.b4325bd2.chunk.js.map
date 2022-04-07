@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/settings/team.tsx"],"names":["Team"],"mappings":"+FAAA,+DAEe,SAASA,IACtB,OAAO","file":"static/js/21.b4325bd2.chunk.js","sourcesContent":["import React from \"react\";\n\nexport default function Team() {\n  return <div>Team</div>;\n}\n"],"sourceRoot":""}

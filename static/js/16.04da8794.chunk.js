@@ -1,0 +1,2 @@
+(this.webpackJsonpwiki=this.webpackJsonpwiki||[]).push([[16],{644:function(t,e,i){"use strict";i.r(e),i.d(e,"default",(function(){return c}));i(0);var n=i(2);function c(){return Object(n.jsx)("div",{children:"DeleteMethodology"})}}}]);
+//# sourceMappingURL=16.04da8794.chunk.js.map

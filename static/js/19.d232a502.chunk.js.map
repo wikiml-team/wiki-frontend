@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/settings/profile.tsx"],"names":["Profile"],"mappings":"+FAAA,+DAEe,SAASA,IACtB,OAAO","file":"static/js/19.d232a502.chunk.js","sourcesContent":["import React from \"react\";\n\nexport default function Profile() {\n  return <div>Profile</div>;\n}\n"],"sourceRoot":""}

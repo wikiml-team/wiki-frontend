@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/methodology/create.tsx"],"names":["CreateMethodology"],"mappings":"+FAAA,+DAEe,SAASA,IACtB,OAAO","file":"static/js/15.e18c51ea.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nexport default function CreateMethodology() {\r\n  return <div>CreateMethodology</div>;\r\n}\r\n"],"sourceRoot":""}

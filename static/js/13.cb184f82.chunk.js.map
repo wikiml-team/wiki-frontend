@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/filemenu/print.tsx"],"names":["PrintPage"],"mappings":"+FAAA,+DAEe,SAASA,IACtB,OAAO","file":"static/js/13.cb184f82.chunk.js","sourcesContent":["import React from \"react\";\n\nexport default function PrintPage() {\n  return <div>Print</div>;\n}\n"],"sourceRoot":""}

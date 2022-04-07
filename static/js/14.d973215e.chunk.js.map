@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/filemenu/share.tsx"],"names":["SharePage"],"mappings":"+FAAA,+DAEe,SAASA,IACtB,OAAO","file":"static/js/14.d973215e.chunk.js","sourcesContent":["import React from \"react\";\n\nexport default function SharePage() {\n  return <div>Share</div>;\n}\n"],"sourceRoot":""}
