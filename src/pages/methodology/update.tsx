@@ -23,9 +23,11 @@ import {
   ITextFieldProps,
   ITextProps,
   Label,
+  MarqueeSelection,
   mergeStyleSets,
   Position,
   PrimaryButton,
+  ScrollablePane,
   SelectionMode,
   SpinButton,
   Stack,
@@ -59,6 +61,7 @@ import BudgetTemplateClass, { BudgetTemplateItem } from "models/budget_template"
 import { array } from "yup/lib/locale";
 import { exec } from "child_process";
 import { any } from "cypress/types/bluebird";
+import { count } from "console";
 
 export default function UpdateMethodology() {
   // LOGIC
@@ -147,7 +150,7 @@ export default function UpdateMethodology() {
       select: {
         height: 35,
         backgroundColor: 'white',
-        width: 100,
+        width: 150,
         minWidth: 40,
         fontSize: 14,
       },
@@ -172,6 +175,23 @@ export default function UpdateMethodology() {
   //BUDGET FORM ------------------------------------------------------------------
   if (form === 'budget'){
       //Columns render handler--------------------------
+      const ItemRender = (item: BudgetTemplateItem) => {
+        const textProps: ITextProps = {
+          styles: {
+            root: {
+              fontWeight: 500,
+              maxWidth: 100,
+            },
+          },
+        };
+
+        return (
+          <Stack horizontal tokens={{ childrenGap: 4 }}>
+            <Text {...textProps}>{item.item} </Text>
+          </Stack>
+        )
+      };
+
       const NameRender = (item: BudgetTemplateItem) => {
         let [currenItem, setCurrentItem] = useState(item.itemName)
 
@@ -192,7 +212,7 @@ export default function UpdateMethodology() {
               variables: { input: input }
             })
 
-          }, 3000)
+          }, 1000)
 
           return () => clearTimeout(timer)
         }, [currenItem])
@@ -208,8 +228,14 @@ export default function UpdateMethodology() {
           rows: 1,
           multiline: true,
           resizable: true,
+          autoAdjustHeight: true,
           defaultValue: "",
           styles: {
+            root: {
+              fontWeight: 500,
+              maxWidth: 500,
+              minWidth: 400,
+            },
             fieldGroup: {
               borderRadius: "0 0 2px 2px",
               border: `1px solid ${palette.neutralLighter}`,
@@ -233,7 +259,6 @@ export default function UpdateMethodology() {
 
         return (
           <Stack horizontal tokens={{ childrenGap: 4 }}>
-            <Text {...textProps}>{item.item}- </Text>
             <TextField {...textFieldProps} value={currenItem} onChange={changeHandler} />
           </Stack>
         )
@@ -259,7 +284,7 @@ export default function UpdateMethodology() {
               variables: { input: input }
             })
 
-          }, 3000)
+          }, 1000)
 
           return () => clearTimeout(timer)
         }, [currenItem])
@@ -274,10 +299,13 @@ export default function UpdateMethodology() {
           rows: 1,
           multiline: true,
           resizable: true,
+          autoAdjustHeight: true,
           defaultValue: "",
           styles: {
             root: {
-              minWidth: 400,
+              fontWeight: 500,
+              maxWidth: 550,
+              minWidth: 650,
             },
             fieldGroup: {
               borderRadius: "0 0 2px 2px",
@@ -295,7 +323,7 @@ export default function UpdateMethodology() {
           styles: {
             root: {
               fontWeight: 500,
-              minWidth: 50,
+              minWidth: 200,
             },
           },
         };
@@ -361,7 +389,9 @@ export default function UpdateMethodology() {
         }
 
         return (
-          <Checkbox label="Is subtotal row?" onChange={_onChange} checked={item.subtotal} />
+          <div style={{marginLeft: 45}}>
+            <Checkbox onChange={_onChange} checked={item.subtotal} />
+          </div>
         );
       };
 
@@ -384,7 +414,9 @@ export default function UpdateMethodology() {
         }
 
         return (
-          <Checkbox label="Is permanent row?" onChange={_onChange} checked={item.permanent} />
+          <div style={{marginLeft: 45}}>
+            <Checkbox onChange={_onChange} checked={item.permanent} />
+          </div>
         );
       };
 
@@ -469,12 +501,27 @@ export default function UpdateMethodology() {
         {
           key: "column1",
           //name: t(`${form}.item-description`),
-          name: "name",
+          name: "Item",
           fieldName: "item",
           ariaLabel: "item",
           data: "string",
-          minWidth: 70,
-          maxWidth: 300,
+          minWidth: 10,
+          maxWidth: 100,
+          flexGrow: 1,
+          isMultiline: true,
+          isResizable: true,
+          isRowHeader: true,
+          onRender: (item: BudgetTemplateItem) => ItemRender(item),
+        },
+        {
+          key: "column2",
+          //name: t(`${form}.item-description`),
+          name: "Name",
+          fieldName: "item",
+          ariaLabel: "item",
+          data: "string",
+          minWidth: 300,
+          maxWidth: 400,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -488,8 +535,8 @@ export default function UpdateMethodology() {
           fieldName: "itemDescription",
           ariaLabel: "itemDescription",
           data: "string",
-          minWidth: 70,
-          maxWidth: 400,
+          minWidth: 100,
+          maxWidth: 650,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -499,11 +546,12 @@ export default function UpdateMethodology() {
         {
           key: "column4",
           //name: t(`${form}.item-description`),
-          name: "measureUnitId",
+          name: "Measure Unit",
           fieldName: "measureUnitId",
           ariaLabel: "measureUnitId",
           data: "Number",
           minWidth: 100,
+          maxWidth: 170,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -513,11 +561,12 @@ export default function UpdateMethodology() {
         {
           key: "column5",
           //name: t(`${form}.item-description`),
-          name: "subtotal",
+          name: "Is subtotal row?",
           fieldName: "subtotal",
           ariaLabel: "subtotal",
           data: "Boolean",
-          minWidth: 180,
+          minWidth: 100,
+          maxWidth: 120,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -527,11 +576,12 @@ export default function UpdateMethodology() {
         {
           key: "column6",
           //name: t(`${form}.item-description`),
-          name: "permanent",
+          name: "Is permanent row?",
           fieldName: "permanent",
           ariaLabel: "permanent",
           data: "Boolean",
-          minWidth: 180,
+          minWidth: 100,
+          maxWidth: 140,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -546,6 +596,7 @@ export default function UpdateMethodology() {
           ariaLabel: "permanent",
           data: "string",
           minWidth: 100,
+          maxWidth: 120,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -582,7 +633,7 @@ export default function UpdateMethodology() {
                     setKey="set"
                     layoutMode={DetailsListLayoutMode.justified}
                     selectionPreservedOnEmptyClick={true}
-                  />
+                    />
                 </Col>
               </Row>
             </Grid>
