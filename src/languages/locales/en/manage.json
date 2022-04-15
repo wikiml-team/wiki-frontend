@@ -19,7 +19,7 @@
     "format-field": "Format",
 
     "budget": {
-      "header": "Budget1asdsadsad",
+      "header": "Budget form",
       "item-description": "Item description",
       "measure-unit-id": "Measure unit",
       "item-amount": "Amount",
@@ -27,7 +27,25 @@
       "subtotal": "Is subtotal row",
       "submit-button": "Add item",
       "operations": "Operations",
-      "first-row-button": "First-level item"
+      "first-row-button": "First-level item",
+      "prevent-delete-dialog":{
+        "header": "Alert",
+        "body": "Cannot delete a budget that has dependencies.",
+        "button": "OK"
+      },
+      "detail-list":{
+        "column-item": "Item",
+        "column-name": "Name",
+        "column-description": "Description",
+        "column-measure-unit": "Measure Unit",
+        "column-subtotal": "Subtotal row?",
+        "column-permanent": "Permanent row?",
+        "column-actions": "Actions"
+      },
+      "tooltip":{
+        "add": "Add",
+        "delete": "Delete"
+      }
     }
   }
   

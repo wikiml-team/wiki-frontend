@@ -3,27 +3,39 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import i18n from "i18n";
 import { selectProject } from "store/slices/projectslice";
-import { useBoolean } from "@fluentui/react-hooks";
+import { useBoolean, useId } from "@fluentui/react-hooks";
 
 import {
   Checkbox,
+  ContextualMenu,
+  DefaultButton,
   DetailsList,
   DetailsListLayoutMode,
   DetailsRow,
+  Dialog,
+  DialogFooter,
+  DialogType,
   Dropdown,
   FontWeights,
+  hiddenContentStyle,
   IButtonStyles,
   IColumn,
   IconButton,
+  IDetailsColumnRenderTooltipProps,
+  IDetailsFooterProps,
+  IDetailsHeaderProps,
   IDetailsListProps,
+  IDetailsListStyles,
   IDetailsRowStyles,
   IDropdownOption,
   IDropdownStyles,
+  IRenderFunction,
   IStackProps,
   ITextFieldProps,
   ITextProps,
   Label,
   MarqueeSelection,
+  mergeStyles,
   mergeStyleSets,
   Position,
   PrimaryButton,
@@ -34,6 +46,7 @@ import {
   Text,
   textAreaProperties,
   TextField,
+  Toggle,
   TooltipHost,
   useTheme,
 } from "@fluentui/react";
@@ -62,12 +75,15 @@ import { array } from "yup/lib/locale";
 import { exec } from "child_process";
 import { any } from "cypress/types/bluebird";
 import { count } from "console";
+import { GET_METHODOLOGY_BY_ID } from "apollo/methodologies/methodology";
+import classNames from "classnames";
 
 export default function UpdateMethodology() {
   // LOGIC
   const { t } = useTranslation("manage", { keyPrefix: "form" });
   const { t: t_basics } = useTranslation("basics", { keyPrefix: "languages" });
   const { form } = useParams<{ form: string }>();
+  const { methodologyId } = useParams<{ methodologyId: string }>();
   const isIndex = form?.includes("index") ? true : false;
   const { palette } = useTheme();
   const [reload, setReload] = useState(false);
@@ -81,18 +97,108 @@ export default function UpdateMethodology() {
   const unitMeasureData = useQuery(GET_MEASURER_UNIT);
   const [measurerUnitList, setmeasurerUnitList] = useState([]);
 
+   //Methodology
+   const methodologyData = useQuery(GET_METHODOLOGY_BY_ID, {
+    variables: {
+      "id": methodologyId
+    },
+  });
+   
   //Data for budgetTemplates
   const budgetTemplateData = useQuery(GET_BUDGET_TEMPLATE);
   const budgetTemplateClass = new BudgetTemplateClass();
   const [addNewBudgetTemptaleTodo, mutationAddData] = useMutation(ADD_NEW_BUDGET_TEMPLATE)
   const [deleteBudgetTemptale, mutationDeleteBudgetTemplate] = useMutation(DELETE_BUDGET_TEMPLATE)
   const [updateBudgetTemptale, mutationUpdateBudgetTemplate] = useMutation(UPDATE_BUDGET_TEMPLATE)
-
+  
   //Data for budget
   const currentForm = project.forms.find((form) => form.name === "budget")!;
   const budgetList = currentForm.structure as BudgetList; //Aqui se guarda el json de los budget - Ruta: store/projectslice
   const [items, setItems] = useState(budgetTemplateClass.listBudgetTemplate);
   const [update, setUpdate] = useState(false);
+
+  //Prevent delete item Dialog
+  const dialogStyles = { main: { maxWidth: 450 } };
+  const dragOptions = {
+    moveMenuItemText: 'Move',
+    closeMenuItemText: 'Close',
+    menu: ContextualMenu,
+    keepInBounds: true,
+  };
+  const screenReaderOnly = mergeStyles(hiddenContentStyle);
+  const dialogContentProps = {
+    type: DialogType.normal,
+    title: t(`${form}.prevent-delete-dialog.header`),
+    closeButtonAriaLabel: 'Close',
+    subText: t(`${form}.prevent-delete-dialog.body`),
+  };
+
+  const [hideDialog, { toggle: toggleHideDialog }] = useBoolean(true);
+  const [isDraggable, { toggle: toggleIsDraggable }] = useBoolean(false);
+  const labelId: string = useId('dialogLabel');
+  const subTextId: string = useId('subTextLabel');
+
+  const modalProps = React.useMemo(
+    () => ({
+      titleAriaId: labelId,
+      subtitleAriaId: subTextId,
+      isBlocking: false,
+      styles: dialogStyles,
+      dragOptions: isDraggable ? dragOptions : undefined,
+    }),
+    [isDraggable, labelId, subTextId],
+  );
+
+  //DetailsList 
+  const gridStyles: Partial<IDetailsListStyles> = {
+    root: {
+      overflowX: 'auto',
+      width: '100%',
+      selectors: {
+        '& [role=grid]': {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'start',
+          height: '85vh'
+        }
+      }
+    },
+    headerWrapper: {
+      flex: '0 0 auto'
+    },
+    contentWrapper: {
+      width: '100%',
+      flex: '1 1 auto',
+      overflowY: 'auto',
+      overflowX: 'hidden'
+    }
+  };
+
+  const classNames = mergeStyleSets({
+    filter: {
+      paddingBottom: 20,
+      maxWidth: 300
+    },
+    header: {
+      margin: 0
+    },
+    row: {
+      flex: '0 0 auto'
+    }
+  });
+
+  const onRenderDetailsHeader: IRenderFunction<IDetailsHeaderProps> = (props, defaultRender) => {
+    if (!props) {
+      return null;
+    }
+    const onRenderColumnHeaderTooltip: IRenderFunction<IDetailsColumnRenderTooltipProps> = (
+      tooltipHostProps
+    ) => <TooltipHost {...tooltipHostProps} />;
+    return defaultRender!({
+      ...props,
+      onRenderColumnHeaderTooltip
+    });
+  };
 
 
   useEffect(() => {    
@@ -105,6 +211,7 @@ export default function UpdateMethodology() {
     if (!budgetTemplateData.loading && budgetTemplateData.data){
       budgetTemplateClass.listBudgetTemplate = budgetTemplateData.data.budgetTemplates;
       setItems(budgetTemplateClass.listBudgetTemplate);
+      
     }
   });
 
@@ -155,8 +262,6 @@ export default function UpdateMethodology() {
         fontSize: 14,
       },
     });
-
-    
 
     const commandStyles: Partial<IButtonStyles> = {
       root: {
@@ -390,7 +495,11 @@ export default function UpdateMethodology() {
 
         return (
           <div style={{marginLeft: 45}}>
-            <Checkbox onChange={_onChange} checked={item.subtotal} />
+            {budgetTemplateClass.checkHasChild(item, items)? 
+              <Checkbox onChange={_onChange} checked={item.subtotal} /> :
+              <Checkbox disabled />
+            }
+            
           </div>
         );
       };
@@ -424,7 +533,7 @@ export default function UpdateMethodology() {
         return (
           <React.Fragment>
             {budgetTemplateClass.getLevel(item) <= 3 ?( 
-              <TooltipHost content={t("tooltip.add-activity")}>
+              <TooltipHost content={t(`${form}.tooltip.add`)}>
                 <IconButton
                   iconProps={{ iconName: "Add" }}
                   styles={commandStyles}
@@ -432,7 +541,7 @@ export default function UpdateMethodology() {
                 />
               </TooltipHost>
             ) : ''}
-                <TooltipHost content={t("tooltip.delete-activity")}>
+                <TooltipHost content={t(`${form}.tooltip.delete`)}>
                   <IconButton
                     iconProps={{ iconName: "Cancel" }}
                     styles={commandStyles}
@@ -452,10 +561,14 @@ export default function UpdateMethodology() {
       };
 
       const handleDeleteItem = (item: BudgetTemplateItem) => {
-        deleteBudgetTemptale({
-          variables: { input: { id: item.id } },
-          refetchQueries: [{ query: GET_BUDGET_TEMPLATE }]
-        })
+        if (!budgetTemplateClass.checkHasChild(item, items)){
+          deleteBudgetTemptale({
+            variables: { input: { id: item.id } },
+            refetchQueries: [{ query: GET_BUDGET_TEMPLATE }]
+          })
+        }else{
+          toggleHideDialog()
+        }
       };
 
       const onRenderRow: IDetailsListProps["onRenderRow"] = (props) => {
@@ -500,13 +613,12 @@ export default function UpdateMethodology() {
       const columns: IColumn[] = [
         {
           key: "column1",
-          //name: t(`${form}.item-description`),
-          name: "Item",
+          name: t(`${form}.detail-list.column-item`),
           fieldName: "item",
           ariaLabel: "item",
           data: "string",
           minWidth: 10,
-          maxWidth: 100,
+          maxWidth: 70,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -515,8 +627,7 @@ export default function UpdateMethodology() {
         },
         {
           key: "column2",
-          //name: t(`${form}.item-description`),
-          name: "Name",
+          name: t(`${form}.detail-list.column-name`),
           fieldName: "item",
           ariaLabel: "item",
           data: "string",
@@ -530,8 +641,7 @@ export default function UpdateMethodology() {
         },
         {
           key: "column3",
-          //name: t(`${form}.item-description`),
-          name: "Description",
+          name: t(`${form}.detail-list.column-description`),
           fieldName: "itemDescription",
           ariaLabel: "itemDescription",
           data: "string",
@@ -545,8 +655,7 @@ export default function UpdateMethodology() {
         },
         {
           key: "column4",
-          //name: t(`${form}.item-description`),
-          name: "Measure Unit",
+          name: t(`${form}.detail-list.column-measure-unit`),
           fieldName: "measureUnitId",
           ariaLabel: "measureUnitId",
           data: "Number",
@@ -560,8 +669,7 @@ export default function UpdateMethodology() {
         },
         {
           key: "column5",
-          //name: t(`${form}.item-description`),
-          name: "Is subtotal row?",
+          name: t(`${form}.detail-list.column-subtotal`),
           fieldName: "subtotal",
           ariaLabel: "subtotal",
           data: "Boolean",
@@ -575,8 +683,7 @@ export default function UpdateMethodology() {
         },
         {
           key: "column6",
-          //name: t(`${form}.item-description`),
-          name: "Is permanent row?",
+          name: t(`${form}.detail-list.column-permanent`),
           fieldName: "permanent",
           ariaLabel: "permanent",
           data: "Boolean",
@@ -590,8 +697,7 @@ export default function UpdateMethodology() {
         },
         {
           key: "column7",
-          //name: t(`${form}.item-description`),
-          name: "actions",
+          name: t(`${form}.detail-list.column-actions`),
           fieldName: "permanent",
           ariaLabel: "permanent",
           data: "string",
@@ -607,7 +713,7 @@ export default function UpdateMethodology() {
 
       return (
         <React.Fragment>
-          <Title>{isIndex ? t("index") : i18ncopy.t(`${form}.header`)}</Title>
+          <Title>{t(`${form}.header`)} {(methodologyData.data)? ' - ' + methodologyData.data.methodology.name : ''}</Title>
 
           {!budgetTemplateData.loading ? (
             <Grid dir="ltr">
@@ -628,16 +734,29 @@ export default function UpdateMethodology() {
                   <DetailsList
                     items={items}
                     columns={columns}
+                    onRenderDetailsHeader={onRenderDetailsHeader}
+                    styles={gridStyles}
                     selectionMode={SelectionMode.none}
                     onRenderRow={onRenderRow}
                     setKey="set"
                     layoutMode={DetailsListLayoutMode.justified}
-                    selectionPreservedOnEmptyClick={true}
+                    //selectionPreservedOnEmptyClick={true}
                     />
                 </Col>
               </Row>
             </Grid>
           ) : 'loading'}
+
+      <Dialog
+        hidden={hideDialog}
+        onDismiss={toggleHideDialog}
+        dialogContentProps={dialogContentProps}
+        modalProps={modalProps}
+      >
+        <DialogFooter>
+          <DefaultButton onClick={toggleHideDialog} text={t(`${form}.prevent-delete-dialog.button`)} />
+        </DialogFooter>
+      </Dialog>
           
         </React.Fragment>
       );

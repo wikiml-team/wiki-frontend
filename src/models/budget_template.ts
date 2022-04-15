@@ -38,18 +38,31 @@ export default class BudgetTemplateClass {
     public addNewItem(listBudgetTemplate: BudgetTemplateItem[], itemParent?: BudgetTemplateItem): BudgetTemplateItem {
         this.listBudgetTemplate = listBudgetTemplate
 
-
         let itemNew: BudgetTemplateItem = {
             "item": this.getNewItemID(itemParent),
             "itemDescription": "item new description",
             "itemName": "item new name" ,
             "measureUnitId": 1,
-            "methodologyId": 1,
+            "methodologyId": itemParent?.methodologyId || 1,
             "subtotal": false,
             "permanent": false
           }
 
         return itemNew
+    }
+
+    public getLastItem(listBudgetTemplate: BudgetTemplateItem[]): BudgetTemplateItem {
+        let lastItem = listBudgetTemplate[0]
+        
+        listBudgetTemplate.map((currentItem) => {
+            if (currentItem.id && lastItem.id){
+                if (currentItem.id > lastItem.id){
+                    lastItem = currentItem
+                }
+            }
+        })
+
+        return lastItem
     }
 
     public getLevel(item?: BudgetTemplateItem): number {
@@ -147,6 +160,52 @@ export default class BudgetTemplateClass {
         return newID
     }
 
-    
-    
+    public getOrderedList() :BudgetTemplateItem[] { 
+        //Ordered Final List
+        let orderedList: BudgetTemplateItem[] 
+        orderedList = []
+
+        if (this.listBudgetTemplate){
+            this.listBudgetTemplate.map((currentItem) => {
+                let splitSize = Number(currentItem.item?.split('.').length)
+
+                if (orderedList.length === 0){
+                    orderedList.push(currentItem)
+                }
+                else {
+                    if (splitSize === 1){
+                        orderedList.map((currentOrderedItem) => {
+                            let splitOrderedSize = Number(currentOrderedItem.item?.split('.').length)
+                            if (splitOrderedSize === 1){
+                                if (Number(currentOrderedItem.item?.split('.')[splitOrderedSize - 1]) < Number(currentItem.item?.split('.')[splitSize - 1])){
+                                    //Insertar en el arreglo
+                                    //orderedList.pop()
+                                    //orderedList.slice(splitOrderedSize - 2).push(currentItem)
+                                }
+                            }
+                        })
+                    }
+                }
+            })
+        }
+        return [];
+    }
+
+    public checkHasChild(item: BudgetTemplateItem, itemList: BudgetTemplateItem[]): Boolean{
+        let splitSize = Number(item.item?.split('.').length)
+        let hasChild = false
+        
+        itemList.map((currentItem) => {
+            if (Number(currentItem.item?.split('.').length) === splitSize + 1){
+                for(let i = 0; i < splitSize; i++){
+                    if (item.item?.split('.')[i] === currentItem.item?.split('.')[i]){
+                        hasChild = true
+                    }else{
+                        hasChild = false
+                    }
+                }
+            } 
+        })
+        return hasChild
+    }
 }
