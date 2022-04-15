@@ -153,7 +153,7 @@ export default function UpdateMethodology() {
   const gridStyles: Partial<IDetailsListStyles> = {
     root: {
       overflowX: 'auto',
-      width: '100%',
+      width: 'auto',
       selectors: {
         '& [role=grid]': {
           display: 'flex',
@@ -167,10 +167,10 @@ export default function UpdateMethodology() {
       flex: '0 0 auto'
     },
     contentWrapper: {
-      width: '100%',
+      width: 'auto',
       flex: '1 1 auto',
       overflowY: 'auto',
-      overflowX: 'hidden'
+      overflowX: 'auto'
     }
   };
 
@@ -338,8 +338,7 @@ export default function UpdateMethodology() {
           styles: {
             root: {
               fontWeight: 500,
-              maxWidth: 500,
-              minWidth: 400,
+              width: '100%',
             },
             fieldGroup: {
               borderRadius: "0 0 2px 2px",
@@ -409,8 +408,7 @@ export default function UpdateMethodology() {
           styles: {
             root: {
               fontWeight: 500,
-              maxWidth: 550,
-              minWidth: 650,
+              width: '100%',
             },
             fieldGroup: {
               borderRadius: "0 0 2px 2px",
@@ -494,12 +492,11 @@ export default function UpdateMethodology() {
         }
 
         return (
-          <div style={{marginLeft: 45}}>
+          <div style={{marginLeft: 40}}>
             {budgetTemplateClass.checkHasChild(item, items)? 
               <Checkbox onChange={_onChange} checked={item.subtotal} /> :
               <Checkbox disabled />
             }
-            
           </div>
         );
       };
@@ -617,7 +614,7 @@ export default function UpdateMethodology() {
           fieldName: "item",
           ariaLabel: "item",
           data: "string",
-          minWidth: 10,
+          minWidth: 50,
           maxWidth: 70,
           flexGrow: 1,
           isMultiline: true,
@@ -631,7 +628,7 @@ export default function UpdateMethodology() {
           fieldName: "item",
           ariaLabel: "item",
           data: "string",
-          minWidth: 300,
+          minWidth: 200,
           maxWidth: 400,
           flexGrow: 1,
           isMultiline: true,
@@ -645,7 +642,7 @@ export default function UpdateMethodology() {
           fieldName: "itemDescription",
           ariaLabel: "itemDescription",
           data: "string",
-          minWidth: 100,
+          minWidth: 400,
           maxWidth: 650,
           flexGrow: 1,
           isMultiline: true,
@@ -687,7 +684,7 @@ export default function UpdateMethodology() {
           fieldName: "permanent",
           ariaLabel: "permanent",
           data: "Boolean",
-          minWidth: 100,
+          minWidth: 120,
           maxWidth: 140,
           flexGrow: 1,
           isMultiline: true,
