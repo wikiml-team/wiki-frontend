@@ -493,9 +493,11 @@ export default function UpdateMethodology() {
 
         return (
           <div style={{marginLeft: 40}}>
-            {budgetTemplateClass.checkHasChild(item, items)? 
+            {budgetTemplateClass.checkHasChild(item, items) > 1? 
               <Checkbox onChange={_onChange} checked={item.subtotal} /> :
-              <Checkbox disabled />
+              <TooltipHost content={t(`${form}.tooltip.subtotal`)}>
+                <Checkbox disabled />
+              </TooltipHost>
             }
           </div>
         );
@@ -558,7 +560,7 @@ export default function UpdateMethodology() {
       };
 
       const handleDeleteItem = (item: BudgetTemplateItem) => {
-        if (!budgetTemplateClass.checkHasChild(item, items)){
+        if (budgetTemplateClass.checkHasChild(item, items) === 0){
           deleteBudgetTemptale({
             variables: { input: { id: item.id } },
             refetchQueries: [{ query: GET_BUDGET_TEMPLATE }]

@@ -43,7 +43,8 @@
       },
       "tooltip":{
         "add": "Add",
-        "delete": "Delete"
+        "delete": "Delete",
+        "subtotal": "To set a subtotal the item must have at least two dependencies"
       }
     }
   }

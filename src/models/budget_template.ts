@@ -17,9 +17,11 @@ export interface BudgetTemplateItem {
 export default class BudgetTemplateClass {
     listBudgetTemplate: BudgetTemplateItem[];
     BudgetTemplate: BudgetTemplateItem;
+    orderedList: BudgetTemplateItem[]; 
 
     constructor() {
         this.listBudgetTemplate = [];
+        this.orderedList = [];
         this.BudgetTemplate = {
             __typename: "budgetTemplates",
             id: 0,
@@ -45,7 +47,7 @@ export default class BudgetTemplateClass {
             "measureUnitId": 1,
             "methodologyId": itemParent?.methodologyId || 1,
             "subtotal": false,
-            "permanent": false
+            "permanent": true
           }
 
         return itemNew
@@ -160,52 +162,54 @@ export default class BudgetTemplateClass {
         return newID
     }
 
-    public getOrderedList() :BudgetTemplateItem[] { 
-        //Ordered Final List
-        let orderedList: BudgetTemplateItem[] 
-        orderedList = []
-
-        if (this.listBudgetTemplate){
-            this.listBudgetTemplate.map((currentItem) => {
-                let splitSize = Number(currentItem.item?.split('.').length)
-
-                if (orderedList.length === 0){
-                    orderedList.push(currentItem)
-                }
-                else {
-                    if (splitSize === 1){
-                        orderedList.map((currentOrderedItem) => {
-                            let splitOrderedSize = Number(currentOrderedItem.item?.split('.').length)
-                            if (splitOrderedSize === 1){
-                                if (Number(currentOrderedItem.item?.split('.')[splitOrderedSize - 1]) < Number(currentItem.item?.split('.')[splitSize - 1])){
-                                    //Insertar en el arreglo
-                                    //orderedList.pop()
-                                    //orderedList.slice(splitOrderedSize - 2).push(currentItem)
-                                }
-                            }
-                        })
-                    }
-                }
-            })
-        }
-        return [];
+    public getOrderedList() : void { 
+        this.listBudgetTemplate.map((currentItem) => {
+            let splitSize = Number(currentItem.item?.split('.').length)
+            if (splitSize === 1){
+                this.orderedList.push(currentItem)
+                this.getOrderedChildList(currentItem)
+            }
+        })
     }
 
-    public checkHasChild(item: BudgetTemplateItem, itemList: BudgetTemplateItem[]): Boolean{
-        let splitSize = Number(item.item?.split('.').length)
-        let hasChild = false
-        
-        itemList.map((currentItem) => {
-            if (Number(currentItem.item?.split('.').length) === splitSize + 1){
-                for(let i = 0; i < splitSize; i++){
-                    if (item.item?.split('.')[i] === currentItem.item?.split('.')[i]){
-                        hasChild = true
-                    }else{
-                        hasChild = false
+    public getOrderedChildList(parentItem: BudgetTemplateItem) :void { 
+        //ParentSplit
+        let splitSizeParent = Number(parentItem.item?.split('.').length)
+
+        this.listBudgetTemplate.map((currentItem) => { 
+            //ChildSplit
+            let splitSizeChild = Number(currentItem.item?.split('.').length)
+            if(splitSizeChild === splitSizeParent + 1){
+                for (let i = 0; i < splitSizeParent; i++){
+                    if (parentItem.item?.split('.')[i] === currentItem.item?.split('.')[i]) {
+                        this.orderedList.push(currentItem)
+                        this.getOrderedChildList(currentItem)
                     }
                 }
-            } 
+            }
         })
-        return hasChild
+    }
+
+    public checkHasChild(item: BudgetTemplateItem, itemList: BudgetTemplateItem[]): Number {
+        let splitSize = Number(item.item?.split('.').length)
+        let numberOfChild = 0
+
+        itemList.map((currentItem) => {
+            let isChild = false
+            if (Number(currentItem.item?.split('.').length) === splitSize + 1) {
+                for (let i = 0; i < splitSize; i++) {
+                    if (item.item?.split('.')[i] === currentItem.item?.split('.')[i]) {
+                        isChild = true
+                    }
+                    else{
+                        isChild = false
+                    }
+                }
+            }
+            if (isChild){
+                numberOfChild ++
+            }
+        })
+        return numberOfChild
     }
 }
