@@ -209,9 +209,10 @@ export default function UpdateMethodology() {
 
     //Initializing budgetTemplate
     if (!budgetTemplateData.loading && budgetTemplateData.data){
-      budgetTemplateClass.listBudgetTemplate = budgetTemplateData.data.budgetTemplates;
-      setItems(budgetTemplateClass.listBudgetTemplate);
-      
+      //budgetTemplateClass.listBudgetTemplate = budgetTemplateData.data.budgetTemplates;
+      //budgetTemplateClass.getOrderedList()
+      //setItems(budgetTemplateClass.getOrderedList(budgetTemplateData.data.budgetTemplates));
+      setItems((budgetTemplateData.data.budgetTemplates));
     }
   });
 
@@ -746,16 +747,16 @@ export default function UpdateMethodology() {
             </Grid>
           ) : 'loading'}
 
-      <Dialog
-        hidden={hideDialog}
-        onDismiss={toggleHideDialog}
-        dialogContentProps={dialogContentProps}
-        modalProps={modalProps}
-      >
-        <DialogFooter>
-          <DefaultButton onClick={toggleHideDialog} text={t(`${form}.prevent-delete-dialog.button`)} />
-        </DialogFooter>
-      </Dialog>
+          <Dialog
+            hidden={hideDialog}
+            onDismiss={toggleHideDialog}
+            dialogContentProps={dialogContentProps}
+            modalProps={modalProps}
+          >
+            <DialogFooter>
+              <DefaultButton onClick={toggleHideDialog} text={t(`${form}.prevent-delete-dialog.button`)} />
+            </DialogFooter>
+          </Dialog>
           
         </React.Fragment>
       );

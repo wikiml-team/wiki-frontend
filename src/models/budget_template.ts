@@ -104,7 +104,9 @@ export default class BudgetTemplateClass {
                     if (currentItem.item) {
                         currentID = currentItem.item?.split('.')
 
-                        if (Number(currentID[1]) > Number(lastID[1])) {
+                        if (itemParent.item && 
+                            currentID[0] === itemParent.item.split('.')[0] &&  
+                            Number(currentID[1]) > Number(lastID[1])) {
                             lastID = currentID
                         }
                     }
@@ -162,32 +164,72 @@ export default class BudgetTemplateClass {
         return newID
     }
 
-    public getOrderedList() : void { 
-        this.listBudgetTemplate.map((currentItem) => {
-            let splitSize = Number(currentItem.item?.split('.').length)
-            if (splitSize === 1){
-                this.orderedList.push(currentItem)
-                this.getOrderedChildList(currentItem)
-            }
-        })
+    public getOrderedList(listItem: BudgetTemplateItem[]) : BudgetTemplateItem[] {
+            this.listBudgetTemplate = listItem
+        
+            let listFirstItem: number[] = []
+
+            this.listBudgetTemplate.map((currentItem) => {
+                let splitSize = Number(currentItem.item?.split('.').length)
+                if (splitSize === 1){
+                    listFirstItem.push(Number(currentItem.item))
+                }
+            })
+
+            listFirstItem.sort(function(a: number, b: number){return a-b});
+
+            listFirstItem.map((itemNumber) => {
+                for (let i=0; i<this.listBudgetTemplate.length; i++){
+                    let splitSize = Number(this.listBudgetTemplate[i].item?.split('.').length)
+                    if (splitSize === 1){
+                        if (Number(this.listBudgetTemplate[i].item) === itemNumber){
+                            this.orderedList.push(this.listBudgetTemplate[i])
+                            this.getOrderedChildList(this.listBudgetTemplate[i])
+                        }
+                    }
+                }
+            })
+            
+        return this.orderedList
     }
 
-    public getOrderedChildList(parentItem: BudgetTemplateItem) :void { 
+    public getOrderedChildList(parentItem: BudgetTemplateItem): void {
         //ParentSplit
         let splitSizeParent = Number(parentItem.item?.split('.').length)
 
-        this.listBudgetTemplate.map((currentItem) => { 
+        for (let i=0; i<this.listBudgetTemplate.length; i++){
+            //ChildSplit
+            let splitSizeChild = Number(this.listBudgetTemplate[i].item?.split('.').length)
+            if (splitSizeChild === splitSizeParent + 1) {
+                let isChild = false
+                for (let j = 0; j < splitSizeParent; j++) {
+                    if (Number(parentItem.item?.split('.')[j]) === Number(this.listBudgetTemplate[i].item?.split('.')[j])) {
+                        isChild = true
+                    }
+                    else{
+                        isChild = false
+                        break
+                    }
+                }
+                if (isChild){
+                    this.orderedList.push(this.listBudgetTemplate[i])
+                    this.getOrderedChildList(this.listBudgetTemplate[i])
+                }
+            }
+        }
+
+        /*listItem.map((currentItem) => {
             //ChildSplit
             let splitSizeChild = Number(currentItem.item?.split('.').length)
-            if(splitSizeChild === splitSizeParent + 1){
-                for (let i = 0; i < splitSizeParent; i++){
+            if (splitSizeChild === splitSizeParent + 1) {
+                for (let i = 0; i < splitSizeParent; i++) {
                     if (parentItem.item?.split('.')[i] === currentItem.item?.split('.')[i]) {
                         this.orderedList.push(currentItem)
-                        this.getOrderedChildList(currentItem)
+                        this.getOrderedChildList(currentItem, listItem)
                     }
                 }
             }
-        })
+        })*/
     }
 
     public checkHasChild(item: BudgetTemplateItem, itemList: BudgetTemplateItem[]): Number {
