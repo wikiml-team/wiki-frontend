@@ -38,8 +38,8 @@
         "column-name": "Name",
         "column-description": "Description",
         "column-measure-unit": "Measure Unit",
-        "column-subtotal": "Subtotal row?",
-        "column-permanent": "Permanent row?",
+        "column-subtotal": "Subtotal",
+        "column-permanent": "Permanent",
         "column-actions": "Actions"
       },
       "tooltip":{

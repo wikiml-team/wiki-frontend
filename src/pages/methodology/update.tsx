@@ -493,7 +493,7 @@ export default function UpdateMethodology() {
         }
 
         return (
-          <div style={{marginLeft: 40}}>
+          <div style={{marginLeft: 20}}>
             {budgetTemplateClass.checkHasChild(item, items) > 1? 
               <Checkbox onChange={_onChange} checked={item.subtotal} /> :
               <TooltipHost content={t(`${form}.tooltip.subtotal`)}>
@@ -523,7 +523,7 @@ export default function UpdateMethodology() {
         }
 
         return (
-          <div style={{marginLeft: 45}}>
+          <div style={{marginLeft: 25}}>
             <Checkbox onChange={_onChange} checked={item.permanent} />
           </div>
         );
@@ -660,7 +660,7 @@ export default function UpdateMethodology() {
           ariaLabel: "measureUnitId",
           data: "Number",
           minWidth: 100,
-          maxWidth: 170,
+          maxWidth: 200,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -674,7 +674,7 @@ export default function UpdateMethodology() {
           ariaLabel: "subtotal",
           data: "Boolean",
           minWidth: 100,
-          maxWidth: 120,
+          maxWidth: 100,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -687,8 +687,8 @@ export default function UpdateMethodology() {
           fieldName: "permanent",
           ariaLabel: "permanent",
           data: "Boolean",
-          minWidth: 120,
-          maxWidth: 140,
+          minWidth: 100,
+          maxWidth: 100,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
