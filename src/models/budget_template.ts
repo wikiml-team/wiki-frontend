@@ -254,4 +254,33 @@ export default class BudgetTemplateClass {
         })
         return numberOfChild
     }
+
+    public updateItemsOnDelete(deletedItem: BudgetTemplateItem, itemList: BudgetTemplateItem[]): BudgetTemplateItem[] {
+        let splitSize = Number(deletedItem.item?.split('.').length)
+        let updateItems: BudgetTemplateItem[] = []
+
+        if (splitSize === 1){
+            itemList.map((currentItem) => {
+                if (Number(currentItem.item?.split('.').length) === 1){
+                    if (Number(currentItem.item?.split('.')[0]) > Number(deletedItem.item?.split('.')[0])){
+                        let newItem = String(Number(currentItem.item?.split('.')[0]) - 1)
+
+                        let input  = {
+                            id: currentItem.id,
+                            item: newItem,
+                            itemName: currentItem.itemName,
+                            itemDescription: currentItem.itemDescription,
+                            subtotal: currentItem.subtotal,
+                            permanent: currentItem.permanent,
+                            methodologyId: currentItem.methodologyId,
+                            measureUnitId: currentItem.measureUnitId
+                          }
+
+                        updateItems.push(input)
+                    }
+                }
+            })
+        }
+        return updateItems
+    }
 }

@@ -114,8 +114,8 @@ export default function UpdateMethodology() {
   //Data for budget
   const currentForm = project.forms.find((form) => form.name === "budget")!;
   const budgetList = currentForm.structure as BudgetList; //Aqui se guarda el json de los budget - Ruta: store/projectslice
-  const [items, setItems] = useState(budgetTemplateClass.listBudgetTemplate);
-  const [update, setUpdate] = useState(false);
+  const [items, setItems] = useState([]);
+  const [update, setUpdate] = useState(true);
 
   //Prevent delete item Dialog
   const dialogStyles = { main: { maxWidth: 450 } };
@@ -562,10 +562,22 @@ export default function UpdateMethodology() {
 
       const handleDeleteItem = (item: BudgetTemplateItem) => {
         if (budgetTemplateClass.checkHasChild(item, items) === 0){
+          let listItemsUpdate = budgetTemplateClass.updateItemsOnDelete(item, items)
+
+          listItemsUpdate.map((currentItem) => {
+              updateBudgetTemptale({
+                variables: { input: currentItem },
+                refetchQueries: [{ query: GET_BUDGET_TEMPLATE }]
+              })
+          })
+
           deleteBudgetTemptale({
             variables: { input: { id: item.id } },
             refetchQueries: [{ query: GET_BUDGET_TEMPLATE }]
-          })
+        })
+
+        setItems(items)
+
         }else{
           toggleHideDialog()
         }
