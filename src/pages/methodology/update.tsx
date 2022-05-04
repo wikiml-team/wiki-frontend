@@ -69,7 +69,7 @@ import MeasurerUnitClass, { MeasureUnit } from "models/measurer-unit";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_MEASURER_UNIT } from "apollo/measurer-unit/query";
 import DropdownFieldInput from "components/inputs/dropdown";
-import { ADD_NEW_BUDGET_TEMPLATE, DELETE_BUDGET_TEMPLATE, GET_BUDGET_TEMPLATE, UPDATE_BUDGET_TEMPLATE } from "apollo/budget-template/query";
+import { ADD_NEW_BUDGET_TEMPLATE, DELETE_BUDGET_TEMPLATE, GET_BUDGET_TEMPLATE, GET_BUDGET_TYPES, UPDATE_BUDGET_TEMPLATE } from "apollo/budget-template/query";
 import BudgetTemplateClass, { BudgetTemplateItem } from "models/budget_template";
 import { array } from "yup/lib/locale";
 import { exec } from "child_process";
@@ -97,6 +97,10 @@ export default function UpdateMethodology() {
   const unitMeasureData = useQuery(GET_MEASURER_UNIT);
   const [measurerUnitList, setmeasurerUnitList] = useState([]);
 
+  //Budget types
+  const budgetTypeData = useQuery(GET_BUDGET_TYPES);
+  const [budgetTypeList, setBudgetTypeList] = useState([]);
+
    //Methodology
    const methodologyData = useQuery(GET_METHODOLOGY_BY_ID, {
     variables: {
@@ -105,7 +109,12 @@ export default function UpdateMethodology() {
   });
    
   //Data for budgetTemplates
-  const budgetTemplateData = useQuery(GET_BUDGET_TEMPLATE);
+  const budgetTemplateData = useQuery(GET_BUDGET_TEMPLATE, {
+    variables: {
+      "id": methodologyId
+    },
+  });
+
   const budgetTemplateClass = new BudgetTemplateClass();
   const [addNewBudgetTemptaleTodo, mutationAddData] = useMutation(ADD_NEW_BUDGET_TEMPLATE)
   const [deleteBudgetTemptale, mutationDeleteBudgetTemplate] = useMutation(DELETE_BUDGET_TEMPLATE)
@@ -207,12 +216,17 @@ export default function UpdateMethodology() {
         setmeasurerUnitList(unitMeasureData.data.measureUnits)
     }
 
+    //Initializing Budget Types
+    if (!budgetTypeData.loading && budgetTypeData.data){
+      setBudgetTypeList(budgetTypeData.data.budgetItemTypes)
+  }
+
     //Initializing budgetTemplate
     if (!budgetTemplateData.loading && budgetTemplateData.data){
       //budgetTemplateClass.listBudgetTemplate = budgetTemplateData.data.budgetTemplates;
       //budgetTemplateClass.getOrderedList()
       //setItems(budgetTemplateClass.getOrderedList(budgetTemplateData.data.budgetTemplates));
-      setItems((budgetTemplateData.data.budgetTemplates));
+      setItems((budgetTemplateData.data.methodology.budgetTemplates));
     }
   });
 
@@ -485,7 +499,7 @@ export default function UpdateMethodology() {
             permanent: item.permanent,
             methodologyId: item.methodologyId,
             measureUnitId: item.measureUnitId
-          }
+         }
 
           updateBudgetTemptale({
             variables: { input: input }
@@ -555,29 +569,17 @@ export default function UpdateMethodology() {
       // Handlers
       const handleAddItem = (item?: BudgetTemplateItem) => {
           addNewBudgetTemptaleTodo({
-            variables: { input: budgetTemplateClass.addNewItem(items, item) },
-            refetchQueries: [{ query: GET_BUDGET_TEMPLATE }]
+            variables: { input: budgetTemplateClass.addNewItem(items, Number(methodologyId), item) },
+            refetchQueries: [{ query: GET_BUDGET_TEMPLATE, variables: {"id": methodologyId}  }]
           })
       };
 
       const handleDeleteItem = (item: BudgetTemplateItem) => {
         if (budgetTemplateClass.checkHasChild(item, items) === 0){
-          let listItemsUpdate = budgetTemplateClass.updateItemsOnDelete(item, items)
-
-          listItemsUpdate.map((currentItem) => {
-              updateBudgetTemptale({
-                variables: { input: currentItem },
-                refetchQueries: [{ query: GET_BUDGET_TEMPLATE }]
-              })
-          })
-
           deleteBudgetTemptale({
             variables: { input: { id: item.id } },
-            refetchQueries: [{ query: GET_BUDGET_TEMPLATE }]
+            refetchQueries: [{ query: GET_BUDGET_TEMPLATE, variables: {"id": methodologyId}  }]
         })
-
-        setItems(items)
-
         }else{
           toggleHideDialog()
         }

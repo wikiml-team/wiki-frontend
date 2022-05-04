@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { IStackProps, Stack } from "@fluentui/react";
@@ -12,6 +12,7 @@ import QueryStateIndicator from "apollo/indicator";
 import MethodologyCard from "components/cards/methodologycard";
 import NewProjectDialog from "components/dialog/newproject";
 import { Subtitle, Title } from "components/styled/text";
+import { GET_LANGUAGES } from "apollo/languages";
 
 export default function NewPage() {
   // LOGIC
@@ -42,8 +43,19 @@ export default function NewPage() {
   };
 
   // DATA
-  const { data, loading, error } =
-    useQuery<GetMethodologies>(GET_METHODOLOGIES);
+  //Methodologies-----------------------------------------------------------------
+  const { data, loading, error } = useQuery<GetMethodologies>(GET_METHODOLOGIES);
+
+  //Languages-----------------------------------------------------------------------
+  const languagesData = useQuery(GET_LANGUAGES);
+  const [languagesList, setLanguagesList] = useState([]);
+
+  useEffect(() => {    
+      //Initializing Lenguages
+      if (!languagesData.loading && languagesData.data){
+        setLanguagesList(languagesData.data.languages)
+      }
+  });
 
   if (!data || loading || error)
     return <QueryStateIndicator data={data} loading={loading} error={error} />;
@@ -61,6 +73,7 @@ export default function NewPage() {
         hideDialog={projectHideDialog}
         toggleHideDialog={toggleProjectHideDialog}
         methodology={currentMethodology}
+        languages= {languagesList}
       />
     </React.Fragment>
   );

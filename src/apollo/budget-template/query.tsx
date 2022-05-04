@@ -1,22 +1,25 @@
 import { gql } from "@apollo/client";
 
-
+ //---- RETURNS THE LIST OF BUDGET_TEMPLATES--------------------------------------------------------------
 export const GET_BUDGET_TEMPLATE = gql`
-    query GET_BUDGET_TEMPLATE {
-        budgetTemplates{
-            id
-            item
-            itemDescription
-            itemName
-            measureUnitId
-            methodologyId
-            subtotal
-            permanent
-            createdAt
-            updatedAt
+    query GET_BUDGET_TEMPLATE($id: ID!) {
+        methodology(id: $id) {
+            budgetTemplates {
+                id
+                item
+                itemDescription
+                itemName
+                measureUnitId
+                methodologyId
+                subtotal
+                permanent
+                createdAt
+                updatedAt
+            }
         }
     }
 `;
+
 
 //---- ADD_NEW_BUDGET_TEMPLATE--------------------------------------------------------------
 export const ADD_NEW_BUDGET_TEMPLATE = gql`
@@ -74,6 +77,16 @@ export const UPDATE_BUDGET_TEMPLATE = gql`
                 createdAt
                 updatedAt
             }
+        }
+    }
+`;
+
+ //---- RETURNS THE LIST OF BUDGET TEMPLATES TYPES---------------------------------------------------------
+export const GET_BUDGET_TYPES = gql`
+    query GET_BUDGET_TYPES {
+        budgetItemTypes{
+            id
+            name
         }
     }
 `;

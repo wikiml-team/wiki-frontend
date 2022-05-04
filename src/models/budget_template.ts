@@ -1,3 +1,23 @@
+import { now } from "lodash";
+import { GetMethodologyById } from "types";
+
+export interface BudgetItemType {
+    __typename?: "BudgetItemType",
+    id: number,
+    name: String,
+}
+
+export interface MeasureUnit {
+    __typename?: "MeasureUnit",
+    id: number,
+    name: String,
+}
+
+export interface Methodology {
+    __typename?: "Methodology",
+    id: number,
+    name: String,
+}
 
 export interface BudgetTemplateItem {
     __typename?: "budgetTemplates",
@@ -7,12 +27,12 @@ export interface BudgetTemplateItem {
     itemName?: string,
     measureUnitId: number, 
     methodologyId: number, 
+    budgetItemTypeId: number,
     subtotal?: boolean,
     permanent?: boolean,
     createdAt?: Date, 
-    updatedAt?: Date, 
+    updatedAt?: Date,
 }
-
 
 export default class BudgetTemplateClass {
     listBudgetTemplate: BudgetTemplateItem[];
@@ -30,24 +50,26 @@ export default class BudgetTemplateClass {
             itemName: '',
             measureUnitId: 0,
             methodologyId: 0,
+            budgetItemTypeId: 0,
             subtotal: false,
             permanent: false,
             createdAt: new Date(),
-            updatedAt: new Date(),
+            updatedAt: new Date(), 
         }
     }
 
-    public addNewItem(listBudgetTemplate: BudgetTemplateItem[], itemParent?: BudgetTemplateItem): BudgetTemplateItem {
+    public addNewItem(listBudgetTemplate: BudgetTemplateItem[], idMetodology: number, itemParent?: BudgetTemplateItem): BudgetTemplateItem {
         this.listBudgetTemplate = listBudgetTemplate
 
         let itemNew: BudgetTemplateItem = {
-            "item": this.getNewItemID(itemParent),
-            "itemDescription": "item new description",
-            "itemName": "item new name" ,
-            "measureUnitId": 1,
-            "methodologyId": itemParent?.methodologyId || 1,
-            "subtotal": false,
-            "permanent": true
+            item: this.getNewItemID(itemParent),
+            itemName: "item new name" ,
+            itemDescription: "item new description",
+            subtotal: false,
+            permanent: true,
+            methodologyId: idMetodology,
+            measureUnitId: 1,
+            budgetItemTypeId: 1
           }
 
         return itemNew
@@ -273,6 +295,7 @@ export default class BudgetTemplateClass {
                             subtotal: currentItem.subtotal,
                             permanent: currentItem.permanent,
                             methodologyId: currentItem.methodologyId,
+                            budgetItemTypeId: currentItem.budgetItemTypeId,
                             measureUnitId: currentItem.measureUnitId
                           }
 
