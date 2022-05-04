@@ -18,7 +18,12 @@
       "privacy-on": "Private",
       "privacy-off": "Public",
       "privacy-text": "Privacy settings can be modified later."
-    }
+    },
+    "error-messages": {
+      "name-error": "Name is required.",
+      "language-error": "Language is required."
+    },
+    "success-message": "Project created successfully."
   },
   "open": {},
   "destroy": {

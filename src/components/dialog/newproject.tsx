@@ -17,7 +17,6 @@ import {
 import CustomDialog from "./custom";
 import { GetLanguages_languages } from "types";
 import { MouseEventHandler, useState } from "react";
-import { event } from "cypress/types/jquery";
 
 type NewProjectCalloutProps = {
   hideDialog: boolean;
@@ -37,13 +36,34 @@ export default function NewProjectDialog(props: NewProjectCalloutProps) {
   let [projectName, setProjectName] = useState('')
   let [projectLanguage, setProjectLanguage] = useState({key: 0, text: ''})
   const [projectPrivacy, { toggle: toggleProjectPrivacy }] = useBoolean(true);
+  let [errorMessages, setErrorMessages] = useState({name: '', language: ''})
 
   //SUBMIT DATA HANDLER-----------------------------------------------------------
   const handleAccpetButtonOnClick = (option: string) => {
-    toggleHideDialog();
-    alert(`Created project with: \n Methodology: ${methodology.id} \n Name: ${projectName} \n Language: ${projectLanguage.key} \n Privacy: ${projectPrivacy}`);
-    // CREATE PROJECT
-    //history.push(`/workplace/1`);
+    //Validation
+    let nameErrorMessage = ''
+    let languageErrorMessage = ''
+    let validated = true
+
+    if (!projectName){
+      nameErrorMessage = t("error-messages.name-error")
+      validated = false
+    }
+
+    if (projectLanguage.key === 0){
+      languageErrorMessage = t("error-messages.language-error")
+      validated = false
+    }
+
+    if (!validated){
+      setErrorMessages({name: nameErrorMessage, language: languageErrorMessage})
+    }
+    else{
+      toggleHideDialog();
+      alert(`${t("success-message")} \n ----------------- \n Metodology: ${methodology.id} \n Name: ${projectName} \n Language: ${projectLanguage.text} \n Privacy: ${projectPrivacy}`);
+      // CREATE PROJECT
+      //history.push(`/workplace/1`);
+    }
   };
 
   return (
@@ -60,6 +80,7 @@ export default function NewProjectDialog(props: NewProjectCalloutProps) {
                             setProjectName= {setProjectName} 
                             setProjectLanguage= {setProjectLanguage} 
                             toggleProjectPrivacy= {toggleProjectPrivacy}  
+                            errorMessages = {errorMessages}
                             />}
     />
   );
@@ -72,10 +93,11 @@ type NewProjectDialogBodyProps = {
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
   setProjectLanguage: React.Dispatch<React.SetStateAction<any>>
   toggleProjectPrivacy: MouseEventHandler<HTMLElement>;
+  errorMessages: { name: string; language: string; };
 };
 
 function NewProjectDialogBody(props: NewProjectDialogBodyProps) {
-  const { name, languages, projectPrivacy, setProjectName, setProjectLanguage, toggleProjectPrivacy } = props;
+  const { name, languages, projectPrivacy, setProjectName, setProjectLanguage, toggleProjectPrivacy, errorMessages } = props;
 
   //DATA HANDLER-----------------------------------------------------------
   const changeHandler_ProjectName = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
@@ -114,6 +136,7 @@ function NewProjectDialogBody(props: NewProjectDialogBodyProps) {
 
       <TextField
         required
+        errorMessage={errorMessages.name}
         label={t("name-label")}
         placeholder={t("name-placeholder")}
         onChange={changeHandler_ProjectName}
@@ -121,6 +144,7 @@ function NewProjectDialogBody(props: NewProjectDialogBodyProps) {
 
       <Dropdown
         required
+        errorMessage={errorMessages.language}
         label={t("language-label")}
         placeholder={t("language-placeholder")}
         options={languagesOptions}

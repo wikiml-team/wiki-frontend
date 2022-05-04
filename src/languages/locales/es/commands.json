@@ -18,7 +18,12 @@
       "privacy-on": "Privado",
       "privacy-off": "Público",
       "privacy-text": "Los ajustes de privacidad pueden ser modificados luego."
-    }
+    },
+    "error-messages": {
+      "name-error": "El nombre es obligatorio.",
+      "language-error": "El lenguaje es obligatorio."
+    },
+    "success-message": "Proyecto creado satisfactoriamente."
   },
   "open": {},
   "destroy": {
