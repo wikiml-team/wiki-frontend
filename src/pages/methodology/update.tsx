@@ -70,7 +70,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GET_MEASURER_UNIT } from "apollo/measurer-unit/query";
 import DropdownFieldInput from "components/inputs/dropdown";
 import { ADD_NEW_BUDGET_TEMPLATE, DELETE_BUDGET_TEMPLATE, GET_BUDGET_TEMPLATE, GET_BUDGET_TYPES, UPDATE_BUDGET_TEMPLATE } from "apollo/budget-template/query";
-import BudgetTemplateClass, { BudgetTemplateItem } from "models/budget_template";
+import BudgetTemplateClass, { BudgetItemType, BudgetTemplateItem } from "models/budget_template";
 import { array } from "yup/lib/locale";
 import { exec } from "child_process";
 import { any } from "cypress/types/bluebird";
@@ -314,6 +314,11 @@ export default function UpdateMethodology() {
 
       const NameRender = (item: BudgetTemplateItem) => {
         let [currenItem, setCurrentItem] = useState(item.itemName)
+        let formula = ""
+
+        if (item.formula){
+          formula = item.formula
+        }
 
         useEffect(() => {
           const timer = setTimeout(() => {
@@ -322,14 +327,16 @@ export default function UpdateMethodology() {
               item: item.item,
               itemName: currenItem,
               itemDescription: item.itemDescription,
-              subtotal: item.subtotal,
+              formula: formula,
               permanent: item.permanent,
               methodologyId: item.methodologyId,
-              measureUnitId: item.measureUnitId
+              measureUnitId: item.measureUnitId,
+              budgetItemTypeId: item.budgetItemTypeId
             }
 
             updateBudgetTemptale({
-              variables: { input: input }
+              variables: { input: input },
+              refetchQueries: [{ query: GET_BUDGET_TEMPLATE, variables: {"id": methodologyId}  }]
             })
 
           }, 1000)
@@ -386,6 +393,12 @@ export default function UpdateMethodology() {
       const DescriptionRender = (item: BudgetTemplateItem) => {
         let [currenItem, setCurrentItem] = useState(item.itemDescription)
 
+        let formula = ""
+
+        if (item.formula){
+          formula = item.formula
+        }
+
         useEffect(() => {
           const timer = setTimeout(() => {
             const input = {
@@ -393,14 +406,16 @@ export default function UpdateMethodology() {
               item: item.item,
               itemName: item.itemName,
               itemDescription: currenItem,
-              subtotal: item.subtotal,
+              formula: formula,
               permanent: item.permanent,
               methodologyId: item.methodologyId,
-              measureUnitId: item.measureUnitId
+              measureUnitId: item.measureUnitId,
+              budgetItemTypeId: item.budgetItemTypeId
             }
 
             updateBudgetTemptale({
-              variables: { input: input }
+              variables: { input: input },
+              refetchQueries: [{ query: GET_BUDGET_TEMPLATE, variables: {"id": methodologyId}  }]
             })
 
           }, 1000)
@@ -454,85 +469,193 @@ export default function UpdateMethodology() {
       };
 
       const MeasureRender = (item: BudgetTemplateItem) => {
-        if (measurerUnitList){
+        let formula = ""
+
+        if (item.formula){
+          formula = item.formula
+        }
+
+        let [currenItem, setCurrentItem] = useState(formula)
+
+        useEffect(() => {
+          const timer = setTimeout(() => {
+            const input = {
+              id: item.id,
+              item: item.item,
+              itemName: item.itemName,
+              itemDescription: item.itemDescription,
+              formula: currenItem,
+              permanent: item.permanent,
+              methodologyId: item.methodologyId,
+              measureUnitId: item.measureUnitId,
+              budgetItemTypeId: item.budgetItemTypeId
+            }
+
+            updateBudgetTemptale({
+              variables: { input: input },
+              refetchQueries: [{ query: GET_BUDGET_TEMPLATE, variables: {"id": methodologyId}  }]
+            })
+
+          }, 1000)
+
+          return () => clearTimeout(timer)
+        }, [currenItem])
+
+        const changeHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
+          newValue = event.currentTarget.value;
+              setCurrentItem(newValue)
+              return newValue
+          }
+
+            const textFieldProps: ITextFieldProps = {
+              rows: 1,
+              multiline: true,
+              resizable: true,
+              autoAdjustHeight: true,
+              defaultValue: "",
+              styles: {
+                root: {
+                  fontWeight: 500,
+                  width: '100%',
+                },
+                fieldGroup: {
+                  borderRadius: "0 0 2px 2px",
+                  border: `1px solid ${palette.neutralLighter}`,
+                  selectors: {
+                    ":hover": {
+                      border: `1px solid ${palette.neutralTertiary}`,
+                    },
+                  },
+                },
+              },
+            };
+        
+        if (item.budgetItemTypeId === 3){
+          return (
+            <Stack horizontal tokens={{ childrenGap: 4 }}>
+              <TextField placeholder={t(`${form}.formula-placeholder`)} {...textFieldProps} value={currenItem} onChange={changeHandler} />
+            </Stack>
+          )
+        }else{
+          if (measurerUnitList){
+            const handleChange = (event: any) => {
+              if (event.target.value !== '') {
+                let formula = ""
+
+                if (item.formula){
+                  formula = item.formula
+                }
+
+                const input = {
+                  id: item.id,
+                  item: item.item,
+                  itemName: item.itemName,
+                  itemDescription: item.itemDescription,
+                  formula: formula,
+                  permanent: item.permanent,
+                  methodologyId: item.methodologyId,
+                  measureUnitId: Number(event.target.value),
+                  budgetItemTypeId: item.budgetItemTypeId
+                }
+  
+                updateBudgetTemptale({
+                  variables: { input: input },
+                  refetchQueries: [{ query: GET_BUDGET_TEMPLATE, variables: {"id": methodologyId}  }]
+                })
+              }
+            }
+  
+            return (
+              <>
+              <select name="measureUnits" className={classes.select} onChange={handleChange}>
+                <option key='' value='' >seleccionar</option>
+                {measurerUnitList.map(( currentMeasureUnit: MeasureUnit ) => (
+                      <option key={currentMeasureUnit.id} value={currentMeasureUnit.id} selected={(Number(currentMeasureUnit.id) === Number(item.measureUnitId))? true : false} >
+                        {currentMeasureUnit.name}
+                      </option>
+                  ))
+                }
+              </select>
+              </>
+            );
+          }
+        }
+      };
+
+      const ItemTypeRender = (item: BudgetTemplateItem) => {
+        let formula = ""
+        let measureUnitId = item.measureUnitId
+
+        if (item.formula){
+          formula = item.formula
+        }
+
+        if (budgetTypeList){
           const handleChange = (event: any) => {
             if (event.target.value !== '') {
+              
+              if (Number(event.target.value) === Number(3)){
+                measureUnitId = 1
+              }
+
               const input = {
                 id: item.id,
                 item: item.item,
                 itemName: item.itemName,
                 itemDescription: item.itemDescription,
-                subtotal: item.subtotal,
+                formula: formula,
                 permanent: item.permanent,
                 methodologyId: item.methodologyId,
-                measureUnitId: Number(event.target.value)
+                measureUnitId: measureUnitId,
+                budgetItemTypeId: Number(event.target.value)
               }
 
               updateBudgetTemptale({
-                variables: { input: input }
+                variables: { input: input },
+                refetchQueries: [{ query: GET_BUDGET_TEMPLATE, variables: {"id": methodologyId}  }]
               })
             }
           }
           
           return (
-            <select name="measureUnits" className={classes.select} onChange={handleChange}>
+            <>
+            <select name="budgetTypeList" className={classes.select} onChange={handleChange}>
               <option key='' value='' >seleccionar</option>
-              {measurerUnitList.map(( currentMeasureUnit: MeasureUnit ) => (
-                    <option key={currentMeasureUnit.id} value={currentMeasureUnit.id} selected={(Number(currentMeasureUnit.id) === Number(item.measureUnitId))? true : false} >
-                      {currentMeasureUnit.name}
+              {budgetTypeList.map(( currentBudgetType: BudgetItemType ) => (
+                    <option key={currentBudgetType.id} value={currentBudgetType.id} selected={(Number(currentBudgetType.id) === Number(item.budgetItemTypeId))? true : false} >
+                      {currentBudgetType.name}
                     </option>
                 ))
               }
             </select>
+            </>
           );
         }
       };
 
-      const SubTotalRender = (item: BudgetTemplateItem) => {
-        function _onChange(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, isChecked?: boolean) {
-          const input  = {
-            id: item.id,
-            item: item.item,
-            itemName: item.itemName,
-            itemDescription: item.itemDescription,
-            subtotal: isChecked,
-            permanent: item.permanent,
-            methodologyId: item.methodologyId,
-            measureUnitId: item.measureUnitId
-         }
-
-          updateBudgetTemptale({
-            variables: { input: input }
-          })
-        }
-
-        return (
-          <div style={{marginLeft: 20}}>
-            {budgetTemplateClass.checkHasChild(item, items) > 1? 
-              <Checkbox onChange={_onChange} checked={item.subtotal} /> :
-              <TooltipHost content={t(`${form}.tooltip.subtotal`)}>
-                <Checkbox disabled />
-              </TooltipHost>
-            }
-          </div>
-        );
-      };
-
       const PermanentRender = (item: BudgetTemplateItem) => {
         function _onChange(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, isChecked?: boolean) {
+          let formula = ""
+
+          if (item.formula){
+            formula = item.formula
+          }
+          
           const input  = {
             id: item.id,
             item: item.item,
             itemName: item.itemName,
             itemDescription: item.itemDescription,
-            subtotal: item.subtotal,
+            formula: formula,
             permanent: isChecked,
             methodologyId: item.methodologyId,
-            measureUnitId: item.measureUnitId
+            measureUnitId: item.measureUnitId,
+            budgetItemTypeId: item.budgetItemTypeId
           }
 
           updateBudgetTemptale({
-            variables: { input: input }
+            variables: { input: input },
+            refetchQueries: [{ query: GET_BUDGET_TEMPLATE, variables: {"id": methodologyId}  }]
           })
         }
 
@@ -660,7 +783,7 @@ export default function UpdateMethodology() {
           ariaLabel: "itemDescription",
           data: "string",
           minWidth: 400,
-          maxWidth: 650,
+          maxWidth: 600,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -668,11 +791,25 @@ export default function UpdateMethodology() {
           onRender: (item: BudgetTemplateItem) => DescriptionRender(item),
         },
         {
+          key: "column5",
+          name: t(`${form}.detail-list.column-type-item`),  
+          fieldName: "itemType",
+          ariaLabel: "itemType",
+          data: "Number",
+          minWidth: 100,
+          maxWidth: 200,
+          flexGrow: 1,
+          isMultiline: true,
+          isResizable: true,
+          isRowHeader: true,
+          onRender: (item: BudgetTemplateItem) => ItemTypeRender(item),
+        },
+        {
           key: "column4",
           name: t(`${form}.detail-list.column-measure-unit`),
           fieldName: "measureUnitId",
           ariaLabel: "measureUnitId",
-          data: "Number",
+          data: "string",
           minWidth: 100,
           maxWidth: 200,
           flexGrow: 1,
@@ -681,20 +818,7 @@ export default function UpdateMethodology() {
           isRowHeader: true,
           onRender: (item: BudgetTemplateItem) => MeasureRender(item),
         },
-        {
-          key: "column5",
-          name: t(`${form}.detail-list.column-subtotal`),
-          fieldName: "subtotal",
-          ariaLabel: "subtotal",
-          data: "Boolean",
-          minWidth: 100,
-          maxWidth: 100,
-          flexGrow: 1,
-          isMultiline: true,
-          isResizable: true,
-          isRowHeader: true,
-          onRender: (item: BudgetTemplateItem) => SubTotalRender(item),
-        },
+        
         {
           key: "column6",
           name: t(`${form}.detail-list.column-permanent`),
@@ -716,7 +840,7 @@ export default function UpdateMethodology() {
           ariaLabel: "permanent",
           data: "string",
           minWidth: 100,
-          maxWidth: 120,
+          maxWidth: 100,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,

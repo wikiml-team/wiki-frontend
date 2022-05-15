@@ -11,10 +11,9 @@ export const GET_BUDGET_TEMPLATE = gql`
                 itemName
                 measureUnitId
                 methodologyId
-                subtotal
                 permanent
-                createdAt
-                updatedAt
+                budgetItemTypeId
+                formula
             }
         }
     }
@@ -23,20 +22,11 @@ export const GET_BUDGET_TEMPLATE = gql`
 
 //---- ADD_NEW_BUDGET_TEMPLATE--------------------------------------------------------------
 export const ADD_NEW_BUDGET_TEMPLATE = gql`
-    mutation CreateBudgetTemplatePayload($input: CreateBudgetTemplateInput!){
+    mutation createBudgetTemplate($input: CreateBudgetTemplateInput!){
         createBudgetTemplate(input: $input){
-        budgetTemplate{
-            id
-            item
-            itemDescription
-            itemName
-            measureUnitId
-            methodologyId
-            subtotal
-            permanent
-            createdAt
-            updatedAt
-        }
+            budgetTemplate{
+                item
+            }
         }
     }
 `;
@@ -45,17 +35,15 @@ export const ADD_NEW_BUDGET_TEMPLATE = gql`
 export const DELETE_BUDGET_TEMPLATE = gql`
     mutation deleteBudgetTemplate ($input: DeleteBudgetTemplateInput!){
         deleteBudgetTemplate(input: $input){
-            budgetTemplate{
+            budgetTemplates {
                 id
                 item
                 itemDescription
                 itemName
                 measureUnitId
                 methodologyId
-                subtotal
                 permanent
-                createdAt
-                updatedAt
+                budgetItemTypeId
             }
         }
     }
@@ -65,17 +53,17 @@ export const DELETE_BUDGET_TEMPLATE = gql`
 export const UPDATE_BUDGET_TEMPLATE = gql`
     mutation updateBudgetTemplate($input: UpdateBudgetTemplateInput!){
         updateBudgetTemplate(input: $input){
-        budgetTemplate{
+            budgetTemplate {
                 id
                 item
                 itemDescription
                 itemName
                 measureUnitId
                 methodologyId
-                subtotal
                 permanent
                 createdAt
                 updatedAt
+      			formula
             }
         }
     }

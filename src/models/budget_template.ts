@@ -22,16 +22,14 @@ export interface Methodology {
 export interface BudgetTemplateItem {
     __typename?: "budgetTemplates",
     id?: number, 
-    item?: string,
-    itemDescription?: string,
-    itemName?: string,
-    measureUnitId: number, 
-    methodologyId: number, 
+    item: string,
+    itemName: string,
+    itemDescription: string,
+    formula: string,
+    permanent: boolean,
+    measureUnitId: number,
     budgetItemTypeId: number,
-    subtotal?: boolean,
-    permanent?: boolean,
-    createdAt?: Date, 
-    updatedAt?: Date,
+    methodologyId: number
 }
 
 export default class BudgetTemplateClass {
@@ -44,17 +42,15 @@ export default class BudgetTemplateClass {
         this.orderedList = [];
         this.BudgetTemplate = {
             __typename: "budgetTemplates",
-            id: 0,
-            item: '',
-            itemDescription: '',
-            itemName: '',
+            id: 0, 
+            item: "",
+            itemName: "",
+            itemDescription: "",
+            formula: "",
+            permanent: true,
             measureUnitId: 0,
-            methodologyId: 0,
             budgetItemTypeId: 0,
-            subtotal: false,
-            permanent: false,
-            createdAt: new Date(),
-            updatedAt: new Date(), 
+            methodologyId: 0
         }
     }
 
@@ -65,7 +61,7 @@ export default class BudgetTemplateClass {
             item: this.getNewItemID(itemParent),
             itemName: "item new name" ,
             itemDescription: "item new description",
-            subtotal: false,
+            formula: "",
             permanent: true,
             methodologyId: idMetodology,
             measureUnitId: 1,
@@ -292,7 +288,7 @@ export default class BudgetTemplateClass {
                             item: newItem,
                             itemName: currentItem.itemName,
                             itemDescription: currentItem.itemDescription,
-                            subtotal: currentItem.subtotal,
+                            formula: currentItem.formula,
                             permanent: currentItem.permanent,
                             methodologyId: currentItem.methodologyId,
                             budgetItemTypeId: currentItem.budgetItemTypeId,

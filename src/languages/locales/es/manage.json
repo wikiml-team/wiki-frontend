@@ -28,6 +28,7 @@
       "submit-button": "Add item",
       "operations": "Operations",
       "first-row-button": "First-level item",
+      "formula-placeholder": "Defina su formula",
       "prevent-delete-dialog":{
         "header": "Alert",
         "body": "Cannot delete a budget that has dependencies.",
@@ -38,7 +39,7 @@
         "column-name": "Name",
         "column-description": "Description",
         "column-measure-unit": "Measure Unit",
-        "column-subtotal": "Subtotal",
+        "column-type-item": "Item type",
         "column-permanent": "Permanent",
         "column-actions": "Actions"
       },
