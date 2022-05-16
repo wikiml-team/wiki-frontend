@@ -15,8 +15,11 @@ import {
 } from "@fluentui/react";
 
 import CustomDialog from "./custom";
-import { GetLanguages_languages } from "types";
+import { GetLanguages_languages, GetProjects, GetProjects_projects, GetMethodologyByName_methodology } from "types";
 import { MouseEventHandler, useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_NEW_PROJECT } from "apollo/projects/mutations";
+import { ProjectAddItem } from "models/project";
 
 type NewProjectCalloutProps = {
   hideDialog: boolean;
@@ -37,6 +40,10 @@ export default function NewProjectDialog(props: NewProjectCalloutProps) {
   let [projectLanguage, setProjectLanguage] = useState({key: 0, text: ''})
   const [projectPrivacy, { toggle: toggleProjectPrivacy }] = useBoolean(true);
   let [errorMessages, setErrorMessages] = useState({name: '', language: ''})
+
+  //Mutations----------------------------------------------------------------
+  const [addNewProject, mutationAddNewProject] = useMutation(ADD_NEW_PROJECT)
+
 
   //SUBMIT DATA HANDLER-----------------------------------------------------------
   const handleAccpetButtonOnClick = (option: string) => {
@@ -60,7 +67,29 @@ export default function NewProjectDialog(props: NewProjectCalloutProps) {
     }
     else{
       toggleHideDialog();
-      alert(`${t("success-message")} \n ----------------- \n Metodology: ${methodology.id} \n Name: ${projectName} \n Language: ${projectLanguage.text} \n Privacy: ${projectPrivacy}`);
+      //Saving new project
+      let itemNew = {
+        shortName: projectName,
+        largeName: "largeName",
+        description: "description",
+        durationPlan: 1, 
+        solicitedBudget: 1,
+        public: projectPrivacy,
+        wikimlCode: "wikimlCode",
+        currencyCode: "ESP",
+        methodologyId: Number(methodology.id),
+        programId: 1,
+        sectorId: 1,
+        projectStatusId: 1,
+        languageId: projectLanguage.key
+      }
+
+      addNewProject({
+        variables: { input:  itemNew},
+        //refetchQueries: [{ query: GET_BUDGET_TEMPLATE, variables: {"id": methodologyId}  }]
+      })
+
+      //alert(`${t("success-message")} \n ----------------- \n Metodology: ${methodology.id} \n Name: ${projectName} \n Language: ${projectLanguage.text} \n Privacy: ${projectPrivacy}`);
       // CREATE PROJECT
       //history.push(`/workplace/1`);
     }

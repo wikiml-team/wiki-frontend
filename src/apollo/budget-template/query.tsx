@@ -35,15 +35,8 @@ export const ADD_NEW_BUDGET_TEMPLATE = gql`
 export const DELETE_BUDGET_TEMPLATE = gql`
     mutation deleteBudgetTemplate ($input: DeleteBudgetTemplateInput!){
         deleteBudgetTemplate(input: $input){
-            budgetTemplates {
+            budgetTemplate {
                 id
-                item
-                itemDescription
-                itemName
-                measureUnitId
-                methodologyId
-                permanent
-                budgetItemTypeId
             }
         }
     }

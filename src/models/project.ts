@@ -43,6 +43,22 @@ export default interface IProject {
   forms: Form[];
 }
 
+export interface ProjectAddItem {
+  shortName: string,
+  largeName: string,
+  description: string,
+  durationPlan: number,
+  solicitedBudget: number,
+  public: boolean,
+  wikimlCode: string,
+  currencyCode: string,
+  methodologyId: number,
+  programId: number,
+  sectorId: number,
+  projectStatusId: number,
+  languageId: number,
+}
+
 
 
 
