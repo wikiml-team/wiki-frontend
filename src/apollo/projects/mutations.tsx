@@ -10,3 +10,15 @@ export const ADD_NEW_PROJECT = gql`
     }
   }
 `;
+
+//---- UPDATE_PROJECT--------------------------------------------------------------
+export const UPDATE_PROJECT = gql`
+  mutation updateProject($inputProjectUpdate: UpdateProjectInput!){
+    updateProject(input: $inputProjectUpdate){
+        project {
+          id
+          largeName
+        }
+    }
+  }
+`;

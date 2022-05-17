@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { string, object, number, setLocale } from "yup";
 import { Field, FormikValues } from "formik";
 
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   GetPrograms,
   GetProjectById,
@@ -39,6 +39,7 @@ import DateFieldInput from "components/inputs/datepicker";
 import AutoSaveFormik from "components/form/autosaveform";
 import { GET_SECTORS } from "apollo/sectors";
 import { GET_PROGRAMS } from "apollo/programs";
+import { UPDATE_PROJECT } from "apollo/projects/mutations";
 
 type formValuesType = FormikValues | GetProjects_projects;
 
@@ -91,22 +92,6 @@ export default function GeneralForm() {
     finalDate: string().required(t("required")),
   });
 
-  useEffect(() => {
-    setLocale({
-      // use constant translation keys for messages without values
-      mixed: {
-        default: "field_invalid",
-      },
-      // use functions to generate an error object that includes the value from the schema
-      // string: {
-      //   default: "asi mismo",
-      // },
-      // number: {
-      //   default: "asimismo",
-      // },
-    });
-  }, [validationSchema]);
-
   const handleSubmit = (values: formValuesType, { setSubmitting }: any) => {
     alert(values);
   };
@@ -152,16 +137,151 @@ export default function GeneralForm() {
     alignContent: "start",
   };
 
-  // DATA
-  const { data, loading, error } = useQuery<
-    GetProjectById,
-    GetProjectByIdVariables
-  >(GET_PROJECT_BY_ID, {
+  //Loaded project state--------------------------------------------------------------------
+  let [projectShortName, setprojectShortName] = useState<string | null>()
+  let [projectLargeName, setprojectLargeName] = useState<string | null>()
+  let [projectDescription, setprojectDescription] = useState<string | null>()
+  let [projectDurationPlan, setprojectDurationPlan] = useState<number | null>()
+  let [projectSolicitedBudget, setprojectSolicitedBudget] = useState<number | null>()
+  let [projectPublic, setprojectPublic] = useState<boolean | null>()
+  let [projectWikimlCode, setprojectWikimlCode] = useState<string | null>()
+  let [projectCurrencyCode, setprojectCurrencyCode] = useState<string | null>()
+  let [projectMethodologyId, setprojectMethodologyId] = useState<number | null>()
+  let [projectProgramId, setprojectProgramId] = useState<number | null>()
+  let [projectSectorId, setprojectSectorId] = useState<number | null>()
+  let [projectStatusId, setProjectStatusId] = useState<number | null>()
+  let [projectLanguageId, setLanguageId] = useState<number | null>()
+
+  // DATA----------------------------------------------------------------------------------------------------------------------------
+  const { data, loading, error } = useQuery<GetProjectById, GetProjectByIdVariables>(GET_PROJECT_BY_ID, {
     variables: { id: projectId },
   });
 
   const sectorsResponse = useQuery<GetSectors>(GET_SECTORS);
   const programsResponse = useQuery<GetPrograms>(GET_PROGRAMS);
+
+  //Mutations------------------------------------------------------------------------------------------------------------------------
+  const [updateProject, mutationUpdateProject] = useMutation(UPDATE_PROJECT)
+
+  //Form validation------------------------------------------------------------------------------------------------------------------
+  let [errorMessages, setErrorMessages] = useState({shortName: '', largeName: '', description: ''})
+
+  //Handle data-----------------------------------------------------------------------------------------------------------------------
+  const changeShortNameHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
+    newValue = event.currentTarget.value;
+    setprojectShortName(newValue)
+    return newValue
+  }
+
+  const changeLargeNameHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
+    newValue = event.currentTarget.value;
+    setprojectLargeName(newValue)
+    return newValue
+  }
+
+  const changeDescriptionHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
+    newValue = event.currentTarget.value;
+    setprojectDescription(newValue)
+    return newValue
+  }
+
+  //Initial load of the data
+  useEffect(() => {
+    setLocale({
+      // use constant translation keys for messages without values
+      mixed: {
+        default: "field_invalid",
+      },
+      // use functions to generate an error object that includes the value from the schema
+      // string: {
+      //   default: "asi mismo",
+      // },
+      // number: {
+      //   default: "asimismo",
+      // },
+    });
+
+    if (data){
+        setprojectShortName(data.project!.shortName)
+        setprojectLargeName(data.project!.largeName)
+        setprojectDescription(data.project!.description)
+        setprojectDurationPlan(data.project!.durationPlan)
+        setprojectSolicitedBudget(data.project!.solicitedBudget)
+        setprojectPublic(data.project!.public)
+        setprojectWikimlCode(data.project!.wikimlCode)
+        setprojectCurrencyCode(data.project!.currencyCode)
+        setprojectMethodologyId(Number(data.project!.methodology.id))
+        setprojectProgramId(data.project!.programId)
+        setprojectSectorId(data.project!.sectorId)
+        setProjectStatusId(data.project!.projectStatusId)
+        setLanguageId(data.project!.languageId)
+      }
+  },[data]);
+
+  //Updating values of project
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      //Validating data--------------------------------------------
+      let formValidated = true
+      let shortNameError = ''
+      let shortLargeNameError = ''
+      let DescriptionError = ''
+
+      //ShortName
+      if (!projectShortName){  
+        shortNameError = 'Este campo es obligatorio'
+        formValidated = false
+      }
+      if (projectShortName && projectShortName?.length > 20 ){  
+        shortNameError = 'Exceso de caracteres'
+        formValidated = false
+      }
+
+      //LargeName
+      if (!projectLargeName){  
+        shortLargeNameError = 'Este campo es obligatorio'
+        formValidated = false
+      }
+
+      //Description
+      if (!projectDescription){  
+        DescriptionError = 'Este campo es obligatorio'
+        formValidated = false
+      }
+
+      setErrorMessages({
+        shortName: shortNameError, 
+        largeName: shortLargeNameError, 
+        description: DescriptionError
+      })
+      //End validations----------------------------------------------
+
+      if (data && formValidated){
+        let inputProjectUpdate = {
+          id: Number(data.project!.id),
+          shortName: projectShortName,
+          largeName: projectLargeName,
+          description: projectDescription,
+          durationPlan: projectDurationPlan,
+          solicitedBudget: projectSolicitedBudget,
+          public: projectPublic,
+          wikimlCode: projectWikimlCode,
+          currencyCode: projectCurrencyCode,
+          methodologyId: projectMethodologyId,
+          programId: projectProgramId,
+          sectorId: projectSectorId,
+          projectStatusId: projectStatusId,
+          languageId: projectLanguageId
+        }
+
+        updateProject({
+          variables: { inputProjectUpdate: inputProjectUpdate },
+        })
+      }
+
+    }, 1000)
+    return () => clearTimeout(timer)
+  },[projectShortName, projectLargeName, projectDescription]);
 
   if (!sectorsResponse.data || sectorsResponse.loading) {
     return (
@@ -237,7 +357,6 @@ export default function GeneralForm() {
   return (
     <AutoSaveFormik
       initialValues={initValues}
-      validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       <>
@@ -247,27 +366,33 @@ export default function GeneralForm() {
             <TextField
               required
               label={t("shortname.field")}
-              name="shortName"
               component={TextFieldInput}
               sizeLg={3}
+              value={projectShortName}
+              onChange={changeShortNameHandler}
+              errorMessage={errorMessages.shortName}
             />
 
             <TextField
               required
               label={t("largename.field")}
-              name="largeName"
               component={TextFieldInput}
               sizeLg={9}
+              value={projectLargeName}
+              onChange={changeLargeNameHandler}
+              errorMessage={errorMessages.largeName}
             />
           </Row>
           {/* Description */}
           <Row>
             <TextField
               label={t("description.field")}
-              name="description"
               component={TextFieldInput}
               {...multilineTextFieldProps}
               sizeLg={12}
+              value={projectDescription}
+              onChange={changeDescriptionHandler}
+              errorMessage={errorMessages.description}
             />
           </Row>
           <br />
