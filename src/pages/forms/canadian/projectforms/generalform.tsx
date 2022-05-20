@@ -40,6 +40,7 @@ import AutoSaveFormik from "components/form/autosaveform";
 import { GET_SECTORS } from "apollo/sectors";
 import { GET_PROGRAMS } from "apollo/programs";
 import { UPDATE_PROJECT } from "apollo/projects/mutations";
+import { GET_PROYECT_STAKEHOLDERS } from "apollo/stakeholders.tsx/projectstakeholder";
 
 type formValuesType = FormikValues | GetProjects_projects;
 
@@ -105,6 +106,13 @@ export default function GeneralForm() {
       minWidth: 40,
       fontSize: 16,
     },
+    select: {
+      height: 35,
+      backgroundColor: 'white',
+      width: 150,
+      minWidth: 40,
+      fontSize: 14,
+    },
   });
 
   const multilineTextFieldProps: ITextFieldProps = {
@@ -159,12 +167,17 @@ export default function GeneralForm() {
 
   const sectorsResponse = useQuery<GetSectors>(GET_SECTORS);
   const programsResponse = useQuery<GetPrograms>(GET_PROGRAMS);
+  const stakeholdersResponse = useQuery(GET_PROYECT_STAKEHOLDERS);
 
+  let countries: IDropdownOption[] = []
+  let currencies: IDropdownOption[] = []
+  const currencie = require('models/currency.json');
+  
   //Mutations------------------------------------------------------------------------------------------------------------------------
   const [updateProject, mutationUpdateProject] = useMutation(UPDATE_PROJECT)
 
   //Form validation------------------------------------------------------------------------------------------------------------------
-  let [errorMessages, setErrorMessages] = useState({shortName: '', largeName: '', description: ''})
+  let [errorMessages, setErrorMessages] = useState({shortName: '', largeName: '', description: '', durationPlan: ''})
 
   //Handle data-----------------------------------------------------------------------------------------------------------------------
   const changeShortNameHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
@@ -182,6 +195,26 @@ export default function GeneralForm() {
   const changeDescriptionHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
     newValue = event.currentTarget.value;
     setprojectDescription(newValue)
+    return newValue
+  }
+
+  const changeProgramHandler = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) => {
+    if (option?.key){
+      setprojectProgramId(Number(option?.key))
+    }
+    return option
+  }
+
+  const changeSectorHandler = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) => {
+    if (option?.key){
+      setprojectSectorId(Number(option?.key))
+    }
+    return option
+  }
+
+  const changeDurationHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
+    newValue = event.currentTarget.value;
+    setprojectDurationPlan(Number(newValue))
     return newValue
   }
 
@@ -226,6 +259,7 @@ export default function GeneralForm() {
       let shortNameError = ''
       let shortLargeNameError = ''
       let DescriptionError = ''
+      let DurationPlanError = ''
 
       //ShortName
       if (!projectShortName){  
@@ -249,10 +283,22 @@ export default function GeneralForm() {
         formValidated = false
       }
 
+      //DurationPlan
+      if (!projectDurationPlan){  
+        DurationPlanError = 'Este campo es obligatorio'
+        formValidated = false
+      }
+
+      if (projectDurationPlan && (projectDurationPlan > 999 || projectDurationPlan < 0)){
+        DurationPlanError = 'Solo puede colocar valores entre 0 y 999'
+        formValidated = false
+      }
+
       setErrorMessages({
         shortName: shortNameError, 
         largeName: shortLargeNameError, 
-        description: DescriptionError
+        description: DescriptionError,
+        durationPlan: DurationPlanError
       })
       //End validations----------------------------------------------
 
@@ -281,7 +327,7 @@ export default function GeneralForm() {
 
     }, 1000)
     return () => clearTimeout(timer)
-  },[projectShortName, projectLargeName, projectDescription]);
+  },[projectShortName, projectLargeName, projectDescription, projectProgramId, projectSectorId, projectDurationPlan]);
 
   if (!sectorsResponse.data || sectorsResponse.loading) {
     return (
@@ -303,22 +349,18 @@ export default function GeneralForm() {
     );
   }
 
+  if (!stakeholdersResponse.data || stakeholdersResponse.loading) {
+    return (
+      <QueryStateIndicator
+        data={stakeholdersResponse.data}
+        loading={stakeholdersResponse.loading}
+        error={stakeholdersResponse.error}
+      />
+    );
+  }
+
   if (!data || loading || error)
     return <QueryStateIndicator data={data} loading={loading} error={error} />;
-
-  const sectors = sectorsResponse.data?.sectors.map((s) => {
-    return {
-      key: s.id,
-      text: s.name,
-    };
-  });
-  const programs = programsResponse.data.programs.map((p) => {
-    return {
-      key: p.id,
-      text: p.name,
-    };
-  });
-  const countries: IDropdownOption[] = [];
 
   const initValues: formValuesType = {
     shortName: data.project!.shortName,
@@ -338,21 +380,66 @@ export default function GeneralForm() {
     ultimateOutcome: data.project!.ultimateOutcome,
     wikimlCode: data.project!.wikimlCode,
     createdAt: data.project!.createdAt,
-
-    // country: data.project!.,
-    // impOrganization: data.project!.organization,
-    // intOrganization: data.project!.intermediary,
-    // budget: data.project!.budget,
-    // budgetPerItems: data.project!.budgetItems,
-    // budgetPerAct: data.project!.budgetAct,
-    // approvedBudget: data.project!.approvedBudget,
-    // budgetFinanced: data.project!.budgetFinanced,
-    // donor: data.project!.donor,
-    // approvedDate: data.project!.approvedDate,
-    // initialDate: data.project!.initialDate,
-    // finalDate: data.project!.finalDate,
-    // contribution: data.project!.contribution,
   };
+
+  let sectors = sectorsResponse.data?.sectors.map((s) => {
+    return {
+      key: s.id,
+      text: s.name,
+      isSelected: (Number(s.id) === Number(data.project!.sectorId))
+    };
+  });
+
+  let programs = programsResponse.data.programs.map((p) => {
+    return {
+      key: p.id,
+      text: p.name,
+      isSelected: (Number(p.id) === Number(data.project!.programId))
+    };
+  });
+
+  let stakeholders = stakeholdersResponse.data.projectStakeholders.map((p: any) => {
+    return {
+      key: p.stakeholder.id,
+      text: p.stakeholder.name,
+      isSelected: false
+    };
+  });
+
+  const getCountries = async () => {
+      try{
+          countries = []
+          const res = await fetch('https://restcountries.com/v3.1/all')
+          const data = await res.json()
+
+          data.map((currentCountry: any) => {
+            let item = {
+              key: currentCountry.cca3,
+              text: currentCountry.name.common,
+              isSelected: false
+            };
+            countries.push(item)
+          });
+          countries.sort((a,b) => (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0))
+      }catch(error){
+          console.log(error)
+      } 
+  } 
+  getCountries()
+
+  function getCurrencies(){
+    currencies = []
+    for (let i in currencie) { 
+      let item = {
+        key: currencie[i].code,
+        text: '(' + currencie[i].code + ') ' + currencie[i].name,
+        isSelected: false
+      };
+      currencies.push(item)
+    }
+    currencies.sort((a,b) => (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0))
+  }
+  getCurrencies()
 
   return (
     <AutoSaveFormik
@@ -426,37 +513,38 @@ export default function GeneralForm() {
                   options={countries}
                 />
                 <StandardField
-                  label={t("imporganization.field")}
+                  label={t("imporganization.field")}   //projectStakeholders: [ProjectStakeholder!]!
                   name="impOrganization"
                   component={DropdownFieldInput}
-                  options={countries}
+                  options={stakeholders}
                 />
                 <StandardField
-                  label={t("intorganization.field")}
+                  label={t("intorganization.field")}   //projectStakeholders: [ProjectStakeholder!]!
                   name="intOrganization"
                   component={DropdownFieldInput}
-                  options={countries}
+                  options={stakeholders}
                 />
               </Row>
 
               <Row>
                 <StandardField
-                  label={t("currency.field")}
+                  label={t("currency.field")}   
                   name="currency"
                   component={DropdownFieldInput}
+                  options={currencies}
                 />
                 <StandardField
                   label={t("program.field")}
-                  name="program"
                   component={DropdownFieldInput}
                   options={programs}
-                />
+                  onChange={changeProgramHandler}
+                  />
                 <Col sizeSm={2} sizeMd={6} sizeLg={3}>
                   <Field
                     label={t("sector.field")}
-                    name="sector"
                     component={DropdownFieldInput}
                     options={sectors}
+                    onChange={changeSectorHandler}
                   />
                 </Col>
                 {/* <StandardField
@@ -467,9 +555,12 @@ export default function GeneralForm() {
                 /> */}
                 <StandardField
                   label={t("duration.field")}
-                  name="duration"
+                  //name="duration"
                   component={TextFieldInput}
                   suffix={t("duration.suffix")}
+                  value={projectDurationPlan}
+                  onChange={changeDurationHandler}
+                  errorMessage={errorMessages.durationPlan}
                 />
               </Row>
 
@@ -481,23 +572,25 @@ export default function GeneralForm() {
                   prefix={t("budget.prefix")}
                 />
                 <StandardField
-                  label={t("calculated.field")}
+                  label={t("calculated.budgetitems-prefix")}
                   name="budgetPerItems"
                   component={TextFieldInput}
-                  prefix={t("calculated.budgetitems-prefix")}
+                  prefix={t("calculated.field")}
                   readOnly
                 />
                 <StandardField
-                  label={t("calculated.field")}
+                  label={t("calculated.budgetact-prefix")}
                   name="budgetPerAct"
                   component={TextFieldInput}
-                  prefix={t("calculated.budgetact-prefix")}
+                  prefix={t("calculated.field")}
                   readOnly
                 />
                 <StandardField
                   label={t("financed.field")}
                   name="budgetFinanced"
                   component={TextFieldInput}
+                  prefix={t("calculated.field")}
+                  readOnly
                 />
               </Row>
             </Col>
@@ -523,7 +616,7 @@ export default function GeneralForm() {
                   label={t("donor.field")}
                   name="donor"
                   component={DropdownFieldInput}
-                  options={countries}
+                  options={stakeholders}
                   sizeLg={6}
                 />
                 <StandardField

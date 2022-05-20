@@ -18,3 +18,15 @@ export const GET_STAKEHOLDERS_BY_PROJECTID = gql`
     }
   }
 `;
+
+export const GET_PROYECT_STAKEHOLDERS = gql`
+  query projectStakeholders{
+    projectStakeholders{
+      stakeholder{
+        id
+        name
+      }
+    }
+  }
+`;
+

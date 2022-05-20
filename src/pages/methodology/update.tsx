@@ -536,7 +536,8 @@ export default function UpdateMethodology() {
               <TextField placeholder={t(`${form}.formula-placeholder`)} {...textFieldProps} value={currenItem} onChange={changeHandler} />
             </Stack>
           )
-        }else{
+        }
+        if (item.budgetItemTypeId === 1){
           if (measurerUnitList){
             const handleChange = (event: any) => {
               if (event.target.value !== '') {
@@ -623,7 +624,7 @@ export default function UpdateMethodology() {
               <option key='' value='' >seleccionar</option>
               {budgetTypeList.map(( currentBudgetType: BudgetItemType ) => (
                     <option key={currentBudgetType.id} value={currentBudgetType.id} selected={(Number(currentBudgetType.id) === Number(item.budgetItemTypeId))? true : false} >
-                      {currentBudgetType.name}
+                      {currentBudgetType.name} - {currentBudgetType.id}
                     </option>
                 ))
               }
@@ -782,8 +783,8 @@ export default function UpdateMethodology() {
           fieldName: "itemDescription",
           ariaLabel: "itemDescription",
           data: "string",
-          minWidth: 400,
-          maxWidth: 600,
+          minWidth: 200,
+          maxWidth: 500,
           flexGrow: 1,
           isMultiline: true,
           isResizable: true,
@@ -796,7 +797,7 @@ export default function UpdateMethodology() {
           fieldName: "itemType",
           ariaLabel: "itemType",
           data: "Number",
-          minWidth: 100,
+          minWidth: 200,
           maxWidth: 200,
           flexGrow: 1,
           isMultiline: true,
@@ -810,7 +811,7 @@ export default function UpdateMethodology() {
           fieldName: "measureUnitId",
           ariaLabel: "measureUnitId",
           data: "string",
-          minWidth: 100,
+          minWidth: 200,
           maxWidth: 200,
           flexGrow: 1,
           isMultiline: true,
