@@ -18,7 +18,7 @@ type StaredProjectsProps = {
 };
 
 export default function StaredProjects(props: StaredProjectsProps) {
-  const { name, methodology, owner, createdAt } = props.project;
+  const { id, name, methodology, owner, createdAt } = props.project;
 
   // LOGIC
   const { t } = useTranslation("filemenu", { keyPrefix: "home" });
@@ -44,7 +44,8 @@ export default function StaredProjects(props: StaredProjectsProps) {
   };
 
   return (
-    <DocumentCard styles={cardStyles}>
+    <DocumentCard styles={cardStyles} >
+      <a href={`/workplace/${id}`}>
       <DocumentCardTitle title={name} styles={cardTitleStyles} />
       <DocumentCardTitle title={methodology} showAsSecondaryTitle />
 
@@ -52,6 +53,7 @@ export default function StaredProjects(props: StaredProjectsProps) {
         activity={`${t("starprojects-createdAt")} ${date}`}
         people={[{ name: owner, profileImageSrc: "" }]}
       />
+      </a>
       {/* <DocumentCardActions actions={actions} /> */}
     </DocumentCard>
   );
@@ -64,6 +66,7 @@ const GetCardActions = () => {
   const handleOnClick = () => {
     toggleIsFavorite();
     // update in database
+
   };
 
   const starIconProps = {

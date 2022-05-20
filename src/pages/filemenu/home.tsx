@@ -12,6 +12,7 @@ import StaredProjects from "components/cards/staredprojects";
 import { Subtitle, Title } from "components/styled/text";
 
 export interface IFeaturedProject {
+  id: number;
   name: string;
   methodology: string;
   owner: string;
@@ -84,6 +85,7 @@ const MapProjectToCard = (project: GetProjects_projects, t: Function) => {
   const methodology = project.methodology.name || "";
 
   return {
+    id: Number(project.id),
     name: project.shortName,
     methodology: t(methodology, methodology),
     owner: "owner",
