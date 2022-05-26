@@ -14,6 +14,9 @@ export const GET_PROJECT_BY_ID = gql`
       languageId
       programId
       projectStatusId
+      projectStatus {
+        name
+      }
       public
       sectorId
       currencyCode
@@ -37,3 +40,21 @@ export const GET_PROJECT_BY_ID = gql`
     }
   }
 `;
+
+export const GET_APPROVED_PROJECTS = gql`
+    query GET_APPROVED_PROJECTS {
+      approvedProjects {
+        id
+        approvedBudget
+        approvedDate
+        createdAt
+        donorAssignedCode
+        planFinalDate
+        planInitialDate
+        projectId
+        updatedAt
+      }
+    }
+`;
+
+

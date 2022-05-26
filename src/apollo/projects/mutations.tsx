@@ -22,3 +22,41 @@ export const UPDATE_PROJECT = gql`
     }
   }
 `;
+
+//---- UPDATE_PROJECT_APPROVED--------------------------------------------------------------
+export const UPDATE_PROJECT_APPROVED = gql`
+  mutation updateApprovedProject($inputUpdateApprovedProject: UpdateApprovedProjectInput!){
+    updateApprovedProject(input: $inputUpdateApprovedProject){
+        approvedProject{
+            id
+            approvedBudget
+            approvedDate
+            createdAt
+            donorAssignedCode
+            planFinalDate
+            planInitialDate
+            projectId
+            updatedAt
+        }
+    }
+  }
+`;
+
+//---- UPDATE_PROJECT_APPROVED--------------------------------------------------------------
+export const CREATE_PROJECT_APPROVED = gql`
+    mutation createApprovedProject($inputCreateApprovedProject: CreateApprovedProjectInput!){
+      createApprovedProject(input: $inputCreateApprovedProject){
+          approvedProject{
+              id
+              approvedBudget
+              approvedDate
+              createdAt
+              donorAssignedCode
+              planFinalDate
+              planInitialDate
+              projectId
+              updatedAt
+          }
+      }
+    }
+`;

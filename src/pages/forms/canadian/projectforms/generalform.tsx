@@ -14,7 +14,7 @@ import {
   GetProjects_projects,
   GetSectors,
 } from "types";
-import { GET_PROJECT_BY_ID } from "apollo/projects/project";
+import { GET_PROJECT_BY_ID, GET_APPROVED_PROJECTS } from "apollo/projects/project";
 import QueryStateIndicator from "apollo/indicator";
 
 import {
@@ -39,7 +39,7 @@ import DateFieldInput from "components/inputs/datepicker";
 import AutoSaveFormik from "components/form/autosaveform";
 import { GET_SECTORS } from "apollo/sectors";
 import { GET_PROGRAMS } from "apollo/programs";
-import { UPDATE_PROJECT } from "apollo/projects/mutations";
+import { CREATE_PROJECT_APPROVED, UPDATE_PROJECT, UPDATE_PROJECT_APPROVED } from "apollo/projects/mutations";
 import { GET_PROYECT_STAKEHOLDERS } from "apollo/stakeholders.tsx/projectstakeholder";
 
 type formValuesType = FormikValues | GetProjects_projects;
@@ -52,6 +52,7 @@ export default function GeneralForm() {
   const project = useSelector(selectProject);
   const generalInfo = project.info as IProjectInfo<ECanadianSector>;
 
+  /*
   const [initialDate, setInitialDate] = useState(
     generalInfo.initialDate as Date
   );
@@ -66,6 +67,7 @@ export default function GeneralForm() {
   const handleSelectApprovedDate = (date: Date) => {
     setApprovedDate(date);
   };
+  */
 
   const validationSchema = object().shape({
     shortName: string().max(20, t("shortname.error")).required(t("required")),
@@ -160,14 +162,22 @@ export default function GeneralForm() {
   let [projectStatusId, setProjectStatusId] = useState<number | null>()
   let [projectLanguageId, setLanguageId] = useState<number | null>()
 
+  let [projectApprovedId, setApprovedId] = useState<number | null>()
+  let [projectApprovedBudget, setApprovedBudget] = useState<number | null>()
+  let [projectApprovedDate, setApprovedDate] = useState<Date | null>() //
+  let [projectDonorAssignedCode, setDonorAssignedCode] = useState<string | null>()
+  let [projectPlanFinalDate, setPlanFinalDate] = useState<Date | null>() //
+  let [projectPlanInitialDate, setPlanInitialDate] = useState<Date | null>() //
+
   // DATA----------------------------------------------------------------------------------------------------------------------------
-  const { data, loading, error } = useQuery<GetProjectById, GetProjectByIdVariables>(GET_PROJECT_BY_ID, {
+  const { data, loading, error } = useQuery(GET_PROJECT_BY_ID, {
     variables: { id: projectId },
   });
 
   const sectorsResponse = useQuery<GetSectors>(GET_SECTORS);
   const programsResponse = useQuery<GetPrograms>(GET_PROGRAMS);
   const stakeholdersResponse = useQuery(GET_PROYECT_STAKEHOLDERS);
+  const approvedProjectsResponse = useQuery(GET_APPROVED_PROJECTS);
 
   let countries: IDropdownOption[] = []
   let currencies: IDropdownOption[] = []
@@ -175,6 +185,8 @@ export default function GeneralForm() {
   
   //Mutations------------------------------------------------------------------------------------------------------------------------
   const [updateProject, mutationUpdateProject] = useMutation(UPDATE_PROJECT)
+  const [updateProjectApproved, mutationUpdateProjectApproved] = useMutation(UPDATE_PROJECT_APPROVED)
+  const [createProjectApproved, mutationCreateProjectApproved] = useMutation(CREATE_PROJECT_APPROVED)
 
   //Form validation------------------------------------------------------------------------------------------------------------------
   let [errorMessages, setErrorMessages] = useState({shortName: '', largeName: '', description: '', durationPlan: ''})
@@ -218,6 +230,34 @@ export default function GeneralForm() {
     return newValue
   }
 
+  const changeCurrencyHandler = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) => {
+    if (option?.key){
+      setprojectCurrencyCode(String(option?.key))
+    }
+    return option
+  }
+
+  const changeSolicitedBudgetHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
+    newValue = event.currentTarget.value;
+    setprojectSolicitedBudget(Number(newValue))
+    return newValue
+  }
+
+  const changeApprovedDateHandler = (date: any) => {
+    setApprovedDate(date as Date)
+    return date
+  };
+
+  const changePlanFinalDateHandler = (date: any) => {
+    setPlanFinalDate(date as Date)
+    return date
+  };
+
+  const changePlanInitialDateHandler = (date: any) => {
+    setPlanInitialDate(date as Date)
+    return date
+  };
+
   //Initial load of the data
   useEffect(() => {
     setLocale({
@@ -248,8 +288,21 @@ export default function GeneralForm() {
         setprojectSectorId(data.project!.sectorId)
         setProjectStatusId(data.project!.projectStatusId)
         setLanguageId(data.project!.languageId)
-      }
-  },[data]);
+
+    if (approvedProjectsResponse.data){
+        approvedProjectsResponse.data.approvedProjects.map((current: any) => {
+          if (Number(current.projectId) === Number(data.project!.id)){
+            setApprovedId(Number(current.id))
+            setApprovedBudget(Number(current.approvedBudget))
+            setApprovedDate(new Date(current.approvedDate))
+            setDonorAssignedCode(current.donorAssignedCode)
+            setPlanFinalDate(new Date(current.planFinalDate))
+            setPlanInitialDate(new Date(current.planInitialDate))
+          }
+        });
+    }
+    }
+  },[data, approvedProjectsResponse.data]);
 
   //Updating values of project
   useEffect(() => {
@@ -325,9 +378,36 @@ export default function GeneralForm() {
         })
       }
 
+      if (data && projectApprovedId && formValidated){
+          let inputApprovedProjectUpdate = {
+            id: projectApprovedId,
+            donorAssignedCode: projectDonorAssignedCode,
+            approvedBudget: projectApprovedBudget,
+            approvedDate: projectApprovedDate as Date,
+            planInitialDate: projectPlanInitialDate as Date,
+            planFinalDate: projectPlanFinalDate as Date,
+            projectId: Number(data.project!.id)
+          }
+
+          updateProjectApproved({
+            variables: { inputUpdateApprovedProject: inputApprovedProjectUpdate },
+          })
+      }
+
     }, 1000)
     return () => clearTimeout(timer)
-  },[projectShortName, projectLargeName, projectDescription, projectProgramId, projectSectorId, projectDurationPlan]);
+  },[projectShortName, 
+    projectLargeName, 
+    projectDescription, 
+    projectProgramId, 
+    projectSectorId, 
+    projectDurationPlan, 
+    projectCurrencyCode, 
+    projectSolicitedBudget,
+    projectApprovedDate,
+    projectPlanFinalDate,
+    projectPlanInitialDate
+  ]);
 
   if (!sectorsResponse.data || sectorsResponse.loading) {
     return (
@@ -355,6 +435,16 @@ export default function GeneralForm() {
         data={stakeholdersResponse.data}
         loading={stakeholdersResponse.loading}
         error={stakeholdersResponse.error}
+      />
+    );
+  }
+
+  if (!approvedProjectsResponse.data || approvedProjectsResponse.loading) {
+    return (
+      <QueryStateIndicator
+        data={approvedProjectsResponse.data}
+        loading={approvedProjectsResponse.loading}
+        error={approvedProjectsResponse.error}
       />
     );
   }
@@ -433,7 +523,7 @@ export default function GeneralForm() {
       let item = {
         key: currencie[i].code,
         text: '(' + currencie[i].code + ') ' + currencie[i].name,
-        isSelected: false
+        isSelected: (String(currencie[i].code) === String(data?.project!.currencyCode))
       };
       currencies.push(item)
     }
@@ -496,20 +586,21 @@ export default function GeneralForm() {
               <Stack {...headerStackProps}>
                 <Stack.Item>
                   <Label>{t("status.field")}</Label>
-                  {t(`status.${generalInfo.status}`)}
+                  {/*/ {t(`status.${data.project.projectStatus.name}`)} */}
+                  {data.project.projectStatus.name}
                 </Stack.Item>
                 <Stack.Item>
                   <Label>{t("wikicode.field")}</Label>
-                  {generalInfo.wikicode}
+                  {projectWikimlCode}
                 </Stack.Item>
               </Stack>
               <br />
 
               <Row>
-                <StandardField
-                  label={t("country.field")}
+                <StandardField                          //aidRecipientCountries(id: ID!): AidRecipientCountry id = idProject "Pais seleccionado"
+                  label={t("country.field")}            //Update> mutaction createAidRecipientCountry
                   name="country"
-                  component={DropdownFieldInput}
+                  component={DropdownFieldInput}   
                   options={countries}
                 />
                 <StandardField
@@ -528,10 +619,11 @@ export default function GeneralForm() {
 
               <Row>
                 <StandardField
-                  label={t("currency.field")}   
+                  label={t("currency.field")}   //project.currencyCode
                   name="currency"
                   component={DropdownFieldInput}
                   options={currencies}
+                  onChange={changeCurrencyHandler}
                 />
                 <StandardField
                   label={t("program.field")}
@@ -566,10 +658,12 @@ export default function GeneralForm() {
 
               <Row>
                 <StandardField
-                  label={t("budget.field")}
-                  name="budget"
+                  label={t("budget.field")} //Project.solicitedBudget
+                  //name="budget"
                   component={TextFieldInput}
                   prefix={t("budget.prefix")}
+                  value={projectSolicitedBudget}
+                  onChange={changeSolicitedBudgetHandler}
                 />
                 <StandardField
                   label={t("calculated.budgetitems-prefix")}
@@ -606,7 +700,7 @@ export default function GeneralForm() {
               <Stack {...headerStackProps}>
                 <Stack.Item>
                   <Label>{t("donorcode.field")}</Label>
-                  {generalInfo.donorcode}
+                  {projectDonorAssignedCode}
                 </Stack.Item>
               </Stack>
               <br />
@@ -620,10 +714,11 @@ export default function GeneralForm() {
                   sizeLg={6}
                 />
                 <StandardField
-                  label={t("approvedate.field")}
-                  name="approveDate"
+                  label={t("approvedate.field")}  //ApprovedProject.approvedDate
+                  //name="approveDate"
                   component={DateFieldInput}
-                  onSelectDate={handleSelectApprovedDate}
+                  value={projectApprovedDate}
+                  onSelectDate={changeApprovedDateHandler}
                   sizeLg={6}
                 />
               </Row>
@@ -631,17 +726,20 @@ export default function GeneralForm() {
               <Row>
                 <StandardField
                   label={t("initialdate.field")}
-                  name="initialDate"
+                  //name="initialDate"                             //ApprovedProject.planInitialDate
                   component={DateFieldInput}
-                  minDate={approvedDate}
-                  onSelectDate={handleSelectInitialDate}
+                  value={projectPlanInitialDate}
+                  minDate={projectApprovedDate}
+                  onSelectDate={changePlanInitialDateHandler}
                   sizeLg={6}
                 />
                 <StandardField
-                  label={t("finaldate.field")}
-                  name="finalDate"
+                  label={t("finaldate.field")}      //ApprovedProject.planFinallDate
+                  //name="finalDate"
                   component={DateFieldInput}
-                  minDate={initialDate}
+                  value={projectPlanFinalDate}
+                  minDate={projectPlanInitialDate}
+                  onSelectDate={changePlanFinalDateHandler}
                   sizeLg={6}
                 />
               </Row>
@@ -649,15 +747,15 @@ export default function GeneralForm() {
               <Row>
                 <StandardField
                   label={t("approvebudget.field")}
-                  name="approvedBudget"
+                  name="approvedBudget" //ApprovedProject.approvedBudget
                   component={TextFieldInput}
-                  options={countries}
+                  value={projectApprovedBudget}
                   suffix={generalInfo.currency}
                   sizeLg={6}
                 />
                 <StandardField
                   label={t("contribution.field")}
-                  name="contribution"
+                  name="contribution" //CoFunder.contribution
                   component={TextFieldInput}
                   sizeLg={6}
                 />
