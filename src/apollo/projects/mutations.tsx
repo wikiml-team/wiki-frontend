@@ -60,3 +60,17 @@ export const CREATE_PROJECT_APPROVED = gql`
       }
     }
 `;
+
+//---- UPDATE_PROJECT_APPROVED--------------------------------------------------------------
+export const UPDATE_AID_RECIPIENT_COUNTRY = gql`
+    mutation updateAidRecipientCountry($inputCreateAidRecipientCountry: UpdateAidRecipientCountryInput!){
+      updateAidRecipientCountry(input: $inputCreateAidRecipientCountry){
+          aidRecipientCountry {
+            id
+            countryCode
+            mainRecipientCountry
+            projectId
+          }
+      }
+    }
+`;

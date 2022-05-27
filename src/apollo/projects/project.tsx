@@ -57,4 +57,15 @@ export const GET_APPROVED_PROJECTS = gql`
     }
 `;
 
+export const GET_RECIPIENT_COUNTRY = gql`
+    query GET_RECIPIENT_COUNTRY ($idProject: ID!){
+      aidRecipientCountry(id: $idProject) {
+        id
+        countryCode
+        mainRecipientCountry
+        projectId
+      }
+    }
+`;
+
 

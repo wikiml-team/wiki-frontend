@@ -14,7 +14,7 @@ import {
   GetProjects_projects,
   GetSectors,
 } from "types";
-import { GET_PROJECT_BY_ID, GET_APPROVED_PROJECTS } from "apollo/projects/project";
+import { GET_PROJECT_BY_ID, GET_APPROVED_PROJECTS, GET_RECIPIENT_COUNTRY } from "apollo/projects/project";
 import QueryStateIndicator from "apollo/indicator";
 
 import {
@@ -39,7 +39,7 @@ import DateFieldInput from "components/inputs/datepicker";
 import AutoSaveFormik from "components/form/autosaveform";
 import { GET_SECTORS } from "apollo/sectors";
 import { GET_PROGRAMS } from "apollo/programs";
-import { CREATE_PROJECT_APPROVED, UPDATE_PROJECT, UPDATE_PROJECT_APPROVED } from "apollo/projects/mutations";
+import { CREATE_PROJECT_APPROVED, UPDATE_AID_RECIPIENT_COUNTRY, UPDATE_PROJECT, UPDATE_PROJECT_APPROVED } from "apollo/projects/mutations";
 import { GET_PROYECT_STAKEHOLDERS } from "apollo/stakeholders.tsx/projectstakeholder";
 
 type formValuesType = FormikValues | GetProjects_projects;
@@ -51,23 +51,6 @@ export default function GeneralForm() {
 
   const project = useSelector(selectProject);
   const generalInfo = project.info as IProjectInfo<ECanadianSector>;
-
-  /*
-  const [initialDate, setInitialDate] = useState(
-    generalInfo.initialDate as Date
-  );
-  const [approvedDate, setApprovedDate] = useState(
-    generalInfo.approvedDate as Date
-  );
-
-  const handleSelectInitialDate = (date: Date) => {
-    setInitialDate(date);
-  };
-
-  const handleSelectApprovedDate = (date: Date) => {
-    setApprovedDate(date);
-  };
-  */
 
   const validationSchema = object().shape({
     shortName: string().max(20, t("shortname.error")).required(t("required")),
@@ -164,14 +147,22 @@ export default function GeneralForm() {
 
   let [projectApprovedId, setApprovedId] = useState<number | null>()
   let [projectApprovedBudget, setApprovedBudget] = useState<number | null>()
-  let [projectApprovedDate, setApprovedDate] = useState<Date | null>() //
+  let [projectApprovedDate, setApprovedDate] = useState<Date | null>() 
   let [projectDonorAssignedCode, setDonorAssignedCode] = useState<string | null>()
-  let [projectPlanFinalDate, setPlanFinalDate] = useState<Date | null>() //
-  let [projectPlanInitialDate, setPlanInitialDate] = useState<Date | null>() //
+  let [projectPlanFinalDate, setPlanFinalDate] = useState<Date | null>() 
+  let [projectPlanInitialDate, setPlanInitialDate] = useState<Date | null>() 
+
+  let [projectPrincipalRecipientCountry, setPrincipalRecipientCountry] = useState<string | null>()
+  let [projectMainImplementerCountry, setMainImplementerCountry] = useState<string | null>()
+  let [projectMainIntermediaryCountry, setMainIntermediaryCountry] = useState<string | null>()
 
   // DATA----------------------------------------------------------------------------------------------------------------------------
   const { data, loading, error } = useQuery(GET_PROJECT_BY_ID, {
     variables: { id: projectId },
+  });
+  
+  const recipientCountryResponse = useQuery(GET_RECIPIENT_COUNTRY, {
+    variables: { idProject: projectId },
   });
 
   const sectorsResponse = useQuery<GetSectors>(GET_SECTORS);
@@ -182,11 +173,13 @@ export default function GeneralForm() {
   let countries: IDropdownOption[] = []
   let currencies: IDropdownOption[] = []
   const currencie = require('models/currency.json');
+  const countriesData = require('models/countries.json');
   
   //Mutations------------------------------------------------------------------------------------------------------------------------
   const [updateProject, mutationUpdateProject] = useMutation(UPDATE_PROJECT)
   const [updateProjectApproved, mutationUpdateProjectApproved] = useMutation(UPDATE_PROJECT_APPROVED)
   const [createProjectApproved, mutationCreateProjectApproved] = useMutation(CREATE_PROJECT_APPROVED)
+  const [updateAidRecipientCountry, mutationUpdateAidRecipientCountry] = useMutation(UPDATE_AID_RECIPIENT_COUNTRY)
 
   //Form validation------------------------------------------------------------------------------------------------------------------
   let [errorMessages, setErrorMessages] = useState({shortName: '', largeName: '', description: '', durationPlan: ''})
@@ -200,7 +193,7 @@ export default function GeneralForm() {
 
   const changeLargeNameHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
     newValue = event.currentTarget.value;
-    setprojectLargeName(newValue)
+    setprojectLargeName(String(newValue))
     return newValue
   }
 
@@ -233,6 +226,13 @@ export default function GeneralForm() {
   const changeCurrencyHandler = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) => {
     if (option?.key){
       setprojectCurrencyCode(String(option?.key))
+    }
+    return option
+  }
+
+  const changePrincipalRecipientCountryHandler = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) => {
+    if (option?.key){
+      setPrincipalRecipientCountry(String(option?.key))
     }
     return option
   }
@@ -288,6 +288,7 @@ export default function GeneralForm() {
         setprojectSectorId(data.project!.sectorId)
         setProjectStatusId(data.project!.projectStatusId)
         setLanguageId(data.project!.languageId)
+    }  
 
     if (approvedProjectsResponse.data){
         approvedProjectsResponse.data.approvedProjects.map((current: any) => {
@@ -301,8 +302,13 @@ export default function GeneralForm() {
           }
         });
     }
+
+    if (recipientCountryResponse.data){
+      if (recipientCountryResponse.data.aidRecipientCountry.countryCode){
+        setPrincipalRecipientCountry(String(recipientCountryResponse.data.aidRecipientCountry.countryCode))
+      }
     }
-  },[data, approvedProjectsResponse.data]);
+  },[data]);
 
   //Updating values of project
   useEffect(() => {
@@ -355,7 +361,7 @@ export default function GeneralForm() {
       })
       //End validations----------------------------------------------
 
-      if (data && formValidated){
+      if (data && approvedProjectsResponse.data && recipientCountryResponse.data && formValidated){
         let inputProjectUpdate = {
           id: Number(data.project!.id),
           shortName: projectShortName,
@@ -376,25 +382,35 @@ export default function GeneralForm() {
         updateProject({
           variables: { inputProjectUpdate: inputProjectUpdate },
         })
+      
+
+        let inputApprovedProjectUpdate = {
+          id: projectApprovedId,
+          donorAssignedCode: projectDonorAssignedCode,
+          approvedBudget: projectApprovedBudget,
+          approvedDate: projectApprovedDate as Date,
+          planInitialDate: projectPlanInitialDate as Date,
+          planFinalDate: projectPlanFinalDate as Date,
+          projectId: Number(data.project!.id)
+        }
+
+        updateProjectApproved({
+          variables: { inputUpdateApprovedProject: inputApprovedProjectUpdate },
+        })
+
+        let input = {
+          id: Number(recipientCountryResponse.data.aidRecipientCountry.id),
+          countryCode: projectPrincipalRecipientCountry,
+          mainRecipientCountry: recipientCountryResponse.data.aidRecipientCountry.mainRecipientCountry,
+          projectId: recipientCountryResponse.data.aidRecipientCountry.projectId
+        }
+
+        updateAidRecipientCountry({
+          variables: { inputCreateAidRecipientCountry: input },
+        })
       }
 
-      if (data && projectApprovedId && formValidated){
-          let inputApprovedProjectUpdate = {
-            id: projectApprovedId,
-            donorAssignedCode: projectDonorAssignedCode,
-            approvedBudget: projectApprovedBudget,
-            approvedDate: projectApprovedDate as Date,
-            planInitialDate: projectPlanInitialDate as Date,
-            planFinalDate: projectPlanFinalDate as Date,
-            projectId: Number(data.project!.id)
-          }
-
-          updateProjectApproved({
-            variables: { inputUpdateApprovedProject: inputApprovedProjectUpdate },
-          })
-      }
-
-    }, 1000)
+    }, 3000)
     return () => clearTimeout(timer)
   },[projectShortName, 
     projectLargeName, 
@@ -406,7 +422,8 @@ export default function GeneralForm() {
     projectSolicitedBudget,
     projectApprovedDate,
     projectPlanFinalDate,
-    projectPlanInitialDate
+    projectPlanInitialDate,
+    projectPrincipalRecipientCountry
   ]);
 
   if (!sectorsResponse.data || sectorsResponse.loading) {
@@ -445,6 +462,16 @@ export default function GeneralForm() {
         data={approvedProjectsResponse.data}
         loading={approvedProjectsResponse.loading}
         error={approvedProjectsResponse.error}
+      />
+    );
+  }
+
+  if (!recipientCountryResponse.data || recipientCountryResponse.loading) {
+    return (
+      <QueryStateIndicator
+        data={recipientCountryResponse.data}
+        loading={recipientCountryResponse.loading}
+        error={recipientCountryResponse.error}
       />
     );
   }
@@ -496,17 +523,14 @@ export default function GeneralForm() {
     };
   });
 
-  const getCountries = async () => {
+  function getCountries() {
       try{
           countries = []
-          const res = await fetch('https://restcountries.com/v3.1/all')
-          const data = await res.json()
-
-          data.map((currentCountry: any) => {
+          countriesData.map((currentCountry: any) => {
             let item = {
-              key: currentCountry.cca3,
+              key: currentCountry.cca2,
               text: currentCountry.name.common,
-              isSelected: false
+              isSelected: (String(currentCountry.cca2) === String(recipientCountryResponse.data.aidRecipientCountry.countryCode))
             };
             countries.push(item)
           });
@@ -602,6 +626,7 @@ export default function GeneralForm() {
                   name="country"
                   component={DropdownFieldInput}   
                   options={countries}
+                  onChange={changePrincipalRecipientCountryHandler}
                 />
                 <StandardField
                   label={t("imporganization.field")}   //projectStakeholders: [ProjectStakeholder!]!
