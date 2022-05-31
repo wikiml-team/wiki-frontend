@@ -68,4 +68,18 @@ export const GET_RECIPIENT_COUNTRY = gql`
     }
 `;
 
+export const GET_CO_FUNDER = gql`
+    query CoFunder {
+      coFunders {
+        contribution
+        currencyCode
+        projectStakeholder {
+          projectId
+          main
+          stakeholderCategoryId
+        }
+      }
+    }
+`;
+
 

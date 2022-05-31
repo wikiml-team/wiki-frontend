@@ -14,7 +14,7 @@ import {
   GetProjects_projects,
   GetSectors,
 } from "types";
-import { GET_PROJECT_BY_ID, GET_APPROVED_PROJECTS, GET_RECIPIENT_COUNTRY } from "apollo/projects/project";
+import { GET_PROJECT_BY_ID, GET_APPROVED_PROJECTS, GET_RECIPIENT_COUNTRY, GET_CO_FUNDER } from "apollo/projects/project";
 import QueryStateIndicator from "apollo/indicator";
 
 import {
@@ -52,31 +52,7 @@ export default function GeneralForm() {
   const project = useSelector(selectProject);
   const generalInfo = project.info as IProjectInfo<ECanadianSector>;
 
-  const validationSchema = object().shape({
-    shortName: string().max(20, t("shortname.error")).required(t("required")),
-    largeName: string()
-      .min(20, t("largename.error"))
-      .max(100, t("largename.error"))
-      .required(t("required")),
-    description: string(),
-    country: string().required(t("required")),
-    impOrganization: string().required(t("required")),
-    intOrganization: string().required(t("required")),
-    currency: string().required(t("required")),
-    budget: number().required(t("required")),
-    budgetPerItems: number().required(t("required")),
-    budgetPerAct: number().required(t("required")),
-    budgetFinanced: number().required(t("required")),
-    budgetSolicited: number().required(t("required")),
-    program: string().required(t("required")),
-    sector: string().required(t("required")),
-    duration: number().required(t("required")),
-    donor: string().required(t("required")),
-    approvedBudget: number().required(t("required")),
-    approvedDate: string().required(t("required")),
-    initialDate: string().required(t("required")),
-    finalDate: string().required(t("required")),
-  });
+  
 
   const handleSubmit = (values: formValuesType, { setSubmitting }: any) => {
     alert(values);
@@ -153,8 +129,8 @@ export default function GeneralForm() {
   let [projectPlanInitialDate, setPlanInitialDate] = useState<Date | null>() 
 
   let [projectPrincipalRecipientCountry, setPrincipalRecipientCountry] = useState<string | null>()
-  let [projectMainImplementerCountry, setMainImplementerCountry] = useState<string | null>()
-  let [projectMainIntermediaryCountry, setMainIntermediaryCountry] = useState<string | null>()
+  let [projectBudgetFinanced, setProjectBudgetFinanced] = useState<number | null>()
+  let [projectBudgetFinancedMainDonor, setProjectBudgetFinancedMainDonor] = useState<number | null>()
 
   // DATA----------------------------------------------------------------------------------------------------------------------------
   const { data, loading, error } = useQuery(GET_PROJECT_BY_ID, {
@@ -169,9 +145,14 @@ export default function GeneralForm() {
   const programsResponse = useQuery<GetPrograms>(GET_PROGRAMS);
   const stakeholdersResponse = useQuery(GET_PROYECT_STAKEHOLDERS);
   const approvedProjectsResponse = useQuery(GET_APPROVED_PROJECTS);
-
+  const coFundersResponse = useQuery(GET_CO_FUNDER);
+  
   let countries: IDropdownOption[] = []
   let currencies: IDropdownOption[] = []
+  let mainImplementer : IDropdownOption[] = []
+  let mainIntermediary : IDropdownOption[] = []
+  let mainDonor : IDropdownOption[] = []
+
   const currencie = require('models/currency.json');
   const countriesData = require('models/countries.json');
   
@@ -258,6 +239,12 @@ export default function GeneralForm() {
     return date
   };
 
+  const changeDonorAssignedCodeHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
+    newValue = event.currentTarget.value;
+    setDonorAssignedCode(String(newValue))
+    return newValue
+  }
+
   //Initial load of the data
   useEffect(() => {
     setLocale({
@@ -291,7 +278,7 @@ export default function GeneralForm() {
     }  
 
     if (approvedProjectsResponse.data){
-        approvedProjectsResponse.data.approvedProjects.map((current: any) => {
+      approvedProjectsResponse.data.approvedProjects.map((current: any) => {
           if (Number(current.projectId) === Number(data.project!.id)){
             setApprovedId(Number(current.id))
             setApprovedBudget(Number(current.approvedBudget))
@@ -308,6 +295,23 @@ export default function GeneralForm() {
         setPrincipalRecipientCountry(String(recipientCountryResponse.data.aidRecipientCountry.countryCode))
       }
     }
+
+    if (coFundersResponse.data){
+      let contribution = 0
+      let mainDonorContribution = 0
+
+      coFundersResponse.data.coFunders.map((p: any) => {
+        if (Number(p.projectStakeholder.projectId) === Number(data.project!.id)){
+          contribution += p.contribution
+          if (Number(p.projectStakeholder.stakeholderCategoryId) === 3 && p.projectStakeholder.main){
+            mainDonorContribution += p.contribution
+          }
+        }
+      });
+      setProjectBudgetFinanced(contribution) 
+      setProjectBudgetFinancedMainDonor(mainDonorContribution)
+    }
+    
   },[data]);
 
   //Updating values of project
@@ -423,7 +427,8 @@ export default function GeneralForm() {
     projectApprovedDate,
     projectPlanFinalDate,
     projectPlanInitialDate,
-    projectPrincipalRecipientCountry
+    projectPrincipalRecipientCountry,
+    projectDonorAssignedCode
   ]);
 
   if (!sectorsResponse.data || sectorsResponse.loading) {
@@ -476,6 +481,16 @@ export default function GeneralForm() {
     );
   }
 
+  if (!coFundersResponse.data || coFundersResponse.loading) {
+    return (
+      <QueryStateIndicator
+        data={coFundersResponse.data}
+        loading={coFundersResponse.loading}
+        error={coFundersResponse.error}
+      />
+    );
+  }
+
   if (!data || loading || error)
     return <QueryStateIndicator data={data} loading={loading} error={error} />;
 
@@ -514,6 +529,63 @@ export default function GeneralForm() {
       isSelected: (Number(p.id) === Number(data.project!.programId))
     };
   });
+
+  function getMainImplementer() {
+    try{
+        mainImplementer = []
+        stakeholdersResponse.data.projectStakeholders.map((p: any) => {
+          if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 1)){
+            let input :IDropdownOption<any> =  {
+              key: p.stakeholder.id,
+              text: p.stakeholder.name,
+              isSelected: p.main
+            };
+            mainImplementer.push(input)
+          }
+        });
+    }catch(error){
+        console.log(error)
+    } 
+  } 
+  getMainImplementer()
+
+  function getMainIntermediary() {
+    try{
+        mainIntermediary = []
+        stakeholdersResponse.data.projectStakeholders.map((p: any) => {
+          if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 2)){
+            let input :IDropdownOption<any> =  {
+              key: p.stakeholder.id,
+              text: p.stakeholder.name,
+              isSelected: p.main
+            };
+            mainIntermediary.push(input)
+          }
+        });
+    }catch(error){
+        console.log(error)
+    } 
+  }
+  getMainIntermediary()
+
+  function getMainDonor() {
+    try{
+        mainDonor = []
+        stakeholdersResponse.data.projectStakeholders.map((p: any) => {
+          if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 3)){
+            let input :IDropdownOption<any> =  {
+              key: p.stakeholder.id,
+              text: p.stakeholder.name,
+              isSelected: p.main
+            };
+            mainDonor.push(input)
+          }
+        });
+    }catch(error){
+        console.log(error)
+    } 
+  }
+  getMainDonor()
 
   let stakeholders = stakeholdersResponse.data.projectStakeholders.map((p: any) => {
     return {
@@ -560,7 +632,6 @@ export default function GeneralForm() {
       initialValues={initValues}
       onSubmit={handleSubmit}
     >
-      <>
         <Grid dir="ltr">
           {/* Names */}
           <Row>
@@ -628,17 +699,18 @@ export default function GeneralForm() {
                   options={countries}
                   onChange={changePrincipalRecipientCountryHandler}
                 />
+                
                 <StandardField
                   label={t("imporganization.field")}   //projectStakeholders: [ProjectStakeholder!]!
-                  name="impOrganization"
+                  //name="impOrganization"
                   component={DropdownFieldInput}
-                  options={stakeholders}
+                  options={mainImplementer}
                 />
                 <StandardField
                   label={t("intorganization.field")}   //projectStakeholders: [ProjectStakeholder!]!
                   name="intOrganization"
                   component={DropdownFieldInput}
-                  options={stakeholders}
+                  options={mainIntermediary}
                 />
               </Row>
 
@@ -709,6 +781,7 @@ export default function GeneralForm() {
                   name="budgetFinanced"
                   component={TextFieldInput}
                   prefix={t("calculated.field")}
+                  value={projectBudgetFinanced}
                   readOnly
                 />
               </Row>
@@ -726,29 +799,44 @@ export default function GeneralForm() {
                 <Stack.Item>
                   <Label>{t("donorcode.field")}</Label>
                   {projectDonorAssignedCode}
+
+                  
                 </Stack.Item>
               </Stack>
               <br />
 
               <Row>
+                
+              </Row>
+              <Row>
+              <StandardField
+                  label={t("donorcode.field")}
+                  component={TextFieldInput}
+                  value={projectDonorAssignedCode}
+                  onChange={changeDonorAssignedCodeHandler}
+                  sizeLg={6}
+                />
+
                 <StandardField
                   label={t("donor.field")}
                   name="donor"
                   component={DropdownFieldInput}
-                  options={stakeholders}
+                  options={mainDonor}
                   sizeLg={6}
                 />
-                <StandardField
+                
+              </Row>
+
+              <Row>
+              <StandardField
                   label={t("approvedate.field")}  //ApprovedProject.approvedDate
                   //name="approveDate"
                   component={DateFieldInput}
                   value={projectApprovedDate}
                   onSelectDate={changeApprovedDateHandler}
-                  sizeLg={6}
+                  sizeLg={4}
                 />
-              </Row>
 
-              <Row>
                 <StandardField
                   label={t("initialdate.field")}
                   //name="initialDate"                             //ApprovedProject.planInitialDate
@@ -756,7 +844,7 @@ export default function GeneralForm() {
                   value={projectPlanInitialDate}
                   minDate={projectApprovedDate}
                   onSelectDate={changePlanInitialDateHandler}
-                  sizeLg={6}
+                  sizeLg={4}
                 />
                 <StandardField
                   label={t("finaldate.field")}      //ApprovedProject.planFinallDate
@@ -765,7 +853,7 @@ export default function GeneralForm() {
                   value={projectPlanFinalDate}
                   minDate={projectPlanInitialDate}
                   onSelectDate={changePlanFinalDateHandler}
-                  sizeLg={6}
+                  sizeLg={4}
                 />
               </Row>
 
@@ -775,7 +863,7 @@ export default function GeneralForm() {
                   name="approvedBudget" //ApprovedProject.approvedBudget
                   component={TextFieldInput}
                   value={projectApprovedBudget}
-                  suffix={generalInfo.currency}
+                  //suffix={generalInfo.currency}
                   sizeLg={6}
                 />
                 <StandardField
@@ -783,12 +871,13 @@ export default function GeneralForm() {
                   name="contribution" //CoFunder.contribution
                   component={TextFieldInput}
                   sizeLg={6}
+                  value={projectBudgetFinancedMainDonor}
+                  readOnly
                 />
               </Row>
             </Col>
           </Row>
         </Grid>
-      </>
     </AutoSaveFormik>
   );
 }
