@@ -133,19 +133,19 @@ export default function GeneralForm() {
   let [projectBudgetFinancedMainDonor, setProjectBudgetFinancedMainDonor] = useState<number | null>()
 
   // DATA----------------------------------------------------------------------------------------------------------------------------
-  const { data, loading, error } = useQuery(GET_PROJECT_BY_ID, {
+  let { data, loading, error } = useQuery(GET_PROJECT_BY_ID, {
     variables: { id: projectId },
   });
   
-  const recipientCountryResponse = useQuery(GET_RECIPIENT_COUNTRY, {
+  let recipientCountryResponse = useQuery(GET_RECIPIENT_COUNTRY, {
     variables: { idProject: projectId },
   });
 
-  const sectorsResponse = useQuery<GetSectors>(GET_SECTORS);
-  const programsResponse = useQuery<GetPrograms>(GET_PROGRAMS);
-  const stakeholdersResponse = useQuery(GET_PROYECT_STAKEHOLDERS);
-  const approvedProjectsResponse = useQuery(GET_APPROVED_PROJECTS);
-  const coFundersResponse = useQuery(GET_CO_FUNDER);
+  let sectorsResponse = useQuery<GetSectors>(GET_SECTORS);
+  let programsResponse = useQuery<GetPrograms>(GET_PROGRAMS);
+  let stakeholdersResponse = useQuery(GET_PROYECT_STAKEHOLDERS);
+  let approvedProjectsResponse = useQuery(GET_APPROVED_PROJECTS);
+  let coFundersResponse = useQuery(GET_CO_FUNDER);
   
   let countries: IDropdownOption[] = []
   let currencies: IDropdownOption[] = []
@@ -157,10 +157,17 @@ export default function GeneralForm() {
   const countriesData = require('models/countries.json');
   
   //Mutations------------------------------------------------------------------------------------------------------------------------
-  const [updateProject, mutationUpdateProject] = useMutation(UPDATE_PROJECT)
+  const [updateProject, mutationUpdateProject] = useMutation(UPDATE_PROJECT, {
+    refetchQueries: [{ query: GET_PROJECT_BY_ID, variables: { id: projectId } }]
+  })
+
   const [updateProjectApproved, mutationUpdateProjectApproved] = useMutation(UPDATE_PROJECT_APPROVED)
+
+  const [updateAidRecipientCountry, mutationUpdateAidRecipientCountry] = useMutation(UPDATE_AID_RECIPIENT_COUNTRY, {
+    refetchQueries: [{ query: GET_RECIPIENT_COUNTRY, variables: { idProject: projectId } }]
+  })
+
   const [createProjectApproved, mutationCreateProjectApproved] = useMutation(CREATE_PROJECT_APPROVED)
-  const [updateAidRecipientCountry, mutationUpdateAidRecipientCountry] = useMutation(UPDATE_AID_RECIPIENT_COUNTRY)
 
   //Form validation------------------------------------------------------------------------------------------------------------------
   let [errorMessages, setErrorMessages] = useState({shortName: '', largeName: '', description: '', durationPlan: ''})
@@ -277,7 +284,10 @@ export default function GeneralForm() {
         setLanguageId(data.project!.languageId)
     }  
 
-    if (approvedProjectsResponse.data){
+  },[data]);
+
+  useEffect(() => {
+    if (data && approvedProjectsResponse.data){
       approvedProjectsResponse.data.approvedProjects.map((current: any) => {
           if (Number(current.projectId) === Number(data.project!.id)){
             setApprovedId(Number(current.id))
@@ -291,9 +301,7 @@ export default function GeneralForm() {
     }
 
     if (recipientCountryResponse.data){
-      if (recipientCountryResponse.data.aidRecipientCountry.countryCode){
-        setPrincipalRecipientCountry(String(recipientCountryResponse.data.aidRecipientCountry.countryCode))
-      }
+      setPrincipalRecipientCountry(String(recipientCountryResponse.data.aidRecipientCountry.countryCode))
     }
 
     if (coFundersResponse.data){
@@ -312,7 +320,7 @@ export default function GeneralForm() {
       setProjectBudgetFinancedMainDonor(mainDonorContribution)
     }
     
-  },[data]);
+  },[approvedProjectsResponse, recipientCountryResponse, coFundersResponse]);
 
   //Updating values of project
   useEffect(() => {
@@ -365,7 +373,7 @@ export default function GeneralForm() {
       })
       //End validations----------------------------------------------
 
-      if (data && approvedProjectsResponse.data && recipientCountryResponse.data && formValidated){
+      if (data && approvedProjectsResponse.data && recipientCountryResponse.data && coFundersResponse.data && formValidated){
         let inputProjectUpdate = {
           id: Number(data.project!.id),
           shortName: projectShortName,
@@ -384,10 +392,26 @@ export default function GeneralForm() {
         }
 
         updateProject({
-          variables: { inputProjectUpdate: inputProjectUpdate },
+          variables: { inputProjectUpdate: inputProjectUpdate }
         })
-      
+      }
 
+    }, 3000) //1000 = 1 segundo
+    return () => clearTimeout(timer)
+  },[projectShortName, 
+    projectLargeName, 
+    projectDescription, 
+    projectProgramId, 
+    projectSectorId, 
+    projectDurationPlan, 
+    projectCurrencyCode, 
+    projectSolicitedBudget
+  ]);
+
+  //Updating ProjectApproved
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (data && approvedProjectsResponse.data && recipientCountryResponse.data && coFundersResponse.data){
         let inputApprovedProjectUpdate = {
           id: projectApprovedId,
           donorAssignedCode: projectDonorAssignedCode,
@@ -401,7 +425,21 @@ export default function GeneralForm() {
         updateProjectApproved({
           variables: { inputUpdateApprovedProject: inputApprovedProjectUpdate },
         })
+      }
 
+    }, 3000)
+    return () => clearTimeout(timer)
+  },[
+    projectApprovedDate,
+    projectPlanFinalDate,
+    projectPlanInitialDate,
+    projectDonorAssignedCode
+  ]);
+
+  //Updating AidRecipientCountry
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (data && approvedProjectsResponse.data && recipientCountryResponse.data && coFundersResponse.data){
         let input = {
           id: Number(recipientCountryResponse.data.aidRecipientCountry.id),
           countryCode: projectPrincipalRecipientCountry,
@@ -416,19 +454,8 @@ export default function GeneralForm() {
 
     }, 3000)
     return () => clearTimeout(timer)
-  },[projectShortName, 
-    projectLargeName, 
-    projectDescription, 
-    projectProgramId, 
-    projectSectorId, 
-    projectDurationPlan, 
-    projectCurrencyCode, 
-    projectSolicitedBudget,
-    projectApprovedDate,
-    projectPlanFinalDate,
-    projectPlanInitialDate,
-    projectPrincipalRecipientCountry,
-    projectDonorAssignedCode
+  },[
+    projectPrincipalRecipientCountry
   ]);
 
   if (!sectorsResponse.data || sectorsResponse.loading) {
@@ -534,7 +561,7 @@ export default function GeneralForm() {
     try{
         mainImplementer = []
         stakeholdersResponse.data.projectStakeholders.map((p: any) => {
-          if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 1)){
+          if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 1) && p.main){
             let input :IDropdownOption<any> =  {
               key: p.stakeholder.id,
               text: p.stakeholder.name,
@@ -553,7 +580,7 @@ export default function GeneralForm() {
     try{
         mainIntermediary = []
         stakeholdersResponse.data.projectStakeholders.map((p: any) => {
-          if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 2)){
+          if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 2) && p.main){
             let input :IDropdownOption<any> =  {
               key: p.stakeholder.id,
               text: p.stakeholder.name,
@@ -572,7 +599,7 @@ export default function GeneralForm() {
     try{
         mainDonor = []
         stakeholdersResponse.data.projectStakeholders.map((p: any) => {
-          if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 3)){
+          if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 4) && p.main){
             let input :IDropdownOption<any> =  {
               key: p.stakeholder.id,
               text: p.stakeholder.name,
