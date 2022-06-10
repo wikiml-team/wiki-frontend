@@ -149,9 +149,9 @@ export default function GeneralForm() {
   
   let countries: IDropdownOption[] = []
   let currencies: IDropdownOption[] = []
-  let mainImplementer : IDropdownOption[] = []
-  let mainIntermediary : IDropdownOption[] = []
-  let mainDonor : IDropdownOption[] = []
+  let mainImplementer = ''
+  let mainIntermediary = ''
+  let mainDonor = ''
 
   const currencie = require('models/currency.json');
   const countriesData = require('models/countries.json');
@@ -249,6 +249,12 @@ export default function GeneralForm() {
   const changeDonorAssignedCodeHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
     newValue = event.currentTarget.value;
     setDonorAssignedCode(String(newValue))
+    return newValue
+  }
+
+  const changeApprovedBudget = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
+    newValue = event.currentTarget.value;
+    setApprovedBudget(Number(newValue))
     return newValue
   }
 
@@ -433,7 +439,8 @@ export default function GeneralForm() {
     projectApprovedDate,
     projectPlanFinalDate,
     projectPlanInitialDate,
-    projectDonorAssignedCode
+    projectDonorAssignedCode,
+    projectApprovedBudget
   ]);
 
   //Updating AidRecipientCountry
@@ -559,15 +566,9 @@ export default function GeneralForm() {
 
   function getMainImplementer() {
     try{
-        mainImplementer = []
         stakeholdersResponse.data.projectStakeholders.map((p: any) => {
           if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 1) && p.main){
-            let input :IDropdownOption<any> =  {
-              key: p.stakeholder.id,
-              text: p.stakeholder.name,
-              isSelected: p.main
-            };
-            mainImplementer.push(input)
+            mainImplementer = p.stakeholder.name
           }
         });
     }catch(error){
@@ -578,15 +579,9 @@ export default function GeneralForm() {
 
   function getMainIntermediary() {
     try{
-        mainIntermediary = []
         stakeholdersResponse.data.projectStakeholders.map((p: any) => {
           if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 2) && p.main){
-            let input :IDropdownOption<any> =  {
-              key: p.stakeholder.id,
-              text: p.stakeholder.name,
-              isSelected: p.main
-            };
-            mainIntermediary.push(input)
+            mainIntermediary = p.stakeholder.name
           }
         });
     }catch(error){
@@ -597,15 +592,9 @@ export default function GeneralForm() {
 
   function getMainDonor() {
     try{
-        mainDonor = []
         stakeholdersResponse.data.projectStakeholders.map((p: any) => {
           if (Number(p.projectId) === Number(data.project!.id) && (Number(p.stakeholderCategoryId) === 4) && p.main){
-            let input :IDropdownOption<any> =  {
-              key: p.stakeholder.id,
-              text: p.stakeholder.name,
-              isSelected: p.main
-            };
-            mainDonor.push(input)
+            mainDonor = p.stakeholder.name
           }
         });
     }catch(error){
@@ -729,16 +718,32 @@ export default function GeneralForm() {
                 
                 <StandardField
                   label={t("imporganization.field")}   //projectStakeholders: [ProjectStakeholder!]!
+                  component={TextFieldInput}
+                  value={mainImplementer}
+                  readOnly
+                />
+                {/* 
+                <StandardField
+                  label={t("imporganization.field")}   //projectStakeholders: [ProjectStakeholder!]!
                   //name="impOrganization"
                   component={DropdownFieldInput}
                   options={mainImplementer}
                 />
+                */}
+                <StandardField
+                  label={t("intorganization.field")}   //projectStakeholders: [ProjectStakeholder!]!
+                  component={TextFieldInput}
+                  value={mainIntermediary}
+                  readOnly
+                />
+                {/* 
                 <StandardField
                   label={t("intorganization.field")}   //projectStakeholders: [ProjectStakeholder!]!
                   name="intOrganization"
                   component={DropdownFieldInput}
                   options={mainIntermediary}
                 />
+                */}
               </Row>
 
               <Row>
@@ -826,16 +831,12 @@ export default function GeneralForm() {
                 <Stack.Item>
                   <Label>{t("donorcode.field")}</Label>
                   {projectDonorAssignedCode}
-
-                  
                 </Stack.Item>
               </Stack>
               <br />
 
               <Row>
-                
-              </Row>
-              <Row>
+              {/* 
               <StandardField
                   label={t("donorcode.field")}
                   component={TextFieldInput}
@@ -843,27 +844,33 @@ export default function GeneralForm() {
                   onChange={changeDonorAssignedCodeHandler}
                   sizeLg={6}
                 />
-
-                <StandardField
+              */}
+              <StandardField
+                  label={t("donor.field")}
+                  component={TextFieldInput}
+                  value={mainDonor}
+                  sizeLg={6}
+                  readOnly
+                />
+              {/* 
+              <StandardField
                   label={t("donor.field")}
                   name="donor"
                   component={DropdownFieldInput}
                   options={mainDonor}
                   sizeLg={6}
                 />
-                
-              </Row>
-
-              <Row>
+              */}
               <StandardField
                   label={t("approvedate.field")}  //ApprovedProject.approvedDate
                   //name="approveDate"
                   component={DateFieldInput}
                   value={projectApprovedDate}
                   onSelectDate={changeApprovedDateHandler}
-                  sizeLg={4}
+                  sizeLg={6}
                 />
-
+                </Row>
+                <Row>
                 <StandardField
                   label={t("initialdate.field")}
                   //name="initialDate"                             //ApprovedProject.planInitialDate
@@ -871,8 +878,9 @@ export default function GeneralForm() {
                   value={projectPlanInitialDate}
                   minDate={projectApprovedDate}
                   onSelectDate={changePlanInitialDateHandler}
-                  sizeLg={4}
+                  sizeLg={6}
                 />
+                
                 <StandardField
                   label={t("finaldate.field")}      //ApprovedProject.planFinallDate
                   //name="finalDate"
@@ -880,10 +888,9 @@ export default function GeneralForm() {
                   value={projectPlanFinalDate}
                   minDate={projectPlanInitialDate}
                   onSelectDate={changePlanFinalDateHandler}
-                  sizeLg={4}
+                  sizeLg={6}
                 />
               </Row>
-
               <Row>
                 <StandardField
                   label={t("approvebudget.field")}
@@ -891,8 +898,10 @@ export default function GeneralForm() {
                   component={TextFieldInput}
                   value={projectApprovedBudget}
                   //suffix={generalInfo.currency}
+                  onChange={changeApprovedBudget}
                   sizeLg={6}
                 />
+                
                 <StandardField
                   label={t("contribution.field")}
                   name="contribution" //CoFunder.contribution
