@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 import { string, object, number, setLocale } from "yup";
 import { FormikValues } from "formik";
 
-import CurrencyList from "currency-list";
-import { countries as CountryList } from "countries-list";
+import CurrencyList from "models/currency.json";
+import CountryList from "models/countries.json";
 
 import { useQuery } from "@apollo/client";
 /*
@@ -49,7 +49,7 @@ import AutoSaveFormik from "components/form/autosaveform";
 import getCurrencyRegExp from "../../../../components/currencyregex";
 import { StandardField } from "components/inputs/standard";
 import { ErrorLabelRender } from "components/errorlabel";
-import { GET_STAKEHOLDERS_BY_PROJECTID } from "apollo/stakeholders.tsx/projectstakeholder";
+import { GET_STAKEHOLDERS_BY_PROJECTID } from "apollo/stakeholders/projectstakeholder";
 import { GetPrograms, GetProjectById, GetProjectByIdVariables, GetProjectById_project, GetSectors } from "types";
 
 type ProjectFormValues = {
@@ -116,7 +116,7 @@ export default function GeneralForm() {
 
   const lang = useSelector(selectLanguage);
   
-  const currencyList = Object.entries(CurrencyList.getAll(lang) || []);
+  const currencyList = Object.entries(CurrencyList || []);
   const countryList = Object.entries(CountryList || []);
 
   // states
@@ -342,7 +342,7 @@ export default function GeneralForm() {
 
   const countries: IDropdownOption[] = countryList.map((country) => {
     return {
-      key: country[0],
+      key: country[1].code,
       text: country[1].name,
     };
   });

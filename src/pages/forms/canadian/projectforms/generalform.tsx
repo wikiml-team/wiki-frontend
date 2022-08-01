@@ -40,7 +40,7 @@ import AutoSaveFormik from "components/form/autosaveform";
 import { GET_SECTORS } from "apollo/sectors";
 import { GET_PROGRAMS } from "apollo/programs";
 import { CREATE_PROJECT_APPROVED, UPDATE_AID_RECIPIENT_COUNTRY, UPDATE_PROJECT, UPDATE_PROJECT_APPROVED } from "apollo/projects/mutations";
-import { GET_PROYECT_STAKEHOLDERS } from "apollo/stakeholders.tsx/projectstakeholder";
+import { GET_PROYECT_STAKEHOLDERS } from "apollo/stakeholders/projectstakeholder";
 
 type formValuesType = FormikValues | GetProjects_projects;
 
@@ -616,9 +616,9 @@ export default function GeneralForm() {
           countries = []
           countriesData.map((currentCountry: any) => {
             let item = {
-              key: currentCountry.cca2,
-              text: currentCountry.name.common,
-              isSelected: (String(currentCountry.cca2) === String(recipientCountryResponse.data.aidRecipientCountry.countryCode))
+              key: currentCountry.code,
+              text: currentCountry.name,
+              isSelected: (String(currentCountry.code) === String(recipientCountryResponse.data.aidRecipientCountry.countryCode))
             };
             countries.push(item)
           });

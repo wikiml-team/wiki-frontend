@@ -1,6 +1,6 @@
 
 import { Dropdown, IDropdownOption, Stack } from "@fluentui/react";
-import { getEmojiFlag, getUnicode } from "countries-list";
+//import { getEmojiFlag, getUnicode } from "countries-list";
 import { toNumber } from "lodash";
 import React from "react";
 

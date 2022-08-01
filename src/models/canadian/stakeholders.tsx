@@ -4,6 +4,7 @@ import INodeInfo from 'models/nodeinfo';
 export enum CategoryName { "beneficiary", "intermediary", "implementer", "donor", "other" }
 
 export interface Category {
+    id: number, 
     name: CategoryName,
     minMain?: number,
     hasNoMain?: boolean

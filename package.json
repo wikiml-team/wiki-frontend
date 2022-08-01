@@ -42,7 +42,7 @@
     "react-remove-scroll-bar": "^2.2.0",
     "react-resize-panel": "^0.3.5",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "react-spring": "^9.2.3",
     "redux": "^4.0.5",
     "styled-components": "^5.2.3",
