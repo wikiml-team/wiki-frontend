@@ -48,8 +48,10 @@ export default function StakeholdersForm() {
   let countries: IDropdownOption[] = []
 
   //const [items, setItems] = useState(initialItems);
-  //const [items, setItems] = useState<IStakholderInfo[]>([]);
-  let items: IStakholderInfo[] = []
+  let [items, setItems] = useState<IStakholderInfo[]>([]);
+  let listItems: IStakholderInfo[] = []
+  
+  //let items: IStakholderInfo[] = []
 
   let options: IDropdownOption[] = []
   /*
@@ -121,6 +123,19 @@ export default function StakeholdersForm() {
 
   // Handlers
   const handleAddStakeholder = (item: IStakholderInfo) => {
+    const newSh = {
+      id: 0,
+      name: '',
+      category: item.category,
+      main: false,
+      orderInGroup: item.orderInGroup + 1,
+      hasSiblings: true
+    } 
+
+    //listItems.push(newSh)
+    setItems(listItems)
+    
+    
     /*setStakeholders(
       stakeholders.addStakeholder(item.orderInGroup, item.category)
     );
@@ -246,8 +261,6 @@ getCountries()
             onClick={openPanel}
           />
         </TooltipHost>
-
-        {item.id}
       </Stack>
     );
   };
@@ -357,7 +370,7 @@ getCountries()
   //Initial load of the data
   useEffect(() => {
     if (stakeholdersCategoriesResponse.data && projectStakeholdersResponse.data && stakeholdersResponse.data){
-      let index = 0;
+      let index = 1;
 
       //setting the stakeholders options 
       options.push(
@@ -371,7 +384,6 @@ getCountries()
 
       stakeholdersCategoriesResponse.data.stakeholderCategories.map((current: any) => {
         let count = 0
-
         //stakeholders of current category
         projectStakeholdersResponse.data.projectStakeholders.map((currentStakeholder: any) => {
           if (Number(currentStakeholder.stakeholderCategoryId) === Number(current.id) && Number(currentStakeholder.projectId) === Number(projectId)){
@@ -381,23 +393,22 @@ getCountries()
               category: current.id,
               main: currentStakeholder.main,
               orderInGroup: 1,
-              hasSiblings: count > 1
+              hasSiblings: count > 0
             }
-            items.push(stakholderInfo)
+            listItems.push(stakholderInfo)
+            //setItems([...items, stakholderInfo])
+            
             count++
           }
         })
-
         //Adding category to list
         groups.push({
           key: current.id, name: current.name, startIndex: index, count:count
         })
-
         index += 1;
       });
     }
-
-  });    
+  }); 
 
   if (!stakeholdersCategoriesResponse.data || stakeholdersCategoriesResponse.loading) {
     return (
@@ -427,16 +438,19 @@ getCountries()
         error={stakeholdersResponse.error}
       />
     );
-  }    
-
+  }   
+  
   return (
     <React.Fragment>
       <DetailsList
-        items={items}
+        items={listItems}
         columns={columns}
         groups={groups}
         selectionMode={SelectionMode.none}
         isHeaderVisible={true}
+        groupProps={{
+          showEmptyGroups: true,
+        }}
       />
 
       <Panel
@@ -446,10 +460,10 @@ getCountries()
         headerText={t("panel.header")}
         onDismiss={dismissPanel}
         isBlocking={false}
-        isFooterAtBottom={true}
-        onRenderFooterContent={onRenderFooterContent}
+        isFooterAtBottom={false}
+        //onRenderFooterContent={onRenderFooterContent}
       >
-        <AddStakehoderPanelContent />
+        <AddStakehoderPanelContent dismissPanel={dismissPanel} />
       </Panel>
     </React.Fragment>
   );

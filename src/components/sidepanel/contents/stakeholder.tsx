@@ -10,7 +10,9 @@ import {
     BaseButton,
     Button
 } from "@fluentui/react";
-import { useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { CREATE_STAKEHOLDER } from 'apollo/stakeholders/projectstakeholder';
 
 const countriesData = require('models/countries.json');
 
@@ -45,13 +47,21 @@ function getCountries() {
 } 
 getCountries()
 
+interface IProps {
+    dismissPanel: () => void;
+ }
 
-export function AddStakehoderPanelContent() {
+
+export function AddStakehoderPanelContent( props: IProps ) {
     const { t } = useTranslation("forms", { keyPrefix: "stakeholders.panel"});
 
     //Loaded state--------------------------------------------------------------------
     let [stakeholderName, setStakeholderName] = useState<string>()
     let [stakeholderCountry, setStakeholderCountry] = useState<string>()
+    let [stakeholderErrorMessage, setstakeholderErrorMessage] = useState<string>()
+
+    //Mutations-----------------------------------------------------------------------
+    const [createStakeholder, mutationCreateStakeholder] = useMutation(CREATE_STAKEHOLDER)
 
     //Handle data-----------------------------------------------------------------------------------------------------------------------
     const changeNameHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
@@ -72,8 +82,22 @@ export function AddStakehoderPanelContent() {
     }
 
     function saveStakeholder() {
-        alert('Name: ' + stakeholderName + ', country: ' + stakeholderCountry);
-      }
+        try{
+            let inputStakeholder = {
+                name: stakeholderName,
+                countryCode: stakeholderCountry
+            }
+            
+            createStakeholder({
+                variables: { inputCreateStakeholder: inputStakeholder },
+            })
+    
+            props.dismissPanel()
+        }catch(err){
+            setstakeholderErrorMessage('Ha ocurrido un error registrando el SH')
+        }
+        
+    }
 
     return (
         <Stack tokens={{ childrenGap: 16 }}>
@@ -86,6 +110,7 @@ export function AddStakehoderPanelContent() {
                 <TextField
                     label={t("name-label")}
                     value={stakeholderName}
+                    errorMessage={stakeholderErrorMessage}
                     onChange={changeNameHandler}
                 />
             </Stack.Item>
@@ -106,7 +131,7 @@ export function AddStakehoderPanelContent() {
                     Save
                 </PrimaryButton>
 
-                <DefaultButton >Cancel</DefaultButton>
+                <DefaultButton onClick={props.dismissPanel}>Cancel</DefaultButton>
             </Stack.Item>
             
 

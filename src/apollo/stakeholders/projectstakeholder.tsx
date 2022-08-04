@@ -79,3 +79,14 @@ export const GET_PROJECT_STAKEHOLDER = gql`
   }
 `;
 
+export const CREATE_STAKEHOLDER = gql`
+  mutation createStakeholder($inputCreateStakeholder: CreateStakeholderInput!){
+    createStakeholder(input: $inputCreateStakeholder){
+        stakeholder {
+          id
+          name
+        }
+    }
+  }
+`;
+
