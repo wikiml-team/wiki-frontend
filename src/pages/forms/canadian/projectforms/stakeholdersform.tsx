@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { IGroup } from '@fluentui/react';
+import { IDetailsGroupRenderProps, IGroup, ILabelStyles, TooltipHostBase } from '@fluentui/react';
 
 import {
   DefaultButton,
@@ -29,6 +29,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import QueryStateIndicator from "apollo/indicator";
 import { CREATE_PROJECT_STAKEHOLDER, GET_PROJECT_STAKEHOLDER, GET_PROYECT_STAKEHOLDERS, GET_STAKEHOLDERS, GET_STAKEHOLDERS_CATEGORIES } from "apollo/stakeholders/projectstakeholder";
 import { useParams } from "react-router-dom";
+import { flowRight } from "cypress/types/lodash";
 
 
 export default function StakeholdersForm() {
@@ -84,9 +85,6 @@ export default function StakeholdersForm() {
   //Mutations------------------------------------------------------------------------------------------------------------------------
   const [createProjectStakeholder, mutationCreateProjectStakeholder] = useMutation(CREATE_PROJECT_STAKEHOLDER)
 
-
-
-  
   const columns: IColumn[] = [
     {
       key: "column1",
@@ -135,7 +133,6 @@ export default function StakeholdersForm() {
     //listItems.push(newSh)
     setItems(listItems)
     
-    
     /*setStakeholders(
       stakeholders.addStakeholder(item.orderInGroup, item.category)
     );
@@ -146,7 +143,6 @@ export default function StakeholdersForm() {
       variables: { id: projectId },
     }); */
 
-    
   };
 
   const handleDeleteStakeholder = (item: IStakholderInfo) => {
@@ -188,6 +184,8 @@ export default function StakeholdersForm() {
     } 
 } 
 getCountries()
+
+
 
   function validateStakeholderProjectExist(idCategory: number, idStakeholder: number){
     let isIncluded = false
@@ -269,6 +267,7 @@ getCountries()
     const bossIconStyles: Partial<IButtonStyles> = {
       root: {
         height: 25,
+        cursor: 'auto'
       },
       rootHovered: {
         backgroundColor: palette.neutralLighter,
@@ -293,27 +292,28 @@ getCountries()
       },
     };
 
-    return item.main ? (
-      <TooltipHost
-        content={t(`tooltip.main-stakeholder-${item.category.name}`)}
-      >
-        <IconButton
-          iconProps={{ iconName: "PartyLeader" }}
-          styles={bossIconStyles}
-        />
-      </TooltipHost>
-    ) : (
-      <TooltipHost
-        content={t(`tooltip.change-main-stakeholder-${item.category.name}`)}
-      >
-        <IconButton
-          iconProps={{ iconName: "Contact" }}
-          styles={iconStyles}
-          onClick={() => handleChangeMainStakeholder(item)}
-        />
-      </TooltipHost>
-    );
-  };
+      return item.main ? (
+        <TooltipHost content={t(`tooltip.main-stakeholder-${item.category.name}`)} >
+          <IconButton
+            iconProps={{ iconName: "PartyLeader" }}
+            styles={bossIconStyles}
+          /> 
+        </TooltipHost>
+      ) : (
+        <TooltipHost content={t(`tooltip.change-main-stakeholder-${item.category.name}`)} >
+          <IconButton
+            iconProps={{ iconName: "Contact" }}
+            styles={iconStyles}
+            onClick={() => handleChangeMainStakeholder(item)}
+          />
+        </TooltipHost>
+      );
+  }
+
+    
+    
+    
+    
 
   const actionsRender = (item: IStakholderInfo) => {
     const commandStyles: Partial<IButtonStyles> = {
@@ -331,6 +331,7 @@ getCountries()
 
     return (
       <React.Fragment>
+        {/*   
         <TooltipHost content={t("tooltip.add-stakeholder")}>
           <IconButton
             iconProps={{ iconName: "Add" }}
@@ -338,7 +339,7 @@ getCountries()
             onClick={() => handleAddStakeholder(item)}
           />
         </TooltipHost>
-        {item.hasSiblings && (
+        */}
           <TooltipHost content={t("tooltip.delete-stakeholder")}>
             <IconButton
               iconProps={{ iconName: "Cancel" }}
@@ -346,7 +347,6 @@ getCountries()
               onClick={() => handleDeleteStakeholder(item)}
             />
           </TooltipHost>
-        )}
       </React.Fragment>
     );
   };
@@ -366,6 +366,62 @@ getCountries()
     ),
     [dismissPanel]
   );
+
+  const onRenderGroupHeader: IDetailsGroupRenderProps['onRenderHeader'] = props => {
+    const labelStyles: Partial<React.CSSProperties | undefined> = {
+      fontSize: 16,
+    };
+
+    const commandStyles: Partial<IButtonStyles> = {
+      root: {
+        height: 30,
+        float: 'right',
+        marginRight: 70
+      },
+      rootHovered: {
+        backgroundColor: palette.neutralLighter,
+      },
+      icon: {
+        fontSize: 13,
+        color: palette.black,
+      },
+    };
+
+    const bossIconStyles: Partial<IButtonStyles> = {
+      root: {
+        height: 25,
+      },
+      rootHovered: {
+        backgroundColor: palette.neutralLighter,
+      },
+      icon: {
+        fontSize: 15,
+        fontWeight: FontWeights.bold,
+        color: palette.black,
+      },
+    };
+
+    if (props) {
+      return (
+        <React.Fragment>
+          <label style = {labelStyles}> <b>{props.group!.name} ({props.group!.count})</b></label>
+          <TooltipHost /*content={t(`tooltip.main-stakeholder-${item.category.name}`)}*/ content={props.group!.data.category.description} >
+            <IconButton
+              iconProps={{ iconName: "SurveyQuestions" }}
+              styles={bossIconStyles}
+            />
+          </TooltipHost>
+          
+          <IconButton
+            iconProps={{ iconName: "Add" }}
+            styles={commandStyles}
+            //onClick={() => handleAddStakeholder(item)}
+          />
+        </React.Fragment>
+      );
+    }
+    return null;
+  };
 
   //Initial load of the data
   useEffect(() => {
@@ -403,7 +459,7 @@ getCountries()
         })
         //Adding category to list
         groups.push({
-          key: current.id, name: current.name, startIndex: index, count:count
+          key: current.id, name: current.name, startIndex: index, count:count, data: {category: current}
         })
         index += 1;
       });
@@ -450,6 +506,7 @@ getCountries()
         isHeaderVisible={true}
         groupProps={{
           showEmptyGroups: true,
+          onRenderHeader: onRenderGroupHeader
         }}
       />
 
