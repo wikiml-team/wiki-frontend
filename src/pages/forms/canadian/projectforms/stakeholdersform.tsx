@@ -48,29 +48,10 @@ export default function StakeholdersForm() {
 
   let countries: IDropdownOption[] = []
 
-  //const [items, setItems] = useState(initialItems);
   let [items, setItems] = useState<IStakholderInfo[]>([]);
   let listItems: IStakholderInfo[] = []
   
-  //let items: IStakholderInfo[] = []
-
   let options: IDropdownOption[] = []
-  /*
-  const options: IDropdownOption[] = [
-    { key: "0", text: "--None--" },
-    { key: "1", text: "Stakeholder1" },
-    { key: "2", text: "Stakeholder2" },
-    { key: "3", text: "Stakeholder3" },
-    { key: "4", text: "Stakeholder4" },
-    { key: "5", text: "Stakeholder5" },
-    { key: "6", text: "Stakeholder6" },
-    { key: "7", text: "Stakeholder7" },
-    { key: "8", text: "Stakeholder8" },
-    { key: "9", text: "Stakeholder9" },
-  ];
-  */
-
-  //const [stakeholders, setStakeholders] = useState(stakeholdersModel);
 
   const [panelIsOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
     useBoolean(false);
@@ -120,29 +101,35 @@ export default function StakeholdersForm() {
   ];
 
   // Handlers
-  const handleAddStakeholder = (item: IStakholderInfo) => {
-    const newSh = {
-      id: 0,
-      name: '',
-      category: item.category,
-      main: false,
-      orderInGroup: item.orderInGroup + 1,
-      hasSiblings: true
-    } 
+  const handleAddStakeholder = (item: number) => {
+    let projectStakeHolders: number[] = []
 
-    //listItems.push(newSh)
-    setItems(listItems)
-    
-    /*setStakeholders(
-      stakeholders.addStakeholder(item.orderInGroup, item.category)
-    );
-    //setItems(stakeholders.buidStakeholdersList());
-    groups = stakeholdersModel.buildStakeholdersGroups(t);*/
+    stakeholdersCategoriesResponse.data.stakeholderCategories.map((current: any) => {
+      if (Number(current.id) === Number(item)){
+        projectStakeholdersResponse.data.projectStakeholders.map((currentStakeholder: any) => {
+          if (Number(currentStakeholder.projectId) === Number(projectId) && Number(currentStakeholder.stakeholderCategoryId) === Number(current.id)){
+            projectStakeHolders.push(currentStakeholder.stakeholder.id)
+          }
+        })
+      }
+    });
 
-    /*let { data, loading, error } = useQuery(GET_PROJECT_STAKEHOLDER, {
-      variables: { id: projectId },
-    }); */
+    for (let i=0; i<stakeholdersResponse.data.stakeholders.length; i++){
+      if (!projectStakeHolders.includes(stakeholdersResponse.data.stakeholders[i].id)){
+        let inputStakeholder = {
+          main: false,
+          stakeholderCategoryId: Number(item),
+          projectId: Number(projectId),
+          stakeholderId: Number(stakeholdersResponse.data.stakeholders[i].id)
+        } 
 
+        createProjectStakeholder({
+          variables: { input: inputStakeholder },
+          refetchQueries: [{ query: GET_STAKEHOLDERS_CATEGORIES }, { query: GET_PROYECT_STAKEHOLDERS }, { query: GET_STAKEHOLDERS }]
+        })
+        break
+      }
+    }
   };
 
   const handleDeleteStakeholder = (item: IStakholderInfo) => {
@@ -182,28 +169,8 @@ export default function StakeholdersForm() {
     }catch(error){
         console.log(error)
     } 
-} 
-getCountries()
-
-
-
-  function validateStakeholderProjectExist(idCategory: number, idStakeholder: number){
-    let isIncluded = false
-    let listStakeholdersCategory: number[] = []
-    projectStakeholdersResponse.data.projectStakeholders.map((currentStakeholder: any) => {
-      if (Number(currentStakeholder.projectId) === Number(projectId) && Number(currentStakeholder.stakeholderCategoryId) === Number(idCategory)){
-        listStakeholdersCategory.push(currentStakeholder.stakeholder.id)
-      }
-    })
-
-    for (let i=0; i<listStakeholdersCategory.length; i++){
-      if (Number(listStakeholdersCategory[i]) === Number(idStakeholder)){
-        isIncluded = true
-        break
-      }
-    }
-    return isIncluded
-  }
+  } 
+  getCountries()
 
   // STYLES
   const { palette } = useTheme();
@@ -310,11 +277,6 @@ getCountries()
       );
   }
 
-    
-    
-    
-    
-
   const actionsRender = (item: IStakholderInfo) => {
     const commandStyles: Partial<IButtonStyles> = {
       root: {
@@ -405,7 +367,7 @@ getCountries()
       return (
         <React.Fragment>
           <label style = {labelStyles}> <b>{props.group!.name} ({props.group!.count})</b></label>
-          <TooltipHost /*content={t(`tooltip.main-stakeholder-${item.category.name}`)}*/ content={props.group!.data.category.description} >
+          <TooltipHost content={props.group!.data.category.description} >
             <IconButton
               iconProps={{ iconName: "SurveyQuestions" }}
               styles={bossIconStyles}
@@ -415,7 +377,7 @@ getCountries()
           <IconButton
             iconProps={{ iconName: "Add" }}
             styles={commandStyles}
-            //onClick={() => handleAddStakeholder(item)}
+            onClick={() => handleAddStakeholder(props.group!.data.category.id)}
           />
         </React.Fragment>
       );
@@ -427,7 +389,7 @@ getCountries()
   useEffect(() => {
     if (stakeholdersCategoriesResponse.data && projectStakeholdersResponse.data && stakeholdersResponse.data){
       let index = 1;
-
+  
       //setting the stakeholders options 
       options.push(
         { key: 0, text: '--None--', data: null }
@@ -437,12 +399,12 @@ getCountries()
           { key: currentStakeholder.id, text: currentStakeholder.name, data: null }
         )
       })
-
+  
       stakeholdersCategoriesResponse.data.stakeholderCategories.map((current: any) => {
         let count = 0
         //stakeholders of current category
         projectStakeholdersResponse.data.projectStakeholders.map((currentStakeholder: any) => {
-          if (Number(currentStakeholder.stakeholderCategoryId) === Number(current.id) && Number(currentStakeholder.projectId) === Number(projectId)){
+          if (Number(currentStakeholder.projectId) === Number(projectId) && Number(currentStakeholder.stakeholderCategoryId) === Number(current.id)){
             let stakholderInfo = {
               id: currentStakeholder.stakeholder.id,
               name: currentStakeholder.stakeholder.name,
@@ -453,7 +415,6 @@ getCountries()
             }
             listItems.push(stakholderInfo)
             //setItems([...items, stakholderInfo])
-            
             count++
           }
         })

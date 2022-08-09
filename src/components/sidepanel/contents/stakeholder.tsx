@@ -12,7 +12,7 @@ import {
 } from "@fluentui/react";
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_STAKEHOLDER } from 'apollo/stakeholders/projectstakeholder';
+import { CREATE_STAKEHOLDER, GET_PROYECT_STAKEHOLDERS, GET_STAKEHOLDERS, GET_STAKEHOLDERS_CATEGORIES } from 'apollo/stakeholders/projectstakeholder';
 
 const countriesData = require('models/countries.json');
 
@@ -90,6 +90,7 @@ export function AddStakehoderPanelContent( props: IProps ) {
             
             createStakeholder({
                 variables: { inputCreateStakeholder: inputStakeholder },
+                refetchQueries: [{ query: GET_STAKEHOLDERS_CATEGORIES }, { query: GET_PROYECT_STAKEHOLDERS }, { query: GET_STAKEHOLDERS }]
             })
     
             props.dismissPanel()

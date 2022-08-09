@@ -36,13 +36,23 @@ export const GET_PROYECT_STAKEHOLDERS = gql`
 `;
 
 export const GET_STAKEHOLDERS_CATEGORIES = gql`
-  query stakeholdersCategories{
+  query stakeholdersCategories {
     stakeholderCategories {
-      id 
+      id
       name
       description
+      projectStakeholders {
+        id
+        projectId
+        main
+        stakeholder {
+          id
+          name
+        }
+      }
       methodology {
         id
+        name
       }
     }
   }
