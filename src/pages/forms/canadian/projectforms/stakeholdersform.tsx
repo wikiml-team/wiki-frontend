@@ -27,7 +27,7 @@ import Stakeholders, { Category, IStakholderInfo } from "models/canadian/stakeho
 import { AddStakehoderPanelContent } from "components/sidepanel/contents/stakeholder";
 import { useMutation, useQuery } from "@apollo/client";
 import QueryStateIndicator from "apollo/indicator";
-import { CREATE_PROJECT_STAKEHOLDER, GET_PROJECT_STAKEHOLDER, GET_PROYECT_STAKEHOLDERS, GET_STAKEHOLDERS, GET_STAKEHOLDERS_CATEGORIES } from "apollo/stakeholders/projectstakeholder";
+import { CREATE_PROJECT_STAKEHOLDER, DELETE_PROJECT_STAKEHOLDER, GET_PROJECT_STAKEHOLDER, GET_PROYECT_STAKEHOLDERS, GET_STAKEHOLDERS, GET_STAKEHOLDERS_CATEGORIES } from "apollo/stakeholders/projectstakeholder";
 import { useParams } from "react-router-dom";
 import { flowRight } from "cypress/types/lodash";
 
@@ -63,8 +63,11 @@ export default function StakeholdersForm() {
   let getStakeholderResponse          = useQuery(GET_PROJECT_STAKEHOLDER);
   const countriesData                 = require('models/countries.json');
 
+  let [currentProjectStakeHolder, setCurrentProjectStakeHolder] = useState<IStakholderInfo>();
+
   //Mutations------------------------------------------------------------------------------------------------------------------------
   const [createProjectStakeholder, mutationCreateProjectStakeholder] = useMutation(CREATE_PROJECT_STAKEHOLDER)
+  const [deleteProjectStakeholder, mutationDeleteProjectStakeholder] = useMutation(DELETE_PROJECT_STAKEHOLDER)
 
   const columns: IColumn[] = [
     {
@@ -133,9 +136,14 @@ export default function StakeholdersForm() {
   };
 
   const handleDeleteStakeholder = (item: IStakholderInfo) => {
-    /*setStakeholders(stakeholders.deleteStakeholder(item.id));
-    //setItems(stakeholders.buidStakeholdersList());
-    groups = stakeholdersModel.buildStakeholdersGroups(t);*/
+    let inputStakeholder = {
+      id: item.idProjectStakeHolder
+    }
+
+    deleteProjectStakeholder({
+      variables: { inputDeleteProjectStakeholder: inputStakeholder },
+      refetchQueries: [{ query: GET_STAKEHOLDERS_CATEGORIES }, { query: GET_PROYECT_STAKEHOLDERS }, { query: GET_STAKEHOLDERS }]
+    })
   };
 
   const handleChangeMainStakeholder = (item: IStakholderInfo) => {
@@ -172,12 +180,17 @@ export default function StakeholdersForm() {
   } 
   getCountries()
 
+  const handleClick = (event: any, param: IStakholderInfo) => {
+    setCurrentProjectStakeHolder(param)
+    openPanel()
+  };
+
+
   // STYLES
   const { palette } = useTheme();
 
   const fieldRender = (item: IStakholderInfo) => {
     
-
     const dropdownStyles: Partial<IDropdownStyles> = {
       root: {
         width: "50%",
@@ -223,7 +236,7 @@ export default function StakeholdersForm() {
           <IconButton
             iconProps={{ iconName: "AddFriend" }}
             styles={commandStyles}
-            onClick={openPanel}
+            onClick={event => handleClick(event, item)}
           />
         </TooltipHost>
       </Stack>
@@ -406,6 +419,7 @@ export default function StakeholdersForm() {
         projectStakeholdersResponse.data.projectStakeholders.map((currentStakeholder: any) => {
           if (Number(currentStakeholder.projectId) === Number(projectId) && Number(currentStakeholder.stakeholderCategoryId) === Number(current.id)){
             let stakholderInfo = {
+              idProjectStakeHolder: currentStakeholder.id,
               id: currentStakeholder.stakeholder.id,
               name: currentStakeholder.stakeholder.name,
               category: current.id,
@@ -481,7 +495,7 @@ export default function StakeholdersForm() {
         isFooterAtBottom={false}
         //onRenderFooterContent={onRenderFooterContent}
       >
-        <AddStakehoderPanelContent dismissPanel={dismissPanel} />
+        <AddStakehoderPanelContent dismissPanel={dismissPanel} projectStakeholder={currentProjectStakeHolder} />
       </Panel>
     </React.Fragment>
   );

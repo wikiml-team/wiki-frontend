@@ -12,13 +12,13 @@ import {
 } from "@fluentui/react";
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_STAKEHOLDER, GET_PROYECT_STAKEHOLDERS, GET_STAKEHOLDERS, GET_STAKEHOLDERS_CATEGORIES } from 'apollo/stakeholders/projectstakeholder';
+import { CREATE_STAKEHOLDER, GET_PROYECT_STAKEHOLDERS, GET_STAKEHOLDERS, GET_STAKEHOLDERS_CATEGORIES, UPDATE_PROJECT_STAKEHOLDER } from 'apollo/stakeholders/projectstakeholder';
+import { IStakholderInfo } from 'models/canadian/stakeholders';
+import { useParams } from "react-router-dom";
 
 const countriesData = require('models/countries.json');
 
 let countries: IDropdownOption[] = []
-
-
 
 function getCountries() {
     try{
@@ -48,12 +48,14 @@ function getCountries() {
 getCountries()
 
 interface IProps {
-    dismissPanel: () => void;
+    dismissPanel: () => void,
+    projectStakeholder?: IStakholderInfo
  }
 
 
 export function AddStakehoderPanelContent( props: IProps ) {
     const { t } = useTranslation("forms", { keyPrefix: "stakeholders.panel"});
+    const { projectId } = useParams<any>();
 
     //Loaded state--------------------------------------------------------------------
     let [stakeholderName, setStakeholderName] = useState<string>()
@@ -62,6 +64,7 @@ export function AddStakehoderPanelContent( props: IProps ) {
 
     //Mutations-----------------------------------------------------------------------
     const [createStakeholder, mutationCreateStakeholder] = useMutation(CREATE_STAKEHOLDER)
+    const [updateProjectSH, mutationUpdateProjectSH] = useMutation(UPDATE_PROJECT_STAKEHOLDER)
 
     //Handle data-----------------------------------------------------------------------------------------------------------------------
     const changeNameHandler = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
@@ -87,12 +90,24 @@ export function AddStakehoderPanelContent( props: IProps ) {
                 name: stakeholderName,
                 countryCode: stakeholderCountry
             }
-            
+
             createStakeholder({
                 variables: { inputCreateStakeholder: inputStakeholder },
-                refetchQueries: [{ query: GET_STAKEHOLDERS_CATEGORIES }, { query: GET_PROYECT_STAKEHOLDERS }, { query: GET_STAKEHOLDERS }]
+            }).then((result) => {
+                let updateProjectStakeholder = {
+                    id: props.projectStakeholder?.idProjectStakeHolder,
+                    main: props.projectStakeholder?.main,
+                    stakeholderCategoryId: props.projectStakeholder?.category.id,
+                    projectId: Number(projectId),
+                    stakeholderId: Number(result.data.createStakeholder.stakeholder.id)
+                }
+
+                updateProjectSH({
+                    variables: { updateProjectStakeholder: updateProjectStakeholder },
+                    refetchQueries: [{ query: GET_STAKEHOLDERS_CATEGORIES }, { query: GET_PROYECT_STAKEHOLDERS }, { query: GET_STAKEHOLDERS }]
+                })
             })
-    
+
             props.dismissPanel()
         }catch(err){
             setstakeholderErrorMessage('Ha ocurrido un error registrando el SH')

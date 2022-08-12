@@ -167,6 +167,7 @@ export default class Stakeholders {
 }
 
 export interface IStakholderInfo extends INodeInfo {
+    idProjectStakeHolder: number;
     id: number;
     name: string;
     category: Category;

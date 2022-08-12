@@ -100,3 +100,23 @@ export const CREATE_STAKEHOLDER = gql`
   }
 `;
 
+export const DELETE_PROJECT_STAKEHOLDER = gql`
+  mutation deleteProjectStakeholder($inputDeleteProjectStakeholder:  DeleteProjectStakeholderInput!){
+    deleteProjectStakeholder(input: $inputDeleteProjectStakeholder){
+        projectStakeholder {
+          id
+        }
+    }
+  }
+`;
+
+export const UPDATE_PROJECT_STAKEHOLDER = gql`
+  mutation updateProjectStakeholder($updateProjectStakeholder: UpdateProjectStakeholderInput!){
+    updateProjectStakeholder(input: $updateProjectStakeholder){
+        projectStakeholder{
+          id
+        }
+    }
+  }
+`;
+
