@@ -133,6 +133,8 @@ export default function StakeholdersForm() {
         break
       }
     }
+
+    getDetail()
   };
 
   const handleDeleteStakeholder = (item: IStakholderInfo) => {
@@ -144,6 +146,8 @@ export default function StakeholdersForm() {
       variables: { inputDeleteProjectStakeholder: inputStakeholder },
       refetchQueries: [{ query: GET_STAKEHOLDERS_CATEGORIES }, { query: GET_PROYECT_STAKEHOLDERS }, { query: GET_STAKEHOLDERS }]
     })
+
+    getDetail()
   };
 
   const handleChangeMainStakeholder = (item: IStakholderInfo) => {
@@ -398,8 +402,7 @@ export default function StakeholdersForm() {
     return null;
   };
 
-  //Initial load of the data
-  useEffect(() => {
+  function getDetail(){
     if (stakeholdersCategoriesResponse.data && projectStakeholdersResponse.data && stakeholdersResponse.data){
       let index = 1;
   
@@ -439,6 +442,11 @@ export default function StakeholdersForm() {
         index += 1;
       });
     }
+  }
+
+  //Initial load of the data
+  useEffect(() => {
+    getDetail()
   }); 
 
   if (!stakeholdersCategoriesResponse.data || stakeholdersCategoriesResponse.loading) {
