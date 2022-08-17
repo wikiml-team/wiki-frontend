@@ -27,7 +27,7 @@ import Stakeholders, { Category, IStakholderInfo } from "models/canadian/stakeho
 import { AddStakehoderPanelContent } from "components/sidepanel/contents/stakeholder";
 import { useMutation, useQuery } from "@apollo/client";
 import QueryStateIndicator from "apollo/indicator";
-import { CREATE_PROJECT_STAKEHOLDER, DELETE_PROJECT_STAKEHOLDER, GET_PROJECT_STAKEHOLDER, GET_PROYECT_STAKEHOLDERS, GET_STAKEHOLDERS, GET_STAKEHOLDERS_CATEGORIES } from "apollo/stakeholders/projectstakeholder";
+import { CREATE_PROJECT_STAKEHOLDER, DELETE_PROJECT_STAKEHOLDER, GET_PROJECT_STAKEHOLDER, GET_PROYECT_STAKEHOLDERS, GET_STAKEHOLDERS, GET_STAKEHOLDERS_CATEGORIES, UPDATE_PROJECT_STAKEHOLDER } from "apollo/stakeholders/projectstakeholder";
 import { useParams } from "react-router-dom";
 import { flowRight } from "cypress/types/lodash";
 
@@ -67,6 +67,7 @@ export default function StakeholdersForm() {
 
   //Mutations------------------------------------------------------------------------------------------------------------------------
   const [createProjectStakeholder, mutationCreateProjectStakeholder] = useMutation(CREATE_PROJECT_STAKEHOLDER)
+  const [updateProjectStakeholder, mutationUpdateProjectStakeholder] = useMutation(UPDATE_PROJECT_STAKEHOLDER)
   const [deleteProjectStakeholder, mutationDeleteProjectStakeholder] = useMutation(DELETE_PROJECT_STAKEHOLDER)
 
   const columns: IColumn[] = [
@@ -151,17 +152,55 @@ export default function StakeholdersForm() {
   };
 
   const handleChangeMainStakeholder = (item: IStakholderInfo) => {
-    /*if (!item.category.hasNoMain) {
-      setStakeholders(stakeholders.setMainStakeholder(item.id));
+    projectStakeholdersResponse.data.projectStakeholders.map((currentStakeholder: any) => {
+      if (Number(currentStakeholder.projectId) === Number(projectId) && Number(currentStakeholder.stakeholderCategoryId) === Number(item.category)){
+        if (Number(item.idProjectStakeHolder) === Number(currentStakeholder.id)){
+          let currentProjectStakeholderMain = {
+            id: Number(item.idProjectStakeHolder),
+            main: true,
+            stakeholderCategoryId: Number(item.category),
+            projectId: Number(projectId),
+            stakeholderId: Number(item.id)
+          }
 
-      //setItems(stakeholders.buidStakeholdersList());
-      groups = stakeholdersModel.buildStakeholdersGroups(t);
-    }*/
+          updateProjectStakeholder({
+            variables: { updateProjectStakeholder: currentProjectStakeholderMain },
+            refetchQueries: [{ query: GET_STAKEHOLDERS_CATEGORIES }, { query: GET_PROYECT_STAKEHOLDERS }, { query: GET_STAKEHOLDERS }]
+          })
+        }
+      }
+    })
   };
 
   const changeStakeHolder = (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) => {
     if (option?.key){
-      alert(String(option?.key))
+      let projectStakeHolders: number[] = []
+
+      stakeholdersCategoriesResponse.data.stakeholderCategories.map((current: any) => {
+        if (Number(current.id) === Number(option?.data?.category)){
+          projectStakeholdersResponse.data.projectStakeholders.map((currentStakeholder: any) => {
+            if (Number(currentStakeholder.projectId) === Number(projectId) && Number(currentStakeholder.stakeholderCategoryId) === Number(current.id)){
+              projectStakeHolders.push(currentStakeholder.stakeholder.id)
+            }
+          })
+        }
+      });
+
+      if (!projectStakeHolders.includes(Number(option?.key)) && Number(option?.key) !== Number(0)){
+
+        let currentProjectStakeholder = {
+          id: Number(option?.data?.idProjectStakeHolder),
+          main: option?.data?.main,
+          stakeholderCategoryId: Number(option?.data?.category),
+          projectId: Number(projectId),
+          stakeholderId: Number(option?.key)
+        }
+
+        updateProjectStakeholder({
+          variables: { updateProjectStakeholder: currentProjectStakeholder },
+          refetchQueries: [{ query: GET_STAKEHOLDERS_CATEGORIES }, { query: GET_PROYECT_STAKEHOLDERS }, { query: GET_STAKEHOLDERS }]
+        })
+      }
     }
     return option
   }
@@ -226,12 +265,24 @@ export default function StakeholdersForm() {
       },
     };
 
+    //setting the stakeholders options 
+    let currentOptions: IDropdownOption[] = []
+
+    currentOptions.push(
+      { key: 0, text: '--None--', data: null }
+    )
+    stakeholdersResponse.data.stakeholders.map((currentStakeholder: any) => {
+      currentOptions.push(
+        { key: currentStakeholder.id, text: currentStakeholder.name, data: item }
+      )
+    })
+
     return (
       <Stack horizontal styles={{ root: { minWidth: 800 } }}>
         <Dropdown
           placeholder={t("select-placeholder")}
           defaultSelectedKey={item.id}
-          options={options}
+          options={currentOptions}
           styles={dropdownStyles}
           onChange={changeStakeHolder}
         />
@@ -289,7 +340,7 @@ export default function StakeholdersForm() {
             iconProps={{ iconName: "Contact" }}
             styles={iconStyles}
             onClick={() => handleChangeMainStakeholder(item)}
-          />
+          /> 
         </TooltipHost>
       );
   }
@@ -404,18 +455,8 @@ export default function StakeholdersForm() {
 
   function getDetail(){
     if (stakeholdersCategoriesResponse.data && projectStakeholdersResponse.data && stakeholdersResponse.data){
-      let index = 1;
-  
-      //setting the stakeholders options 
-      options.push(
-        { key: 0, text: '--None--', data: null }
-      )
-      stakeholdersResponse.data.stakeholders.map((currentStakeholder: any) => {
-        options.push(
-          { key: currentStakeholder.id, text: currentStakeholder.name, data: null }
-        )
-      })
-  
+      let index = 0;
+
       stakeholdersCategoriesResponse.data.stakeholderCategories.map((current: any) => {
         let count = 0
         //stakeholders of current category
@@ -427,11 +468,10 @@ export default function StakeholdersForm() {
               name: currentStakeholder.stakeholder.name,
               category: current.id,
               main: currentStakeholder.main,
-              orderInGroup: 1,
+              orderInGroup: 0,
               hasSiblings: count > 0
             }
             listItems.push(stakholderInfo)
-            //setItems([...items, stakholderInfo])
             count++
           }
         })
@@ -439,7 +479,7 @@ export default function StakeholdersForm() {
         groups.push({
           key: current.id, name: current.name, startIndex: index, count:count, data: {category: current}
         })
-        index += 1;
+        index += count;
       });
     }
   }
