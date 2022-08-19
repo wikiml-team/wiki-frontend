@@ -108,11 +108,13 @@ export function AddStakehoderPanelContent( props: IProps ) {
                 })
             })
 
+            setStakeholderName('')
+            setStakeholderCountry('')
+
             props.dismissPanel()
         }catch(err){
             setstakeholderErrorMessage('Ha ocurrido un error registrando el SH')
         }
-        
     }
 
     return (

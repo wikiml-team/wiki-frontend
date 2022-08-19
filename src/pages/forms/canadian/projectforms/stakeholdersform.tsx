@@ -157,7 +157,7 @@ export default function StakeholdersForm() {
         if (Number(item.idProjectStakeHolder) === Number(currentStakeholder.id)){
           let currentProjectStakeholderMain = {
             id: Number(item.idProjectStakeHolder),
-            main: true,
+            main: !item.main,
             stakeholderCategoryId: Number(item.category),
             projectId: Number(projectId),
             stakeholderId: Number(item.id)
@@ -302,7 +302,7 @@ export default function StakeholdersForm() {
     const bossIconStyles: Partial<IButtonStyles> = {
       root: {
         height: 25,
-        cursor: 'auto'
+        //cursor: 'auto'
       },
       rootHovered: {
         backgroundColor: palette.neutralLighter,
@@ -332,6 +332,7 @@ export default function StakeholdersForm() {
           <IconButton
             iconProps={{ iconName: "PartyLeader" }}
             styles={bossIconStyles}
+            onClick={() => handleChangeMainStakeholder(item)}
           /> 
         </TooltipHost>
       ) : (
