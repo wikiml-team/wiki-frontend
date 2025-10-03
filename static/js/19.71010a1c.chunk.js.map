@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/settings/security.tsx"],"names":["Security"],"mappings":"+FAAA,+DAEe,SAASA,IACtB,OAAO","file":"static/js/19.71010a1c.chunk.js","sourcesContent":["import React from \"react\";\n\nexport default function Security() {\n  return <div>Security</div>;\n}\n"],"sourceRoot":""}
