@@ -3,8 +3,8 @@
     "static/js/0.3685e8d5.chunk.js": "/wiki-frontend/static/js/0.3685e8d5.chunk.js",
     "static/js/0.3685e8d5.chunk.js.map": "/wiki-frontend/static/js/0.3685e8d5.chunk.js.map",
     "main.css": "/wiki-frontend/static/css/main.f5473eac.chunk.css",
-    "main.js": "/wiki-frontend/static/js/main.193e8e1b.chunk.js",
-    "main.js.map": "/wiki-frontend/static/js/main.193e8e1b.chunk.js.map",
+    "main.js": "/wiki-frontend/static/js/main.ae7bafd2.chunk.js",
+    "main.js.map": "/wiki-frontend/static/js/main.ae7bafd2.chunk.js.map",
     "runtime-main.js": "/wiki-frontend/static/js/runtime-main.f7d8cd5e.js",
     "runtime-main.js.map": "/wiki-frontend/static/js/runtime-main.f7d8cd5e.js.map",
     "static/js/3.635f28bb.chunk.js": "/wiki-frontend/static/js/3.635f28bb.chunk.js",
@@ -53,6 +53,6 @@
     "static/js/runtime-main.f7d8cd5e.js",
     "static/js/3.635f28bb.chunk.js",
     "static/css/main.f5473eac.chunk.css",
-    "static/js/main.193e8e1b.chunk.js"
+    "static/js/main.ae7bafd2.chunk.js"
   ]
 }
